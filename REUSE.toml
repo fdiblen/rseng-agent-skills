@@ -1,0 +1,17 @@
+version = 1
+SPDX-PackageName = "rseng-agent-skills"
+SPDX-PackageDownloadLocation = "https://github.com/fdiblen/rseng-agent-skills"
+
+# Code, configuration and tooling
+[[annotations]]
+path = ["**"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2026 Faruk Diblen"
+SPDX-License-Identifier = "MIT"
+
+# Skill content and documentation derived from RSQKit (CC-BY-4.0 upstream)
+[[annotations]]
+path = ["skills/**", "docs/**"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "EVERSE project, RSQKit team and contributors; adaptation 2026 Faruk Diblen"
+SPDX-License-Identifier = "CC-BY-4.0"
