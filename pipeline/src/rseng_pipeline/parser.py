@@ -9,10 +9,15 @@ with raw frontmatter.
 
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass, field
 from pathlib import Path
 
 import frontmatter
+
+_HEADING_RE = re.compile(r"^(#{1,6})\s+(.*?)\s*#*\s*$")
+_FENCE_RE = re.compile(r"^(```|~~~)")
+_TOOL_TAG_RE = re.compile(r"\{%-?\s*tool\s+\"([^\"]+)\"\s*-?%\}")
 
 _NORMALIZED_KEYS = {
     "page_id",
@@ -102,3 +107,61 @@ def load_pages(cache_dir: Path) -> dict[str, PageRecord]:
         record = parse_page_file(md_file, cache_dir)
         records[record.page_id] = record
     return records
+
+
+@dataclass
+class Section:
+    """A heading with its direct text and nested subsections."""
+
+    level: int
+    title: str
+    content: str
+    children: list[Section] = field(default_factory=list)
+
+
+def build_section_tree(body: str) -> list[Section]:
+    """Build a nested section tree from ATX headings.
+
+    Headings inside fenced code blocks are ignored. Text before the first
+    heading is not part of any section; take it from the body directly.
+    """
+    root = Section(level=0, title="", content="")
+    stack = [root]
+    content_lines: dict[int, list[str]] = {id(root): []}
+    in_fence = False
+
+    for line in body.splitlines():
+        if _FENCE_RE.match(line.strip()):
+            in_fence = not in_fence
+        heading = None if in_fence else _HEADING_RE.match(line)
+        if heading is None:
+            content_lines[id(stack[-1])].append(line)
+            continue
+        section = Section(
+            level=len(heading.group(1)), title=heading.group(2), content=""
+        )
+        while stack[-1].level >= section.level:
+            stack.pop()
+        stack[-1].children.append(section)
+        stack.append(section)
+        content_lines[id(section)] = []
+
+    def finalize(section: Section) -> None:
+        section.content = "\n".join(content_lines[id(section)]).strip("\n")
+        for child in section.children:
+            finalize(child)
+
+    finalize(root)
+    return root.children
+
+
+def iter_sections(sections: list[Section]):
+    """Yield every section in the tree, depth first."""
+    for section in sections:
+        yield section
+        yield from iter_sections(section.children)
+
+
+def extract_tool_refs(body: str) -> list[str]:
+    """Tool registry ids referenced via ``{% tool "..." %}`` tags, in order."""
+    return _dedupe(_TOOL_TAG_RE.findall(body))
