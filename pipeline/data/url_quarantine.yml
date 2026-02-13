@@ -1,0 +1,9 @@
+# URLs excluded from generated artifacts until a human clears them.
+# Seeded from a manual audit of the upstream tool registry: both entries
+# point at non-canonical catalog sites instead of the tools' real homes.
+- url: https://catalogforge.net/projects/checkstyle/
+  tool: checkstyle
+  reason: not the canonical Checkstyle site (expected checkstyle.org)
+- url: https://www.sonarcatalog.com/products/sonarqube/
+  tool: sonarqube
+  reason: not the canonical SonarQube site (expected sonarsource.com)
