@@ -1,0 +1,26 @@
+# Curated training and reference sources merged into the per-page
+# learn-more lists. Upstream Training sections are mostly dynamic embeds,
+# so these hand-picked, verified sources fill the gap. Keep this list
+# short and high-quality; every URL is checked by the pipeline.
+defaults:
+  - label: ELIXIR TeSS training portal
+    url: https://tess.elixir-europe.org/
+  - label: The Carpentries
+    url: https://carpentries.org/
+  - label: CodeRefinery lessons
+    url: https://coderefinery.org/lessons/
+  - label: The Turing Way handbook
+    url: https://book.the-turing-way.org/
+pages:
+  using_version_control:
+    - label: Software Carpentry, Version Control with Git
+      url: https://swcarpentry.github.io/git-novice/
+  documenting_code:
+    - label: CodeRefinery, How to document your research software
+      url: https://coderefinery.github.io/documentation/
+  testing_software:
+    - label: CodeRefinery, Software testing
+      url: https://coderefinery.github.io/testing/
+  reproducible_software_environments:
+    - label: CodeRefinery, Reproducible research
+      url: https://coderefinery.github.io/reproducible-research/

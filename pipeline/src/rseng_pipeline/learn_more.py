@@ -11,6 +11,9 @@ from __future__ import annotations
 
 import re
 from dataclasses import dataclass, replace
+from pathlib import Path
+
+import yaml
 
 from .cleaner import RSQKIT_BASE_URL, clean_body
 from .parser import PageRecord, Section, build_section_tree, iter_sections
@@ -21,6 +24,12 @@ _REF_DEF_TARGET_RE = re.compile(r"^\[[^\]]+\]:\s*(https?://\S+)", re.MULTILINE)
 
 
 @dataclass(frozen=True)
+class CuratedSource:
+    label: str
+    url: str
+
+
+@dataclass(frozen=True)
 class LearnMore:
     """Learn-more pointers for one page."""
 
@@ -28,6 +37,7 @@ class LearnMore:
     rsqkit_url: str
     external: tuple[str, ...]
     training: tuple[str, ...]
+    curated: tuple[CuratedSource, ...] = ()
 
 
 def _links_in(text: str) -> list[str]:
@@ -79,6 +89,36 @@ def collect_all(pages: dict[str, PageRecord]) -> dict[str, LearnMore]:
     return {page_id: collect_learn_more(rec) for page_id, rec in pages.items()}
 
 
+def load_curated(
+    path: Path,
+) -> tuple[tuple[CuratedSource, ...], dict[str, tuple[CuratedSource, ...]]]:
+    """Curated sources: pack-wide defaults plus per-page additions."""
+    data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+
+    def sources(items) -> tuple[CuratedSource, ...]:
+        return tuple(
+            CuratedSource(label=item["label"], url=item["url"]) for item in items or ()
+        )
+
+    per_page = {
+        page_id: sources(items) for page_id, items in (data.get("pages") or {}).items()
+    }
+    return sources(data.get("defaults")), per_page
+
+
+def merge_curated(
+    entries: dict[str, LearnMore],
+    defaults: tuple[CuratedSource, ...],
+    per_page: dict[str, tuple[CuratedSource, ...]],
+) -> dict[str, LearnMore]:
+    """Attach curated sources to every page's learn-more entry."""
+    merged = {}
+    for page_id, entry in entries.items():
+        curated = per_page.get(page_id, ()) + defaults
+        merged[page_id] = replace(entry, curated=curated)
+    return merged
+
+
 def verify_learn_more(
     entries: dict[str, LearnMore],
     quarantine: dict[str, str] | None = None,
@@ -90,7 +130,13 @@ def verify_learn_more(
     report or persist what was rejected.
     """
     all_urls = {
-        url for entry in entries.values() for url in (*entry.external, *entry.training)
+        url
+        for entry in entries.values()
+        for url in (
+            *entry.external,
+            *entry.training,
+            *(source.url for source in entry.curated),
+        )
     }
     checks = verify_urls(sorted(all_urls), quarantine=quarantine, probe=probe)
 
@@ -99,7 +145,12 @@ def verify_learn_more(
 
     filtered = {
         page_id: replace(
-            entry, external=keep(entry.external), training=keep(entry.training)
+            entry,
+            external=keep(entry.external),
+            training=keep(entry.training),
+            curated=tuple(
+                source for source in entry.curated if checks[source.url].status == "ok"
+            ),
         )
         for page_id, entry in entries.items()
     }
