@@ -1,0 +1,81 @@
+# Maps RSQKit page_ids to the skills in this pack. This file is the
+# contract between upstream content and the skill set: references/ folders,
+# adapters and sync impact reports are all derived from it. Every task page
+# at the pinned upstream commit must appear exactly once under `pages`.
+
+skills:
+  rseng-quality-framework:
+    pages: []
+
+  rseng-testing:
+    pages:
+      - testing_software
+      - ci_testing_matrices
+
+  rseng-ci-cd:
+    pages:
+      - ci_cd
+      - task_automation_github_actions
+      - task_automation_gitlab_ci_cd
+      - org_gitlab_ci_infra_for_github_project
+
+  rseng-documentation:
+    pages:
+      - software_documentation
+      - documenting_code
+      - documenting_software_project
+      - documenting_software_readthedocs
+      - creating_good_readme
+      - writing_research_software_stories
+
+  rseng-licensing:
+    pages:
+      - licensing_software
+
+  rseng-citation-metadata:
+    pages:
+      - citing_software
+      - software_metadata
+      - complete_bibliographic_metadata_codemeta
+      - software_identifiers
+      - credit_recognition_research_software
+
+  rseng-fair-software:
+    pages:
+      - fair_rs
+
+  rseng-publishing-releasing:
+    pages:
+      - publishing_software
+      - packaging_software
+      - releasing_software
+      - archiving_software
+
+  rseng-reproducible-environments:
+    pages:
+      - reproducible_software_environments
+      - using_containers
+
+  rseng-version-control-review:
+    pages:
+      - using_version_control
+      - code_review
+
+  rseng-code-quality:
+    pages:
+      - writing_readable_code
+      - software_project_structure
+
+  rseng-maintenance-sustainability:
+    pages:
+      - software_maintenance
+      - improving_environmental_sustainability
+
+  rseng-management-planning:
+    pages:
+      - software_management_planning
+      - languages_tools_infrastructures
+
+  rseng-workflows:
+    pages:
+      - computational_workflows
