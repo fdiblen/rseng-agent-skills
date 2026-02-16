@@ -1,18 +1,47 @@
 # Maps RSQKit page_ids to the skills in this pack. This file is the
 # contract between upstream content and the skill set: references/ folders,
-# adapters and sync impact reports are all derived from it. Every task page
-# at the pinned upstream commit must appear exactly once under `pages`.
+# adapters and sync impact reports are all derived from it. Every task,
+# concept and role page at the pinned upstream commit must appear exactly
+# once across `pages`, `concept_pages` and `role_pages`.
 
 skills:
   rseng-quality-framework:
+    scope: >-
+      Router and orientation skill: what research software quality means,
+      the three-tier view of research software, the 13 quality dimensions
+      and 47 indicators, role-based entry points, and which sibling skill
+      to consult for a concrete task. Holds the framework concept pages and
+      all role pages; owns no task page.
     pages: []
+    concept_pages:
+      - quality
+      - quality_dimensions
+      - research_software
+      - three_tier_view
+      - life_cycle
+    role_pages:
+      - policy_maker
+      - principal_investigator
+      - product_owner
+      - project_manager
+      - research_software_engineer
+      - researcher_who_codes
+      - trainer
 
   rseng-testing:
+    scope: >-
+      Writing and running software tests: test types and levels, testing
+      frameworks, coverage, and managing complex CI testing matrices across
+      compilers, platforms and dependencies.
     pages:
       - testing_software
       - ci_testing_matrices
 
   rseng-ci-cd:
+    scope: >-
+      Continuous integration and delivery: CI/CD concepts, task automation
+      with GitHub Actions and GitLab CI/CD, and organizing GitLab CI
+      infrastructure for GitHub-hosted projects.
     pages:
       - ci_cd
       - task_automation_github_actions
@@ -20,6 +49,10 @@ skills:
       - org_gitlab_ci_infra_for_github_project
 
   rseng-documentation:
+    scope: >-
+      Documenting software at every level: READMEs, code-level and project
+      documentation, hosted docs (Read the Docs), and writing research
+      software stories.
     pages:
       - software_documentation
       - documenting_code
@@ -29,10 +62,17 @@ skills:
       - writing_research_software_stories
 
   rseng-licensing:
+    scope: >-
+      Choosing and applying software licenses: copyright basics, license
+      selection, license files and per-file licensing (REUSE/SPDX).
     pages:
       - licensing_software
 
   rseng-citation-metadata:
+    scope: >-
+      Making software citable and credited: citation files (CITATION.cff),
+      CodeMeta metadata, persistent identifiers, and credit and recognition
+      practices for research software.
     pages:
       - citing_software
       - software_metadata
@@ -41,10 +81,16 @@ skills:
       - credit_recognition_research_software
 
   rseng-fair-software:
+    scope: >-
+      Applying the FAIR principles (findable, accessible, interoperable,
+      reusable) to research software.
     pages:
       - fair_rs
 
   rseng-publishing-releasing:
+    scope: >-
+      Getting software out: packaging for distribution, versioned releases,
+      publishing for reuse, and long-term archiving.
     pages:
       - publishing_software
       - packaging_software
@@ -52,30 +98,47 @@ skills:
       - archiving_software
 
   rseng-reproducible-environments:
+    scope: >-
+      Reproducible software environments: environment specification and
+      management, and using containers.
     pages:
       - reproducible_software_environments
       - using_containers
 
   rseng-version-control-review:
+    scope: >-
+      Working with version control effectively and reviewing code:
+      branching, collaboration workflows, and code review practice.
     pages:
       - using_version_control
       - code_review
 
   rseng-code-quality:
+    scope: >-
+      Writing readable code and structuring software projects well.
     pages:
       - writing_readable_code
       - software_project_structure
 
   rseng-maintenance-sustainability:
+    scope: >-
+      Keeping software alive and responsible: maintenance practice and
+      improving environmental sustainability of research software.
     pages:
       - software_maintenance
       - improving_environmental_sustainability
 
   rseng-management-planning:
+    scope: >-
+      Planning research software work: software management plans and
+      choosing languages, tools and infrastructures.
     pages:
       - software_management_planning
       - languages_tools_infrastructures
 
   rseng-workflows:
+    scope: >-
+      Building and sharing computational workflows with workflow management
+      systems.
     pages:
       - computational_workflows
