@@ -12,7 +12,9 @@ metadata:
   version: 0.1.0
   source_pages:
     [quality, quality_dimensions, research_software, three_tier_view,
-     life_cycle]
+     life_cycle, policy_maker, principal_investigator, product_owner,
+     project_manager, research_software_engineer, researcher_who_codes,
+     trainer]
   source: https://everse.software/RSQKit/
   source_doi: 10.5281/zenodo.14923573
 ---
@@ -75,6 +77,51 @@ Quality practices attach to life-cycle stages: planning, development,
 testing, release, maintenance, retirement (RSQKit: life_cycle). When the
 user is at a specific stage, prefer stage-appropriate advice - a retirement
 conversation is about archiving and handover, not about adding CI.
+
+## Role-based entry points
+
+RSQKit organizes guidance by role; match advice to who is asking
+(references/pages/ holds the full role pages):
+
+- Researcher who codes: start with version control, README, environment
+  pinning and basic tests; grow practices as the code is shared
+  (RSQKit: researcher_who_codes).
+- Research Software Engineer: full engineering practice - architecture,
+  testing, CI/CD, review, packaging, reproducibility, mentoring
+  (RSQKit: research_software_engineer).
+- Principal Investigator: software management plans, crediting and
+  citation policy, sustainability and staffing decisions
+  (RSQKit: principal_investigator).
+- Project manager / product owner: planning, milestones tied to releases,
+  quality gates, backlog for maintenance work (RSQKit: project_manager,
+  product_owner).
+- Policy maker: recognition of software as a research output, funding
+  conditions referencing quality practice (RSQKit: policy_maker).
+- Trainer: curricula built from the task pages, pointing at Carpentries
+  and CodeRefinery style material (RSQKit: trainer).
+
+## Which sibling skill to use
+
+Route concrete tasks to the specialised skill; each mirrors a set of
+RSQKit task pages:
+
+- rseng-testing: writing tests, coverage, CI test matrices
+- rseng-ci-cd: pipelines, GitHub Actions, GitLab CI/CD automation
+- rseng-documentation: READMEs, code and project docs, Read the Docs
+- rseng-licensing: choosing and applying licenses, REUSE/SPDX
+- rseng-citation-metadata: CITATION.cff, CodeMeta, identifiers, credit
+- rseng-fair-software: applying FAIR principles to software
+- rseng-publishing-releasing: packaging, releases, publishing, archiving
+- rseng-reproducible-environments: environment pinning, containers
+- rseng-version-control-review: git practice, code review
+- rseng-code-quality: readable code, project structure
+- rseng-maintenance-sustainability: maintenance, green software
+- rseng-management-planning: software management plans, tech choice
+- rseng-workflows: computational workflow systems
+
+If a request spans several (e.g. "make my repo publication-ready"),
+sequence them: version control and license first, then tests and docs,
+then citation metadata, then release and archive.
 
 ## Working with this skill
 
