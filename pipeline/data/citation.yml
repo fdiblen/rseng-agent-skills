@@ -1,0 +1,13 @@
+# Shared citation snippet. Single source of truth for every build target
+# (skill bodies, adapters, slash commands, generated references). Change it
+# here and regenerate; do not fork the wording per target.
+full: >-
+  Guidance based on RSQKit by the EVERSE project and the RSQKit team,
+  https://everse.software/RSQKit/, DOI 10.5281/zenodo.14923573 (CC-BY-4.0).
+short: >-
+  Based on RSQKit (EVERSE project), https://everse.software/RSQKit/
+markdown: >-
+  Guidance based on [RSQKit](https://everse.software/RSQKit/) by the EVERSE
+  project and the RSQKit team, DOI
+  [10.5281/zenodo.14923573](https://doi.org/10.5281/zenodo.14923573)
+  (CC-BY-4.0).
