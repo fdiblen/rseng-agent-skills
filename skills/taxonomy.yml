@@ -59,7 +59,7 @@ skills:
       - documenting_software_project
       - documenting_software_readthedocs
       - creating_good_readme
-      - writing_research_software_stories
+      - writing_research_software_story
 
   rseng-licensing:
     scope: >-
@@ -118,14 +118,14 @@ skills:
       Writing readable code and structuring software projects well.
     pages:
       - writing_readable_code
-      - software_project_structure
+      - structuring_software_projects
 
   rseng-maintenance-sustainability:
     scope: >-
       Keeping software alive and responsible: maintenance practice and
       improving environmental sustainability of research software.
     pages:
-      - software_maintenance
+      - maintaining_research_software
       - improving_environmental_sustainability
 
   rseng-management-planning:
