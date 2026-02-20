@@ -1,0 +1,63 @@
+<!-- Generated file - do not edit.
+     Source: pages/tasks/improving_environmental_sustainability.md @ 03a8352e0701acf6ae28a1f6c9069e9b2caf8e7e
+     From RSQKit (https://everse.software/RSQKit/improving_environmental_sustainability) by the EVERSE project and the RSQKit team,
+     CC-BY-4.0. DOI: 10.5281/zenodo.14923573 -->
+
+## How to monitor and reduce the environmental impact of my software?
+
+### Description
+
+There is an urgent need to reduce the environmental impact of our activities, and research is no exception.
+Many research institutes and funders have committed to achieving Net Zero (essentially a 90% reduction in carbon equivalent emissions) by 2050 or earlier.
+There are a range of tools and practices which researchers can adopt to reduce the environmental impact of their software.
+
+### Considerations
+
+While vital for society, research is a significant source of carbon emissions.
+Thankfully there are a number of steps which can be taken to reduce emissions.
+
+The Green Software Foundation suggests three aspects to consider:
+
+1. Energy efficacy - design software to consume as little energy as possible.
+2. Hardware efficiency - use the least amount of embodied carbon as possible.
+3. Carbon awareness - do more when the energy supply is clean and less when it is dirty.
+
+There are a number of tools and programming techniques which can be used to first monitor then improve the energy efficiency of software (detailed below).
+Hardware efficacy considers emissions from the creation and disposal of the hardware used (embodied emissions), this can be maximised by extending the lifetime of hardware and (for cloud and HPC) increasing the utilisation of the device.
+Finally, the amount of clean electricity in an energy supply depends on location and time of the use.
+Software that is carbon aware tries to shift usage away from energy that is low in clean energy, through shifting in either time or space.
+
+Similarly, the [GREENER software principles](https://www.nature.com/articles/s43588-023-00461-y) sets out a series of principles to help guide the  transition to more environmentally responsible computing including:
+
+* Governance and Responsibility: All stakeholders, including grassroots movements, institutions, funding bodies, and industry partners, must take responsibility for reducing greenhouse gas (GHG) emissions in computational science. Both top-down and bottom-up approaches are necessary.
+* Estimation: It is crucial to estimate and report the energy consumption and carbon footprints of computational processes to identify inefficiencies and raise awareness of environmental impacts.
+* Energy and Embodied Impacts: Reducing the carbon intensity of computing requires addressing both operational energy consumption and the environmental cost of manufacturing hardware. Geographic location, hardware procurement, and data storage play significant roles.
+* New Collaborations: International cooperation is vital to ensure that researchers, particularly in low- and middle-income countries, have access to low-carbon computing resources.
+* Education and Research: Raising awareness about sustainable computational practices through training and integrating sustainability into educational curricula is essential. Research must also focus on creating energy-efficient algorithms and technologies.
+
+### Solutions
+
+#### Training
+
+- Green software foundation provides a [free course](https://learn.greensoftware.foundation/introduction) that introduces the basic concepts including embodied carbon, carbon intensity, demand shifting (and shaping) and measurement approaches.
+- `green-coding.io` provide (paid for) [workshops & training](https://www.green-coding.io/services/workshops-and-trainings) that focus on energy-efficient coding, environmentally responsible software design, and practical tools
+
+#### Certification
+
+- [GreenDiSC](https://www.software.ac.uk/GreenDiSC) is a certification scheme for research groups (and central sustainability teams) that focuses on hardware and software.
+
+#### Evaluation Frameworks
+
+- [Software Carbon Intensity (SCI) Specification](https://sci.greensoftware.foundation/) is an assessment framework for assessing and reducing software carbon intensity.
+
+#### Tools to monitor emissions
+
+* [CodeCarbon](https://codecarbon.io/) estimates the CO2 emissions from computing resources used by software.
+* [Green Algorithms](https://www.green-algorithms.org/) is an online tool to estimate the carbon footprint of computational tasks using a web calculator. Currently being extended for use on HPC platforms.
+* [carbontracker](https://github.com/lfwa/carbontracker) is a tool that monitors and predicts energy and carbon footprint for training machine learning models.
+* [Greenspector Studio](https://greenspector.com/en/home/) measures energy usage and resource efficiency in web and mobile applications.
+* [Ecograder](https://ecograder.com/) evaluates website sustainability based on design and operational efficiency.
+
+## Tool- or Domain-Specific Tasks
+
+This is a suggested list tool-specific sub-tasks to have a look at.

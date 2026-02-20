@@ -1,0 +1,141 @@
+<!-- Generated file - do not edit.
+     Source: pages/tasks/documenting_code.md @ 03a8352e0701acf6ae28a1f6c9069e9b2caf8e7e
+     From RSQKit (https://everse.software/RSQKit/documenting_code) by the EVERSE project and the RSQKit team,
+     CC-BY-4.0. DOI: 10.5281/zenodo.14923573 -->
+
+## How to document your code?
+
+### Description
+
+Code documentation explains how the code works internally.
+It supports developers who maintain or wish to extend the code by making its logic and structure easier to understand and follow.
+When compared to [software project documentation][documenting_software_project], which helps people use and adopt your software, code documentation helps people develop, deploy and sustain it.
+
+Check ["How to Write Software Documentation in 7 Simple Steps"](https://technicalwriterhq.com/documentation/software-documentation/how-to-write-software-documentation/) and [Ten Simple Rules for documenting scientific software](https://doi.org/10.1371/journal.pcbi.1006561) for more reading on the topic.
+
+### Considerations
+
+* Software documentation should be accessible, clear, consistent, regularly updated, cover all key software aspects and encourage feedback.
+  For example, it can include: source code documentation, requirements specifications, software architecture, installation and usage, command line interface (CLI), API specification, deployment guide, tutorials and how-to guides, troubleshooting guides and FAQs.
+* It should be automatically generated where possible, and use standard documentation formats such as (R)Markdown, reStructuredText, HTML, PDF, or wikis.
+* Each piece of code documentation serves a distinct purpose and is aimed at different technical audience:
+  * *Developers* – who create, modify, debug, and maintain software applications.
+  * *Administrators* – who are responsible for installing, configuring, deploying and administering software systems.
+  * *Testers* – who test the code according to its specification.
+  * *End users* - who use the software for personal or work-related tasks. They are typically not the target audience of code documentation (but rather [software project documentation][documenting_software_project]).
+  However, they will need installation gudies and usage examples documentation which can be considered techical/code documentation.
+* Code documentation can vary depending on the aspect of the code it addresses:
+  * *Product documentation* provides comprehensive information about the software’s features, functionality, usage, and maintenance. Examples include requirements documents, high-level descriptions (e.g., README files), source code documentation, user guides, and API references. It targets multiple audiences, ensuring they can understand, operate, and troubleshoot the software.
+  * *Process documentation* is primarily intended for the development team and may include plans, progress reports, working papers, and notes that capture development ideas and decisions.
+
+It should also be noted that code and software project documentation are sometimes mixed together - for example installation and usage documentation may be targeted at end users and developers/administrators alike.
+
+### Solutions
+
+#### Understand purpose and audience
+
+* Create and maintain different types of software documentation based on its **purpose** and **intended audience**.
+* Think about who will be using the documentation and tailor content accordingly:
+  * *User documentation* (for end-users) – explains clearly what the software does and how to use it; focuses on usability, clarity, and step-by-step instructions (e.g., end user guides).
+  * *Developer documentation* (for developers and testers) – covers in-depth technical details such as specifications, docstrings, inline comments, error messages, contribution guidance, testing, and software governance.
+  * *Deployment documentation* (for developers and administrators) – provides installation, configuration, dependency, platform, and testing instructions.
+* Creating personas can help target content effectively for different audiences.
+
+#### Document as you code
+
+Code comments are documentation embedded in your source code and include:
+
+* Inline comments – short explanations for specific lines/blocks
+* Block comments – detailed explanations for complex logic
+* Documentation strings – structured descriptions of functions/classes/modules
+
+A documentation string is a string literal specified in source code that is used, like a comment, to document a specific segment of code.
+The difference is that the documentation string is visible to the outside world, while comments are not.
+Documentations strings are for helping people use the code, while comments are meant for people modifying the code - yourself and other developers.
+
+Some general advice when writing comments:
+
+* Write comments and documentation strings while coding to keep information up to date.
+* Balance the amount of commenting; focus on *why* and *how* instead of restating *what* the code does.
+* Rewrite overly complex code rather than explaining it with excessive comments.
+* Use integrated development environments (IDEs), such as [Visual Studio Code](https://code.visualstudio.com/), [PyCharm](https://www.jetbrains.com/pycharm/), [Eclipse](https://eclipseide.org/) and extensions (e.g., [JSDoc](https://jsdoc.app/), [Python Docstring Generator](https://marketplace.visualstudio.com/items?itemName=njpwerner.autodocstring)) to assist in generating docstrings.
+
+#### Write meaningful error messages
+
+To help your users troubleshoot issues when using your software, error messages returned by your code should clearly state:
+
+* When and where the error happened.
+* What went wrong.
+* The state of the software at that time.
+* How to fix it or where to find help in your documentation.
+
+#### Include usage examples
+
+* Provide usage examples to help users understand, experiment with, and explore features.
+* If documentation becomes cluttered, move examples to a dedicated section.
+* [Keras](https://github.com/keras-team/keras) is a good example of including code usage examples.
+
+#### Include a quickstart guide and a more detailed tutorial
+
+* Quickstart guide offers a fast path from setup to experimentation
+* Tutorials include more details step-by-step information on installing, running and experimenting with your software.
+* The [TPOT tool](http://epistasislab.github.io/tpot/) includes an effective quickstart with code snippets and visuals.
+
+#### Provide a README
+README overlaps slightly with the [software project documentation][documenting_software_project], but can be used as part of code documentation to explain or point to technical details.
+
+* README file explains basic functionality, installation steps, and usage (e.g., a quick start).
+* It acts as a project homepage on platforms like [GitHub](https://github.com/) and [GitLab](https://about.gitlab.com/).
+* Include links to full project and code documentation.
+* See more details on [how to create a good README file][creating_good_readme].
+
+#### Document Command Line Interface (CLI) or the Application Programming Interface (API)
+
+If your software provides a CLI or API:
+
+* Describe usage, subcommands, options, arguments, and environment variables.
+* Provide examples where possible.
+* Implement a `help` command to assist users without external documentation.
+
+The `help` command should cover:
+
+* Usage instructions (how to execute the command).
+* Relevant subcommands
+* Options and/or arguments
+* Applicable environment variables
+* And ideally, some examples.
+
+Tools and examples:
+* [Click](https://click.palletsprojects.com/en/stable/) helps build and document Python CLI tools.
+* The [OpenAPI Specification](https://swagger.io/specification/), previously known as the Swagger Specification, is a specification for a machine-readable API definition language for describing, producing, consuming and visualising web services.
+* [Swagger](https://swagger.io/) (built around the OpenAPI Specification) helps design, build, document, and consume REST APIs.
+* A great example of a CLI is the one included with the [Magic-BLAST](https://ncbi.github.io/magicblast/) bioinformatics tool.
+
+#### Version control your documentation
+
+* Store documentation in the project repository and track it using version control.
+* Treat documentation like code to keep it updated through familiar workflows. Read more on [how to use *Read the Docs* for your software project](https://everse.software/RSQKit/documenting_software_readthedocs.md).
+* [Read the Docs](https://about.readthedocs.com/) integrates with Git workflows and can automatically publish documentation. See more in the [Documenting Software Readthedocs page](https://everse.software/RSQKit/documenting_software_readthedocs).
+* [Zenodo](https://zenodo.org/) can archive documentation automatically with each software release.
+
+Examples:
+* The bioinformatics library [khmer](https://github.com/dib-lab/khmer/) uses version control for its documentation, includes a comprehensive changelog, lists contributors, and tracks user- vs developer-facing issues.
+* *RSQKit* uses GitHub Actions to automate documentation tasks.
+
+#### Use automated documentation tools
+
+While no software can completely write software documentation for you, several tools can significantly ease the process.
+
+* [Sphinx](https://www.sphinx-doc.org) (for Python and other languages), [Doxygen](https://www.doxygen.nl/) (for C++ and other languages), [Roxygen](https://roxygen2.r-lib.org/) (for R) and [JSDoc](https://jsdoc.app/) (for JavaScript) can generate documentation in multiple formats (HTML, PDF) and automatically extract comments from annotated code in your codebase.
+* [MKDocs](https://www.mkdocs.org/) enables the creation of professional-looking documentation websites using Markdown.
+* [Swagger](https://swagger.io/) can automate the generation of client libraries, server stubs, and API documentation efficiently based on API definitions.
+* [Documenter.jl](https://documenter.juliadocs.org/stable/) is a Julia package for building documentation from docstrings in code and Markdown files.
+* Leverage CI/DC tools, offered by platforms such as [GitHub](https://github.com/) and [GitLab](https://about.gitlab.com/) to automate quality assurance and release of your updated documentation to the public. For example, take a look at the [GitHub actions in the RSQKit repository](https://github.com/EVERSE-ResearchSoftware/RSQKit/actions)
+for some automated tasks.
+
+## Tool- or Domain-Specific Tasks
+
+This is a suggested list tool-specific sub-tasks to have a look at.
+
+[documenting_software_project]: https://everse.software/RSQKit/documenting_software_project
+[creating_good_readme]: https://everse.software/RSQKit/creating_good_readme
