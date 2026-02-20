@@ -138,4 +138,7 @@ def clean_body(body: str, tools: dict[str, Tool] | None = None) -> str:
     cleaned = strip_liquid(cleaned)
     cleaned = drop_empty_training_sections(cleaned)
     cleaned = resolve_internal_links(cleaned)
+    # Trailing whitespace is stripped everywhere (code fences included) so
+    # generated files stay byte-stable under standard whitespace hooks.
+    cleaned = "\n".join(line.rstrip() for line in cleaned.splitlines())
     return _BLANK_RUN_RE.sub("\n\n", cleaned).strip() + "\n"
