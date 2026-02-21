@@ -91,6 +91,48 @@ def _learn_more_markdown(page_ids: list[str], content: dict) -> str:
     return "\n".join(lines).rstrip() + "\n"
 
 
+def _indicators_markdown(page_ids: list[str], content: dict) -> str:
+    """Checklist of the indicators referenced by this skill's pages.
+
+    The upstream registry defines no per-tier priority levels, so the
+    checklist is grouped by quality dimension; agents judge applicability
+    by software tier (see the rseng-quality-framework skill).
+    """
+    referencing: dict[str, list[str]] = {}
+    for page_id in page_ids:
+        page = content["pages"].get(page_id, {})
+        for abbr in page.get("quality_indicators", []):
+            referencing.setdefault(abbr, []).append(page_id)
+
+    # The router skill maps no task pages; it gets the full registry.
+    abbrs = referencing or {abbr: [] for abbr in content["indicators"]}
+
+    by_dimension: dict[str, list[str]] = {}
+    for abbr in sorted(abbrs):
+        indicator = content["indicators"].get(abbr)
+        if indicator is None:
+            continue  # page references an id missing from the registry
+        for dim in indicator["dimensions"] or ("unmapped",):
+            by_dimension.setdefault(dim, []).append(abbr)
+
+    lines = [GENERATED_HEADER + "# Quality indicator checklist\n"]
+    lines.append(
+        "Check each indicator that applies; judge applicability by the\n"
+        "software's tier (analysis code, prototype tool, infrastructure).\n"
+    )
+    for dim in sorted(by_dimension):
+        dimension = content["dimensions"].get(dim)
+        title = dimension["name"] if dimension else dim
+        lines.append(f"## {title}\n")
+        for abbr in by_dimension[dim]:
+            indicator = content["indicators"][abbr]
+            lines.append(f"- [ ] {indicator['name']} (`{abbr}`)")
+            if indicator["description"]:
+                lines.append(f"      {indicator['description']}")
+        lines.append("")
+    return "\n".join(lines).rstrip() + "\n"
+
+
 def generate_references(
     skills_dir: Path, taxonomy_path: Path, build_dir: Path
 ) -> list[Path]:
@@ -121,6 +163,9 @@ def generate_references(
         )
         (refs_dir / "learn-more.md").write_text(
             _learn_more_markdown(page_ids, content), encoding="utf-8"
+        )
+        (refs_dir / "indicators.md").write_text(
+            _indicators_markdown(page_ids, content), encoding="utf-8"
         )
         written.append(refs_dir)
     return written
