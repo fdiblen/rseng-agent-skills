@@ -1,17 +1,18 @@
 ---
 name: rseng-maintenance-sustainability
-description: >-
-  Covers keeping research software alive and responsible over time:
-  ongoing maintenance practice, tracking and paying down technical debt,
-  reducing the bus factor, and lowering the environmental footprint of
-  computing. Use when the user asks how to maintain or sustain a project,
-  stop it rotting, pin or update dependencies, schedule CI to catch
-  breakage, track tech debt, deprecate or archive software, or measure and
-  cut the energy use and carbon emissions of their code or compute jobs.
+description: 'Covers keeping research software alive and responsible over time: ongoing
+  maintenance practice, tracking and paying down technical debt, reducing the bus
+  factor, and lowering the environmental footprint of computing. Use when the user
+  asks how to maintain or sustain a project, stop it rotting, keep dependencies up
+  to date, schedule CI to catch breakage, track tech debt, retire or deprecate software,
+  or measure and cut the energy use and carbon emissions of their code or compute
+  jobs.'
 license: CC-BY-4.0
 metadata:
   version: 0.1.0
-  source_pages: [maintaining_research_software, improving_environmental_sustainability]
+  source_pages:
+  - maintaining_research_software
+  - improving_environmental_sustainability
   source: https://everse.software/RSQKit/
   source_doi: 10.5281/zenodo.14923573
 ---

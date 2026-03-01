@@ -1,18 +1,21 @@
 ---
 name: rseng-citation-metadata
-description: >-
-  Covers how to make research software citable and its contributors
-  credited: writing a CITATION.cff citation file, describing software with
-  CodeMeta (codemeta.json), minting persistent identifiers such as DOIs and
-  ORCIDs, choosing versioning schemes, and recording credit for career and
-  assessment cases. Use when the user asks how to make software citable, add
-  a CITATION.cff or codemeta.json file, get a DOI from Zenodo, version a
-  release, describe software metadata, ensure contributors get credit, or
-  mentions CFF, CodeMeta, ORCID, SemVer, CRediT, or persistent identifiers.
+description: 'Covers how to make research software citable and its contributors credited:
+  writing a CITATION.cff citation file, describing software with CodeMeta (codemeta.json),
+  minting persistent identifiers such as DOIs and ORCIDs, choosing versioning schemes,
+  and recording credit for career and assessment cases. Use when the user asks how
+  to make software citable, add a CITATION.cff or codemeta.json file, obtain a DOI
+  as a persistent identifier, describe software metadata, ensure contributors get
+  credit, or mentions CFF, CodeMeta, ORCID, CRediT, or persistent identifiers.'
 license: CC-BY-4.0
 metadata:
   version: 0.1.0
-  source_pages: [citing_software, software_metadata, complete_bibliographic_metadata_codemeta, software_identifiers, credit_recognition_research_software]
+  source_pages:
+  - citing_software
+  - software_metadata
+  - complete_bibliographic_metadata_codemeta
+  - software_identifiers
+  - credit_recognition_research_software
   source: https://everse.software/RSQKit/
   source_doi: 10.5281/zenodo.14923573
 ---
