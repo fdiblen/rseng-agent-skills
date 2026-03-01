@@ -1,0 +1,13 @@
+{
+  "name": "rseng-agent-skills",
+  "owner": {
+    "name": "Faruk Diblen"
+  },
+  "plugins": [
+    {
+      "name": "rseng-agent-skills",
+      "source": "./",
+      "description": "Research software quality guidance from RSQKit (EVERSE project): 14 skills, three audit commands and a quality auditor subagent for research code."
+    }
+  ]
+}

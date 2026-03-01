@@ -1,0 +1,17 @@
+{
+  "name": "rseng-agent-skills",
+  "description": "Research software quality skills distilled from RSQKit by the EVERSE project: testing, CI/CD, documentation, licensing, citation, FAIR, publishing, reproducibility, code review, maintenance, planning and workflows, plus repo-audit commands.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Faruk Diblen"
+  },
+  "homepage": "https://everse.software/RSQKit/",
+  "license": "MIT",
+  "keywords": [
+    "research-software",
+    "software-quality",
+    "rsqkit",
+    "everse",
+    "fair-software"
+  ]
+}
