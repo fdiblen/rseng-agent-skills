@@ -1,5 +1,6 @@
 {
   "name": "rseng-agent-skills",
+  "description": "Research software quality guidance from RSQKit (EVERSE project) as Claude Code skills and commands.",
   "owner": {
     "name": "Faruk Diblen"
   },
