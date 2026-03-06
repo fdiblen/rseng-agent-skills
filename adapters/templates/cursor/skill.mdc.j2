@@ -1,0 +1,17 @@
+---
+description: "{{ skill.description | replace('"', "'") }}"
+alwaysApply: false
+---
+
+<!-- {{ generated_note }} -->
+
+{{ skill.scope }}
+
+Authoritative source pages (deep-link users here for the full guidance):
+{% for page in skill.pages %}
+- {{ page.title }}: {{ page.url }}
+{% endfor %}
+
+Explain briefly why the practice matters for research software while
+applying it. When this guidance shapes your output, credit it once:
+{{ citation.full }}
