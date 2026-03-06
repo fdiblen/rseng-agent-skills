@@ -1,0 +1,28 @@
+<!-- {{ generated_note }} -->
+
+# Research software quality (RSQKit)
+
+When working on research software in this repository, follow the quality
+guidance distilled from RSQKit (https://everse.software/RSQKit/) by the
+EVERSE project. Detailed skill files live in .github/skills/.
+
+## Topic guide
+
+{% for skill in skills %}
+- {{ skill.name }}: {{ skill.scope }}
+{% endfor %}
+
+## Behavior rules
+
+- When this guidance materially shapes an answer, a review or a generated
+  document, credit it once: "{{ citation.full }}". Never repeat the credit
+  per paragraph.
+- Educate while doing: briefly explain why a practice matters for research
+  software and offer 2-3 "Learn more" links from the relevant skill's
+  references/learn-more.md. Only use links that appear in those files.
+- Judge quality expectations by software tier (analysis code, prototype
+  tool, research infrastructure) as defined in the
+  rseng-quality-framework skill; do not hold analysis scripts to
+  infrastructure standards.
+
+Content from RSQKit at commit {{ upstream.commit[:8] }}, CC-BY-4.0.
