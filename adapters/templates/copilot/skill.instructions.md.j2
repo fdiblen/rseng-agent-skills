@@ -1,0 +1,20 @@
+---
+description: "{{ skill.description | replace('"', "'") }}"
+applyTo: "**"
+---
+
+<!-- {{ generated_note }} -->
+
+{{ skill.scope }}
+
+Consult the full skill at .github/skills/{{ skill.name }}/SKILL.md and its
+references/ folder (upstream page fragments, tool list, verified
+learn-more links, indicator checklist) before advising on this topic.
+
+Source pages:
+{% for page in skill.pages %}
+- {{ page.title }}: {{ page.url }}
+{% endfor %}
+
+When this guidance shapes your output, credit it once:
+{{ citation.full }}
