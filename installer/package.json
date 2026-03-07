@@ -1,0 +1,40 @@
+{
+  "name": "rseng-agent-skills",
+  "version": "0.1.0",
+  "description": "Install research software quality skills from RSQKit (EVERSE project) into AI coding agents",
+  "keywords": [
+    "research-software",
+    "software-quality",
+    "rsqkit",
+    "everse",
+    "ai-agents",
+    "skills"
+  ],
+  "license": "MIT",
+  "author": "Faruk Diblen",
+  "type": "module",
+  "bin": {
+    "rseng-agent-skills": "dist/cli.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "lint": "biome check src tests",
+    "fix": "biome check --write src tests"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.4.6",
+    "@types/node": "^25.3.5",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.18"
+  },
+  "dependencies": {
+    "commander": "^14.0.3"
+  }
+}
