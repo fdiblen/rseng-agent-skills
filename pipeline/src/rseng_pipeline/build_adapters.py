@@ -14,6 +14,7 @@ from pathlib import Path
 
 from . import targets  # noqa: F401  (importing registers TARGETS)
 from .adapters import TARGETS, load_render_context, template_env
+from .checks import check_target
 
 
 def build(repo_root: Path, only: list[str] | None = None) -> dict[str, list[Path]]:
@@ -27,12 +28,16 @@ def build(repo_root: Path, only: list[str] | None = None) -> dict[str, list[Path
     dist_dir = repo_root / "dist"
 
     results: dict[str, list[Path]] = {}
+    problems: list[str] = []
     for name in names:
         target_dir = dist_dir / name
         if target_dir.exists():
             shutil.rmtree(target_dir)
         target_dir.mkdir(parents=True)
         results[name] = TARGETS[name](repo_root, env, context, target_dir)
+        problems.extend(check_target(target_dir))
+    if problems:
+        raise SystemExit("adapter checks failed:\n" + "\n".join(problems))
     return results
 
 
