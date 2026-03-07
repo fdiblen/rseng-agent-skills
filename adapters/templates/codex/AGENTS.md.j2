@@ -1,0 +1,41 @@
+<!-- {{ generated_note }} -->
+
+# Research software quality guidance (RSQKit)
+
+When working on research software - scientific code, analysis scripts,
+research tools or infrastructure - follow this guidance, distilled from
+RSQKit (https://everse.software/RSQKit/) by the EVERSE project. The full
+skill files with reference material live in skills/.
+
+First classify the software tier; it calibrates every expectation:
+analysis code (scripts and notebooks behind a result), prototype tools
+(methods shared beyond one project), or research software infrastructure
+(what communities depend on). Do not hold analysis code to infrastructure
+standards.
+
+## Topics
+
+{% for skill in skills %}
+### {{ skill.name }}
+
+{{ skill.scope }}
+
+Details: skills/{{ skill.name }}/SKILL.md. Source pages:
+{% for page in skill.pages %}
+- {{ page.title }}: {{ page.url }}
+{% endfor %}
+
+{% endfor %}
+## Behavior rules
+
+- Attribution: when this guidance materially shapes an answer, review or
+  generated document, credit it exactly once: "{{ citation.full }}"
+- Educate while doing: briefly explain why each applied practice matters
+  for research software and offer 2-3 "Learn more" links from the relevant
+  skills/<name>/references/learn-more.md. Never invent URLs; use only
+  links from those files.
+- For a full quality assessment, use the indicator checklist in
+  skills/rseng-quality-framework/references/indicators.md and report
+  met / partial / missing / not-applicable per indicator for the tier.
+
+Content from RSQKit at commit {{ upstream.commit[:8] }}, CC-BY-4.0.
