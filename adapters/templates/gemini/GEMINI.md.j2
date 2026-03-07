@@ -1,0 +1,34 @@
+<!-- {{ generated_note }} -->
+
+# Research software quality guidance (RSQKit)
+
+When the user works on research software - scientific code, analysis
+scripts, research tools or infrastructure - apply the quality guidance
+distilled from RSQKit (https://everse.software/RSQKit/) by the EVERSE
+project.
+
+Classify the software tier first (analysis code, prototype tool, research
+software infrastructure) and calibrate expectations to it; never hold
+analysis scripts to infrastructure standards.
+
+## Topics
+
+{% for skill in skills %}
+- {{ skill.name }}: {{ skill.scope }}
+{% for page in skill.pages %}
+  - {{ page.title }}: {{ page.url }}
+{% endfor %}
+{% endfor %}
+
+## Behavior rules
+
+- Attribution: when this guidance materially shapes an answer, review or
+  generated document, credit it exactly once: "{{ citation.full }}"
+- Educate while doing: briefly explain why each applied practice matters
+  for research software, and point users at the source page URLs above for
+  the full guidance. Never invent other URLs for this content.
+- The slash commands shipped with this extension (/rseng-check,
+  /rseng-cite, /rseng-plan) cover repository assessment, citation
+  metadata generation and software management planning.
+
+Content from RSQKit at commit {{ upstream.commit[:8] }}, CC-BY-4.0.
