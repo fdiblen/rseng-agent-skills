@@ -1,9 +1,16 @@
 import { Command } from "commander";
 import { type CliContext, buildContext } from "./context.js";
 
+export interface CommandArgs {
+  /** Positional arguments in declaration order. */
+  positionals: unknown[];
+  /** Option values for this subcommand. */
+  options: Record<string, unknown>;
+}
+
 export type CommandAction = (
   ctx: CliContext,
-  args: Record<string, unknown>,
+  args: CommandArgs,
 ) => Promise<void> | void;
 
 export const program = new Command()
@@ -28,12 +35,14 @@ export function registerCommand(
   return program
     .command(name)
     .description(description)
-    .action(async (args: Record<string, unknown>, command: Command) => {
+    .action(async (...invocation: unknown[]) => {
+      const command = invocation.at(-1) as Command;
+      const options = invocation.at(-2) as Record<string, unknown>;
       const globals = command.parent?.opts() ?? {};
       const ctx = buildContext({
         dryRun: Boolean(globals["dryRun"]),
         packRoot: globals["packRoot"] as string | undefined,
       });
-      await action(ctx, args);
+      await action(ctx, { positionals: invocation.slice(0, -2), options });
     });
 }

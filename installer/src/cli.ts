@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import "./commands.js";
 import { program } from "./program.js";
 
 program.parseAsync(process.argv).catch((error: unknown) => {
