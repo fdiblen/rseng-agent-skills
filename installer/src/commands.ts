@@ -1,6 +1,7 @@
 import { detectAgents, usableTargets } from "./agents.js";
-import { executePlan, planInstall } from "./install.js";
+import { executePlan, planInstall, readManifest } from "./install.js";
 import { registerCommand } from "./program.js";
+import { executeUpdate } from "./update.js";
 
 registerCommand(
   "install",
@@ -25,3 +26,22 @@ registerCommand(
     }
   },
 ).argument("[agents...]", "restrict to specific agents (claude, copilot, ...)");
+
+registerCommand(
+  "update",
+  "update managed files of existing installs, preserving user edits",
+  (ctx, args) => {
+    const wanted = (args.positionals[0] as string[] | undefined) ?? [];
+    const installed = detectAgents().filter(
+      (target) =>
+        readManifest(target.installDir) !== undefined &&
+        (wanted.length === 0 || wanted.includes(target.agent)),
+    );
+    if (installed.length === 0) {
+      throw new Error("no existing installs found (no manifest); run install");
+    }
+    for (const target of installed) {
+      executeUpdate(ctx, planInstall(ctx.packRoot, target));
+    }
+  },
+).argument("[agents...]", "restrict to specific agents");
