@@ -1,4 +1,5 @@
 import { detectAgents, usableTargets } from "./agents.js";
+import { diagnose, formatReport } from "./doctor.js";
 import { executePlan, planInstall, readManifest } from "./install.js";
 import { registerCommand } from "./program.js";
 import { executeUpdate } from "./update.js";
@@ -45,3 +46,13 @@ registerCommand(
     }
   },
 ).argument("[agents...]", "restrict to specific agents");
+
+registerCommand(
+  "doctor",
+  "check install state per agent: integrity, user edits, staleness",
+  (ctx) => {
+    for (const target of detectAgents()) {
+      ctx.log(formatReport(diagnose(ctx.packRoot, target)));
+    }
+  },
+);
