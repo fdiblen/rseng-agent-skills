@@ -17,7 +17,8 @@
     "rseng-agent-skills": "dist/cli.js"
   },
   "files": [
-    "dist"
+    "dist",
+    "content"
   ],
   "engines": {
     "node": ">=20"
@@ -26,7 +27,8 @@
     "build": "tsc",
     "test": "vitest run",
     "lint": "biome check src tests",
-    "fix": "biome check --write src tests"
+    "fix": "biome check --write src tests",
+    "prepack": "node scripts/prepack.mjs"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.4.6",
