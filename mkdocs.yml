@@ -1,0 +1,38 @@
+site_name: rseng-agent-skills
+site_description: >-
+  Research software quality guidance from RSQKit (EVERSE project) as
+  skills and extensions for AI coding agents.
+repo_url: https://github.com/fdiblen/rseng-agent-skills
+docs_dir: docs
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: blue grey
+
+markdown_extensions:
+  - admonition
+  - pymdownx.superfences
+  - toc:
+      permalink: true
+
+nav:
+  - Home: index.md
+  - User guide:
+      - Quickstart: user/quickstart.md
+      - Installing per agent: user/installing.md
+      - Using the skills: user/using.md
+      - Updating and troubleshooting: user/updating.md
+  - Developer guide:
+      - Architecture: dev/architecture.md
+      - Content pipeline: dev/pipeline.md
+      - Taxonomy: dev/taxonomy.md
+      - Adding a skill: dev/adding-a-skill.md
+      - Adding an adapter: dev/adding-an-adapter.md
+      - Release and sync: dev/release-and-sync.md
+      - Skill authoring template: dev/skill-authoring-template.md
+
+copyright: >-
+  Content adapted from RSQKit (EVERSE project), CC-BY-4.0.
+ 
