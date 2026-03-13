@@ -1,0 +1,31 @@
+{
+  "@context": "https://w3id.org/codemeta/3.0",
+  "@type": "SoftwareSourceCode",
+  "name": "rseng-agent-skills",
+  "description": "Guidance from RSQKit (the Research Software Quality Kit by the EVERSE project) distilled into skills and extensions for AI coding agents.",
+  "author": [
+    {
+      "@type": "Person",
+      "familyName": "Diblen",
+      "givenName": "Faruk"
+    }
+  ],
+  "license": "https://spdx.org/licenses/MIT",
+  "codeRepository": "https://github.com/fdiblen/rseng-agent-skills",
+  "programmingLanguage": ["Python", "TypeScript"],
+  "keywords": [
+    "research software",
+    "software quality",
+    "RSQKit",
+    "EVERSE",
+    "AI coding agents"
+  ],
+  "version": "0.1.0",
+  "isBasedOn": {
+    "@type": "CreativeWork",
+    "name": "RSQKit: Research Software Quality Kit",
+    "url": "https://everse.software/RSQKit/",
+    "identifier": "https://doi.org/10.5281/zenodo.14923573",
+    "license": "https://spdx.org/licenses/CC-BY-4.0"
+  }
+}
