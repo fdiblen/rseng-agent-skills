@@ -1,0 +1,145 @@
+# Release and sync
+
+Two related processes keep the pack current: **releasing** cuts a versioned
+build and publishes it, and **syncing** pulls new RSQKit content in and
+classifies its impact. Both hang off the single pinned source of truth in
+`pipeline/upstream.lock`, and both are reproducible from it - nothing generated
+is hand-maintained.
+
+## Releasing
+
+### Cut a release
+
+1. Bump the version in `installer/package.json` (`"version"`). The installed
+   manifest also carries a version, and the plugin manifests
+   (`.claude-plugin/plugin.json`) have their own - keep them consistent for a
+   release.
+2. Tag the commit `v<version>` (for example `v0.1.0`) and push the tag.
+3. Publishing the GitHub release object triggers the artifact attach.
+
+### What the workflows do
+
+`.github/workflows/publish.yml` runs on any `v*` tag push. It:
+
+- builds the adapters from scratch on a clean checkout, in the same order the
+  pipeline expects -
+  `assembler` (fetch/verified cache to `content.json` + fragments), then
+  `references` (regenerate every skill's `references/`), then `build_adapters`
+  (render `dist/<target>/` and run the output checks);
+- builds and tests the installer (`npm ci`, `npm run build`, `npm test`);
+- publishes the npm package with provenance (`npm publish --provenance --access public`).
+
+Because the release rebuilds everything from the lock on a clean machine, a
+tag can only publish content that regenerates cleanly - a broken taxonomy or a
+failing check stops the release before publish.
+
+`.github/workflows/release-artifacts.yml` runs when a GitHub release is
+*published*. It rebuilds the adapters the same way, zips each `dist/<target>/`
+into `rseng-agent-skills-<target>.zip`, and uploads the zips to the release with
+`gh release upload`. So the npm package (installer) and the per-agent zips
+(for manual installation) come from two separate triggers: the tag push
+publishes to npm, and publishing the release object attaches the zips.
+
+### Semver policy
+
+The version number encodes the kind of change, driven by the sync
+classification below:
+
+- **patch** - regeneration only: upstream body text, tool descriptions and
+  typo fixes flow through without any change to hand-authored bodies or the
+  taxonomy.
+- **minor** - body updates or new skills: substantive guidance changes in a
+  skill body, or an added skill.
+- **major** - taxonomy restructuring: page_ids added, removed or renamed in a
+  way that reshapes the skill set, or frontmatter/registry schema changes.
+
+Skill names are stable identifiers, so adding a skill does not break an
+existing install - which is why new skills are a minor, not a major, bump.
+
+### Release notes
+
+Release notes **must state the upstream RSQKit commit** the build was cut from -
+the `commit` in `pipeline/upstream.lock`. Every generated artifact already
+stamps that SHA (fragment headers, the `upstream` block in `content.json`, the
+generated-note banners), so the notes and the artifacts always agree on
+provenance. Release notes also carry a change summary generated from the sync
+impact reports rather than hand-kept, so the CHANGELOG section is a build
+product, not a manually edited file.
+
+## Syncing with upstream
+
+### The pin
+
+`pipeline/upstream.lock` is the single pinned source of truth for the content
+pipeline. It records the RSQKit repo, the `ref` it tracks (`main`) and the
+exact `commit` the current build is pinned to, plus the source paths and data
+globs the pipeline consumes:
+
+```toml
+[upstream]
+repo = "https://github.com/EVERSE-ResearchSoftware/RSQKit"
+ref = "main"
+commit = "03a8352e0701acf6ae28a1f6c9069e9b2caf8e7e"
+```
+
+The fetcher downloads exactly the selected files at that commit and records a
+SHA-256 manifest, so later runs verify cache integrity instead of
+re-downloading (`fetcher.py`, `verify_cache`). The lock is machine-updated by
+the sync workflow; the comment in the file asks contributors not to edit the
+commit by hand. Advancing the pin is what a sync *is*.
+
+### The weekly sync classifier (design)
+
+The sync machinery is the design implemented in Phase 6. A weekly cron (plus
+manual dispatch) diffs the pinned lock against RSQKit `main`, regenerates, and
+opens a single PR carrying a per-skill impact report. Because `taxonomy.yml`
+maps page_ids to skills, change detection is per-skill rather than
+all-or-nothing: each changed upstream page is attributed to the skill(s) that
+map it.
+
+The classifier sorts every change into one of three levels:
+
+- **L1 references-only** - upstream body text, tool descriptions, typo fixes.
+  These touch only generated `references/`, so regeneration is safe; the sync
+  PR is labelled L1 and auto-merges once CI is green.
+- **L2 body-review** - substantive guidance changes in a page that backs a
+  hand-authored SKILL.md body. The PR flags each affected skill with the
+  upstream diff excerpt and a review checklist, and a human reviews whether the
+  body needs updating. An AI-drafted body update may be attached as a separate,
+  human-reviewed commit.
+- **L3 structural** - new, deleted or renamed page_ids, or frontmatter/registry
+  schema changes. Drift tests fail CI until a human updates `taxonomy.yml`; the
+  pin does not advance silently past a structural change.
+
+Registry changes (tools, indicators, dimensions) are diffed separately, with
+URL re-verification for new or changed tool links.
+
+### Page additions and removals
+
+The setup expects RSQKit to grow and shrink:
+
+- **New page** - shows up as L3 until it is mapped. The sync PR proposes a
+  `taxonomy.yml` mapping to an existing skill (matched on keywords and
+  `related_pages`) or proposes a new skill when nothing fits; a human confirms
+  the mapping, after which `references/` and the adapters regenerate
+  automatically.
+- **Removed page** - generated `references/` prune automatically (the reference
+  build wipes and rebuilds every folder, so a page that is gone disappears);
+  any skill whose body cites the removed page_id is flagged for review. A skill
+  whose backing pages all disappear is deprecated for one minor release with a
+  note, then removed.
+- **Renamed page_id** - treated as remove plus add, with the classifier
+  hinting at the rename when content similarity is high.
+
+Simulation fixtures (an added page, a removed page, a renamed page_id) keep the
+classifier output, reference pruning, drift-test failures and triage
+suggestions under continuous test rather than only exercised when upstream
+actually moves.
+
+### Why generated output stays uncommitted at build but pruned on sync
+
+The reference generator and the adapter builder both wipe their output
+directory and rebuild it on every run, so removals propagate without manual
+cleanup. That is the same property the sync relies on: advancing the pin and
+rerunning the pipeline is sufficient to bring every derived artifact - the
+`references/` folders, `dist/`, the release zips - back in line with upstream.
