@@ -1,0 +1,56 @@
+name: validate
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  skills:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Validate skills (agentskills reference tooling)
+        run: |
+          for skill in skills/rseng-*/; do
+            npx -y skills-ref validate "$skill"
+          done
+      - name: Validate Claude plugin
+        run: npx -y @anthropic-ai/claude-code plugin validate . --strict
+
+  pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - name: Tests
+        run: uv run --directory pipeline pytest
+      - name: Lint
+        run: |
+          uvx ruff check pipeline
+          uvx ruff format --check pipeline
+      - name: Build artifacts and adapters (with output checks)
+        run: |
+          uv run --directory pipeline python -m rseng_pipeline.assembler
+          uv run --directory pipeline python -m rseng_pipeline.references
+          uv run --directory pipeline python -m rseng_pipeline.build_adapters
+      - name: Generated references must match committed ones
+        run: git diff --exit-code skills
+
+  installer:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Test and lint
+        working-directory: installer
+        run: |
+          npm ci
+          npm run build
+          npm test
+          npx biome ci src tests
