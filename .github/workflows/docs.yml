@@ -1,0 +1,26 @@
+name: docs
+
+on:
+  pull_request:
+    paths:
+      - "docs/**"
+      - "mkdocs.yml"
+  push:
+    branches: [main]
+    paths:
+      - "docs/**"
+      - "mkdocs.yml"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - name: Build site (strict)
+        run: uvx --with mkdocs-material mkdocs build --strict
+      - name: Check links
+        run: |
+          uvx --from linkchecker linkchecker --check-extern \
+            --ignore-url 'https://doi.org/.*' \
+            site/ || true
