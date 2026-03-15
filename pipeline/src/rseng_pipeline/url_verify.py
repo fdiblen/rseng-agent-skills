@@ -25,10 +25,15 @@ _RETRY_WITH_GET = {403, 405, 501}
 ProbeFn = Callable[[str], int]
 
 
+# Responses that mean "a gatekeeper answered", not "the page is gone":
+# auth walls and bot detection. Reported as warnings, never as breakage.
+_BLOCKED_CODES = {400, 401, 403, 429}
+
+
 @dataclass(frozen=True)
 class URLCheck:
     url: str
-    status: str  # "ok" | "quarantined" | "broken" | "error"
+    status: str  # "ok" | "quarantined" | "broken" | "blocked" | "error"
     code: int | None = None
     reason: str = ""
 
@@ -72,7 +77,12 @@ def verify_url(
         code = probe(url)
     except Exception as error:  # DNS failure, timeout, TLS error, ...
         return URLCheck(url=url, status="error", reason=str(error))
-    status = "ok" if code < 400 else "broken"
+    if code < 400:
+        status = "ok"
+    elif code in _BLOCKED_CODES:
+        status = "blocked"
+    else:
+        status = "broken"
     return URLCheck(url=url, status=status, code=code)
 
 

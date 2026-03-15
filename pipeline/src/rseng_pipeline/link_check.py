@@ -63,10 +63,13 @@ def main() -> None:
 
     broken = {u: c for u, c in results.items() if c.status == "broken"}
     errors = {u: c for u, c in results.items() if c.status == "error"}
+    blocked = {u: c for u, c in results.items() if c.status == "blocked"}
     quarantined = [u for u, c in results.items() if c.status == "quarantined"]
 
     for url in quarantined:
         print(f"quarantined (skipped): {url}")
+    for url, check in blocked.items():
+        print(f"WARNING blocked {check.code}: {url}")
     for url, check in errors.items():
         print(f"WARNING unreachable: {url} ({check.reason[:80]})")
     for url, check in broken.items():
@@ -75,7 +78,7 @@ def main() -> None:
 
     print(
         f"ok={sum(1 for c in results.values() if c.status == 'ok')} "
-        f"broken={len(broken)} errors={len(errors)} "
+        f"broken={len(broken)} blocked={len(blocked)} errors={len(errors)} "
         f"quarantined={len(quarantined)}"
     )
     if broken:
