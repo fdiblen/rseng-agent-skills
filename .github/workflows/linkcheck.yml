@@ -1,0 +1,20 @@
+name: linkcheck
+
+on:
+  schedule:
+    - cron: "17 6 * * 1"
+  workflow_dispatch:
+
+jobs:
+  artifacts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - name: Build artifacts
+        run: |
+          uv run --directory pipeline python -m rseng_pipeline.assembler
+          uv run --directory pipeline python -m rseng_pipeline.references
+          uv run --directory pipeline python -m rseng_pipeline.build_adapters
+      - name: Check links in generated artifacts
+        run: uv run --directory pipeline python -m rseng_pipeline.link_check
