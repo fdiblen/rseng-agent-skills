@@ -35,6 +35,12 @@ FRAGMENT_HEADER = (
 )
 
 
+def _page_slug(record) -> str:
+    """Site permalinks derive from the source FILENAME, not the page_id
+    (they differ for three pages at the pinned commit)."""
+    return Path(record.source_path).stem
+
+
 def _page_entry(record, learn_more) -> dict:
     return {
         "page_id": record.page_id,
@@ -46,7 +52,7 @@ def _page_entry(record, learn_more) -> dict:
         "quality_indicators": record.quality_indicators,
         "child_pages": record.child_pages,
         "source_path": record.source_path,
-        "rsqkit_url": f"{RSQKIT_BASE_URL}/{record.page_id}",
+        "rsqkit_url": f"{RSQKIT_BASE_URL}/{_page_slug(record)}",
         # From the raw body: cleaning rewrites tool tags into plain links.
         "tool_refs": extract_tool_refs(record.body),
         "learn_more": {
@@ -91,7 +97,7 @@ def assemble(
         header = FRAGMENT_HEADER.format(
             source=record.source_path,
             commit=pin.commit,
-            url=f"{RSQKIT_BASE_URL}/{page_id}",
+            url=f"{RSQKIT_BASE_URL}/{_page_slug(record)}",
         )
         (fragments_dir / f"{page_id}.md").write_text(header + cleaned, encoding="utf-8")
 

@@ -77,9 +77,10 @@ def collect_learn_more(record: PageRecord) -> LearnMore:
     external = [
         url for url in _links_in(cleaned) if not url.startswith(RSQKIT_BASE_URL)
     ]
+    slug = Path(record.source_path).stem  # site permalinks use the filename
     return LearnMore(
         page_id=record.page_id,
-        rsqkit_url=f"{RSQKIT_BASE_URL}/{record.page_id}",
+        rsqkit_url=f"{RSQKIT_BASE_URL}/{slug}",
         external=_dedupe(external),
         training=_dedupe(training_links),
     )

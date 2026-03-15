@@ -25,7 +25,7 @@
 - https://refactoring.guru/design-patterns
 - https://www.oreilly.com/library/view/clean-code-a/9780136083238/
 
-## From Software project structure (https://everse.software/RSQKit/structuring_software_projects)
+## From Software project structure (https://everse.software/RSQKit/software_project_structure)
 
 - https://citation-file-format.github.io/
 - https://book.the-turing-way.org/project-design/pd-overview/project-repo/project-repo-advanced/

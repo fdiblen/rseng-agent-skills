@@ -106,13 +106,25 @@ def drop_empty_training_sections(body: str) -> str:
     return "\n".join(result)
 
 
+# First path segment ending in one of these TLDs marks a schema-less
+# external link (upstream sometimes writes e.g. "workflowhub.eu").
+_BARE_DOMAIN_RE = re.compile(
+    r"^[a-z0-9-]+(\.[a-z0-9-]+)*\.(com|org|net|io|eu|uk|dev|ai|edu)(/|$)", re.I
+)
+
+
 def _absolute(target: str) -> str:
     if _EXTERNAL_RE.match(target):
         return target
     slug = target
     while slug.startswith(("./", "../")):
         slug = slug.split("/", 1)[1]
-    return f"{RSQKIT_BASE_URL}/{slug.lstrip('/')}"
+    slug = slug.lstrip("/")
+    if _BARE_DOMAIN_RE.match(slug):
+        return f"https://{slug}"
+    # Site permalinks carry no .md extension; upstream links sometimes do.
+    slug = slug.removesuffix(".md")
+    return f"{RSQKIT_BASE_URL}/{slug}"
 
 
 def resolve_internal_links(body: str) -> str:

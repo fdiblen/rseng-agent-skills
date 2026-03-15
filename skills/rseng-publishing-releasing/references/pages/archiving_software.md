@@ -58,8 +58,8 @@ Researchers must adopt workflows and tools that not only produce results but als
 
 This is a suggested list tool-specific sub-tasks to have a look at.
 
-[fair_rs]: https://everse.software/RSQKit/fair_rs.md
+[fair_rs]: https://everse.software/RSQKit/fair_rs
 [software_metadata]: https://everse.software/RSQKit/software_metadata
 [documenting_software]: https://everse.software/RSQKit/software_documentation
 [software_identifiers]: https://everse.software/RSQKit/software_identifiers
-[licensing_software]: https://everse.software/RSQKit/licensing_software.md
+[licensing_software]: https://everse.software/RSQKit/licensing_software

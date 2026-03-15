@@ -1,0 +1,86 @@
+"""Check every external URL in generated artifacts.
+
+Scans dist/ and the generated skills/*/references/ folders for http(s)
+URLs, verifies each distinct URL once (quarantine list respected, HEAD
+with GET fallback, parallel probes) and reports. Broken links fail the
+run; quarantined links are skipped by design; network errors are warnings
+so a flaky resolver cannot redden CI on its own.
+
+Usage: python -m rseng_pipeline.link_check [root ...]
+"""
+
+from __future__ import annotations
+
+import re
+import sys
+from concurrent.futures import ThreadPoolExecutor
+from pathlib import Path
+
+from .url_verify import URLCheck, load_quarantine, probe_url, verify_url
+
+_URL_RE = re.compile(r"https?://[^\s)\"'<>\]}`]+")
+_SCAN_SUFFIXES = {".md", ".mdc", ".toml", ".json", ".yml", ".yaml"}
+_WORKERS = 16
+
+
+def collect_urls(roots: list[Path]) -> dict[str, list[str]]:
+    """Distinct URLs mapped to the files they appear in."""
+    found: dict[str, list[str]] = {}
+    for root in roots:
+        for path in sorted(root.rglob("*")):
+            if not path.is_file() or path.suffix not in _SCAN_SUFFIXES:
+                continue
+            text = path.read_text(encoding="utf-8", errors="replace")
+            for match in _URL_RE.findall(text):
+                url = match.rstrip(".,;:")
+                found.setdefault(url, []).append(str(path))
+    return found
+
+
+def check_urls(urls: list[str], quarantine: dict[str, str]) -> dict[str, URLCheck]:
+    def check(url: str) -> URLCheck:
+        return verify_url(url, quarantine=quarantine, probe=probe_url)
+
+    with ThreadPoolExecutor(max_workers=_WORKERS) as pool:
+        results = pool.map(check, urls)
+    return dict(zip(urls, results, strict=True))
+
+
+def main() -> None:
+    pipeline_dir = Path(__file__).resolve().parents[2]
+    repo_root = pipeline_dir.parent
+    roots = (
+        [Path(arg) for arg in sys.argv[1:]]
+        if len(sys.argv) > 1
+        else [repo_root / "dist", *repo_root.glob("skills/rseng-*/references")]
+    )
+    roots = [root for root in roots if root.exists()]
+
+    quarantine = load_quarantine(pipeline_dir / "data" / "url_quarantine.yml")
+    found = collect_urls(roots)
+    print(f"checking {len(found)} distinct urls from {len(roots)} roots")
+    results = check_urls(sorted(found), quarantine)
+
+    broken = {u: c for u, c in results.items() if c.status == "broken"}
+    errors = {u: c for u, c in results.items() if c.status == "error"}
+    quarantined = [u for u, c in results.items() if c.status == "quarantined"]
+
+    for url in quarantined:
+        print(f"quarantined (skipped): {url}")
+    for url, check in errors.items():
+        print(f"WARNING unreachable: {url} ({check.reason[:80]})")
+    for url, check in broken.items():
+        files = ", ".join(sorted(set(found[url]))[:3])
+        print(f"BROKEN {check.code}: {url} (in {files})")
+
+    print(
+        f"ok={sum(1 for c in results.values() if c.status == 'ok')} "
+        f"broken={len(broken)} errors={len(errors)} "
+        f"quarantined={len(quarantined)}"
+    )
+    if broken:
+        raise SystemExit(1)
+
+
+if __name__ == "__main__":
+    main()

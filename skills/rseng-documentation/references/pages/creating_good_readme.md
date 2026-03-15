@@ -160,8 +160,8 @@ This work was produced with the assistance of Claude Sonnet 4.6, under the stric
 This is a suggested list tool-specific sub-tasks to have a look at.
 
 [adoption-paper]: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4281782
-[documenting-code]: https://everse.software/RSQKit/documenting_code.md
-[documenting-project]: https://everse.software/RSQKit/documenting_software_project.md
+[documenting-code]: https://everse.software/RSQKit/documenting_code
+[documenting-project]: https://everse.software/RSQKit/documenting_software_project
 [licensing-software]: https://everse.software/RSQKit/licensing_software
 [readme-guidelines]: https://data.4tu.nl/s/documents/Guidelines_for_creating_a_README_file.pdf
 [readme-history]: https://medium.com/@NSomar/readme-md-history-and-components-a365aff07f10

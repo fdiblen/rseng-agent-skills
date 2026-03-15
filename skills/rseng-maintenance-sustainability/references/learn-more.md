@@ -10,7 +10,7 @@
 - [CodeRefinery lessons](https://coderefinery.org/lessons/)
 - [The Turing Way handbook](https://book.the-turing-way.org/)
 
-## From Maintaining research software (https://everse.software/RSQKit/maintaining_research_software)
+## From Maintaining research software (https://everse.software/RSQKit/software_maintenance)
 
 - https://www.software.ac.uk/programmes/research-software-maintenance-fund
 - https://book.the-turing-way.org/reproducible-research/reproducible-research

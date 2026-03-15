@@ -17,6 +17,7 @@
 - https://doi.org/10.1038/s41592-021-01254-9
 - https://doi.org/10.1371/journal.pcbi.1008622
 - https://www.nature.com/articles/s41598-021-99288-8#citeas
+- https://workflowhub.eu
 - https://galaxyproject.org/toolshed/
 - https://dockstore.org/
 - https://nf-co.re/
@@ -39,6 +40,5 @@
 - https://bioschemas.org/profiles/ComputationalWorkflow/1.0-RELEASE
 - https://bioschemas.org/types/FormalParameter/1.0-RELEASE
 - https://arxiv.org/abs/2506.07838
-- https://workflowhub.eu
 - https://app.lifemonitor.eu/dashboard
 - https://doi.org/10.1038/s41597-022-01710-x

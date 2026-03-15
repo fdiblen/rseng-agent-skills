@@ -83,7 +83,7 @@ Finally, users may also want to register their own workflows in a public registr
 There are several registries where researchers can find or share workflows.
 Some are general-purpose, while others focus on specific domains or communities using a specific WMS or workflow definition language:
 
-* [WorkflowHub](https://everse.software/RSQKit/workflowhub.eu) – a platform supporting FAIR sharing of different workflows across disciplines, with strong uptake in life sciences
+* [WorkflowHub](https://workflowhub.eu) – a platform supporting FAIR sharing of different workflows across disciplines, with strong uptake in life sciences
 * [Galaxy ToolShed / Galaxy workflow repository](https://galaxyproject.org/toolshed/) – for discovering and sharing Galaxy-compatible tools and workflows
 * [Dockstore](https://dockstore.org/) – a registry widely used in bioinformatics, supporting CWL, WDL, Nextflow, and Galaxy workflows
 * [nf-core](https://nf-co.re/) – a curated collection of high-quality, community-developed Nextflow workflows (WorkflowHub also automatically registers workflows developed by nf-core)

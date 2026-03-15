@@ -40,7 +40,7 @@
 - https://rsspdc.org/checklists/rsspdc-specific-record.html#documentation
 - https://ieeexplore.ieee.org/document/9006447/
 
-## From Writing a Research Software Story (https://everse.software/RSQKit/writing_research_software_story)
+## From Writing a Research Software Story (https://everse.software/RSQKit/writing_research_software_stories)
 
 - https://claude.ai/
 - https://mistral.ai/products/le-chat

@@ -1,6 +1,6 @@
 <!-- Generated file - do not edit.
      Source: pages/tasks/software_maintenance.md @ 03a8352e0701acf6ae28a1f6c9069e9b2caf8e7e
-     From RSQKit (https://everse.software/RSQKit/maintaining_research_software) by the EVERSE project and the RSQKit team,
+     From RSQKit (https://everse.software/RSQKit/software_maintenance) by the EVERSE project and the RSQKit team,
      CC-BY-4.0. DOI: 10.5281/zenodo.14923573 -->
 
 This page provides an overview of key maintenance practices, practical guidance on keeping your software healthy and usable, and pointers to further resources.

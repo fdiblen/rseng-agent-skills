@@ -114,7 +114,7 @@ Tools and examples:
 #### Version control your documentation
 
 * Store documentation in the project repository and track it using version control.
-* Treat documentation like code to keep it updated through familiar workflows. Read more on [how to use *Read the Docs* for your software project](https://everse.software/RSQKit/documenting_software_readthedocs.md).
+* Treat documentation like code to keep it updated through familiar workflows. Read more on [how to use *Read the Docs* for your software project](https://everse.software/RSQKit/documenting_software_readthedocs).
 * [Read the Docs](https://about.readthedocs.com/) integrates with Git workflows and can automatically publish documentation. See more in the [Documenting Software Readthedocs page](https://everse.software/RSQKit/documenting_software_readthedocs).
 * [Zenodo](https://zenodo.org/) can archive documentation automatically with each software release.
 
