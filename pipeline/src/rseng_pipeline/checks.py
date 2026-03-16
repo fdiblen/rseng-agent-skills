@@ -28,10 +28,13 @@ _FRONTMATTER_REQUIRED = {
 }
 
 
-def _check_file(path: Path) -> list[str]:
+def _check_file(path: Path, commit_stamp: str | None = None) -> list[str]:
     problems = []
     rel = path.name
     text = path.read_text(encoding="utf-8")
+
+    if commit_stamp and commit_stamp not in text:
+        problems.append(f"{rel}: missing provenance stamp {commit_stamp!r}")
 
     budget = SIZE_BUDGETS.get(path.name)
     if budget and len(text.encode()) > budget:
@@ -67,14 +70,19 @@ def _check_file(path: Path) -> list[str]:
     return problems
 
 
-def check_target(target_dir: Path) -> list[str]:
-    """Check every rendered file under one target's dist directory."""
+def check_target(target_dir: Path, commit: str | None = None) -> list[str]:
+    """Check every rendered file under one target's dist directory.
+
+    When ``commit`` is given, every rendered (non-passthrough) file must
+    carry its 8-character provenance stamp.
+    """
+    stamp = commit[:8] if commit else None
     problems = []
     for path in sorted(target_dir.rglob("*")):
         if not path.is_file():
             continue
         if "references" in path.parts or path.name == "SKILL.md":
             continue  # canonical passthrough content is validated at its source
-        for problem in _check_file(path):
+        for problem in _check_file(path, commit_stamp=stamp):
             problems.append(f"{target_dir.name}/{problem}")
     return problems
