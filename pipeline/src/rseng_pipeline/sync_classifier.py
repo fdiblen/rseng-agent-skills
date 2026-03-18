@@ -200,20 +200,46 @@ def render_report(report: ChangeReport) -> str:
     return "\n".join(lines) + "\n"
 
 
+def triage_suggestions(
+    pipeline_dir: Path,
+    taxonomy_path: Path,
+    report: ChangeReport,
+    new_blobs: dict[str, bytes],
+) -> str:
+    """Render taxonomy suggestions for the report's added pages."""
+    from .parser import load_pages
+    from .triage import render_suggestions, suggest_mapping
+
+    if not report.added:
+        return ""
+    taxonomy = load_taxonomy(taxonomy_path)
+    known_keywords = {
+        page_id: {word for kw in rec.keywords for word in kw.lower().split()}
+        for page_id, rec in load_pages(pipeline_dir / "cache").items()
+    }
+    suggestions = [
+        suggest_mapping(change.path, new_blobs[change.path], taxonomy, known_keywords)
+        for change in report.added
+    ]
+    return render_suggestions(suggestions)
+
+
 def main() -> None:
     import sys
 
     pipeline_dir = Path(__file__).resolve().parents[2]
     repo_root = pipeline_dir.parent
+    taxonomy_path = repo_root / "skills" / "taxonomy.yml"
     ref = sys.argv[1] if len(sys.argv) > 1 else "main"
     pin = load_pin(pipeline_dir / "upstream.lock")
     commit, blobs = fetch_upstream_state(pin, ref)
-    report = classify(
-        pipeline_dir, repo_root / "skills" / "taxonomy.yml", commit, blobs
+    report = classify(pipeline_dir, taxonomy_path, commit, blobs)
+    output = render_report(report) + triage_suggestions(
+        pipeline_dir, taxonomy_path, report, blobs
     )
-    print(render_report(report), end="")
+    print(output, end="")
     (pipeline_dir / "build").mkdir(exist_ok=True)
-    (pipeline_dir / "build" / "change-report.md").write_text(render_report(report))
+    (pipeline_dir / "build" / "change-report.md").write_text(output)
     print(f"level={report.level}", file=sys.stderr)
 
 
