@@ -26,7 +26,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v6
-      - name: Tests
+      - name: Fetch pinned upstream sources
+        run: uv run --directory pipeline python -m rseng_pipeline.fetcher
+      - name: Tests (incl. drift guards against the fetched cache)
         run: uv run --directory pipeline pytest
       - name: Lint
         run: |

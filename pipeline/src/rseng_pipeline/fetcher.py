@@ -154,3 +154,14 @@ def fetch(
         encoding="utf-8",
     )
     return hashes
+
+
+def main() -> None:
+    pipeline_dir = Path(__file__).resolve().parents[2]
+    pin = load_pin(pipeline_dir / "upstream.lock")
+    hashes = fetch(pin, pipeline_dir / "cache")
+    print(f"fetched {len(hashes)} files at {pin.commit[:8]}")
+
+
+if __name__ == "__main__":
+    main()

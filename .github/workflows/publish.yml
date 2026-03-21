@@ -20,6 +20,7 @@ jobs:
       - uses: astral-sh/setup-uv@v6
       - name: Build adapters
         run: |
+          uv run --directory pipeline python -m rseng_pipeline.fetcher
           uv run --directory pipeline python -m rseng_pipeline.assembler
           uv run --directory pipeline python -m rseng_pipeline.references
           uv run --directory pipeline python -m rseng_pipeline.build_adapters
