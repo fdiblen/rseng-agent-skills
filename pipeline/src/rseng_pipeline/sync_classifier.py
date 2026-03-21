@@ -142,14 +142,37 @@ def classify(
             else:
                 report.modified_data.append(path)
 
-    # A removed and an added page sharing a page_id (or the added file's
-    # frontmatter carrying a removed page's id) is a rename, not churn.
+    # A removed and an added page sharing a page_id is a rename, not
+    # churn. When ids differ, high keyword overlap between a removed and
+    # an added page still hints at a rename with a changed id.
     removed_ids = {change.page_id: change for change in report.removed}
     for added in list(report.added):
         if added.page_id in removed_ids:
             report.renames.append((added.page_id, added.page_id))
             report.added.remove(added)
             report.removed.remove(removed_ids[added.page_id])
+
+    def keyword_words(path: str, blob: bytes | None) -> set[str]:
+        source = blob if blob is not None else (cache_dir / path).read_bytes()
+        meta = frontmatter.loads(source.decode("utf-8", errors="replace")).metadata
+        return {
+            word
+            for keyword in meta.get("keywords") or []
+            for word in str(keyword).lower().split()
+        }
+
+    for removed in list(report.removed):
+        old_words = keyword_words(removed.path, None)
+        if not old_words:
+            continue
+        for added in list(report.added):
+            new_words = keyword_words(added.path, new_blobs[added.path])
+            union = old_words | new_words
+            if union and len(old_words & new_words) / len(union) >= 0.5:
+                report.renames.append((removed.page_id, added.page_id))
+                report.removed.remove(removed)
+                report.added.remove(added)
+                break
     return report
 
 
@@ -175,6 +198,14 @@ def render_report(report: ChangeReport) -> str:
         "L3: added pages (map in taxonomy.yml)",
         [f"{c.path} (page_id `{c.page_id}`)" for c in report.added],
     )
+    if report.removed:
+        lines.append(
+            "Removed pages: generated references prune automatically on "
+            "regeneration once taxonomy.yml drops the page_id; the build "
+            "fails loudly while a mapped page has no fragment. Skills "
+            "listed below cite the page and need a body review."
+        )
+        lines.append("")
     section(
         "L3: removed pages (prune + review citing skills)",
         [
@@ -183,7 +214,7 @@ def render_report(report: ChangeReport) -> str:
         ],
     )
     section(
-        "L3: renamed page_ids",
+        "L3: renamed page_ids (update taxonomy.yml; review citing skills)",
         [f"`{old}` -> `{new}`" for old, new in report.renames],
     )
     section(
