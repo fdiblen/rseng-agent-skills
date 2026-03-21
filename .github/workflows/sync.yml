@@ -36,6 +36,7 @@ jobs:
           uv run --directory pipeline python -m rseng_pipeline.build_adapters
       - name: Open sync PR
         if: steps.classify.outputs.level != 'none'
+        id: pr
         uses: peter-evans/create-pull-request@v7
         with:
           branch: sync/upstream
@@ -47,3 +48,11 @@ jobs:
             pipeline/upstream.lock
             pipeline/upstream.manifest.json
             skills
+      - name: Enable auto-merge for references-only changes
+        # L1 = registry/data regeneration only; merges itself once the
+        # validate workflow is green. L2/L3 wait for human review.
+        if: steps.classify.outputs.level == 'L1' && steps.pr.outputs.pull-request-number != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ steps.pr.outputs.pull-request-number }}
+        run: gh pr merge "$PR_NUMBER" --auto --squash
