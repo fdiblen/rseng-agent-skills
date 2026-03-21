@@ -143,3 +143,34 @@ directory and rebuild it on every run, so removals propagate without manual
 cleanup. That is the same property the sync relies on: advancing the pin and
 rerunning the pipeline is sufficient to bring every derived artifact - the
 `references/` folders, `dist/`, the release zips - back in line with upstream.
+
+## Triage procedure for sync PRs
+
+The weekly sync workflow labels each PR with its level; handle them as
+follows.
+
+L1 (references-only): nothing to do. The PR has auto-merge enabled and
+lands once the validate workflow is green. Spot-check the diff if the
+registry changes look unusually large.
+
+L2 (body review): open the change report in the PR body. For every skill
+it lists, read the upstream diff of the underlying page and decide
+whether the hand-authored SKILL.md body still summarizes it faithfully.
+Update the body in the same PR when it does not. Merge manually.
+
+L3 (structural): the PR needs taxonomy work before it can merge.
+
+1. Added pages: the report suggests a target skill (keyword and
+   related_pages matching) or proposes a new skill. Confirm or correct
+   the suggestion in skills/taxonomy.yml, regenerate references, and
+   check the new page's indicators appear in the skill checklist.
+2. Removed pages: references have pruned automatically; the report lists
+   every skill whose body cites the removed page_id - edit those bodies.
+   If a skill has lost all of its pages, deprecate it (keep it one minor
+   release with a deprecation note in the description, then delete).
+3. Renamed page_ids: update the id in taxonomy.yml, then treat as a
+   removed-plus-added pair for body review. The classifier hints at
+   renames when a removed and an added page share keywords.
+
+After any L3 edit, run the drift tests locally
+until the taxonomy and the cache agree again.
