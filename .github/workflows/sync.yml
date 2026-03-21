@@ -1,0 +1,49 @@
+name: sync
+
+on:
+  schedule:
+    - cron: "42 5 * * 1"
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - name: Fetch pinned cache
+        run: uv run --directory pipeline python -m rseng_pipeline.fetcher
+      - name: Classify upstream changes
+        id: classify
+        run: |
+          uv run --directory pipeline python -m rseng_pipeline.sync_classifier main \
+            2> level.txt > /dev/null
+          level=$(sed -n 's/^level=//p' level.txt)
+          echo "level=$level" >> "$GITHUB_OUTPUT"
+          echo "classified as $level"
+      - name: Update pin and regenerate
+        if: steps.classify.outputs.level != 'none'
+        run: |
+          new_commit=$(git ls-remote https://github.com/EVERSE-ResearchSoftware/RSQKit main | cut -f1)
+          uv run --directory pipeline python -m rseng_pipeline.bump_pin "$new_commit"
+          uv run --directory pipeline python -m rseng_pipeline.fetcher
+          uv run --directory pipeline python -m rseng_pipeline.lock_manifest
+          uv run --directory pipeline python -m rseng_pipeline.assembler
+          uv run --directory pipeline python -m rseng_pipeline.references
+          uv run --directory pipeline python -m rseng_pipeline.build_adapters
+      - name: Open sync PR
+        if: steps.classify.outputs.level != 'none'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: sync/upstream
+          title: "sync: upstream RSQKit changes (${{ steps.classify.outputs.level }})"
+          body-path: pipeline/build/change-report.md
+          commit-message: "sync upstream rsqkit changes"
+          labels: sync,${{ steps.classify.outputs.level }}
+          add-paths: |
+            pipeline/upstream.lock
+            pipeline/upstream.manifest.json
+            skills
