@@ -1,0 +1,29 @@
+name: sync-draft
+
+# Optional helper for L2 sync PRs: drafts SKILL.md body updates from the
+# upstream diff. Never runs automatically - a maintainer dispatches it on
+# a sync branch, and the result is a commit on the PR that still goes
+# through normal human review. Requires the ANTHROPIC_API_KEY secret.
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: Sync PR branch to draft body updates on
+        required: true
+        default: sync/upstream
+
+jobs:
+  draft:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.branch }}
+      - uses: astral-sh/setup-uv@v6
+      - name: Fetch cache and change report
+        run: |
+          uv run --directory pipeline python -m rseng_pipeline.fetcher
+          uv run --directory pipeline python -m rseng_pipeline.sync_classifier main > /dev/null 2>&1 || true
