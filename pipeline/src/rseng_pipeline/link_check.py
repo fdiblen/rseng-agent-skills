@@ -56,7 +56,11 @@ def main() -> None:
     )
     roots = [root for root in roots if root.exists()]
 
-    quarantine = load_quarantine(pipeline_dir / "data" / "url_quarantine.yml")
+    from .extension import extension_dir
+
+    quarantine = load_quarantine(
+        extension_dir(repo_root) / "data" / "url_quarantine.yml"
+    )
     found = collect_urls(roots)
     print(f"checking {len(found)} distinct urls from {len(roots)} roots")
     results = check_urls(sorted(found), quarantine)

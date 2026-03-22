@@ -97,9 +97,12 @@ def classify(
     taxonomy_path: Path,
     new_commit: str,
     new_blobs: dict[str, bytes],
+    ext_dir: Path | None = None,
 ) -> ChangeReport:
     """Diff new upstream content against the committed lock manifest."""
-    manifest = read_lock_manifest(pipeline_dir)
+    from .extension import extension_dir
+
+    manifest = read_lock_manifest(ext_dir or extension_dir(pipeline_dir.parent))
     taxonomy = load_taxonomy(taxonomy_path)
     old_files: dict[str, str] = manifest["files"]
     cache_dir = pipeline_dir / "cache"
@@ -258,11 +261,14 @@ def triage_suggestions(
 def main() -> None:
     import sys
 
+    from .extension import extension_dir
+
     pipeline_dir = Path(__file__).resolve().parents[2]
     repo_root = pipeline_dir.parent
-    taxonomy_path = repo_root / "skills" / "taxonomy.yml"
+    ext = extension_dir(repo_root)
+    taxonomy_path = ext / "taxonomy.yml"
     ref = sys.argv[1] if len(sys.argv) > 1 else "main"
-    pin = load_pin(pipeline_dir / "upstream.lock")
+    pin = load_pin(ext / "upstream.lock")
     commit, blobs = fetch_upstream_state(pin, ref)
     report = classify(pipeline_dir, taxonomy_path, commit, blobs)
     output = render_report(report) + triage_suggestions(

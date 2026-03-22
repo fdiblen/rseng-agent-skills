@@ -29,7 +29,9 @@ GENERATED_NOTE = (
 
 
 def _skill_entries(repo_root: Path, content: dict) -> list[dict]:
-    taxonomy = load_taxonomy(repo_root / "skills" / "taxonomy.yml")
+    from .extension import extension_dir
+
+    taxonomy = load_taxonomy(extension_dir(repo_root) / "taxonomy.yml")
     entries = []
     for name, tax_entry in taxonomy.items():
         skill_md = repo_root / "skills" / name / "SKILL.md"
@@ -73,8 +75,10 @@ def load_render_context(repo_root: Path) -> dict:
     content = json.loads(
         (pipeline_dir / "build" / "content.json").read_text(encoding="utf-8")
     )
+    from .extension import extension_dir
+
     citation = yaml.safe_load(
-        (pipeline_dir / "data" / "citation.yml").read_text(encoding="utf-8")
+        (extension_dir(repo_root) / "data" / "citation.yml").read_text(encoding="utf-8")
     )
     return {
         "generated_note": GENERATED_NOTE,

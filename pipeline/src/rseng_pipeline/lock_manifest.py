@@ -1,6 +1,6 @@
 """Committed per-file manifest of the pinned upstream sources.
 
-pipeline/upstream.manifest.json records the SHA-256 of every source file
+extensions/<source>/upstream.manifest.json records the SHA-256 of every source file
 at the pinned commit. The sync classifier diffs live upstream content
 against it to detect and classify changes without trusting timestamps.
 
@@ -17,7 +17,7 @@ from .fetcher import load_manifest, load_pin, verify_cache
 MANIFEST_FILE = "upstream.manifest.json"
 
 
-def write_lock_manifest(pipeline_dir: Path) -> Path:
+def write_lock_manifest(pipeline_dir: Path, ext_dir: Path) -> Path:
     """Copy the verified cache manifest into the committed lock manifest."""
     cache_dir = pipeline_dir / "cache"
     problems = verify_cache(cache_dir)
@@ -25,13 +25,13 @@ def write_lock_manifest(pipeline_dir: Path) -> Path:
         raise RuntimeError(f"cache not usable: {problems}")
     cache_manifest = load_manifest(cache_dir)
     assert cache_manifest is not None
-    pin = load_pin(pipeline_dir / "upstream.lock")
+    pin = load_pin(ext_dir / "upstream.lock")
     if cache_manifest["commit"] != pin.commit:
         raise RuntimeError(
             f"cache is at {cache_manifest['commit'][:8]}, lock pins "
             f"{pin.commit[:8]}; refetch first"
         )
-    out = pipeline_dir / MANIFEST_FILE
+    out = ext_dir / MANIFEST_FILE
     out.write_text(
         json.dumps(cache_manifest, indent=2, sort_keys=True) + "\n",
         encoding="utf-8",
@@ -39,14 +39,17 @@ def write_lock_manifest(pipeline_dir: Path) -> Path:
     return out
 
 
-def read_lock_manifest(pipeline_dir: Path) -> dict:
-    return json.loads((pipeline_dir / MANIFEST_FILE).read_text(encoding="utf-8"))
+def read_lock_manifest(ext_dir: Path) -> dict:
+    return json.loads((ext_dir / MANIFEST_FILE).read_text(encoding="utf-8"))
 
 
 def main() -> None:
+    from .extension import extension_dir
+
     pipeline_dir = Path(__file__).resolve().parents[2]
-    path = write_lock_manifest(pipeline_dir)
-    files = len(read_lock_manifest(pipeline_dir)["files"])
+    ext = extension_dir(pipeline_dir.parent)
+    path = write_lock_manifest(pipeline_dir, ext)
+    files = len(read_lock_manifest(ext)["files"])
     print(f"wrote {path.name} with {files} file hashes")
 
 

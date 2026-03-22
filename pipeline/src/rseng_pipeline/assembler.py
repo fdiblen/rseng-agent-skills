@@ -69,10 +69,12 @@ def assemble(
     pin: UpstreamPin | None = None,
 ) -> Path:
     """Build content.json and fragments from an already-fetched cache."""
+    from .extension import extension_dir
+
     cache_dir = pipeline_dir / "cache"
-    data_dir = pipeline_dir / "data"
+    data_dir = extension_dir(pipeline_dir.parent) / "data"
     build_dir = build_dir or pipeline_dir / "build"
-    pin = pin or load_pin(pipeline_dir / "upstream.lock")
+    pin = pin or load_pin(extension_dir(pipeline_dir.parent) / "upstream.lock")
 
     problems = verify_cache(cache_dir)
     if problems:

@@ -157,8 +157,10 @@ def fetch(
 
 
 def main() -> None:
+    from .extension import extension_dir
+
     pipeline_dir = Path(__file__).resolve().parents[2]
-    pin = load_pin(pipeline_dir / "upstream.lock")
+    pin = load_pin(extension_dir(pipeline_dir.parent) / "upstream.lock")
     hashes = fetch(pin, pipeline_dir / "cache")
     print(f"fetched {len(hashes)} files at {pin.commit[:8]}")
 

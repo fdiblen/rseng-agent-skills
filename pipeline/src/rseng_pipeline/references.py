@@ -174,9 +174,11 @@ def generate_references(
 def main() -> None:
     pipeline_dir = Path(__file__).resolve().parents[2]
     repo_root = pipeline_dir.parent
+    from .extension import extension_dir
+
     written = generate_references(
         repo_root / "skills",
-        repo_root / "skills" / "taxonomy.yml",
+        extension_dir(repo_root) / "taxonomy.yml",
         pipeline_dir / "build",
     )
     print(f"wrote references for {len(written)} skills")

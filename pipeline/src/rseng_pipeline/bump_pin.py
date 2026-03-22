@@ -25,8 +25,10 @@ def bump(lock_path: Path, new_commit: str) -> None:
 
 
 def main() -> None:
+    from .extension import extension_dir
+
     pipeline_dir = Path(__file__).resolve().parents[2]
-    bump(pipeline_dir / "upstream.lock", sys.argv[1])
+    bump(extension_dir(pipeline_dir.parent) / "upstream.lock", sys.argv[1])
     print(f"lock now pins {sys.argv[1][:8]}")
 
 
