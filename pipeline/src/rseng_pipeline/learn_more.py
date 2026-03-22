@@ -15,7 +15,7 @@ from pathlib import Path
 
 import yaml
 
-from .cleaner import RSQKIT_BASE_URL, clean_body
+from .cleaner import clean_body
 from .parser import PageRecord, Section, build_section_tree, iter_sections
 from .url_verify import ProbeFn, URLCheck, probe_url, verify_urls
 
@@ -63,9 +63,9 @@ def _dedupe(urls: list[str]) -> tuple[str, ...]:
     return tuple(result)
 
 
-def collect_learn_more(record: PageRecord) -> LearnMore:
+def collect_learn_more(record: PageRecord, base_url: str) -> LearnMore:
     """Extract learn-more pointers from one page record."""
-    cleaned = clean_body(record.body)
+    cleaned = clean_body(record.body, base_url)
     sections = build_section_tree(cleaned)
 
     training_links: list[str] = []
@@ -74,20 +74,20 @@ def collect_learn_more(record: PageRecord) -> LearnMore:
         for child in iter_sections(training.children):
             training_links.extend(_links_in(child.content))
 
-    external = [
-        url for url in _links_in(cleaned) if not url.startswith(RSQKIT_BASE_URL)
-    ]
+    external = [url for url in _links_in(cleaned) if not url.startswith(base_url)]
     slug = Path(record.source_path).stem  # site permalinks use the filename
     return LearnMore(
         page_id=record.page_id,
-        rsqkit_url=f"{RSQKIT_BASE_URL}/{slug}",
+        rsqkit_url=f"{base_url}/{slug}",
         external=_dedupe(external),
         training=_dedupe(training_links),
     )
 
 
-def collect_all(pages: dict[str, PageRecord]) -> dict[str, LearnMore]:
-    return {page_id: collect_learn_more(rec) for page_id, rec in pages.items()}
+def collect_all(pages: dict[str, PageRecord], base_url: str) -> dict[str, LearnMore]:
+    return {
+        page_id: collect_learn_more(rec, base_url) for page_id, rec in pages.items()
+    }
 
 
 def load_curated(

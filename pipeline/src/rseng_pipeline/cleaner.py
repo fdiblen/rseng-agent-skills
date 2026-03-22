@@ -17,8 +17,6 @@ from collections.abc import Callable
 from .parser import _TOOL_TAG_RE
 from .registry import Tool
 
-RSQKIT_BASE_URL = "https://everse.software/RSQKit"
-
 _LIQUID_TAG_RE = re.compile(r"\{%-?.*?-?%\}")
 _LIQUID_VAR_RE = re.compile(r"\{\{.*?\}\}")
 _HEADING_RE = re.compile(r"^(#{1,6})\s+(.*?)\s*#*\s*$")
@@ -113,7 +111,7 @@ _BARE_DOMAIN_RE = re.compile(
 )
 
 
-def _absolute(target: str) -> str:
+def _absolute(target: str, base_url: str) -> str:
     if _EXTERNAL_RE.match(target):
         return target
     slug = target
@@ -124,32 +122,32 @@ def _absolute(target: str) -> str:
         return f"https://{slug}"
     # Site permalinks carry no .md extension; upstream links sometimes do.
     slug = slug.removesuffix(".md")
-    return f"{RSQKIT_BASE_URL}/{slug}"
+    return f"{base_url}/{slug}"
 
 
-def resolve_internal_links(body: str) -> str:
-    """Rewrite site-relative link targets to absolute everse.software URLs."""
+def resolve_internal_links(body: str, base_url: str) -> str:
+    """Rewrite site-relative link targets to absolute source-site URLs."""
 
     def fix_inline(match: re.Match) -> str:
         bang, text, target, title = match.groups()
-        return f"{bang}[{text}]({_absolute(target)}{title or ''})"
+        return f"{bang}[{text}]({_absolute(target, base_url)}{title or ''})"
 
     def fix_line(line: str) -> str:
         ref_def = _REF_DEF_RE.match(line)
         if ref_def:
             prefix, target, rest = ref_def.groups()
-            return f"{prefix}{_absolute(target)}{rest}"
+            return f"{prefix}{_absolute(target, base_url)}{rest}"
         return _INLINE_LINK_RE.sub(fix_inline, line)
 
     return _map_unfenced(body, fix_line)
 
 
-def clean_body(body: str, tools: dict[str, Tool] | None = None) -> str:
+def clean_body(body: str, base_url: str, tools: dict[str, Tool] | None = None) -> str:
     """Full cleaning pass over a page body."""
     cleaned = replace_tool_tags(body, tools)
     cleaned = strip_liquid(cleaned)
     cleaned = drop_empty_training_sections(cleaned)
-    cleaned = resolve_internal_links(cleaned)
+    cleaned = resolve_internal_links(cleaned, base_url)
     # Trailing whitespace is stripped everywhere (code fences included) so
     # generated files stay byte-stable under standard whitespace hooks.
     cleaned = "\n".join(line.rstrip() for line in cleaned.splitlines())

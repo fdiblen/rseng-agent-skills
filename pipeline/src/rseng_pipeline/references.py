@@ -21,7 +21,7 @@ import yaml
 
 GENERATED_HEADER = (
     "<!-- Generated file - do not edit. Rebuilt by the rseng-agent-skills\n"
-    "     pipeline from RSQKit content; see pipeline/upstream.lock. -->\n\n"
+    "     pipeline from the configured content sources; see extensions/. -->\n\n"
 )
 
 

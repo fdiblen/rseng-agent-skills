@@ -1,0 +1,7 @@
+# Content-source configuration for the rsqkit extension.
+name: rsqkit
+title: RSQKit (the Research Software Quality Kit) by the EVERSE project and the RSQKit team
+site: https://everse.software/RSQKit/
+base_url: https://everse.software/RSQKit
+doi: 10.5281/zenodo.14923573
+content_license: CC-BY-4.0
