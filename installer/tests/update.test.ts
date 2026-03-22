@@ -35,7 +35,8 @@ beforeEach(() => {
   packRoot = fs.mkdtempSync(path.join(os.tmpdir(), "rseng-pack-"));
   destRoot = fs.mkdtempSync(path.join(os.tmpdir(), "rseng-dest-"));
   logs = [];
-  write("skills/taxonomy.yml", "skills: {}\n");
+  write("AGENTS.md", "pack umbrella\n");
+  write("skills/.keep", "");
   write("dist/cursor/.cursor/rules/one.mdc", "rule one v1\n");
   write("dist/cursor/.cursor/rules/two.mdc", "rule two v1\n");
   executePlan(ctx(), planInstall(packRoot, target()));

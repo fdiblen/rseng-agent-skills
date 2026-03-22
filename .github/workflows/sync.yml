@@ -45,8 +45,8 @@ jobs:
           commit-message: "sync upstream rsqkit changes"
           labels: sync,${{ steps.classify.outputs.level }}
           add-paths: |
-            pipeline/upstream.lock
-            pipeline/upstream.manifest.json
+            extensions/rsqkit/upstream.lock
+            extensions/rsqkit/upstream.manifest.json
             skills
       - name: Enable auto-merge for references-only changes
         # L1 = registry/data regeneration only; merges itself once the

@@ -39,7 +39,8 @@ beforeEach(() => {
   packRoot = fs.mkdtempSync(path.join(os.tmpdir(), "rseng-pack-"));
   destRoot = fs.mkdtempSync(path.join(os.tmpdir(), "rseng-dest-"));
   logs = [];
-  write("skills/taxonomy.yml", "skills: {}\n");
+  write("AGENTS.md", "pack umbrella\n");
+  write("skills/.keep", "");
   write("skills/rseng-testing/SKILL.md", "---\nname: rseng-testing\n---\n");
   write("dist/cursor/.cursor/rules/rseng-overview.mdc", "rule one\n");
   write("dist/cursor/.cursor/rules/rseng-testing.mdc", "rule two\n");

@@ -28,7 +28,8 @@ function target(): AgentTarget {
 beforeEach(() => {
   packRoot = fs.mkdtempSync(path.join(os.tmpdir(), "rseng-pack-"));
   destRoot = fs.mkdtempSync(path.join(os.tmpdir(), "rseng-dest-"));
-  write("skills/taxonomy.yml", "skills: {}\n");
+  write("AGENTS.md", "pack umbrella\n");
+  write("skills/.keep", "");
   write("package.json", JSON.stringify({ version: "0.1.0" }));
   write("dist/cursor/.cursor/rules/one.mdc", "rule one\n");
   executePlan(

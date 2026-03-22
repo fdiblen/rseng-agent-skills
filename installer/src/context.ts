@@ -23,12 +23,15 @@ export function resolvePackRoot(moduleDir?: string): string {
     path.resolve(here, "..", ".."),
   ];
   for (const candidate of candidates) {
-    if (fs.existsSync(path.join(candidate, "skills", "taxonomy.yml"))) {
+    if (
+      fs.existsSync(path.join(candidate, "AGENTS.md")) &&
+      fs.existsSync(path.join(candidate, "skills"))
+    ) {
       return candidate;
     }
   }
   throw new Error(
-    "cannot locate pack content (no skills/taxonomy.yml near the CLI)",
+    "cannot locate pack content (no AGENTS.md + skills/ near the CLI)",
   );
 }
 
