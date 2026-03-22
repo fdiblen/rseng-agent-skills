@@ -24,9 +24,18 @@ fetcher -> parser -> cleaner -> url_verify -> learn_more -> assembler
 ```
 
 `registry` and `checks` are helpers used within those stages rather than
-stages of their own. `assembler` is the one entry point that drives fetch
-through learn-more and writes the build artifacts; `references` and
-`build_adapters` are separate entry points that read those artifacts.
+stages of their own. Four entry points chain together: `fetcher` downloads
+the pinned sources into the cache (run it first on a fresh checkout -
+`assembler` verifies the cache but never fetches), `assembler` runs parse
+through learn-more and writes the build artifacts, and `references` and
+`build_adapters` read those artifacts:
+
+```
+uv run --directory pipeline python -m rseng_pipeline.fetcher
+uv run --directory pipeline python -m rseng_pipeline.assembler
+uv run --directory pipeline python -m rseng_pipeline.references
+uv run --directory pipeline python -m rseng_pipeline.build_adapters
+```
 
 ## fetcher.py
 
