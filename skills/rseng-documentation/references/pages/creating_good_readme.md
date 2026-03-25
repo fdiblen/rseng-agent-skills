@@ -1,6 +1,6 @@
 <!-- Generated file - do not edit.
      Source: pages/tasks/creating_good_readme.md @ 03a8352e0701acf6ae28a1f6c9069e9b2caf8e7e
-     From RSQKit (https://everse.software/RSQKit/creating_good_readme) by the EVERSE project and the RSQKit team,
+     From RSQKit (the Research Software Quality Kit) by the EVERSE project and the RSQKit team (https://everse.software/RSQKit/creating_good_readme),
      CC-BY-4.0. DOI: 10.5281/zenodo.14923573 -->
 
 ## Why does your research software need a good README?

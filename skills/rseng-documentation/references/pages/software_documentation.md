@@ -1,6 +1,6 @@
 <!-- Generated file - do not edit.
      Source: pages/tasks/software_documentation.md @ 03a8352e0701acf6ae28a1f6c9069e9b2caf8e7e
-     From RSQKit (https://everse.software/RSQKit/software_documentation) by the EVERSE project and the RSQKit team,
+     From RSQKit (the Research Software Quality Kit) by the EVERSE project and the RSQKit team (https://everse.software/RSQKit/software_documentation),
      CC-BY-4.0. DOI: 10.5281/zenodo.14923573 -->
 
 Software documentation is an essential part of the software development process, designed to provide clear communication between various stakeholders including developers, administrators, testers, users and project managers.
