@@ -1,6 +1,6 @@
 <!-- Generated file - do not edit.
      Source: pages/tasks/improving_environmental_sustainability.md @ 03a8352e0701acf6ae28a1f6c9069e9b2caf8e7e
-     From RSQKit (https://everse.software/RSQKit/improving_environmental_sustainability) by the EVERSE project and the RSQKit team,
+     From RSQKit (the Research Software Quality Kit) by the EVERSE project and the RSQKit team (https://everse.software/RSQKit/improving_environmental_sustainability),
      CC-BY-4.0. DOI: 10.5281/zenodo.14923573 -->
 
 ## How to monitor and reduce the environmental impact of my software?
