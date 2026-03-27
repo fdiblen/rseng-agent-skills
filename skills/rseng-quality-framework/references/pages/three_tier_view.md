@@ -1,6 +1,6 @@
 <!-- Generated file - do not edit.
      Source: pages/research_software_and_quality/three_tier_view.md @ 03a8352e0701acf6ae28a1f6c9069e9b2caf8e7e
-     From RSQKit (https://everse.software/RSQKit/three_tier_view) by the EVERSE project and the RSQKit team,
+     From RSQKit (the Research Software Quality Kit) by the EVERSE project and the RSQKit team (https://everse.software/RSQKit/three_tier_view),
      CC-BY-4.0. DOI: 10.5281/zenodo.14923573 -->
 
 The **three-tier model of research software** provides a framework for understanding the diverse landscape of software in research - from scripts, code, notebooks, to computational workflows, libraries, modules, frameworks, utilities and applications.

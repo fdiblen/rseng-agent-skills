@@ -1,5 +1,5 @@
 <!-- Generated file - do not edit. Rebuilt by the rseng-agent-skills
-     pipeline from RSQKit content; see pipeline/upstream.lock. -->
+     pipeline from the configured content sources; see extensions/. -->
 
 # Learn more
 
