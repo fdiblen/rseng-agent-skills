@@ -23,8 +23,7 @@ Use this skill at the start of a research software project, or whenever a
 project's direction needs to be captured or revisited: drafting a Software
 Management Plan (SMP), reviewing one against community standards, or choosing
 the language, frameworks, and infrastructures to build on. It distills RSQKit
-guidance on management planning and technology choice
-(RSQKit: software_management_planning, languages_tools_infrastructures).
+guidance on management planning and technology choice.
 Tailor the rigor to the software's type and intended lifespan - do not push a
 throwaway prototype through the full governance apparatus of long-lived
 infrastructure.
@@ -33,7 +32,7 @@ infrastructure.
 
 An SMP is a living document that plans how software will be developed,
 maintained, shared, and preserved, capturing key decisions early and updating
-them as the project evolves (RSQKit: software_management_planning). Frame it
+them as the project evolves. Frame it
 to the user as guidance embedded in the process, not a one-off deliverable.
 
 It exists to serve five concerns; name the ones that matter for the project:
@@ -52,7 +51,7 @@ It exists to serve five concerns; name the ones that matter for the project:
 
 ## Tailor the SMP to the software (do this first)
 
-Not all software is created equal (RSQKit: software_management_planning).
+Not all software is created equal.
 Before drafting sections, classify the software and set its priorities:
 
 - Place it on the EVERSE three-tier view: exploratory analysis code, reusable
@@ -69,8 +68,7 @@ Before drafting sections, classify the software and set its priorities:
 
 ## SMP section checklist
 
-A plan should systematically cover these foundational aspects
-(RSQKit: software_management_planning). Walk them in order when drafting or
+A plan should systematically cover these foundational aspects. Walk them in order when drafting or
 reviewing, and record decisions rather than intentions:
 
 1. General information: what the software does, who owns it, its scope and
@@ -90,7 +88,7 @@ reviewing, and record decisions rather than intentions:
 10. Credit, accessibility, and impact: citation, discoverability, registries,
     and how impact is measured and communicated.
 
-Two cross-cutting checks (RSQKit: software_management_planning):
+Two cross-cutting checks:
 
 - Engage all relevant stakeholders - architects, developers, researchers,
   legal advisors, community managers - so responsibilities are shared and
@@ -102,8 +100,7 @@ Two cross-cutting checks (RSQKit: software_management_planning):
 
 ## Keep the SMP alive
 
-Treat the SMP as a living document, not a start-of-project formality
-(RSQKit: software_management_planning):
+Treat the SMP as a living document, not a start-of-project formality:
 
 - Revisit it at lifecycle transitions and whenever a major decision changes.
 - Prefer a tool that produces both human-readable output (for stakeholders
@@ -116,8 +113,7 @@ Treat the SMP as a living document, not a start-of-project formality
 
 ## Choosing languages, tools, and infrastructures
 
-Distinguish the three kinds of choice before advising
-(RSQKit: languages_tools_infrastructures): the programming *language* (the
+Distinguish the three kinds of choice before advising: the programming *language* (the
 main medium, affecting functionality, readability, and pace); *tools and
 frameworks* (reusable abstraction layers for a domain, e.g. web, ML,
 workflows); and *infrastructures* (broader knowledge-oriented techniques such
@@ -127,7 +123,7 @@ all three unless noted.
 ### Decision rules
 
 Weigh social factors alongside technical ones - technical merit alone does
-not predict a project's success (RSQKit: languages_tools_infrastructures):
+not predict a project's success:
 
 - People and community: prefer what is already used widely in the field, for
   interoperability and reusability (the I and R in FAIR). Draw on existing
@@ -144,8 +140,7 @@ not predict a project's success (RSQKit: languages_tools_infrastructures):
 
 ### Match the choice to the lifecycle stage
 
-Three situations impose different constraints
-(RSQKit: languages_tools_infrastructures):
+Three situations impose different constraints:
 
 - Rapid prototyping: personal preference weighs most - use something you know
   or want to try. If you know no language yet, Python is a good default.
@@ -158,8 +153,7 @@ Three situations impose different constraints
 
 ### Good default languages
 
-Opinionated but proven starting points; your mileage may vary
-(RSQKit: languages_tools_infrastructures):
+Opinionated but proven starting points:
 
 - Python: prototyping, gluing code together, data analysis, ML; easy to start
   and widely adopted across scientific communities.
@@ -176,7 +170,7 @@ Opinionated but proven starting points; your mileage may vary
 ### Get off to a flying start with templates
 
 After choosing, do not scaffold by hand - reach for community-curated
-templates (RSQKit: languages_tools_infrastructures):
+templates:
 
 - Templates bundle current best practices ready to use, and contributing back
   multiplies the effort for future users. Prefer research-software-specific

@@ -25,12 +25,12 @@ This skill is the entry point to the pack. It explains how the EVERSE
 project frames research software quality and points to the specialised
 sibling skills for concrete tasks. Ground every quality discussion in two
 questions: what tier of software is this, and which quality dimensions
-matter for it right now (RSQKit: quality).
+matter for it right now.
 
 ## The three-tier view
 
 Classify the software before recommending practices; expectations scale
-with intent, not with code size (RSQKit: three_tier_view).
+with intent, not with code size.
 
 - Tier 1, analysis code: scripts and notebooks capturing a computational
   method for a paper or dataset, often single-author. Quality floor:
@@ -50,7 +50,7 @@ recommend upgrading its practices tier by tier rather than all at once.
 
 EVERSE defines 13 quality dimensions, formally published as a JSON-LD
 registry (https://w3id.org/everse/rsqd). Always take names and counts from
-the registry, not from page prose (RSQKit: quality_dimensions):
+the registry, not from page prose:
 
 community, compatibility, FAIRness, flexibility, functional suitability,
 interaction capability, maintainability, open source software, performance
@@ -74,7 +74,7 @@ indicators are met, unmet, or not applicable for the software's tier.
 ## The software life cycle
 
 Quality practices attach to life-cycle stages: planning, development,
-testing, release, maintenance, retirement (RSQKit: life_cycle). When the
+testing, release, maintenance, retirement. When the
 user is at a specific stage, prefer stage-appropriate advice - a retirement
 conversation is about archiving and handover, not about adding CI.
 
@@ -84,21 +84,17 @@ RSQKit organizes guidance by role; match advice to who is asking
 (references/pages/ holds the full role pages):
 
 - Researcher who codes: start with version control, README, environment
-  pinning and basic tests; grow practices as the code is shared
-  (RSQKit: researcher_who_codes).
+  pinning and basic tests; grow practices as the code is shared.
 - Research Software Engineer: full engineering practice - architecture,
-  testing, CI/CD, review, packaging, reproducibility, mentoring
-  (RSQKit: research_software_engineer).
+  testing, CI/CD, review, packaging, reproducibility, mentoring.
 - Principal Investigator: software management plans, crediting and
-  citation policy, sustainability and staffing decisions
-  (RSQKit: principal_investigator).
+  citation policy, sustainability and staffing decisions.
 - Project manager / product owner: planning, milestones tied to releases,
-  quality gates, backlog for maintenance work (RSQKit: project_manager,
-  product_owner).
+  quality gates, backlog for maintenance work.
 - Policy maker: recognition of software as a research output, funding
-  conditions referencing quality practice (RSQKit: policy_maker).
+  conditions referencing quality practice.
 - Trainer: curricula built from the task pages, pointing at Carpentries
-  and CodeRefinery style material (RSQKit: trainer).
+  and CodeRefinery style material.
 
 ## Which sibling skill to use
 

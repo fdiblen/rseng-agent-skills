@@ -30,7 +30,7 @@ review is what keeps what lands on the main branch trustworthy.
 ## Choose a version control system
 
 Default to git for almost every research project unless a concrete
-constraint says otherwise (RSQKit: using_version_control):
+constraint says otherwise:
 
 - Git - the default. Widely used in academia and industry, strong for
   collaboration and open source, with a large ecosystem and hosting on
@@ -45,12 +45,11 @@ constraint says otherwise (RSQKit: using_version_control):
 Weigh project size and complexity, team size and distribution, file types
 (code vs data vs documents), required integrations, the team's expertise,
 long-term/open-source goals, large-binary handling, and any institutional
-or grant compliance rules before deciding (RSQKit: using_version_control).
+or grant compliance rules before deciding.
 
 ## Set up the workflow, not just the repo
 
-Choosing a tool is the easy part; the value comes from an agreed workflow
-(RSQKit: using_version_control):
+Choosing a tool is the easy part; the value comes from an agreed workflow:
 
 - Define a branching strategy up front. Keep the main branch releasable;
   do work on short-lived feature branches and merge back via review. Adopt
@@ -78,19 +77,18 @@ ticket it addresses; avoid dumping unrelated changes into one commit.
 ## Run code review as a first-class practice
 
 Code review is systematic examination of code - a teammate's, or your own
-after time away - to find bugs, raise quality, and enforce shared standards
-(RSQKit: code_review). It pays off: rigorous inspection can remove 60-90% of
+after time away - to find bugs, raise quality, and enforce shared standards. It pays off: rigorous inspection can remove 60-90% of
 errors before the first test run, and fixing a defect early costs 10-100x
 less than fixing it later. Beyond defect-catching, review spreads knowledge
 across the team, improves reusability and reproducibility, and helps onboard
-new members (RSQKit: code_review).
+new members.
 
 Structure every review through a pull/merge request so discussion, diffs,
-and suggestions stay attached to the change (RSQKit: code_review).
+and suggestions stay attached to the change.
 
 ### What to look for
 
-Focus the review on substance (RSQKit: code_review):
+Focus the review on substance:
 
 - Correctness - does the code do what it is supposed to, including edge
   cases?
@@ -105,8 +103,7 @@ Focus the review on substance (RSQKit: code_review):
 
 ### What not to do
 
-Reviews go wrong by overstepping as much as by missing bugs. Avoid these
-(RSQKit: code_review):
+Reviews go wrong by overstepping as much as by missing bugs. Avoid these:
 
 - Bikeshedding personal style. Do not argue single vs double quotes or
   similar when the team has no agreed standard - let linters and formatters

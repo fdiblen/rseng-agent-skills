@@ -25,12 +25,12 @@ dependencies and technical debt, deciding whether to keep, deprecate, or
 archive a project, and reducing the environmental cost of running it.
 Unmaintained software degrades even with no code changes - dependencies
 age, environments shift, and the knowledge to run it erodes - so treat
-maintenance as a recurring cost, not a one-off (RSQKit: maintaining_research_software).
+maintenance as a recurring cost, not a one-off.
 
 ## Establish maintenance habits early
 
 Calibrate effort to the user base, but build the habits before the
-software is widely used (RSQKit: maintaining_research_software):
+software is widely used:
 
 - Write a test suite and check coverage with a language-appropriate tool
   (pytest-cov for Python, covr for R). Without tests, every dependency or
@@ -48,7 +48,7 @@ software is widely used (RSQKit: maintaining_research_software):
 ## Manage dependencies deliberately
 
 Every dependency is a liability as well as an asset - it can change,
-deprecate, or introduce a security issue (RSQKit: maintaining_research_software):
+deprecate, or introduce a security issue:
 
 - Prefer a small, well-understood dependency tree drawn from already
   well-maintained projects over a large one.
@@ -61,15 +61,14 @@ deprecate, or introduce a security issue (RSQKit: maintaining_research_software)
 ## Communicate change clearly
 
 - Use Semantic Versioning (MAJOR.MINOR.PATCH) so users can tell a breaking
-  change from a feature from a bug fix and decide when to upgrade
-  (RSQKit: maintaining_research_software). See the rseng-publishing-releasing skill.
+  change from a feature from a bug fix and decide when to upgrade. See the rseng-publishing-releasing skill.
 - Keep a CHANGELOG and update it with each release: a record of what
   changed, when, and why serves both users and your future self.
 
 ## Reduce the bus factor
 
 If only one person understands the software, it becomes unmaintainable the
-moment they are unavailable (RSQKit: maintaining_research_software):
+moment they are unavailable:
 
 - Document key decisions, architecture, and operational knowledge in the
   repository itself, not just in someone's head.
@@ -86,14 +85,14 @@ moment they are unavailable (RSQKit: maintaining_research_software):
 
 When you can no longer sustain a project, say so. A prominent README
 notice, a repository archive, or an explicit deprecation statement is more
-helpful to users than silent abandonment (RSQKit: maintaining_research_software).
+helpful to users than silent abandonment.
 See the rseng-publishing-releasing skill for archiving mechanics.
 
 ## Track and pay down technical debt
 
 Technical debt is often unavoidable in research code written quickly to
 test a hypothesis; the danger is that it compounds until change becomes
-slow and risky (RSQKit: maintaining_research_software):
+slow and risky:
 
 - Distinguish intentional debt (a known, documented workaround) from
   unintentional debt (unclear code, missing tests, hardcoded values). The
@@ -115,8 +114,7 @@ slow and risky (RSQKit: maintaining_research_software):
 ## Reduce environmental impact
 
 Research is a significant source of carbon emissions, and there are
-concrete steps to cut the footprint of software and compute
-(RSQKit: improving_environmental_sustainability). The Green Software
+concrete steps to cut the footprint of software and compute. The Green Software
 Foundation frames three levers:
 
 1. Energy efficiency - design software to consume as little energy as
@@ -131,12 +129,12 @@ on institutional or project policy: shared responsibility (top-down and
 bottom-up), estimation and reporting of energy and carbon, addressing both
 operational and embodied impacts, international collaboration for equitable
 access to low-carbon computing, and education plus research into
-energy-efficient algorithms (RSQKit: improving_environmental_sustainability).
+energy-efficient algorithms.
 
 ### Measure first, then improve
 
 You cannot reduce what you do not measure, so start by estimating the
-current footprint (RSQKit: improving_environmental_sustainability):
+current footprint:
 
 - CodeCarbon estimates CO2 emissions from the compute a program uses.
 - Green Algorithms provides a web calculator for the carbon footprint of a

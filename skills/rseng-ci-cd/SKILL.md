@@ -29,8 +29,7 @@ infrastructure a small project will not use.
 
 ## Core concepts
 
-Distinguish the three practices before recommending tooling
-(RSQKit: ci_cd):
+Distinguish the three practices before recommending tooling:
 
 - Continuous Integration (CI): integrate code changes into a shared
   repository frequently, and verify every change with an automated build
@@ -47,8 +46,7 @@ automated Continuous Deployment.
 
 ## What a pipeline should cover
 
-Map the project's needs onto these stages before writing YAML
-(RSQKit: ci_cd):
+Map the project's needs onto these stages before writing YAML:
 
 - Automated builds triggered on every change (compile plus tests).
 - Version-control integration so commits and pull requests trigger runs.
@@ -61,8 +59,7 @@ Map the project's needs onto these stages before writing YAML
 
 ## Choosing a platform
 
-Match the tool to where the repository lives and what hardware it needs
-(RSQKit: ci_cd, task_automation_gitlab_ci_cd):
+Match the tool to where the repository lives and what hardware it needs:
 
 - GitHub-hosted, standard hardware: use GitHub Actions. It is integrated,
   has a large marketplace, and free runners for public repos.
@@ -79,7 +76,7 @@ Match the tool to where the repository lives and what hardware it needs
 
 ## GitHub Actions
 
-Set up a workflow with these steps (RSQKit: task_automation_github_actions):
+Set up a workflow with these steps:
 
 - Create a `.github/workflows/` directory; put one YAML file (`.yml` or
   `.yaml`) per workflow there.
@@ -124,7 +121,7 @@ first working pipeline this small, then extend.
 
 ## GitLab CI/CD
 
-Set up a pipeline with these steps (RSQKit: task_automation_gitlab_ci_cd):
+Set up a pipeline with these steps:
 
 - Create a `.gitlab-ci.yml` at the repository root; it defines pipelines
   and jobs in YAML.
@@ -167,8 +164,7 @@ tutorials and its per-language examples rather than inventing job scripts.
 
 Only recommend this when a GitHub project genuinely needs hardware or
 capacity beyond GitHub's free runners (GPUs, ARM/Power, HPC, large
-matrices) and the organization already runs GitLab with suitable runners
-(RSQKit: org_gitlab_ci_infra_for_github_project). It is real operational
+matrices) and the organization already runs GitLab with suitable runners. It is real operational
 overhead -- flag that cost explicitly to small teams before they commit.
 
 The moving parts to design:

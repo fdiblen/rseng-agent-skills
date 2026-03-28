@@ -24,13 +24,12 @@ software: a README, in-code comments and docstrings, API/CLI references,
 project files like CONTRIBUTING or CHANGELOG, a hosted documentation site,
 or a narrative Research Software Story. Good documentation makes software
 understandable, reusable, and sustainable - it tells others (and your
-future self) what the software does, how to use it, and how to contribute
-(RSQKit: software_documentation).
+future self) what the software does, how to use it, and how to contribute.
 
 ## Separate the two levels first
 
 Decide which level the user needs before writing, because audience and
-content differ (RSQKit: software_documentation):
+content differ:
 
 - Project documentation - the software as a whole: purpose, audience,
   installation, usage, licensing, contribution. Lives in README, INSTALL,
@@ -41,9 +40,9 @@ content differ (RSQKit: software_documentation):
 
 Both matter; keep them consistent. Installation and usage often straddle
 the line and serve users and developers alike, so link between the two
-rather than duplicating (RSQKit: documenting_code).
+rather than duplicating.
 
-Cross-cutting rules for all documentation (RSQKit: documenting_code):
+Cross-cutting rules for all documentation:
 
 - Keep it accessible, clear, consistent, and regularly updated; cover all
   key aspects and invite feedback. Outdated docs can be worse than none.
@@ -57,7 +56,7 @@ Cross-cutting rules for all documentation (RSQKit: documenting_code):
 The README is the entry point and the project's homepage on GitHub or
 GitLab. Place it in the project root as plain text or Markdown so it ships
 with the code. Aim for three qualities: understandability, usability, and
-attribution (RSQKit: creating_good_readme).
+attribution.
 
 Include these sections, adapting depth to the audience:
 
@@ -78,19 +77,18 @@ Include these sections, adapting depth to the audience:
 
 For research software also document how to reproduce or replicate the
 experiments, add citation information, and describe links to related
-publications and datasets (RSQKit: creating_good_readme).
+publications and datasets.
 
 Extra tactics: add badges for at-a-glance status (see the howfairis list);
 run SOMEF to detect missing README parts (it flags gaps, it does not grade).
 If AI assists in drafting a README, hold it to the same accuracy bar -
-verify every command, requirement, and citation before publishing
-(RSQKit: creating_good_readme).
+verify every command, requirement, and citation before publishing.
 
 ## Document the code
 
 Match documentation type to purpose and audience - user, developer, and
 deployment documentation each target different readers, so tailor content
-accordingly; personas help (RSQKit: documenting_code).
+accordingly; personas help.
 
 Document as you code:
 
@@ -103,16 +101,16 @@ Document as you code:
 
 Write meaningful error messages that state when and where the error
 happened, what went wrong, the software state, and how to fix it or where
-to look (RSQKit: documenting_code).
+to look.
 
 Include usage examples, a quickstart for a fast path to experimentation,
 and a fuller step-by-step tutorial. Move examples to a dedicated section if
-they clutter the main docs (RSQKit: documenting_code).
+they clutter the main docs.
 
 Document any CLI or API: describe usage, subcommands, options, arguments,
 and environment variables with examples. Implement a `help` command so users
 succeed without external docs. Tools: Click for Python CLIs, the OpenAPI
-Specification and Swagger for REST APIs (RSQKit: documenting_code).
+Specification and Swagger for REST APIs.
 
 Automate generation from annotated source where you can:
 
@@ -121,13 +119,12 @@ Automate generation from annotated source where you can:
   HTML/PDF.
 - MkDocs builds Markdown documentation sites.
 - Wire doc builds into CI (GitHub Actions, GitLab CI/CD) to publish updates
-  automatically; Zenodo can archive docs with each release
-  (RSQKit: documenting_code).
+  automatically; Zenodo can archive docs with each release.
 
 ## Document the software project
 
 Beyond the README, a well-documented project provides these root-level
-files or clearly linked pointers (RSQKit: documenting_software_project):
+files or clearly linked pointers:
 
 - INSTALL - download and run steps (or a README section).
 - LICENSE - legal conditions for use (see the licensing skill).
@@ -142,15 +139,13 @@ files or clearly linked pointers (RSQKit: documenting_software_project):
 Organize it for the reader: identify the audience, state the purpose,
 structure information logically, keep it current, make it easy to find and
 navigate (e.g. GitHub Pages), and include enough detail - environment,
-data, example workflows - for others to reproduce results
-(RSQKit: documenting_software_project).
+data, example workflows - for others to reproduce results.
 
 ## Publish hosted documentation with Read the Docs
 
 When a project needs a browsable docs site, generate static pages with
 Sphinx or MkDocs and publish them. Read the Docs is a common host that
-integrates with GitHub/GitLab and rebuilds via CI
-(RSQKit: documenting_software_readthedocs):
+integrates with GitHub/GitLab and rebuilds via CI:
 
 1. Create the source: `sphinx-quickstart` (Sphinx) or `mkdocs new my-project`
    (MkDocs).
@@ -170,15 +165,13 @@ A Research Software Story captures the context around a project rather than
 how to run it: the scientific problem, the community, and the practices and
 tools that sustain it - the who, what, why, where, when, and how. It helps
 onboard newcomers, explains the project to leaders and funders, and, through
-the act of writing, surfaces gaps the team had not noticed
-(RSQKit: writing_research_software_story).
+the act of writing, surfaces gaps the team had not noticed.
 
 Guide the user through the template sections - the problem addressed, the
 communities involved, the technical nature, dependencies, development
 practices, onboarding, tooling, documentation/FAIR/openness, and
 sustainability/governance. Emphasise clarity over technical depth; a reader
-should grasp the project without reading the code
-(RSQKit: writing_research_software_story).
+should grasp the project without reading the code.
 
 To produce a first draft:
 
@@ -194,8 +187,7 @@ To produce a first draft:
 
 The important step is producing any version-zero draft; refine afterward,
 checking that processes are captured clearly, key tools are linked, and
-documentation/tutorial links exist and work
-(RSQKit: writing_research_software_story).
+documentation/tutorial links exist and work.
 
 ## Working with this skill
 

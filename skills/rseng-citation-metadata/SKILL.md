@@ -28,35 +28,32 @@ machine-readable metadata, getting a persistent identifier, or building an
 evidence base of who contributed. Software has no title page, so the
 information needed to cite it is often hard to find - a citation file and
 structured metadata are what let both humans and tools cite the exact work
-correctly (RSQKit: citing_software). Advise concrete files in the repository
+correctly. Advise concrete files in the repository
 root, not abstractions.
 
 ## Start here: what a citable project needs
 
-For most projects, recommend all four in the repository root
-(RSQKit: credit_recognition_research_software):
+For most projects, recommend all four in the repository root:
 
-1. `CITATION.cff` - machine-readable citation metadata (RSQKit: citing_software).
-2. `codemeta.json` - richer discovery/interoperability metadata
-   (RSQKit: software_metadata).
-3. A DOI from an archive like Zenodo, minted per release
-   (RSQKit: software_identifiers).
+1. `CITATION.cff` - machine-readable citation metadata.
+2. `codemeta.json` - richer discovery/interoperability metadata.
+3. A DOI from an archive like Zenodo, minted per release.
 4. A `CONTRIBUTORS` file - human-readable team record alongside the
-   machine-readable ones (RSQKit: credit_recognition_research_software).
+   machine-readable ones.
 
 A software citation itself should carry: title, the specific version used,
 authors/creators, a DOI or other stable link, and the repository URL - the
-version matters for reproducibility (RSQKit: citing_software).
+version matters for reproducibility.
 
 ## Write a CITATION.cff file
 
 The Citation File Format is a structured plaintext (YAML) format; a valid
 `CITATION.cff` in the repo root is reused automatically by GitHub, Zenodo,
-and Zotero (RSQKit: citing_software). Do not hand-craft the syntax from
+and Zotero. Do not hand-craft the syntax from
 memory - point the user at the CFFINIT generator, or start from the official
 example and validate with cffconvert.
 
-Checklist of core fields to populate (RSQKit: citing_software):
+Checklist of core fields to populate:
 
 - `cff-version` - the CFF schema version (e.g. `1.2.0`).
 - `message` - the "please cite as" instruction.
@@ -90,21 +87,19 @@ authors:
 ```
 
 Tell the user to generate with CFFINIT and validate with cffconvert rather
-than trusting a hand-edited file (RSQKit: citing_software).
+than trusting a hand-edited file.
 
 ## Describe the software with CodeMeta
 
 `codemeta.json` is a JSON-LD metadata standard (extending Schema.org) that
 travels between archives and registries - Zenodo, FigShare, InvenioRDM, and
 Software Heritage can ingest it, so metadata is not re-entered when getting a
-DOI (RSQKit: software_metadata). Recommend it whenever discovery,
+DOI. Recommend it whenever discovery,
 interoperability, or DOI minting is in play. Match the type of metadata to
 the goal: citation metadata for academic credit, versions and dependencies
-for reproducing an analysis, keywords and descriptions for discoverability
-(RSQKit: software_metadata).
+for reproducing an analysis, keywords and descriptions for discoverability.
 
-Field checklist for a complete record
-(RSQKit: complete_bibliographic_metadata_codemeta):
+Field checklist for a complete record:
 
 - `name`, `description`, `version` - identity and release.
 - `author` and `contributor` - each a `Person` with `givenName`,
@@ -121,36 +116,34 @@ Field checklist for a complete record
 
 Generate it with the CodeMeta Generator (form-based) or SOMEF (from README
 and docs), then always review it by hand to add ORCID iDs and funder detail,
-and validate the JSON-LD (RSQKit: complete_bibliographic_metadata_codemeta).
-Keep it current: update on every new version or contributor
-(RSQKit: complete_bibliographic_metadata_codemeta).
+and validate the JSON-LD.
+Keep it current: update on every new version or contributor.
 
 ## Identify and version the software
 
 Uniquely identifying software and each version underpins reproducibility,
-citation, and long-term access (RSQKit: software_identifiers). Combine
+citation, and long-term access. Combine
 methods rather than treating them as alternatives:
 
 - Semantic Versioning (`MAJOR.MINOR.PATCH`) for human-readable release
   identity - apply it consistently across GitHub tags and distribution
-  artifacts like Docker images (RSQKit: credit_recognition_research_software).
+  artifacts like Docker images.
 - A DOI for a globally unique, citable reference that plugs into academic
-  systems - the right choice for research software
-  (RSQKit: software_identifiers).
+  systems - the right choice for research software.
 - Git commit hashes and cryptographic checksums for exact development
-  snapshots and integrity, where relevant (RSQKit: software_identifiers).
+  snapshots and integrity, where relevant.
 
 If the project is registered in a repository or registry, a persistent
 identifier is often created automatically; the awesome-research-software-
-registries list helps find a suitable one (RSQKit: software_identifiers).
+registries list helps find a suitable one.
 
 ### Getting a DOI from Zenodo
 
 Zenodo issues a **concept DOI** for the project as a whole plus a **release
 DOI** per version - cite the release DOI for reproducibility, the concept DOI
-to refer to the project generally (RSQKit: software_identifiers).
+to refer to the project generally.
 
-For GitHub-hosted code (RSQKit: software_identifiers):
+For GitHub-hosted code:
 
 1. Create or link a Zenodo account to the GitHub account.
 2. Enable the repository under Zenodo's GitHub settings so each release is
@@ -158,7 +151,7 @@ For GitHub-hosted code (RSQKit: software_identifiers):
 3. Draft a new release on GitHub; Zenodo archives it and mints a DOI.
 4. Copy the DOI badge (Markdown form) into the repository README.
 
-For GitLab-hosted code, the path differs (RSQKit: software_identifiers):
+For GitLab-hosted code, the path differs:
 provide a `codemeta.json`, get a Zenodo token with publishing scopes, and add
 eOSSR or gitlab2zenodo to the GitLab CI pipeline so a release triggers an
 automatic Zenodo deposit and DOI. Note gitlab2zenodo needs a `.zenodo.json`
@@ -169,30 +162,26 @@ converted from `codemeta.json` (eossr can do this).
 Software contributions - maintenance, bug fixes, review, documentation - are
 routinely invisible in publication-centric assessment. Making them creditable
 needs structured metadata linking people to specific work via persistent
-identifiers (RSQKit: credit_recognition_research_software). Advise:
+identifiers. Advise:
 
 - Reward actions over roles: record verifiable, specific activities (a bug
   fix, a feature, a test-suite improvement) rather than static labels like
   "Developer". Still map roles with CRediT or the Contributor Roles Ontology
-  where automated systems or institutions need them
-  (RSQKit: credit_recognition_research_software).
+  where automated systems or institutions need them.
 - Get every contributor an ORCID so identity flows into professional records
-  without manual work (RSQKit: credit_recognition_research_software).
+  without manual work.
 - Make the software findable and citable via a DOI first - a contribution no
-  one can point to will not be counted
-  (RSQKit: credit_recognition_research_software).
+  one can point to will not be counted.
 - Prefer tools that capture credit automatically from the workflow: APICURON
   for validated contribution events on ORCID profiles, BIP! Scholar for reuse
-  and popularity indicators from OpenAIRE Graph metadata
-  (RSQKit: credit_recognition_research_software).
+  and popularity indicators from OpenAIRE Graph metadata.
 
 For a career or assessment case, pair quantitative reach (package-manager
 downloads on PyPI or CRAN, dependency graphs, citing papers) with narrative
 on technical complexity and scientific impact; check whether the institution
 or funder recognises software as an output; and add a "Credit and
 Recognition" section to the Software Management Plan, tracking contributions
-from the start rather than retrospectively
-(RSQKit: credit_recognition_research_software).
+from the start rather than retrospectively.
 
 ## Working with this skill
 

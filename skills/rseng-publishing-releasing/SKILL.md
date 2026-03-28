@@ -22,12 +22,11 @@ Use this skill when helping someone move research software from a working
 repository to something others can find, install, run, cite, and rely on
 years from now. These are four distinct stages that people routinely
 conflate; get the vocabulary straight first, then follow the stage the
-user actually needs (RSQKit: publishing_software).
+user actually needs.
 
 ## Distinguish the four stages
 
-Keep these separate when advising - they answer different questions
-(RSQKit: publishing_software, packaging_software):
+Keep these separate when advising - they answer different questions:
 
 - Publishing - making software available so others can find, use, and cite
   it. Putting code on GitHub/GitLab is the start, not the whole job.
@@ -109,7 +108,7 @@ releasing_software). Do these:
   aimed at end users, distinct from the raw changelog.
 - Attach built artefacts (binaries, packages) to the release where useful.
 
-Concrete GitHub release flow (RSQKit: releasing_software):
+Concrete GitHub release flow:
 
 1. Prepare the changelog ahead of time.
 2. In the repo, open `Releases` -> `Draft a new release`.
@@ -125,7 +124,7 @@ Concrete GitHub release flow (RSQKit: releasing_software):
 Code on GitHub or GitLab is good for sharing and versioning but is not
 archiving: these are commercial services that can change policies, remove
 repos, or shut down, and research outputs go irreproducible within a few
-years when the original software vanishes (RSQKit: archiving_software).
+years when the original software vanishes.
 Archiving means preservation that does not depend on any single platform.
 
 Why it matters: reproducibility of past experiments, preservation of the
@@ -150,7 +149,7 @@ archiving_software):
   usage instructions, authorship, and configuration must travel with the
   archive.
 
-Match the archival tool to the need (RSQKit: archiving_software):
+Match the archival tool to the need:
 
 - Zenodo (or an institutional repository) - DOI-backed archiving of a
   release, linked to publications; the default for a citable snapshot.

@@ -31,8 +31,7 @@ reproducible_software_environments, RSQKit: using_containers).
 
 ## Pick the right level of isolation
 
-Match the tool to how far the software has to travel and what it depends on
-(RSQKit: reproducible_software_environments):
+Match the tool to how far the software has to travel and what it depends on:
 
 - Language-specific virtual environment - isolates one interpreter/compiler
   version plus library versions for a single project. Default choice while
@@ -57,7 +56,7 @@ multi-step pipeline -> workflow manager.
 
 A virtual environment gives each project its own interpreter version and
 its own library versions, so projects with clashing requirements coexist
-without interference (RSQKit: reproducible_software_environments):
+without interference:
 
 - Create one environment per project, never one global environment shared
   across everything - global installs cause silent version clashes and the
@@ -76,7 +75,7 @@ without interference (RSQKit: reproducible_software_environments):
 You need a package manager (install/update/remove libraries) and an
 environment manager (create/isolate environments); some tools do both. Pick
 per language and stick with it - mixing ad-hoc tools is a common source of
-breakage (RSQKit: reproducible_software_environments):
+breakage:
 
 - Python, pure-Python dependencies: `venv` + `pip`, or a combined tool like
   Poetry or uv (uv is a fast single tool that replaces pip and venv).
@@ -94,7 +93,7 @@ different one.
 ## Pin dependencies for reproducibility
 
 Sharing a runnable description of the environment is the deliverable, not
-just the code (RSQKit: reproducible_software_environments):
+just the code:
 
 - Record the exact interpreter/compiler version and library versions the
   software is known to work with, and commit that manifest with the code
@@ -125,11 +124,11 @@ using_containers). Reach for a container when:
 Benefits to explain when recommending one: reproducibility and portability,
 fast onboarding (collaborators just pull and run), version control (tag
 images to code versions), automation-friendliness (build images in CI/CD),
-and lower overhead than full virtual machines (RSQKit: using_containers).
+and lower overhead than full virtual machines.
 
 ### Build a Docker image (general-purpose, cloud, networked services)
 
-Standard recipe for a Python project (RSQKit: using_containers):
+Standard recipe for a Python project:
 
 - Start from a minimal, explicit base image, e.g. `python:3.10-slim`, or
   `ubuntu:22.04` for a general Linux base - pin the tag, never rely on
@@ -159,8 +158,7 @@ CMD ["python", "script.py"]
 ### Build an Apptainer/Singularity image (HPC, no root)
 
 Prefer Apptainer (formerly Singularity) on clusters where users lack root
-access; it is built for reproducible science and large-scale workloads
-(RSQKit: using_containers):
+access; it is built for reproducible science and large-scale workloads:
 
 - Build a `.sif` file, reusing an existing Docker image when convenient:
   `apptainer build my_container.sif docker://python:3.10-slim`
@@ -173,7 +171,7 @@ access; it is built for reproducible science and large-scale workloads
 ### Wire containers into CI/CD
 
 Run tests inside the same image the software ships in, so CI reproduces the
-production environment (RSQKit: using_containers). Reference the custom
+production environment. Reference the custom
 image as the job image and run the test suite against it; install only
 extra dependencies not already baked in. This keeps test and deployment
 steps consistent and lets image builds themselves be automated.

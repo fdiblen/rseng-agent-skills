@@ -22,12 +22,11 @@ Use this skill when someone wants their software to be Findable,
 Accessible, Interoperable, and Reusable, or when reviewing how well a
 project meets those principles. FAIR is a set of principles for increasing
 the visibility and usefulness of research to others; the data principles
-from 2016 now extend to software, workflows, and machine-learning projects
-(RSQKit: fair_rs). Treat FAIR as a crucial subset of overall software
+from 2016 now extend to software, workflows, and machine-learning projects. Treat FAIR as a crucial subset of overall software
 quality: it ensures software can be discovered, understood, and rerun by
 others (or by the author months later), but it says nothing about whether
 the software is correct - pair it with testing and the other quality
-dimensions (RSQKit: fair_rs).
+dimensions.
 
 Work through the four principles below. Each maps to concrete actions;
 recommend the ones a project is missing, and explain why each matters as
@@ -36,8 +35,7 @@ you go. Many actions serve more than one principle, so a single change
 
 ## Make software Findable
 
-Software and its metadata must be easy to discover by humans and machines
-(RSQKit: fair_rs). Recommend:
+Software and its metadata must be easy to discover by humans and machines. Recommend:
 
 - Write a machine-readable description (metadata) of the software so search
   engines and tools can index it. Use a standard such as CodeMeta rather
@@ -58,7 +56,7 @@ Software and its metadata must be easy to discover by humans and machines
 ## Make software Accessible
 
 Once found, the software and its metadata must be retrievable by standard
-protocols, free, and legally usable (RSQKit: fair_rs). Recommend:
+protocols, free, and legally usable. Recommend:
 
 - Ensure people can obtain a copy over standard communication protocols
   (HTTP, FTP, and the like) - a plain, documented download or clone path,
@@ -72,7 +70,7 @@ protocols, free, and legally usable (RSQKit: fair_rs). Recommend:
 ## Make software Interoperable
 
 When it interacts with other software, it should do so through standardised
-formats, protocols, and APIs (RSQKit: fair_rs). Recommend:
+formats, protocols, and APIs. Recommend:
 
 - Use community-agreed standard formats for inputs and outputs, and for
   metadata (for example CodeMeta), instead of bespoke formats that lock
@@ -86,8 +84,7 @@ formats, protocols, and APIs (RSQKit: fair_rs). Recommend:
 ## Make software Reusable
 
 Software should be usable (it can be executed) and reusable (it can be
-understood, modified, built upon, or incorporated into other software)
-(RSQKit: fair_rs). Recommend:
+understood, modified, built upon, or incorporated into other software). Recommend:
 
 - Document the software: what it does, how to install it, and how to run
   it, so others can understand and extend it. This is the single highest-
@@ -104,7 +101,7 @@ understood, modified, built upon, or incorporated into other software)
 
 ## FAIR within software quality
 
-Position FAIR correctly when advising (RSQKit: fair_rs): quality software
+Position FAIR correctly when advising: quality software
 is defined by many aspects - correctness, performance, maintainability,
 usability, robustness, reproducibility, and more. Reproducibility hinges on
 FAIR: if code and metadata are not findable or accessible, no one can
@@ -118,8 +115,7 @@ exercise it - so always pair FAIR advice with testing.
 ## Assess FAIRness
 
 When asked to evaluate a repository, use an assessment tool rather than
-judging by hand, and frame the result as diagnostic, not a verdict
-(RSQKit: fair_rs). These assessments make quality aspects visible and guide
+judging by hand, and frame the result as diagnostic, not a verdict. These assessments make quality aspects visible and guide
 improvement; they are not meant to score, rank, or discredit authors or
 their software. Tools to reach for:
 

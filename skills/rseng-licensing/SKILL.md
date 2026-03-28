@@ -24,12 +24,11 @@ adding a LICENSE file, reconciling the licenses of dependencies, or
 deciding how to cover documentation and data that ship with code. Without
 a license, others have no legal right to reuse the work, even when the
 author intended them to - so a clear, accessible license is what makes the
-"R" (reusability) in FAIR real (RSQKit: licensing_software).
+"R" (reusability) in FAIR real.
 
 ## Ground the discussion: copyright vs license
 
-Before recommending anything, make these distinctions explicit
-(RSQKit: licensing_software):
+Before recommending anything, make these distinctions explicit:
 
 - Copyright exists automatically from the moment a work is created; it does
   not need to be asserted. It gives only the creator the right to reproduce
@@ -42,7 +41,7 @@ Before recommending anything, make these distinctions explicit
   Unlicense) means everybody may.
 - Small contributions may not be copyrightable at all.
 
-Always check ownership before advising a license (RSQKit: licensing_software):
+Always check ownership before advising a license:
 
 - Employees usually do not own IP created during employment - the employer
   does. Confirm whether permission from the institution is required.
@@ -55,9 +54,9 @@ Always check ownership before advising a license (RSQKit: licensing_software):
 
 Recommend an existing OSI-approved license; never draft or edit one unless
 the user is a copyright lawyer. Remember that once granted, a license's
-permissions cannot be revoked (RSQKit: licensing_software).
+permissions cannot be revoked.
 
-Decision drivers to ask about (RSQKit: licensing_software):
+Decision drivers to ask about:
 
 - What licenses do the dependencies carry, and what do they oblige? A
   copyleft dependency can force the whole combined work to be copyleft.
@@ -72,7 +71,7 @@ Decision drivers to ask about (RSQKit: licensing_software):
 
 Minimal restrictions: redistributors must keep the license text and a
 copyright notice. Permissively licensed code can be folded into closed
-source products (RSQKit: licensing_software).
+source products.
 
 - MIT, BSD (several variants): short, simple, allow copy/modify/merge/
   sublicense/sell.
@@ -83,8 +82,7 @@ source products (RSQKit: licensing_software).
 
 Require derivatives, copies, and redistributions to be released under a
 compatible copyleft license. This keeps downstream products open but can
-block combination with code whose terms are incompatible
-(RSQKit: licensing_software).
+block combination with code whose terms are incompatible.
 
 - GPL: strong copyleft; a whole derivative work, including an application
   that links a GPL library, must be GPL with source provided. Long and hard
@@ -99,7 +97,7 @@ block combination with code whose terms are incompatible
 ### Creative Commons - for non-code artifacts
 
 Code licenses do not fit documentation, datasets, drawings, logos, music,
-or maps. Use Creative Commons for those (RSQKit: licensing_software). The
+or maps. Use Creative Commons for those. The
 baseline rights combine into six licenses:
 
 - BY (Attribution) - required in all CC licenses; credit the creator.
@@ -115,8 +113,7 @@ wants their work broadly reusable.
 
 ## Check license compatibility
 
-When code combines multiple sources, compatibility is the trap
-(RSQKit: licensing_software):
+When code combines multiple sources, compatibility is the trap:
 
 - Incompatible terms between a copyleft license and another license can
   legally prevent combining the two codebases.
@@ -128,7 +125,7 @@ When code combines multiple sources, compatibility is the trap
 
 ## Add the license to the repository
 
-Once chosen, apply it concretely (RSQKit: licensing_software):
+Once chosen, apply it concretely:
 
 - Put the full license text in a file named `LICENSE` (`LICENSE.txt` or
   `LICENSE.md` are also accepted) in the repository root.

@@ -23,12 +23,12 @@ framework, deciding what and how much to test, or designing a CI test
 matrix that has grown across compilers, platforms, and dependency
 versions. The goal is code whose results others can trust and reproduce,
 so favour tests that are automated, saved with the code, and run on every
-change (RSQKit: testing_software).
+change.
 
 ## Decide what kind of tests to write
 
 Always start with functional testing, then add non-functional testing only
-where a requirement demands it (RSQKit: testing_software).
+where a requirement demands it.
 
 - Functional testing - does the software produce correct outputs for given
   inputs? Pick the level by scope:
@@ -55,7 +55,7 @@ internals) versus white-box (test specific internal paths and conditions).
 
 ## Write good tests (F.I.R.S.T.)
 
-Apply these properties to every test (RSQKit: testing_software):
+Apply these properties to every test:
 
 - Fast: run quickly so feedback is immediate.
 - Isolated/Independent: each test checks one responsibility and does not
@@ -80,12 +80,11 @@ Additional checklist when authoring or reviewing a test:
 
 Consider a test-first policy: write the failing test just before the code
 that makes it pass. This forces small, testable units from the start
-instead of refactoring for testability later (RSQKit: testing_software).
+instead of refactoring for testability later.
 
 ## Principles to keep expectations honest
 
-State these when advising, so nobody over-trusts a green test suite
-(RSQKit: testing_software):
+State these when advising, so nobody over-trusts a green test suite:
 
 - Testing shows the presence of defects, never their absence.
 - Exhaustive testing is impossible - prioritise instead of chasing every
@@ -99,7 +98,7 @@ State these when advising, so nobody over-trusts a green test suite
 ## Coverage guidance
 
 - Aim for high coverage to shrink the space of undetected bugs, but do not
-  treat 100% as the goal (RSQKit: testing_software).
+  treat 100% as the goal.
 - 100% coverage does not mean bug-free.
 - Skip testing well-tested third-party/library code and language built-ins.
 - Prioritise critical paths, complex logic, edge cases, and any code that
@@ -110,8 +109,7 @@ State these when advising, so nobody over-trusts a green test suite
 ## Automate with a test framework, then CI
 
 Progress from informal manual checks (fine for first drafts, but forgotten
-once the editor closes) to saved test functions, to a full framework
-(RSQKit: testing_software):
+once the editor closes) to saved test functions, to a full framework:
 
 - Pick the framework for the language: pytest (Python), testthat (R), JUnit
   (Java), the Test standard library (Julia).
@@ -131,7 +129,7 @@ once the editor closes) to saved test functions, to a full framework
 When research software must support many compilers, library versions,
 architectures, and runtimes, a naive full matrix explodes - e.g. 4 GCC x
 6 Clang x 10 CUDA x 4 CMake x 7 Boost = 2,800 jobs (~9.3 h even with 30
-parallel runners). Use these strategies (RSQKit: ci_testing_matrices):
+parallel runners). Use these strategies:
 
 - Prefer pairwise testing over the full matrix. Ensuring every pair of
   parameter values appears in at least one job cuts ~2,800 combinations to
@@ -159,11 +157,11 @@ parallel runners). Use these strategies (RSQKit: ci_testing_matrices):
 Rollout when adopting this: catalog every parameter dimension, start with
 pairwise core-compatibility testing, add specialized hardware incrementally,
 then performance testing, then full multi-platform validation. Document why
-each parameter and exclusion exists (RSQKit: ci_testing_matrices).
+each parameter and exclusion exists.
 
 - Sustainability note: extensive matrices consume real energy. Run the full
   matrix only when it earns its cost (e.g. before releases) and use smaller
-  subsets for day-to-day development (RSQKit: ci_testing_matrices).
+  subsets for day-to-day development.
 
 ## Working with this skill
 

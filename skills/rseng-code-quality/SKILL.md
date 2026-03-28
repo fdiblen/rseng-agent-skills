@@ -23,14 +23,13 @@ when laying out a project's directories. Both goals serve the same end:
 code is read far more often than it is written (a commonly cited read/write
 ratio is 7:1), so anything that helps a future reader - including the
 original author months later - directly improves reusability, the "R" in
-the FAIR research software principles (RSQKit: writing_readable_code).
+the FAIR research software principles.
 Favour conventions others already recognise over clever, project-specific
 inventions.
 
 ## Make code readable
 
-Apply these rules when authoring or reviewing code
-(RSQKit: writing_readable_code):
+Apply these rules when authoring or reviewing code:
 
 - Use descriptive names for variables, functions, classes, and modules
   that explain their purpose. Avoid single-letter names outside tight
@@ -57,8 +56,7 @@ Apply these rules when authoring or reviewing code
 
 - Adopt the community-standard style guide for the language rather than
   inventing one: PEP 8 for Python, the Google R style guide for R; Google's
-  style guides cover Python, Java, R, C++, and Shell
-  (RSQKit: writing_readable_code).
+  style guides cover Python, Java, R, C++, and Shell.
 - A style guide is a shared set of conventions so everyone's contributions
   look similar. Consistency across the project is the point.
 - When contributing to an existing project, match its existing style even
@@ -66,8 +64,7 @@ Apply these rules when authoring or reviewing code
 
 ## Automate style and quality checks
 
-Do not enforce style by hand - let tools do it
-(RSQKit: writing_readable_code):
+Do not enforce style by hand - let tools do it:
 
 - Run an auto-formatter to apply style mechanically (e.g. Black for Python).
   This removes formatting from code review entirely.
@@ -82,8 +79,7 @@ Do not enforce style by hand - let tools do it
 ## Write modular, reusable code
 
 - Split code into small functions that each achieve a single, clear
-  purpose - easier to read, test, and reuse
-  (RSQKit: writing_readable_code).
+  purpose - easier to read, test, and reuse.
 - Group related functions into reusable libraries and packages.
 - Reach for established design patterns for common, well-defined problems
   instead of reinventing a solution; this saves time and raises quality.
@@ -94,8 +90,7 @@ Do not enforce style by hand - let tools do it
 
 A clear, conventional layout lets people (and you) locate things fast, keep
 code, config, and data separate, isolate issues quickly, and reproduce
-results - especially valuable for long-term or collaborative work
-(RSQKit: structuring_software_projects). There is no single official standard,
+results - especially valuable for long-term or collaborative work. There is no single official standard,
 but the following is widely understood.
 
 Put everything for the project in a single, meaningfully named directory.
@@ -130,7 +125,7 @@ Organise the rest into sub-directories labelled by content type:
 
 - Use standard, self-explanatory directory names (as above).
 - Avoid spaces and special characters - they break tools; use underscores
-  or hyphens and stay consistent (RSQKit: structuring_software_projects).
+  or hyphens and stay consistent.
 - Name files to reflect their contents; let version control track versions
   rather than encoding `_v2`, `_final` in filenames.
 
@@ -138,8 +133,7 @@ Organise the rest into sub-directories labelled by content type:
 
 - Put the whole project under version control in its own repository; at
   minimum version-control code and data sub-directories, plus anything
-  written by hand (docs, manuscripts) rather than generated
-  (RSQKit: structuring_software_projects).
+  written by hand (docs, manuscripts) rather than generated.
 - Untrack files too large or too sensitive to expose (use `.gitignore` in
   Git); never version-control passwords or secrets.
 - Use tags/releases to mark specific versions (a journal submission, a
@@ -148,8 +142,7 @@ Organise the rest into sub-directories labelled by content type:
 ## Scaffold new projects with tooling
 
 - For Python, a src-layout with `src/your_package/`, `tests/`,
-  `pyproject.toml`, `README`, and `.gitignore` is the common modern shape
-  (RSQKit: structuring_software_projects).
+  `pyproject.toml`, `README`, and `.gitignore` is the common modern shape.
 - Poetry manages dependencies, virtual environments, versioning, and
   publishing from a single `pyproject.toml`, and scaffolds a new project
   directory; it works well with the recommended src layout.
