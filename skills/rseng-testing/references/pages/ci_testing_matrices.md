@@ -1,6 +1,6 @@
 <!-- Generated file - do not edit.
      Source: pages/tasks/ci_testing_matrices.md @ 03a8352e0701acf6ae28a1f6c9069e9b2caf8e7e
-     From RSQKit (https://everse.software/RSQKit/ci_testing_matrices) by the EVERSE project and the RSQKit team,
+     From RSQKit (the Research Software Quality Kit) by the EVERSE project and the RSQKit team (https://everse.software/RSQKit/ci_testing_matrices),
      CC-BY-4.0. DOI: 10.5281/zenodo.14923573 -->
 
 ## How can I efficiently test my research software across multiple compiler versions, library dependencies, and target platforms?
