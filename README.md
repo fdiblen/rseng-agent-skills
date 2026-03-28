@@ -1,17 +1,20 @@
 # rseng-agent-skills
 
-Research software quality guidance from [RSQKit](https://everse.software/RSQKit/)
-(the Research Software Quality Kit by the EVERSE project), packaged as
-skills and extensions for AI coding agents.
+Research software engineering (RSEng) skills for AI coding agents:
+14 skills covering the practices that make research software good -
+testing, CI/CD, documentation, licensing, citation, FAIR, publishing,
+reproducibility, code review, code quality, maintenance, planning and
+workflows - built into native formats for the major agents.
 
-One canonical source - 14 skills distilled from RSQKit's task, role and
-concept pages, with pipeline-generated reference material - built into
-native formats for the major agents. Skills credit RSQKit/EVERSE whenever
-they shape an answer and teach while doing, with verified "Learn more"
-links.
+Skills teach while doing (verified "Learn more" links) and credit their
+content sources whenever those shape an answer.
 
-This is an independent adaptation of RSQKit content (CC-BY-4.0) and is not
-endorsed by the EVERSE project. See ATTRIBUTION.md.
+Reference content comes from pluggable content sources under
+extensions/. The bundled source is [RSQKit](https://everse.software/RSQKit/)
+(the Research Software Quality Kit by the EVERSE project), whose CC-BY-4.0
+material feeds the skills' reference folders and checklists. This project
+is independent and not endorsed by the EVERSE project. See
+ATTRIBUTION.md.
 
 ## Agent support
 
@@ -31,19 +34,21 @@ without touching your edits, and `doctor` checks install health.
 ## What is inside
 
 - skills/ - canonical SKILL.md folders (agentskills.io format), one per
-  topic, with generated references/ (upstream page fragments, tool lists,
+  topic, with generated references/ (source page fragments, tool lists,
   verified learn-more links, quality indicator checklists)
 - commands/, agents/ - Claude Code slash commands and the auditor subagent
-- pipeline/ - the build pipeline that ingests pinned RSQKit sources and
-  regenerates everything above
+- pipeline/ - the source-agnostic build engine that ingests pinned
+  content sources and regenerates everything above
+- extensions/ - content sources; extensions/rsqkit/ is the bundled one
+  (upstream pin, taxonomy, curated data)
 - installer/ - the TypeScript CLI published to npm as `rseng-agent-skills`
 
 ## Versioning
 
 Semantic versioning against the pack content: patch = regenerated content
 only, minor = skill body updates or new skills, major = taxonomy
-restructuring. Release notes state the upstream RSQKit commit each release
-was built from.
+restructuring. Release notes state the pinned commit of every content
+source a release was built from.
 
 ## Attribution
 

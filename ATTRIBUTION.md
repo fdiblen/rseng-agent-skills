@@ -1,8 +1,10 @@
 # Attribution
 
-The guidance in this skill pack is based on RSQKit, the Research Software
-Quality Kit, created by the EVERSE project and maintained by the RSQKit team
-and contributors.
+rseng-agent-skills is a general research software engineering skills project.
+Its bundled content source (extensions/rsqkit/) provides reference
+material based on RSQKit, the Research Software Quality Kit, created by
+the EVERSE project and maintained by the RSQKit team and contributors;
+the skill bodies distill guidance from that material.
 
 - Website: https://everse.software/RSQKit/
 - Source repository: https://github.com/EVERSE-ResearchSoftware/RSQKit

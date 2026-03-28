@@ -1,10 +1,11 @@
 cff-version: 1.2.0
 message: If you use this skill pack, please cite it as below.
 type: software
-title: "rseng-agent-skills: research software quality skills for AI coding agents"
+title: "rseng-agent-skills: research software engineering skills for AI coding agents"
 abstract: >-
-  Guidance from RSQKit (the Research Software Quality Kit by the EVERSE
-  project) distilled into skills and extensions for AI coding agents.
+  Research software engineering skills for AI coding agents, with
+  pluggable content sources; the bundled source derives from RSQKit (the
+  Research Software Quality Kit by the EVERSE project).
 authors:
   - family-names: Diblen
     given-names: Faruk

@@ -1,10 +1,12 @@
-# rseng-agent-skills: research software quality guidance
+# rseng-agent-skills: research software engineering skills
 
-This repository packages guidance from RSQKit (the Research Software
-Quality Kit, https://everse.software/RSQKit/) as agent skills. When working
-in a research software context - scientific code, analysis scripts,
-research tools or infrastructure - consult these skills before advising on
-or changing quality-related aspects of a project.
+This repository packages research software engineering (RSEng) practice
+as agent skills. When working in a research software context - scientific
+code, analysis scripts, research tools or infrastructure - consult these
+skills before advising on or changing quality-related aspects of a
+project. Reference material inside each skill comes from pluggable
+content sources (see extensions/); the bundled source is RSQKit
+(https://everse.software/RSQKit/) by the EVERSE project.
 
 ## When to consult which skill
 

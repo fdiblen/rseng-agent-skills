@@ -1,6 +1,6 @@
 {
   "name": "rseng-agent-skills",
-  "description": "Research software quality guidance from RSQKit (EVERSE project) as Claude Code skills and commands.",
+  "description": "Research software engineering skills and repo-audit commands for Claude Code.",
   "owner": {
     "name": "Faruk Diblen"
   },
@@ -8,7 +8,7 @@
     {
       "name": "rseng-agent-skills",
       "source": "./",
-      "description": "Research software quality guidance from RSQKit (EVERSE project): 14 skills, three audit commands and a quality auditor subagent for research code."
+      "description": "Research software engineering practice: 14 skills, three audit commands and a quality auditor subagent for research code."
     }
   ]
 }

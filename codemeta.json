@@ -2,7 +2,7 @@
   "@context": "https://w3id.org/codemeta/3.0",
   "@type": "SoftwareSourceCode",
   "name": "rseng-agent-skills",
-  "description": "Guidance from RSQKit (the Research Software Quality Kit by the EVERSE project) distilled into skills and extensions for AI coding agents.",
+  "description": "Research software engineering skills for AI coding agents, with pluggable content sources; the bundled source derives from RSQKit (the Research Software Quality Kit by the EVERSE project).",
   "author": [
     {
       "@type": "Person",
