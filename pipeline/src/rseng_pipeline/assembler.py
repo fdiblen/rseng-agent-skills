@@ -21,7 +21,7 @@ from .source import load_source
 from .fetcher import UpstreamPin, load_pin, verify_cache
 from .learn_more import collect_all, load_curated, merge_curated
 from .parser import extract_tool_refs, load_pages
-from .registry import (
+from .sources.rsqkit import (
     load_contributors,
     load_dimensions,
     load_indicators,
