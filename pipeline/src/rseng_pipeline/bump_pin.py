@@ -1,6 +1,6 @@
 """Point upstream.lock at a new upstream commit.
 
-Usage: python -m rseng_pipeline.bump_pin <commit-sha>
+Usage: python -m rseng_pipeline.bump_pin [<source>] <commit-sha>
 The caller is responsible for refetching the cache and regenerating
 artifacts afterwards (the sync workflow does exactly that).
 """
@@ -28,8 +28,14 @@ def main() -> None:
     from .extension import extension_dir
 
     pipeline_dir = Path(__file__).resolve().parents[2]
-    bump(extension_dir(pipeline_dir.parent) / "upstream.lock", sys.argv[1])
-    print(f"lock now pins {sys.argv[1][:8]}")
+    if len(sys.argv) == 3:
+        name, sha = sys.argv[1], sys.argv[2]
+        ext = extension_dir(pipeline_dir.parent, name)
+    else:
+        sha = sys.argv[1]
+        ext = extension_dir(pipeline_dir.parent)
+    bump(ext / "upstream.lock", sha)
+    print(f"{ext.name}: lock now pins {sha[:8]}")
 
 
 if __name__ == "__main__":

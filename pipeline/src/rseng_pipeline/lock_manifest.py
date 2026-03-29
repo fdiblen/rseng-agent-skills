@@ -19,7 +19,7 @@ MANIFEST_FILE = "upstream.manifest.json"
 
 def write_lock_manifest(pipeline_dir: Path, ext_dir: Path) -> Path:
     """Copy the verified cache manifest into the committed lock manifest."""
-    cache_dir = pipeline_dir / "cache"
+    cache_dir = pipeline_dir / "cache" / ext_dir.name
     problems = verify_cache(cache_dir)
     if problems:
         raise RuntimeError(f"cache not usable: {problems}")
@@ -44,13 +44,14 @@ def read_lock_manifest(ext_dir: Path) -> dict:
 
 
 def main() -> None:
-    from .extension import extension_dir
+    from .extension import extension_dir, list_extensions
 
     pipeline_dir = Path(__file__).resolve().parents[2]
-    ext = extension_dir(pipeline_dir.parent)
-    path = write_lock_manifest(pipeline_dir, ext)
-    files = len(read_lock_manifest(ext)["files"])
-    print(f"wrote {path.name} with {files} file hashes")
+    for name in list_extensions(pipeline_dir.parent):
+        ext = extension_dir(pipeline_dir.parent, name)
+        path = write_lock_manifest(pipeline_dir, ext)
+        files = len(read_lock_manifest(ext)["files"])
+        print(f"{name}: wrote {path.name} with {files} file hashes")
 
 
 if __name__ == "__main__":

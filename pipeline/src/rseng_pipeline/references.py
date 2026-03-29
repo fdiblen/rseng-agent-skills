@@ -134,9 +134,16 @@ def _indicators_markdown(page_ids: list[str], content: dict) -> str:
 
 
 def generate_references(
-    skills_dir: Path, taxonomy_path: Path, build_dir: Path
+    skills_dir: Path,
+    taxonomy_path: Path,
+    build_dir: Path,
+    source_name: str = "rsqkit",
 ) -> list[Path]:
-    """Write references/ for every skill; returns the folders written."""
+    """Write one source's references into every mapped skill.
+
+    Each skill's references/ holds one subfolder per content source, so
+    several extensions can contribute reference material side by side.
+    """
     taxonomy = load_taxonomy(taxonomy_path)
     content = json.loads((build_dir / "content.json").read_text(encoding="utf-8"))
     fragments_dir = build_dir / "fragments"
@@ -144,7 +151,7 @@ def generate_references(
 
     for skill_name, entry in taxonomy.items():
         page_ids = skill_page_ids(entry)
-        refs_dir = skills_dir / skill_name / "references"
+        refs_dir = skills_dir / skill_name / "references" / source_name
         if refs_dir.exists():
             shutil.rmtree(refs_dir)
         pages_dir = refs_dir / "pages"
@@ -172,16 +179,23 @@ def generate_references(
 
 
 def main() -> None:
+    from .extension import extension_dir, list_extensions
+
     pipeline_dir = Path(__file__).resolve().parents[2]
     repo_root = pipeline_dir.parent
-    from .extension import extension_dir
-
-    written = generate_references(
-        repo_root / "skills",
-        extension_dir(repo_root) / "taxonomy.yml",
-        pipeline_dir / "build",
-    )
-    print(f"wrote references for {len(written)} skills")
+    sources = list_extensions(repo_root)
+    # Full rebuild: wipe every skill's references root once, then let each
+    # source write its own subfolder, so removed sources prune cleanly.
+    for skill_dir in sorted((repo_root / "skills").glob("rseng-*")):
+        shutil.rmtree(skill_dir / "references", ignore_errors=True)
+    for name in sources:
+        written = generate_references(
+            repo_root / "skills",
+            extension_dir(repo_root, name) / "taxonomy.yml",
+            pipeline_dir / "build" / name,
+            source_name=name,
+        )
+        print(f"{name}: wrote references for {len(written)} skills")
 
 
 if __name__ == "__main__":

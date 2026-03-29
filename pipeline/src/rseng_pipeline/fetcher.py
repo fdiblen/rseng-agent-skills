@@ -157,12 +157,14 @@ def fetch(
 
 
 def main() -> None:
-    from .extension import extension_dir
+    from .extension import extension_dir, list_extensions
 
     pipeline_dir = Path(__file__).resolve().parents[2]
-    pin = load_pin(extension_dir(pipeline_dir.parent) / "upstream.lock")
-    hashes = fetch(pin, pipeline_dir / "cache")
-    print(f"fetched {len(hashes)} files at {pin.commit[:8]}")
+    repo_root = pipeline_dir.parent
+    for name in list_extensions(repo_root):
+        pin = load_pin(extension_dir(repo_root, name) / "upstream.lock")
+        hashes = fetch(pin, pipeline_dir / "cache" / name)
+        print(f"{name}: fetched {len(hashes)} files at {pin.commit[:8]}")
 
 
 if __name__ == "__main__":

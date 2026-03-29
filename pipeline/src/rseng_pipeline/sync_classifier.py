@@ -102,10 +102,11 @@ def classify(
     """Diff new upstream content against the committed lock manifest."""
     from .extension import extension_dir
 
-    manifest = read_lock_manifest(ext_dir or extension_dir(pipeline_dir.parent))
+    ext = ext_dir or extension_dir(pipeline_dir.parent)
+    manifest = read_lock_manifest(ext)
     taxonomy = load_taxonomy(taxonomy_path)
     old_files: dict[str, str] = manifest["files"]
-    cache_dir = pipeline_dir / "cache"
+    cache_dir = pipeline_dir / "cache" / ext.name
 
     report = ChangeReport(old_commit=manifest["commit"], new_commit=new_commit)
 
@@ -239,17 +240,20 @@ def triage_suggestions(
     taxonomy_path: Path,
     report: ChangeReport,
     new_blobs: dict[str, bytes],
+    ext_dir: Path | None = None,
 ) -> str:
     """Render taxonomy suggestions for the report's added pages."""
+    from .extension import extension_dir
     from .parser import load_pages
     from .triage import render_suggestions, suggest_mapping
 
     if not report.added:
         return ""
+    ext = ext_dir or extension_dir(pipeline_dir.parent)
     taxonomy = load_taxonomy(taxonomy_path)
     known_keywords = {
         page_id: {word for kw in rec.keywords for word in kw.lower().split()}
-        for page_id, rec in load_pages(pipeline_dir / "cache").items()
+        for page_id, rec in load_pages(pipeline_dir / "cache" / ext.name).items()
     }
     suggestions = [
         suggest_mapping(change.path, new_blobs[change.path], taxonomy, known_keywords)
@@ -261,23 +265,32 @@ def triage_suggestions(
 def main() -> None:
     import sys
 
-    from .extension import extension_dir
+    from .extension import extension_dir, list_extensions
 
     pipeline_dir = Path(__file__).resolve().parents[2]
     repo_root = pipeline_dir.parent
-    ext = extension_dir(repo_root)
-    taxonomy_path = ext / "taxonomy.yml"
     ref = sys.argv[1] if len(sys.argv) > 1 else "main"
-    pin = load_pin(ext / "upstream.lock")
-    commit, blobs = fetch_upstream_state(pin, ref)
-    report = classify(pipeline_dir, taxonomy_path, commit, blobs)
-    output = render_report(report) + triage_suggestions(
-        pipeline_dir, taxonomy_path, report, blobs
-    )
+    outputs = []
+    worst = "none"
+    order = {"none": 0, "L1": 1, "L2": 2, "L3": 3}
+    for name in list_extensions(repo_root):
+        ext = extension_dir(repo_root, name)
+        taxonomy_path = ext / "taxonomy.yml"
+        pin = load_pin(ext / "upstream.lock")
+        commit, blobs = fetch_upstream_state(pin, ref)
+        report = classify(pipeline_dir, taxonomy_path, commit, blobs, ext_dir=ext)
+        outputs.append(
+            f"# Source: {name}\n\n"
+            + render_report(report)
+            + triage_suggestions(pipeline_dir, taxonomy_path, report, blobs, ext)
+        )
+        if order[report.level] > order[worst]:
+            worst = report.level
+    output = "\n".join(outputs)
     print(output, end="")
     (pipeline_dir / "build").mkdir(exist_ok=True)
     (pipeline_dir / "build" / "change-report.md").write_text(output)
-    print(f"level={report.level}", file=sys.stderr)
+    print(f"level={worst}", file=sys.stderr)
 
 
 if __name__ == "__main__":

@@ -66,14 +66,18 @@ def _page_entry(record, learn_more, base_url: str) -> dict:
 
 def assemble(
     pipeline_dir: Path,
+    source_name: str | None = None,
     build_dir: Path | None = None,
     pin: UpstreamPin | None = None,
 ) -> Path:
-    """Build content.json and fragments from an already-fetched cache."""
-    source = load_source(pipeline_dir.parent)
-    cache_dir = pipeline_dir / "cache"
+    """Build one source's content.json and fragments from its cache."""
+    from .extension import DEFAULT_SOURCE
+
+    source_name = source_name or DEFAULT_SOURCE
+    source = load_source(pipeline_dir.parent, source_name)
+    cache_dir = pipeline_dir / "cache" / source_name
     data_dir = source.dir / "data"
-    build_dir = build_dir or pipeline_dir / "build"
+    build_dir = build_dir or pipeline_dir / "build" / source_name
     pin = pin or load_pin(source.dir / "upstream.lock")
 
     problems = verify_cache(cache_dir)
@@ -127,9 +131,12 @@ def assemble(
 
 
 def main() -> None:
+    from .extension import list_extensions
+
     pipeline_dir = Path(__file__).resolve().parents[2]
-    path = assemble(pipeline_dir)
-    print(f"wrote {path}")
+    for name in list_extensions(pipeline_dir.parent):
+        path = assemble(pipeline_dir, name)
+        print(f"{name}: wrote {path}")
 
 
 if __name__ == "__main__":
