@@ -31,7 +31,7 @@ every template. Its keys:
 
 - `generated_note` - the "do not edit" banner string.
 - `upstream` - the pinned repo/commit/ref from `content.json`.
-- `citation` - the citation fields from `pipeline/data/citation.yml`
+- `citation` - the citation fields from `extensions/rsqkit/data/citation.yml`
   (whitespace-collapsed), including `citation.full`.
 - `skills` - a list of `{name, description, scope, pages}` per skill, where
   `pages` is `{page_id, title, url}` resolved through the taxonomy.

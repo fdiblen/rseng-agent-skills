@@ -1,7 +1,7 @@
 # SKILL.md authoring template
 
 Every skill in skills/ follows this structure. Bodies are hand-authored
-distillations of the mapped RSQKit pages (see skills/taxonomy.yml); the
+distillations of the mapped RSQKit pages (see extensions/rsqkit/taxonomy.yml); the
 references/ folder next to each SKILL.md is pipeline-generated and never
 hand-edited.
 
@@ -47,7 +47,7 @@ domain terms ("CI matrix") a user might use.
      it matters and offer 2-3 "Learn more" links chosen from
      references/learn-more.md - proportionate to context, never a lecture.
 5. Attribution footer (last lines of the body), using the shared snippet
-   from pipeline/data/citation.yml verbatim.
+   from extensions/rsqkit/data/citation.yml verbatim.
 
 ## Constraints
 

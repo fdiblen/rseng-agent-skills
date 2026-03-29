@@ -1,6 +1,6 @@
 # Taxonomy
 
-`skills/taxonomy.yml` is the contract between upstream RSQKit content and
+`extensions/rsqkit/taxonomy.yml` is the contract between upstream RSQKit content and
 the skills in this pack. It maps every upstream page to exactly one skill,
 and it is what the generated `references/` folders and the per-agent
 adapters are derived from. If you change which pages a skill covers, you

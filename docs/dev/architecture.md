@@ -47,7 +47,7 @@ rendered adapter under `dist/`.
 
 ## The single pinned upstream
 
-`pipeline/upstream.lock` is a TOML file naming exactly one upstream
+`extensions/rsqkit/upstream.lock` is a TOML file naming exactly one upstream
 repository, ref, and commit, plus the source paths and data globs the
 pipeline is allowed to consume. Nothing else decides what upstream content
 enters the pack. The sync workflow updates this pin; it is not meant to be
@@ -58,7 +58,7 @@ upstream state.
 ## Data flow
 
 ```
-  pipeline/upstream.lock
+  extensions/rsqkit/upstream.lock
           |
           v
    [ fetch ]  download pinned files -> pipeline/cache/ (+ manifest.json)
@@ -97,7 +97,7 @@ upstream state.
 build artifacts. `references` and `build_adapters` are two independent
 consumers of those artifacts: the first writes the generated folders inside
 `skills/`, the second renders the non-Claude adapter outputs into `dist/`.
-Both are driven by the same `skills/taxonomy.yml` mapping.
+Both are driven by the same `extensions/rsqkit/taxonomy.yml` mapping.
 
 ## Adapter build
 

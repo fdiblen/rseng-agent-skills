@@ -1,7 +1,7 @@
 site_name: rseng-agent-skills
 site_description: >-
-  Research software quality guidance from RSQKit (EVERSE project) as
-  skills and extensions for AI coding agents.
+  Research software engineering skills for AI coding agents, with
+  pluggable content sources.
 repo_url: https://github.com/fdiblen/rseng-agent-skills
 docs_dir: docs
 
@@ -27,6 +27,7 @@ nav:
   - Developer guide:
       - Architecture: dev/architecture.md
       - Content pipeline: dev/pipeline.md
+      - Content sources: dev/content-sources.md
       - Taxonomy: dev/taxonomy.md
       - Adding a skill: dev/adding-a-skill.md
       - Adding an adapter: dev/adding-an-adapter.md

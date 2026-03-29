@@ -3,7 +3,7 @@
 Two related processes keep the pack current: **releasing** cuts a versioned
 build and publishes it, and **syncing** pulls new RSQKit content in and
 classifies its impact. Both hang off the single pinned source of truth in
-`pipeline/upstream.lock`, and both are reproducible from it - nothing generated
+`extensions/rsqkit/upstream.lock`, and both are reproducible from it - nothing generated
 is hand-maintained.
 
 ## Releasing
@@ -59,7 +59,7 @@ existing install - which is why new skills are a minor, not a major, bump.
 ### Release notes
 
 Release notes **must state the upstream RSQKit commit** the build was cut from -
-the `commit` in `pipeline/upstream.lock`. Every generated artifact already
+the `commit` in `extensions/rsqkit/upstream.lock`. Every generated artifact already
 stamps that SHA (fragment headers, the `upstream` block in `content.json`, the
 generated-note banners), so the notes and the artifacts always agree on
 provenance. Release notes also carry a change summary generated from the sync
@@ -70,7 +70,7 @@ product, not a manually edited file.
 
 ### The pin
 
-`pipeline/upstream.lock` is the single pinned source of truth for the content
+`extensions/rsqkit/upstream.lock` is the single pinned source of truth for the content
 pipeline. It records the RSQKit repo, the `ref` it tracks (`main`) and the
 exact `commit` the current build is pinned to, plus the source paths and data
 globs the pipeline consumes:
@@ -162,7 +162,7 @@ L3 (structural): the PR needs taxonomy work before it can merge.
 
 1. Added pages: the report suggests a target skill (keyword and
    related_pages matching) or proposes a new skill. Confirm or correct
-   the suggestion in skills/taxonomy.yml, regenerate references, and
+   the suggestion in extensions/rsqkit/taxonomy.yml, regenerate references, and
    check the new page's indicators appear in the skill checklist.
 2. Removed pages: references have pruned automatically; the report lists
    every skill whose body cites the removed page_id - edit those bodies.

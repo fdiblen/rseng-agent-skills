@@ -1,7 +1,7 @@
 # Content pipeline
 
 The pipeline lives in `pipeline/src/rseng_pipeline/`. It turns the pinned
-RSQKit sources named in `pipeline/upstream.lock` into two build artifacts
+RSQKit sources named in `extensions/rsqkit/upstream.lock` into two build artifacts
 (`build/content.json` and `build/fragments/*.md`) and then two sets of
 consumers: the generated `references/` folders inside each skill and the
 per-agent adapter outputs in `dist/`. This page documents each module - its
@@ -87,7 +87,7 @@ raw frontmatter.
 Inputs: cached pages. Outputs: in-memory `PageRecord` objects (persisted
 later by the assembler).
 
-## registry.py
+## registry.py and sources/rsqkit.py
 
 Loads the RSQKit `_data/*.yml` registry files into typed lookups.
 
@@ -183,7 +183,7 @@ does not fetch).
 ## references.py
 
 Generates each skill's `references/` folder from the build artifacts,
-driven by `skills/taxonomy.yml`.
+driven by `extensions/rsqkit/taxonomy.yml`.
 
 - `load_taxonomy(path)` returns the `skills:` mapping; `skill_page_ids`
   concatenates a skill's `pages`, `concept_pages`, and `role_pages`.
@@ -271,7 +271,7 @@ skipped here - it is validated at its source, not per adapter.
 
 ## Data files
 
-Under `pipeline/data/` (hand-maintained inputs, not generated):
+Under `extensions/rsqkit/data/` (hand-maintained inputs, not generated):
 
 - `citation.yml` - the shared citation snippet (`full`, `short`,
   `markdown`); the single source of truth for attribution wording across

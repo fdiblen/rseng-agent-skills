@@ -6,7 +6,7 @@ content; every adapter is derived from them. Adding one is mostly editorial
 work (the taxonomy mapping and the body) followed by a regeneration and
 validation loop that is entirely mechanical.
 
-The contract that ties a skill to upstream is `skills/taxonomy.yml`: it maps
+The contract that ties a skill to upstream is `extensions/rsqkit/taxonomy.yml`: it maps
 RSQKit page_ids to skills, and `references/` folders, adapters and sync impact
 reports are all derived from it. A page_id that does not appear in the taxonomy
 is not part of any skill; a page_id that appears twice breaks the "exactly
@@ -14,7 +14,7 @@ once" rule the taxonomy header states.
 
 ## 1. Map the upstream pages in taxonomy.yml
 
-Open `skills/taxonomy.yml` and add an entry under `skills:`. The key is the
+Open `extensions/rsqkit/taxonomy.yml` and add an entry under `skills:`. The key is the
 skill name (`rseng-<topic>`, a stable identifier - installs key off it, so it
 must not change casually). An entry has a `scope` and up to three page lists:
 
@@ -37,7 +37,7 @@ most topic skills use `pages` only. Follow the shape of an existing entry:
 ```
 
 The page_ids must be **true upstream page_ids** - the basename of a page under
-the source paths listed in `pipeline/upstream.lock` (`pages/tasks/`,
+the source paths listed in `extensions/rsqkit/upstream.lock` (`pages/tasks/`,
 `pages/roles/`, `pages/research_software_and_quality/`). The pipeline resolves
 each page_id against the assembled `content.json`; a page_id with no matching
 upstream fragment fails the reference build with
@@ -68,7 +68,7 @@ Two frontmatter fields couple back to step 1 and to the generated references:
 
 The `description` is what every agent uses to decide when to load the skill,
 so it has to be distinguishable from its siblings. Read the sibling entries in
-`skills/taxonomy.yml` and the neighbouring `SKILL.md` descriptions before
+`extensions/rsqkit/taxonomy.yml` and the neighbouring `SKILL.md` descriptions before
 writing yours, and make sure the trigger conditions do not overlap. Cover both
 everyday phrasing and domain terms a user might use (the template calls this
 out: "write tests" as well as "CI matrix"). This is the cross-review pass the

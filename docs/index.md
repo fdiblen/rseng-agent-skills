@@ -1,10 +1,10 @@
 # rseng-agent-skills
 
-Research software quality guidance from
-[RSQKit](https://everse.software/RSQKit/) - the Research Software Quality
-Kit by the EVERSE project - packaged as skills and extensions for AI
-coding agents: Claude Code, GitHub Copilot, Cursor, Codex CLI and Gemini
-CLI.
+Research software engineering (RSEng) skills for AI coding agents:
+Claude Code, GitHub Copilot, Cursor, Codex CLI and Gemini CLI. Reference
+content comes from pluggable content sources; the bundled source is
+[RSQKit](https://everse.software/RSQKit/), the Research Software Quality
+Kit by the EVERSE project.
 
 Start with the [quickstart](user/quickstart.md), or read about the
 [architecture](dev/architecture.md) if you want to contribute.
