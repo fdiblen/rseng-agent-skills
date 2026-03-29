@@ -21,7 +21,7 @@ Audit procedure:
    packaging, releases, docs, contributors). State the classification and
    its evidence; every later judgement is calibrated to it.
 2. Work through the quality indicator checklist in
-   skills/rseng-quality-framework/references/indicators.md of this
+   the references/*/indicators.md checklists of the rseng-quality-framework skill in this
    plugin, gathering evidence per indicator: tests and their CI wiring,
    coverage signals, README and documentation, LICENSE and per-file
    licensing, CITATION.cff and codemeta.json, packaging and release
@@ -42,7 +42,7 @@ Report findings as a severity-rated list, most severe first:
 Each finding: severity, the indicator id in backticks, the evidence (file
 path or its absence), and one concrete remediation step naming the
 relevant skill (for example rseng-testing) with at most one "Learn more"
-link taken only from that skill's references/learn-more.md.
+link taken only from that skill's references/*/learn-more.md.
 
 Scope discipline: audit only; do not fix anything, do not propose diffs
 longer than a single illustrative snippet, and say explicitly when a

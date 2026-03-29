@@ -33,7 +33,7 @@ Steps:
    for infrastructure. Plans that are too long do not get maintained.
 5. End the document with a short "Review" line noting the plan should be
    revisited at each major release, and offer 2-3 "Learn more" links taken
-   ONLY from rseng-management-planning/references/learn-more.md.
+   ONLY from rseng-management-planning/references/*/learn-more.md.
 
 Close the generated document with this attribution line, exactly once:
 

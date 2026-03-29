@@ -193,7 +193,7 @@ places:
   you can check the reasoning rather than take it on trust.
 - "Learn more" links. When a command or the auditor points you at a next
   step, it offers a "Learn more" link drawn only from that skill's curated
-  reference list (each skill's `references/learn-more.md`) - training
+  reference list (each skill's `references/*/learn-more.md`) - training
   material and the specific RSQKit pages behind the topic, not arbitrary
   search results. The links are vetted, so following one takes you to a
   source the guidance actually rests on.

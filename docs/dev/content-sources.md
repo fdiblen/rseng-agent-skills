@@ -34,7 +34,10 @@ else in the engine names a concrete source.
 
 Create extensions/<name>/ with the files above, map its pages into
 skills via its taxonomy.yml, and add a loader module if it has registry
-data. Multi-source builds are not wired end to end yet - the engine
-currently builds the default source - so treat a second source as an
-engine contribution, not just a data drop; the seams listed above are
-where the work goes.
+data. The engine iterates every installed extension: each gets its own
+cache namespace (pipeline/cache/<name>/), its own build output
+(pipeline/build/<name>/) and its own references subfolder inside every
+mapped skill (references/<name>/). The sync classifier reports per
+source. An extension may also contribute entirely new skills by mapping
+pages to skill names that do not exist yet - author the SKILL.md for
+them the same way as the core set.

@@ -2,7 +2,7 @@
 
 The pipeline lives in `pipeline/src/rseng_pipeline/`. It turns the pinned
 RSQKit sources named in `extensions/rsqkit/upstream.lock` into two build artifacts
-(`build/content.json` and `build/fragments/*.md`) and then two sets of
+(`build/<source>/content.json` and `build/fragments/*.md`) and then two sets of
 consumers: the generated `references/` folders inside each skill and the
 per-agent adapter outputs in `dist/`. This page documents each module - its
 job, its inputs and outputs - and the commands to run each stage.
@@ -39,7 +39,7 @@ uv run --directory pipeline python -m rseng_pipeline.build_adapters
 
 ## fetcher.py
 
-Downloads the pinned upstream files into `pipeline/cache/` and records a
+Downloads the pinned upstream files into `pipeline/cache/<source>/` and records a
 manifest so later runs can verify integrity instead of re-downloading.
 
 - `load_pin(lock_path)` reads `upstream.lock` into an `UpstreamPin`
@@ -164,7 +164,7 @@ the build artifacts.
   - `build/fragments/<page_id>.md` - the cleaned markdown for each page,
     each with a generated-file header carrying source path, upstream
     commit, and license/DOI.
-  - `build/content.json` - every page entry (title, description, keywords,
+  - `build/<source>/content.json` - every page entry (title, description, keywords,
     contributors, related pages, quality indicators, child pages,
     `source_path`, `rsqkit_url`, `tool_refs`, and the `learn_more` lists),
     plus the tools, contributors, dimensions, and indicators registries,
@@ -194,9 +194,9 @@ driven by `extensions/rsqkit/taxonomy.yml`.
     mapped page. A missing fragment for a mapped `page_id` raises
     `FileNotFoundError`, which is how a taxonomy/upstream mismatch surfaces.
   - `references/tools.md` - the registry tools referenced by those pages.
-  - `references/learn-more.md` - curated training plus verified external
+  - `references/*/learn-more.md` - curated training plus verified external
     pointers, deduped.
-  - `references/indicators.md` - a quality-indicator checklist grouped by
+  - `references/*/indicators.md` - a quality-indicator checklist grouped by
     dimension (the router skill, which maps no task pages, gets the full
     registry).
 
