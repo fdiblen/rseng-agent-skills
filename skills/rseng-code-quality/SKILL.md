@@ -157,9 +157,9 @@ source material and pointers:
 - `references/pages/writing_readable_code.md` and
   `references/pages/structuring_software_projects.md` - cleaned upstream
   fragments with the full detail, including the example directory trees.
-- `references/indicators.md` - the quality-indicator checklist (linting,
+- `references/<source>/indicators.md` - the quality-indicator checklist (linting,
   duplication, complexity, maintainability, documentation presence).
-- `references/learn-more.md` - the verified external links.
+- `references/<source>/learn-more.md` - the verified external links.
 
 Consult the page fragments when a user wants the reasoning or a concrete
 example (such as the annotated project tree) rather than just the rule.
@@ -171,7 +171,7 @@ example (such as the annotated project tree) rather than just the rule.
   note, placed naturally, never repeated per paragraph.
 - Educate while doing: alongside a concrete action (renaming a function,
   adding a linter, reorganising folders), briefly say why it matters and
-  offer 2-3 "Learn more" links chosen from `references/learn-more.md`,
+  offer 2-3 "Learn more" links chosen from `references/<source>/learn-more.md`,
   proportionate to the context. Do not lecture.
 
 Learn more (verified pointers):
