@@ -194,13 +194,13 @@ documentation/tutorial links exist and work.
 The pipeline-generated `references/` folder beside this file holds the
 source material and pointers:
 
-- `references/pages/<page_id>.md` - cleaned upstream fragments with the full
+- `references/<source>/pages/<page_id>.md` - cleaned upstream fragments with the full
   detail and examples (Keras usage examples, the khmer changelog practice,
   the `.readthedocs.yaml` snippets, the seminar walkthrough) behind the
   checklists above.
-- `references/indicators.md` - the quality-indicator checklist for
+- `references/<source>/indicators.md` - the quality-indicator checklist for
   documentation.
-- `references/learn-more.md` - the verified external links.
+- `references/<source>/learn-more.md` - the verified external links.
 
 Reach for the page fragments when a user needs the reasoning, a concrete
 example tool, or the exact configuration rather than just the rule.
@@ -214,7 +214,7 @@ example tool, or the exact configuration rather than just the rule.
 - Educate while doing: alongside a concrete action (drafting a README
   section, adding docstrings, setting up Read the Docs), briefly say why it
   matters and offer 2-3 "Learn more" links chosen from
-  `references/learn-more.md`, proportionate to the context. Do not lecture.
+  `references/<source>/learn-more.md`, proportionate to the context. Do not lecture.
 
 Learn more (verified pointers):
 
