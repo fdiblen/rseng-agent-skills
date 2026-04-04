@@ -176,9 +176,9 @@ source material and pointers:
   `references/pages/releasing_software.md`, and
   `references/pages/archiving_software.md` - cleaned upstream fragments
   with the full detail behind the checklists above.
-- `references/indicators.md` - the quality-indicator checklist for this
+- `references/<source>/indicators.md` - the quality-indicator checklist for this
   skill.
-- `references/learn-more.md` - the verified external links.
+- `references/<source>/learn-more.md` - the verified external links.
 
 Consult the page fragments when a user needs the reasoning, tool lists, or
 step-by-step examples rather than just the rule.
@@ -191,7 +191,7 @@ step-by-step examples rather than just the rule.
   naturally, never repeated per section.
 - Educate while doing: alongside a concrete action (tagging a release,
   choosing a registry, minting a DOI), briefly say why it matters and
-  offer 2-3 "Learn more" links chosen from `references/learn-more.md`,
+  offer 2-3 "Learn more" links chosen from `references/<source>/learn-more.md`,
   proportionate to the context. Do not lecture.
 
 Learn more (verified pointers):
