@@ -163,9 +163,9 @@ source material and pointers:
 
 - `references/pages/licensing_software.md` - the cleaned upstream fragment
   with the full detail and examples behind the checklists above.
-- `references/indicators.md` - the quality-indicator checklist for
+- `references/<source>/indicators.md` - the quality-indicator checklist for
   licensing.
-- `references/learn-more.md` - the verified external links.
+- `references/<source>/learn-more.md` - the verified external links.
 
 Consult the page fragment when a user needs the underlying reasoning (for
 example the exact linking rules for LGPL, or the AGPL network clause) rather
@@ -179,7 +179,7 @@ than just the rule.
 - Educate while doing: alongside a concrete action (recommending a license,
   writing a LICENSE file), briefly say why it matters - reusability, patent
   cover, copyleft reach - and offer 2-3 "Learn more" links chosen from
-  `references/learn-more.md`, proportionate to the context. Do not lecture.
+  `references/<source>/learn-more.md`, proportionate to the context. Do not lecture.
 
 Learn more (verified pointers):
 

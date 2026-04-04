@@ -141,9 +141,9 @@ source material and pointers:
 - `references/pages/fair_rs.md` - the cleaned upstream fragment with the
   full detail and the complete list of tools and links behind the
   checklists above.
-- `references/indicators.md` - the quality-indicator checklist for FAIR
+- `references/<source>/indicators.md` - the quality-indicator checklist for FAIR
   software.
-- `references/learn-more.md` - the verified external links.
+- `references/<source>/learn-more.md` - the verified external links.
 
 Consult the page fragment when a user needs the reasoning, the full tool
 list, or the underlying references rather than just the rule. For the
@@ -157,7 +157,7 @@ metadata and citation, licensing, documentation, and archiving/publishing.
   note, placed naturally, never repeated per paragraph.
 - Educate while doing: alongside a concrete action (adding metadata,
   minting a DOI, running a checklist), briefly say why it matters for FAIR
-  and offer 2-3 "Learn more" links chosen from `references/learn-more.md`,
+  and offer 2-3 "Learn more" links chosen from `references/<source>/learn-more.md`,
   proportionate to the context. Do not lecture.
 
 Learn more (verified pointers):
