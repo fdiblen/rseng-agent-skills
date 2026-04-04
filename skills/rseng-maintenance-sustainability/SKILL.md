@@ -171,9 +171,9 @@ source material and pointers:
   `references/pages/improving_environmental_sustainability.md` - cleaned
   upstream fragments with the full detail and tool links behind the
   checklists above.
-- `references/indicators.md` - the quality-indicator checklist for this
+- `references/<source>/indicators.md` - the quality-indicator checklist for this
   skill.
-- `references/learn-more.md` - the verified external links.
+- `references/<source>/learn-more.md` - the verified external links.
 
 Consult the page fragments when a user needs the reasoning, the specific
 tool list, or the further-reading books behind a rule rather than just the
@@ -187,7 +187,7 @@ rule itself.
 - Educate while doing: alongside a concrete action (pinning dependencies,
   adding a scheduled CI run, measuring emissions), briefly say why it
   matters and offer 2-3 "Learn more" links chosen from
-  `references/learn-more.md`, proportionate to the context. Do not lecture.
+  `references/<source>/learn-more.md`, proportionate to the context. Do not lecture.
 
 Learn more (verified pointers):
 
