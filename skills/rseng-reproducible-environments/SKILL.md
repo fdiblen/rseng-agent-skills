@@ -184,9 +184,9 @@ source material and pointers:
 - `references/pages/reproducible_software_environments.md` and
   `references/pages/using_containers.md` - cleaned upstream fragments with
   the full tool lists, Dockerfile, and CI/CD YAML behind the rules above.
-- `references/indicators.md` - the quality-indicator checklist for this
+- `references/<source>/indicators.md` - the quality-indicator checklist for this
   skill.
-- `references/learn-more.md` - the verified external links.
+- `references/<source>/learn-more.md` - the verified external links.
 
 Consult the page fragments when a user needs a concrete snippet (the
 Dockerfile, the Apptainer build command, the GitLab CI job) or the full
@@ -200,7 +200,7 @@ catalog of per-language managers rather than just the decision rule.
   repeated per paragraph.
 - Educate while doing: alongside a concrete action (pinning a dependency,
   writing a container), briefly say why it matters for reproducibility and
-  offer 2-3 "Learn more" links chosen from `references/learn-more.md`,
+  offer 2-3 "Learn more" links chosen from `references/<source>/learn-more.md`,
   proportionate to the context. Do not lecture.
 
 Learn more (verified pointers):
