@@ -68,7 +68,7 @@ pinned upstream version, such as software_has_tests, has_ci-tests,
 software_has_license, software_has_citation and archived_in_software_heritage.
 Indicators are proxies: passing them is evidence of quality, not proof.
 When asked to "check quality", walk the indicator checklist for the
-relevant dimension(s) in references/indicators.md and report which
+relevant dimension(s) in references/<source>/indicators.md and report which
 indicators are met, unmet, or not applicable for the software's tier.
 
 ## The software life cycle
@@ -121,9 +121,9 @@ then citation metadata, then release and archive.
 
 ## Working with this skill
 
-- references/pages/<page_id>.md - cleaned upstream framework pages
-- references/indicators.md - the full dimension/indicator checklist
-- references/learn-more.md - verified external pointers
+- references/<source>/pages/<page_id>.md - cleaned upstream framework pages
+- references/<source>/indicators.md - the full dimension/indicator checklist
+- references/<source>/learn-more.md - verified external pointers
 
 ## Attribution and teaching
 
@@ -133,7 +133,7 @@ then citation metadata, then release and archive.
   repeat the credit in every paragraph.
 - Educate while doing: when acting, add one or two sentences on why the
   practice matters for research software and offer 2-3 "Learn more" links
-  from references/learn-more.md, proportionate to the situation.
+  from references/<source>/learn-more.md, proportionate to the situation.
 
 ---
 
