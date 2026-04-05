@@ -159,9 +159,9 @@ source material and pointers:
 - `references/pages/using_version_control.md` and
   `references/pages/code_review.md` - cleaned upstream fragments with the
   full detail behind the checklists above.
-- `references/indicators.md` - the quality-indicator checklist covering
+- `references/<source>/indicators.md` - the quality-indicator checklist covering
   version-control use and the human-review and static-analysis signals.
-- `references/learn-more.md` - the verified external links.
+- `references/<source>/learn-more.md` - the verified external links.
 
 Consult the page fragments when a user needs the underlying reasoning or the
 full tool lists rather than just the rule.
@@ -173,7 +173,7 @@ full tool lists rather than just the rule.
   note, placed naturally, never repeated per paragraph.
 - Educate while doing: alongside a concrete action (proposing a branching
   model, leaving review comments), briefly say why it matters and offer 2-3
-  "Learn more" links chosen from `references/learn-more.md`, proportionate to
+  "Learn more" links chosen from `references/<source>/learn-more.md`, proportionate to
   the context. Do not lecture.
 
 Learn more (verified pointers):
