@@ -171,8 +171,8 @@ source material and pointers:
 - `references/pages/testing_software.md` and
   `references/pages/ci_testing_matrices.md` - cleaned upstream fragments
   with the full detail behind the checklists above.
-- `references/indicators.md` - the quality-indicator checklist for testing.
-- `references/learn-more.md` - the verified external links.
+- `references/<source>/indicators.md` - the quality-indicator checklist for testing.
+- `references/<source>/learn-more.md` - the verified external links.
 
 Consult the page fragments when a user needs the reasoning or examples
 (e.g. the `allpairspy` snippet or GitLab wave-scheduling YAML) rather than
@@ -185,7 +185,7 @@ just the rule.
   note, placed naturally, never repeated per paragraph.
 - Educate while doing: alongside a concrete action (adding a test,
   proposing a matrix), briefly say why it matters and offer 2-3 "Learn
-  more" links chosen from `references/learn-more.md`, proportionate to the
+  more" links chosen from `references/<source>/learn-more.md`, proportionate to the
   context. Do not lecture.
 
 Learn more (verified pointers):
