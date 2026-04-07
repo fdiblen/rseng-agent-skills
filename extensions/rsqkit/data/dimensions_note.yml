@@ -1,6 +1,6 @@
 # Resolution of the quality dimension count, for use by skill authoring.
 #
-# Verified against the pinned upstream commit (see pipeline/upstream.lock):
+# Verified against the pinned upstream commit (see extensions/rsqkit/upstream.lock):
 # _data/quality_dimensions.yml (the canonical rsqd JSON-LD registry,
 # https://w3id.org/everse/rsqd) defines exactly 13 dimensions. The rendered
 # site has shown a conflicting count of 12 in page prose in the past; at the
