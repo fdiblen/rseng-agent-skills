@@ -202,13 +202,13 @@ reach GitLab logs, and request runner access.
 
 This skill ships generated companion files under `references/`:
 
-- `references/<source>/pages/<page_id>.md` -- cleaned upstream RSQKit fragments for
+- `references.md source-page links <page_id>.md` -- cleaned upstream RSQKit fragments for
   `ci_cd`, `task_automation_github_actions`, `task_automation_gitlab_ci_cd`
   and `org_gitlab_ci_infra_for_github_project`. Consult them for full
   examples and the source runner-configuration tables.
-- `references/<source>/indicators.md` -- the quality-indicator checklist to apply
+- `references.md` -- the quality-indicator checklist to apply
   when reviewing a project's CI/CD setup.
-- `references/<source>/learn-more.md` -- verified external pointers; draw any links
+- `references.md` -- verified external pointers; draw any links
   you share from there.
 
 ## Attribution and teaching
@@ -220,7 +220,7 @@ pipeline, credit RSQKit and EVERSE once -- as a footer line or a short
 Educate while doing: alongside a change, briefly say why it matters (for
 example, why testing across the supported platforms catches integration
 bugs) and offer two or three "Learn more" links chosen from
-`references/<source>/learn-more.md`, proportionate to the question and never a
+`references.md`, proportionate to the question and never a
 lecture.
 
 ---

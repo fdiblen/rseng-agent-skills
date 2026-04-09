@@ -81,7 +81,11 @@ def check_target(target_dir: Path, commit: str | None = None) -> list[str]:
     for path in sorted(target_dir.rglob("*")):
         if not path.is_file():
             continue
-        if "references" in path.parts or path.name == "SKILL.md":
+        if (
+            "references" in path.parts
+            or path.name == "SKILL.md"
+            or path.name == "references.md"
+        ):
             continue  # canonical passthrough content is validated at its source
         for problem in _check_file(path, commit_stamp=stamp):
             problems.append(f"{target_dir.name}/{problem}")

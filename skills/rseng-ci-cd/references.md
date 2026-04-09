@@ -1,25 +1,30 @@
 <!-- Generated file - do not edit. Rebuilt by the rseng-agent-skills
      pipeline from the configured content sources; see extensions/. -->
 
-# Learn more
+# References
 
-## Training and courses
+## RSQKit (the Research Software Quality Kit) by the EVERSE project and the RSQKit team
+
+Guidance based on [RSQKit](https://everse.software/RSQKit/) by the EVERSE project and the RSQKit team, DOI [10.5281/zenodo.14923573](https://doi.org/10.5281/zenodo.14923573) (CC-BY-4.0).
+
+Source pages:
+
+- Continuous Integration and Continuous Delivery/Deployment: https://everse.software/RSQKit/ci_cd
+- Task automation using GitHub Actions: https://everse.software/RSQKit/task_automation_github_actions
+- Task automation using GitLab CI/CD: https://everse.software/RSQKit/task_automation_gitlab_ci_cd
+- Using organisational GitLab CI infrastructure for your GitHub project: https://everse.software/RSQKit/org_gitlab_ci_infra_for_github_project
+
+Learn more:
 
 - [ELIXIR TeSS training portal](https://tess.elixir-europe.org/)
 - [The Carpentries](https://carpentries.org/)
 - [CodeRefinery lessons](https://coderefinery.org/lessons/)
 - [The Turing Way handbook](https://book.the-turing-way.org/)
-
-## From Task automation using GitHub Actions (https://everse.software/RSQKit/task_automation_github_actions)
-
 - https://docs.github.com/en/actions/about-github-actions/understanding-github-actions
 - https://docs.github.com/en/actions/about-github-actions/about-continuous-integration-with-github-actions
 - https://docs.github.com/en/actions/about-github-actions/about-continuous-deployment-with-github-actions
 - https://github.com/marketplace?type=actions
 - https://github.com/marketplace/actions/setup-python
-
-## From Task automation using GitLab CI/CD (https://everse.software/RSQKit/task_automation_gitlab_ci_cd)
-
 - https://docs.gitlab.com/ci/migration/github_actions/
 - https://gitlab.com
 - https://gitlab.com/explore/catalog
@@ -29,9 +34,6 @@
 - https://yaml.org/
 - https://docs.gitlab.com/ee/ci/
 - https://docs.gitlab.com/ee/ci/yaml/
-
-## From Using organisational GitLab CI infrastructure for your GitHub project (https://everse.software/RSQKit/org_gitlab_ci_infra_for_github_project)
-
 - https://github.com/ComputationalRadiationPhysics/picongpu
 - https://github.com/alpaka-group/alpaka
 - https://docs.gitlab.com/ee/user/project/repository/mirror/

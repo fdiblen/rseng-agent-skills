@@ -52,7 +52,7 @@ def main() -> None:
     roots = (
         [Path(arg) for arg in sys.argv[1:]]
         if len(sys.argv) > 1
-        else [repo_root / "dist", *repo_root.glob("skills/rseng-*/references")]
+        else [repo_root / "dist", repo_root / "skills"]
     )
     roots = [root for root in roots if root.exists()]
 
