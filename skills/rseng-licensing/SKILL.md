@@ -158,18 +158,14 @@ When helping with a licensing task, work through this order:
 
 ## Working with this skill
 
-The pipeline-generated `references/` folder beside this file holds the
-source material and pointers:
+The generated references.md beside this file lists the source
+material and pointers:
 
-- `references/pages/licensing_software.md` - the cleaned upstream fragment
-  with the full detail and examples behind the checklists above.
-- `references/<source>/indicators.md` - the quality-indicator checklist for
-  licensing.
-- `references/<source>/learn-more.md` - the verified external links.
+- references.md - source page links and verified Learn more pointers,
+  one section per content source
 
-Consult the page fragment when a user needs the underlying reasoning (for
-example the exact linking rules for LGPL, or the AGPL network clause) rather
-than just the rule.
+Follow the source-page links when a user needs the full upstream
+detail behind the guidance above.
 
 ## Attribution and teaching
 
@@ -179,7 +175,7 @@ than just the rule.
 - Educate while doing: alongside a concrete action (recommending a license,
   writing a LICENSE file), briefly say why it matters - reusability, patent
   cover, copyleft reach - and offer 2-3 "Learn more" links chosen from
-  `references/<source>/learn-more.md`, proportionate to the context. Do not lecture.
+  `references.md`, proportionate to the context. Do not lecture.
 
 Learn more (verified pointers):
 

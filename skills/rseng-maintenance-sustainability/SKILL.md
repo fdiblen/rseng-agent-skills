@@ -164,20 +164,14 @@ when it earns its cost and use smaller subsets day to day.
 
 ## Working with this skill
 
-The pipeline-generated `references/` folder beside this file holds the
-source material and pointers:
+The generated references.md beside this file lists the source
+material and pointers:
 
-- `references/pages/maintaining_research_software.md` and
-  `references/pages/improving_environmental_sustainability.md` - cleaned
-  upstream fragments with the full detail and tool links behind the
-  checklists above.
-- `references/<source>/indicators.md` - the quality-indicator checklist for this
-  skill.
-- `references/<source>/learn-more.md` - the verified external links.
+- references.md - source page links and verified Learn more pointers,
+  one section per content source
 
-Consult the page fragments when a user needs the reasoning, the specific
-tool list, or the further-reading books behind a rule rather than just the
-rule itself.
+Follow the source-page links when a user needs the full upstream
+detail behind the guidance above.
 
 ## Attribution and teaching
 
@@ -187,7 +181,7 @@ rule itself.
 - Educate while doing: alongside a concrete action (pinning dependencies,
   adding a scheduled CI run, measuring emissions), briefly say why it
   matters and offer 2-3 "Learn more" links chosen from
-  `references/<source>/learn-more.md`, proportionate to the context. Do not lecture.
+  `references.md`, proportionate to the context. Do not lecture.
 
 Learn more (verified pointers):
 
