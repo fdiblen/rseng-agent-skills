@@ -1,17 +1,26 @@
 <!-- Generated file - do not edit. Rebuilt by the rseng-agent-skills
      pipeline from the configured content sources; see extensions/. -->
 
-# Learn more
+# References
 
-## Training and courses
+## RSQKit (the Research Software Quality Kit) by the EVERSE project and the RSQKit team
+
+Guidance based on [RSQKit](https://everse.software/RSQKit/) by the EVERSE project and the RSQKit team, DOI [10.5281/zenodo.14923573](https://doi.org/10.5281/zenodo.14923573) (CC-BY-4.0).
+
+Source pages:
+
+- Citing software: https://everse.software/RSQKit/citing_software
+- Software metadata: https://everse.software/RSQKit/software_metadata
+- Creating bibliographic metadata with CodeMeta: https://everse.software/RSQKit/complete_bibliographic_metadata_codemeta
+- Software identifiers: https://everse.software/RSQKit/software_identifiers
+- Credit and recognition for research software and people who write it: https://everse.software/RSQKit/credit_recognition_research_software
+
+Learn more:
 
 - [ELIXIR TeSS training portal](https://tess.elixir-europe.org/)
 - [The Carpentries](https://carpentries.org/)
 - [CodeRefinery lessons](https://coderefinery.org/lessons/)
 - [The Turing Way handbook](https://book.the-turing-way.org/)
-
-## From Citing software (https://everse.software/RSQKit/citing_software)
-
 - https://citation-file-format.github.io/
 - https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md
 - https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files
@@ -19,9 +28,6 @@
 - https://github.com/citation-file-format/citation-file-format?tab=readme-ov-file#structure
 - https://book.the-turing-way.org/communication/citable/citable-cff.html
 - https://github.com/citation-file-format/citation-file-format#tools-to-work-with-citationcff-files-wrench
-
-## From Software metadata (https://everse.software/RSQKit/software_metadata)
-
 - https://www.dublincore.org/
 - https://schema.org/
 - https://bioschemas.org/profiles/ComputationalTool/1.1-DRAFT
@@ -29,9 +35,6 @@
 - https://codemeta.github.io/terms/
 - https://zenodo.org/records/13996966/files/DASH_FAIR_CodeMeta_Oct_2024.pdf
 - https://github.com/codemeta/codemeta/blob/master/codemeta.json
-
-## From Software identifiers (https://everse.software/RSQKit/software_identifiers)
-
 - https://github.com/NLeSC/awesome-research-software-registries
 - https://zenodo.org/account/settings/profile
 - https://zenodo.org/account/settings/applications/tokens/new/
@@ -50,9 +53,6 @@
 - https://semver.org/
 - https://support.orcid.org/hc/en-us/articles/360006971013-What-are-persistent-identifiers-PIDs
 - https://zenodo.org/account/settings/github/
-
-## From Credit and recognition for research software and people who write it (https://everse.software/RSQKit/credit_recognition_research_software)
-
 - https://data.bioontology.org/ontologies/CRO
 - https://credit.niso.org/
 - https://hidden-ref.org/

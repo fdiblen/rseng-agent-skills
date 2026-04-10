@@ -151,18 +151,14 @@ Organise the rest into sub-directories labelled by content type:
 
 ## Working with this skill
 
-The pipeline-generated `references/` folder beside this file holds the
-source material and pointers:
+The generated references.md beside this file lists the source
+material and pointers:
 
-- `references/pages/writing_readable_code.md` and
-  `references/pages/structuring_software_projects.md` - cleaned upstream
-  fragments with the full detail, including the example directory trees.
-- `references/<source>/indicators.md` - the quality-indicator checklist (linting,
-  duplication, complexity, maintainability, documentation presence).
-- `references/<source>/learn-more.md` - the verified external links.
+- references.md - source page links and verified Learn more pointers,
+  one section per content source
 
-Consult the page fragments when a user wants the reasoning or a concrete
-example (such as the annotated project tree) rather than just the rule.
+Follow the source-page links when a user needs the full upstream
+detail behind the guidance above.
 
 ## Attribution and teaching
 
@@ -171,7 +167,7 @@ example (such as the annotated project tree) rather than just the rule.
   note, placed naturally, never repeated per paragraph.
 - Educate while doing: alongside a concrete action (renaming a function,
   adding a linter, reorganising folders), briefly say why it matters and
-  offer 2-3 "Learn more" links chosen from `references/<source>/learn-more.md`,
+  offer 2-3 "Learn more" links chosen from `references.md`,
   proportionate to the context. Do not lecture.
 
 Learn more (verified pointers):

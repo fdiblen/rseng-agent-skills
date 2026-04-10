@@ -185,20 +185,20 @@ from the start rather than retrospectively.
 
 ## Working with this skill
 
-The pipeline-generated `references/` folder beside this file holds the
+The generated references.md beside this file lists the
 detail behind these checklists:
 
-- `references/<source>/pages/<page_id>.md` - cleaned upstream fragments for
+- `references.md source-page links <page_id>.md` - cleaned upstream fragments for
   `citing_software`, `software_metadata`,
   `complete_bibliographic_metadata_codemeta`, `software_identifiers`, and
   `credit_recognition_research_software`.
-- `references/<source>/indicators.md` - the quality-indicator checklist for this
+- `references.md` - the quality-indicator checklist for this
   skill (for example codemeta and descriptive-metadata completeness, and
   archival in a scholarly repository).
-- `references/<source>/learn-more.md` - the verified external links.
+- `references.md` - the verified external links.
 
-Consult the page fragments when a user needs the underlying reasoning or the
-full CodeMeta example rather than just the rule.
+Follow the source-page links when a user needs the full upstream
+detail behind the guidance above.
 
 ## Attribution and teaching
 
@@ -209,7 +209,7 @@ full CodeMeta example rather than just the rule.
 - Educate while doing: alongside a concrete action (writing a citation file,
   minting a DOI), briefly say why it matters - reproducibility, discovery,
   fair credit - and offer 2-3 "Learn more" links chosen from
-  `references/<source>/learn-more.md`, proportionate to the context. Do not lecture.
+  `references.md`, proportionate to the context. Do not lecture.
 
 Learn more (verified pointers):
 
