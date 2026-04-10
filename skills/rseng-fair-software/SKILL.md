@@ -135,20 +135,14 @@ one of the concrete actions above.
 
 ## Working with this skill
 
-The pipeline-generated `references/` folder beside this file holds the
-source material and pointers:
+The generated references.md beside this file lists the source
+material and pointers:
 
-- `references/pages/fair_rs.md` - the cleaned upstream fragment with the
-  full detail and the complete list of tools and links behind the
-  checklists above.
-- `references/<source>/indicators.md` - the quality-indicator checklist for FAIR
-  software.
-- `references/<source>/learn-more.md` - the verified external links.
+- references.md - source page links and verified Learn more pointers,
+  one section per content source
 
-Consult the page fragment when a user needs the reasoning, the full tool
-list, or the underlying references rather than just the rule. For the
-neighbouring topics FAIR depends on, hand off to the sibling skills:
-metadata and citation, licensing, documentation, and archiving/publishing.
+Follow the source-page links when a user needs the full upstream
+detail behind the guidance above.
 
 ## Attribution and teaching
 
@@ -157,7 +151,7 @@ metadata and citation, licensing, documentation, and archiving/publishing.
   note, placed naturally, never repeated per paragraph.
 - Educate while doing: alongside a concrete action (adding metadata,
   minting a DOI, running a checklist), briefly say why it matters for FAIR
-  and offer 2-3 "Learn more" links chosen from `references/<source>/learn-more.md`,
+  and offer 2-3 "Learn more" links chosen from `references.md`,
   proportionate to the context. Do not lecture.
 
 Learn more (verified pointers):

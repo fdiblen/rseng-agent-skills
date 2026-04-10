@@ -1,17 +1,22 @@
 <!-- Generated file - do not edit. Rebuilt by the rseng-agent-skills
      pipeline from the configured content sources; see extensions/. -->
 
-# Learn more
+# References
 
-## Training and courses
+## RSQKit (the Research Software Quality Kit) by the EVERSE project and the RSQKit team
+
+Guidance based on [RSQKit](https://everse.software/RSQKit/) by the EVERSE project and the RSQKit team, DOI [10.5281/zenodo.14923573](https://doi.org/10.5281/zenodo.14923573) (CC-BY-4.0).
+
+Source pages:
+
+- Adopting FAIR research software practices: https://everse.software/RSQKit/fair_rs
+
+Learn more:
 
 - [ELIXIR TeSS training portal](https://tess.elixir-europe.org/)
 - [The Carpentries](https://carpentries.org/)
 - [CodeRefinery lessons](https://coderefinery.org/lessons/)
 - [The Turing Way handbook](https://book.the-turing-way.org/)
-
-## From Adopting FAIR research software practices (https://everse.software/RSQKit/fair_rs)
-
 - https://fair-software.eu/
 - https://github.com/NLeSC/awesome-research-software-registries
 - https://bio.tools
