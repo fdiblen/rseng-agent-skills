@@ -178,19 +178,14 @@ steps consistent and lets image builds themselves be automated.
 
 ## Working with this skill
 
-The pipeline-generated `references/` folder beside this file holds the
-source material and pointers:
+The generated references.md beside this file lists the source
+material and pointers:
 
-- `references/pages/reproducible_software_environments.md` and
-  `references/pages/using_containers.md` - cleaned upstream fragments with
-  the full tool lists, Dockerfile, and CI/CD YAML behind the rules above.
-- `references/<source>/indicators.md` - the quality-indicator checklist for this
-  skill.
-- `references/<source>/learn-more.md` - the verified external links.
+- references.md - source page links and verified Learn more pointers,
+  one section per content source
 
-Consult the page fragments when a user needs a concrete snippet (the
-Dockerfile, the Apptainer build command, the GitLab CI job) or the full
-catalog of per-language managers rather than just the decision rule.
+Follow the source-page links when a user needs the full upstream
+detail behind the guidance above.
 
 ## Attribution and teaching
 
@@ -200,7 +195,7 @@ catalog of per-language managers rather than just the decision rule.
   repeated per paragraph.
 - Educate while doing: alongside a concrete action (pinning a dependency,
   writing a container), briefly say why it matters for reproducibility and
-  offer 2-3 "Learn more" links chosen from `references/<source>/learn-more.md`,
+  offer 2-3 "Learn more" links chosen from `references.md`,
   proportionate to the context. Do not lecture.
 
 Learn more (verified pointers):

@@ -1,18 +1,24 @@
 <!-- Generated file - do not edit. Rebuilt by the rseng-agent-skills
      pipeline from the configured content sources; see extensions/. -->
 
-# Learn more
+# References
 
-## Training and courses
+## RSQKit (the Research Software Quality Kit) by the EVERSE project and the RSQKit team
+
+Guidance based on [RSQKit](https://everse.software/RSQKit/) by the EVERSE project and the RSQKit team, DOI [10.5281/zenodo.14923573](https://doi.org/10.5281/zenodo.14923573) (CC-BY-4.0).
+
+Source pages:
+
+- Testing software: https://everse.software/RSQKit/testing_software
+- Managing complex CI testing matrices for research software: https://everse.software/RSQKit/ci_testing_matrices
+
+Learn more:
 
 - [CodeRefinery, Software testing](https://coderefinery.github.io/testing/)
 - [ELIXIR TeSS training portal](https://tess.elixir-europe.org/)
 - [The Carpentries](https://carpentries.org/)
 - [CodeRefinery lessons](https://coderefinery.org/lessons/)
 - [The Turing Way handbook](https://book.the-turing-way.org/)
-
-## From Testing software (https://everse.software/RSQKit/testing_software)
-
 - https://en.wikipedia.org/wiki/Software_testing
 - https://en.wikipedia.org/wiki/Software_quality_assurance
 - https://en.wikipedia.org/wiki/Software_testing_tactics
@@ -37,9 +43,6 @@
 - https://docs.pytest.org/en/stable/
 - https://testthat.r-lib.org/
 - http://xunitpatterns.com/
-
-## From Managing complex CI testing matrices for research software (https://everse.software/RSQKit/ci_testing_matrices)
-
 - https://github.com/alpaka-group/alpaka
 - https://docs.docker.com/build/cache/
 - https://docs.earthly.dev/earthly-0.6/docs/guides/cache
