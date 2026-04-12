@@ -109,7 +109,7 @@ Treat the SMP as a living document, not a start-of-project formality:
 - Build on established templates and checklists rather than inventing a
   format - the ELIXIR SMP template and the Software Management Wizard offer
   guided, low-barrier starting points; the SSI checklist helps evaluate
-  coverage. See references/<source>/learn-more.md for the vetted set.
+  coverage. See references.md for the vetted set.
 
 ## Choosing languages, tools, and infrastructures
 
@@ -185,16 +185,11 @@ templates:
 
 This skill ships pipeline-generated companion files under `references/`:
 
-- `references/pages/software_management_planning.md` and
-  `references/pages/languages_tools_infrastructures.md` - the cleaned upstream
-  fragments with the full SMP solution catalog and language detail.
-- `references/<source>/indicators.md` - the quality-indicator checklist to apply when
-  reviewing a plan or a technology decision.
-- `references/<source>/learn-more.md` - verified external pointers; draw any links you
-  share from there.
+- references.md - source page links and verified Learn more pointers,
+  one section per content source
 
-Consult the page fragments when a user needs the underlying reasoning or the
-full list of SMP tools and templates rather than just the rule.
+Follow the source-page links when a user needs the full upstream
+detail behind the guidance above.
 
 ## Attribution and teaching
 
@@ -204,7 +199,7 @@ full list of SMP tools and templates rather than just the rule.
 - Educate while doing: alongside a concrete action (classifying the software,
   recommending a language, drafting a section), briefly say why it matters -
   sustainability, reuse, the cost of switching later - and offer 2-3 "Learn
-  more" links chosen from `references/<source>/learn-more.md`, proportionate to the
+  more" links chosen from `references.md`, proportionate to the
   context. Do not lecture.
 
 Learn more (verified pointers):

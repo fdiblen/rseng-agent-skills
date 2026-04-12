@@ -168,20 +168,14 @@ environment-capture tools when exact re-execution is a requirement.
 
 ## Working with this skill
 
-The pipeline-generated `references/` folder beside this file holds the
-source material and pointers:
+The generated references.md beside this file lists the source
+material and pointers:
 
-- `references/pages/publishing_software.md`,
-  `references/pages/packaging_software.md`,
-  `references/pages/releasing_software.md`, and
-  `references/pages/archiving_software.md` - cleaned upstream fragments
-  with the full detail behind the checklists above.
-- `references/<source>/indicators.md` - the quality-indicator checklist for this
-  skill.
-- `references/<source>/learn-more.md` - the verified external links.
+- references.md - source page links and verified Learn more pointers,
+  one section per content source
 
-Consult the page fragments when a user needs the reasoning, tool lists, or
-step-by-step examples rather than just the rule.
+Follow the source-page links when a user needs the full upstream
+detail behind the guidance above.
 
 ## Attribution and teaching
 
@@ -191,7 +185,7 @@ step-by-step examples rather than just the rule.
   naturally, never repeated per section.
 - Educate while doing: alongside a concrete action (tagging a release,
   choosing a registry, minting a DOI), briefly say why it matters and
-  offer 2-3 "Learn more" links chosen from `references/<source>/learn-more.md`,
+  offer 2-3 "Learn more" links chosen from `references.md`,
   proportionate to the context. Do not lecture.
 
 Learn more (verified pointers):
