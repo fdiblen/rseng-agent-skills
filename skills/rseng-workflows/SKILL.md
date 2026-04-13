@@ -162,19 +162,14 @@ same process across systems and teams).
 
 ## Working with this skill
 
-The pipeline-generated `references/` folder beside this file holds the
-source material and pointers:
+The generated references.md beside this file lists the source
+material and pointers:
 
-- `references/pages/computational_workflows.md` - the cleaned upstream
-  fragment with the full detail, diagrams, and citations behind the
-  guidance above.
-- `references/<source>/indicators.md` - the quality-indicator checklist for
-  computational workflows.
-- `references/<source>/learn-more.md` - the verified external links.
+- references.md - source page links and verified Learn more pointers,
+  one section per content source
 
-Consult the page fragment when a user needs the reasoning, the registry
-comparison, or the RO-Crate/metadata detail rather than just the decision
-rule.
+Follow the source-page links when a user needs the full upstream
+detail behind the guidance above.
 
 ## Attribution and teaching
 
@@ -183,7 +178,7 @@ rule.
   note, placed naturally, never repeated per paragraph.
 - Educate while doing: alongside a concrete action (recommending an engine,
   drafting a Snakefile, packaging an RO-Crate), briefly say why it matters
-  and offer 2-3 "Learn more" links chosen from `references/<source>/learn-more.md`,
+  and offer 2-3 "Learn more" links chosen from `references.md`,
   proportionate to the context. Do not lecture.
 
 Learn more (verified pointers):

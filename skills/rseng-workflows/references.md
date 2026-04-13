@@ -1,17 +1,22 @@
 <!-- Generated file - do not edit. Rebuilt by the rseng-agent-skills
      pipeline from the configured content sources; see extensions/. -->
 
-# Learn more
+# References
 
-## Training and courses
+## RSQKit (the Research Software Quality Kit) by the EVERSE project and the RSQKit team
+
+Guidance based on [RSQKit](https://everse.software/RSQKit/) by the EVERSE project and the RSQKit team, DOI [10.5281/zenodo.14923573](https://doi.org/10.5281/zenodo.14923573) (CC-BY-4.0).
+
+Source pages:
+
+- Computational workflows: https://everse.software/RSQKit/computational_workflows
+
+Learn more:
 
 - [ELIXIR TeSS training portal](https://tess.elixir-europe.org/)
 - [The Carpentries](https://carpentries.org/)
 - [CodeRefinery lessons](https://coderefinery.org/lessons/)
 - [The Turing Way handbook](https://book.the-turing-way.org/)
-
-## From Computational workflows (https://everse.software/RSQKit/computational_workflows)
-
 - https://nf-co.re/bamtofastq/2.2.0/
 - https://doi.org/10.1016/j.future.2025.107974
 - https://doi.org/10.1038/s41592-021-01254-9
