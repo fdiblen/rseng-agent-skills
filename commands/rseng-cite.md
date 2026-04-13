@@ -35,7 +35,7 @@ Steps:
    validation ($ARGUMENTS may name fields to include or override).
 7. Suggest as follow-up (do not do it unprompted): connecting the repo to
    Zenodo for a DOI on the next release - point at rseng-citation-metadata
-   and one "Learn more" link from its references/*/learn-more.md.
+   and one "Learn more" link from its references.md.
 
 Close the summary with this attribution line, exactly once:
 

@@ -62,7 +62,7 @@ Two frontmatter fields couple back to step 1 and to the generated references:
   entry. Keep them in sync by hand.
 - The body cites page_ids inline (for example `(RSQKit: testing_software)`)
   rather than pasting upstream prose; the full text lives in the generated
-  `references/pages/<page_id>.md`.
+  `references.md` (source-page links and Learn more pointers).
 
 ### Make the description trigger distinct
 
@@ -86,8 +86,7 @@ uv run --directory pipeline python -m rseng_pipeline.references
 
 This wipes and rewrites `references/` for every skill from the build
 artifacts, so a removed page prunes automatically and a new skill gets its
-folder populated. It writes, per skill: `references/pages/<page_id>.md` (one
-cleaned fragment per mapped page), `references/tools.md`, `references/learn-more.md`
+folder populated. It writes, per skill: `references.md` (source-page links and Learn more pointers).md`, `references/learn-more.md`
 and `references/indicators.md`. If it raises `no fragment for page_id ...`, the
 page_id in your taxonomy entry does not exist at the pinned commit - fix the
 id (or the pin) rather than the generator.

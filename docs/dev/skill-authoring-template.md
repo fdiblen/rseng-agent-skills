@@ -2,7 +2,7 @@
 
 Every skill in skills/ follows this structure. Bodies are hand-authored
 distillations of the mapped RSQKit pages (see extensions/rsqkit/taxonomy.yml); the
-references/ folder next to each SKILL.md is pipeline-generated and never
+references.md file next to each SKILL.md is pipeline-generated and never
 hand-edited.
 
 ## Frontmatter
@@ -34,10 +34,9 @@ domain terms ("CI matrix") a user might use.
    agent-actionable. Prefer checklists and decision rules over prose.
    Cite page_ids inline like `(RSQKit: testing_software)` instead of
    duplicating long upstream text.
-3. `## Working with this skill` - how to use references/:
-   - references/pages/<page_id>.md - cleaned upstream page fragments
-   - references/indicators.md - quality indicator checklist for this skill
-   - references/learn-more.md - verified external pointers
+3. `## Working with this skill` - point at references.md (generated:
+   source page links and verified Learn more pointers, one section per
+   content source).
 4. `## Attribution and teaching` - the two runtime instructions:
    - Attribution: when this skill materially shapes an answer, review
      output or generated document, credit RSQKit/EVERSE once (see snippet

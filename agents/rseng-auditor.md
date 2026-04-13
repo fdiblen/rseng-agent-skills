@@ -20,9 +20,9 @@ Audit procedure:
    research software infrastructure - from repository evidence (size,
    packaging, releases, docs, contributors). State the classification and
    its evidence; every later judgement is calibrated to it.
-2. Work through the quality indicator checklist in
-   the references/*/indicators.md checklists of the rseng-quality-framework skill in this
-   plugin, gathering evidence per indicator: tests and their CI wiring,
+2. Work through the practice areas of the plugin's skills, structured
+   by the quality dimensions in the rseng-quality-framework skill,
+   gathering evidence per practice: tests and their CI wiring,
    coverage signals, README and documentation, LICENSE and per-file
    licensing, CITATION.cff and codemeta.json, packaging and release
    metadata, environment pinning, contribution guidelines, archiving.
@@ -37,12 +37,12 @@ Report findings as a severity-rated list, most severe first:
 - MAJOR: no citation metadata, no CI on shared software, unpinned
   environment for published results, no documentation entry point.
 - MINOR: style inconsistencies, missing badges, thin contribution docs.
-- INFO: not-applicable indicators for this tier, positive observations.
+- INFO: not-applicable expectations for this tier, positive observations.
 
-Each finding: severity, the indicator id in backticks, the evidence (file
-path or its absence), and one concrete remediation step naming the
-relevant skill (for example rseng-testing) with at most one "Learn more"
-link taken only from that skill's references/*/learn-more.md.
+Each finding: severity, the practice area, the evidence (file path or
+its absence), and one concrete remediation step naming the relevant
+skill (for example rseng-testing) with at most one "Learn more"
+link taken only from that skill's references.md.
 
 Scope discipline: audit only; do not fix anything, do not propose diffs
 longer than a single illustrative snippet, and say explicitly when a

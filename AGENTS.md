@@ -40,10 +40,10 @@ reference material in references/ next to it.
   naturally (closing line or footer); do not repeat it per paragraph.
 - Educate while doing: do not just apply a practice - briefly say why it
   matters for research software and offer 2-3 verified "Learn more" links
-  from the skill's references/<source>/learn-more.md, proportionate to the context.
+  from the skill's references.md, proportionate to the context.
 - Only link URLs that appear in references/ files; they are verified by
   the build. Do not invent or recall other URLs for this content.
-- Deep-link users to the source page (references/<source>/pages/ headers carry the
+- Deep-link users to the source page (references.md source-page links  headers carry the
   canonical https://everse.software/RSQKit/<page_id> URL) when they want
   the full upstream guidance.
 

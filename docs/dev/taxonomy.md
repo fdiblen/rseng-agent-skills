@@ -87,7 +87,7 @@ Both consumers read `taxonomy.yml` through `load_taxonomy` /
 `skill_page_ids` and stay in lockstep with it:
 
 - References (`references.generate_references`): for each skill it copies
-  `references/pages/<page_id>.md` for every mapped page, and builds
+  a references.md entry for every mapped page, and builds
   `references/tools.md`, `references/learn-more.md`, and
   `references/indicators.md` restricted to those pages. Each skill's folder
   is wiped and rebuilt every run, so removing a page from the taxonomy

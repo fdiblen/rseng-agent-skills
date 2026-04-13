@@ -190,13 +190,13 @@ driven by `extensions/rsqkit/taxonomy.yml`.
 - `generate_references(skills_dir, taxonomy_path, build_dir)` for each skill
   wipes and rebuilds `references/` (so removed upstream pages prune
   automatically) and writes:
-  - `references/pages/<page_id>.md` - the cleaned fragment copied per
+  - a references.md section per source - source-page links plus
     mapped page. A missing fragment for a mapped `page_id` raises
     `FileNotFoundError`, which is how a taxonomy/upstream mismatch surfaces.
   - `references/tools.md` - the registry tools referenced by those pages.
-  - `references/*/learn-more.md` - curated training plus verified external
+  - `references.md` - curated training plus verified external
     pointers, deduped.
-  - `references/*/indicators.md` - a quality-indicator checklist grouped by
+  - `references.md` - a quality-indicator checklist grouped by
     dimension (the router skill, which maps no task pages, gets the full
     registry).
 
