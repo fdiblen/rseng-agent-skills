@@ -3,7 +3,7 @@ name: rseng-auditor
 description: >-
   Read-only research software quality auditor. Use proactively when the
   user asks for a quality audit, review or health check of a research
-  software repository against RSQKit/EVERSE indicators, or before a
+  software repository against research software engineering practice, or before a
   release or publication of research software. Reports severity-rated
   findings; never modifies files.
 tools: Read, Glob, Grep, Bash
