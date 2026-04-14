@@ -9,16 +9,22 @@ registerCommand(
   "install the pack for detected agents (or the agents given as arguments)",
   (ctx, args) => {
     const wanted = (args.positionals[0] as string[] | undefined) ?? [];
+    const scope = args.options["scope"] as string | undefined;
     // Naming an agent explicitly forces it even when it is not detected;
-    // with no arguments only detected agents are touched.
-    const targets =
+    // with no arguments only detected agents are touched. --scope limits
+    // installs to project or user targets (an explicit agent name would
+    // otherwise hit BOTH scopes).
+    let targets =
       wanted.length > 0
         ? detectAgents().filter((target) => wanted.includes(target.agent))
         : usableTargets().filter((target) => target.detected);
+    if (scope) {
+      targets = targets.filter((target) => target.scope === scope);
+    }
     if (targets.length === 0) {
       throw new Error(
         wanted.length > 0
-          ? `unknown agent(s): ${wanted.join(", ")}`
+          ? `no matching agent targets for: ${wanted.join(", ")}${scope ? ` in scope ${scope}` : ""}`
           : "no agents detected; name one explicitly (e.g. install claude)",
       );
     }
@@ -26,7 +32,9 @@ registerCommand(
       executePlan(ctx, planInstall(ctx.packRoot, target));
     }
   },
-).argument("[agents...]", "restrict to specific agents (claude, copilot, ...)");
+)
+  .argument("[agents...]", "restrict to specific agents (claude, copilot, ...)")
+  .option("--scope <scope>", "limit to project or user scope targets");
 
 registerCommand(
   "update",
