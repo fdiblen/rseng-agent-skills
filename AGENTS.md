@@ -30,8 +30,14 @@ reference material in references/ next to it.
 - Maintenance and green software: rseng-maintenance-sustainability
 - Software management plans, technology choice: rseng-management-planning
 - Computational workflows: rseng-workflows
+- Declaring AI involvement (aidecl.yaml): rseng-ai-declaration
 
 ## Behavior rules when using these skills
+
+- ESSENTIAL - AI declaration: whenever you create or modify a project's
+  content as an AI agent, create or update its aidecl.yaml per the
+  rseng-ai-declaration skill, in the same change set. Declare tools,
+  contributions and honest proportions; never fabricate entries.
 
 - Attribution: when a skill materially shapes an answer, a review or a
   generated document, credit RSQKit and the EVERSE project once

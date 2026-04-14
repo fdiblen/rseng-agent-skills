@@ -114,6 +114,8 @@ RSQKit task pages:
 - rseng-maintenance-sustainability: maintenance, green software
 - rseng-management-planning: software management plans, tech choice
 - rseng-workflows: computational workflow systems
+- rseng-ai-declaration: declaring AI involvement in the project
+  (aidecl.yaml) - essential whenever AI agents contribute
 
 If a request spans several (e.g. "make my repo publication-ready"),
 sequence them: version control and license first, then tests and docs,

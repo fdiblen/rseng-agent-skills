@@ -8,7 +8,7 @@ working install.
 
 One canonical pack, built into each agent's native format:
 
-- 14 skills covering testing, CI/CD, documentation, licensing, citation
+- 15 skills covering testing, CI/CD, documentation, licensing, citation
   metadata, FAIR software, publishing and releasing, reproducible
   environments, code quality, version control and review, maintenance and
   sustainability, management and planning, workflows, and an overall quality
@@ -31,7 +31,7 @@ plugin:
 
 That gives you the full set:
 
-- 14 skills the agent invokes when a task matches (for example, writing a
+- 15 skills the agent invokes when a task matches (for example, writing a
   CITATION.cff or setting up CI).
 - Three slash commands:
     - `/rseng-check` - assess this repository against the RSQKit quality
