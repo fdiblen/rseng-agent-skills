@@ -25,21 +25,29 @@ from .source import load_source
 
 
 def _skill_entries(repo_root: Path, sources: list) -> list[dict]:
-    """Merge every source's taxonomy and content into per-skill entries."""
+    """Merge every source's taxonomy and content into per-skill entries.
+
+    Skills present on disk but mapped by no source (source-independent
+    skills such as rseng-ai-declaration) are included with an empty pages
+    list; their scope falls back to the coverage half of the frontmatter
+    description.
+    """
     entries: dict[str, dict] = {}
+    for skill_md in sorted((repo_root / "skills").glob("rseng-*/SKILL.md")):
+        meta = frontmatter.loads(skill_md.read_text(encoding="utf-8")).metadata
+        description = " ".join(str(meta["description"]).split())
+        entries[skill_md.parent.name] = {
+            "name": skill_md.parent.name,
+            "description": description,
+            "scope": description.split(". Use", 1)[0].split(". This", 1)[0],
+            "pages": [],
+        }
     for source, content in sources:
         taxonomy = load_taxonomy(source.dir / "taxonomy.yml")
         for name, tax_entry in taxonomy.items():
-            entry = entries.get(name)
-            if entry is None:
-                skill_md = repo_root / "skills" / name / "SKILL.md"
-                meta = frontmatter.loads(skill_md.read_text(encoding="utf-8")).metadata
-                entry = entries[name] = {
-                    "name": name,
-                    "description": " ".join(str(meta["description"]).split()),
-                    "scope": " ".join(str(tax_entry.get("scope", "")).split()),
-                    "pages": [],
-                }
+            entry = entries[name]
+            if tax_entry.get("scope"):
+                entry["scope"] = " ".join(str(tax_entry["scope"]).split())
             entry["pages"].extend(
                 {
                     "page_id": page_id,

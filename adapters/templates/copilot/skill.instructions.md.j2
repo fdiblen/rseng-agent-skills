@@ -11,6 +11,7 @@ Consult the full skill at .github/skills/{{ skill.name }}/SKILL.md and its
 references/ folder (per-source page fragments, tool list, verified
 learn-more links, indicator checklist) before advising on this topic.
 
+{% if skill.pages %}
 Source pages:
 {% for page in skill.pages %}
 - {{ page.title }}: {{ page.url }}
@@ -20,3 +21,8 @@ When this guidance shapes your output, credit it once:
 {{ citation.full }}
 
 Source: RSQKit @ {{ upstream.commit[:8] }} (CC-BY-4.0).
+{% else %}
+Credit the standard named in the skill when it shapes your output.
+
+Pack content build: {{ upstream.commit[:8] }}.
+{% endif %}

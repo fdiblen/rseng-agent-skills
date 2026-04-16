@@ -20,10 +20,13 @@ standards.
 
 {{ skill.scope }}
 
-Details: skills/{{ skill.name }}/SKILL.md. Source pages:
+Details: skills/{{ skill.name }}/SKILL.md.
+{% if skill.pages %}
+Source pages:
 {% for page in skill.pages %}
 - {{ page.title }}: {{ page.url }}
 {% endfor %}
+{% endif %}
 
 {% endfor %}
 ## Behavior rules
