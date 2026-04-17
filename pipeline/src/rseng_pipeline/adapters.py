@@ -33,7 +33,7 @@ def _skill_entries(repo_root: Path, sources: list) -> list[dict]:
     description.
     """
     entries: dict[str, dict] = {}
-    for skill_md in sorted((repo_root / "skills").glob("rseng-*/SKILL.md")):
+    for skill_md in sorted((repo_root / "skills").glob("*/SKILL.md")):
         meta = frontmatter.loads(skill_md.read_text(encoding="utf-8")).metadata
         description = " ".join(str(meta["description"]).split())
         entries[skill_md.parent.name] = {
@@ -127,8 +127,9 @@ def template_env(repo_root: Path) -> Environment:
 
 
 def copy_skills(repo_root: Path, target_dir: Path) -> None:
-    """Passthrough: copy the canonical skill folders (used by several targets)."""
-    for skill_dir in sorted((repo_root / "skills").glob("rseng-*")):
+    """Passthrough: copy every skill folder (used by several targets)."""
+    for skill_md in sorted((repo_root / "skills").glob("*/SKILL.md")):
+        skill_dir = skill_md.parent
         shutil.copytree(skill_dir, target_dir / skill_dir.name, dirs_exist_ok=True)
 
 
