@@ -1,0 +1,46 @@
+# Catalog of external skills, extensions and add-ons.
+#
+# Developers propose an entry by adding a link here (github repository,
+# website, marketplace or registry page). Entries are NEVER fetched
+# automatically: promotion is a manual, reviewed flow -
+#
+#   proposed  - link recorded, nothing fetched
+#   reviewed  - a maintainer staged the pinned content
+#               (python -m rseng_pipeline.catalog stage <name>), inspected
+#               it and recorded the review below
+#   included  - the reviewed skill folders were vendored into skills/
+#               (with their provenance noted here); the build then ships
+#               them like any other skill
+#
+# `python -m rseng_pipeline.catalog check` runs in CI and fails when an
+# included entry is missing from skills/ or an entry is malformed.
+
+categories:
+  - skills-collection   # repositories holding SKILL.md folders
+  - marketplace         # curated stores of skills/plugins
+  - registry            # searchable indexes of skills
+  - standard            # specifications and schemas skills build on
+
+entries:
+  - name: anthropic-skills
+    url: https://github.com/anthropics/skills
+    kind: github
+    category: skills-collection
+    status: proposed
+    description: Anthropic's public collection of example agent skills.
+
+  - name: agentskills-spec
+    url: https://agentskills.io
+    kind: website
+    category: standard
+    status: proposed
+    description: The Agent Skills format specification this pack follows.
+
+  - name: ai-declaration-schema
+    url: https://github.com/ai-declaration/schema
+    kind: github
+    category: standard
+    status: proposed
+    description: >-
+      JSON Schema and examples behind the rseng-ai-declaration skill
+      (tracked for spec updates; the skill itself is hand-authored).
