@@ -28,6 +28,7 @@ nav:
       - Architecture: dev/architecture.md
       - Content pipeline: dev/pipeline.md
       - Content sources: dev/content-sources.md
+      - External skills catalog: dev/catalog.md
       - Taxonomy: dev/taxonomy.md
       - Adding a skill: dev/adding-a-skill.md
       - Adding an adapter: dev/adding-an-adapter.md

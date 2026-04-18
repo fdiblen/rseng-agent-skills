@@ -41,6 +41,8 @@ jobs:
           uv run --directory pipeline python -m rseng_pipeline.build_adapters
       - name: Generated references must match committed ones
         run: git diff --exit-code skills
+      - name: Catalog hygiene
+        run: uv run --directory pipeline python -m rseng_pipeline.catalog check
 
   installer:
     runs-on: ubuntu-latest

@@ -22,6 +22,14 @@ Thanks for considering a contribution.
 - Content is CC-BY-4.0 (adapted from RSQKit), code is MIT; by
   contributing you agree your contribution is licensed the same way.
 
+## Proposing external skills
+
+Know a skill collection, marketplace entry or standard worth including?
+Add a link to catalog.yml (status: proposed) - that is all a proposal
+takes. Nothing is fetched automatically: a maintainer stages the pinned
+content, reviews it and vendors accepted skill folders into skills/.
+See docs/dev/catalog.md.
+
 ## Development setup
 
 See docs/dev/architecture.md for the layout and docs/dev/pipeline.md for
