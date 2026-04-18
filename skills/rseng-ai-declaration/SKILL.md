@@ -3,17 +3,17 @@ name: rseng-ai-declaration
 description: >-
   Covers declaring AI involvement in a project with the AI Declaration
   Format (https://ai-declaration.org): creating and maintaining an
-  aidecl.yaml that records which AI tools and agents were used, what they
-  contributed, and how much. This is an essential practice: use it
-  PROACTIVELY whenever an AI assistant or agent creates or modifies a
-  project's content - generate aidecl.yaml if it is missing, update it
-  after AI-assisted changes, and extend it with further schema fields as
-  the project's AI use grows. Also use when the user asks about AI
-  transparency, AI disclosure, declaring AI usage, EU AI Act disclosure,
-  or mentions aidecl.
+  aidecl.yaml that records in detail which AI tools and agents were used,
+  what each contributed, when, and how much. This is an essential
+  practice: use it PROACTIVELY whenever an AI assistant or agent creates
+  or modifies a project's content - generate aidecl.yaml if it is
+  missing, update it after AI-assisted changes, and extend it with
+  further schema fields as the project's AI use grows. Also use when the
+  user asks about AI transparency, AI provenance, AI disclosure,
+  declaring AI usage, EU AI Act disclosure, or mentions aidecl.
 license: CC-BY-4.0
 metadata:
-  version: 0.1.0
+  version: 0.2.0
   source: https://ai-declaration.org
   schema: https://ai-declaration.github.io/schema/v1/aidecl.schema.json
 ---
@@ -27,98 +27,224 @@ in `aidecl.yaml` at the project root and follows a published JSON Schema
 
 Treat this as an always-on obligation, not a request-driven task: when
 you - an AI agent - create or change a project's code, docs, data or
-configuration, the declaration must reflect it. Transparency about AI
-involvement is part of research software quality: it supports
-reproducibility, review and emerging compliance regimes (EU AI Act,
-NIST AI RMF).
+configuration, the declaration must reflect it.
+
+The guiding principle is MAXIMUM HONEST DETAIL. A good declaration lets
+a reviewer reconstruct the provenance of the work without asking anyone:
+which tools and models touched it, in which period, on which parts, for
+which activities, in what proportion, and under whose review. When in
+doubt between a terse entry and a detailed one, write the detailed one;
+when in doubt between a detailed entry and a speculative one, write the
+honest one. Never fabricate: declare only what actually happened, and
+mark estimates as estimates.
 
 ## When to act
 
 - No aidecl.yaml in a project you are modifying: create one in the same
   change set, and mention it in your summary.
 - You made AI-assisted changes: update the declaration in the same
-  session - adjust the summary, tools, activities, scope, components and
-  proportions to cover what you actually did, and refresh
-  declaration.date.
-- The project's AI use deepens (new tools, personal data touching an AI
-  service, models trained, significant generated content): add the
-  matching optional schema sections rather than overloading notes.
+  session, at the same level of detail as the work itself.
+- The project's AI use deepens (new tools or models, personal data
+  touching an AI service, models trained, significant generated
+  content): open the matching optional schema sections.
 - The user asks how AI was used in the project: read aidecl.yaml first
   and answer from it; fix it if it is stale.
 
-Never fabricate: declare only tools and contributions that actually
-happened, with honest proportion estimates (method: self_reported).
+## The detail standard
 
-## Creating a declaration
-
-Four top-level sections are required: schema_version, project, ai_usage
-and declaration. A minimal honest declaration for agent-assisted work:
+Four top-level sections are required (schema_version, project, ai_usage,
+declaration), but required is the floor, not the target. Aim for this
+level of detail whenever the information is genuinely known:
 
 ```yaml
 schema_version: "1.0.0"
 
 project:
-  name: my-project
-  content_type: software   # software|dataset|document|model|media|other
+  name: growthfit
+  version: "0.3.1"
+  repository: https://github.com/example/growthfit
   license: MIT
+  content_type: software    # software|dataset|document|model|media|other
 
 ai_usage:
   used: true
-  level: significant       # none|minimal|moderate|significant|extensive
+  level: significant        # none|minimal|moderate|significant|extensive
   summary: >-
-    An AI coding agent implemented the initial package, tests and
-    documentation under human direction and review.
+    An autonomous coding agent implemented the core fitting module, the
+    unit tests and the user documentation across three sessions in
+    January 2026, working from human-written requirements; a completion
+    assistant helped with later refactoring. All AI output was reviewed
+    by the maintainer before merge.
+
   tools:
     - name: Claude Code
       vendor: Anthropic
-      type: agent          # assistant|agent|model_runner|standalone|...
-      hosting: cloud_vendor
+      type: agent           # assistant|agent|model_runner|standalone|...
+      model: claude-fable-5 # the actual model, when known
+      version: "2.1"        # tool version, when known
+      hosting: cloud_vendor # cloud_vendor|cloud_self_hosted|on_premise|...
+      data_region: EU       # when known from the vendor account
+      trains_on_data: false # per the vendor's stated policy, when known
+      period:               # when this tool was in use on the project
+        start: "2026-01-10"
+        end: "2026-01-24"
       purpose:
         - code generation
-        - testing
+        - test writing
         - documentation
-  scope:
+    - name: GitHub Copilot
+      vendor: GitHub
+      type: assistant
+      hosting: cloud_vendor
+      period: { start: "2026-02-01" }
+      purpose: [code completion]
+
+  activities:               # every activity AI touched, not just the top one
+    - code_generation
+    - testing
+    - documentation
+    - refactoring
+
+  scope:                    # set every flag you can answer, true AND false
     code_generation: true
-    testing: true
+    code_completion: true
+    code_review: false
     documentation: true
-  components:
-    - name: core module
-      description: initial implementation of the fitting routines
-      ai_involvement: generated by agent, human reviewed
+    testing: true
+    debugging: true
+    infrastructure: false
+    refactoring: true
+
+  code_proportion:          # honest numbers beat missing numbers
+    ai_generated_percent: 55
+    ai_assisted_percent: 20
+    human_only_percent: 25
+    method: self_reported   # self_reported|tool_measured|audit_estimated
+    estimation_notes: >-
+      Line-count estimate over src/ and tests/ at v0.3.0; docs excluded.
+
+  generated_content:
+    documentation_percent: 80
+    artifacts:              # concrete files/areas that are largely AI-made
+      - src/growthfit/fitting.py
+      - tests/test_fitting.py
+      - docs/usage.md
+
+  components:               # THE core provenance record - see below
+    - name: fitting module (src/growthfit/)
+      description: logistic model, parameter estimation, CSV loading
+      ai_involvement: >-
+        Generated by the agent from the maintainer's written spec in
+        session 2026-01-10; numerical edge cases reworked by the agent
+        after human-reported failures on sparse series (2026-01-17).
       tools_used: [Claude Code]
+      notes: human-reviewed line by line before merge; approved 2026-01-18
+    - name: test suite (tests/)
+      description: unit tests incl. property-style cases for the fitter
+      ai_involvement: agent-written alongside the module, human-extended
+      tools_used: [Claude Code]
+      notes: two human-authored regression tests added later
+    - name: user documentation (docs/, README)
+      description: usage guide, API notes, README
+      ai_involvement: agent-drafted, human-edited for tone and accuracy
+      tools_used: [Claude Code, GitHub Copilot]
+      notes: examples verified by running them
 
 declaration:
-  date: "2026-01-15"        # today, in ISO format
-  declared_by: <the human accountable for the project>
+  date: "2026-02-03"        # bumped on every update
+  declared_by: Jane Maintainer     # a human or team, never the agent
+  contact: jane@example.org
+  organization: Example Lab
+  reviewed_by: Jane Maintainer
+  review_date: "2026-02-03"
+  next_review: "2026-08-01"
+  notes: >-
+    2026-01-10 initial declaration with first agent session.
+    2026-01-18 fitting module reviewed and approved.
+    2026-02-03 added Copilot usage and refreshed proportions.
 ```
 
-Rules of thumb:
+Field-by-field expectations:
 
-- ai_usage.tools: one entry per distinct tool or agent; type "agent" for
-  autonomous coding agents, "assistant" for completion-style helpers.
-- ai_usage.components: the clearest place to list agent contributions -
-  one entry per area of the project (module, docs, CI, data prep) with
-  what the agent did in ai_involvement.
-- ai_usage.code_proportion / ai_proportion: add once meaningful
-  (ai_generated_percent, ai_assisted_percent, human_only_percent,
-  method) - estimates are fine when marked self_reported.
-- declaration.declared_by is a human or team, never the agent itself;
-  the agent maintains the file, a person remains accountable.
+- tools: one entry per distinct tool or agent. Record model, version,
+  hosting, data_region, trains_on_data and period whenever they are
+  known - these are exactly the facts impossible to reconstruct later.
+  Type "agent" for autonomous coding agents, "assistant" for
+  completion-style helpers.
+- activities and scope: enumerate everything AI touched. In scope, an
+  explicit `false` is information too - it says "checked, not used".
+- code_proportion / ai_proportion: give numbers with a method; explain
+  the estimation basis in estimation_notes. Self-reported estimates are
+  legitimate when marked as such.
+- generated_content.artifacts: name the concrete files or areas that are
+  substantially AI-made; this is what reviewers and auditors look for
+  first.
+- components: the heart of agent provenance (next section).
+- declaration: always declared_by a human; keep a dated, append-only
+  history of updates in notes; set next_review so staleness is visible.
 
-## Updating over time
+## Recording agent contributions
 
-- Update in the same commit or session as the AI-assisted change, the
-  way a changelog is kept current.
-- Extend, do not churn: append new tools/components; revise summary,
-  level and proportions when the balance shifts; bump declaration.date
-  (and review fields when a human re-reviews).
-- Grow into optional sections when they become true: data_handling
-  (anything sensitive sent to an AI service), environmental (notable
-  compute), security (AI-generated code review status),
-  compliance_eu_ai_act (deployed AI systems), governance.
-- Validate after editing: the file must satisfy the published schema
-  (https://ai-declaration.github.io/schema/v1/aidecl.schema.json); an
-  official validator CLI lives at https://github.com/ai-declaration/cli.
+ai_usage.components is where "the use of agents and their contributions"
+becomes concrete. Keep one component per meaningful area of the project
+(a module, the test suite, the docs, CI configuration, data
+preparation), and for each:
+
+- description: what the area is.
+- ai_involvement: a short narrative with WHAT the agent did, FROM WHAT
+  input (spec, issue, review feedback), WHEN (dates), and the human's
+  role (directed, reviewed, edited, approved).
+- tools_used: which of the declared tools worked on it.
+- notes: review status and anything a future auditor would ask about.
+
+Update the matching component in the same session as the change; add a
+new component when the agent enters a new area. Prefer appending facts
+over rewriting history - the declaration is a provenance record, not a
+marketing summary.
+
+## Update discipline
+
+After every AI-assisted working session, walk this checklist:
+
+1. tools: new tool or model? period end moved?
+2. activities and scope: anything newly touched?
+3. components: affected entries updated, new areas added, dates noted?
+4. proportions and generated_content: still roughly right? Adjust and
+   note the estimation basis.
+5. summary and level: still accurate as a one-paragraph account?
+6. declaration.date bumped; a dated line appended to declaration.notes.
+7. File still validates against the schema.
+
+## Growing into the optional sections
+
+Open these the moment they become true, with the same detail standard:
+
+- data_handling: anything beyond public data sent to an AI service -
+  data_classification, categories_sent, personal_data_sent, DPIA state.
+- security: AI-generated code reviewed? review_performed, review_type,
+  dependencies_verified, known_issues.
+- environmental: notable compute (training, large batch runs) -
+  compute_hours, energy_kwh, carbon_kg_co2e with estimation_method.
+- compliance_eu_ai_act: the project ships an AI system - classification,
+  disclosure flags, oversight.
+- governance: an organization is accountable - responsible_officer,
+  policy URL, ethics review status.
+- risk_management / explainability: the software itself makes or
+  explains AI decisions.
+
+## Extending the format
+
+When a needed detail has no schema field, in order of preference:
+
+1. The nearest notes/description field (free text, always valid).
+2. An extension field prefixed `x_` (the schema tolerates additional
+   properties, but standard fields travel better across tools).
+3. Propose the field upstream at https://github.com/ai-declaration/schema
+   so it becomes standard.
+
+Validate after every edit: the file must satisfy
+https://ai-declaration.github.io/schema/v1/aidecl.schema.json; an
+official validator CLI lives at https://github.com/ai-declaration/cli.
 
 ## Working with this skill
 
@@ -128,8 +254,8 @@ Format specification itself (links below), not a bundled content source.
 ## Attribution and teaching
 
 - When creating or updating a declaration, briefly tell the user why the
-  file exists (AI transparency, reproducibility, compliance readiness)
-  and link https://ai-declaration.org once.
+  file exists (AI transparency, provenance, reproducibility, compliance
+  readiness) and link https://ai-declaration.org once.
 - Learn more (verified):
   - https://ai-declaration.org - format overview and rationale
   - https://app.ai-declaration.org/examples - templates per project type
