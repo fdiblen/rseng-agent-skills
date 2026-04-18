@@ -116,6 +116,8 @@ RSQKit task pages:
 - rseng-workflows: computational workflow systems
 - rseng-ai-declaration: declaring AI involvement in the project
   (aidecl.yaml) - essential whenever AI agents contribute
+- rseng-fairguard: FAIR4RS compliance assessment with the FAIRGuard CLI -
+  essential default at repo intake and before releases
 
 If a request spans several (e.g. "make my repo publication-ready"),
 sequence them: version control and license first, then tests and docs,
