@@ -80,9 +80,19 @@ def parse_page(text: str, source_path: str) -> PageRecord:
         _as_list(meta.get("quality_indicators")) + _as_list(meta.get("indicators"))
     )
 
+    title = str(meta.get("title", ""))
+    if not title:
+        # Sources without frontmatter (e.g. plain handbook pages) carry
+        # their title as the first ATX heading.
+        for line in post.content.splitlines():
+            heading = _HEADING_RE.match(line)
+            if heading:
+                title = heading.group(2)
+                break
+
     return PageRecord(
         page_id=str(meta.get("page_id") or Path(source_path).stem),
-        title=str(meta.get("title", "")),
+        title=title,
         description=str(meta.get("description", "")),
         keywords=_as_list(meta.get("keywords")),
         contributors=_as_list(meta.get("contributors")),
@@ -101,9 +111,14 @@ def parse_page_file(path: Path, root: Path | None = None) -> PageRecord:
 
 
 def load_pages(cache_dir: Path) -> dict[str, PageRecord]:
-    """Parse every cached page, keyed by page_id."""
+    """Parse every cached markdown page, keyed by page_id.
+
+    Layout-agnostic: sources keep their own directory structures (RSQKit
+    uses pages/**, plain handbooks keep chapters at the root), so every
+    cached .md file is a page.
+    """
     records: dict[str, PageRecord] = {}
-    for md_file in sorted(cache_dir.glob("pages/**/*.md")):
+    for md_file in sorted(cache_dir.rglob("*.md")):
         record = parse_page_file(md_file, cache_dir)
         records[record.page_id] = record
     return records

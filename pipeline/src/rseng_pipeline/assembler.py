@@ -32,17 +32,24 @@ FRAGMENT_HEADER = (
     "<!-- Generated file - do not edit.\n"
     "     Source: {source} @ {commit}\n"
     "     From {title} ({url}),\n"
-    "     {license}. DOI: {doi} -->\n\n"
+    "     {license}.{doi_part} -->\n\n"
 )
 
 
-def _page_slug(record) -> str:
-    """Site permalinks derive from the source FILENAME, not the page_id
-    (they differ for three pages at the pinned commit)."""
-    return Path(record.source_path).stem
+def _page_slug(record, slug_style: str = "stem") -> str:
+    """Derive the site slug per the source's slug_style.
+
+    "stem": filename only (Jekyll-style permalinks; RSQKit's filenames
+    differ from page_ids for three pages, so never use page_id).
+    "path": relative path without suffix (docsify-style routes).
+    """
+    path = Path(record.source_path)
+    if slug_style == "path":
+        return str(path.with_suffix(""))
+    return path.stem
 
 
-def _page_entry(record, learn_more, base_url: str) -> dict:
+def _page_entry(record, learn_more, base_url: str, slug_style: str = "stem") -> dict:
     return {
         "page_id": record.page_id,
         "title": record.title,
@@ -53,7 +60,7 @@ def _page_entry(record, learn_more, base_url: str) -> dict:
         "quality_indicators": record.quality_indicators,
         "child_pages": record.child_pages,
         "source_path": record.source_path,
-        "rsqkit_url": f"{base_url}/{_page_slug(record)}",
+        "rsqkit_url": f"{base_url}/{_page_slug(record, slug_style)}",
         # From the raw body: cleaning rewrites tool tags into plain links.
         "tool_refs": extract_tool_refs(record.body),
         "learn_more": {
@@ -85,13 +92,25 @@ def assemble(
         raise RuntimeError(f"cache not usable: {problems}")
 
     pages = load_pages(cache_dir)
-    tools = load_tools(cache_dir / "_data/tool_and_resource_list.yml")
-    contributors = load_contributors(cache_dir / "_data/CONTRIBUTORS.yml")
-    dimensions = load_dimensions(cache_dir / "_data/quality_dimensions.yml")
-    indicators = load_indicators(cache_dir / "_data/quality_indicators.yml")
+    # Registries are a source-specific extra (RSQKit ships them; plain
+    # handbook sources do not): load whichever files exist.
+    registry_dir = cache_dir / "_data"
+
+    def _maybe(loader, filename):
+        path = registry_dir / filename
+        return loader(path) if path.is_file() else {}
+
+    tools = _maybe(load_tools, "tool_and_resource_list.yml")
+    contributors = _maybe(load_contributors, "CONTRIBUTORS.yml")
+    dimensions = _maybe(load_dimensions, "quality_dimensions.yml")
+    indicators = _maybe(load_indicators, "quality_indicators.yml")
 
     defaults, per_page = load_curated(data_dir / "curated_learn_more.yml")
-    learn_more = merge_curated(collect_all(pages, source.base_url), defaults, per_page)
+    learn_more = merge_curated(
+        collect_all(pages, source.base_url, source.slug_style),
+        defaults,
+        per_page,
+    )
 
     fragments_dir = build_dir / "fragments"
     fragments_dir.mkdir(parents=True, exist_ok=True)
@@ -100,15 +119,15 @@ def assemble(
     for page_id, record in sorted(pages.items()):
         cleaned = clean_body(record.body, source.base_url, tools)
         page_entries[page_id] = _page_entry(
-            record, learn_more[page_id], source.base_url
+            record, learn_more[page_id], source.base_url, source.slug_style
         )
         header = FRAGMENT_HEADER.format(
             source=record.source_path,
             commit=pin.commit,
-            url=f"{source.base_url}/{_page_slug(record)}",
+            url=f"{source.base_url}/{_page_slug(record, source.slug_style)}",
             title=source.title,
             license=source.content_license,
-            doi=source.doi,
+            doi_part=f" DOI: {source.doi}." if source.doi else "",
         )
         (fragments_dir / f"{page_id}.md").write_text(header + cleaned, encoding="utf-8")
 

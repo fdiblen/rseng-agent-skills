@@ -25,6 +25,10 @@ class SourceConfig:
     doi: str
     content_license: str
     dir: Path
+    # How page URLs derive from source paths: "stem" (filename only,
+    # e.g. Jekyll permalinks) or "path" (relative path without suffix,
+    # e.g. docsify routes with subdirectories).
+    slug_style: str = "stem"
 
 
 def load_source(repo_root: Path, name: str = DEFAULT_SOURCE) -> SourceConfig:
@@ -38,4 +42,5 @@ def load_source(repo_root: Path, name: str = DEFAULT_SOURCE) -> SourceConfig:
         doi=str(data["doi"]),
         content_license=data["content_license"],
         dir=ext,
+        slug_style=data.get("slug_style", "stem"),
     )

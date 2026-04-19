@@ -63,7 +63,9 @@ def _dedupe(urls: list[str]) -> tuple[str, ...]:
     return tuple(result)
 
 
-def collect_learn_more(record: PageRecord, base_url: str) -> LearnMore:
+def collect_learn_more(
+    record: PageRecord, base_url: str, slug_style: str = "stem"
+) -> LearnMore:
     """Extract learn-more pointers from one page record."""
     cleaned = clean_body(record.body, base_url)
     sections = build_section_tree(cleaned)
@@ -75,7 +77,8 @@ def collect_learn_more(record: PageRecord, base_url: str) -> LearnMore:
             training_links.extend(_links_in(child.content))
 
     external = [url for url in _links_in(cleaned) if not url.startswith(base_url)]
-    slug = Path(record.source_path).stem  # site permalinks use the filename
+    path = Path(record.source_path)
+    slug = str(path.with_suffix("")) if slug_style == "path" else path.stem
     return LearnMore(
         page_id=record.page_id,
         rsqkit_url=f"{base_url}/{slug}",
@@ -84,9 +87,12 @@ def collect_learn_more(record: PageRecord, base_url: str) -> LearnMore:
     )
 
 
-def collect_all(pages: dict[str, PageRecord], base_url: str) -> dict[str, LearnMore]:
+def collect_all(
+    pages: dict[str, PageRecord], base_url: str, slug_style: str = "stem"
+) -> dict[str, LearnMore]:
     return {
-        page_id: collect_learn_more(rec, base_url) for page_id, rec in pages.items()
+        page_id: collect_learn_more(rec, base_url, slug_style)
+        for page_id, rec in pages.items()
     }
 
 
