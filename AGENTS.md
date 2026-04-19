@@ -32,6 +32,8 @@ reference material in references/ next to it.
 - Computational workflows: rseng-workflows
 - Declaring AI involvement (aidecl.yaml): rseng-ai-declaration
 - FAIR4RS compliance checking (FAIRGuard): rseng-fairguard
+- Starting projects from templates (Copier, cookiecutter):
+  rseng-project-scaffolding
 
 ## Behavior rules when using these skills
 

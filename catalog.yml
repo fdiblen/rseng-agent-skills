@@ -20,6 +20,7 @@ categories:
   - marketplace         # curated stores of skills/plugins
   - registry            # searchable indexes of skills
   - standard            # specifications and schemas skills build on
+  - template            # project templates and generators skills reference
 
 entries:
   - name: anthropic-skills
@@ -35,6 +36,15 @@ entries:
     category: standard
     status: proposed
     description: The Agent Skills format specification this pack follows.
+
+  - name: nlesc-python-template
+    url: https://github.com/NLeSC/python-template
+    kind: github
+    category: template
+    status: proposed
+    description: >-
+      NLeSC Copier template for research Python packages; referenced by
+      the rseng-project-scaffolding skill (tracked for template evolution).
 
   - name: ai-declaration-schema
     url: https://github.com/ai-declaration/schema

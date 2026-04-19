@@ -118,6 +118,8 @@ RSQKit task pages:
   (aidecl.yaml) - essential whenever AI agents contribute
 - rseng-fairguard: FAIR4RS compliance assessment with the FAIRGuard CLI -
   essential default at repo intake and before releases
+- rseng-project-scaffolding: starting projects from maintained templates
+  (Copier/cookiecutter) and keeping them in sync
 
 If a request spans several (e.g. "make my repo publication-ready"),
 sequence them: version control and license first, then tests and docs,

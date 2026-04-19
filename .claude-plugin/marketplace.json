@@ -8,7 +8,7 @@
     {
       "name": "rseng-agent-skills",
       "source": "./",
-      "description": "Research software engineering practice: 16 skills, three audit commands and a quality auditor subagent for research code."
+      "description": "Research software engineering practice: 17 skills, three audit commands and a quality auditor subagent for research code."
     }
   ]
 }
