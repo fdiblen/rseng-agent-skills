@@ -10,7 +10,11 @@ description: >-
   missing, update it after AI-assisted changes, and extend it with
   further schema fields as the project's AI use grows. Also use when the
   user asks about AI transparency, AI provenance, AI disclosure,
-  declaring AI usage, EU AI Act disclosure, or mentions aidecl.
+  declaring AI usage, or EU AI Act disclosure; when a dataset, document,
+  paper, model or media project needs its AI involvement declared; when
+  a project wants to state that NO AI was used; when a declaration needs
+  JSON/JSON-LD export, CI validation or review; or when the user
+  mentions aidecl.
 license: CC-BY-4.0
 metadata:
   version: 0.2.0
@@ -49,6 +53,37 @@ mark estimates as estimates.
   content): open the matching optional schema sections.
 - The user asks how AI was used in the project: read aidecl.yaml first
   and answer from it; fix it if it is stale.
+
+## Beyond the default case
+
+The format covers far more than "an agent wrote code"; act on these too:
+
+- No AI used: a declaration with `ai_usage.used: false` is valuable
+  transparency in itself (reviewers stop guessing). Offer it for
+  projects that want to state the negative explicitly.
+- Non-software work: content_type covers dataset, document, model and
+  media. Declare AI involvement in data preparation, papers and reports,
+  trained models (pair with the model's own card) and generated media -
+  the same detail standard applies.
+- Machine consumption: export aidecl.json when tooling needs it, and
+  add the JSON-LD @context so auditors and compliance tools can query
+  declarations as RDF (fields map to PROV-O, Schema.org, SPDX, Dublin
+  Core). Keep YAML as the human-edited source of truth.
+- CI validation: validate the declaration on every push like any other
+  schema-checked artifact, so a stale or malformed declaration fails
+  fast.
+- Audits and reviews: when a DPIA reviewer, journal, funder or
+  compliance check asks about AI involvement, answer FROM the
+  declaration (compliance_eu_ai_act, data_handling and governance hold
+  exactly what Article 50-style reviews ask for); extend it where their
+  questions expose gaps.
+- Reviewing declarations: when asked to review someone else's
+  aidecl.yaml, check schema validity, internal consistency (tools vs
+  components vs proportions), and plausibility against the repository's
+  actual history.
+- Migration: when a project carries ad-hoc AI notes (README badges,
+  "written with ChatGPT" footnotes), consolidate them into a proper
+  declaration and link it from where the notes were.
 
 ## The detail standard
 
