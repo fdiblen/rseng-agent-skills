@@ -1,0 +1,19 @@
+{
+  "commit": "34adeafb472c9884cc9c581873b35e1a8b901506",
+  "files": {
+    "best_practices.md": "f4f28bdbe6570e5bc1c22db8d0e66d2d8705b882094d798057fdf0da611b5cf0",
+    "language_guides/bash.md": "8cb5e146d9e309868a457a1e48540490e87d1c1c550abf0b1dab239325a083ed",
+    "language_guides/ccpp.md": "33110f8d35e12e212f21d1e38861a3de736df86533f66037d74e674527cc3706",
+    "language_guides/fortran.md": "98444ab58a2049b781a3188db410c8426c0021dae5a72e83c2a9aed5fe9bad28",
+    "language_guides/javascript.md": "feaf1276ea453c096c620cd005b90e723dddb88cd39183a8772ddefcf5f6cc02",
+    "language_guides/languages_overview.md": "1688f3fae5840aeeaa119de8d72845e3ce9c7d3f7058e414f695b9df69381045",
+    "language_guides/python.md": "51b96f57c26afe168068dc071ad0b9ebb17de5ee5d26d3539e3085d1dbedbec4",
+    "language_guides/r.md": "ae91ab11d2523145268e6d3c019b9bf8d8cd6bf03a4691d5dd5951971f913f1e",
+    "language_guides/rust.md": "c254e99e492a1e18f76d370f25fc88d61332ccfbcbd993589e3aa50f04d696a1",
+    "technology/datasets.md": "20b00864d816b09f3c651e60fe5f9da779e690715536afac4a119f2bd5d31a89",
+    "technology/gpu.md": "fd9f06b3258c5f1ecf399e613e5177105d770385950acf2f0f0c6aaf2015d0ce",
+    "technology/technology_overview.md": "cb4b8a58ca36914b6026e93cacd142d133181a9adbe45b92b913a3377fbe315a",
+    "technology/user_experience.md": "45418d94109d3e13773e02b5ff0ef88676249602a40db33d0a3ecb12e381c7a7"
+  },
+  "repo": "NLeSC/guide"
+}

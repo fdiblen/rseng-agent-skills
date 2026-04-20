@@ -1,0 +1,11 @@
+# Shared citation snippet for content derived from the eScience Center
+# guide; single source of truth for build targets using this extension.
+full: >-
+  Guidance based on the Netherlands eScience Center Software Development
+  Guide, https://guide.esciencecenter.nl/ (CC-BY-4.0).
+short: >-
+  Based on the eScience Center Software Development Guide,
+  https://guide.esciencecenter.nl/
+markdown: >-
+  Guidance based on the [Netherlands eScience Center Software Development
+  Guide](https://guide.esciencecenter.nl/) (CC-BY-4.0).

@@ -1,0 +1,61 @@
+# Maps eScience Center guide page_ids (filename stems; the guide has no
+# frontmatter) to skills. Multi-mapping is intentional here: the guide's
+# best_practices chapter enriches several process skills at once.
+
+skills:
+  rseng-quality-framework:
+    scope: >-
+      The guide's overview of software development best practice at the
+      Netherlands eScience Center.
+    pages: [best_practices]
+
+  rseng-language-guides:
+    scope: >-
+      Per-language development guides (Python, R, JavaScript/TypeScript,
+      C/C++, Fortran, Rust, Bash) sharing a common template: setup,
+      style, packaging, testing, QA, optimization, logging,
+      documentation, dependencies.
+    pages:
+      - languages_overview
+      - python
+      - r
+      - javascript
+      - ccpp
+      - fortran
+      - rust
+      - bash
+      - technology_overview
+
+  rseng-gpu-computing:
+    scope: >-
+      GPU and accelerator programming for research software: programming
+      models, libraries, language bindings, portability layers,
+      profiling and auto-tuning.
+    pages: [gpu]
+
+  rseng-ux-accessibility:
+    scope: >-
+      User experience for research software: UX disciplines,
+      accessibility, design thinking, usability heuristics and
+      prototyping tools.
+    pages: [user_experience]
+
+  rseng-workflows:
+    pages: [datasets]
+
+  rseng-testing:
+    pages: [best_practices]
+  rseng-version-control-review:
+    pages: [best_practices]
+  rseng-documentation:
+    pages: [best_practices]
+  rseng-code-quality:
+    pages: [best_practices]
+  rseng-licensing:
+    pages: [best_practices]
+  rseng-management-planning:
+    pages: [best_practices]
+  rseng-publishing-releasing:
+    pages: [best_practices]
+  rseng-maintenance-sustainability:
+    pages: [best_practices]

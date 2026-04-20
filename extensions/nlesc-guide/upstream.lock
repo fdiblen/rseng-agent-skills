@@ -1,0 +1,16 @@
+# Pinned upstream source of truth for the nlesc-guide extension.
+# The sync workflow updates this pin; avoid editing it by hand.
+
+[upstream]
+repo = "https://github.com/NLeSC/guide"
+ref = "main"
+commit = "34adeafb472c9884cc9c581873b35e1a8b901506"
+
+[sources]
+# Directories and files holding the guide content the pipeline consumes.
+paths = [
+    "best_practices.md",
+    "language_guides/",
+    "technology/",
+]
+data_globs = []
