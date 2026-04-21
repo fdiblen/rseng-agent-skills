@@ -3,6 +3,27 @@
 
 # References
 
+## the Netherlands eScience Center Software Development Guide
+
+Guidance based on the [Netherlands eScience Center Software Development Guide](https://guide.esciencecenter.nl/) (CC-BY-4.0).
+
+Source pages:
+
+- Working with tabular data: https://guide.esciencecenter.nl/#/technology/datasets
+
+Learn more:
+
+- https://github.com/suvayu
+- https://github.com/f-hafner
+- https://github.com/recap
+- https://arrow.apache.org
+- https://arrow.apache.org/powered_by/
+- https://www.sqlalchemy.org/
+- https://datafusion.apache.org/
+- https://rust-lang.org/
+- https://arrow.apache.org/
+- https://benchmark.clickhouse.com/
+
 ## RSQKit (the Research Software Quality Kit) by the EVERSE project and the RSQKit team
 
 Guidance based on [RSQKit](https://everse.software/RSQKit/) by the EVERSE project and the RSQKit team, DOI [10.5281/zenodo.14923573](https://doi.org/10.5281/zenodo.14923573) (CC-BY-4.0).
