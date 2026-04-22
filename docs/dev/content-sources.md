@@ -2,7 +2,7 @@
 
 The engine in pipeline/ is source-agnostic: everything specific to one
 body of upstream content lives in a content-source extension under
-extensions/<name>/. The bundled source is rsqkit.
+extensions/<name>/. The bundled sources are rsqkit (RSQKit) and nlesc-guide (the eScience Center guide).
 
 ## What an extension provides
 

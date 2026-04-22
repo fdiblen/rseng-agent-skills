@@ -189,6 +189,10 @@ The important step is producing any version-zero draft; refine afterward,
 checking that processes are captured clearly, key tools are linked, and
 documentation/tutorial links exist and work.
 
+A concrete docs stack (NLeSC python-template): Sphinx sources with a
+.readthedocs.yaml for hosted builds, a docs-build GitHub Action as the
+PR gate, and a separate README.dev.md for developer-facing setup.
+
 ## Working with this skill
 
 The generated references.md beside this file lists the source

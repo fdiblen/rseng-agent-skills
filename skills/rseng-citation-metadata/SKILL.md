@@ -183,6 +183,10 @@ or funder recognises software as an output; and add a "Credit and
 Recognition" section to the Software Management Plan, tracking contributions
 from the start rather than retrospectively.
 
+Validate citation files in CI: the cffconvert GitHub Action checks
+CITATION.cff on every push, so a malformed file fails fast instead of
+surfacing at publication time (pattern from the NLeSC python-template).
+
 ## Working with this skill
 
 The generated references.md beside this file lists the

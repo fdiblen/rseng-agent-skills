@@ -166,6 +166,11 @@ Rule of thumb: mint a DOI on Zenodo for the citable release, and register
 the source with Software Heritage for the full history; add
 environment-capture tools when exact re-execution is a requirement.
 
+A concrete release stack (NLeSC python-template): setuptools-scm
+derives versions from git tags, bump-my-version manages the bump, and
+Zenodo integration mints a DOI wired to CITATION.cff on each GitHub
+release.
+
 ## Working with this skill
 
 The generated references.md beside this file lists the source

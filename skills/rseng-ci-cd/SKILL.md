@@ -198,6 +198,12 @@ The moving parts to design:
 Document the hybrid setup for contributors: how to read status checks,
 reach GitLab logs, and request runner access.
 
+A concrete workflow set for research Python packages (NLeSC
+python-template): build, link-check, docs build, SonarCloud analysis
+and cffconvert citation validation - plus its next_steps.yml pattern,
+which opens onboarding issues for manual setup steps (Zenodo,
+SonarCloud, Read the Docs) so scaffolded projects finish their setup.
+
 ## Working with this skill
 
 This skill ships generated companion files under `references/`:

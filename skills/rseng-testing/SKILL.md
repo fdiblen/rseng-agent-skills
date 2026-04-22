@@ -163,6 +163,10 @@ each parameter and exclusion exists.
   matrix only when it earns its cost (e.g. before releases) and use smaller
   subsets for day-to-day development.
 
+A concrete reference stack (NLeSC python-template): pytest with branch
+coverage enabled, and a tox matrix spanning the Python versions the
+SPEC 0 policy currently designates (the three most recent minors).
+
 ## Working with this skill
 
 The generated references.md beside this file lists the source

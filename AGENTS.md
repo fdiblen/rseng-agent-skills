@@ -34,6 +34,10 @@ reference material in references/ next to it.
 - FAIR4RS compliance checking (FAIRGuard): rseng-fairguard
 - Starting projects from templates (Copier, cookiecutter):
   rseng-project-scaffolding
+- Language-specific practice (Python, R, JS/TS, C/C++, Fortran, Rust,
+  Bash): rseng-language-guides
+- GPU and accelerator programming: rseng-gpu-computing
+- UX and accessibility for research tools: rseng-ux-accessibility
 
 ## Behavior rules when using these skills
 

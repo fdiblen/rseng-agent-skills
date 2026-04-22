@@ -149,6 +149,13 @@ Organise the rest into sub-directories labelled by content type:
 - Project templates/skeletons enforce a standardised layout and modern
   tooling, cutting setup time and keeping teams consistent.
 
+A concrete reference stack (as encoded by the NLeSC python-template;
+see rseng-project-scaffolding): ruff as the single linter, formatter and
+import sorter; EditorConfig for cross-editor consistency; SonarCloud
+for hosted static analysis; and first-class type checking with Pyright
+(or Mypy) - treat type checks as part of linting, not an optional
+extra.
+
 ## Working with this skill
 
 The generated references.md beside this file lists the source

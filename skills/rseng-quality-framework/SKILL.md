@@ -120,6 +120,9 @@ RSQKit task pages:
   essential default at repo intake and before releases
 - rseng-project-scaffolding: starting projects from maintained templates
   (Copier/cookiecutter) and keeping them in sync
+- rseng-language-guides: language-specific conventions per ecosystem
+- rseng-gpu-computing: GPU/accelerator programming models and tuning
+- rseng-ux-accessibility: usability and accessibility of research tools
 
 If a request spans several (e.g. "make my repo publication-ready"),
 sequence them: version control and license first, then tests and docs,
