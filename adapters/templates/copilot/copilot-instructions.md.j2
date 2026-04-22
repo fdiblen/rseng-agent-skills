@@ -31,4 +31,6 @@ EVERSE project. Detailed skill files live in .github/skills/.
   rseng-quality-framework skill; do not hold analysis scripts to
   infrastructure standards.
 
-Content from RSQKit at commit {{ upstream.commit[:8] }}, CC-BY-4.0.
+{% for src in sources %}
+Content: {{ src.short_title }} @ {{ src.commit[:8] }} ({{ src.license }}).
+{% endfor %}

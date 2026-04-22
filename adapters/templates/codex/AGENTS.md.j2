@@ -47,4 +47,6 @@ Source pages:
   skills/rseng-quality-framework/references.md and report
   met / partial / missing / not-applicable per indicator for the tier.
 
-Content from RSQKit at commit {{ upstream.commit[:8] }}, CC-BY-4.0.
+{% for src in sources %}
+Content: {{ src.short_title }} @ {{ src.commit[:8] }} ({{ src.license }}).
+{% endfor %}

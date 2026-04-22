@@ -37,4 +37,6 @@ analysis scripts to infrastructure standards.
   /rseng-cite, /rseng-plan) cover repository assessment, citation
   metadata generation and software management planning.
 
-Content from RSQKit at commit {{ upstream.commit[:8] }}, CC-BY-4.0.
+{% for src in sources %}
+Content: {{ src.short_title }} @ {{ src.commit[:8] }} ({{ src.license }}).
+{% endfor %}
