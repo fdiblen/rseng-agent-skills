@@ -217,7 +217,8 @@ documentation itself (links below), not a bundled content source.
 - Learn more (verified):
   - https://www.fairguard.org - project site, hosted reports/dashboards
   - https://pypi.org/project/fairguard/ - CLI package and usage docs
-  - https://codeberg.org/fairguard/fairguard-cli - source and issues
+    (the package metadata's source-repository link is currently dead;
+    use the site and PyPI page as canonical)
 
 ---
 

@@ -278,9 +278,11 @@ When a needed detail has no schema field, in order of preference:
 3. Propose the field upstream at https://github.com/ai-declaration/schema
    so it becomes standard.
 
-Validate after every edit: the file must satisfy
-https://ai-declaration.github.io/schema/v1/aidecl.schema.json; an
-official validator CLI lives at https://github.com/ai-declaration/cli.
+Validate after every edit: the file must satisfy the published schema
+(schema id https://ai-declaration.github.io/schema/v1/aidecl.schema.json -
+an identifier, not a download URL; the schema.json file itself lives in
+https://github.com/ai-declaration/schema). An official validator CLI
+lives at https://github.com/ai-declaration/cli.
 
 ## The README footnote
 
