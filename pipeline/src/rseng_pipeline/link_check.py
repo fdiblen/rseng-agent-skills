@@ -56,11 +56,14 @@ def main() -> None:
     )
     roots = [root for root in roots if root.exists()]
 
-    from .extension import extension_dir
+    from .extension import extension_dir, list_extensions
 
-    quarantine = load_quarantine(
-        extension_dir(repo_root) / "data" / "url_quarantine.yml"
-    )
+    # Every installed source contributes its quarantine entries.
+    quarantine: dict[str, str] = {}
+    for name in list_extensions(repo_root):
+        path = extension_dir(repo_root, name) / "data" / "url_quarantine.yml"
+        if path.is_file():
+            quarantine.update(load_quarantine(path))
     found = collect_urls(roots)
     print(f"checking {len(found)} distinct urls from {len(roots)} roots")
     results = check_urls(sorted(found), quarantine)

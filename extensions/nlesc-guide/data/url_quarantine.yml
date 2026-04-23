@@ -1,2 +1,6 @@
 # URLs excluded from generated artifacts until a human clears them.
-[]
+# Guide upstream links that reject non-browser clients.
+- url: https://crates.io
+  reason: 404 to non-browser clients (bot gating); works in browsers
+- url: https://marketplace.visualstudio.com/vscode
+  reason: 404 to non-browser clients (marketplace UA-gating)

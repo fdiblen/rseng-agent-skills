@@ -47,3 +47,10 @@
   reason: page removed upstream (404)
 - url: https://medium.com/@sjalexandre/python-tutorial-managing-projects-with-poetry-cd2deab72697
   reason: article gone (410)
+# Pack-own skill content: placeholders and not-yet-live links.
+- url: https://codeberg.org/owner/repo
+  reason: illustrative placeholder in the fairguard usage example
+- url: https://github.com/example/growthfit
+  reason: illustrative placeholder in the ai-declaration example
+- url: https://github.com/fdiblen/rseng-agent-skills
+  reason: pack repository; goes live at the first release
