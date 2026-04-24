@@ -10,10 +10,10 @@ for placeholders that must never reach a non-Claude target.
 from __future__ import annotations
 
 import json
-import tomllib
 from pathlib import Path
 
 import frontmatter
+import tomllib
 
 # Context files that agents load in full get explicit budgets.
 SIZE_BUDGETS = {
@@ -83,6 +83,7 @@ def check_target(target_dir: Path, commit: str | None = None) -> list[str]:
             continue
         if (
             "references" in path.parts
+            or "data" in path.parts
             or path.name == "SKILL.md"
             or path.name == "references.md"
         ):
