@@ -123,6 +123,8 @@ RSQKit task pages:
 - rseng-language-guides: language-specific conventions per ecosystem
 - rseng-gpu-computing: GPU/accelerator programming models and tuning
 - rseng-ux-accessibility: usability and accessibility of research tools
+- rseng-software-reuse: discovering and reusing existing research
+  software via Research Software Directory instances
 
 If a request spans several (e.g. "make my repo publication-ready"),
 sequence them: version control and license first, then tests and docs,

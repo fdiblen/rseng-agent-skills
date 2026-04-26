@@ -38,6 +38,8 @@ reference material in references/ next to it.
   Bash): rseng-language-guides
 - GPU and accelerator programming: rseng-gpu-computing
 - UX and accessibility for research tools: rseng-ux-accessibility
+- Finding and reusing existing research software (RSD instances):
+  rseng-software-reuse
 
 ## Behavior rules when using these skills
 
