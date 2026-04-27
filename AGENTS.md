@@ -40,6 +40,10 @@ reference material in references/ next to it.
 - UX and accessibility for research tools: rseng-ux-accessibility
 - Finding and reusing existing research software (RSD instances):
   rseng-software-reuse
+- Inherited, untested or aging code; safe modernization:
+  rseng-legacy-code
+- Research data: organization, versioning, documentation, deposit:
+  rseng-data-management
 
 ## Behavior rules when using these skills
 

@@ -125,6 +125,10 @@ RSQKit task pages:
 - rseng-ux-accessibility: usability and accessibility of research tools
 - rseng-software-reuse: discovering and reusing existing research
   software via Research Software Directory instances
+- rseng-legacy-code: working safely with inherited or untested research
+  code; characterization tests and incremental modernization
+- rseng-data-management: research data organization, versioning,
+  documentation, licensing and deposit
 
 If a request spans several (e.g. "make my repo publication-ready"),
 sequence them: version control and license first, then tests and docs,
