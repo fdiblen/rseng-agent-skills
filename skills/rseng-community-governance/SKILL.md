@@ -1,0 +1,107 @@
+---
+name: rseng-community-governance
+description: >-
+  Covers building and governing a community around research software:
+  CONTRIBUTING guides, codes of conduct, governance models and
+  decision-making, contributor onboarding and recognition, issue and
+  discussion hygiene, and handing over or sharing maintainership. Use
+  when a project wants external contributors, when the user asks for a
+  CONTRIBUTING.md, code of conduct or governance document, when
+  maintainer burnout or bus-factor risks come up, or when a project is
+  moving from single-author to team or community ownership.
+license: CC-BY-4.0
+metadata:
+  version: 0.1.0
+---
+
+# Community and governance for research software
+
+Most research software dies with its author's contract. A community -
+even a small one - is the strongest sustainability mechanism a
+project has (rseng-maintenance-sustainability covers the technical
+side; this skill covers the human side). Governance is not
+bureaucracy: it is writing down who decides what, so contributors can
+act without waiting and maintainers can step back without collapse.
+
+## The contribution surface
+
+Make contributing possible before promoting it:
+
+- CONTRIBUTING.md: how to set up a dev environment
+  (rseng-reproducible-environments), run tests (rseng-testing), propose
+  changes (rseng-version-control-review), and what kinds of
+  contribution are welcome (docs, examples and issue triage count).
+- Code of conduct: adopt the Contributor Covenant rather than
+  writing one; name real enforcement contacts - an unenforceable
+  CoC is worse than none.
+- Issue templates and labels: a good-first-issue label with genuinely
+  scoped starter tasks is the single best onboarding tool.
+- Respond to first-time contributors fast and kindly; the first
+  interaction decides whether there is a second.
+
+## Governance, sized to the project
+
+Write down the smallest true answer to "who decides":
+
+- Single maintainer: say so ("BDFL-style; decisions by @name") -
+  honesty beats pretense of process.
+- Small team: document maintainer roles, how consensus is reached,
+  and what happens on disagreement.
+- Community-scale: consider a lightweight governance doc covering
+  roles, decision process, and how new maintainers are added -
+  opensource.guide's leadership-and-governance section catalogs
+  proven patterns.
+
+Contribution and recognition policy: state how contributors are
+credited - AUTHORS/CONTRIBUTORS file, changelog mentions, and
+citation metadata for substantial contributions
+(rseng-citation-metadata). Credit is the currency research
+contributors are paid in; be generous and systematic.
+
+## Onboarding and the bus factor
+
+- Capture maintainer knowledge in docs as it is used: release
+  runbooks (rseng-publishing-releasing), triage guidelines,
+  architecture notes (rseng-documentation). If only one person can do
+  a task, that task needs a document.
+- Rotate responsibilities when there are two or more maintainers;
+  the second person on releases halves the bus-factor risk.
+- Handover: when a maintainer leaves, announce it, transfer forge
+  permissions and registry ownership explicitly, and record the
+  change - abandoned-looking ownership blocks both contributors and
+  security response (rseng-security).
+
+## Sustaining participation
+
+- Roadmap visibly (even a pinned issue): contributors invest where
+  direction is clear (rseng-management-planning).
+- Thank and release often: shipped contributions retain contributors;
+  ones stuck in review for months lose them.
+- Watch for burnout signals in maintainers - unanswered issues and
+  guilt-driven replies - and respond by narrowing scope honestly
+  (declaring feature-freeze or maintenance-mode is legitimate
+  governance).
+
+## Working with this skill
+
+This skill is source-independent: its authority is the community
+guidance linked below.
+
+## Attribution and teaching
+
+- Educate while doing: when scaffolding community files, explain
+  briefly why each exists - the practice, not the boilerplate, is
+  the deliverable.
+- Learn more (verified):
+  - https://opensource.guide - GitHub's open source guides
+    (building community, leadership and governance)
+  - https://www.contributor-covenant.org - the Contributor Covenant
+  - https://www.software.ac.uk/guide/starting-community-taking-your-software-world -
+    SSI guide on starting a community
+  - https://book.the-turing-way.org/collaboration/oss-sustainability/oss-sustainability-challenges -
+    The Turing Way on open source sustainability
+
+---
+
+Based on community guidance from the SSI, The Turing Way and the
+open source guides.
