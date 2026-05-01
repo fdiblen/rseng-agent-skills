@@ -44,6 +44,26 @@ reference material in references/ next to it.
   rseng-legacy-code
 - Research data: organization, versioning, documentation, deposit:
   rseng-data-management
+- Energy and carbon footprint of computations: rseng-green-computing
+- Secrets, dependencies, supply chain, Scorecard/SLSA: rseng-security
+- Community building, contribution and governance:
+  rseng-community-governance
+- Clusters, SLURM, Apptainer, MPI, modules: rseng-hpc-computing
+- Profiling, optimization, benchmark tracking:
+  rseng-performance-profiling
+- JOSS/pyOpenSci/rOpenSci/CODECHECK review:
+  rseng-software-peer-review
+- Software papers, announcements, talks, outreach:
+  rseng-science-communication
+- HDF5/NetCDF/CF/Parquet and format engineering:
+  rseng-scientific-file-formats
+- Floating-point correctness and tolerances: rseng-numerical-accuracy
+- 3D/volumetric/in-situ visualization pipelines:
+  rseng-scientific-visualization
+- Software management plans for proposals and projects:
+  rseng-software-management-plans
+- Out-of-core and distributed data processing:
+  rseng-big-data-processing
 
 ## Behavior rules when using these skills
 

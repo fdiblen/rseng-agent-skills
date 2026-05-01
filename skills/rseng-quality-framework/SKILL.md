@@ -129,6 +129,30 @@ RSQKit task pages:
   code; characterization tests and incremental modernization
 - rseng-data-management: research data organization, versioning,
   documentation, licensing and deposit
+- rseng-green-computing: energy and carbon footprint of research
+  computing; measurement and carbon-aware scheduling
+- rseng-security: secrets hygiene, supply chain, Scorecard, SLSA,
+  SBOMs and repository hardening
+- rseng-community-governance: contribution guides, codes of conduct,
+  governance and maintainer succession
+- rseng-hpc-computing: SLURM jobs, Apptainer containers, module
+  systems, EESSI and MPI on clusters
+- rseng-performance-profiling: profile-first optimization and
+  benchmark regression tracking
+- rseng-software-peer-review: JOSS, pyOpenSci, rOpenSci and CODECHECK
+  submission and reviewing
+- rseng-science-communication: software papers, release
+  announcements, talks and lay summaries
+- rseng-scientific-file-formats: HDF5, NetCDF, CF conventions,
+  Parquet and self-describing data in code
+- rseng-numerical-accuracy: floating-point practice, tolerances and
+  cross-platform numerical drift
+- rseng-scientific-visualization: reproducible 3D/volumetric
+  visualization pipelines with ParaView and VTK
+- rseng-software-management-plans: SMPs for proposals and running
+  projects
+- rseng-big-data-processing: out-of-core, Dask/Spark and restartable
+  batch pipelines
 
 If a request spans several (e.g. "make my repo publication-ready"),
 sequence them: version control and license first, then tests and docs,
