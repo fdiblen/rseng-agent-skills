@@ -64,6 +64,8 @@ reference material in references/ next to it.
   rseng-software-management-plans
 - Out-of-core and distributed data processing:
   rseng-big-data-processing
+- Dependency license audits, compatibility, dual licensing:
+  rseng-license-compliance
 
 ## Behavior rules when using these skills
 

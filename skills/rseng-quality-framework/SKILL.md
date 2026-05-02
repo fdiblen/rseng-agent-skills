@@ -153,6 +153,8 @@ RSQKit task pages:
   projects
 - rseng-big-data-processing: out-of-core, Dask/Spark and restartable
   batch pipelines
+- rseng-license-compliance: dependency license audits, compatibility
+  analysis, dual licensing, SPDX/REUSE verification
 
 If a request spans several (e.g. "make my repo publication-ready"),
 sequence them: version control and license first, then tests and docs,
