@@ -155,6 +155,8 @@ RSQKit task pages:
   batch pipelines
 - rseng-license-compliance: dependency license audits, compatibility
   analysis, dual licensing, SPDX/REUSE verification
+- rseng-reproducibility: end-to-end result reproducibility, research
+  compendia, replication packages, Binder, artifact badges
 
 If a request spans several (e.g. "make my repo publication-ready"),
 sequence them: version control and license first, then tests and docs,

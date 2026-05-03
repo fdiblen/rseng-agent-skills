@@ -66,6 +66,8 @@ reference material in references/ next to it.
   rseng-big-data-processing
 - Dependency license audits, compatibility, dual licensing:
   rseng-license-compliance
+- End-to-end reproducibility: compendia, replication packages,
+  Binder: rseng-reproducibility
 
 ## Behavior rules when using these skills
 
