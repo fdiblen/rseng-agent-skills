@@ -157,6 +157,8 @@ RSQKit task pages:
   analysis, dual licensing, SPDX/REUSE verification
 - rseng-reproducibility: end-to-end result reproducibility, research
   compendia, replication packages, Binder, artifact badges
+- rseng-open-source-migration: moving code off commercial platforms
+  (MATLAB, IDL, SAS) to open alternatives with numerical parity
 
 If a request spans several (e.g. "make my repo publication-ready"),
 sequence them: version control and license first, then tests and docs,

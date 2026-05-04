@@ -68,6 +68,8 @@ reference material in references/ next to it.
   rseng-license-compliance
 - End-to-end reproducibility: compendia, replication packages,
   Binder: rseng-reproducibility
+- Leaving MATLAB/IDL/SAS for open alternatives:
+  rseng-open-source-migration
 
 ## Behavior rules when using these skills
 
