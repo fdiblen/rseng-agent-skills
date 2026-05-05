@@ -70,6 +70,8 @@ reference material in references/ next to it.
   Binder: rseng-reproducibility
 - Leaving MATLAB/IDL/SAS for open alternatives:
   rseng-open-source-migration
+- GDPR, EU AI Act and regulated data/AI checks:
+  rseng-regulatory-compliance
 
 ## Behavior rules when using these skills
 

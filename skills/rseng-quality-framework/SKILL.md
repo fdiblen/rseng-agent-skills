@@ -159,6 +159,8 @@ RSQKit task pages:
   compendia, replication packages, Binder, artifact badges
 - rseng-open-source-migration: moving code off commercial platforms
   (MATLAB, IDL, SAS) to open alternatives with numerical parity
+- rseng-regulatory-compliance: GDPR and EU AI Act checks on code and
+  data, DPIA preparation, route-to-DPO boundaries
 
 If a request spans several (e.g. "make my repo publication-ready"),
 sequence them: version control and license first, then tests and docs,
