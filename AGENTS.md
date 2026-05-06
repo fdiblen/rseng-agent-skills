@@ -72,6 +72,8 @@ reference material in references/ next to it.
   rseng-open-source-migration
 - GDPR, EU AI Act and regulated data/AI checks:
   rseng-regulatory-compliance
+- Sandboxing, permissions and containment for coding agents:
+  rseng-agent-security
 
 ## Behavior rules when using these skills
 

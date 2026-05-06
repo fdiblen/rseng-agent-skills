@@ -161,6 +161,8 @@ RSQKit task pages:
   (MATLAB, IDL, SAS) to open alternatives with numerical parity
 - rseng-regulatory-compliance: GDPR and EU AI Act checks on code and
   data, DPIA preparation, route-to-DPO boundaries
+- rseng-agent-security: sandboxing, permission audits, containerized
+  agent runs and prompt-injection defenses
 
 If a request spans several (e.g. "make my repo publication-ready"),
 sequence them: version control and license first, then tests and docs,
