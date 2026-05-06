@@ -17,7 +17,7 @@ import tomllib
 
 # Context files that agents load in full get explicit budgets.
 SIZE_BUDGETS = {
-    "copilot-instructions.md": 12 * 1024,
+    "copilot-instructions.md": 16 * 1024,
     "GEMINI.md": 24 * 1024,
     "AGENTS.md": 32 * 1024,
 }
