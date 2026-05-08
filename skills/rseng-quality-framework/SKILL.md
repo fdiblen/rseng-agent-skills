@@ -165,6 +165,8 @@ RSQKit task pages:
   agent runs and prompt-injection defenses
 - rseng-archiving: long-term preservation via Software Heritage and
   Zenodo, SWHIDs and versioned DOIs, retirement archiving
+- rseng-trainer: teaching best practices and concepts while working,
+  Carpentries/CodeRefinery pedagogy, training-material routing
 
 If a request spans several (e.g. "make my repo publication-ready"),
 sequence them: version control and license first, then tests and docs,

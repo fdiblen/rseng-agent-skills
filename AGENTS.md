@@ -76,6 +76,7 @@ reference material in references/ next to it.
   rseng-agent-security
 - Long-term preservation: Software Heritage, Zenodo, SWHIDs:
   rseng-archiving
+- Teaching users best practices while working: rseng-trainer
 
 ## Behavior rules when using these skills
 
