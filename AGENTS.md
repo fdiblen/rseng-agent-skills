@@ -74,6 +74,8 @@ reference material in references/ next to it.
   rseng-regulatory-compliance
 - Sandboxing, permissions and containment for coding agents:
   rseng-agent-security
+- Long-term preservation: Software Heritage, Zenodo, SWHIDs:
+  rseng-archiving
 
 ## Behavior rules when using these skills
 

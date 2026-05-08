@@ -163,6 +163,8 @@ RSQKit task pages:
   data, DPIA preparation, route-to-DPO boundaries
 - rseng-agent-security: sandboxing, permission audits, containerized
   agent runs and prompt-injection defenses
+- rseng-archiving: long-term preservation via Software Heritage and
+  Zenodo, SWHIDs and versioned DOIs, retirement archiving
 
 If a request spans several (e.g. "make my repo publication-ready"),
 sequence them: version control and license first, then tests and docs,
