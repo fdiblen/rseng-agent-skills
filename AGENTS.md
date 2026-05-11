@@ -77,6 +77,14 @@ reference material in references/ next to it.
 - Long-term preservation: Software Heritage, Zenodo, SWHIDs:
   rseng-archiving
 - Teaching users best practices while working: rseng-trainer
+- Verifying references against Crossref/OpenAlex/retractions:
+  rseng-citation-hygiene
+- Data management plans, maDMPs, funder templates:
+  rseng-data-management-plans
+- OSF, preregistration, preprints, open review:
+  rseng-open-science-practices
+- Pre-submission number and integrity checks:
+  rseng-research-integrity
 
 ## Behavior rules when using these skills
 

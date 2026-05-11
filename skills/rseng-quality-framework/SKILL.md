@@ -167,6 +167,14 @@ RSQKit task pages:
   Zenodo, SWHIDs and versioned DOIs, retirement archiving
 - rseng-trainer: teaching best practices and concepts while working,
   Carpentries/CodeRefinery pedagogy, training-material routing
+- rseng-citation-hygiene: verifying every reference against Crossref,
+  OpenAlex and the Retraction Watch database
+- rseng-data-management-plans: DMPs from project reality, RDA maDMPs,
+  DS-Wizard and DMPonline, drift checks
+- rseng-open-science-practices: OSF projects, preregistration,
+  preprints and open peer review
+- rseng-research-integrity: statcheck/GRIM-style checks, manuscript
+  vs pipeline agreement, pre-submission battery
 
 If a request spans several (e.g. "make my repo publication-ready"),
 sequence them: version control and license first, then tests and docs,
