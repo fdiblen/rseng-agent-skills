@@ -175,6 +175,8 @@ RSQKit task pages:
   preprints and open peer review
 - rseng-research-integrity: statcheck/GRIM-style checks, manuscript
   vs pipeline agreement, pre-submission battery
+- rseng-storytelling: narrative for data, software and projects,
+  public engagement and citizen-science loop-closing
 
 If a request spans several (e.g. "make my repo publication-ready"),
 sequence them: version control and license first, then tests and docs,

@@ -85,6 +85,8 @@ reference material in references/ next to it.
   rseng-open-science-practices
 - Pre-submission number and integrity checks:
   rseng-research-integrity
+- Stories for data, software, projects and citizen science:
+  rseng-storytelling
 
 ## Behavior rules when using these skills
 
