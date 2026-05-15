@@ -177,6 +177,14 @@ RSQKit task pages:
   vs pipeline agreement, pre-submission battery
 - rseng-storytelling: narrative for data, software and projects,
   public engagement and citizen-science loop-closing
+- rseng-software-design: modularity, interfaces, pure cores,
+  architecture decision records
+- rseng-defensive-coding: boundary validation, units and quantities,
+  seed discipline, fail-loud defaults
+- rseng-debugging: hypothesis-driven diagnosis, minimal reproducers,
+  bisection, regression tests from fixes
+- rseng-notebooks: hidden-state hygiene, jupytext pairing, execution
+  tests, papermill, module graduation
 
 If a request spans several (e.g. "make my repo publication-ready"),
 sequence them: version control and license first, then tests and docs,

@@ -87,6 +87,13 @@ reference material in references/ next to it.
   rseng-research-integrity
 - Stories for data, software, projects and citizen science:
   rseng-storytelling
+- Structure, modularity and architecture decisions:
+  rseng-software-design
+- Data validation, units, seeds - loud failure over silent wrong:
+  rseng-defensive-coding
+- Systematic diagnosis, reproducers, bisection: rseng-debugging
+- Notebook hygiene, testing, version control, graduation:
+  rseng-notebooks
 
 ## Behavior rules when using these skills
 
