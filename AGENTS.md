@@ -94,6 +94,8 @@ reference material in references/ next to it.
 - Systematic diagnosis, reproducers, bisection: rseng-debugging
 - Notebook hygiene, testing, version control, graduation:
   rseng-notebooks
+- FAIR for models and ML datasets, model cards, Croissant:
+  rseng-fair-ml
 
 ## Behavior rules when using these skills
 

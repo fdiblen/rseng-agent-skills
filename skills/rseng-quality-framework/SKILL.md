@@ -185,6 +185,8 @@ RSQKit task pages:
   bisection, regression tests from fixes
 - rseng-notebooks: hidden-state hygiene, jupytext pairing, execution
   tests, papermill, module graduation
+- rseng-fair-ml: model cards, Croissant dataset records, model
+  licensing and the linked model-data-code-paper cluster
 
 If a request spans several (e.g. "make my repo publication-ready"),
 sequence them: version control and license first, then tests and docs,
