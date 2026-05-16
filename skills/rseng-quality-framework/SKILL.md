@@ -189,6 +189,8 @@ RSQKit task pages:
   licensing and the linked model-data-code-paper cluster
 - rseng-pair-programming: driver-navigator pairing, ping-pong TDD,
   PR pre-review passes and review comment craft
+- rseng-software-publishing: package indexes, research software
+  registries and journal channels, publication checklist
 
 If a request spans several (e.g. "make my repo publication-ready"),
 sequence them: version control and license first, then tests and docs,

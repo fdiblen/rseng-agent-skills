@@ -98,6 +98,8 @@ reference material in references/ next to it.
   rseng-fair-ml
 - Pairing with the human and pre-reviewing pull requests:
   rseng-pair-programming
+- Distribution channels: PyPI/conda-forge/CRAN, registries, JOSS:
+  rseng-software-publishing
 
 ## Behavior rules when using these skills
 
