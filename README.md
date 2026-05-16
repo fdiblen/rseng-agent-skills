@@ -1,7 +1,7 @@
 # rseng-agent-skills
 
 Research software engineering (RSEng) skills for AI coding agents:
-52 skills covering the practices that make research software good -
+53 skills covering the practices that make research software good -
 testing, CI/CD, documentation, licensing, citation, FAIR, publishing,
 reproducibility, code review, code quality, maintenance, planning and
 workflows - built into native formats for the major agents.
@@ -20,7 +20,7 @@ ATTRIBUTION.md.
 
 | Agent | What you get | Install |
 |---|---|---|
-| Claude Code | 52 skills, /rseng-check, /rseng-cite, /rseng-plan, rseng-auditor agent | `/plugin marketplace add <owner>/rseng-agent-skills` then `/plugin install rseng-agent-skills` |
+| Claude Code | 53 skills, /rseng-check, /rseng-cite, /rseng-plan, rseng-auditor agent | `/plugin marketplace add <owner>/rseng-agent-skills` then `/plugin install rseng-agent-skills` |
 | GitHub Copilot | repo instructions + per-skill instructions + skills | `npx rseng-agent-skills install copilot` |
 | Cursor | always-on overview + per-topic rules | `npx rseng-agent-skills install cursor` |
 | Codex CLI | AGENTS.md + skills folders | `npx rseng-agent-skills install codex` |

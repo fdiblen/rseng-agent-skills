@@ -187,6 +187,8 @@ RSQKit task pages:
   tests, papermill, module graduation
 - rseng-fair-ml: model cards, Croissant dataset records, model
   licensing and the linked model-data-code-paper cluster
+- rseng-pair-programming: driver-navigator pairing, ping-pong TDD,
+  PR pre-review passes and review comment craft
 
 If a request spans several (e.g. "make my repo publication-ready"),
 sequence them: version control and license first, then tests and docs,

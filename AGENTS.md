@@ -96,6 +96,8 @@ reference material in references/ next to it.
   rseng-notebooks
 - FAIR for models and ML datasets, model cards, Croissant:
   rseng-fair-ml
+- Pairing with the human and pre-reviewing pull requests:
+  rseng-pair-programming
 
 ## Behavior rules when using these skills
 
