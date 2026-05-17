@@ -133,6 +133,7 @@ level.
   - https://asapbio.org - ASAPbio preprint resources
   - https://book.the-turing-way.org/reproducible-research/open -
     The Turing Way on open research
+  - https://orcid.org - ORCID researcher identifiers
 
 ---
 

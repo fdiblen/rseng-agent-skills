@@ -111,6 +111,7 @@ linked below.
   - https://www.bestpractices.dev - OpenSSF Best Practices badge
   - https://slsa.dev - SLSA supply-chain levels
   - https://github.com/gitleaks/gitleaks - secret scanning
+  - https://cyclonedx.org - CycloneDX SBOM standard
   - https://arxiv.org/abs/2508.03856 - Scorecard study of 3,248
     research repositories
   - https://everse.software/RSQKit/research_software_security -

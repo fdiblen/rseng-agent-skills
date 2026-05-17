@@ -107,6 +107,8 @@ engineering practice.
   - https://github.com/benfred/py-spy - sampling profiler for Python
   - https://github.com/airspeed-velocity/asv - benchmark regression
     tracking
+  - https://github.com/sharkdp/hyperfine - hyperfine command-line
+    benchmarking
   - https://everse.software/RSQKit/performance_profiling_and_optimization -
     RSQKit task page on profiling and optimization
 

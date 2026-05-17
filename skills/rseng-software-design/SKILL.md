@@ -114,6 +114,7 @@ teaches the modular-development moves hands-on.
     Software design resources
   - https://coderefinery.github.io/modular-type-along/ -
     CodeRefinery modular code development
+  - https://adr.github.io - architecture decision records
 
 ---
 

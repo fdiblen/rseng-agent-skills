@@ -120,6 +120,7 @@ assesses the software side.
   - https://huggingface.co/docs/hub/en/model-cards - model card
     format and guidance
   - https://www.go-fair.org/fair-principles/ - the FAIR principles
+  - https://onnx.ai - ONNX model interchange format
 
 ---
 
