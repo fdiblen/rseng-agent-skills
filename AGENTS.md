@@ -100,6 +100,8 @@ reference material in references/ next to it.
   rseng-pair-programming
 - Distribution channels: PyPI/conda-forge/CRAN, registries, JOSS:
   rseng-software-publishing
+- Claim-source alignment and source trust checks:
+  rseng-fact-checking
 
 ## Behavior rules when using these skills
 

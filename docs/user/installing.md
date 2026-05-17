@@ -74,7 +74,7 @@ gives you the slash commands and the auditor subagent:
 /plugin install rseng-agent-skills
 ```
 
-You get the 54 skills, the `/rseng-check`, `/rseng-cite` and
+You get the 55 skills, the `/rseng-check`, `/rseng-cite` and
 `/rseng-plan` commands, and the `rseng-auditor` subagent.
 
 ### File route

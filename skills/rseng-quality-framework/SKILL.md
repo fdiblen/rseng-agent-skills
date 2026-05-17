@@ -191,6 +191,8 @@ RSQKit task pages:
   PR pre-review passes and review comment craft
 - rseng-software-publishing: package indexes, research software
   registries and journal channels, publication checklist
+- rseng-fact-checking: claim-source alignment grades, venue trust
+  assessment, verify-what-you-assert discipline
 
 If a request spans several (e.g. "make my repo publication-ready"),
 sequence them: version control and license first, then tests and docs,
