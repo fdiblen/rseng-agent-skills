@@ -71,6 +71,51 @@ def _source_section(
     return "\n".join(lines)
 
 
+INDEPENDENT_HEADER = (
+    "<!-- Generated file - do not edit. Derived by the rseng-agent-skills\n"
+    "     pipeline from this skill's own curated links in SKILL.md. -->\n\n"
+)
+
+
+def extract_curated(skill_md: str) -> tuple[str, list[str]]:
+    """Pull the trailing citation paragraph and Learn-more bullets out
+    of a source-independent skill's SKILL.md."""
+    lines = skill_md.splitlines()
+    bullets: list[str] = []
+    collecting = False
+    for line in lines:
+        if "Learn more (verified):" in line:
+            collecting = True
+            continue
+        if collecting:
+            if line.startswith("  - "):
+                bullets.append(line[4:].strip())
+            elif line.startswith("    ") and bullets:
+                bullets[-1] += " " + line.strip()
+            elif line.strip() == "":
+                continue
+            else:
+                collecting = False
+    citation = ""
+    if "\n---\n" in skill_md:
+        tail = skill_md.rsplit("\n---\n", 1)[1].strip()
+        if tail and not tail.startswith("#"):
+            citation = " ".join(tail.split())
+    return citation, bullets
+
+
+def independent_reference(skill_md: str) -> str:
+    citation, bullets = extract_curated(skill_md)
+    lines = [INDEPENDENT_HEADER + "# References", ""]
+    if citation:
+        lines += [citation, ""]
+    if bullets:
+        lines += ["Learn more:", ""]
+        lines += [f"- {b}" for b in bullets]
+        lines.append("")
+    return "\n".join(lines).rstrip() + "\n"
+
+
 def generate_references(
     skills_dir: Path,
     sources: list[tuple[object, Path, dict]],
@@ -101,6 +146,20 @@ def generate_references(
         out = skill_dir / "references.md"
         body = GENERATED_HEADER + "# References\n\n" + "\n".join(sections)
         out.write_text(body.rstrip() + "\n", encoding="utf-8")
+        written.append(out)
+
+    # Source-independent skills: derive references.md from the curated
+    # links already maintained in their SKILL.md, so every skill ships
+    # exactly one references file with no duplicated upkeep.
+    for skill_dir in sorted(skills_dir.iterdir()):
+        skill_md_path = skill_dir / "SKILL.md"
+        if not skill_md_path.is_file() or skill_dir.name in per_skill:
+            continue
+        out = skill_dir / "references.md"
+        out.write_text(
+            independent_reference(skill_md_path.read_text(encoding="utf-8")),
+            encoding="utf-8",
+        )
         written.append(out)
     return written
 
