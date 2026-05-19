@@ -102,6 +102,8 @@ reference material in references/ next to it.
   rseng-software-publishing
 - Claim-source alignment and source trust checks:
   rseng-fact-checking
+- Honesty when concealment or misrepresentation is requested:
+  rseng-honesty
 
 ## Behavior rules when using these skills
 

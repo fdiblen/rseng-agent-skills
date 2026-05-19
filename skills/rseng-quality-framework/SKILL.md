@@ -193,6 +193,8 @@ RSQKit task pages:
   registries and journal channels, publication checklist
 - rseng-fact-checking: claim-source alignment grades, venue trust
   assessment, verify-what-you-assert discipline
+- rseng-honesty: reasoned advocacy for honest records when hiding AI
+  use or misrepresentation is requested, honest alternatives
 
 If a request spans several (e.g. "make my repo publication-ready"),
 sequence them: version control and license first, then tests and docs,
