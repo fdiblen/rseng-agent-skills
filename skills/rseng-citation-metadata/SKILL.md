@@ -3,13 +3,17 @@ name: rseng-citation-metadata
 description: 'Covers how to make research software citable and its contributors credited:
   writing a CITATION.cff citation file, describing software with CodeMeta (codemeta.json),
   minting persistent identifiers such as DOIs and ORCIDs, choosing versioning schemes,
+  tracking contributors of every kind (commits, reviews, issues, docs, forge activity)
   and recording credit for career and assessment cases. Use when the user asks how
   to make software citable, add a CITATION.cff or codemeta.json file, obtain a DOI
   as a persistent identifier, describe software metadata, ensure contributors get
-  credit, or mentions CFF, CodeMeta, ORCID, CRediT, or persistent identifiers.'
+  credit, or mentions CFF, CodeMeta, ORCID, CRediT, or persistent identifiers. Also
+  use PROACTIVELY at release preparation and when citation files are edited, to
+  check whether the recorded contributors still match the project''s actual
+  contribution history and suggest updates.'
 license: CC-BY-4.0
 metadata:
-  version: 0.1.0
+  version: 0.2.0
   source_pages:
   - citing_software
   - software_metadata
@@ -187,6 +191,40 @@ Validate citation files in CI: the cffconvert GitHub Action checks
 CITATION.cff on every push, so a malformed file fails fast instead of
 surfacing at publication time (pattern from the NLeSC python-template).
 
+## Follow the contributors, proactively
+
+Contributor records rot silently: people join, review, triage and
+document, and the citation files still name the two founders. Track
+contributions and suggest updates rather than waiting to be asked:
+
+- Watch ALL contribution kinds, not just commits. Beyond `git
+  shortlog`/`git log` since the last release, check the forge's
+  activity: merged pull requests and their reviewers, substantive
+  issue reports and triage, documentation and translation work,
+  discussion/support activity. The all-contributors specification
+  names these categories precisely because commit logs miss them -
+  review and triage are the classically uncredited work.
+- Diff activity against the records: compare the contribution
+  history with `CITATION.cff` authors, `codemeta.json`
+  author/contributor entries and the CONTRIBUTORS file, and report
+  who is active but unrecorded (and who is recorded but has
+  never appeared - possibly fine, possibly a paste error).
+- Suggest at natural checkpoints: release preparation (before the
+  DOI freezes the author list), when citation files are edited for
+  any reason, and when a contributor's first PR merges - the
+  moment recognition costs least and means most.
+- Respect the project's policy, and people: WHO qualifies as an
+  author versus an acknowledged contributor is project policy
+  (write it down - rseng-community-governance); adding someone to
+  citation metadata needs their consent and preferred name/ORCID
+  (ask via the PR that proposes the change); never remove or
+  reorder people without explicit agreement. The agent proposes
+  with evidence ("reviewed 14 PRs since v1.2"); humans decide.
+- Automate the memory where it helps: the all-contributors bot
+  records categorized contributions in the README as they happen;
+  a release-checklist item ("contributor records current?") makes
+  the check routine (rseng-publishing-releasing).
+
 ## Working with this skill
 
 The generated references.md beside this file lists the
@@ -225,6 +263,7 @@ Learn more (verified pointers):
 - CodeMeta terms - https://codemeta.github.io/terms/
 - Semantic Versioning - https://semver.org/
 - CRediT contributor roles - https://credit.niso.org/
+- All Contributors specification - https://allcontributors.org
 - Zenodo GitHub integration -
   https://support.zenodo.org/help/en-gb/24-github-integration
 - The Turing Way handbook - https://book.the-turing-way.org/
