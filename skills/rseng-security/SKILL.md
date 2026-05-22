@@ -70,6 +70,22 @@ CI hardening basics an agent should apply by default:
 - Protect the default branch: reviews required, force-push disabled
   (rseng-version-control-review).
 
+## Fuzzing and vulnerability response
+
+- Fuzzing feeds malformed inputs at scale to find crashes and memory
+  errors; it earns its setup cost when the project contains
+  memory-unsafe code (C/C++/Fortran extensions are common in research
+  stacks) or parses untrusted input. OSS-Fuzz runs it continuously
+  for accepted open source projects; language-level fuzzers work in
+  CI for smaller scopes. For pure high-level code, property-based
+  testing delivers the same input-hostility cheaper (rseng-testing).
+- Have a response path before the first report: a security contact
+  (SECURITY.md), triage of reported or scanner-found vulnerabilities
+  by severity, fixes for critical ones promptly released and noted in
+  the changelog (rseng-publishing-releasing) - "no known critical
+  vulnerabilities outstanding" is an explicit quality indicator, and
+  it is about response speed, not perfection.
+
 ## Provenance and releases
 
 SLSA levels describe how trustworthy a build is (source-verified,
@@ -112,6 +128,7 @@ linked below.
   - https://slsa.dev - SLSA supply-chain levels
   - https://github.com/gitleaks/gitleaks - secret scanning
   - https://cyclonedx.org - CycloneDX SBOM standard
+  - https://github.com/google/oss-fuzz - OSS-Fuzz continuous fuzzing
   - https://arxiv.org/abs/2508.03856 - Scorecard study of 3,248
     research repositories
   - https://everse.software/RSQKit/research_software_security -
