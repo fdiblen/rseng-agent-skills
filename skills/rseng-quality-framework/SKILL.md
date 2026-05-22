@@ -9,7 +9,7 @@ description: >-
   is unsure which quality practice to start with.
 license: CC-BY-4.0
 metadata:
-  version: 0.1.0
+  version: 0.2.0
   source_pages:
     [quality, quality_dimensions, research_software, three_tier_view,
      life_cycle, policy_maker, principal_investigator, product_owner,
@@ -66,10 +66,55 @@ Each dimension is backed by measurable indicators from the companion
 registry (https://w3id.org/everse/rsqi); 47 indicators are defined at the
 pinned upstream version, such as software_has_tests, has_ci-tests,
 software_has_license, software_has_citation and archived_in_software_heritage.
-Indicators are proxies: passing them is evidence of quality, not proof.
-When asked to "check quality", walk the indicator checklist for the
-relevant dimension(s) in references.md and report which
-indicators are met, unmet, or not applicable for the software's tier.
+The browsable tables live on the EVERSE indicators site
+(https://everse.software/indicators/website/indicators.html and
+.../dimensions.html). Indicators are proxies: passing them is evidence
+of quality, not proof.
+
+### Running an indicator-based assessment
+
+When asked to "check quality" or assess a repository, run a structured
+pass rather than an impression:
+
+1. Establish the tier first (above) - roughly a third of the
+   indicators are not applicable to analysis code, and reporting them
+   as failures demoralizes rather than helps.
+2. Walk the indicators per dimension and mark each met / unmet /
+   not-applicable-for-tier, with one line of evidence per verdict
+   (the file, badge, workflow or record that proves it).
+3. Route every unmet indicator to the sibling skill that fixes it
+   (the dimension map below); the quantitative cluster - complexity,
+   duplication, cohesion/coupling, churn, maintainability index, size
+   and documentation-coverage conventions - is measured by
+   rseng-software-metrics.
+4. Deliver as a prioritized improvement plan, cheapest-first within
+   the tier's expectations, not as a scorecard - and rerun after
+   fixes to report the delta (the same assess-fix-reassess loop as
+   rseng-fairguard).
+
+### Dimension-to-skill map
+
+- Community: rseng-community-governance, rseng-science-communication
+- Compatibility: rseng-scientific-file-formats,
+  rseng-reproducible-environments
+- FAIRness: rseng-fair-software, rseng-fairguard, rseng-citation-metadata,
+  rseng-fair-ml
+- Flexibility: rseng-software-design, rseng-reproducible-environments
+- Functional suitability: rseng-testing, rseng-defensive-coding
+- Interaction capability: rseng-ux-accessibility
+- Maintainability: rseng-code-quality, rseng-software-metrics,
+  rseng-software-design, rseng-maintenance-sustainability
+- Open source software: rseng-licensing, rseng-license-compliance,
+  rseng-community-governance
+- Performance efficiency: rseng-performance-profiling,
+  rseng-gpu-computing, rseng-big-data-processing
+- Reliability: rseng-testing, rseng-debugging, rseng-defensive-coding
+- Safety: no dedicated skill - for software whose failure can harm
+  people or property, flag it and route to domain safety processes
+- Security: rseng-security, rseng-agent-security,
+  rseng-regulatory-compliance
+- Sustainability: rseng-maintenance-sustainability, rseng-archiving,
+  rseng-green-computing, rseng-software-management-plans
 
 ## The software life cycle
 
@@ -195,6 +240,8 @@ RSQKit task pages:
   assessment, verify-what-you-assert discipline
 - rseng-honesty: reasoned advocacy for honest records when hiding AI
   use or misrepresentation is requested, honest alternatives
+- rseng-software-metrics: complexity, duplication, churn and coverage
+  metrics - measurement, interpretation, CI ratchets
 
 If a request spans several (e.g. "make my repo publication-ready"),
 sequence them: version control and license first, then tests and docs,
