@@ -167,6 +167,20 @@ A concrete reference stack (NLeSC python-template): pytest with branch
 coverage enabled, and a tox matrix spanning the Python versions the
 SPEC 0 policy currently designates (the three most recent minors).
 
+## A functional-correctness measure for analysis code
+
+For analysis-tier code, "the tests pass" is often too weak a claim -
+the question is whether the ANALYSIS is right. Give it a quantifiable
+answer: validate the pipeline against reference cases with known
+expected results (analytic solutions, published benchmark values,
+conservation laws and invariants, or a trusted prior implementation)
+and report the agreement quantitatively within stated tolerances.
+One honest reference-case test measuring functional correctness is
+worth more for analysis code than high line coverage - coverage
+proves the code ran, the reference case proves it computed the right
+thing. Keep the reference values and their provenance in the test
+itself, and treat a tolerance change as a scientific decision.
+
 ## Working with this skill
 
 The generated references.md beside this file lists the source
