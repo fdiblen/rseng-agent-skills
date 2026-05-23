@@ -193,6 +193,20 @@ A concrete docs stack (NLeSC python-template): Sphinx sources with a
 .readthedocs.yaml for hosted builds, a docs-build GitHub Action as the
 PR gate, and a separate README.dev.md for developer-facing setup.
 
+## Measuring documentation coverage
+
+Documentation completeness can be measured, not just felt: docstring
+coverage tools (interrogate for Python and equivalents elsewhere)
+report the fraction of public functions, classes and modules that
+carry documentation, and documentation coverage against community
+conventions is an explicit quality indicator. Run it read-only
+first, set a ratchet at the current value in CI so coverage cannot
+regress, and target the PUBLIC surface - private helpers earn
+docstrings when non-obvious, not by quota. The number locates gaps;
+whether a given docstring actually helps remains a human judgment
+(rseng-software-metrics covers the measurement discipline and its
+gaming hazards).
+
 ## Working with this skill
 
 The generated references.md beside this file lists the source
