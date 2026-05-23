@@ -151,6 +151,19 @@ labelled blocking vs non-blocking.
 - Tag reviewed, released states so the reproducible version is
   unambiguous.
 
+## Repository hygiene: no generated or binary artifacts
+
+Keep compiled and generated files out of version control: build
+outputs, packaged artifacts, rendered documents, caches and editor
+droppings. They bloat history permanently, make diffs meaningless
+and drift out of sync with their sources - a repository free of
+binary artifacts is an explicit quality indicator. Add ignore rules
+before the first build runs; large or binary DATA has its own
+disciplined path (data versioning tools rather than git), and
+deliberately committed result records (golden files, executed
+notebooks) are fine when the policy says so explicitly - the rule is
+"nothing generated without a stated reason", not zealotry.
+
 ## Working with this skill
 
 The generated references.md beside this file lists the source
