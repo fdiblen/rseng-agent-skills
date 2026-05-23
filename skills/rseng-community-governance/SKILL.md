@@ -38,6 +38,16 @@ Make contributing possible before promoting it:
   scoped starter tasks is the single best onboarding tool.
 - Respond to first-time contributors fast and kindly; the first
   interaction decides whether there is a second.
+- Name the communication channels: where questions go (discussions,
+  a chat channel, a mailing list), stated in the README and
+  CONTRIBUTING - an active, discoverable channel is itself a
+  measured community-health indicator; one well-tended channel
+  beats three dead ones.
+- Define a response timeframe and say it out loud ("issues get a
+  first response within a week"): a stated expectation both
+  reassures contributors and is checkable - response-within-a-
+  defined-timeframe is how community health gets assessed from
+  the outside. Pick a promise the maintainers can keep.
 
 ## Governance, sized to the project
 
