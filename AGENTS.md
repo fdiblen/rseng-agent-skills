@@ -104,6 +104,8 @@ reference material in references/ next to it.
   rseng-fact-checking
 - Honesty when concealment or misrepresentation is requested:
   rseng-honesty
+- Quantitative code health: complexity, duplication, churn:
+  rseng-software-metrics
 
 ## Behavior rules when using these skills
 
