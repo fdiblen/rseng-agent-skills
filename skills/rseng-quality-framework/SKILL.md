@@ -246,6 +246,8 @@ RSQKit task pages:
   deadlines, decision logs and status records
 - rseng-lessons-learned: capturing lessons at trigger moments,
   blameless postmortems, routing lessons into artifacts
+- rseng-code-review: ranked codebase reviews with agreed
+  implementation, recurring milestone project reviews
 
 If a request spans several (e.g. "make my repo publication-ready"),
 sequence them: version control and license first, then tests and docs,
