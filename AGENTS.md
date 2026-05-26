@@ -106,6 +106,10 @@ reference material in references/ next to it.
   rseng-honesty
 - Quantitative code health: complexity, duplication, churn:
   rseng-software-metrics
+- Tasks, milestones, decision logs and project records:
+  rseng-project-tracking
+- Capturing lessons from bugs, reviews and dead ends:
+  rseng-lessons-learned
 
 ## Behavior rules when using these skills
 

@@ -242,6 +242,10 @@ RSQKit task pages:
   use or misrepresentation is requested, honest alternatives
 - rseng-software-metrics: complexity, duplication, churn and coverage
   metrics - measurement, interpretation, CI ratchets
+- rseng-project-tracking: tracked tasks, milestones tied to research
+  deadlines, decision logs and status records
+- rseng-lessons-learned: capturing lessons at trigger moments,
+  blameless postmortems, routing lessons into artifacts
 
 If a request spans several (e.g. "make my repo publication-ready"),
 sequence them: version control and license first, then tests and docs,
