@@ -248,6 +248,8 @@ RSQKit task pages:
   blameless postmortems, routing lessons into artifacts
 - rseng-code-review: ranked codebase reviews with agreed
   implementation, recurring milestone project reviews
+- rseng-dependency-management: multi-axis intake vetting, currency
+  cadence, transitive-tree hygiene, deliberate removal
 
 If a request spans several (e.g. "make my repo publication-ready"),
 sequence them: version control and license first, then tests and docs,

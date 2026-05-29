@@ -111,6 +111,8 @@ reference material in references/ next to it.
 - Capturing lessons from bugs, reviews and dead ends:
   rseng-lessons-learned
 - Codebase audits and milestone project reviews: rseng-code-review
+- Vetting, updating and retiring third-party dependencies:
+  rseng-dependency-management
 
 ## Behavior rules when using these skills
 
