@@ -11,7 +11,7 @@ description: >-
   docs site, or write the narrative context and history behind a project.
 license: CC-BY-4.0
 metadata:
-  version: 0.1.0
+  version: 0.2.0
   source_pages: [software_documentation, documenting_code, documenting_software_project, documenting_software_readthedocs, creating_good_readme, writing_research_software_story]
   source: https://everse.software/RSQKit/
   source_doi: 10.5281/zenodo.14923573
@@ -193,6 +193,57 @@ A concrete docs stack (NLeSC python-template): Sphinx sources with a
 .readthedocs.yaml for hosted builds, a docs-build GitHub Action as the
 PR gate, and a separate README.dev.md for developer-facing setup.
 
+## Descriptive completeness: the full picture a stranger needs
+
+Good project documentation answers every question a newcomer,
+reviewer or future maintainer brings - check for ALL of these and
+flag the gaps, proportionate to tier:
+
+- Background and motivation: the research problem, why this
+  software exists, the statement of need in domain language - not
+  just what it does but why anyone should care.
+- Usage, end to end: installation from a clean environment,
+  a quickstart that runs, worked examples on realistic data,
+  configuration reference, troubleshooting/FAQ, and stated
+  limitations - what the software does NOT do is documentation
+  too.
+- Developer notes: architecture overview and key decisions (link
+  the decision log/ADRs), development environment setup, how to
+  run tests, release runbook, and where help is wanted - the
+  onboarding path from user to contributor.
+- Alternatives and related projects: name the neighboring tools
+  and how this one differs or interoperates - the comparison
+  helps users choose honestly and reviewers place the work
+  (the same state-of-the-field survey that software papers and
+  reuse decisions need). A documented "when NOT to use this,
+  use X instead" earns more trust than silence about
+  competitors.
+- Provenance and status: citation instructions, license, AI
+  involvement disclosure, maintenance status and support
+  expectations.
+
+## Standards adherence for code and developer docs
+
+Follow the ecosystem's documentation standard rather than
+inventing style:
+
+- Docstrings per the community convention: numpydoc or Google
+  style in scientific Python (pick ONE and enforce it with the
+  linter's docstring rules), roxygen2 in R, Doxygen conventions
+  in C/C++ - the standard is what makes docs render correctly in
+  the ecosystem's tooling and read familiarly to contributors.
+- Structure the documentation set by function: the Diataxis
+  framework's four quadrants - tutorials (learning), how-to
+  guides (tasks), reference (information), explanation
+  (understanding) - prevent the classic failure of one document
+  trying to be all four and serving none. Label sections by
+  quadrant when organizing or reviewing docs.
+- Keep documented and actual behavior locked together: examples
+  that run as tests (doctest-style or executable snippets in
+  CI), API reference generated from the docstrings rather than
+  maintained in parallel, and versioned docs matching released
+  versions.
+
 ## Measuring documentation coverage
 
 Documentation completeness can be measured, not just felt: docstring
@@ -242,6 +293,8 @@ Learn more (verified pointers):
 
 - CodeRefinery, How to document your research software -
   https://coderefinery.github.io/documentation/
+- Diataxis documentation framework - https://diataxis.fr
+- numpydoc docstring standard - https://numpydoc.readthedocs.io
 - The Turing Way handbook - https://book.the-turing-way.org/
 - The Turing Way, project documentation -
   https://book.the-turing-way.org/reproducible-research/code-documentation/code-documentation-project
