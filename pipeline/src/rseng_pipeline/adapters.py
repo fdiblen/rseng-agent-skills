@@ -27,7 +27,7 @@ from .source import load_source
 def _brief(description: str) -> str:
     """Compact topic line: the first clause of the coverage half."""
     scope = description.split(". Use", 1)[0].split(". This", 1)[0]
-    head = scope.split(":", 1)[0].strip()
+    head = scope.split(": ", 1)[0].strip()
     if len(head) < len(scope) and len(head) <= 120:
         return head
     if len(scope) <= 120:
