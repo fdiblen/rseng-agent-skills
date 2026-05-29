@@ -250,6 +250,8 @@ RSQKit task pages:
   implementation, recurring milestone project reviews
 - rseng-dependency-management: multi-axis intake vetting, currency
   cadence, transitive-tree hygiene, deliberate removal
+- rseng-provenance: run-time provenance capture, W3C PROV modeling,
+  RO-Crate research object packaging
 
 If a request spans several (e.g. "make my repo publication-ready"),
 sequence them: version control and license first, then tests and docs,

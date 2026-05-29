@@ -113,6 +113,8 @@ reference material in references/ next to it.
 - Codebase audits and milestone project reviews: rseng-code-review
 - Vetting, updating and retiring third-party dependencies:
   rseng-dependency-management
+- Run manifests, PROV lineage and RO-Crate packaging:
+  rseng-provenance
 
 ## Behavior rules when using these skills
 
