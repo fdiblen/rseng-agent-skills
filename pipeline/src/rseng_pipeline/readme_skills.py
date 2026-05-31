@@ -48,7 +48,7 @@ def main() -> None:
     readme.write_text(
         head + START + "\n\n" + block + "\n\n" + END + tail, encoding="utf-8"
     )
-    count = block.count("\n") + 1
+    count = block.count("\n") - 1  # minus the two table header rows
     print(f"README skills list regenerated ({count} skills)")
 
 
