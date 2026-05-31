@@ -32,8 +32,8 @@ def skills_block(skills_dir: Path) -> str:
             brief = brief[len("Covers ") :]
         elif brief.startswith("Explains "):
             brief = brief[len("Explains ") :]
-        lines.append(f"- `{name}` - {brief}")
-    return "\n".join(lines)
+        lines.append(f"| `{name}` | {brief} |")
+    return "\n".join(["| Skill | Purpose |", "| --- | --- |", *lines])
 
 
 def main() -> None:
