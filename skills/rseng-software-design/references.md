@@ -10,3 +10,4 @@ Learn more:
 - https://bssw.io/items?topic=design - Better Scientific Software design resources
 - https://coderefinery.github.io/modular-type-along/ - CodeRefinery modular code development
 - https://adr.github.io - architecture decision records
+- https://c4model.com - the C4 model for architecture diagrams

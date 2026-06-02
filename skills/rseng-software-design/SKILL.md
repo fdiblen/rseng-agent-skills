@@ -4,8 +4,11 @@ description: >-
   Covers designing research software before and while writing it:
   modularity and separation of concerns, interfaces and coupling,
   choosing abstractions that match the science, growing from script
-  to package, architecture decision records, and when design effort
-  pays off versus when a script is honestly enough. Use when
+  to package, architecture decision records, system-level
+  architecture - styles for research systems (pipeline, layered,
+  plugin, services), quality-attribute trade-offs and C4-style
+  architecture documentation - and when design effort pays off
+  versus when a script is honestly enough. Use when
   starting non-trivial research software, when a script has grown
   past easy understanding, when the user asks how to structure or
   architect code, mentions modularity, coupling, refactoring toward
@@ -13,7 +16,7 @@ description: >-
   structure decides future cost.
 license: CC-BY-4.0
 metadata:
-  version: 0.1.0
+  version: 0.2.0
 ---
 
 # Designing research software
@@ -87,6 +90,48 @@ effort follows evidence, not aspiration:
   pipeline stages for rseng-workflows shapes); a pattern imposed on
   a problem that does not have it is complexity with a name.
 
+## Architecture: the system level
+
+When the software is a SYSTEM - multiple components, deployments or
+consumers - structure needs deciding above the module level. The
+styles that recur in research software, each fitting a shape of
+problem:
+
+- Pipeline: stages transforming data in sequence - the natural
+  architecture for analysis and processing (rseng-workflows is its
+  operational form); keep stages independently runnable with
+  explicit intermediate formats (rseng-scientific-file-formats).
+- Layered: computation core, orchestration, interface - the
+  architecture behind "pure cores, effectful edges" scaled up; the
+  core must stay importable without the layers above it (a CLI, a
+  notebook and a web UI should share one core).
+- Plugin: a stable kernel with extension points - the architecture
+  of extensible research tools (analysis frameworks, format
+  readers, method registries); invest in it when third parties or
+  future-you will add capabilities without touching the kernel
+  (rseng-community-governance benefits: contributors write plugins,
+  not core patches).
+- Services: components behind network interfaces - justified by
+  independent scaling, deployment or team boundaries, and paid for
+  in operational burden; a research group rarely wants five
+  services where one process would do.
+
+Choose by quality attributes, stated out loud: what must this
+system do well - throughput (rseng-performance-profiling,
+rseng-big-data-processing), portability across laptop and cluster
+(rseng-hpc-computing), extensibility, auditability of results
+(rseng-provenance)? Architecture is the trade among them; a choice
+that cannot name the attribute it serves is fashion. Record the
+trade in an ADR (below).
+
+Document the architecture at two zoom levels, C4-style: a context
+diagram (the system among its users and neighbors) and a container/
+component view (the major pieces and their dependencies) - two
+small diagrams that stay updatable beat a mural that rots
+(rseng-documentation's developer-notes section is their home).
+Re-draw at milestones; a diagram that no longer matches the code
+is a review finding (rseng-code-review).
+
 ## Record the decisions
 
 For decisions with lasting consequences - core data structures,
@@ -115,6 +160,7 @@ teaches the modular-development moves hands-on.
   - https://coderefinery.github.io/modular-type-along/ -
     CodeRefinery modular code development
   - https://adr.github.io - architecture decision records
+  - https://c4model.com - the C4 model for architecture diagrams
 
 ---
 
