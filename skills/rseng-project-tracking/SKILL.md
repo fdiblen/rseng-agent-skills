@@ -5,8 +5,10 @@ description: >-
   project: turning plans into tracked, prioritized tasks (issues,
   milestones, boards), planning cadence around research deadlines,
   and disciplined bookkeeping - decision logs, status records,
-  meeting notes and milestone reviews that keep the project's
-  memory in the repository. Use when work is untracked or lives in
+  meeting notes, milestone reviews and two-altitude project logs (a
+  detailed journal of what happened and a high-level digest for
+  reports and newcomers) that keep the project's memory in the
+  repository. Use when work is untracked or lives in
   heads and inboxes, when the user asks how to organize tasks,
   backlogs, milestones or boards, wants a project record, status
   report or decision log, mentions issue triage or prioritization,
@@ -14,7 +16,7 @@ description: >-
   month of work.
 license: CC-BY-4.0
 metadata:
-  version: 0.1.0
+  version: 0.2.0
 ---
 
 # Task management and project records
@@ -91,6 +93,39 @@ Records that earn their keep, all versioned in the repository
 - Milestone reviews: at each milestone, a paragraph - what
   shipped vs planned, what was learned (feed rseng-lessons-learned),
   what changes for the next one.
+
+## Project logs: two altitudes
+
+Beyond per-cycle status notes, keep the project's story readable at
+two zoom levels - different readers need different altitudes:
+
+- The detailed journal (LOG.md or docs/log/): dated entries, newest
+  first, recording what actually happened as it happened - features
+  landed and abandoned, experiments run and their outcomes, bugs
+  and incidents, decisions (linking the decision log), people
+  joining and leaving, upstream surprises. Terse and factual: two
+  lines per event beat a paragraph nobody writes. The journal is
+  the project's flight recorder - most entries are never read
+  twice, but the ones that are get read at the worst possible
+  moment, which is exactly when they pay.
+- The high-level log (a SUMMARY section or per-period digest):
+  a few paragraphs per month or milestone distilling the journal -
+  what moved, what changed direction, current state. Written for
+  the PI report, the annual review, the returning collaborator and
+  the newcomer who needs the story so far without a week of
+  archaeology. CHANGELOG.md stays the CODE's log for users
+  (rseng-publishing-releasing); the high-level project log is the
+  PROJECT's log for stakeholders - related, not the same.
+
+Keep both honest and cheap: the journal is appended at the moment
+of the event (the same trigger discipline as rseng-lessons-learned -
+often one event feeds both); the digest is distilled on the
+planning cadence from the journal, tracker activity and git
+history - which is exactly the clerical drafting an agent should
+offer: "milestone closed - want me to draft the digest from the
+journal and merged PRs?" Drafts get human review before they
+become the record, and AI drafting is disclosed like any other
+contribution (rseng-ai-declaration).
 
 Agents fit naturally here: drafting status notes from the
 tracker and commit history, opening issues from meeting actions,
