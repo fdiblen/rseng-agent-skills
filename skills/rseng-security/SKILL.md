@@ -2,7 +2,9 @@
 name: rseng-security
 description: >-
   Covers securing research software and its supply chain: secrets
-  hygiene and leak response, dependency vulnerability scanning and
+  and sensitive-file hygiene (env files, keys, credentials and the
+  catalog of files that must never be committed) with leak
+  response, dependency vulnerability scanning and
   pinning, OpenSSF Scorecard and Best Practices badge, SLSA provenance
   levels, SBOMs, signed releases and repository hardening. Use
   PROACTIVELY when setting up CI or releases for research software,
@@ -12,7 +14,7 @@ description: >-
   makes the software a target.
 license: CC-BY-4.0
 metadata:
-  version: 0.1.0
+  version: 0.2.0
 ---
 
 # Security for research software
@@ -25,19 +27,41 @@ gap is the norm, not the exception. Security here is mostly hygiene,
 not cryptography: a handful of repeatable practices prevent the
 common failures.
 
-## Secrets hygiene (the non-negotiable)
+## Secrets and sensitive files (the non-negotiable)
 
 - Never commit credentials, tokens, private keys or connection
   strings - not even briefly; git history is forever and forges cache
   aggressively.
+- Know the file catalog that never enters version control: .env and
+  environment files, private keys and certificates (id_rsa, *.pem,
+  *.p12), cloud and service credentials (service-account JSONs,
+  kubeconfig, .aws/, .netrc), API token files, database dumps with
+  real records, browser/session cookies, and instrument or license
+  files bearing embedded keys. Some of these should not even sit in
+  the working tree of a shared or synced project directory - a
+  credential does not belong next to the code that uses it.
 - Guard rails BEFORE the first secret exists: .gitignore entries for
-  env files, a secret scanner (gitleaks) in pre-commit and CI.
+  the catalog above from day one (the scaffolding template ships
+  them - rseng-project-scaffolding), a secret scanner (gitleaks) in
+  pre-commit and CI, and a review habit of reading `git status`
+  before `git add` - the classic leak is `git add .` sweeping a
+  stray file in.
 - Configuration via environment variables or untracked local files;
-  document required variables in the README with dummy values.
+  document required variables in the README with dummy values, and
+  ship a committed `.env.example` with placeholders instead of the
+  real thing.
+- Personal and sensitive DATA files follow the same rule with their
+  own escort: never committed, stored where the steward says, with
+  synthetic samples in the repo (rseng-data-management,
+  rseng-regulatory-compliance).
 - If a secret lands in history: revoke and rotate it FIRST (assume it
   is compromised the moment it is pushed), then clean history if the
   repository is private enough for that to matter. Rotation is the
   fix; history rewriting is cosmetics.
+- Sweep periodically, not just at commit time: scan the existing
+  history and tree (gitleaks detects both) during the milestone
+  review (rseng-code-review) - guards added today do not clear
+  yesterday's leak.
 
 ## Dependencies and the supply chain
 
