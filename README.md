@@ -1,7 +1,7 @@
 # rseng-agent-skills
 
 Research software engineering (RSEng) skills for AI coding agents:
-62 skills covering the practices that make research software good -
+65 skills covering the practices that make research software good -
 testing, CI/CD, documentation, licensing, citation, FAIR, publishing,
 reproducibility, code review, code quality, maintenance, planning and
 workflows - built into native formats for the major agents.
@@ -20,7 +20,7 @@ ATTRIBUTION.md.
 
 | Agent | What you get | Install |
 |---|---|---|
-| Claude Code | 62 skills, /rseng-check, /rseng-cite, /rseng-plan, rseng-auditor agent | `/plugin marketplace add <owner>/rseng-agent-skills` then `/plugin install rseng-agent-skills` |
+| Claude Code | 65 skills, /rseng-check, /rseng-cite, /rseng-plan, rseng-auditor agent | `/plugin marketplace add <owner>/rseng-agent-skills` then `/plugin install rseng-agent-skills` |
 | GitHub Copilot | repo instructions + per-skill instructions + skills | `npx rseng-agent-skills install copilot` |
 | Cursor | always-on overview + per-topic rules | `npx rseng-agent-skills install cursor` |
 | Codex CLI | AGENTS.md + skills folders | `npx rseng-agent-skills install codex` |
@@ -59,6 +59,8 @@ without touching your edits, and `doctor` checks install health.
 | `rseng-code-quality` | writing readable research code and structuring software projects |
 | `rseng-code-review` | reviewing existing code and whole projects, not just new diffs |
 | `rseng-community-governance` | building and governing a community around research software |
+| `rseng-community-metrics` | measuring community health with CHAOSS-style metrics |
+| `rseng-contributor-onboarding` | turning users into contributors and contributors into regulars |
 | `rseng-data-management` | research data management around software |
 | `rseng-data-management-plans` | data management plans (DMPs) for research projects |
 | `rseng-debugging` | systematic debugging of research software |
@@ -108,6 +110,7 @@ without touching your edits, and `doctor` checks install health.
 | `rseng-storytelling` | telling the story of research data, research software and research projects to broad audiences |
 | `rseng-testing` | how to test research software |
 | `rseng-trainer` | teaching research software skills while working |
+| `rseng-user-support` | running user support as an operation for research software |
 | `rseng-ux-accessibility` | user experience and accessibility for research software |
 | `rseng-version-control-review` | using version control effectively for research software and reviewing code |
 | `rseng-workflows` | building, choosing, discovering, describing, and sharing computational workflows with workflow management... |

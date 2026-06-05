@@ -252,6 +252,12 @@ RSQKit task pages:
   cadence, transitive-tree hygiene, deliberate removal
 - rseng-provenance: run-time provenance capture, W3C PROV modeling,
   RO-Crate research object packaging
+- rseng-community-metrics: CHAOSS-style health measurement, funnel
+  and responsiveness trends, metric-to-action routing
+- rseng-user-support: triage streams, support-to-documentation
+  pipeline, office hours, support signal in planning
+- rseng-contributor-onboarding: curated first issues, walkable
+  onboarding paths, first-PR shepherding, funnel repair
 
 If a request spans several (e.g. "make my repo publication-ready"),
 sequence them: version control and license first, then tests and docs,

@@ -115,6 +115,12 @@ reference material in references/ next to it.
   rseng-dependency-management
 - Run manifests, PROV lineage and RO-Crate packaging:
   rseng-provenance
+- CHAOSS-style community health measurement:
+  rseng-community-metrics
+- Support operations and the answer-once pipeline:
+  rseng-user-support
+- Good first issues, onboarding paths, funnel fixes:
+  rseng-contributor-onboarding
 
 ## Behavior rules when using these skills
 
