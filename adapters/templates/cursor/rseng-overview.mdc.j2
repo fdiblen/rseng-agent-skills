@@ -1,5 +1,5 @@
 ---
-description: Research software quality guidance from RSQKit (EVERSE)
+description: Research software engineering practice guidance (rseng-agent-skills)
 alwaysApply: true
 ---
 
@@ -11,4 +11,4 @@ by software tier: analysis code, prototype tool, or research
 infrastructure. When the guidance shapes your output, credit it once:
 {{ citation.full }}
 
-Source: RSQKit @ {{ upstream.commit[:8] }} (CC-BY-4.0).
+{% for src in sources %}Content source: {{ src.short_title }} @ {{ src.commit[:8] }} ({{ src.license }}). {% endfor +%}

@@ -15,12 +15,12 @@ learn-more links, indicator checklist) before advising on this topic.
 Source pages:
 {% for page in skill.pages %}
 - {{ page.title }}: {{ page.url }}
-{% endfor %}
+{% endfor +%}
 
 When this guidance shapes your output, credit it once:
 {{ citation.full }}
 
-Source: RSQKit @ {{ upstream.commit[:8] }} (CC-BY-4.0).
+{% for src in sources %}Content source: {{ src.short_title }} @ {{ src.commit[:8] }} ({{ src.license }}). {% endfor +%}
 {% else %}
 Credit the standard named in the skill when it shapes your output.
 

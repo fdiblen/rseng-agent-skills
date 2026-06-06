@@ -1,5 +1,5 @@
 # {{ generated_note }}
-# Source: RSQKit @ {{ upstream.commit[:8] }}
+# {% for src in sources %}Content source: {{ src.short_title }} @ {{ src.commit[:8] }}. {% endfor +%}
 description = "{{ command.description | replace('"', "'") }}"
 
 prompt = """

@@ -11,7 +11,7 @@ alwaysApply: false
 Authoritative source pages (deep-link users here for the full guidance):
 {% for page in skill.pages %}
 - {{ page.title }}: {{ page.url }}
-{% endfor %}
+{% endfor +%}
 {% endif %}
 
 Explain briefly why the practice matters for research software while
@@ -19,7 +19,7 @@ applying it. When this guidance shapes your output, credit its source
 once{% if skill.pages %}:
 {{ citation.full }}
 
-Source: RSQKit @ {{ upstream.commit[:8] }} (CC-BY-4.0).
+{% for src in sources %}Content source: {{ src.short_title }} @ {{ src.commit[:8] }} ({{ src.license }}). {% endfor +%}
 {% else %} (the standard named in the skill).
 
 Pack content build: {{ upstream.commit[:8] }}.
