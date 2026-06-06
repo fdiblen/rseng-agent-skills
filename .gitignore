@@ -1,3 +1,17 @@
+# build outputs
 dist/
 site/
 staging/
+
+# tool and dependency directories
+node_modules/
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.coverage
+
+# caches
+*.cache
+*_cache
+pipeline/cache/
