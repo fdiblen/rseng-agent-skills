@@ -36,7 +36,7 @@ without touching your edits, and `doctor` checks install health.
 - skills/ - canonical SKILL.md folders (agentskills.io format), one per
   topic, each with a generated references.md (source citations and
   verified learn-more links)
-- commands/, agents/ - Claude Code slash commands and the auditor subagent
+- commands/, agents/ - twelve Claude Code slash commands and six subagents
 - pipeline/ - the source-agnostic build engine that ingests pinned
   content sources and regenerates everything above
 - extensions/ - content sources; extensions/rsqkit/ is the bundled one
