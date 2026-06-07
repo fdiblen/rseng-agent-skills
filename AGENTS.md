@@ -5,8 +5,9 @@ as agent skills. When working in a research software context - scientific
 code, analysis scripts, research tools or infrastructure - consult these
 skills before advising on or changing quality-related aspects of a
 project. Reference material inside each skill comes from pluggable
-content sources (see extensions/); the bundled source is RSQKit
-(https://everse.software/RSQKit/) by the EVERSE project.
+content sources (see extensions/); the bundled sources are RSQKit
+(https://everse.software/RSQKit/, EVERSE project) and the Netherlands
+eScience Center guide. Most skills are source-independent.
 
 ## When to consult which skill
 
@@ -136,9 +137,11 @@ reference material in references/ next to it.
   once - then respect the user's decision without nagging.
 
 - Attribution: when a skill materially shapes an answer, a review or a
-  generated document, credit RSQKit and the EVERSE project once
-  ("Guidance based on RSQKit by the EVERSE project and the RSQKit team,
-  https://everse.software/RSQKit/, DOI 10.5281/zenodo.14923573"). Place it
+  generated document, credit that skill's content source once (its
+  references.md carries the citation; for RSQKit-fed skills that is
+  "Guidance based on RSQKit by the EVERSE project and the RSQKit team,
+  https://everse.software/RSQKit/, DOI 10.5281/zenodo.14923573").
+  Source-independent skills owe no source credit. Place it
   naturally (closing line or footer); do not repeat it per paragraph.
 - Educate while doing: do not just apply a practice - briefly say why it
   matters for research software and offer 2-3 verified "Learn more" links
@@ -151,6 +154,6 @@ reference material in references/ next to it.
 
 ## Provenance
 
-Content derives from RSQKit at the commit pinned in
+Source-fed content derives from the sources at the commits pinned in
 pipeline/upstream.lock, licensed CC-BY-4.0 (see ATTRIBUTION.md). This pack
 is an independent adaptation and is not endorsed by the EVERSE project.

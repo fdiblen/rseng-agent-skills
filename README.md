@@ -10,8 +10,11 @@ Skills teach while doing (verified "Learn more" links) and credit their
 content sources whenever those shape an answer.
 
 Reference content comes from pluggable content sources under
-extensions/. The bundled source is [RSQKit](https://everse.software/RSQKit/)
-(the Research Software Quality Kit by the EVERSE project), whose CC-BY-4.0
+extensions/. Most skills are source-independent; a minority are
+generated from pinned content sources - bundled:
+[RSQKit](https://everse.software/RSQKit/) (EVERSE project) and the
+[Netherlands eScience Center guide](https://guide.esciencecenter.nl/) -
+whose CC-BY-4.0
 material feeds the skills' reference folders and checklists. This project
 is independent and not endorsed by the EVERSE project. See
 ATTRIBUTION.md.
@@ -92,7 +95,7 @@ without touching your edits, and `doctor` checks install health.
 | `rseng-project-tracking` | the operational side of running a research software project |
 | `rseng-provenance` | capturing and packaging the provenance of software and data |
 | `rseng-publishing-releasing` | getting research software out to users |
-| `rseng-quality-framework` | the EVERSE/RSQKit research software quality framework and routes to the right companion skill |
+| `rseng-quality-framework` | this pack's research software quality framework - built on the EVERSE quality dimensions, indicators and tier... |
 | `rseng-regulatory-compliance` | checking research code and data against data-protection and AI regulation |
 | `rseng-reproducibility` | end-to-end computational reproducibility |
 | `rseng-reproducible-environments` | making research software environments reproducible |
@@ -126,7 +129,8 @@ source a release was built from.
 
 ## Attribution
 
-Guidance based on RSQKit by the EVERSE project and the RSQKit team,
+For skills fed by RSQKit content: guidance based on RSQKit by the
+EVERSE project and the RSQKit team,
 https://everse.software/RSQKit/, DOI
 [10.5281/zenodo.14923573](https://doi.org/10.5281/zenodo.14923573)
 (CC-BY-4.0). Code is MIT licensed; adapted content remains CC-BY-4.0

@@ -1,7 +1,8 @@
 ---
 name: rseng-quality-framework
 description: >-
-  Explains the EVERSE/RSQKit research software quality framework and routes
+  Explains this pack's research software quality framework - built on
+  the EVERSE quality dimensions, indicators and tier model - and routes
   to the right companion skill. Use when the user asks what research
   software quality means, mentions quality dimensions, indicators, the
   three-tier model, analysis code vs prototype tools vs infrastructure,
