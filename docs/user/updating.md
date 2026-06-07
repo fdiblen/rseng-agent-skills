@@ -170,9 +170,10 @@ from the pack with a fresh `install`.
 ### Where should I report a problem
 
 - Problems with the guidance content itself - a factual error, an outdated
-  recommendation, an incomplete practice - originate upstream in RSQKit,
-  since the skills are adapted from it. Report those to the RSQKit / EVERSE
-  project at [https://everse.software/RSQKit/](https://everse.software/RSQKit/).
+  recommendation, an incomplete practice - may originate upstream in a
+  content source when the skill is source-fed. Report those to the
+  source project (for RSQKit:
+  [https://everse.software/RSQKit/](https://everse.software/RSQKit/)).
 - Problems with the packaging - a skill not installing, a broken CLI
   command, wrong file placement for an agent, incorrect `doctor` output -
   belong to this project. Report those on the rseng-agent-skills issue tracker at

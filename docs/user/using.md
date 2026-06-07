@@ -14,7 +14,7 @@ every response - the attribution line and the "Learn more" links.
 ## How a skill changes an answer
 
 Without the pack, an agent answers research-software questions from generic
-training. With the pack, it answers from RSQKit (the EVERSE project's
+training. With the pack, source-fed answers draw on RSQKit (the EVERSE project's
 Research Software Quality Kit): the same curated guidance, with the source
 page named inline so you can trace any claim. The examples below use Claude
 Code phrasing, but the skills behave the same in any agent the pack supports.
@@ -109,7 +109,7 @@ and produces a concrete artifact.
 /rseng-check
 ```
 
-Assesses the current repository against the RSQKit quality indicator
+Assesses the current repository against the pack's quality indicator
 checklists. It first infers the software tier - analysis code, prototype
 tool, or research software infrastructure - because that calibrates every
 judgement, then reports one line per indicator (met / partial / missing /
@@ -154,7 +154,7 @@ of a repository - for example before a release or a publication:
 Use the rseng-auditor subagent to audit this repository before release.
 ```
 
-It classifies the software tier first, works through the same RSQKit
+It classifies the software tier first, works through the same
 indicator checklist, and verifies claims rather than trusting file names (a
 `tests/` directory with no runnable tests is a finding; a badge with no
 backing workflow is a finding). It reports severity-rated findings -
@@ -171,14 +171,15 @@ Every command and the auditor close their output with the same line, exactly
 once:
 
 ```
-Guidance based on [RSQKit](https://everse.software/RSQKit/) by the EVERSE
-project and the RSQKit team, DOI
+(for RSQKit-fed skills) Guidance based on
+[RSQKit](https://everse.software/RSQKit/) by the EVERSE project and the
+RSQKit team, DOI
 [10.5281/zenodo.14923573](https://doi.org/10.5281/zenodo.14923573)
 (CC-BY-4.0).
 ```
 
 This is not boilerplate you can ignore. The skill content is adapted from
-RSQKit, which is published under CC-BY-4.0 - a license that requires
+content sources such as RSQKit, published under CC-BY-4.0 - a license that requires
 attribution. The line keeps the guidance traceable to its source and keeps
 your use of it compliant. Leave it in any document the commands generate.
 

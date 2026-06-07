@@ -166,7 +166,7 @@ the agent runs. The repository keeps a ready-made snippet at
 
 ```yaml
 # Provision the rseng-agent-skills pack for CI-driven coding agents.
-# Add this step before any agent step that should follow RSQKit guidance
+# Add this step before any agent step that should follow the pack's guidance
 # (for example Claude Code GitHub Actions or Copilot coding agent jobs).
 - name: Install rseng-agent-skills
   run: npx -y rseng-agent-skills install claude codex

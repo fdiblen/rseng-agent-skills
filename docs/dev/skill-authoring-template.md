@@ -1,7 +1,7 @@
 # SKILL.md authoring template
 
 Every skill in skills/ follows this structure. Bodies are hand-authored
-distillations of the mapped RSQKit pages (see extensions/rsqkit/taxonomy.yml); the
+distillations of mapped source pages for source-fed skills (example: extensions/rsqkit/taxonomy.yml); the
 references.md file next to each SKILL.md is pipeline-generated and never
 hand-edited.
 

@@ -7,7 +7,7 @@ work (the taxonomy mapping and the body) followed by a regeneration and
 validation loop that is entirely mechanical.
 
 The contract that ties a skill to upstream is `extensions/rsqkit/taxonomy.yml`: it maps
-RSQKit page_ids to skills, and `references/` folders, adapters and sync impact
+source page_ids to skills (this guide uses the rsqkit extension as the example; source-independent skills skip the taxonomy steps), references.md, adapters and sync impact
 reports are all derived from it. A page_id that does not appear in the taxonomy
 is not part of any skill; a page_id that appears twice breaks the "exactly
 once" rule the taxonomy header states.

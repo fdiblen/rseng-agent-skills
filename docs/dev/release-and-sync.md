@@ -1,7 +1,7 @@
 # Release and sync
 
 Two related processes keep the pack current: **releasing** cuts a versioned
-build and publishes it, and **syncing** pulls new RSQKit content in and
+build and publishes it, and **syncing** pulls new content-source updates in and
 classifies its impact. Both hang off the single pinned source of truth in
 `extensions/rsqkit/upstream.lock`, and both are reproducible from it - nothing generated
 is hand-maintained.
@@ -58,7 +58,7 @@ existing install - which is why new skills are a minor, not a major, bump.
 
 ### Release notes
 
-Release notes **must state the upstream RSQKit commit** the build was cut from -
+Release notes **must state the upstream source commits** the build was cut from -
 the `commit` in `extensions/rsqkit/upstream.lock`. Every generated artifact already
 stamps that SHA (fragment headers, the `upstream` block in `content.json`, the
 generated-note banners), so the notes and the artifacts always agree on

@@ -1,6 +1,6 @@
 # Quickstart
 
-rseng-agent-skills packages RSQKit research software quality guidance as native
+rseng-agent-skills packages research software engineering practice as native
 files for AI coding agents. Pick your agent below for the fastest path to a
 working install.
 
@@ -16,7 +16,7 @@ One canonical pack, built into each agent's native format:
 - For Claude Code only: three slash commands and an auditor subagent on top
   of the skills.
 
-Every skill teaches while it works and links back to the RSQKit page it came
+Every skill teaches while it works; source-fed skills link back to the page their content came
 from, so the guidance is traceable rather than generic.
 
 ## Claude Code
@@ -34,7 +34,7 @@ That gives you the full set:
 - 65 skills the agent invokes when a task matches (for example, writing a
   CITATION.cff or setting up CI).
 - Three slash commands:
-    - `/rseng-check` - assess this repository against the RSQKit quality
+    - `/rseng-check` - assess this repository against the pack's quality
       indicator checklists.
     - `/rseng-cite` - generate or update `CITATION.cff` and
       `codemeta.json`.
@@ -78,5 +78,5 @@ project-versus-user scope, the devcontainer feature and a CI snippet.
 
 ---
 
-Content derives from [RSQKit](https://everse.software/RSQKit/) by the EVERSE
+Source-fed content derives from sources including [RSQKit](https://everse.software/RSQKit/) by the EVERSE
 project (CC-BY-4.0); see the attribution notes for details.

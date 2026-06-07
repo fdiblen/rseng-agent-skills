@@ -1,7 +1,7 @@
 # Content pipeline
 
 The pipeline lives in `pipeline/src/rseng_pipeline/`. It turns the pinned
-RSQKit sources named in `extensions/rsqkit/upstream.lock` into two build artifacts
+content sources named in each extension's `upstream.lock` (e.g. extensions/rsqkit/) into build artifacts
 (`build/<source>/content.json` and `build/fragments/*.md`) and then two sets of
 consumers: the generated `references/` folders inside each skill and the
 per-agent adapter outputs in `dist/`. This page documents each module - its
