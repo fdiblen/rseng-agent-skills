@@ -36,9 +36,7 @@ Report format:
 - Do not penalize analysis-code repositories for infrastructure-tier
   expectations; mark those "not applicable" with a short note.
 
-Close the report with this attribution line, exactly once:
-
-Guidance based on [RSQKit](https://everse.software/RSQKit/) by the EVERSE
-project and the RSQKit team, DOI
-[10.5281/zenodo.14923573](https://doi.org/10.5281/zenodo.14923573)
-(CC-BY-4.0).
+If content from source-fed skills shaped the output, close with each
+contributing source's citation line exactly once (each skill's
+references.md carries its source citation, e.g. RSQKit's CC-BY-4.0
+credit). Source-independent skills need no source credit.
