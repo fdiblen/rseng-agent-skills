@@ -10,7 +10,7 @@ description: >-
   project layout.
 license: CC-BY-4.0
 metadata:
-  version: 0.1.0
+  version: 0.2.0
   source_pages: [writing_readable_code, structuring_software_projects]
   source: https://everse.software/RSQKit/
   source_doi: 10.5281/zenodo.14923573
@@ -75,6 +75,38 @@ Do not enforce style by hand - let tools do it:
   check conformance as you type, warn on deviations, and often autocorrect.
 - Wire formatters and linters into pre-commit hooks and CI so every change
   is checked automatically, not just when someone remembers.
+
+## Pre-commit: the guardrail framework
+
+The pre-commit framework runs the checks automatically at commit
+time, from one versioned config - the difference between "we have a
+linter" and "nothing unlinted lands":
+
+- Anatomy: a `.pre-commit-config.yaml` at the repo root lists hook
+  repositories PINNED to revisions; start from the basics (trailing
+  whitespace, end-of-file, merge-conflict markers, large-file guard),
+  add the ecosystem's linter/formatter (ruff for Python), a secret
+  scanner (rseng-security), and project-specific `local` hooks where a
+  custom check earns automation.
+- Adoption on an existing repo: install the hooks, then run
+  `pre-commit run --all-files` ONCE in its own commit - a dedicated
+  formatting commit keeps blame readable (the same reasoning as
+  avoiding repo-wide reformats in rseng-legacy-code).
+- Keep hooks fast: commit-time checks have a seconds budget - slow
+  checks (test suites, type-checking large trees) belong in CI, not
+  in the hook, or people bypass hooks entirely and the guardrail is
+  gone.
+- Update deliberately: `pre-commit autoupdate` bumps pinned hook
+  revisions - treat it like any dependency update, on a cadence with
+  green tests (rseng-dependency-management).
+- SKIP honestly: skipping a hook (SKIP=<id>) is legitimate when the
+  hook itself is broken or inapplicable to the change - record why
+  in the commit; skipping to silence a real finding just moves the
+  failure to CI or review.
+- Mirror in CI: run the same hooks in the pipeline
+  (`pre-commit run --all-files` as a CI step or pre-commit.ci) so a
+  locally bypassed hook (--no-verify) cannot land unchecked
+  (rseng-ci-cd) - local hooks are convenience; CI is enforcement.
 
 ## Write modular, reusable code
 
@@ -183,6 +215,7 @@ summary message - not as an afterthought and never more than once.
 
 Learn more (verified pointers):
 
+- pre-commit framework - https://pre-commit.com
 - ELIXIR TeSS training portal - https://tess.elixir-europe.org/
 - The Carpentries - https://carpentries.org/
 - CodeRefinery lessons - https://coderefinery.org/lessons/
