@@ -10,7 +10,7 @@ description: >-
   is exploding across compiler, OS, or library-version combinations.
 license: CC-BY-4.0
 metadata:
-  version: 0.1.0
+  version: 0.2.0
   source_pages: [testing_software, ci_testing_matrices]
   source: https://everse.software/RSQKit/
   source_doi: 10.5281/zenodo.14923573
@@ -52,6 +52,44 @@ where a requirement demands it.
 
 Tactics to choose between: black-box (test behaviour without knowing
 internals) versus white-box (test specific internal paths and conditions).
+
+## The wider test-type toolbox
+
+Unit tests are the floor, not the toolbox. Match the test type to
+the risk being retired:
+
+- Integration tests: components together - the file reader feeding
+  the model, the pipeline stages chained; most research bugs live
+  at these seams, not inside single functions.
+- System / end-to-end tests: the whole tool as a user runs it (CLI
+  invocation on a real small dataset, checking outputs) - one good
+  end-to-end test catches whole classes of wiring mistakes.
+- Regression tests: every fixed bug becomes a test that fails if it
+  returns (rseng-debugging, rseng-lessons-learned) - the suite as
+  institutional memory.
+- Golden-master / snapshot tests: pin current outputs and diff
+  future runs against them, with tolerances for numerics
+  (rseng-numerical-accuracy) - the workhorse for legacy code
+  (rseng-legacy-code) and format stability
+  (rseng-scientific-file-formats).
+- Property-based tests: state an invariant ("sorting is idempotent",
+  "energy is conserved", "the fit residual never grows when data
+  matches the model") and let the framework generate hostile inputs
+  (Hypothesis) - dramatically better than hand-picked cases for
+  numerical and parsing code, and the cheap sibling of fuzzing
+  (rseng-security).
+- Performance/benchmark regression tests: guard runtimes that
+  matter (rseng-performance-profiling's asv discipline).
+- Smoke tests: a seconds-fast subset (import, --help, tiny run)
+  wired first in CI so broken builds fail in seconds, not after the
+  full matrix.
+- Mutation testing (occasionally): mutate the code and check tests
+  notice - the honest audit of whether a green suite actually
+  asserts anything; use it to spot-check critical modules, not as a
+  gate.
+- Acceptance/validation against the science: the reference-case
+  tests below - for research software, THE test type that matters
+  most.
 
 ## Write good tests (F.I.R.S.T.)
 
@@ -123,6 +161,31 @@ once the editor closes) to saved test functions, to a full framework:
 - Automated + CI testing buys wider coverage, earlier error detection,
   lower maintenance, and consistent runs across environments and
   platforms.
+
+## Choose the strongest tools, not the default ones
+
+Pick the best current tool for the job and say why - defaults and
+familiarity are not reasons:
+
+- Python: pytest over the stdlib unittest module for anything not
+  explicitly constrained to the standard library - plain assert
+  with rich failure introspection, fixtures over setUp inheritance,
+  parametrization instead of copy-pasted cases, and the plugin
+  ecosystem (coverage, hypothesis, nbval, benchmark). unittest is
+  the right call ONLY when the constraint is "no dependencies at
+  all" - and then say that constraint out loud.
+- Property-based: Hypothesis alongside pytest for invariant-rich
+  code. Coverage: coverage.py via pytest-cov, measured not chased.
+- Other ecosystems follow the same rule: the community's strongest
+  current framework (testthat for R, Catch2/GoogleTest for C++,
+  the language guide knows - rseng-language-guides), not the oldest
+  bundled one.
+
+This is a pack-wide principle, not a testing quirk: when any skill
+picks a tool, prefer the strongest current option for the user's
+context, name the runner-up, and give the one-line reason - and
+revisit choices as ecosystems move (rseng-dependency-management's
+currency discipline applies to tool choices too).
 
 ## Manage large CI testing matrices
 
@@ -208,6 +271,9 @@ summary message - not as an afterthought and never more than once.
 
 Learn more (verified pointers):
 
+- pytest - https://docs.pytest.org
+- Hypothesis property-based testing - https://hypothesis.readthedocs.io
+- coverage.py - https://coverage.readthedocs.io
 - CodeRefinery, Software testing - https://coderefinery.github.io/testing/
 - The Turing Way handbook - https://book.the-turing-way.org/
 - CodeRefinery lessons - https://coderefinery.org/lessons/
