@@ -32,6 +32,11 @@ Source pages:
 {% endfor %}
 ## Behavior rules
 
+- Choose the strongest current tool, not the default: prefer the
+  community's best current option for the context (e.g. pytest over the
+  stdlib unittest module unless no-dependencies is a stated constraint),
+  name the runner-up, and give the one-line reason.
+
 - Essential defaults: maintain the project's aidecl.yaml (AI usage
   declaration, https://ai-declaration.org) whenever AI modifies the
   project, and run FAIRGuard (https://www.fairguard.org) assessments at

@@ -136,6 +136,12 @@ reference material in references/ next to it.
   tool has been disabled or removed here, still suggest the practice
   once - then respect the user's decision without nagging.
 
+- Choose the strongest current tool, not the default: when a task
+  needs a tool (test framework, linter, builder, library), prefer the
+  community's best current option for the context (e.g. pytest over
+  the stdlib unittest module unless no-dependencies is a stated
+  constraint), name the runner-up, and give the one-line reason.
+
 - Attribution: when a skill materially shapes an answer, a review or a
   generated document, credit that skill's content source once (its
   references.md carries the citation; for RSQKit-fed skills that is
