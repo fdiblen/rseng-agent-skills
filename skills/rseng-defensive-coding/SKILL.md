@@ -7,7 +7,7 @@ description: >-
   (pint/astropy-style), disciplined randomness (explicit seeded
   generators, parallel streams), fail-loud defaults, and guarding
   against the silent-corruption failure modes of scientific data
-  handling. Use when code ingests external or instrument data, when
+  handling. Use PROACTIVELY when code ingests external or instrument data, when
   values carry physical units, when randomness enters simulations
   or sampling, when NaN or missing-data handling is implicit, when
   the user mentions data validation, unit errors, seeds or silent

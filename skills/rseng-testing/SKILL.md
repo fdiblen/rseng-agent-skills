@@ -7,7 +7,8 @@ description: >-
   platforms, and dependency versions. Use when the user asks how to write
   tests, set up pytest/testthat/JUnit, decide what to test, raise or
   interpret code coverage, do test-driven development, or when a CI matrix
-  is exploding across compiler, OS, or library-version combinations.
+  is exploding across compiler, OS, or library-version combinations. Also use PROACTIVELY when new
+  result-bearing code is being written or committed without tests.
 license: CC-BY-4.0
 metadata:
   version: 0.2.0

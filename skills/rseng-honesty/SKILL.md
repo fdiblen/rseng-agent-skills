@@ -6,7 +6,7 @@ description: >-
   reality, backdating or disguising provenance, inflating results
   or removing traces of how something was made. The skill calls for
   honesty with concrete reasons and offers honest alternatives that
-  usually satisfy the underlying need. Use whenever a request aims
+  usually satisfy the underlying need. Use PROACTIVELY whenever a request aims
   to make records, history, authorship or results tell a story
   different from what happened - including hiding AI assistance,
   "make it look like", disguising generated content as manual work,

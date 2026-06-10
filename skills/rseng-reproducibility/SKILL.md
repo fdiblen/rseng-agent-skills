@@ -6,7 +6,7 @@ description: >-
   discipline, research compendium structure, replication packages for
   papers, Binder-launchable repositories, artifact evaluation and
   reproducibility badges, and verifying your own reproducibility
-  before others try. Use when the user wants results others can
+  before others try. Use PROACTIVELY when the user wants results others can
   reproduce, prepares a replication package or artifact submission,
   mentions reproducibility, replicability, research compendia, Binder
   or reproducibility badges, asks why results differ between runs or

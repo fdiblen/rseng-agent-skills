@@ -8,7 +8,9 @@ description: >-
   open source license to pick, how to add a LICENSE file, what MIT vs GPL vs
   Apache means, whether two licenses are compatible, how to license
   documentation or data alongside code, or mentions REUSE, SPDX, CC0, or
-  public domain.
+  public domain. Also use
+  PROACTIVELY when a repository has no LICENSE file - an unlicensed
+  repository legally blocks all reuse.
 license: CC-BY-4.0
 metadata:
   version: 0.1.0

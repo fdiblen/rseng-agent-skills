@@ -5,7 +5,7 @@ description: >-
   != 0.3, choosing absolute vs relative tolerances in tests,
   accumulation error and safe summation, precision choices (float32
   vs float64), catastrophic cancellation, NaN and infinity handling,
-  and cross-platform or cross-library result drift. Use when
+  and cross-platform or cross-library result drift. Use PROACTIVELY when
   floating-point comparisons fail mysteriously, when writing
   numerical tests or choosing tolerances, when results differ across
   machines, compilers, BLAS builds or library versions, or when

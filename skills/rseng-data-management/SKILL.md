@@ -6,7 +6,7 @@ description: >-
   data out of git while versioning it properly (DVC, git-annex,
   DataLad), FAIR data and metadata standards, depositing data with
   DOIs in repositories such as Zenodo, licensing data, and handling
-  sensitive or personal data. Use when a project reads or produces
+  sensitive or personal data. Use PROACTIVELY when a project reads or produces
   datasets, when the user asks where to put data, how to version or
   share large files, how to document a dataset, which data license or
   repository to use, mentions a data management plan (DMP), or when

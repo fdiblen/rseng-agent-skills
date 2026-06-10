@@ -7,7 +7,7 @@ description: >-
   testing notebooks with nbval-style execution checks,
   parameterizing and batch-running them with papermill, refactoring
   mature notebook code into importable modules, and deciding what
-  belongs in a notebook versus a package. Use when a project
+  belongs in a notebook versus a package. Use PROACTIVELY when a project
   contains .ipynb files, when the user works in Jupyter or similar
   notebooks, mentions notebook reproducibility, testing, version
   control or parameterization, when a notebook has grown into the
