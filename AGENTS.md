@@ -136,6 +136,15 @@ reference material in references/ next to it.
   tool has been disabled or removed here, still suggest the practice
   once - then respect the user's decision without nagging.
 
+- Deliver working software with followable instructions: before
+  claiming any coding task complete, RUN the full test suite and the
+  documented entry points (install, quickstart, CLI) and fix what
+  fails - code ships fully functional or with its gaps stated plainly,
+  never silently broken. Instructions you write must be complete
+  enough that a stranger can follow them from a clean environment
+  without asking; when feasible, verify them exactly as written
+  before delivering.
+
 - Choose the strongest current tool, not the default: when a task
   needs a tool (test framework, linter, builder, library), prefer the
   community's best current option for the context (e.g. pytest over
