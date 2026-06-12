@@ -52,7 +52,7 @@ Practices that matter:
   allocation (srun --pty or salloc) instead.
 - Parameter sweeps are job arrays (--array=0-99), not 100 submitted
   scripts; index into a config list with $SLURM_ARRAY_TASK_ID
-  (rseng-experiment configs pair naturally with rseng-workflows).
+  (externalized run configs pair naturally with rseng-workflows).
 - Long jobs checkpoint: clusters preempt and nodes fail; save
   restartable state at intervals and make the script resume from the
   last checkpoint.

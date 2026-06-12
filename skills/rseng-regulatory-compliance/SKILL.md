@@ -87,7 +87,7 @@ Obligations with code-shaped answers:
 - Obligations an agent can prepare for when in or near scope:
   technical documentation and logging capability, training-data
   documentation and governance (dataset provenance -
-  rseng-data-management, rseng-ml practices), accuracy/robustness
+  rseng-data-management, rseng-fair-ml), accuracy/robustness
   testing evidence (rseng-testing), transparency notices for
   AI-interacting users, and human-oversight hooks. The project's
   aidecl.yaml (rseng-ai-declaration) is a natural seed for the
