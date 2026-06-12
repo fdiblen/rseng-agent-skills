@@ -6,8 +6,10 @@ description: >-
   choosing abstractions that match the science, growing from script
   to package, architecture decision records, system-level
   architecture - styles for research systems (pipeline, layered,
-  plugin, services), quality-attribute trade-offs and C4-style
-  architecture documentation - and when design effort pays off
+  plugin, services), quality-attribute trade-offs, C4-style
+  architecture documentation, and modularity that enables reuse
+  (rule of three, extractable cores, the reuse ladder) - and when
+  design effort pays off
   versus when a script is honestly enough. Use when
   starting non-trivial research software, when a script has grown
   past easy understanding, when the user asks how to structure or
@@ -16,7 +18,7 @@ description: >-
   structure decides future cost.
 license: CC-BY-4.0
 metadata:
-  version: 0.2.0
+  version: 0.3.0
 ---
 
 # Designing research software
@@ -89,6 +91,36 @@ effort follows evidence, not aspiration:
   problem genuinely recurs (strategy for interchangeable models,
   pipeline stages for rseng-workflows shapes); a pattern imposed on
   a problem that does not have it is complexity with a name.
+
+## Modularity that enables reuse
+
+Reusable code is modular code with its assumptions made explicit -
+design for the SECOND user from the start, cheaply:
+
+- The rule of three: generalize on the third use, not the first -
+  premature generality is speculative complexity, but the third
+  copy-paste is the signal to extract the shared unit
+  (rseng-software-metrics' duplication numbers find these).
+- Extractable by construction: pure cores with explicit inputs (no
+  reads of project-global config inside the science function), no
+  hardwired paths, units and conventions documented at the interface
+  (rseng-defensive-coding) - the difference between "our script" and
+  "a function any colleague can import".
+- The reuse ladder: function within the project -> module with its
+  own tests -> package others install (rseng-project-scaffolding,
+  rseng-software-publishing). Climb when demand exists - a colleague
+  asking twice IS demand - and note that well-factored modules are
+  what make the strangler and migration paths cheap later
+  (rseng-legacy-code, rseng-open-source-migration).
+- Do not lock reusable parts to the project: a general-purpose
+  reader/solver/plotter that imports project internals cannot leave;
+  keep the dependency arrow pointing from project to reusable unit,
+  never back.
+- Reuse others before designing your own (rseng-software-reuse) - the
+  most modular design is the module you did not have to write; and
+  when you publish a reusable unit, its interface stability becomes
+  a promise (rseng-maintenance-sustainability's deprecation
+  discipline).
 
 ## Architecture: the system level
 
