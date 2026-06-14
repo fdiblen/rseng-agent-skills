@@ -11,7 +11,7 @@ description: >-
   moving from single-author to team or community ownership.
 license: CC-BY-4.0
 metadata:
-  version: 0.1.0
+  version: 0.2.0
 ---
 
 # Community and governance for research software
@@ -80,6 +80,14 @@ contributors are paid in; be generous and systematic.
   permissions and registry ownership explicitly, and record the
   change - abandoned-looking ownership blocks both contributors and
   security response (rseng-security).
+
+## The wider community toolkit
+
+Measurement, support and onboarding each have their own skill:
+community health metrics (rseng-community-metrics), support operations
+and the answer-once pipeline (rseng-user-support), and the contributor
+funnel from first issue to regular (rseng-contributor-onboarding) -
+this skill owns the rules and structures they operate within.
 
 ## Sustaining participation
 

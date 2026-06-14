@@ -72,7 +72,8 @@ common failures.
   triage rather than auto-merge on research-critical code paths.
 - Evaluate before adopting: maintenance signals, release cadence and
   known advisories are part of choosing a dependency
-  (rseng-software-reuse covers the evaluation checklist).
+  (rseng-dependency-management owns the full intake vetting;
+  rseng-software-reuse finds the candidates).
 - Generate an SBOM (software bill of materials) at release time when
   the project is infrastructure others depend on; it makes "are we
   affected by CVE X" answerable in minutes.
@@ -131,7 +132,8 @@ sensitive-data handling questions route to the data steward
 
 Route fixes to the matching skill: CI changes (rseng-ci-cd), release
 process (rseng-publishing-releasing), dependency updates
-(rseng-maintenance-sustainability), review rules
+(rseng-dependency-management for the update regime,
+rseng-maintenance-sustainability for cadence), review rules
 (rseng-version-control-review). Record AI-assisted security work in
 aidecl.yaml (rseng-ai-declaration) - provenance matters most exactly
 here.

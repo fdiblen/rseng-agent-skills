@@ -9,11 +9,11 @@ description: >-
   sensitive or personal data. Use PROACTIVELY when a project reads or produces
   datasets, when the user asks where to put data, how to version or
   share large files, how to document a dataset, which data license or
-  repository to use, mentions a data management plan (DMP), or when
+  repository to use, or when
   data files are about to be committed to a code repository.
 license: CC-BY-4.0
 metadata:
-  version: 0.1.0
+  version: 0.2.0
 ---
 
 # Research data management for software projects
@@ -108,8 +108,8 @@ commercial restrictions:
   ethics board rather than improvising GDPR compliance.
 - A data management plan (DMP) may already govern the project - ask;
   when one exists it decides storage, retention and sharing, and the
-  software should implement it rather than contradict it
-  (rseng-management-planning).
+  software should implement it rather than contradict it. Writing and
+  maintaining DMPs is rseng-data-management-plans.
 
 ## Records and transparency
 

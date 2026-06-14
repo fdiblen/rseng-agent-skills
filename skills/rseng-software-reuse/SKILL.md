@@ -15,7 +15,7 @@ description: >-
   stack-relevant candidates can be suggested without a live query.
 license: CC-BY-4.0
 metadata:
-  version: 0.1.0
+  version: 0.2.0
   source: https://research-software-directory.org
 ---
 
@@ -76,22 +76,19 @@ candidates immediately, without a live query:
 Maintainers refresh the snapshots with
 `uv run --directory pipeline python -m rseng_pipeline.rsd_snapshot`.
 
-## Evaluating a reuse candidate
+## From candidate to adoption
 
-Work through this checklist before adopting:
+This skill finds candidates; adopting one goes through the full
+six-axis intake vetting in rseng-dependency-management (suitability,
+license and tree, vulnerabilities, documentation, maintenance,
+currency). Two duties stay here with discovery:
 
-1. Fit: does it actually solve the task, or a neighboring one? Prefer
-   partial fit + contribution over a from-scratch rewrite.
-2. License compatibility with the project (rseng-licensing) - an RSD
-   entry states the license up front.
-3. Maintenance signals: recent releases, responsive issue tracker,
-   more than one contributor. An unmaintained tool can still be worth
-   forking - decide consciously.
-4. Install and run it on a real sample before committing the project
-   to it.
-5. Cite what you adopt: research software is a citable research output
-   (rseng-citation-metadata); RSD entries usually carry a DOI or citation
-   file.
+1. Fit judgment: does the candidate solve the task or a neighboring
+   one? Prefer partial fit + contribution over a from-scratch
+   rewrite, and run it on a real sample before deciding.
+2. Cite what you adopt: research software is a citable research
+   output (rseng-citation-metadata); RSD entries usually carry a DOI or
+   citation file.
 
 When reuse loses honestly - the candidate is abandoned, incompatible
 or a poor fit - record WHY in the project notes so the decision is

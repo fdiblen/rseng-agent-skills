@@ -13,7 +13,7 @@ description: >-
   repository legally blocks all reuse.
 license: CC-BY-4.0
 metadata:
-  version: 0.1.0
+  version: 0.2.0
   source_pages: [licensing_software]
   source: https://everse.software/RSQKit/
   source_doi: 10.5281/zenodo.14923573
@@ -165,6 +165,11 @@ material and pointers:
 
 - references.md - source page links and verified Learn more pointers,
   one section per content source
+
+Compliance engineering - dependency license audits, compatibility
+analysis, dual licensing, SPDX expressions and REUSE verification -
+is rseng-license-compliance; this skill covers choosing and applying a
+license.
 
 Follow the source-page links when a user needs the full upstream
 detail behind the guidance above.

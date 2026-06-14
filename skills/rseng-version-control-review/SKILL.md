@@ -6,12 +6,12 @@ description: >-
   collaboration workflows on GitHub/GitLab, and running constructive,
   checklist-driven code reviews. Use when the user asks how to set up git,
   design a branching strategy, write commit messages, handle large binary
-  files, open or review a pull/merge request, run a code review, decide what
+  files, open or review a pull/merge request, review a pull request, decide what
   to look for (or ignore) in review, or wire linters and CI into the review
   loop.
 license: CC-BY-4.0
 metadata:
-  version: 0.1.0
+  version: 0.2.0
   source_pages: [using_version_control, code_review]
   source: https://everse.software/RSQKit/
   source_doi: 10.5281/zenodo.14923573
@@ -32,20 +32,16 @@ review is what keeps what lands on the main branch trustworthy.
 Default to git for almost every research project unless a concrete
 constraint says otherwise:
 
-- Git - the default. Widely used in academia and industry, strong for
-  collaboration and open source, with a large ecosystem and hosting on
-  GitHub or GitLab.
-- Large binary files (datasets, models, images) - add Git Large File
-  Storage (git-lfs); consider Perforce only for extremely large datasets.
-- Team new to version control - still start with git, but budget time for
-  training; Mercurial is a gentler alternative if git proves too hard.
-- Strict, centralised access control - Subversion (SVN) can fit, though it
-  is less modern.
-
-Weigh project size and complexity, team size and distribution, file types
-(code vs data vs documents), required integrations, the team's expertise,
-long-term/open-source goals, large-binary handling, and any institutional
-or grant compliance rules before deciding.
+- Git is the community's standard and the right choice for research
+  projects: collaboration, review and archiving tooling all assume it
+  (the strongest-current-tool rule applies to version control too).
+- Large binary files (datasets, models, images) do not belong in plain
+  git history: use a data versioning layer (DVC, git-annex, DataLad -
+  rseng-data-management) or git-lfs for media-style assets.
+- A team new to version control still starts with git - budget training
+  time (rseng-trainer) rather than reaching for a gentler-seeming legacy
+  system; inherited repositories in older systems (SVN, Mercurial) are
+  a migration task, not a reason to stay.
 
 ## Set up the workflow, not just the repo
 
@@ -75,6 +71,11 @@ body that explains motivation and any trade-offs; reference the issue or
 ticket it addresses; avoid dumping unrelated changes into one commit.
 
 ## Run code review as a first-class practice
+
+(Scope note: this skill covers PR-time review process and rules;
+retrospective codebase audits and milestone project reviews are
+rseng-code-review, and diff-time pre-review craft is
+rseng-pair-programming.)
 
 Code review is systematic examination of code - a teammate's, or your own
 after time away - to find bugs, raise quality, and enforce shared standards. It pays off: rigorous inspection can remove 60-90% of

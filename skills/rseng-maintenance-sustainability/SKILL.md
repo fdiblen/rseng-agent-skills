@@ -2,14 +2,13 @@
 name: rseng-maintenance-sustainability
 description: 'Covers keeping research software alive and responsible over time: ongoing
   maintenance practice, tracking and paying down technical debt, reducing the bus
-  factor, and lowering the environmental footprint of computing. Use when the user
+  factor, and deprecating or archiving honestly. Use when the user
   asks how to maintain or sustain a project, stop it rotting, keep dependencies up
-  to date, schedule CI to catch breakage, track tech debt, retire or deprecate software,
-  or measure and cut the energy use and carbon emissions of their code or compute
-  jobs.'
+  to date, schedule CI to catch breakage, track tech debt, or retire or deprecate
+  software. (Energy and carbon footprint of computing is rseng-green-computing.)'
 license: CC-BY-4.0
 metadata:
-  version: 0.1.0
+  version: 0.2.0
   source_pages:
   - maintaining_research_software
   - improving_environmental_sustainability
@@ -22,7 +21,7 @@ metadata:
 Use this skill when the goal is to keep software usable over time rather
 than to ship a first version: setting up maintenance habits, managing
 dependencies and technical debt, deciding whether to keep, deprecate, or
-archive a project, and reducing the environmental cost of running it.
+archive a project, and keeping its sustainability story honest.
 Unmaintained software degrades even with no code changes - dependencies
 age, environments shift, and the knowledge to run it erodes - so treat
 maintenance as a recurring cost, not a one-off.
@@ -113,54 +112,14 @@ slow and risky:
 
 ## Reduce environmental impact
 
-Research is a significant source of carbon emissions, and there are
-concrete steps to cut the footprint of software and compute. The Green Software
-Foundation frames three levers:
-
-1. Energy efficiency - design software to consume as little energy as
-   possible.
-2. Hardware efficiency - minimise embodied carbon by extending hardware
-   lifetime and, for cloud and HPC, raising device utilisation.
-3. Carbon awareness - do more work when the grid supply is clean and less
-   when it is dirty, shifting demand in time or space.
-
-The GREENER principles add a governance frame worth citing when advising
-on institutional or project policy: shared responsibility (top-down and
-bottom-up), estimation and reporting of energy and carbon, addressing both
-operational and embodied impacts, international collaboration for equitable
-access to low-carbon computing, and education plus research into
-energy-efficient algorithms.
-
-### Measure first, then improve
-
-You cannot reduce what you do not measure, so start by estimating the
-current footprint:
-
-- CodeCarbon estimates CO2 emissions from the compute a program uses.
-- Green Algorithms provides a web calculator for the carbon footprint of a
-  computational task (with HPC support in progress).
-- carbontracker monitors and predicts energy and carbon for training
-  machine-learning models - reach for it before large training runs.
-- Greenspector and Ecograder assess energy use and efficiency of web and
-  mobile applications.
-- The Software Carbon Intensity (SCI) Specification gives a repeatable
-  framework for scoring and reducing a system's carbon intensity; use it
-  when you need a comparable metric rather than a one-off estimate.
-
-### Act on the measurements
-
-- Profile and optimise the hot paths that dominate energy use rather than
-  micro-optimising everywhere; efficiency work is also maintenance work.
-- Right-size compute: avoid over-provisioned cloud/HPC allocations and
-  raise utilisation of the hardware you do request.
-- Schedule flexible, non-urgent batch jobs for times or regions where the
-  grid is cleaner (carbon-aware demand shifting).
-- For groups, consider the GreenDiSC certification scheme to structure
-  hardware and software sustainability improvements over time.
-
-Present these as trade-offs, not absolutes: an extensive CI matrix or a
-large training sweep consumes real energy, so run the full version only
-when it earns its cost and use smaller subsets day to day.
+Environmental sustainability of computing is its own practice with
+its own skill: rseng-green-computing covers measuring energy and carbon
+(CodeCarbon, the SCI metric), reducing footprint in payoff order and
+carbon-aware scheduling. From the maintenance perspective, two habits
+matter here: include the compute footprint in the project's
+sustainability story (long-running services and repeated pipelines
+dominate), and revisit it at the same cadence as dependency and debt
+reviews - then follow rseng-green-computing for the how.
 
 ## Working with this skill
 
@@ -198,15 +157,8 @@ Learn more (verified pointers):
   https://www.software.ac.uk/resources/guides
 - Research Software Maintenance Fund -
   https://www.software.ac.uk/programmes/research-software-maintenance-fund
-- Green Software Foundation introductory course -
-  https://learn.greensoftware.foundation/introduction
-- green-coding.io workshops and training -
-  https://www.green-coding.io/services/workshops-and-trainings
-- GREENER principles (Nature Computational Science) -
-  https://www.nature.com/articles/s43588-023-00461-y
-- Software Carbon Intensity (SCI) Specification -
-  https://sci.greensoftware.foundation/
 - GreenDiSC certification scheme - https://www.software.ac.uk/GreenDiSC
+  (energy/carbon practice itself: see rseng-green-computing)
 
 ---
 

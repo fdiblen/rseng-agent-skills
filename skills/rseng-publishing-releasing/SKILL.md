@@ -1,16 +1,16 @@
 ---
 name: rseng-publishing-releasing
 description: >-
-  Covers getting research software out to users: packaging it for
-  distribution, cutting versioned releases with changelogs, publishing it
-  so others can find and cite it, and archiving it for long-term
-  preservation. Use when the user asks how to publish or share their code,
-  ship a package to PyPI/CRAN/npm/conda, tag a v1.0.0 release, write
-  release notes or a changelog, pick a versioning scheme (SemVer or
-  CalVer), mint a DOI, or archive software on Zenodo or Software Heritage.
+  Covers the release lifecycle of research software: preparing and
+  cutting versioned releases with changelogs, versioning schemes, release
+  automation and minting a DOI per release. Use when the user asks how to
+  tag a v1.0.0 release, write release notes or a changelog, pick a
+  versioning scheme (SemVer or CalVer), automate releases, or mint a
+  release DOI. (Channel craft for PyPI/CRAN/conda and registries is
+  rseng-software-publishing; long-term preservation is rseng-archiving.)
 license: CC-BY-4.0
 metadata:
-  version: 0.1.0
+  version: 0.2.0
   source_pages: [publishing_software, packaging_software, releasing_software, archiving_software]
   source: https://everse.software/RSQKit/
   source_doi: 10.5281/zenodo.14923573
