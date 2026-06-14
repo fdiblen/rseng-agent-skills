@@ -35,13 +35,13 @@ const SPECS: AgentSpec[] = [
     agent: "claude",
     scope: "project",
     marker: (p) => path.join(p, ".claude"),
-    installDir: (p) => path.join(p, ".claude", "skills"),
+    installDir: (p) => path.join(p, ".claude"),
   },
   {
     agent: "claude",
     scope: "user",
     marker: (_p, h) => path.join(h, ".claude"),
-    installDir: (_p, h) => path.join(h, ".claude", "skills"),
+    installDir: (_p, h) => path.join(h, ".claude"),
   },
   {
     agent: "copilot",
@@ -90,4 +90,34 @@ export function usableTargets(options: DetectOptions = {}): AgentTarget[] {
   const all = detectAgents(options);
   const detected = all.filter((target) => target.detected);
   return detected.length > 0 ? detected : all;
+}
+
+/**
+ * Targets for explicitly named agents. With --scope the match is filtered
+ * to that scope, exactly as before. Without --scope an agent known in both
+ * scopes resolves to a single target: project when the project marker
+ * exists, user otherwise. Installing into the home directory while a
+ * project marker is present requires an explicit --scope user.
+ */
+export function resolveExplicitTargets(
+  all: AgentTarget[],
+  wanted: string[],
+  scope?: Scope,
+): AgentTarget[] {
+  const matched = all.filter((target) => wanted.includes(target.agent));
+  if (scope) {
+    return matched.filter((target) => target.scope === scope);
+  }
+  const resolved: AgentTarget[] = [];
+  for (const agent of new Set(matched.map((target) => target.agent))) {
+    const group = matched.filter((target) => target.agent === agent);
+    const project = group.find((target) => target.scope === "project");
+    const user = group.find((target) => target.scope === "user");
+    if (project && user) {
+      resolved.push(project.detected ? project : user);
+    } else {
+      resolved.push(...group);
+    }
+  }
+  return resolved;
 }

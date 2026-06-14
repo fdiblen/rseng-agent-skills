@@ -76,10 +76,14 @@ export function formatReport(report: DoctorReport): string {
     `${report.intact.length} intact`,
   ];
   if (report.edited.length > 0) {
-    parts.push(`${report.edited.length} user-edited (${report.edited.join(", ")})`);
+    parts.push(
+      `${report.edited.length} user-edited (${report.edited.join(", ")})`,
+    );
   }
   if (report.missing.length > 0) {
-    parts.push(`${report.missing.length} MISSING (${report.missing.join(", ")})`);
+    parts.push(
+      `${report.missing.length} MISSING (${report.missing.join(", ")})`,
+    );
   }
   return parts.join(", ");
 }

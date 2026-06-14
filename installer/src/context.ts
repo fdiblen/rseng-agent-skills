@@ -1,6 +1,6 @@
+import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import fs from "node:fs";
 
 /** Shared state every command receives. */
 export interface CliContext {

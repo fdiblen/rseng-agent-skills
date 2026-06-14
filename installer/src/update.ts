@@ -2,9 +2,9 @@ import fs from "node:fs";
 import path from "node:path";
 import type { CliContext } from "./context.js";
 import {
+  executePlan,
   type InstallPlan,
   MANIFEST_NAME,
-  executePlan,
   readManifest,
   sha256,
 } from "./install.js";
@@ -21,13 +21,14 @@ export interface UpdateResult {
  * edited are preserved and reported. The previous state of every managed
  * file is backed up before anything changes.
  */
-export function executeUpdate(ctx: CliContext, plan: InstallPlan): UpdateResult {
+export function executeUpdate(
+  ctx: CliContext,
+  plan: InstallPlan,
+): UpdateResult {
   const installDir = plan.target.installDir;
   const manifest = readManifest(installDir);
   if (!manifest) {
-    throw new Error(
-      `${installDir} has no ${MANIFEST_NAME}; run install first`,
-    );
+    throw new Error(`${installDir} has no ${MANIFEST_NAME}; run install first`);
   }
 
   const preserved: string[] = [];

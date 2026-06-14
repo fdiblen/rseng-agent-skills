@@ -12,7 +12,11 @@ export const MANIFEST_NAME = ".rseng-agent-skills.json";
  * happens to sit in a directory (uncommitted files, caches).
  */
 const SOURCES: Record<string, { from: string; to: string }[]> = {
-  claude: [{ from: "skills", to: "." }],
+  claude: [
+    { from: "skills", to: "skills" },
+    { from: "commands", to: "commands" },
+    { from: "agents", to: "agents" },
+  ],
   copilot: [{ from: "dist/copilot/.github", to: "." }],
   cursor: [{ from: "dist/cursor/.cursor/rules", to: "." }],
   codex: [
@@ -46,11 +50,17 @@ function walkFiles(root: string): string[] {
 }
 
 export function sha256(file: string): string {
-  return crypto.createHash("sha256").update(fs.readFileSync(file)).digest("hex");
+  return crypto
+    .createHash("sha256")
+    .update(fs.readFileSync(file))
+    .digest("hex");
 }
 
 /** Expand the whitelist into concrete file copies for one agent target. */
-export function planInstall(packRoot: string, target: AgentTarget): InstallPlan {
+export function planInstall(
+  packRoot: string,
+  target: AgentTarget,
+): InstallPlan {
   const sources = SOURCES[target.agent];
   if (!sources) {
     throw new Error(`no install sources defined for agent ${target.agent}`);
@@ -64,7 +74,10 @@ export function planInstall(packRoot: string, target: AgentTarget): InstallPlan 
       );
     }
     if (fs.statSync(absFrom).isFile()) {
-      copies.push({ from: absFrom, to: path.join(target.installDir, source.to) });
+      copies.push({
+        from: absFrom,
+        to: path.join(target.installDir, source.to),
+      });
       continue;
     }
     for (const file of walkFiles(absFrom)) {
@@ -95,8 +108,9 @@ export function executePlan(ctx: CliContext, plan: InstallPlan): void {
   for (const copy of plan.copies) {
     fs.mkdirSync(path.dirname(copy.to), { recursive: true });
     fs.copyFileSync(copy.from, copy.to);
-    manifestFiles[path.relative(plan.target.installDir, copy.to)] =
-      sha256(copy.to);
+    manifestFiles[path.relative(plan.target.installDir, copy.to)] = sha256(
+      copy.to,
+    );
   }
   const manifestPath = path.join(plan.target.installDir, MANIFEST_NAME);
   fs.writeFileSync(

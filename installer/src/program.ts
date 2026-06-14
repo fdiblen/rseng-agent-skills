@@ -1,5 +1,5 @@
 import { Command } from "commander";
-import { type CliContext, buildContext } from "./context.js";
+import { buildContext, type CliContext } from "./context.js";
 
 export interface CommandArgs {
   /** Positional arguments in declaration order. */
@@ -16,7 +16,7 @@ export type CommandAction = (
 export const program = new Command()
   .name("rseng-agent-skills")
   .description(
-    "Install research software quality skills from RSQKit (EVERSE project) into AI coding agents",
+    "Install research software engineering practice skills, built on bundled content sources, into AI coding agents",
   )
   .version("0.1.0")
   .option("--dry-run", "report planned changes without writing anything")

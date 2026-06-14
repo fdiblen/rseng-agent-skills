@@ -1,4 +1,9 @@
-import { detectAgents, usableTargets } from "./agents.js";
+import {
+  detectAgents,
+  resolveExplicitTargets,
+  type Scope,
+  usableTargets,
+} from "./agents.js";
 import { diagnose, formatReport } from "./doctor.js";
 import { executePlan, planInstall, readManifest } from "./install.js";
 import { registerCommand } from "./program.js";
@@ -9,16 +14,16 @@ registerCommand(
   "install the pack for detected agents (or the agents given as arguments)",
   (ctx, args) => {
     const wanted = (args.positionals[0] as string[] | undefined) ?? [];
-    const scope = args.options["scope"] as string | undefined;
+    const scope = args.options["scope"] as Scope | undefined;
     // Naming an agent explicitly forces it even when it is not detected;
-    // with no arguments only detected agents are touched. --scope limits
-    // installs to project or user targets (an explicit agent name would
-    // otherwise hit BOTH scopes).
+    // with no arguments only detected agents are touched. Without --scope
+    // an explicit agent resolves to ONE scope (project when the project
+    // marker exists, user otherwise); --scope selects the scope directly.
     let targets =
       wanted.length > 0
-        ? detectAgents().filter((target) => wanted.includes(target.agent))
+        ? resolveExplicitTargets(detectAgents(), wanted, scope)
         : usableTargets().filter((target) => target.detected);
-    if (scope) {
+    if (wanted.length === 0 && scope) {
       targets = targets.filter((target) => target.scope === scope);
     }
     if (targets.length === 0) {

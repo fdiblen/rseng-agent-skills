@@ -5,8 +5,8 @@ import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import type { AgentTarget } from "../src/agents.js";
 import type { CliContext } from "../src/context.js";
 import {
-  MANIFEST_NAME,
   executePlan,
+  MANIFEST_NAME,
   planInstall,
   readManifest,
 } from "../src/install.js";
@@ -42,6 +42,9 @@ beforeEach(() => {
   write("AGENTS.md", "pack umbrella\n");
   write("skills/.keep", "");
   write("skills/rseng-testing/SKILL.md", "---\nname: rseng-testing\n---\n");
+  write("commands/rseng-check.md", "check command\n");
+  write("agents/rseng-reviewer.md", "reviewer agent\n");
+  write("extensions/rsqkit/some-page.md", "not part of any install\n");
   write("dist/cursor/.cursor/rules/rseng-overview.mdc", "rule one\n");
   write("dist/cursor/.cursor/rules/rseng-testing.mdc", "rule two\n");
   write("dist/codex/AGENTS.md", "agents file\n");
@@ -59,10 +62,7 @@ describe("planInstall", () => {
     const dests = plan.copies.map((c) =>
       path.relative(cursorTarget().installDir, c.to),
     );
-    expect(dests.sort()).toEqual([
-      "rseng-overview.mdc",
-      "rseng-testing.mdc",
-    ]);
+    expect(dests.sort()).toEqual(["rseng-overview.mdc", "rseng-testing.mdc"]);
   });
 
   it("handles single-file sources (codex AGENTS.md)", () => {
@@ -79,6 +79,28 @@ describe("planInstall", () => {
       "AGENTS.md",
       path.join("skills", "rseng-testing", "SKILL.md"),
     ]);
+  });
+
+  it("installs skills, commands and agents for claude", () => {
+    const target: AgentTarget = {
+      agent: "claude",
+      scope: "project",
+      marker: path.join(destRoot, ".claude"),
+      installDir: path.join(destRoot, ".claude"),
+      detected: true,
+    };
+    const plan = planInstall(packRoot, target);
+    const dests = plan.copies
+      .map((c) => path.relative(target.installDir, c.to))
+      .sort();
+    expect(dests).toEqual([
+      path.join("agents", "rseng-reviewer.md"),
+      path.join("commands", "rseng-check.md"),
+      path.join("skills", ".keep"),
+      path.join("skills", "rseng-testing", "SKILL.md"),
+    ]);
+    // Whitelist only: nothing outside skills/commands/agents is swept up.
+    expect(dests.some((d) => d.includes("extensions"))).toBe(false);
   });
 
   it("fails clearly when adapter output is missing", () => {
