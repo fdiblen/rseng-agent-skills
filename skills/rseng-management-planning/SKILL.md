@@ -5,13 +5,15 @@ description: >-
   Management Plan (SMP), and choosing programming languages, tools, and
   infrastructures for a project. Use when the user wants to write or review an
   SMP, plan how software will be developed, maintained, shared, and preserved,
+  mentions software management plans, maDMPs, DS-Wizard or DMPonline funder
+  templates, needs the software sections of a proposal,
   decide which language or framework to start a project in (Python, C++, R,
   Julia, Rust, Fortran, JavaScript), pick a project template or boilerplate,
   or weigh reuse, sustainability, and funder requirements at the start of a
   project.
 license: CC-BY-4.0
 metadata:
-  version: 0.1.0
+  version: 0.2.0
   source_pages: [software_management_planning, languages_tools_infrastructures]
   source: https://everse.software/RSQKit/
   source_doi: 10.5281/zenodo.14923573
@@ -110,6 +112,32 @@ Treat the SMP as a living document, not a start-of-project formality:
   format - the ELIXIR SMP template and the Software Management Wizard offer
   guided, low-barrier starting points; the SSI checklist helps evaluate
   coverage. See references.md for the vetted set.
+
+## Machine-actionable SMPs and platform workflows
+
+SMPs are becoming structured data, not prose PDFs. When the user's
+institution runs a planning platform, draft THERE (or produce
+paste-ready content): the Data Stewardship Wizard builds plans from
+questionnaire knowledge models and exports funder formats plus
+machine-actionable output; DMPonline carries the major funder
+templates whose software sections an SMP feeds. A structured plan is
+checkable - promised repositories can be diffed against actual
+deposits, promised licenses against LICENSE files, promised archiving
+against archive records (rseng-archiving).
+
+Drafting workflow for an agent: for an existing project, read the
+repository first - license, CI, tests, CITATION.cff, README - and
+write the plan that is TRUE, flagging gaps as planned improvements
+with owners rather than papering over them. For a new proposal,
+draft from intended practices with this pack's standards as the
+default, concrete over aspirational ("unit tests in CI on every
+merge", not "high quality standards"). Version the plan in the
+repository so changes are reviewable history; revisit at releases
+and reporting deadlines, and run a drift check - a plan that says
+"Zenodo archiving" while nothing is archived is a liability at
+review time. The data twin is rseng-data-management-plans; write the
+two consistently and cross-reference them. Record AI assistance in
+drafting in aidecl.yaml (rseng-ai-declaration).
 
 ## Choosing languages, tools, and infrastructures
 

@@ -4,6 +4,8 @@ description: >-
   Covers the operational side of running a research software
   project: turning plans into tracked, prioritized tasks (issues,
   milestones, boards), planning cadence around research deadlines,
+  estimation and time management for uncertain research work
+  (ranged estimates, timeboxed spikes, capacity planning),
   and disciplined bookkeeping - decision logs, status records,
   meeting notes, milestone reviews and two-altitude project logs (a
   detailed journal of what happened and a high-level digest for
@@ -16,7 +18,7 @@ description: >-
   month of work.
 license: CC-BY-4.0
 metadata:
-  version: 0.2.0
+  version: 0.3.0
 ---
 
 # Task management and project records
@@ -70,6 +72,35 @@ an infrastructure project needs the full apparatus.
   dates move - silently keeping both is how projects lie to
   themselves (rseng-honesty applies to schedules too).
 
+## Estimating and managing time
+
+Research work resists estimation - half of it is finding out
+whether something works at all. Manage time honestly rather than
+precisely:
+
+- Estimate in ranges with an uncertainty tag: "2-4 days if the
+  library handles it, 2 weeks if we write our own" - the tag names
+  the assumption to test FIRST (a timeboxed spike), which is how
+  research estimates become cheap to correct.
+- Timebox exploration: open-ended tasks ("try approach X") get a
+  box ("two days, then decide with what we have"); the box turns
+  a rabbit hole into a decision point, and the decision goes into
+  the log either way (rseng-lessons-learned records the dead ends).
+- Track actuals loosely against estimates at the planning cadence -
+  not for blame, for calibration; after a few cycles the team's
+  systematic optimism factor is visible and correctable.
+- Protect maker time: batch interrupts (the triage cadence above
+  exists for this), keep one or two meeting-free focus blocks, and
+  put support duty on rotation (rseng-user-support) so it costs one
+  person one day, not everyone every day.
+- Plan people, not just tasks: research staff split time across
+  projects and papers - a cycle plan that assumes 100% availability
+  is fiction; state assumed capacity per person per cycle.
+- Deadlines drive scope, not quality floors: when the conference
+  deadline compresses the plan, cut scope visibly in the tracker
+  (rseng-honesty applies to schedules) - never silently cut the
+  tests, the docs or the aidecl record.
+
 ## Bookkeeping: the project record
 
 Records that earn their keep, all versioned in the repository
@@ -85,8 +116,8 @@ Records that earn their keep, all versioned in the repository
   next, blocked. Written for the future reader (the PI report,
   the grant deadline, the returning-from-leave teammate), it
   makes reporting a copy-paste instead of a reconstruction
-  (rseng-software-management-plans' living-document updates draw
-  on it directly).
+  (rseng-management-planning's living-plan updates draw on it
+  directly).
 - Meeting notes with decisions and actions only - actions go
   straight into the tracker with owners; notes that stay prose
   are where actions go to die.

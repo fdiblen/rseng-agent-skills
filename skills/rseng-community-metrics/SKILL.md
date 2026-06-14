@@ -91,7 +91,7 @@ dashboard:
   (rseng-maintenance-sustainability).
 - Good numbers -> tell the community; measured health is a
   celebration and a grant-report asset
-  (rseng-science-communication, rseng-software-management-plans).
+  (rseng-science-communication, rseng-management-planning).
 
 Report metrics to the community transparently on a cadence - a
 short health section in the periodic digest

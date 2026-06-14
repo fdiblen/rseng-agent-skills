@@ -91,7 +91,7 @@ Support load is data: time spent, topics, affected user groups -
 a line in the status record (rseng-project-tracking) makes it
 visible in planning, fundable in proposals (support and
 maintenance are budgetable work -
-rseng-software-management-plans), and honest in the sustainability
+rseng-management-planning), and honest in the sustainability
 story (rseng-maintenance-sustainability).
 
 ## Working with this skill

@@ -27,7 +27,7 @@ useful version is not the compliance document but the honest
 operating plan - and because it describes practices this pack
 already engineers, most of a good DMP can be drafted from, and
 checked against, the project itself. The software counterpart
-(rseng-software-management-plans) shares this design; write the two
+(rseng-management-planning's SMP practice) shares this design; write the two
 consistently and cross-reference them.
 
 ## What a plan covers
@@ -103,7 +103,7 @@ cannot be shared after all. Treat the DMP like the SMP:
 This skill is source-independent: its authority is the RDA common
 standard, the platform documentation and the RDMkit guidance
 linked below. It is the data twin of
-rseng-software-management-plans; rseng-data-management holds the
+the SMP practice in rseng-management-planning; rseng-data-management holds the
 underlying practice.
 
 ## Attribution and teaching
