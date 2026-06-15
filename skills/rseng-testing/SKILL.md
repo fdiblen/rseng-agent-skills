@@ -28,37 +28,25 @@ change.
 
 ## Decide what kind of tests to write
 
-Always start with functional testing, then add non-functional testing only
-where a requirement demands it.
-
-- Functional testing - does the software produce correct outputs for given
-  inputs? Pick the level by scope:
-  - Unit tests: one small unit of functionality (a single function/method)
-    in isolation. This is the minimum bar for any research code.
-  - Integration tests: multiple modules/components working together along a
-    functional path.
-  - System / end-to-end tests: the whole application behaving correctly
-    against its requirements.
-  - Regression tests: outputs have not changed after a code change; run
-    them after every bug fix or new feature.
-  - User acceptance tests: real user/business needs are met.
-- Non-functional testing - add when the requirement exists, not by default:
-  - Performance/load, usability, security, compatibility (browsers, OSes,
-    devices), and compliance-with-standards tests.
-- Decision rule: unit tests always; integration/system tests once
-  components interact; regression tests whenever behaviour must stay
-  stable; non-functional tests keyed to explicit requirements (many users
-  -> performance; multiple platforms -> compatibility) (RSQKit:
-  testing_software).
-
-Tactics to choose between: black-box (test behaviour without knowing
-internals) versus white-box (test specific internal paths and conditions).
+Always start with functional testing (does the software produce
+correct outputs for given inputs), then add non-functional testing
+only where a requirement demands it (performance, usability,
+security, compatibility, compliance). The decision rule: unit tests
+always; integration/system tests once components interact;
+regression tests whenever behaviour must stay stable; non-functional
+tests keyed to explicit requirements (many users -> performance;
+multiple platforms -> compatibility) (RSQKit: testing_software).
+Choose tactics per test: black-box (behaviour without knowing
+internals) versus white-box (specific internal paths). The full
+type-by-type toolbox follows.
 
 ## The wider test-type toolbox
 
 Unit tests are the floor, not the toolbox. Match the test type to
 the risk being retired:
 
+- Unit tests: one small unit of functionality in isolation - the
+  minimum bar for any research code, and where TDD lives.
 - Integration tests: components together - the file reader feeding
   the model, the pipeline stages chained; most research bugs live
   at these seams, not inside single functions.
@@ -192,7 +180,7 @@ currency discipline applies to tool choices too).
 
 When research software must support many compilers, library versions,
 architectures, and runtimes, a naive full matrix explodes - e.g. 4 GCC x
-6 Clang x 10 CUDA x 4 CMake x 7 Boost = 2,800 jobs (~9.3 h even with 30
+6 Clang) x 10 CUDA x 4 CMake x 7 Boost = 2,800 jobs (~9.3 h even with 30
 parallel runners). Use these strategies:
 
 - Prefer pairwise testing over the full matrix. Ensuring every pair of

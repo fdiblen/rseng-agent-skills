@@ -12,7 +12,7 @@ description: >-
   scripting practice), or wants a language-by-language comparison.
 license: CC-BY-4.0
 metadata:
-  version: 0.1.0
+  version: 0.2.0
   source: https://guide.esciencecenter.nl/
 ---
 
@@ -25,6 +25,40 @@ introduction, information sources, setup, development environments,
 style standards, packaging, testing, quality assurance, optimization,
 logging, documentation, dependencies, starting points - so comparable
 answers exist for every covered language.
+
+## Current-tool quick reference per language
+
+The strongest current stack per ecosystem (the pack-wide rule: best
+current option, runner-up named, reason given - and these move, so
+verify against the ecosystem when in doubt):
+
+- Python: uv for environments/packaging (runner-up: pip+venv - uv is
+  faster and lockfile-native), ruff as the single linter+formatter
+  (replaces flake8/isort/black), pytest for tests, mypy for types,
+  pyproject.toml as the one config home. Python 2 relics (2to3, six)
+  and legacy tool chains belong to migration work, not new projects.
+- R: usethis/devtools for package workflow, testthat for tests,
+  lintr + styler for quality, roxygen2 for docs, renv for
+  reproducible libraries; rOpenSci's guide is the community bar.
+- C/C++: CMake as the build lingua franca, Catch2 or GoogleTest for
+  tests, clang-tidy + clang-format for quality, sanitizers
+  (ASan/UBSan) in CI, a package manager (vcpkg/Conan) over vendored
+  sources.
+- Fortran: fpm (Fortran Package Manager) for new projects, gfortran
+  in CI, pFUnit for tests; modern-Fortran style over F77 habits, and
+  interop via iso_c_binding when Python needs to call it.
+- Julia: built-in Pkg with Project.toml/Manifest.toml, Test stdlib,
+  JuliaFormatter; register in General only once the API settles.
+- JavaScript/TypeScript: TypeScript by default for anything shared,
+  vitest for tests, Biome as linter+formatter (runner-up:
+  eslint+prettier - Biome is one fast tool), npm lockfiles committed.
+- Bash: shellcheck non-negotiable, bats-core for tests when a script
+  earns them - and past ~100 lines, prefer a real language
+  (rseng-software-design's honesty about scripts).
+
+These map the pack's practices INTO each ecosystem; the process
+itself (testing discipline, packaging, CI shape) stays in the
+process skills.
 
 ## How to use the guides
 
