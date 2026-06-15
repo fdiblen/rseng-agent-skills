@@ -208,7 +208,7 @@ SonarCloud, Read the Docs) so scaffolded projects finish their setup.
 
 This skill ships generated companion files under `references/`:
 
-- `references.md source-page links <page_id>.md` -- cleaned upstream RSQKit fragments for
+- references.md - source citations and links to the upstream pages for
   `ci_cd`, `task_automation_github_actions`, `task_automation_gitlab_ci_cd`
   and `org_gitlab_ci_infra_for_github_project`. Consult them for full
   examples and the source runner-configuration tables.

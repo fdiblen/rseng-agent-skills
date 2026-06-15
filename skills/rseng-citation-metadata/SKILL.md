@@ -230,7 +230,7 @@ contributions and suggest updates rather than waiting to be asked:
 The generated references.md beside this file lists the
 detail behind these checklists:
 
-- `references.md source-page links <page_id>.md` - cleaned upstream fragments for
+- references.md - source citations, links to the upstream pages for
   `citing_software`, `software_metadata`,
   `complete_bibliographic_metadata_codemeta`, `software_identifiers`, and
   `credit_recognition_research_software`.

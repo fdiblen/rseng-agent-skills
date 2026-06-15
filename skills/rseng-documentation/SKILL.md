@@ -263,7 +263,7 @@ gaming hazards).
 The generated references.md beside this file lists the source
 material and pointers:
 
-- `references.md source-page links <page_id>.md` - cleaned upstream fragments with the full
+- references.md - source citations and links to the upstream pages with the full
   detail and examples (Keras usage examples, the khmer changelog practice,
   the `.readthedocs.yaml` snippets, the seminar walkthrough) behind the
   checklists above.
