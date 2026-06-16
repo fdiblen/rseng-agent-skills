@@ -17,10 +17,10 @@ from dataclasses import asdict
 from pathlib import Path
 
 from .cleaner import clean_body
-from .source import load_source
 from .fetcher import UpstreamPin, load_pin, verify_cache
 from .learn_more import collect_all, load_curated, merge_curated
 from .parser import extract_tool_refs, load_pages
+from .source import load_source
 from .sources.rsqkit import (
     load_contributors,
     load_dimensions,
@@ -60,7 +60,7 @@ def _page_entry(record, learn_more, base_url: str, slug_style: str = "stem") -> 
         "quality_indicators": record.quality_indicators,
         "child_pages": record.child_pages,
         "source_path": record.source_path,
-        "rsqkit_url": f"{base_url}/{_page_slug(record, slug_style)}",
+        "page_url": f"{base_url}/{_page_slug(record, slug_style)}",
         # From the raw body: cleaning rewrites tool tags into plain links.
         "tool_refs": extract_tool_refs(record.body),
         "learn_more": {

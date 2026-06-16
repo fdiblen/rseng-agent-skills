@@ -11,8 +11,9 @@ from pathlib import Path
 from jinja2 import Environment
 
 from ..adapters import copy_skills, render_to, target
+from ..checks import SIZE_BUDGETS
 
-AGENTS_MD_BUDGET = 32 * 1024
+AGENTS_MD_BUDGET = SIZE_BUDGETS["AGENTS.md"]
 
 
 @target("codex")

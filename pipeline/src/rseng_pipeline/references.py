@@ -48,7 +48,7 @@ def _source_section(
     if pages:
         lines.append("Source pages:")
         lines.append("")
-        lines.extend(f"- {page['title']}: {page['rsqkit_url']}" for page in pages)
+        lines.extend(f"- {page['title']}: {page['page_url']}" for page in pages)
         lines.append("")
 
     seen: set[str] = set()

@@ -35,7 +35,8 @@ def build(repo_root: Path, only: list[str] | None = None) -> dict[str, list[Path
             shutil.rmtree(target_dir)
         target_dir.mkdir(parents=True)
         results[name] = TARGETS[name](repo_root, env, context, target_dir)
-        problems.extend(check_target(target_dir, commit=context["upstream"]["commit"]))
+        for src in context["sources"]:
+            problems.extend(check_target(target_dir, commit=src["commit"]))
     if problems:
         raise SystemExit("adapter checks failed:\n" + "\n".join(problems))
     return results

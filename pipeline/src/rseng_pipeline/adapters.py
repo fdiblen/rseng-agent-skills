@@ -65,7 +65,7 @@ def _skill_entries(repo_root: Path, sources: list) -> list[dict]:
                 {
                     "page_id": page_id,
                     "title": content["pages"][page_id]["title"],
-                    "url": content["pages"][page_id]["rsqkit_url"],
+                    "url": content["pages"][page_id]["page_url"],
                 }
                 for page_id in skill_page_ids(tax_entry)
             )

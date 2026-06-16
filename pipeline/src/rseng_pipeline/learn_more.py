@@ -34,7 +34,7 @@ class LearnMore:
     """Learn-more pointers for one page."""
 
     page_id: str
-    rsqkit_url: str
+    page_url: str
     external: tuple[str, ...]
     training: tuple[str, ...]
     curated: tuple[CuratedSource, ...] = ()
@@ -81,7 +81,7 @@ def collect_learn_more(
     slug = str(path.with_suffix("")) if slug_style == "path" else path.stem
     return LearnMore(
         page_id=record.page_id,
-        rsqkit_url=f"{base_url}/{slug}",
+        page_url=f"{base_url}/{slug}",
         external=_dedupe(external),
         training=_dedupe(training_links),
     )

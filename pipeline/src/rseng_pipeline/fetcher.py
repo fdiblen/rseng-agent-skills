@@ -11,10 +11,11 @@ from __future__ import annotations
 import fnmatch
 import hashlib
 import json
-import tomllib
 import urllib.request
 from dataclasses import dataclass
 from pathlib import Path
+
+import tomllib
 
 RAW_BASE = "https://raw.githubusercontent.com"
 TREE_API = "https://api.github.com/repos/{repo}/git/trees/{commit}?recursive=1"

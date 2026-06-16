@@ -107,7 +107,7 @@ def drop_empty_training_sections(body: str) -> str:
 # First path segment ending in one of these TLDs marks a schema-less
 # external link (upstream sometimes writes e.g. "workflowhub.eu").
 _BARE_DOMAIN_RE = re.compile(
-    r"^[a-z0-9-]+(\.[a-z0-9-]+)*\.(com|org|net|io|eu|uk|dev|ai|edu)(/|$)", re.I
+    r"^[a-z0-9-]+(\.[a-z0-9-]+)*\.(com|org|net|io|eu|uk|dev|ai|edu)(/|$)", re.IGNORECASE
 )
 
 

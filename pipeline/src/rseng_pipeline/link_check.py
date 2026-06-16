@@ -1,6 +1,6 @@
 """Check every external URL in generated artifacts.
 
-Scans dist/ and the generated skills/*/references/ folders for http(s)
+Scans dist/ and the generated each skill's generated references.md for http(s)
 URLs, verifies each distinct URL once (quarantine list respected, HEAD
 with GET fallback, parallel probes) and reports. Broken links fail the
 run; quarantined links are skipped by design; network errors are warnings

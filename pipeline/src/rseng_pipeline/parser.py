@@ -120,6 +120,11 @@ def load_pages(cache_dir: Path) -> dict[str, PageRecord]:
     records: dict[str, PageRecord] = {}
     for md_file in sorted(cache_dir.rglob("*.md")):
         record = parse_page_file(md_file, cache_dir)
+        if record.page_id in records:
+            raise ValueError(
+                f"duplicate page_id {record.page_id!r}: "
+                f"{records[record.page_id].source} vs {record.source}"
+            )
         records[record.page_id] = record
     return records
 
