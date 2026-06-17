@@ -27,8 +27,12 @@ jobs:
       - name: Update pin and regenerate
         if: steps.classify.outputs.level != 'none'
         run: |
-          new_commit=$(git ls-remote https://github.com/EVERSE-ResearchSoftware/RSQKit main | cut -f1)
-          uv run --directory pipeline python -m rseng_pipeline.bump_pin "$new_commit"
+          for ext in extensions/*/; do
+            name=$(basename "$ext")
+            repo=$(sed -n 's/^repo *= *"\(.*\)"/\1/p' "$ext/upstream.lock")
+            new_commit=$(git ls-remote "$repo" main | cut -f1)
+            uv run --directory pipeline python -m rseng_pipeline.bump_pin "$name" "$new_commit"
+          done
           uv run --directory pipeline python -m rseng_pipeline.fetcher
           uv run --directory pipeline python -m rseng_pipeline.lock_manifest
           uv run --directory pipeline python -m rseng_pipeline.assembler
@@ -42,14 +46,17 @@ jobs:
         uses: peter-evans/create-pull-request@v7
         with:
           branch: sync/upstream
-          title: "sync: upstream RSQKit changes (${{ steps.classify.outputs.level }})"
+          title: "sync: upstream content source changes (${{ steps.classify.outputs.level }})"
           body-path: pipeline/build/change-report.md
-          commit-message: "sync upstream rsqkit changes"
+          commit-message: "sync upstream content changes"
           labels: sync,${{ steps.classify.outputs.level }}
           add-paths: |
-            extensions/rsqkit/upstream.lock
-            extensions/rsqkit/upstream.manifest.json
+            extensions/*/upstream.lock
+            extensions/*/upstream.manifest.json
             skills
+            README.md
+            .claude-plugin
+            docs/user
       - name: Enable auto-merge for references-only changes
         # L1 = registry/data regeneration only; merges itself once the
         # validate workflow is green. L2/L3 wait for human review.

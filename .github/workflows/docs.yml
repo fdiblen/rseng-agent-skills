@@ -23,4 +23,4 @@ jobs:
         run: |
           uvx --from linkchecker linkchecker --check-extern \
             --ignore-url 'https://doi.org/.*' \
-            site/ || true
+            site/

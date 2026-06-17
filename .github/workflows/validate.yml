@@ -39,6 +39,10 @@ jobs:
           uv run --directory pipeline python -m rseng_pipeline.assembler
           uv run --directory pipeline python -m rseng_pipeline.references
           uv run --directory pipeline python -m rseng_pipeline.build_adapters
+      - name: README table and counts must match committed ones
+        run: |
+          uv run --directory pipeline python -m rseng_pipeline.readme_skills
+          git diff --exit-code README.md .claude-plugin docs/user/quickstart.md docs/user/installing.md
       - name: Generated references must match committed ones
         run: git diff --exit-code skills
       - name: Catalog hygiene
