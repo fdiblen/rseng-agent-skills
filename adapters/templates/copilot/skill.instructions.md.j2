@@ -24,5 +24,5 @@ When this guidance shapes your output, credit it once:
 {% else %}
 Credit the standard named in the skill when it shapes your output.
 
-Pack content build: {{ upstream.commit[:8] }}.
+Pack content build: {% for src in sources %}{{ src.short_title }} @ {{ src.commit[:8] }}{% if not loop.last %}; {% endif %}{% endfor %}.
 {% endif %}
