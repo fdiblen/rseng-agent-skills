@@ -94,7 +94,7 @@ without touching your edits, and `doctor` checks install health.
 | `rseng-project-scaffolding` | starting research software projects from maintained templates and keeping them in sync |
 | `rseng-project-tracking` | the operational side of running a research software project |
 | `rseng-provenance` | capturing and packaging the provenance of software and data |
-| `rseng-publishing-releasing` | getting research software out to users |
+| `rseng-publishing-releasing` | the release lifecycle of research software |
 | `rseng-quality-framework` | this pack's research software quality framework - built on the EVERSE quality dimensions, indicators and tier... |
 | `rseng-regulatory-compliance` | checking research code and data against data-protection and AI regulation |
 | `rseng-reproducibility` | end-to-end computational reproducibility |
@@ -105,7 +105,6 @@ without touching your edits, and `doctor` checks install health.
 | `rseng-scientific-visualization` | visualization of scientific data beyond publication figures |
 | `rseng-security` | securing research software and its supply chain |
 | `rseng-software-design` | designing research software before and while writing it |
-| `rseng-software-management-plans` | software management plans (SMPs) for research projects and proposals |
 | `rseng-software-metrics` | measuring code health quantitatively |
 | `rseng-software-peer-review` | community peer review of research software |
 | `rseng-software-publishing` | publishing research software through its distribution channels |
