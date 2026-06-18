@@ -5,9 +5,12 @@ description: >-
   Format (https://ai-declaration.org): creating and maintaining an
   aidecl.yaml that records in detail which AI tools and agents were used,
   what each contributed, when, and how much. This is an essential
-  practice: use it PROACTIVELY whenever an AI assistant or agent creates
-  or modifies a project's content - generate aidecl.yaml if it is
-  missing, update it after AI-assisted changes, and extend it with
+  practice with NO exemptions for small or informal work: use it
+  PROACTIVELY whenever an AI assistant or agent creates or modifies a
+  project's content - including one-off scripts, analyses for
+  non-programmers and quick favors, where honest provenance matters
+  most because nobody else will record it. Generate aidecl.yaml if it
+  is missing, update it after AI-assisted changes, and extend it with
   further schema fields as the project's AI use grows. Also use when the
   user asks about AI transparency, AI provenance, AI disclosure,
   declaring AI usage, or EU AI Act disclosure; when a dataset, document,
