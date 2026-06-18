@@ -2,9 +2,9 @@
 
 Two related processes keep the pack current: **releasing** cuts a versioned
 build and publishes it, and **syncing** pulls new content-source updates in and
-classifies its impact. Both hang off the single pinned source of truth in
-`extensions/rsqkit/upstream.lock`, and both are reproducible from it - nothing generated
-is hand-maintained.
+classifies their impact. Both hang off the pinned sources of truth in
+`extensions/<source>/upstream.lock` (one per content source), and both are
+reproducible from them - nothing generated is hand-maintained.
 
 ## Releasing
 
@@ -24,7 +24,7 @@ is hand-maintained.
 - builds the adapters from scratch on a clean checkout, in the same order the
   pipeline expects -
   `assembler` (fetch/verified cache to `content.json` + fragments), then
-  `references` (regenerate every skill's `references/`), then `build_adapters`
+  `references` (regenerate every skill's `references.md`), then `build_adapters`
   (render `dist/<target>/` and run the output checks);
 - builds and tests the installer (`npm ci`, `npm run build`, `npm test`);
 - publishes the npm package with provenance (`npm publish --provenance --access public`).
@@ -59,7 +59,7 @@ existing install - which is why new skills are a minor, not a major, bump.
 ### Release notes
 
 Release notes **must state the upstream source commits** the build was cut from -
-the `commit` in `extensions/rsqkit/upstream.lock`. Every generated artifact already
+the `commit` in each `extensions/<source>/upstream.lock`. Every generated artifact already
 stamps that SHA (fragment headers, the `upstream` block in `content.json`, the
 generated-note banners), so the notes and the artifacts always agree on
 provenance. Release notes also carry a change summary generated from the sync
@@ -68,12 +68,12 @@ product, not a manually edited file.
 
 ## Syncing with upstream
 
-### The pin
+### The pins
 
-`extensions/rsqkit/upstream.lock` is the single pinned source of truth for the content
-pipeline. It records the RSQKit repo, the `ref` it tracks (`main`) and the
-exact `commit` the current build is pinned to, plus the source paths and data
-globs the pipeline consumes:
+Each content source has its own pin: `extensions/<source>/upstream.lock`
+records that source's upstream repo, the `ref` it tracks (`main`) and the
+exact `commit` the current build is pinned to, plus the source paths and
+data globs the pipeline consumes. The rsqkit pin, for example:
 
 ```toml
 [upstream]
@@ -84,24 +84,25 @@ commit = "03a8352e0701acf6ae28a1f6c9069e9b2caf8e7e"
 
 The fetcher downloads exactly the selected files at that commit and records a
 SHA-256 manifest, so later runs verify cache integrity instead of
-re-downloading (`fetcher.py`, `verify_cache`). The lock is machine-updated by
-the sync workflow; the comment in the file asks contributors not to edit the
-commit by hand. Advancing the pin is what a sync *is*.
+re-downloading (`fetcher.py`, `verify_cache`). The locks are machine-updated
+by the sync workflow; the comment in each file asks contributors not to edit
+the commit by hand. Advancing a pin is what a sync *is*.
 
-### The weekly sync classifier (design)
+### The weekly sync classifier
 
-The sync machinery is the design implemented in Phase 6. A weekly cron (plus
-manual dispatch) diffs the pinned lock against RSQKit `main`, regenerates, and
-opens a single PR carrying a per-skill impact report. Because `taxonomy.yml`
-maps page_ids to skills, change detection is per-skill rather than
-all-or-nothing: each changed upstream page is attributed to the skill(s) that
-map it.
+The sync workflow (`.github/workflows/sync.yml`) runs on a weekly cron
+(plus manual dispatch). It diffs each pinned lock against the source's
+upstream `main`, regenerates, and opens a single PR carrying a per-skill
+impact report. Because each source's `taxonomy.yml` maps page_ids to
+skills, change detection is per-skill and per-source rather than
+all-or-nothing: each changed upstream page is attributed to the skill(s)
+that map it.
 
 The classifier sorts every change into one of three levels:
 
 - **L1 references-only** - upstream body text, tool descriptions, typo fixes.
-  These touch only generated `references/`, so regeneration is safe; the sync
-  PR is labelled L1 and auto-merges once CI is green.
+  These touch only generated `references.md`, so regeneration is safe; the
+  sync PR is labelled L1 and auto-merges once CI is green.
 - **L2 body-review** - substantive guidance changes in a page that backs a
   hand-authored SKILL.md body. The PR flags each affected skill with the
   upstream diff excerpt and a review checklist, and a human reviews whether the
@@ -116,15 +117,15 @@ URL re-verification for new or changed tool links.
 
 ### Page additions and removals
 
-The setup expects RSQKit to grow and shrink:
+The setup expects the content sources to grow and shrink:
 
 - **New page** - shows up as L3 until it is mapped. The sync PR proposes a
   `taxonomy.yml` mapping to an existing skill (matched on keywords and
   `related_pages`) or proposes a new skill when nothing fits; a human confirms
-  the mapping, after which `references/` and the adapters regenerate
+  the mapping, after which `references.md` and the adapters regenerate
   automatically.
-- **Removed page** - generated `references/` prune automatically (the reference
-  build wipes and rebuilds every folder, so a page that is gone disappears);
+- **Removed page** - generated `references.md` prunes automatically (the
+  reference build rewrites every file in full, so a page that is gone disappears);
   any skill whose body cites the removed page_id is flagged for review. A skill
   whose backing pages all disappear is deprecated for one minor release with a
   note, then removed.
@@ -138,11 +139,11 @@ actually moves.
 
 ### Why generated output stays uncommitted at build but pruned on sync
 
-The reference generator and the adapter builder both wipe their output
-directory and rebuild it on every run, so removals propagate without manual
-cleanup. That is the same property the sync relies on: advancing the pin and
+The reference generator and the adapter builder both rewrite their output
+from scratch on every run, so removals propagate without manual cleanup.
+That is the same property the sync relies on: advancing a pin and
 rerunning the pipeline is sufficient to bring every derived artifact - the
-`references/` folders, `dist/`, the release zips - back in line with upstream.
+`references.md` files, `dist/`, the release zips - back in line with upstream.
 
 ## Triage procedure for sync PRs
 
@@ -156,13 +157,19 @@ registry changes look unusually large.
 L2 (body review): open the change report in the PR body. For every skill
 it lists, read the upstream diff of the underlying page and decide
 whether the hand-authored SKILL.md body still summarizes it faithfully.
-Update the body in the same PR when it does not. Merge manually.
+Update the body in the same PR when it does not. Merge manually. An
+optional helper, `.github/workflows/sync-draft.yml`, can draft the body
+updates for you: a maintainer dispatches it on the sync branch, it
+compares each L2 skill's body against the updated fragments and commits
+draft revisions to the PR, which still go through normal human review.
+It never runs automatically and needs the ANTHROPIC_API_KEY secret.
 
 L3 (structural): the PR needs taxonomy work before it can merge.
 
 1. Added pages: the report suggests a target skill (keyword and
    related_pages matching) or proposes a new skill. Confirm or correct
-   the suggestion in extensions/rsqkit/taxonomy.yml, regenerate references, and
+   the suggestion in the source's extensions/<source>/taxonomy.yml,
+   regenerate references, and
    check the new page's indicators appear in the skill checklist.
 2. Removed pages: references have pruned automatically; the report lists
    every skill whose body cites the removed page_id - edit those bodies.

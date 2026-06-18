@@ -1,15 +1,21 @@
 # Adding a skill
 
 A skill is one hand-authored `skills/rseng-<topic>/SKILL.md` plus a
-pipeline-generated `references/` folder beside it. Skills are the canonical
+pipeline-generated `references.md` beside it. Skills are the canonical
 content; every adapter is derived from them. Adding one is mostly editorial
 work (the taxonomy mapping and the body) followed by a regeneration and
 validation loop that is entirely mechanical.
 
-The contract that ties a skill to upstream is `extensions/rsqkit/taxonomy.yml`: it maps
-source page_ids to skills (this guide uses the rsqkit extension as the example; source-independent skills skip the taxonomy steps), references.md, adapters and sync impact
-reports are all derived from it. A page_id that does not appear in the taxonomy
-is not part of any skill; a page_id that appears twice breaks the "exactly
+Most skills are source-independent: they map no upstream pages, so they
+skip the taxonomy steps below (steps 1 and the page_id parts of step 2)
+and get their `references.md` generated from the curated links in their
+own SKILL.md. For a source-fed skill, the contract that ties it to
+upstream is the content source's taxonomy
+(`extensions/<source>/taxonomy.yml`; this guide uses the rsqkit
+extension as the example). It maps source page_ids to skills, and the
+generated `references.md`, the adapters and the sync impact reports are
+all derived from it. A page_id that does not appear in the taxonomy is
+not part of any skill; a page_id that appears twice breaks the "exactly
 once" rule the taxonomy header states.
 
 ## 1. Map the upstream pages in taxonomy.yml
@@ -61,8 +67,8 @@ Two frontmatter fields couple back to step 1 and to the generated references:
 - `metadata.source_pages` must list the same page_ids you put in the taxonomy
   entry. Keep them in sync by hand.
 - The body cites page_ids inline (for example `(RSQKit: testing_software)`)
-  rather than pasting upstream prose; the full text lives in the generated
-  `references.md` (source-page links and Learn more pointers).
+  rather than pasting upstream prose; the generated `references.md` links
+  each mapped source page so a reader can reach the full text.
 
 ### Make the description trigger distinct
 
@@ -77,23 +83,27 @@ and `rseng-ci-cd` will cause the wrong skill to fire.
 
 ## 3. Regenerate references
 
-`references/` is generated and never hand-edited. After the taxonomy and
+`references.md` is generated and never hand-edited. After the taxonomy and
 SKILL.md are in place, rebuild it:
 
 ```
 uv run --directory pipeline python -m rseng_pipeline.references
 ```
 
-This wipes and rewrites `references/` for every skill from the build
-artifacts, so a removed page prunes automatically and a new skill gets its
-folder populated. It writes, per skill: `references.md` (source-page links and Learn more pointers).md`, `references/learn-more.md`
-and `references/indicators.md`. If it raises `no fragment for page_id ...`, the
-page_id in your taxonomy entry does not exist at the pinned commit - fix the
-id (or the pin) rather than the generator.
+This rewrites `references.md` for every skill from the build artifacts,
+so a removed page prunes automatically and a new skill gets its file
+written. Each source-fed skill gets one section per content source:
+the source's citation line, links to the mapped source pages, and the
+verified "Learn more" pointers. A source-independent skill gets its
+`references.md` derived from the curated links in its own SKILL.md. If
+the generator reports a page_id missing from the content build, the
+page_id in your taxonomy entry does not exist at the pinned commit - fix
+the id (or the pin) rather than the generator.
 
-The reference build reads `pipeline/build/` (content.json and fragments),
-which the assembler produces from the fetched upstream cache. If `build/` is
-stale or absent, run the assembler first, exactly as the publish workflow does:
+The reference build reads `pipeline/build/<source>/` (content.json and
+fragments), which the assembler produces from the fetched upstream cache.
+If `build/` is stale or absent, run the assembler first, exactly as the
+publish workflow does:
 
 ```
 uv run --directory pipeline python -m rseng_pipeline.assembler
@@ -131,7 +141,7 @@ rather than a skill, see [Adding an adapter](adding-an-adapter.md).
 Keep commits small and focused, matching the repository's existing history:
 
 - One commit for the `taxonomy.yml` mapping and the hand-authored `SKILL.md`.
-- A separate commit for the regenerated `references/` (it is a mechanical
+- A separate commit for the regenerated `references.md` (it is a mechanical
   artifact; keeping it apart makes the authored change reviewable on its own).
 
 Do not fold unrelated formatting or other skills' files into the same commit.

@@ -43,8 +43,8 @@ domain terms ("CI matrix") a user might use.
      below), naturally placed (footer line or "Based on" note), never
      repeated per paragraph.
    - Educate while doing: alongside any action taken, briefly explain why
-     it matters and offer 2-3 "Learn more" links chosen from
-     references/learn-more.md - proportionate to context, never a lecture.
+     it matters and offer 2-3 "Learn more" links chosen from the skill's
+     references.md - proportionate to context, never a lecture.
 5. Attribution footer (last lines of the body), using the shared snippet
    from extensions/rsqkit/data/citation.yml verbatim.
 

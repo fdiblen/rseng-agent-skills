@@ -1,9 +1,9 @@
 # rseng-agent-skills
 
 Research software engineering (RSEng) skills for AI coding agents:
-Claude Code, GitHub Copilot, Cursor, Codex CLI and Gemini CLI. Reference
-content comes from pluggable content sources; the bundled source is
-research software engineering practice. Most skills are
+Claude Code, GitHub Copilot, Cursor, Codex CLI and Gemini CLI. The pack
+holds 64 skills covering research software engineering practice, plus
+(for Claude Code) 12 slash commands and 6 subagents. Most skills are
 source-independent; a minority adapt pinned content sources, including
 [RSQKit](https://everse.software/RSQKit/) (EVERSE project) and the
 Netherlands eScience Center guide.

@@ -139,9 +139,9 @@ when the user asks..." triggers, not on an explicit call. If nothing fires:
 - Confirm the install is present and healthy with `npx rseng-agent-skills
   doctor`. A `MISSING` file or `not installed` line explains a skill that
   cannot fire.
-- For Claude Code, remember the slash commands and the `rseng-auditor`
-  subagent are explicit entry points you can always invoke by name when you
-  do not want to rely on automatic triggering.
+- For Claude Code, remember the `/rseng-*` slash commands and the
+  subagents are explicit entry points you can always invoke by name when
+  you do not want to rely on automatic triggering.
 
 ### How do I see what an update would change first
 

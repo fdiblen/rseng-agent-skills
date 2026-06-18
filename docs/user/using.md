@@ -7,8 +7,8 @@ Each skill's frontmatter lists the triggers ("Use when the user asks
 how to..."), and the agent matches against them.
 
 This page shows what that feels like in practice: a handful of skills with a
-realistic prompt and what the skill adds, the three Claude Code slash
-commands, the auditor subagent, and the two behaviours you will notice in
+realistic prompt and what the skill adds, the twelve Claude Code slash
+commands, the six subagents, and the two behaviours you will notice in
 every response - the attribution line and the "Learn more" links.
 
 ## How a skill changes an answer
@@ -99,9 +99,29 @@ framework - trigger the same way when your request matches them.
 
 ## Claude Code slash commands
 
-The plugin adds three commands for tasks you want to run deliberately rather
-than wait for a skill to trigger. Each inspects your repository read-first
-and produces a concrete artifact.
+The plugin adds twelve commands for tasks you want to run deliberately
+rather than wait for a skill to trigger. Each inspects your repository
+read-first and produces a concrete artifact. The full set:
+
+- `/rseng-check` - assess the repository against research software
+  engineering practice.
+- `/rseng-cite` - generate or update `CITATION.cff` and `codemeta.json`.
+- `/rseng-plan` - draft a Software Management Plan skeleton.
+- `/rseng-release` - run the pre-release checklist and prepare the release.
+- `/rseng-reproduce` - clean-room reproduction check of the repository.
+- `/rseng-deps` - audit every dependency on all six vetting axes.
+- `/rseng-integrity` - pre-submission integrity battery for manuscript and
+  results.
+- `/rseng-declare` - create or update the `aidecl.yaml` AI usage declaration.
+- `/rseng-metrics` - code and community health metrics snapshot.
+- `/rseng-digest` - draft the high-level project log digest for the period.
+- `/rseng-lesson` - record a lesson learned and draft its prevention
+  artifact.
+- `/rseng-onboard` - generate a project-specific onboarding checklist.
+
+The three commands below are described in more detail because they are the
+ones you will likely reach for first; the others follow the same pattern
+and name the skill they follow in their command file.
 
 ### /rseng-check
 
@@ -144,11 +164,28 @@ what the repository already shows, and marks genuinely open decisions with
 `[DECIDE: ...]` placeholders naming who should decide, rather than inventing
 policies or funders.
 
-## The rseng-auditor subagent (Claude Code)
+## The subagents (Claude Code)
 
-For a deeper, one-shot health check, the plugin installs a read-only
-subagent called `rseng-auditor`. Invoke it when you want a quality audit
-of a repository - for example before a release or a publication:
+The plugin installs six subagents. Each runs in its own context, so a
+long audit or review does not crowd out your main session:
+
+- `rseng-auditor` - read-only quality auditor; severity-rated findings
+  before a release or publication.
+- `rseng-reviewer` - codebase reviewer that fixes what it finds: ranked
+  findings first, implementation only after you agree.
+- `rseng-librarian` - read-only citation and claim verifier for
+  references, bibliographies and `CITATION.cff` entries.
+- `rseng-scout` - read-only reuse and dependency scout; searches research
+  software directories and vets candidates before you build or adopt.
+- `rseng-compliance-officer` - read-only regulatory and license compliance
+  sweep (GDPR code-shaped obligations, EU AI Act positioning, dependency
+  licenses).
+- `rseng-mentor` - teaching-focused mentor for learning a practice on your
+  real project rather than having it done for you.
+
+The auditor is the one you will likely use first. Invoke it when you want
+a quality audit of a repository - for example before a release or a
+publication:
 
 ```
 Use the rseng-auditor subagent to audit this repository before release.
@@ -167,7 +204,7 @@ sweep; the subagent runs a fuller, severity-rated audit in its own context.
 
 ## The attribution line
 
-Every command and the auditor close their output with the same line, exactly
+Every command and subagent closes its output with the same line, exactly
 once:
 
 ```
@@ -192,7 +229,7 @@ places:
   RSQKit page it came from, written as `(RSQKit: testing_software)` or
   similar. That tells you exactly which upstream page backs the advice, so
   you can check the reasoning rather than take it on trust.
-- "Learn more" links. When a command or the auditor points you at a next
+- "Learn more" links. When a command or a subagent points you at a next
   step, it offers a "Learn more" link drawn only from that skill's curated
   reference list (each skill's `references.md`) - training
   material and the specific RSQKit pages behind the topic, not arbitrary

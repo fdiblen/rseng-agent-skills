@@ -67,15 +67,17 @@ scopes whose marker directory exists are written.
 ### Plugin route (recommended)
 
 Claude Code has first-class plugin support, and this is the route that also
-gives you the slash commands and the auditor subagent:
+gives you the slash commands and the subagents:
 
 ```
 /plugin marketplace add fdiblen/rseng-agent-skills
 /plugin install rseng-agent-skills
 ```
 
-You get the 65 skills, the `/rseng-check`, `/rseng-cite` and
-`/rseng-plan` commands, and the `rseng-auditor` subagent.
+You get the 64 skills, the twelve `/rseng-*` commands and the six
+subagents (`rseng-auditor`, `rseng-reviewer`, `rseng-librarian`, `rseng-scout`,
+`rseng-compliance-officer`, `rseng-mentor`). See
+[Using the skills](using.md) for what each command and subagent does.
 
 ### File route
 

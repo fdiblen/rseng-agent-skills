@@ -8,12 +8,12 @@ working install.
 
 One canonical pack, built into each agent's native format:
 
-- 65 skills covering testing, CI/CD, documentation, licensing, citation
+- 64 skills covering testing, CI/CD, documentation, licensing, citation
   metadata, FAIR software, publishing and releasing, reproducible
   environments, code quality, version control and review, maintenance and
   sustainability, management and planning, workflows, and an overall quality
   framework.
-- For Claude Code only: three slash commands and an auditor subagent on top
+- For Claude Code only: twelve slash commands and six subagents on top
   of the skills.
 
 Every skill teaches while it works; source-fed skills link back to the page their content came
@@ -31,16 +31,35 @@ plugin:
 
 That gives you the full set:
 
-- 65 skills the agent invokes when a task matches (for example, writing a
+- 64 skills the agent invokes when a task matches (for example, writing a
   CITATION.cff or setting up CI).
-- Three slash commands:
-    - `/rseng-check` - assess this repository against the pack's quality
-      indicator checklists.
+- Twelve slash commands:
+    - `/rseng-check` - assess this repository against research software
+      engineering practice.
     - `/rseng-cite` - generate or update `CITATION.cff` and
       `codemeta.json`.
     - `/rseng-plan` - draft a Software Management Plan skeleton.
-- The `rseng-auditor` subagent, a read-only quality auditor you can invoke
-  for a health check before a release or publication.
+    - `/rseng-release` - run the pre-release checklist and prepare a release.
+    - `/rseng-reproduce` - clean-room reproduction check of the repository.
+    - `/rseng-deps` - audit every dependency on all six vetting axes.
+    - `/rseng-integrity` - pre-submission integrity battery for manuscript
+      and results.
+    - `/rseng-declare` - create or update the `aidecl.yaml` AI usage
+      declaration.
+    - `/rseng-metrics` - code and community health metrics snapshot.
+    - `/rseng-digest` - draft the high-level project log digest for a period.
+    - `/rseng-lesson` - record a lesson learned and draft its prevention
+      artifact.
+    - `/rseng-onboard` - generate a project-specific onboarding checklist.
+- Six subagents:
+    - `rseng-auditor` - read-only quality audit with severity-rated findings.
+    - `rseng-reviewer` - code review that implements agreed improvements.
+    - `rseng-librarian` - read-only citation and claim verification.
+    - `rseng-scout` - read-only reuse and dependency scouting before you
+      build or adopt.
+    - `rseng-compliance-officer` - read-only regulatory and license
+      compliance sweep.
+    - `rseng-mentor` - teaching-focused walkthroughs on your real project.
 
 If you prefer plain skill files over the plugin (or you run Claude Code
 without the plugin system), the CLI can drop the same skills into

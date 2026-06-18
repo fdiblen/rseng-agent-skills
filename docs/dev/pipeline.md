@@ -1,11 +1,13 @@
 # Content pipeline
 
 The pipeline lives in `pipeline/src/rseng_pipeline/`. It turns the pinned
-content sources named in each extension's `upstream.lock` (e.g. extensions/rsqkit/) into build artifacts
-(`build/<source>/content.json` and `build/fragments/*.md`) and then two sets of
-consumers: the generated `references/` folders inside each skill and the
-per-agent adapter outputs in `dist/`. This page documents each module - its
-job, its inputs and outputs - and the commands to run each stage.
+content sources named in each extension's `upstream.lock` (e.g.
+`extensions/rsqkit/`) into per-source build artifacts
+(`build/<source>/content.json` and `build/<source>/fragments/*.md`) and
+then two sets of consumers: the generated `references.md` in each skill
+folder and the per-agent adapter outputs in `dist/`. This page documents
+each module - its job, its inputs and outputs - and the commands to run
+each stage.
 
 All commands assume [uv](https://docs.astral.sh/uv/). The pipeline is a uv
 project rooted at `pipeline/`, so run modules with
@@ -161,7 +163,7 @@ the build artifacts.
 - `assemble(pipeline_dir, build_dir=None, pin=None)` verifies the cache
   (raising if not intact), loads pages and the four registries, builds and
   merges learn-more entries, then writes:
-  - `build/fragments/<page_id>.md` - the cleaned markdown for each page,
+  - `build/<source>/fragments/<page_id>.md` - the cleaned markdown for each page,
     each with a generated-file header carrying source path, upstream
     commit, and license/DOI.
   - `build/<source>/content.json` - every page entry (title, description, keywords,
@@ -182,23 +184,24 @@ does not fetch).
 
 ## references.py
 
-Generates each skill's `references/` folder from the build artifacts,
-driven by `extensions/rsqkit/taxonomy.yml`.
+Generates one `references.md` per skill from the build artifacts,
+driven by each extension's `taxonomy.yml`. Every skill ships exactly one
+generated references file; there are no per-skill reference folders.
 
 - `load_taxonomy(path)` returns the `skills:` mapping; `skill_page_ids`
   concatenates a skill's `pages`, `concept_pages`, and `role_pages`.
-- `generate_references(skills_dir, taxonomy_path, build_dir)` for each skill
-  wipes and rebuilds `references/` (so removed upstream pages prune
-  automatically) and writes:
-  - a references.md section per source - source-page links plus
-    mapped page. A missing fragment for a mapped `page_id` raises
-    `FileNotFoundError`, which is how a taxonomy/upstream mismatch surfaces.
-  - `references/tools.md` - the registry tools referenced by those pages.
-  - `references.md` - curated training plus verified external
-    pointers, deduped.
-  - `references.md` - a quality-indicator checklist grouped by
-    dimension (the router skill, which maps no task pages, gets the full
-    registry).
+- `generate_references(skills_dir, sources)` takes one
+  `(source, taxonomy_path, content)` tuple per installed extension. For
+  each source-fed skill it writes `references.md` with one section per
+  source that maps pages to it: the source's citation line, links to the
+  mapped source pages, and the deduped, verified "Learn more" pointers.
+  A mapped `page_id` missing from the content build raises, which is how
+  a taxonomy/upstream mismatch surfaces. Any leftover `references/`
+  folder from the old per-source layout is removed.
+- Source-independent skills (the majority) also get a `references.md`,
+  derived from the curated "Learn more (verified)" links and the
+  citation paragraph already maintained in their own SKILL.md, so no
+  link list is maintained twice.
 
 Run it:
 
@@ -266,12 +269,72 @@ non-empty problem list fails the build. Checks are format-driven:
 - Residue checks: a leaked `CLAUDE_PLUGIN_ROOT` placeholder, or unrendered
   template/Liquid `{%` markers in `.md`/`.mdc` files.
 
-Canonical passthrough content (`references/` files and `SKILL.md`) is
+Canonical passthrough content (`SKILL.md` and `references.md`) is
 skipped here - it is validated at its source, not per adapter.
+
+## link_check.py
+
+Checks every external URL in the generated artifacts. It scans `dist/`
+and the generated `skills/*/references.md` files for http(s) URLs,
+verifies each distinct URL once (quarantine list respected, HEAD with a
+GET fallback, parallel probes) and reports. Broken links fail the run;
+quarantined links are skipped by design; network errors are warnings so
+a flaky resolver cannot redden CI on its own.
+
+```
+uv run --directory pipeline python -m rseng_pipeline.link_check
+```
+
+## rsd_snapshot.py
+
+Snapshots software catalogs from Research Software Directory instances
+into compact, committed JSON files (one per instance) under
+`skills/rseng-software-reuse/data/`, so agents can suggest existing
+research software directly, without a live query. Entries carry keywords
+and programming languages so suggestions can match on domain and stack.
+Refreshed explicitly (or by the sync workflow), never during normal
+builds.
+
+```
+uv run --directory pipeline python -m rseng_pipeline.rsd_snapshot
+```
+
+## readme_skills.py
+
+Regenerates the skills table in the root `README.md`: it rewrites the
+block between the skills-list markers from the skills' own frontmatter
+descriptions, so the README never drifts from the actual pack contents.
+
+```
+uv run --directory pipeline python -m rseng_pipeline.readme_skills
+```
+
+## Sync and maintenance modules
+
+Four smaller modules support the sync workflow; the process they serve
+is described in [Release and sync](release-and-sync.md).
+
+- `sync_classifier.py` - diffs live upstream content against the pinned
+  manifest and classifies the change level (L1 references-only, L2
+  body-review, L3 structural), per source.
+- `triage.py` - when the classifier finds a new page, suggests which
+  skill should own it (keyword and related_pages matching) or proposes a
+  new skill when nothing scores.
+- `bump_pin.py` - points a source's `upstream.lock` at a new upstream
+  commit (`python -m rseng_pipeline.bump_pin [<source>] <commit-sha>`);
+  the caller refetches and regenerates afterwards.
+- `lock_manifest.py` - refreshes `extensions/<source>/upstream.manifest.json`,
+  the committed per-file SHA-256 manifest at the pin that the classifier
+  diffs against.
+
+`catalog.py` is separate from sync: it manages the external-skills
+catalog (`catalog.yml` at the repository root) with `list`, `check` and
+`stage` subcommands - see [External skills catalog](catalog.md).
 
 ## Data files
 
-Under `extensions/rsqkit/data/` (hand-maintained inputs, not generated):
+Under `extensions/<source>/data/` (hand-maintained inputs per content
+source, not generated); for example `extensions/rsqkit/data/`:
 
 - `citation.yml` - the shared citation snippet (`full`, `short`,
   `markdown`); the single source of truth for attribution wording across

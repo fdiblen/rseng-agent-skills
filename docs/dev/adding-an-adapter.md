@@ -12,8 +12,8 @@ There are two building blocks every target uses from `..adapters`:
 - `render_to(env, template_name, context, out)` - render one template to one
   output path.
 - `copy_skills(repo_root, target_dir)` - passthrough: copy the canonical
-  `skills/rseng-*` folders (SKILL.md plus generated `references/`) verbatim
-  into the target.
+  `skills/rseng-*` folders (SKILL.md plus the generated `references.md`)
+  verbatim into the target.
 
 A target combines these however its agent needs. The two established shapes:
 
@@ -133,8 +133,8 @@ is covered automatically as long as its filenames match the conventions:
   and `prompt`; `.json` files must parse.
 - **Leak detection** - any output containing `CLAUDE_PLUGIN_ROOT` fails, and
   `.md`/`.mdc` files containing `{%` are flagged as unrendered template
-  residue (SKILL.md passthrough files and anything under `references/` are
-  exempt, since they are validated at their canonical source).
+  residue (SKILL.md and references.md passthrough files are exempt,
+  since they are validated at their canonical source).
 
 If your target needs a check the current rules do not express, add it to
 `_check_file`.

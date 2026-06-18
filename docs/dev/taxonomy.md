@@ -1,10 +1,13 @@
 # Taxonomy
 
-`extensions/rsqkit/taxonomy.yml` is the contract between upstream RSQKit content and
-the skills in this pack. It maps every upstream page to exactly one skill,
-and it is what the generated `references/` folders and the per-agent
-adapters are derived from. If you change which pages a skill covers, you
-change this file - not the generated output.
+Each content source ships a taxonomy: `extensions/<source>/taxonomy.yml`
+is the contract between that source's upstream content and the skills in
+this pack. It maps every upstream page to exactly one skill, and it is
+what the generated `references.md` files and the per-agent adapters are
+derived from. If you change which pages a skill covers, you change this
+file - not the generated output. This page uses the rsqkit extension
+(`extensions/rsqkit/taxonomy.yml`) as the running example; the
+nlesc-guide taxonomy follows the same shape.
 
 ## Structure
 
@@ -86,12 +89,11 @@ skill's `source_pages`, use the `page_id` on the right.
 Both consumers read `taxonomy.yml` through `load_taxonomy` /
 `skill_page_ids` and stay in lockstep with it:
 
-- References (`references.generate_references`): for each skill it copies
-  a references.md entry for every mapped page, and builds
-  `references/tools.md`, `references/learn-more.md`, and
-  `references/indicators.md` restricted to those pages. Each skill's folder
-  is wiped and rebuilt every run, so removing a page from the taxonomy
-  prunes it from the generated output automatically.
+- References (`references.generate_references`): for each skill it writes
+  one `references.md` with a section per source - the source citation,
+  a link per mapped page, and the verified learn-more pointers for those
+  pages. The file is rewritten in full every run, so removing a page from
+  the taxonomy prunes it from the generated output automatically.
 - Adapters (`adapters.load_render_context` -> `_skill_entries`): for each
   skill it emits `name`, `description` (from the skill's `SKILL.md`
   frontmatter), `scope` (from the taxonomy), and the list of mapped pages
@@ -101,8 +103,8 @@ Both consumers read `taxonomy.yml` through `load_taxonomy` /
 
 Because both paths derive from the same mapping, the taxonomy is the one
 place to change coverage. Edit it, then rebuild
-(`references` and `build_adapters`); do not hand-edit anything under
-`skills/*/references/` or `dist/`.
+(`references` and `build_adapters`); do not hand-edit
+`skills/*/references.md` or anything under `dist/`.
 
 ## Keeping a skill's frontmatter in sync
 
