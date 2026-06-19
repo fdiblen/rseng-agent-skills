@@ -66,6 +66,7 @@ without touching your edits, and `doctor` checks install health.
 | `rseng-debugging` | systematic debugging of research software |
 | `rseng-defensive-coding` | the defenses against silently wrong research results |
 | `rseng-dependency-management` | the full lifecycle of third-party dependencies |
+| `rseng-discovery` | discovering the research landscape around a topic or project |
 | `rseng-documentation` | how to document research software at every level |
 | `rseng-fact-checking` | verifying facts and sources at the content level |
 | `rseng-fair-ml` | applying FAIR principles to machine learning artifacts |

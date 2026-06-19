@@ -74,7 +74,7 @@ gives you the slash commands and the subagents:
 /plugin install rseng-agent-skills
 ```
 
-You get the 64 skills, the twelve `/rseng-*` commands and the six
+You get the 65 skills, the twelve `/rseng-*` commands and the six
 subagents (`rseng-auditor`, `rseng-reviewer`, `rseng-librarian`, `rseng-scout`,
 `rseng-compliance-officer`, `rseng-mentor`). See
 [Using the skills](using.md) for what each command and subagent does.

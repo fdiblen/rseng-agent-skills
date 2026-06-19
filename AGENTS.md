@@ -60,6 +60,7 @@ Publishing, credit and reuse:
 - rseng-fair-ml: applying FAIR principles to machine learning artifacts
 - rseng-fairguard: assessing research software against the 17 FAIR4RS principles with FAIRGuard (https://www.fairguard.org)
 - rseng-software-reuse: discovering and reusing existing research software instead of rebuilding it, using Research Software Directory...
+- rseng-discovery: discovering the research landscape around a topic or project
 - rseng-dependency-management: the full lifecycle of third-party dependencies
 - rseng-software-peer-review: community peer review of research software
 - rseng-open-science-practices: the researcher-facing open science workflow

@@ -65,6 +65,7 @@ CLUSTERS: dict[str, list[str]] = {
         "rseng-fair-ml",
         "rseng-fairguard",
         "rseng-software-reuse",
+        "rseng-discovery",
         "rseng-dependency-management",
         "rseng-software-peer-review",
         "rseng-open-science-practices",
