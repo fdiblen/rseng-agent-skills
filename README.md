@@ -11,13 +11,10 @@ content sources whenever those shape an answer.
 
 Reference content comes from pluggable content sources under
 extensions/. Most skills are source-independent; a minority are
-generated from pinned content sources - bundled:
-[RSQKit](https://everse.software/RSQKit/) (EVERSE project) and the
-[Netherlands eScience Center guide](https://guide.esciencecenter.nl/) -
-whose CC-BY-4.0
-material feeds the skills' reference folders and checklists. This project
-is independent and not endorsed by the EVERSE project. See
-ATTRIBUTION.md.
+generated from pinned, community-maintained content sources whose
+CC-BY-4.0 material feeds the skills' references. This project is
+independent of, and not endorsed by, the upstream source projects;
+full credits are in ATTRIBUTION.md.
 
 ## Agent support
 
@@ -78,7 +75,7 @@ without touching your edits, and `doctor` checks install health.
 | `rseng-green-computing` | the environmental footprint of research computing |
 | `rseng-honesty` | responding when concealment or misrepresentation is requested |
 | `rseng-hpc-computing` | working effectively on high-performance computing clusters |
-| `rseng-language-guides` | language-specific research software practice from the eScience Center guide |
+| `rseng-language-guides` | language-specific research software practice |
 | `rseng-legacy-code` | working safely with inherited research code |
 | `rseng-lessons-learned` | capturing and reusing what a project learns |
 | `rseng-license-compliance` | license compliance engineering for research software |
@@ -95,7 +92,7 @@ without touching your edits, and `doctor` checks install health.
 | `rseng-project-tracking` | the operational side of running a research software project |
 | `rseng-provenance` | capturing and packaging the provenance of software and data |
 | `rseng-publishing-releasing` | the release lifecycle of research software |
-| `rseng-quality-framework` | this pack's research software quality framework - built on the EVERSE quality dimensions, indicators and tier... |
+| `rseng-quality-framework` | this pack's research software quality framework - built on community-standard quality dimensions, indicators... |
 | `rseng-regulatory-compliance` | checking research code and data against data-protection and AI regulation |
 | `rseng-reproducibility` | end-to-end computational reproducibility |
 | `rseng-reproducible-environments` | making research software environments reproducible |
@@ -128,9 +125,8 @@ source a release was built from.
 
 ## Attribution
 
-For skills fed by RSQKit content: guidance based on RSQKit by the
-EVERSE project and the RSQKit team,
-https://everse.software/RSQKit/, DOI
-[10.5281/zenodo.14923573](https://doi.org/10.5281/zenodo.14923573)
-(CC-BY-4.0). Code is MIT licensed; adapted content remains CC-BY-4.0
-(see LICENSE and LICENSE-content).
+Source-fed skills adapt CC-BY-4.0 content from pinned community
+sources. Full credits live in [ATTRIBUTION.md](ATTRIBUTION.md), and
+every source-fed skill carries its source citation in its own
+references.md, next to the content it credits. The adaptations are
+independent and not endorsed by the upstream projects.

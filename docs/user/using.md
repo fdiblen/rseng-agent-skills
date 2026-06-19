@@ -14,7 +14,7 @@ every response - the attribution line and the "Learn more" links.
 ## How a skill changes an answer
 
 Without the pack, an agent answers research-software questions from generic
-training. With the pack, source-fed answers draw on RSQKit (the EVERSE project's
+training. With the pack, source-fed answers draw on the pinned community sources (the
 Research Software Quality Kit): the same curated guidance, with the source
 page named inline so you can trace any claim. The examples below use Claude
 Code phrasing, but the skills behave the same in any agent the pack supports.
@@ -208,15 +208,13 @@ Every command and subagent closes its output with the same line, exactly
 once:
 
 ```
-(for RSQKit-fed skills) Guidance based on
-[RSQKit](https://everse.software/RSQKit/) by the EVERSE project and the
-RSQKit team, DOI
-[10.5281/zenodo.14923573](https://doi.org/10.5281/zenodo.14923573)
+(for source-fed skills) the citation line from that skill's
+references.md.
 (CC-BY-4.0).
 ```
 
 This is not boilerplate you can ignore. The skill content is adapted from
-content sources such as RSQKit, published under CC-BY-4.0 - a license that requires
+pinned content sources published under CC-BY-4.0 - a license that requires
 attribution. The line keeps the guidance traceable to its source and keeps
 your use of it compliant. Leave it in any document the commands generate.
 
@@ -226,13 +224,13 @@ The skills are built to teach, not just to act. You will see this in two
 places:
 
 - Inline source references. As a skill applies a practice it names the
-  RSQKit page it came from, written as `(RSQKit: testing_software)` or
+  source page it came from, written as `(source: page_id)` or
   similar. That tells you exactly which upstream page backs the advice, so
   you can check the reasoning rather than take it on trust.
 - "Learn more" links. When a command or a subagent points you at a next
   step, it offers a "Learn more" link drawn only from that skill's curated
   reference list (each skill's `references.md`) - training
-  material and the specific RSQKit pages behind the topic, not arbitrary
+  material and the specific source pages behind the topic, not arbitrary
   search results. The links are vetted, so following one takes you to a
   source the guidance actually rests on.
 

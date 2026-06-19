@@ -2,7 +2,8 @@
 name: rseng-quality-framework
 description: >-
   Explains this pack's research software quality framework - built on
-  the EVERSE quality dimensions, indicators and tier model - and routes
+  community-standard quality dimensions, indicators and a tier model -
+  and routes
   to the right companion skill. Use when the user asks what research
   software quality means, mentions quality dimensions, indicators, the
   three-tier model, analysis code vs prototype tools vs infrastructure,
@@ -227,7 +228,7 @@ Planning and operations:
 - rseng-green-computing: the environmental footprint of research computing
 
 Specialized:
-- rseng-language-guides: language-specific research software practice from the eScience Center guide
+- rseng-language-guides: language-specific research software practice
 - rseng-legacy-code: working safely with inherited research code
 - rseng-open-source-migration: migrating research code from commercial, license-bound platforms to open source alternatives
 - rseng-scientific-visualization: visualization of scientific data beyond publication figures

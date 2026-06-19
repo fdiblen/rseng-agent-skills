@@ -1,22 +1,35 @@
 # Attribution
 
 rseng-agent-skills is a general research software engineering skills project.
-Its bundled content source (extensions/rsqkit/) provides reference
-material based on RSQKit, the Research Software Quality Kit, created by
-the EVERSE project and maintained by the RSQKit team and contributors;
-the skill bodies distill guidance from that material.
+Most skills are source-independent. A minority distill guidance from
+bundled, pinned content sources under extensions/; this file is the
+canonical credit record for all of them, and each source-fed skill's
+references.md carries the same citation next to the content.
+
+## RSQKit (extensions/rsqkit/)
+
+Created by the EVERSE project, maintained by the RSQKit team and
+contributors.
 
 - Website: https://everse.software/RSQKit/
 - Source repository: https://github.com/EVERSE-ResearchSoftware/RSQKit
 - Cite as: RSQKit, EVERSE project, DOI 10.5281/zenodo.14923573
 
-RSQKit content is licensed under the Creative Commons Attribution 4.0
+## Netherlands eScience Center Software Development Guide (extensions/nlesc-guide/)
+
+Created and maintained by the Netherlands eScience Center.
+
+- Website: https://guide.esciencecenter.nl/
+- Source repository: https://github.com/NLeSC/guide
+- Cite per the repository's CITATION.cff
+
+Both sources' content is licensed under the Creative Commons Attribution 4.0
 International license (CC-BY-4.0). The skill content and documentation in
 this repository are adaptations of that material and are distributed under
 the same license (see LICENSE-content). The tooling and code in this
 repository are distributed under the MIT license (see LICENSE).
 
-Adaptations here condense and restructure RSQKit pages for use by AI coding
+Adaptations here condense and restructure source pages for use by AI coding
 agents. They are not a replacement for the original pages; skills link back
 to the relevant RSQKit pages so users can read the full guidance in context.
 

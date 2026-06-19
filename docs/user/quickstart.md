@@ -97,5 +97,5 @@ project-versus-user scope, the devcontainer feature and a CI snippet.
 
 ---
 
-Source-fed content derives from sources including [RSQKit](https://everse.software/RSQKit/) by the EVERSE
-project (CC-BY-4.0); see the attribution notes for details.
+Source-fed content derives from pinned community sources (credits in ATTRIBUTION.md and each skill's references.md); it
+is adapted under CC-BY-4.0 and not endorsed by the upstream projects.

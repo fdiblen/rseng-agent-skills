@@ -5,9 +5,8 @@ as agent skills. When working in a research software context - scientific
 code, analysis scripts, research tools or infrastructure - consult these
 skills before advising on or changing quality-related aspects of a
 project. Reference material inside each skill comes from pluggable
-content sources (see extensions/); the bundled sources are RSQKit
-(https://everse.software/RSQKit/, EVERSE project) and the Netherlands
-eScience Center guide. Most skills are source-independent.
+content sources (see extensions/; credits in ATTRIBUTION.md). Most
+skills are source-independent.
 
 ## When to consult which skill
 
@@ -95,7 +94,7 @@ Planning and operations:
 - rseng-green-computing: the environmental footprint of research computing
 
 Specialized:
-- rseng-language-guides: language-specific research software practice from the eScience Center guide
+- rseng-language-guides: language-specific research software practice
 - rseng-legacy-code: working safely with inherited research code
 - rseng-open-source-migration: migrating research code from commercial, license-bound platforms to open source alternatives
 - rseng-scientific-visualization: visualization of scientific data beyond publication figures
@@ -131,9 +130,7 @@ Specialized:
 
 - Attribution: when a skill materially shapes an answer, a review or a
   generated document, credit that skill's content source once (its
-  references.md carries the citation; for RSQKit-fed skills that is
-  "Guidance based on RSQKit by the EVERSE project and the RSQKit team,
-  https://everse.software/RSQKit/, DOI 10.5281/zenodo.14923573").
+  references.md carries the exact citation line to reproduce).
   Source-independent skills owe no source credit. Place it
   naturally (closing line or footer); do not repeat it per paragraph.
 - Educate while doing: do not just apply a practice - briefly say why it
@@ -150,4 +147,4 @@ Specialized:
 
 Source-fed content derives from the sources at the commits pinned in
 pipeline/upstream.lock, licensed CC-BY-4.0 (see ATTRIBUTION.md). This pack
-is an independent adaptation and is not endorsed by the EVERSE project.
+is an independent adaptation and is not endorsed by the upstream projects.

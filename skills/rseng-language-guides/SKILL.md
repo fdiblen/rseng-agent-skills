@@ -1,8 +1,7 @@
 ---
 name: rseng-language-guides
 description: >-
-  Covers language-specific research software practice from the eScience
-  Center guide: per-language conventions for Python, R,
+  Covers language-specific research software practice: per-language conventions for Python, R,
   JavaScript/TypeScript, C/C++, Fortran, Rust and Bash - setup,
   development environments, style standards, packaging, testing, quality
   assurance, optimization, logging, documentation and dependency
