@@ -77,6 +77,7 @@ CLUSTERS: dict[str, list[str]] = {
         "rseng-research-integrity",
         "rseng-fact-checking",
         "rseng-honesty",
+        "rseng-human-verification",
         "rseng-ai-declaration",
     ],
     "Community and people": [

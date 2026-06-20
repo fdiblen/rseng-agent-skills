@@ -72,6 +72,7 @@ Integrity, security and compliance:
 - rseng-research-integrity: integrity checks on research outputs before submission or release
 - rseng-fact-checking: verifying facts and sources at the content level
 - rseng-honesty: responding when concealment or misrepresentation is requested
+- rseng-human-verification: the human's side of AI-assisted research software
 - rseng-ai-declaration: declaring AI involvement in a project with the AI Declaration Format (https://ai-declaration.org)
 
 Community and people:

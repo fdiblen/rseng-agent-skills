@@ -76,6 +76,7 @@ without touching your edits, and `doctor` checks install health.
 | `rseng-green-computing` | the environmental footprint of research computing |
 | `rseng-honesty` | responding when concealment or misrepresentation is requested |
 | `rseng-hpc-computing` | working effectively on high-performance computing clusters |
+| `rseng-human-verification` | the human's side of AI-assisted research software |
 | `rseng-language-guides` | language-specific research software practice |
 | `rseng-legacy-code` | working safely with inherited research code |
 | `rseng-lessons-learned` | capturing and reusing what a project learns |
