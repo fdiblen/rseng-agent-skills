@@ -1,18 +1,20 @@
 ---
 name: rseng-science-communication
 description: >-
-  Covers communicating research software outward: software papers
-  (JOSS/SoftwareX-style) drafted from repository contents, release
+  Covers communicating research software outward: supporting the
+  user's software papers (JOSS/SoftwareX-style) with outlines,
+  gathered material and structure - never writing a submission-ready
+  manuscript - plus release
   announcements, lay summaries of what the software does, talk and
   poster outlines, blog posts, and making a package findable and
   attractive to its intended users. Use when the user wants to
   announce, present, promote or explain their research software,
-  asks for a software paper draft, lay summary, talk abstract or
-  release post, or when a mature package has no visibility beyond
+  asks for help with a software paper, or wants a lay summary, talk
+  abstract or release post, or when a mature package has no visibility beyond
   its authors.
 license: CC-BY-4.0
 metadata:
-  version: 0.1.0
+  version: 0.2.0
 ---
 
 # Communicating research software
@@ -39,15 +41,25 @@ The same software needs different words for different readers:
 Lead every artifact with the problem solved, not the technology
 used.
 
-## Software papers
+## Software papers: support, never authorship
 
 A software paper (JOSS, SoftwareX and domain journals) is the
-citable face of the package. Draft from the repo: the README's
-purpose section seeds the summary; issues and user questions seed
-the statement of need; the comparison with neighboring tools
-(rseng-software-reuse) seeds state-of-the-field. Venue mechanics and
-review preparation live in rseng-software-peer-review; citation
-plumbing (CITATION.cff, DOI) in rseng-citation-metadata.
+citable face of the package - and it is the USER's publication, not
+the agent's. The boundary is firm: help with the outline, the
+research and the brainstorming; gather the raw material (the
+README's purpose section informs the summary, issues and user
+questions inform the statement of need, the neighbor comparison
+from rseng-discovery and rseng-software-reuse informs
+state-of-the-field); propose structure per the venue's template;
+critique and fact-check the user's draft
+(rseng-fact-checking, rseng-citation-hygiene). Never deliver a
+finished, submission-ready manuscript - a publication that needs an
+expert's authorship gets an expert's authorship, and the user
+verifies every claim they sign (rseng-human-verification). AI
+assistance with the paper is disclosed per the venue's policy
+(rseng-ai-declaration). Venue mechanics and review preparation live
+in rseng-software-peer-review; citation plumbing in
+rseng-citation-metadata.
 
 ## Release communication
 

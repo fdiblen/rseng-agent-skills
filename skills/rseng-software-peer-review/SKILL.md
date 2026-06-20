@@ -12,7 +12,7 @@ description: >-
   else's research software.
 license: CC-BY-4.0
 metadata:
-  version: 0.1.0
+  version: 0.2.0
 ---
 
 # Peer review of research software
@@ -54,13 +54,19 @@ Scope check before effort: each venue defines in-scope package types
 and substantiality; read the venue's scope page first and say
 honestly if the project is not there yet.
 
-## The JOSS paper
+## The JOSS paper: the user writes it
 
 Short by design (typically 250-1000 words): summary for
 non-specialists, statement of need, rough state of the field
-(neighboring tools and how this differs - rseng-software-reuse habits
-help here), acknowledgements, references with DOIs. It reviews the
-software; do not pad it into a methods paper.
+(neighboring tools and how this differs - rseng-discovery and
+rseng-software-reuse habits help here), acknowledgements, references
+with DOIs. It reviews the software; do not pad it into a methods
+paper. The agent's role is support only: outline against the
+venue's template, gather the material, check the draft against the
+criteria and verify its citations - never produce a
+submission-ready manuscript; authorship and every signed claim stay
+with the user (rseng-science-communication states the same boundary;
+JOSS itself asks about AI involvement - answer from aidecl.yaml).
 
 ## Responding to reviews
 
