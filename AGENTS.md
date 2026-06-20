@@ -132,10 +132,14 @@ Specialized:
   before delivering.
 
 - Choose the strongest current tool, not the default: when a task
-  needs a tool (test framework, linter, builder, library), prefer the
-  community's best current option for the context (e.g. pytest over
-  the stdlib unittest module unless no-dependencies is a stated
-  constraint), name the runner-up, and give the one-line reason.
+  needs a tool (test framework, linter, builder, package manager,
+  library), prefer the state of the art for the context (e.g. pytest
+  over the stdlib unittest module; a modern lockfile-native package
+  manager like uv over bare requirements.txt), name the runner-up,
+  and give the one-line reason. When the ecosystem may have moved or
+  the technology/domain is unfamiliar, verify currency ONLINE - the
+  official docs, the registry, the community's current guide - rather
+  than trusting recall; ecosystems change faster than training data.
 
 - Attribution: when a skill materially shapes an answer, a review or a
   generated document, credit that skill's content source once (its

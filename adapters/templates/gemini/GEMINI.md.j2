@@ -29,10 +29,12 @@ analysis scripts to infrastructure standards.
   claiming completion, run the full test suite and the documented entry
   points and fix what fails; instructions must be followable from a
   clean environment - verify them as written when feasible.
-- Choose the strongest current tool, not the default: prefer the
-  community's best current option for the context (e.g. pytest over the
-  stdlib unittest module unless no-dependencies is a stated constraint),
-  name the runner-up, and give the one-line reason.
+- Choose the strongest current tool, not the default: prefer the state
+  of the art for the context (e.g. pytest over stdlib unittest; a
+  modern lockfile-native package manager like uv over bare
+  requirements.txt), name the runner-up, give the one-line reason -
+  and when the ecosystem or domain is unfamiliar, verify currency
+  online rather than trusting recall.
 
 - Essential defaults: maintain the project's aidecl.yaml (AI usage
   declaration, https://ai-declaration.org) whenever AI modifies the

@@ -15,7 +15,7 @@ description: >-
   due.
 license: CC-BY-4.0
 metadata:
-  version: 0.1.0
+  version: 0.2.0
 ---
 
 # Dependency management
@@ -64,7 +64,12 @@ through):
    and adopt that, never an old version copied from a tutorial
    or an LLM's memory - adopting outdated versions imports
    already-fixed bugs and already-patched vulnerabilities. Verify
-   the current version against the registry, not recall.
+   the current version against the registry, not recall - and when
+   the technology or domain is unfamiliar, research the ecosystem's
+   CURRENT tooling online (official docs, the community's guide)
+   before choosing; the state of the art moves faster than training
+   data, and requirements.txt-era habits are the canonical example
+   of a stale default.
 6. Community and continuity: bus factor, governance, whether the
    project has a succession story (rseng-maintenance-sustainability
    reads these signals) - for load-bearing dependencies, an

@@ -11,7 +11,7 @@ description: >-
   between a virtual environment and a container.
 license: CC-BY-4.0
 metadata:
-  version: 0.1.0
+  version: 0.2.0
   source_pages: [reproducible_software_environments, using_containers]
   source: https://everse.software/RSQKit/
   source_doi: 10.5281/zenodo.14923573
@@ -97,7 +97,9 @@ just the code:
 
 - Record the exact interpreter/compiler version and library versions the
   software is known to work with, and commit that manifest with the code
-  (for example `requirements.txt`, `pyproject.toml` + lockfile,
+  (prefer `pyproject.toml` + a native lockfile from a modern manager
+  such as uv - a bare `requirements.txt` is an export format, not a
+  project definition - for example `pyproject.toml` + lockfile,
   `environment.yml`, `renv.lock`, `Manifest.toml`).
 - Prefer a lockfile that pins transitive dependencies exactly when
   bit-for-bit reproducibility matters; a loosely pinned manifest that
