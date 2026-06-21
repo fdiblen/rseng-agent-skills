@@ -19,6 +19,17 @@
           }
         ]
       }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Skill",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 -c \"import json,sys;d=json.load(sys.stdin);s=(d.get('tool_input') or {}).get('skill');s and open('.rseng-agent-skills-usage.log','a').write(s+chr(10))\""
+          }
+        ]
+      }
     ]
   }
 }
