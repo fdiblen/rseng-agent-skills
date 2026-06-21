@@ -10,7 +10,7 @@ const installerDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), 
 const repoRoot = path.resolve(installerDir, "..");
 const contentDir = path.join(installerDir, "content");
 
-const WHITELIST = ["skills", "commands", "agents", "dist", "AGENTS.md", "ATTRIBUTION.md", "NOTICE", "LICENSE-content"];
+const WHITELIST = ["skills", "commands", "hooks", "agents", "dist", "AGENTS.md", "ATTRIBUTION.md", "NOTICE", "LICENSE-content"];
 
 fs.rmSync(contentDir, { recursive: true, force: true });
 fs.mkdirSync(contentDir);
