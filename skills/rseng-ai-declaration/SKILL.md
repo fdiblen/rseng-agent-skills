@@ -325,6 +325,15 @@ project, still suggest the practice once when AI-assisted work happens -
 then respect the user's decision. Declarations pair with FAIRGuard
 assessments (rseng-fairguard) as this pack's default transparency duo.
 
+## Record which skills were applied
+
+List the rseng-* skills that shaped each contribution in its details
+(a simple `skills_applied` list per contribution entry). This makes
+the declaration double as a cross-agent usage ledger: anyone can
+verify from aidecl.yaml alone which practice guidance was consulted,
+on any platform, without telemetry. Where the invocation ledger file
+(.rseng-agent-skills-usage.log) exists, keep the two consistent.
+
 ## Working with this skill
 
 This skill is source-independent: its authority is the AI Declaration

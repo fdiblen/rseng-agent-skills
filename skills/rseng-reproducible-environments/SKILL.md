@@ -97,6 +97,10 @@ just the code:
 
 - Record the exact interpreter/compiler version and library versions the
   software is known to work with, and commit that manifest with the code
+  (one-off SCRIPTS included: give them PEP 723 inline script metadata
+  and run them with `uv run script.py` - uv resolves and pins the
+  declared dependencies on the fly, which replaces the loose
+  requirements.txt-next-to-a-script pattern entirely;
   (prefer `pyproject.toml` + a native lockfile from a modern manager
   such as uv - a bare `requirements.txt` is an export format, not a
   project definition - for example `pyproject.toml` + lockfile,
