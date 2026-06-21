@@ -90,6 +90,7 @@ without touching your edits, and `doctor` checks install health.
 | `rseng-open-source-migration` | migrating research code from commercial, license-bound platforms to open source alternatives |
 | `rseng-pair-programming` | the agent as an effective pair programmer and pull-request review buddy for research software |
 | `rseng-performance-profiling` | making research code faster with evidence |
+| `rseng-project-kickoff` | starting a new research software project with a short kickoff interview |
 | `rseng-project-scaffolding` | starting research software projects from maintained templates and keeping them in sync |
 | `rseng-project-tracking` | the operational side of running a research software project |
 | `rseng-provenance` | capturing and packaging the provenance of software and data |

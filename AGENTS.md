@@ -90,6 +90,7 @@ Communication and interfaces:
 
 Planning and operations:
 - rseng-management-planning: planning research software work
+- rseng-project-kickoff: starting a new research software project with a short kickoff interview
 - rseng-project-tracking: the operational side of running a research software project
 - rseng-lessons-learned: capturing and reusing what a project learns
 - rseng-maintenance-sustainability: keeping research software alive and responsible over time

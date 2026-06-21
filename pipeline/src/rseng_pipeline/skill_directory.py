@@ -95,6 +95,7 @@ CLUSTERS: dict[str, list[str]] = {
     ],
     "Planning and operations": [
         "rseng-management-planning",
+        "rseng-project-kickoff",
         "rseng-project-tracking",
         "rseng-lessons-learned",
         "rseng-maintenance-sustainability",
