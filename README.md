@@ -16,11 +16,28 @@ CC-BY-4.0 material feeds the skills' references. This project is
 independent of, and not endorsed by, the upstream source projects;
 full credits are in ATTRIBUTION.md.
 
+## Quick start (TL;DR)
+
+```bash
+# Claude Code: install as a plugin
+/plugin marketplace add <owner>/rseng-agent-skills
+/plugin install rseng-agent-skills
+
+# any other supported agent (auto-detected):
+npx rseng-agent-skills install          # or: install copilot|cursor|codex|gemini
+npx rseng-agent-skills doctor           # verify the install
+```
+
+Then, in your agent: run `/rseng-kickoff` in a new project, `/rseng-check`
+in an existing one - or just start working; skills activate on their
+own, keep an AI usage declaration (aidecl.yaml), and suggest research
+software best practice as you go.
+
 ## Agent support
 
 | Agent | What you get | Install |
 |---|---|---|
-| Claude Code | 65 skills, /rseng-check, /rseng-cite, /rseng-plan, rseng-auditor agent | `/plugin marketplace add <owner>/rseng-agent-skills` then `/plugin install rseng-agent-skills` |
+| Claude Code | all skills, workflow commands and subagents | `/plugin marketplace add <owner>/rseng-agent-skills` then `/plugin install rseng-agent-skills` |
 | GitHub Copilot | repo instructions + per-skill instructions + skills | `npx rseng-agent-skills install copilot` |
 | Cursor | always-on overview + per-topic rules | `npx rseng-agent-skills install cursor` |
 | Codex CLI | AGENTS.md + skills folders | `npx rseng-agent-skills install codex` |
@@ -118,6 +135,44 @@ without touching your edits, and `doctor` checks install health.
 | `rseng-workflows` | building, choosing, discovering, describing, and sharing computational workflows with workflow management... |
 
 <!-- skills-list:end -->
+
+## Commands
+
+<!-- commands-list:start (generated - do not edit by hand) -->
+
+| Command | Purpose |
+| --- | --- |
+| `/rseng-check` | Assess this repository against research software engineering practice |
+| `/rseng-cite` | Generate CITATION.cff and codemeta.json for this repository |
+| `/rseng-declare` | Create or update the aidecl.yaml AI usage declaration |
+| `/rseng-deps` | Audit this project's dependencies on all six axes |
+| `/rseng-digest` | Draft the high-level project log digest for the period |
+| `/rseng-integrity` | Pre-submission integrity battery for manuscript and results |
+| `/rseng-kickoff` | Interview the user and set up a new research software project |
+| `/rseng-lesson` | Record a lesson learned and draft its prevention artifact |
+| `/rseng-metrics` | Code and community health metrics snapshot |
+| `/rseng-onboard` | Generate the onboarding checklist for this project |
+| `/rseng-panel` | Run a panel of expert agents with specific roles and synthesize |
+| `/rseng-plan` | Draft a Software Management Plan (SMP) skeleton for this project |
+| `/rseng-release` | Run the pre-release checklist and prepare the release |
+| `/rseng-reproduce` | Clean-room reproduction check of this repository |
+
+<!-- commands-list:end -->
+
+## Agents
+
+<!-- agents-list:start (generated - do not edit by hand) -->
+
+| Agent | Purpose |
+| --- | --- |
+| `rseng-auditor` | Read-only research software quality auditor. |
+| `rseng-compliance-officer` | Read-only regulatory and license compliance sweep. |
+| `rseng-librarian` | Read-only citation and claim verifier. |
+| `rseng-mentor` | Teaching-focused mentor for research software skills. |
+| `rseng-reviewer` | Research software codebase reviewer that fixes what it finds. |
+| `rseng-scout` | Read-only reuse and dependency scout. |
+
+<!-- agents-list:end -->
 
 ## Versioning
 

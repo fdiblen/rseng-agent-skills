@@ -17,6 +17,10 @@ from .adapters import _brief
 
 START = "<!-- skills-list:start (generated - do not edit by hand) -->"
 END = "<!-- skills-list:end -->"
+CMD_START = "<!-- commands-list:start (generated - do not edit by hand) -->"
+CMD_END = "<!-- commands-list:end -->"
+AGENT_START = "<!-- agents-list:start (generated - do not edit by hand) -->"
+AGENT_END = "<!-- agents-list:end -->"
 
 
 def _spell(n: int) -> str:
@@ -52,18 +56,45 @@ def skills_block(skills_dir: Path) -> str:
     return "\n".join(["| Skill | Purpose |", "| --- | --- |", *lines])
 
 
+def commands_block(commands_dir: Path) -> str:
+    lines = ["| Command | Purpose |", "| --- | --- |"]
+    for path in sorted(commands_dir.glob("*.md")):
+        post = frontmatter.loads(path.read_text(encoding="utf-8"))
+        lines.append(f"| `/{path.stem}` | {post.get('description', '')} |")
+    return "\n".join(lines)
+
+
+def agents_block(agents_dir: Path) -> str:
+    lines = ["| Agent | Purpose |", "| --- | --- |"]
+    for path in sorted(agents_dir.glob("*.md")):
+        post = frontmatter.loads(path.read_text(encoding="utf-8"))
+        desc = " ".join(str(post.get("description", "")).split())
+        first = desc.split(". ")[0].rstrip(".") + "."
+        lines.append(f"| `{post.get('name', path.stem)}` | {first} |")
+    return "\n".join(lines)
+
+
+def _replace_block(text: str, start: str, end: str, block: str) -> str:
+    if start not in text or end not in text:
+        raise SystemExit(f"markers missing from README.md: {start}")
+    head, rest = text.split(start, 1)
+    _, tail = rest.split(end, 1)
+    return head + start + "\n\n" + block + "\n\n" + end + tail
+
+
 def main() -> None:
     repo_root = Path(__file__).resolve().parents[3]
     readme = repo_root / "README.md"
     text = readme.read_text(encoding="utf-8")
-    if START not in text or END not in text:
-        raise SystemExit("skills-list markers missing from README.md")
-    head, rest = text.split(START, 1)
-    _, tail = rest.split(END, 1)
     block = skills_block(repo_root / "skills")
-    readme.write_text(
-        head + START + "\n\n" + block + "\n\n" + END + tail, encoding="utf-8"
+    text = _replace_block(text, START, END, block)
+    text = _replace_block(
+        text, CMD_START, CMD_END, commands_block(repo_root / "commands")
     )
+    text = _replace_block(
+        text, AGENT_START, AGENT_END, agents_block(repo_root / "agents")
+    )
+    readme.write_text(text, encoding="utf-8")
     count = block.count("\n") - 1  # minus the two table header rows
 
     import re
