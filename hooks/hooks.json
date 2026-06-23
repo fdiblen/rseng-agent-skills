@@ -29,6 +29,25 @@
             "command": "python3 -c \"import json,sys;d=json.load(sys.stdin);s=(d.get('tool_input') or {}).get('skill');s and open('.rseng-agent-skills-usage.log','a').write(s+chr(10))\""
           }
         ]
+      },
+      {
+        "matcher": "Write|Edit|MultiEdit|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/gate.py\""
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/stop_check.py\""
+          }
+        ]
       }
     ]
   }
