@@ -9,7 +9,15 @@ by what ships:
   requirements.txt), CITATION.cff, and an up-to-date aidecl.yaml.
   For larger work add what the tier demands: tracker/decision
   notes, docs, CI, contributor files.
-- Before finishing, self-audit against the skill directory
+- Before finishing, write .rseng-agent-skills-coverage.md: walk EVERY skill
+  cluster (Core engineering; Reproducibility and workflows; Research
+  data; Numerics and performance; Publishing, credit and reuse;
+  Integrity, security and compliance; Community and people;
+  Communication and interfaces; Planning and operations; Specialized)
+  and record per cluster either "applied: <skills used and what they
+  changed>" or "n/a: <one-line reason>". Every cluster considered,
+  none skipped - the Stop check verifies completeness.
+- Also self-audit against the skill directory
   (rseng-quality-framework routes every practice area - project
   management, tech-stack choice, community, communication,
   integrity) and close the gaps you find; a Stop-time check will

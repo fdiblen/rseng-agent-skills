@@ -48,6 +48,23 @@ if not (
 ):
     missing.append("environment/dependency declaration (uv + pyproject or PEP 723)")
 
+coverage = pathlib.Path(".rseng-agent-skills-coverage.md")
+clusters_file = pathlib.Path(__file__).parent / "clusters.txt"
+clusters = (
+    [c for c in clusters_file.read_text(encoding="utf-8").splitlines() if c]
+    if clusters_file.is_file()
+    else []
+)
+if clusters:
+    text = coverage.read_text(encoding="utf-8").lower() if coverage.is_file() else ""
+    absent = [c for c in clusters if c.lower() not in text]
+    if absent:
+        missing.append(
+            ".rseng-agent-skills-coverage.md - walk ALL skill clusters and record "
+            "per cluster either the skills applied or a one-line reasoned "
+            "n/a. Clusters still unaddressed: " + "; ".join(absent)
+        )
+
 ledger = pathlib.Path(".rseng-agent-skills-usage.log")
 consulted = ledger.is_file() and any(
     line.startswith("rseng-") for line in ledger.read_text(encoding="utf-8").splitlines()

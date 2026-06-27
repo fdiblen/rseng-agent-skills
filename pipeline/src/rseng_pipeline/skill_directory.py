@@ -169,6 +169,8 @@ def main() -> None:
         repo_root / "skills" / "rseng-quality-framework" / "SKILL.md",
         directory_block(skills, include_router=False),
     )
+    clusters = repo_root / "hooks" / "clusters.txt"
+    clusters.write_text("\n".join(CLUSTERS) + "\n", encoding="utf-8")
     print("skill directory regenerated in AGENTS.md and the router skill")
 
 
