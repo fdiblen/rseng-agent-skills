@@ -49,21 +49,23 @@ if not (
     missing.append("environment/dependency declaration (uv + pyproject or PEP 723)")
 
 coverage = pathlib.Path(".rseng-agent-skills-coverage.md")
-clusters_file = pathlib.Path(__file__).parent / "clusters.txt"
-clusters = (
-    [c for c in clusters_file.read_text(encoding="utf-8").splitlines() if c]
-    if clusters_file.is_file()
-    else []
+phases_file = pathlib.Path(__file__).parent / "phases.json"
+phases = (
+    json.loads(phases_file.read_text(encoding="utf-8"))
+    if phases_file.is_file()
+    else {}
 )
-if clusters:
+if phases:
     text = coverage.read_text(encoding="utf-8").lower() if coverage.is_file() else ""
-    absent = [c for c in clusters if c.lower() not in text]
-    if absent:
-        missing.append(
-            ".rseng-agent-skills-coverage.md - walk ALL skill clusters and record "
-            "per cluster either the skills applied or a one-line reasoned "
-            "n/a. Clusters still unaddressed: " + "; ".join(absent)
-        )
+    for phase, clusters in phases.items():
+        absent = [c for c in clusters if c.lower() not in text]
+        if f"## {phase.lower()}" not in text or absent:
+            missing.append(
+                f".rseng-agent-skills-coverage.md '## {phase}' section - record per "
+                "cluster 'applied: <skills and what they changed>' or "
+                "'n/a: <reason>'. Unaddressed: "
+                + ("; ".join(absent) if absent else "section heading")
+            )
 
 ledger = pathlib.Path(".rseng-agent-skills-usage.log")
 consulted = ledger.is_file() and any(

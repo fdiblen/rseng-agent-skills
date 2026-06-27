@@ -20,6 +20,27 @@ from .adapters import _brief
 START = "<!-- skill-directory:start (generated - do not edit by hand) -->"
 END = "<!-- skill-directory:end -->"
 
+# Primary phase per cluster: when in a task each practice area is
+# considered first (revisited whenever relevant).
+PHASES: dict[str, list[str]] = {
+    "Start": [
+        "Planning and operations",
+        "Research data",
+        "Publishing, credit and reuse",
+        "Specialized",
+    ],
+    "During": [
+        "Core engineering",
+        "Reproducibility and workflows",
+        "Numerics and performance",
+    ],
+    "Finish": [
+        "Integrity, security and compliance",
+        "Communication and interfaces",
+        "Community and people",
+    ],
+}
+
 CLUSTERS: dict[str, list[str]] = {
     "Core engineering": [
         "rseng-testing",
@@ -171,6 +192,13 @@ def main() -> None:
     )
     clusters = repo_root / "hooks" / "clusters.txt"
     clusters.write_text("\n".join(CLUSTERS) + "\n", encoding="utf-8")
+    import json as _json
+
+    phased = {ph: cl for ph, cl in PHASES.items()}
+    assert sorted(c for cl in phased.values() for c in cl) == sorted(CLUSTERS)
+    (repo_root / "hooks" / "phases.json").write_text(
+        _json.dumps(phased, indent=2) + "\n", encoding="utf-8"
+    )
     print("skill directory regenerated in AGENTS.md and the router skill")
 
 
