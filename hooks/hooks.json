@@ -45,7 +45,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/stop_check.py\""
+            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/quality_check.py\""
           }
         ]
       }
