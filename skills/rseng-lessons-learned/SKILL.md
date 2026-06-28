@@ -135,3 +135,18 @@ and it feeds rseng-testing, rseng-documentation and rseng-trainer
 
 Based on blameless-postmortem and retrospective practice adapted
 to research software projects.
+
+<!-- related-skills:begin -->
+
+## Related skills
+
+Check whether any of these applies before moving on:
+
+- rseng-code-quality - review-pattern lessons become lint rules
+- rseng-debugging - bug fix evidence drafts the lesson
+- rseng-documentation - gotcha lessons become doc warnings
+- rseng-project-tracking - postmortem actions get tracked owners
+- rseng-testing - bug lessons become regression tests
+- rseng-trainer - lessons become tomorrow's teaching material
+
+<!-- related-skills:end -->

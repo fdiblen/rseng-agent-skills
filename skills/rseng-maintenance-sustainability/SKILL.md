@@ -1,6 +1,16 @@
 ---
 name: rseng-maintenance-sustainability
-description: 'Covers keeping research software alive and responsible over time: ongoing
+description: >-
+  Covers keeping research software alive and responsible over time: ongoing
+  maintenance practice, tracking and paying down technical debt, reducing the
+  bus factor, and deprecating or archiving honestly. Use when the user asks
+  how to maintain or sustain a project, stop it rotting, schedule CI to catch
+  breakage from external change, track or pay down tech debt, plan maintenance
+  funding or shared ownership, or retire or deprecate software. (Energy and
+  carbon footprint of computing is rseng-green-computing; dependency updating
+  and auditing detail is rseng-dependency-management; archiving mechanics are
+  rseng-archiving.)
+
   maintenance practice, tracking and paying down technical debt, reducing the bus
   factor, and deprecating or archiving honestly. Use when the user
   asks how to maintain or sustain a project, stop it rotting, keep dependencies up
@@ -159,6 +169,21 @@ Learn more (verified pointers):
   https://www.software.ac.uk/programmes/research-software-maintenance-fund
 - GreenDiSC certification scheme - https://www.software.ac.uk/GreenDiSC
   (energy/carbon practice itself: see rseng-green-computing)
+
+<!-- related-skills:begin -->
+
+## Related skills
+
+Check whether any of these applies before moving on:
+
+- rseng-archiving - retiring software needs archival deposit
+- rseng-ci-cd - scheduled runs catch external breakage
+- rseng-code-quality - incremental refactoring and static analysis
+- rseng-contributor-onboarding - recruiting community maintenance help
+- rseng-dependency-management - dependency update and audit mechanics
+- rseng-green-computing - footprint review at maintenance cadence
+
+<!-- related-skills:end -->
 
 ---
 

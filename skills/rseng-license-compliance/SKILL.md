@@ -1,19 +1,18 @@
 ---
 name: rseng-license-compliance
 description: >-
-  Covers license compliance engineering for research software:
-  auditing the licenses of the full dependency tree, analyzing
-  license compatibility (permissive vs weak vs strong copyleft, GPL
-  interactions, combining and linking), suggesting a license from
-  project constraints, dual and multi-licensing strategies, SPDX
-  expressions and REUSE-compliant repositories, fulfilling
-  attribution and NOTICE obligations, and enforcing license policy in
-  CI. Use when the user asks whether their dependencies' licenses are
-  compatible, wants a license audit or compliance check, considers
-  dual licensing or relicensing, must satisfy GPL/LGPL obligations,
-  mentions SPDX expressions, REUSE compliance, NOTICE files or
-  license scanners, or needs a license recommendation under real
-  constraints (institutional policy, commercial use, dependency mix).
+  Covers license compliance engineering for research software: auditing the
+  licenses of the full dependency tree, analyzing license compatibility
+  (permissive vs weak vs strong copyleft, GPL interactions, combining and
+  linking), suggesting a license from project constraints, dual and multi-
+  licensing strategies, SPDX expressions and REUSE-compliant repositories,
+  fulfilling attribution and NOTICE obligations, and enforcing license policy
+  in CI. Use when the user asks whether their dependencies' licenses are
+  compatible, wants a license audit or compliance check, considers dual
+  licensing or relicensing, must satisfy GPL/LGPL obligations, mentions SPDX
+  expressions, REUSE compliance, NOTICE files or license scanners, or needs a
+  license recommendation under real constraints. (License basics, first-time
+  license choice and adding a LICENSE file are rseng-licensing.)
 license: CC-BY-4.0
 metadata:
   version: 0.1.0
@@ -168,3 +167,18 @@ tool documentation linked below. It complements rseng-licensing
 Based on the SPDX and REUSE specifications, FSF and OSI license
 references, and license-scanning tool documentation. Not legal
 advice.
+
+<!-- related-skills:begin -->
+
+## Related skills
+
+Check whether any of these applies before moving on:
+
+- rseng-ci-cd - policy-as-code license gates
+- rseng-community-governance - CLA implications of dual licensing
+- rseng-dependency-management - license axis of intake vetting
+- rseng-licensing - first license choice basics
+- rseng-publishing-releasing - notice obligations at release
+- rseng-security - SBOM carries license data
+
+<!-- related-skills:end -->

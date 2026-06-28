@@ -208,6 +208,21 @@ Learn more (verified pointers):
 - Create a Python package and publish it on GitHub -
   https://medium.com/@thomas.vidori/how-to-create-a-python-package-and-publish-it-on-github-eebc78b2a12d
 
+<!-- related-skills:begin -->
+
+## Related skills
+
+Check whether any of these applies before moving on:
+
+- rseng-archiving - preservation follows each release
+- rseng-ci-cd - release automation pipelines
+- rseng-citation-metadata - DOI and CITATION.cff at release
+- rseng-legacy-code - retire path needs tagged archive
+- rseng-license-compliance - notice obligations at release time
+- rseng-software-publishing - channel craft after cutting release
+
+<!-- related-skills:end -->
+
 ---
 
 Guidance based on [RSQKit](https://everse.software/RSQKit/) by the EVERSE

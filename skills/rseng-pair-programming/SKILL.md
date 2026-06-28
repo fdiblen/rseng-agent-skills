@@ -1,16 +1,16 @@
 ---
 name: rseng-pair-programming
 description: >-
-  Covers the agent as an effective pair programmer and pull-request
-  review buddy for research software: driver-navigator collaboration
-  with think-aloud reasoning, ping-pong test-driven pairing, keeping
-  the human in charge of scientific decisions, pre-review of pull
-  requests before human reviewers see them, and constructive review
-  comment craft. Use when the user wants to work through code
-  together, asks to pair on a problem, wants their changes reviewed
-  or pre-reviewed before opening or merging a pull request, asks
-  for a review buddy, or when a PR draft would benefit from a
-  structured pass before human review.
+  Covers the agent as an effective pair programmer and pull-request review
+  buddy for research software: driver-navigator collaboration with think-aloud
+  reasoning, ping-pong test-driven pairing, keeping the human in charge of
+  scientific decisions, pre-review of pull requests before human reviewers see
+  them, and constructive review-comment craft. Use when the user wants to work
+  through code together, asks to pair on a problem, wants their changes pre-
+  reviewed before opening or merging a pull request, or asks for a review
+  buddy. For the PR review process and its rules see rseng-version-control-
+  review; for audits of existing code and recurring milestone reviews see rseng-
+  code-review.
 license: CC-BY-4.0
 metadata:
   version: 0.1.0
@@ -131,3 +131,18 @@ collaboration.
 
 Based on established pair-programming and code-review practice
 adapted to human-agent collaboration on research software.
+
+<!-- related-skills:begin -->
+
+## Related skills
+
+Check whether any of these applies before moving on:
+
+- rseng-agent-security - agent never approves its own work
+- rseng-ai-declaration - recording agent collaboration honestly
+- rseng-research-integrity - evidence questions at review time
+- rseng-testing - ping-pong TDD produces the suite
+- rseng-trainer - narrated pairing is the teaching channel
+- rseng-version-control-review - small commits during sessions
+
+<!-- related-skills:end -->

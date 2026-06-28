@@ -5,12 +5,13 @@ description: >-
   Management Plan (SMP), and choosing programming languages, tools, and
   infrastructures for a project. Use when the user wants to write or review an
   SMP, plan how software will be developed, maintained, shared, and preserved,
-  mentions software management plans, maDMPs, DS-Wizard or DMPonline funder
-  templates, needs the software sections of a proposal,
+  needs the software sections of a proposal or funder template, wants to
   decide which language or framework to start a project in (Python, C++, R,
   Julia, Rust, Fortran, JavaScript), pick a project template or boilerplate,
   or weigh reuse, sustainability, and funder requirements at the start of a
-  project.
+  project. (Data management plans, maDMPs, DS-Wizard and DMPonline are rseng-
+  data-management-plans; interactive new-project setup is rseng-project-kickoff;
+  week-to-week task tracking is rseng-project-tracking.)
 license: CC-BY-4.0
 metadata:
   version: 0.2.0
@@ -250,6 +251,21 @@ Learn more (verified pointers):
 - CodeRefinery lessons - https://coderefinery.org/lessons/
 - The Carpentries - https://carpentries.org/
 - ELIXIR TeSS training portal - https://tess.elixir-europe.org/
+
+<!-- related-skills:begin -->
+
+## Related skills
+
+Check whether any of these applies before moving on:
+
+- rseng-archiving - preservation promises need archiving mechanics
+- rseng-data-management-plans - drafting the data twin plan
+- rseng-licensing - plan's licensing section needs specifics
+- rseng-maintenance-sustainability - planning the long-term maintenance section
+- rseng-project-kickoff - brand-new project starts with interview
+- rseng-project-scaffolding - template kickstart after language choice
+
+<!-- related-skills:end -->
 
 ---
 

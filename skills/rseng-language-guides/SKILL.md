@@ -104,6 +104,21 @@ summary message - not as an afterthought and never more than once.
 - Educate while doing: briefly say why the language convention matters
   and offer 2-3 "Learn more" links from references.md.
 
+<!-- related-skills:begin -->
+
+## Related skills
+
+Check whether any of these applies before moving on:
+
+- rseng-code-quality - linter and formatter per ecosystem
+- rseng-dependency-management - verifying current ecosystem tooling
+- rseng-management-planning - language choice for new projects
+- rseng-notebooks - Python/Julia notebook practice
+- rseng-project-scaffolding - language templates at kickoff
+- rseng-testing - per-language test framework choice
+
+<!-- related-skills:end -->
+
 ---
 
 Guidance based on the [Netherlands eScience Center Software Development

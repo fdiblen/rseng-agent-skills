@@ -139,3 +139,18 @@ level.
 
 Based on OSF and Center for Open Science documentation, ASAPbio
 resources and The Turing Way open research guide.
+
+<!-- related-skills:begin -->
+
+## Related skills
+
+Check whether any of these applies before moving on:
+
+- rseng-archiving - both-ways artifact linking discipline
+- rseng-citation-hygiene - preprint-to-published version drift
+- rseng-publishing-releasing - citable code release behind claims
+- rseng-regulatory-compliance - governs the closed components
+- rseng-research-integrity - preregistration deviations reported honestly
+- rseng-software-peer-review - open review practices transfer
+
+<!-- related-skills:end -->

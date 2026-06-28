@@ -1,15 +1,17 @@
 ---
 name: rseng-project-scaffolding
 description: >-
-  Covers starting research software projects from maintained templates
-  and keeping them in sync: choosing a generator (Copier, cookiecutter),
+  Covers starting research software projects from maintained templates and
+  keeping them in sync: choosing a generator (Copier, cookiecutter),
   scaffolding a new Python package, retrofitting template structure onto
   existing code, pulling template upgrades into generated projects, and
-  picking a pyproject build backend. Use when the user starts a new
-  research software project, asks for a project template or boilerplate,
-  wants a src/ layout or pyproject.toml scaffold, mentions copier or
-  cookiecutter, asks how to update a project generated from a template,
-  or needs to choose between setuptools, hatchling, poetry or PDM.
+  picking a pyproject build backend. Use when the user starts a new research
+  software codebase, asks for a project template or boilerplate, wants a src/
+  layout or pyproject.toml scaffold, mentions copier or cookiecutter, asks how
+  to update a project generated from a template, or needs to choose between
+  setuptools, hatchling, poetry or PDM. For hand-rolled layout and naming
+  conventions see rseng-code-quality; for the management side of starting a
+  project see rseng-project-kickoff.
 license: CC-BY-4.0
 metadata:
   version: 0.1.0
@@ -116,3 +118,18 @@ generator documentation linked below, not a bundled content source.
 
 Based on the NLeSC python-template (Apache-2.0) and Copier
 documentation.
+
+<!-- related-skills:begin -->
+
+## Related skills
+
+Check whether any of these applies before moving on:
+
+- rseng-ci-cd - generated workflow files need understanding
+- rseng-citation-metadata - template ships CITATION.cff and cffconvert check
+- rseng-dependency-management - keeping generated tooling current
+- rseng-fair-software - templates encode the FAIR baseline
+- rseng-project-kickoff - management-side project start
+- rseng-publishing-releasing - packaging and release setup follow-up
+
+<!-- related-skills:end -->

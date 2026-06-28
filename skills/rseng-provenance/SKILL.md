@@ -129,3 +129,18 @@ rseng-ai-declaration record layer by layer.
 
 Based on the W3C PROV specifications and the RO-Crate community
 standard.
+
+<!-- related-skills:begin -->
+
+## Related skills
+
+Check whether any of these applies before moving on:
+
+- rseng-ai-declaration - agents are PROV Agents too
+- rseng-archiving - RO-Crate is the deposit shape
+- rseng-data-management - dataset versions and checksums in records
+- rseng-honesty - stated gaps beat invented links
+- rseng-reproducibility - same promise at a different layer
+- rseng-scientific-file-formats - embedded origin metadata in files
+
+<!-- related-skills:end -->

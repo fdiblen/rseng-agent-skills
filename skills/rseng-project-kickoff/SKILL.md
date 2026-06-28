@@ -1,16 +1,17 @@
 ---
 name: rseng-project-kickoff
 description: >-
-  Covers starting a new research software project with a short
-  kickoff interview: asking the user the few questions whose answers
-  actually change decisions (goal, software tier, stack, data
-  sensitivity, openness, collaboration, compute, deadlines, and how
-  much the agent may decide alone), then deriving tier-appropriate
-  defaults, setting the project up, and making proactive decisions
-  afterwards while keeping the user informed. Use PROACTIVELY when a
-  new project is starting in an empty or fresh directory, and when
-  the user asks to kick off, bootstrap or set up a new research
-  software project or wants the agent to interview them about it.
+  Covers starting a new research software project with a short kickoff
+  interview: asking the user the few questions whose answers actually change
+  decisions (goal, software tier, stack, data sensitivity, openness,
+  collaboration, compute, deadlines, and how much the agent may decide alone),
+  then deriving tier-appropriate defaults, setting the project up, and making
+  proactive decisions afterwards while keeping the user informed. Use
+  PROACTIVELY when a new project is starting in an empty or fresh directory,
+  and when the user asks to kick off, bootstrap or set up a new research
+  software project or wants the agent to interview them about it. (Drafting
+  SMPs is rseng-management-planning; steady-state operation after setup is rseng-
+  project-tracking.)
 license: CC-BY-4.0
 metadata:
   version: 0.1.0
@@ -113,3 +114,18 @@ operation to rseng-project-tracking.
 
 Based on project-kickoff practice for AI-assisted research
 software.
+
+<!-- related-skills:begin -->
+
+## Related skills
+
+Check whether any of these applies before moving on:
+
+- rseng-data-management - data questions route here early
+- rseng-discovery - prior-art pass before building
+- rseng-management-planning - SMP skeleton after kickoff answers
+- rseng-project-scaffolding - executes the scaffolding step
+- rseng-project-tracking - hands over steady-state operation
+- rseng-quality-framework - tier classification calibrates all defaults
+
+<!-- related-skills:end -->

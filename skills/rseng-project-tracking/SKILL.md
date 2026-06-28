@@ -1,21 +1,19 @@
 ---
 name: rseng-project-tracking
 description: >-
-  Covers the operational side of running a research software
-  project: turning plans into tracked, prioritized tasks (issues,
-  milestones, boards), planning cadence around research deadlines,
-  estimation and time management for uncertain research work
-  (ranged estimates, timeboxed spikes, capacity planning),
-  and disciplined bookkeeping - decision logs, status records,
-  meeting notes, milestone reviews and two-altitude project logs (a
-  detailed journal of what happened and a high-level digest for
-  reports and newcomers) that keep the project's memory in the
-  repository. Use when work is untracked or lives in
-  heads and inboxes, when the user asks how to organize tasks,
-  backlogs, milestones or boards, wants a project record, status
-  report or decision log, mentions issue triage or prioritization,
-  or when a project has more than one person or more than one
-  month of work.
+  Covers the operational side of running a research software project: turning
+  plans into tracked, prioritized tasks (issues, milestones, boards), planning
+  cadence around research deadlines, estimation and time management for
+  uncertain research work (ranged estimates, timeboxed spikes, capacity
+  planning), and disciplined bookkeeping - decision logs, status records,
+  meeting notes, milestone reviews and two-altitude project logs. Use when
+  work is untracked or lives in heads and inboxes, when the user asks how to
+  organize tasks, backlogs, milestones or boards, wants a project record,
+  status report or decision log, mentions issue triage or prioritization, or
+  when a project has more than one person or more than one month of work.
+  (Strategic planning and SMPs are rseng-management-planning; new-project setup
+  is rseng-project-kickoff; retrospectives and postmortems are rseng-lessons-
+  learned.)
 license: CC-BY-4.0
 metadata:
   version: 0.3.0
@@ -190,3 +188,18 @@ rseng-community-governance; lessons capture in rseng-lessons-learned.
 
 Based on lightweight project-operations practice proportioned for
 research software projects.
+
+<!-- related-skills:begin -->
+
+## Related skills
+
+Check whether any of these applies before moving on:
+
+- rseng-ai-declaration - disclosing AI-drafted project records
+- rseng-community-governance - issue templates and triage promises
+- rseng-honesty - honest schedules and visible scope cuts
+- rseng-lessons-learned - milestone reviews feed lessons capture
+- rseng-management-planning - strategic plan the tracker executes
+- rseng-version-control-review - linking commits and PRs to issues
+
+<!-- related-skills:end -->
