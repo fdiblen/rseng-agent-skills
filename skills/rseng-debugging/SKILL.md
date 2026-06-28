@@ -1,16 +1,17 @@
 ---
 name: rseng-debugging
 description: >-
-  Covers systematic debugging of research software: hypothesis-
-  driven diagnosis instead of guess-and-change, building minimal
-  reproducers, bisecting across commits, data and parameters,
-  debugging scientific failure modes (wrong numbers rather than
-  crashes, nondeterminism, scale-dependent bugs), debugger and
-  print-discipline mechanics, and turning every fix into a
-  regression test. Use when the user reports a bug, a crash, wrong
-  or changed results, a heisenbug or an it-works-on-my-machine
-  discrepancy, when a pipeline fails at scale but not in tests, or
-  when the user is stuck guessing instead of diagnosing.
+  Covers systematic debugging of research software: hypothesis-driven
+  diagnosis instead of guess-and-change, building minimal reproducers,
+  bisecting across commits, data and parameters, debugging scientific failure
+  modes (wrong numbers rather than crashes, nondeterminism, scale-dependent
+  bugs), debugger and print-discipline mechanics, and turning every fix into a
+  regression test. Use when the user reports a bug, a crash, wrong or changed
+  results, a heisenbug or an it-works-on-my-machine discrepancy, when a
+  pipeline fails at scale but not in tests, or when the user is stuck guessing
+  instead of diagnosing. For preventing silent wrong-result bugs see rseng-
+  defensive-coding; for judging whether numerical differences matter see rseng-
+  numerical-accuracy.
 license: CC-BY-4.0
 metadata:
   version: 0.1.0
@@ -123,3 +124,18 @@ software.
 
 Based on systematic debugging practice (hypothesis-driven
 diagnosis, minimization, bisection) applied to research software.
+
+<!-- related-skills:begin -->
+
+## Related skills
+
+Check whether any of these applies before moving on:
+
+- rseng-defensive-coding - make silent bugs crash first
+- rseng-hpc-computing - scale-dependent cluster-only failures
+- rseng-lessons-learned - postmortems from debugging trails
+- rseng-numerical-accuracy - deciding whether divergence is real
+- rseng-reproducible-environments - pin environment to reproduce the bug
+- rseng-workflows - cached stages make pipeline bisection cheap
+
+<!-- related-skills:end -->

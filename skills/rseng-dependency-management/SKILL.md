@@ -1,18 +1,18 @@
 ---
 name: rseng-dependency-management
 description: >-
-  Covers the full lifecycle of third-party dependencies: vetting a
-  library or tool before adoption on every axis that matters -
-  suitability, license compliance, trust and vulnerabilities
-  including the transitive tree, documentation quality, maintenance
-  and version currency - then keeping dependencies current with
-  lockfiles and automated updates, and removing or replacing them
-  when they rot. Use PROACTIVELY whenever a new dependency is about
-  to be added, when dependencies are outdated or unpinned, when the
-  user asks whether a library is safe, maintained or well chosen,
-  mentions dependency updates, dependabot/renovate, transitive
-  dependencies or version pinning, or when a dependency audit is
-  due.
+  Covers the full lifecycle of third-party dependencies: vetting a library or
+  tool before adoption on every axis that matters - suitability, license,
+  trust and vulnerabilities including the transitive tree, documentation
+  quality, maintenance and version currency - then keeping dependencies
+  current with lockfiles and automated updates, and removing or replacing them
+  when they rot. Use PROACTIVELY whenever a new dependency is about to be
+  added, when dependencies are outdated or unpinned, when the user asks
+  whether a library is safe, maintained or well chosen, mentions dependency
+  updates, dependabot/renovate, transitive dependencies or version pinning, or
+  when a dependency audit is due. (Finding candidates is rseng-software-reuse;
+  deep license compatibility analysis is rseng-license-compliance; lockfile
+  mechanics are rseng-reproducible-environments.)
 license: CC-BY-4.0
 metadata:
   version: 0.2.0
@@ -156,3 +156,18 @@ rseng-reproducible-environments.
 
 Based on the deps.dev, OSV and automated-update tool
 documentation and supply-chain practice for research software.
+
+<!-- related-skills:begin -->
+
+## Related skills
+
+Check whether any of these applies before moving on:
+
+- rseng-ci-cd - tests absorb automated update PRs
+- rseng-license-compliance - license axis analysis
+- rseng-maintenance-sustainability - upstream bus-factor and succession signals
+- rseng-reproducible-environments - pinning and lockfiles
+- rseng-security - vulnerabilities, SBOM, supply chain signals
+- rseng-software-reuse - candidates entering the intake gate
+
+<!-- related-skills:end -->

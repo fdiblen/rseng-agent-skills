@@ -1,15 +1,16 @@
 ---
 name: rseng-green-computing
 description: >-
-  Covers the environmental footprint of research computing: measuring
-  and reporting energy use and carbon emissions of computations
-  (CodeCarbon), reducing them through efficient code, right-sized
-  hardware and carbon-aware scheduling (CATS), the GREENER principles
-  and the Software Carbon Intensity metric. Use when the user asks
-  about the carbon or energy cost of their computations, wants to make
-  workloads greener, mentions sustainability of computing (as distinct
-  from project sustainability), or when planning large training runs,
-  simulations or parameter sweeps whose footprint is worth measuring.
+  Covers the environmental footprint of research computing: measuring and
+  reporting energy use and carbon emissions of computations (CodeCarbon),
+  reducing them through efficient code, right-sized hardware and carbon-aware
+  scheduling (CATS), the GREENER principles and the Software Carbon Intensity
+  metric. Use when the user asks about the carbon or energy cost of their
+  computations, wants to make workloads greener, mentions sustainability of
+  computing, or when planning large training runs, simulations or parameter
+  sweeps whose footprint is worth measuring. (Keeping the software project
+  itself alive is rseng-maintenance-sustainability; making code faster is rseng-
+  performance-profiling.)
 license: CC-BY-4.0
 metadata:
   version: 0.1.0
@@ -108,3 +109,18 @@ below.
 
 Based on the GREENER principles, the SCI specification and the
 CodeCarbon and CATS documentation.
+
+<!-- related-skills:begin -->
+
+## Related skills
+
+Check whether any of these applies before moving on:
+
+- rseng-ci-cd - lean pipelines waste less compute
+- rseng-data-management - storage retention has a footprint
+- rseng-gpu-computing - matching hardware to workload efficiency
+- rseng-hpc-computing - right-sized resource requests save energy
+- rseng-performance-profiling - speedups cut energy roughly proportionally
+- rseng-workflows - caching avoids recomputing pipeline stages
+
+<!-- related-skills:end -->

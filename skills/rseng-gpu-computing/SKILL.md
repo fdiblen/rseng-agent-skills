@@ -84,6 +84,21 @@ summary message - not as an afterthought and never more than once.
 - Educate while doing: briefly say why the practice matters and offer
   2-3 "Learn more" links from references.md.
 
+<!-- related-skills:begin -->
+
+## Related skills
+
+Check whether any of these applies before moving on:
+
+- rseng-green-computing - accelerator energy efficiency matching
+- rseng-hpc-computing - running GPU jobs on clusters
+- rseng-numerical-accuracy - float32 precision consequences
+- rseng-performance-profiling - verify GPU is warranted first
+- rseng-reproducible-environments - driver and toolkit pinning
+- rseng-testing - CPU reference path for correctness
+
+<!-- related-skills:end -->
+
 ---
 
 Guidance based on the [Netherlands eScience Center Software Development

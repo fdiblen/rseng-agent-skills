@@ -1,16 +1,17 @@
 ---
 name: rseng-fairguard
 description: >-
-  Covers assessing research software against the 17 FAIR4RS principles
-  with FAIRGuard (https://www.fairguard.org): compliance scores and
-  levels (bronze to platinum), assessment profiles, quality gates for
-  CI, .fairguard.yml configuration, per-indicator skips, and acting on
-  findings. This is an essential default: run it PROACTIVELY on research
-  software projects - at repo intake, before releases, after adding
-  publication metadata - and act on its findings. Also use when the user
-  asks to check FAIR compliance, wants a FAIR score, report or badge
-  level, wants a FAIR quality gate in CI, mentions fairguard, FAIR4RS,
-  .fairguard.yml, or asks how findable/reusable their software is.
+  Covers assessing research software against the 17 FAIR4RS principles with
+  FAIRGuard (https://www.fairguard.org): compliance scores and levels (bronze
+  to platinum), assessment profiles, quality gates for CI, .fairguard.yml
+  configuration, per-indicator skips, and acting on findings. This is an
+  essential default: run it PROACTIVELY on research software projects - at
+  repo intake, before releases, after adding publication metadata - and act on
+  its findings. Also use when the user asks to check FAIR compliance, wants a
+  FAIR score, report or badge level, wants a FAIR quality gate in CI, or
+  mentions fairguard, FAIR4RS or .fairguard.yml. (FAIR concepts, principles
+  and hand-guided improvement are rseng-fair-software; ML artifacts are rseng-
+  fair-ml.)
 license: CC-BY-4.0
 metadata:
   version: 0.2.0
@@ -224,3 +225,18 @@ documentation itself (links below), not a bundled content source.
 
 Based on FAIRGuard (https://www.fairguard.org), CLI v0.10.x, and the
 FAIR4RS principles.
+
+<!-- related-skills:begin -->
+
+## Related skills
+
+Check whether any of these applies before moving on:
+
+- rseng-ai-declaration - transparency pair per pack default
+- rseng-ci-cd - wiring the quality gate
+- rseng-citation-metadata - fixing metadata findings
+- rseng-fair-software - concepts behind the indicators
+- rseng-licensing - fixing license findings
+- rseng-publishing-releasing - fixing release and archive findings
+
+<!-- related-skills:end -->

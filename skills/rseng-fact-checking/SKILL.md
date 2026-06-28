@@ -1,18 +1,18 @@
 ---
 name: rseng-fact-checking
 description: >-
-  Covers verifying facts and sources at the content level: checking
-  that a cited source actually contains and supports the claim it
-  is cited for (claim-source alignment), assessing source
-  trustworthiness (peer-review status, venue reputation, predatory
-  publishing signals, primary vs secondary sources), verifying
-  factual claims against authoritative sources before they enter
-  documents or code comments, and flagging fabricated or
-  misattributed support. Use PROACTIVELY whenever the agent itself
-  asserts checkable facts or attaches sources to claims, and when
-  the user asks to fact-check a document, verify that references
-  support their claims, assess whether a source is trustworthy,
-  or suspects a citation says something other than claimed.
+  Covers verifying facts and sources at the content level: checking that a
+  cited source actually contains and supports the claim it is cited for
+  (claim-source alignment), assessing source trustworthiness (peer-review
+  status, venue reputation, predatory-publishing signals, primary vs secondary
+  sources), verifying factual claims against authoritative sources before they
+  enter documents or code comments, and flagging fabricated or misattributed
+  support. Use PROACTIVELY whenever the agent itself asserts checkable facts
+  or attaches sources to claims, and when the user asks to fact-check a
+  document, verify that references support their claims, assess whether a
+  source is trustworthy, or suspects a citation says something other than
+  claimed. rseng-citation-hygiene verifies references exist and are unretracted;
+  rseng-research-integrity checks a document's own numbers.
 license: CC-BY-4.0
 metadata:
   version: 0.1.0
@@ -143,3 +143,18 @@ consistent).
 
 Based on claim-source verification practice and the linked
 scholarly-metadata and venue-assessment services.
+
+<!-- related-skills:begin -->
+
+## Related skills
+
+Check whether any of these applies before moving on:
+
+- rseng-citation-hygiene - existence check runs first
+- rseng-documentation - README claims need the same bar
+- rseng-honesty - when asked to fake support
+- rseng-open-science-practices - preprint status labeling
+- rseng-research-integrity - document-level pre-submission battery
+- rseng-testing - executable checks beat document claims
+
+<!-- related-skills:end -->

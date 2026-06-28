@@ -111,3 +111,18 @@ rseng-community-metrics.
 
 Based on open source onboarding practice and scientific
 community engagement guidance.
+
+<!-- related-skills:begin -->
+
+## Related skills
+
+Check whether any of these applies before moving on:
+
+- rseng-community-governance - rules and CONTRIBUTING newcomers follow
+- rseng-community-metrics - measures funnel conversion
+- rseng-pair-programming - kind first-PR review bar
+- rseng-reproducible-environments - fresh-clone dev setup must work
+- rseng-trainer - teaching cohorts and students
+- rseng-user-support - active answerers become contributors
+
+<!-- related-skills:end -->

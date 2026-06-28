@@ -3,11 +3,13 @@ name: rseng-fair-software
 description: >-
   Covers how to apply the FAIR principles - findable, accessible,
   interoperable, reusable - to research software, and how to assess a
-  project's FAIRness. Use when the user asks how to make software FAIR,
-  wants help with findability, discoverability, or software reuse, mentions
-  metadata, persistent identifiers, DOIs, registries, or software citation
-  in a FAIR context, or asks to run a FAIR self-assessment or checklist on
-  a repository.
+  project's FAIRness. Use when the user asks how to make software FAIR, wants
+  help with findability, discoverability, or software reuse, mentions
+  metadata, persistent identifiers, DOIs, registries, or software citation in
+  a FAIR context, or asks to run a FAIR self-assessment or checklist on a
+  repository. (Automated FAIR4RS scoring, compliance levels and CI gates with
+  the FAIRGuard tool are rseng-fairguard; FAIR for ML models and datasets is
+  rseng-fair-ml; finding existing software to reuse is rseng-software-reuse.)
 license: CC-BY-4.0
 metadata:
   version: 0.1.0
@@ -172,6 +174,21 @@ Learn more (verified pointers):
 - CodeRefinery lessons - https://coderefinery.org/lessons/
 - The Carpentries - https://carpentries.org/
 - ELIXIR TeSS training portal - https://tess.elixir-europe.org/
+
+<!-- related-skills:begin -->
+
+## Related skills
+
+Check whether any of these applies before moving on:
+
+- rseng-archiving - accessibility beyond active development
+- rseng-citation-metadata - metadata and identifiers implement findability
+- rseng-fair-ml - FAIR extended to ML artifacts
+- rseng-fairguard - automated FAIR4RS scoring
+- rseng-licensing - license implements reusability
+- rseng-software-reuse - registering software for findability
+
+<!-- related-skills:end -->
 
 ---
 

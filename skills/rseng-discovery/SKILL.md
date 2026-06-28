@@ -1,16 +1,17 @@
 ---
 name: rseng-discovery
 description: >-
-  Covers discovering the research landscape around a topic or
-  project: finding relevant publications (OpenAlex, arXiv, Zenodo,
-  JOSS, Semantic Scholar, Google Scholar) and finding related
-  software - libraries, packages, tools, platforms and
-  competitor or alternative projects - across software registries,
-  archives, package indexes, public forges and curated awesome
-  lists. Use when the user asks what exists on a topic, wants
-  related work, prior art, alternatives or competitors surveyed,
-  needs a state-of-the-field picture for a paper or proposal, or
-  is about to build something whose neighbors are unknown.
+  Covers discovering the research landscape around a topic or project: finding
+  relevant publications (OpenAlex, arXiv, Zenodo, JOSS, Semantic Scholar,
+  Google Scholar) and finding related software - libraries, packages, tools,
+  platforms and competitor or alternative projects - across software
+  registries, archives, package indexes, public forges and curated awesome
+  lists. Use when the user asks what exists on a topic, wants related work,
+  prior art, alternatives or competitors surveyed, needs a state-of-the-field
+  picture for a paper or proposal, or is about to build something whose
+  neighbors are unknown. (RSD-based reuse suggestions with bundled snapshots
+  are rseng-software-reuse; adoption vetting is rseng-dependency-management;
+  verifying found references is rseng-citation-hygiene.)
 license: CC-BY-4.0
 metadata:
   version: 0.1.0
@@ -128,3 +129,18 @@ rseng-fact-checking and rseng-citation-hygiene verify.
 
 Based on the linked scholarly and software discovery services and
 community search practice.
+
+<!-- related-skills:begin -->
+
+## Related skills
+
+Check whether any of these applies before moving on:
+
+- rseng-citation-hygiene - verifying surveyed references
+- rseng-dependency-management - vetting discovered software
+- rseng-fact-checking - verifying claims before repeating them
+- rseng-science-communication - related-work narrative for audiences
+- rseng-software-peer-review - state-of-field for JOSS paper
+- rseng-software-reuse - candidate fit and citation duty
+
+<!-- related-skills:end -->

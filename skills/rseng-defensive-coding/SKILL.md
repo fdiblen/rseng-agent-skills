@@ -1,18 +1,17 @@
 ---
 name: rseng-defensive-coding
 description: >-
-  Covers the defenses against silently wrong research results:
-  validating data at boundaries (schemas, assertions, sanity
-  checks), explicit physical units and quantities in code
-  (pint/astropy-style), disciplined randomness (explicit seeded
-  generators, parallel streams), fail-loud defaults, and guarding
-  against the silent-corruption failure modes of scientific data
-  handling. Use PROACTIVELY when code ingests external or instrument data, when
-  values carry physical units, when randomness enters simulations
-  or sampling, when NaN or missing-data handling is implicit, when
-  the user mentions data validation, unit errors, seeds or silent
-  bugs, or when reviewing analysis code whose failure would be
-  invisible.
+  Covers defenses against silently wrong research results: validating data at
+  boundaries (schemas, assertions, sanity checks), explicit physical units and
+  quantities in code (pint/astropy-style), disciplined randomness (explicit
+  seeded generators, parallel streams), and fail-loud handling of NaN and
+  missing data. Use PROACTIVELY when code ingests external or instrument data,
+  when values carry physical units, when randomness enters simulations or
+  sampling, or when NaN or missing-data handling is implicit; also when the
+  user mentions data validation, unit errors, seeds or silent bugs, or reviews
+  analysis code whose failure would be invisible. For floating-point behavior
+  and tolerances see rseng-numerical-accuracy; for diagnosing an existing bug
+  see rseng-debugging.
 license: CC-BY-4.0
 metadata:
   version: 0.1.0
@@ -127,3 +126,18 @@ hunts post-hoc.
 
 Based on the pandera, pint and astropy documentation and
 Scientific Python community guidance on randomness.
+
+<!-- related-skills:begin -->
+
+## Related skills
+
+Check whether any of these applies before moving on:
+
+- rseng-big-data-processing - quarantine-and-log at batch scale
+- rseng-data-management - data dictionaries the schemas enforce
+- rseng-hpc-computing - per-worker RNG streams in parallel jobs
+- rseng-numerical-accuracy - float behavior behind silent errors
+- rseng-research-integrity - post-hoc hunt for same failures
+- rseng-testing - fired checks become regression tests
+
+<!-- related-skills:end -->

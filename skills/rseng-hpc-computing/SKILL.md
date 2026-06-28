@@ -1,14 +1,16 @@
 ---
 name: rseng-hpc-computing
 description: >-
-  Covers working effectively on high-performance computing clusters:
-  writing and debugging SLURM job scripts, choosing and requesting
-  resources honestly, running containers with Apptainer, using module
-  systems and EESSI software stacks, MPI basics, checkpointing, and
-  scaling from laptop to cluster reproducibly. Use when the user
-  mentions a cluster, supercomputer, SLURM, sbatch, MPI, Apptainer or
-  Singularity, module load, job arrays or walltime, or when a workload
-  has outgrown a single machine.
+  Covers working effectively on high-performance computing clusters: writing
+  and debugging SLURM job scripts, choosing and requesting resources honestly,
+  running containers with Apptainer, using module systems and EESSI software
+  stacks, MPI basics, checkpointing, and scaling from laptop to cluster
+  reproducibly. Use when the user mentions a cluster, supercomputer, SLURM,
+  sbatch, MPI, Apptainer or Singularity, module load, job arrays or walltime,
+  or when a compute workload has outgrown a single machine. (Larger-than-
+  memory data processing with Dask or Spark is rseng-big-data-processing;
+  measuring scaling before requesting allocations is rseng-performance-
+  profiling.)
 license: CC-BY-4.0
 metadata:
   version: 0.1.0
@@ -131,3 +133,18 @@ cluster's local documentation.
 
 Based on SLURM, Apptainer and EESSI documentation and the HPC
 Carpentry and CodeRefinery lessons.
+
+<!-- related-skills:begin -->
+
+## Related skills
+
+Check whether any of these applies before moving on:
+
+- rseng-big-data-processing - distributed data framework path
+- rseng-data-management - staging data across cluster filesystems
+- rseng-green-computing - honest requests save energy
+- rseng-performance-profiling - measure scaling before allocating
+- rseng-reproducible-environments - containers and pinned modules
+- rseng-workflows - sweeps via workflow engines
+
+<!-- related-skills:end -->

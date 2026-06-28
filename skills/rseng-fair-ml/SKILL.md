@@ -1,17 +1,17 @@
 ---
 name: rseng-fair-ml
 description: >-
-  Covers applying FAIR principles to machine learning artifacts:
-  making models findable and reusable with model cards and rich
-  repository metadata, documenting datasets with Croissant and
-  datasheet-style records, licensing models and weights, linking
-  the model-data-code-paper cluster with persistent identifiers,
-  and the RDA FAIR4ML metadata direction. Use when a project
-  trains, fine-tunes, publishes or reuses ML models or ML-ready
-  datasets, when the user mentions model cards, Croissant,
-  datasheets, FAIR4ML or model licensing, when a model heads to a
-  hub or archive, or when evaluating whether a third-party model
-  is documented well enough to build on.
+  Covers applying FAIR principles to machine learning artifacts: making models
+  findable and reusable with model cards and rich repository metadata,
+  documenting datasets with Croissant and datasheet-style records, licensing
+  models and weights, linking the model-data-code-paper cluster with
+  persistent identifiers, and the RDA FAIR4ML metadata direction. Use when a
+  project trains, fine-tunes, publishes or reuses ML models or ML-ready
+  datasets, when the user mentions model cards, Croissant, datasheets, FAIR4ML
+  or model licensing, when a model heads to a hub or archive, or when
+  evaluating whether a third-party model is documented well enough to build
+  on. (General software FAIR is rseng-fair-software; automated repository
+  scoring is rseng-fairguard.)
 license: CC-BY-4.0
 metadata:
   version: 0.1.0
@@ -126,3 +126,18 @@ assesses the software side.
 
 Based on the RDA FAIR4ML direction, the Croissant specification
 and established model-card practice.
+
+<!-- related-skills:begin -->
+
+## Related skills
+
+Check whether any of these applies before moving on:
+
+- rseng-archiving - DOIs for model and dataset snapshots
+- rseng-data-management - dataset documentation beneath Croissant
+- rseng-fair-software - the general FAIR baseline
+- rseng-gpu-computing - hardware requirements for model reuse
+- rseng-licensing - licensing weights and training data
+- rseng-reproducibility - model cards written from actual runs
+
+<!-- related-skills:end -->

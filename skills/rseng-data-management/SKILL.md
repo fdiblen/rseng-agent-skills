@@ -1,16 +1,17 @@
 ---
 name: rseng-data-management
 description: >-
-  Covers research data management around software: organizing and
-  documenting datasets (layout, formats, data dictionaries), keeping
-  data out of git while versioning it properly (DVC, git-annex,
-  DataLad), FAIR data and metadata standards, depositing data with
-  DOIs in repositories such as Zenodo, licensing data, and handling
-  sensitive or personal data. Use PROACTIVELY when a project reads or produces
-  datasets, when the user asks where to put data, how to version or
-  share large files, how to document a dataset, which data license or
-  repository to use, or when
-  data files are about to be committed to a code repository.
+  Covers research data management around software: organizing and documenting
+  datasets (layout, data dictionaries), keeping data out of git while
+  versioning it properly (DVC, git-annex, DataLad), FAIR data and metadata
+  standards, depositing data with DOIs in repositories such as Zenodo,
+  licensing data, and handling sensitive or personal data. Use PROACTIVELY
+  when a project reads or produces datasets, when the user asks where to put
+  data, how to version or share large files, how to document a dataset, which
+  data license or repository to use, or when data files are about to be
+  committed to a code repository. (Format engineering - HDF5, NetCDF, Parquet,
+  chunking - is rseng-scientific-file-formats; funder data management plans are
+  rseng-data-management-plans.)
 license: CC-BY-4.0
 metadata:
   version: 0.2.0
@@ -144,3 +145,18 @@ principles and the community resources linked below.
 
 Based on the FAIR data principles and community research data
 management guidance (The Turing Way, ELIXIR RDMkit).
+
+<!-- related-skills:begin -->
+
+## Related skills
+
+Check whether any of these applies before moving on:
+
+- rseng-archiving - long-term data deposit
+- rseng-citation-metadata - data DOIs and two-way citation
+- rseng-data-management-plans - funder plan over the practice
+- rseng-regulatory-compliance - sensitive and personal data obligations
+- rseng-scientific-file-formats - choosing and engineering the format
+- rseng-workflows - scripted regeneration of derived data
+
+<!-- related-skills:end -->

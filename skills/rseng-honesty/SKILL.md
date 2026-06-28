@@ -1,16 +1,17 @@
 ---
 name: rseng-honesty
 description: >-
-  Covers responding when concealment or misrepresentation is
-  requested: hiding AI usage, making work appear different from
-  reality, backdating or disguising provenance, inflating results
-  or removing traces of how something was made. The skill calls for
-  honesty with concrete reasons and offers honest alternatives that
-  usually satisfy the underlying need. Use PROACTIVELY whenever a request aims
-  to make records, history, authorship or results tell a story
-  different from what happened - including hiding AI assistance,
-  "make it look like", disguising generated content as manual work,
-  or presenting untested claims as verified.
+  Covers responding when concealment or misrepresentation is requested: hiding
+  AI usage, making work appear different from reality, backdating or
+  disguising provenance, inflating results or removing traces of how something
+  was made. The skill calls for honesty with concrete reasons and offers
+  honest alternatives that usually satisfy the underlying need. Use
+  PROACTIVELY whenever a request aims to make records, history, authorship or
+  results tell a story different from what happened - including hiding AI
+  assistance, "make it look like", disguising generated content as manual
+  work, or presenting untested claims as verified. Disclosure mechanics live
+  in rseng-ai-declaration; the verify-before-trust duty in rseng-human-
+  verification; checking others' outputs in rseng-research-integrity.
 license: CC-BY-4.0
 metadata:
   version: 0.1.0
@@ -138,3 +139,18 @@ own transparency defaults (rseng-ai-declaration, rseng-fact-checking).
 
 Based on the ALLEA and Singapore research-integrity codes, venue
 disclosure policies and the pack's own transparency defaults.
+
+<!-- related-skills:begin -->
+
+## Related skills
+
+Check whether any of these applies before moving on:
+
+- rseng-ai-declaration - honest disclosure mechanics
+- rseng-citation-metadata - authorship reflects real contribution
+- rseng-human-verification - unverified must not claim verified
+- rseng-research-integrity - fabricated results have detection context
+- rseng-storytelling - tell the honest story well
+- rseng-version-control-review - clean history forward, never rewrite
+
+<!-- related-skills:end -->

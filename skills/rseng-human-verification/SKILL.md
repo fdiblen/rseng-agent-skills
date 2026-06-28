@@ -1,16 +1,17 @@
 ---
 name: rseng-human-verification
 description: >-
-  Covers the human's side of AI-assisted research software: strongly
-  urging the user to review generated code and verify results before
-  relying on them, teaching how to review AI-written code
-  effectively (where to look first, what to run, what to spot-check
-  against known answers), and recording review status honestly. Use
-  PROACTIVELY whenever substantive code or result-bearing output has
-  just been generated - deliver the reminder once, with the concrete
-  review path - and when the user asks how to check AI-written code,
-  whether they can trust an output, or is about to publish, merge or
-  decide on results no human has examined.
+  Covers the human's side of AI-assisted research software: strongly urging
+  the user to review generated code and verify results before relying on them,
+  teaching how to review AI-written code effectively (where to look first,
+  what to run, what to spot-check against known answers), and recording review
+  status honestly. Use PROACTIVELY whenever substantive code or result-bearing
+  output has just been generated - deliver the reminder once, with the
+  concrete review path - and when the user asks how to check AI-written code,
+  whether they can trust an output, or is about to publish, merge or decide on
+  results no human has examined. Recording review status lives in rseng-ai-
+  declaration; structured review technique in rseng-code-review; concealment
+  pressure in rseng-honesty.
 license: CC-BY-4.0
 metadata:
   version: 0.1.0
@@ -129,3 +130,18 @@ and rseng-honesty (which keeps claims true).
 
 Based on the verification duty for AI-assisted research software,
 as practiced and recorded through the linked standards.
+
+<!-- related-skills:begin -->
+
+## Related skills
+
+Check whether any of these applies before moving on:
+
+- rseng-ai-declaration - record review status honestly
+- rseng-code-review - structured review lenses
+- rseng-numerical-accuracy - spot-check numeric assumptions
+- rseng-pair-programming - division of labor with agent
+- rseng-reproducibility - rerun the pipeline from clean
+- rseng-testing - run and read the assertions
+
+<!-- related-skills:end -->

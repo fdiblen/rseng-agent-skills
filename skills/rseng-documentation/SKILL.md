@@ -1,14 +1,16 @@
 ---
 name: rseng-documentation
 description: >-
-  Covers how to document research software at every level: writing a
-  README, code-level docs (comments, docstrings, API and CLI help),
-  project docs (INSTALL, CONTRIBUTING, LICENSE, CITATION, changelog),
-  publishing hosted documentation with Read the Docs, and capturing a
-  Research Software Story. Use when the user asks how to write or improve
-  a README, add docstrings or inline comments, document an API or CLI,
-  set up Sphinx/MkDocs/Doxygen, host docs on Read the Docs, structure a
-  docs site, or write the narrative context and history behind a project.
+  Covers how to document research software at every level: writing a README,
+  code-level docs (comments, docstrings, API and CLI help), project docs
+  (INSTALL, CONTRIBUTING, LICENSE, CITATION, changelog), publishing hosted
+  documentation with Read the Docs, and capturing a Research Software Story.
+  Use when the user asks how to write or improve a README, add docstrings or
+  inline comments, document an API or CLI, set up Sphinx/MkDocs/Doxygen, host
+  docs on Read the Docs, structure a docs site, or write the narrative context
+  and history behind a project. For outward-facing papers, talks and
+  announcements see rseng-science-communication; for public and citizen-science
+  narrative see rseng-storytelling.
 license: CC-BY-4.0
 metadata:
   version: 0.2.0
@@ -309,6 +311,21 @@ Learn more (verified pointers):
   https://docs.readthedocs.io/en/stable/tutorial/index.html
 - EVERSE seminar, Research Software Stories -
   https://www.youtube.com/watch?v=enx7sBsaQws
+
+<!-- related-skills:begin -->
+
+## Related skills
+
+Check whether any of these applies before moving on:
+
+- rseng-citation-metadata - CITATION.cff beside the README
+- rseng-licensing - LICENSE file guidance
+- rseng-science-communication - outward papers and announcements
+- rseng-storytelling - narrative for broad audiences
+- rseng-user-support - recurring questions become docs
+- rseng-ux-accessibility - docs readability and accessibility
+
+<!-- related-skills:end -->
 
 ---
 
