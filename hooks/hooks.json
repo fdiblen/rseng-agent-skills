@@ -15,7 +15,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "echo 'Reminder: invoke the matching rseng-* skills for research-software work (router: rseng-quality-framework); keep aidecl.yaml current.'"
+            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/phase_status.py\""
           }
         ]
       }

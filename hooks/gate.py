@@ -1,15 +1,19 @@
-"""PreToolUse gate: plan before you write.
+"""PreToolUse gate: plan before you write, keep practice current while
+you write.
 
-Blocks Write/Edit (exit 2) until .rseng-agent-skills-coverage.md exists with
-a Start section covering every Start-phase cluster - the beginning-
-of-task practice pass (planning, data, reuse/licensing, stack) has
-to happen before the first file is written. Also requires at least
-one rseng-* skill consultation. Opt out with .rseng-agent-skills-relaxed.
+Before the first file write, .rseng-agent-skills-coverage.md must carry a
+complete, ledger-backed Start section and a Throughout section (the
+cross-cutting skills begin at the beginning). Once development is
+under way (several approved writes), the During section falls due as
+well. Writes to the coverage worklog itself always pass - it is the
+escape from the gate, by design. Opt out with .rseng-agent-skills-relaxed.
 """
 
 import json
 import pathlib
 import sys
+
+import phase_lib
 
 data = json.load(sys.stdin)
 if pathlib.Path(".rseng-agent-skills-relaxed").exists():
@@ -17,42 +21,42 @@ if pathlib.Path(".rseng-agent-skills-relaxed").exists():
 if data.get("tool_name") not in ("Write", "Edit", "MultiEdit", "NotebookEdit"):
     sys.exit(0)
 
-phases_file = pathlib.Path(__file__).parent / "phases.json"
-start_clusters = []
-if phases_file.is_file():
-    start_clusters = json.loads(phases_file.read_text(encoding="utf-8")).get(
-        "Start", []
-    )
-
-coverage = pathlib.Path(".rseng-agent-skills-coverage.md")
-text = coverage.read_text(encoding="utf-8").lower() if coverage.is_file() else ""
-absent = [c for c in start_clusters if c.lower() not in text]
-
-ledger = pathlib.Path(".rseng-agent-skills-usage.log")
-consulted = ledger.is_file() and any(
-    line.startswith("rseng-")
-    for line in ledger.read_text(encoding="utf-8").splitlines()
-)
-
-if consulted and "## start" in text and not absent:
+tool_input = data.get("tool_input") or {}
+target = tool_input.get("file_path") or tool_input.get("notebook_path") or ""
+if pathlib.Path(target).name.startswith(".rseng-agent-skills"):
     sys.exit(0)
 
+phases = phase_lib.load_phases(pathlib.Path(__file__).parent)
+text = phase_lib.coverage_text()
+ledger = phase_lib.consulted_skills()
+
+DURING_AFTER_WRITES = 8
+
 problems = []
-if not consulted:
+if not ledger:
     problems.append(
-        "consult the relevant rseng-* skills first (router: "
-        "rseng-quality-framework)"
+        "no rseng-* skill has been consulted yet - open the relevant "
+        "skills with the Skill tool first (router: rseng-quality-framework)"
     )
-if "## start" not in text or absent:
-    problems.append(
-        "write the Start section of .rseng-agent-skills-coverage.md: for each "
-        "Start-phase cluster record 'applied: <skills and decisions>' "
-        "or 'n/a: <reason>'. Still unaddressed: "
-        + ("; ".join(absent) if absent else "all Start clusters")
+problems += phase_lib.phase_problems(phases, "Start", text, ledger)
+problems += phase_lib.phase_problems(phases, "Throughout", text, ledger)
+if phase_lib.write_count() >= DURING_AFTER_WRITES:
+    during = phase_lib.phase_problems(phases, "During", text, ledger)
+    if during:
+        problems.append(
+            "development is well under way - record the During practice "
+            "pass now, not at the end:"
+        )
+        problems += during
+
+if problems:
+    print(
+        "rseng-agent-skills gate - resolve before writing project files "
+        "(.rseng-agent-skills-coverage.md itself is always writable):\n- "
+        + "\n- ".join(problems),
+        file=sys.stderr,
     )
-print(
-    "rseng-agent-skills gate - before writing files: " + " AND ".join(problems)
-    + ". (Relax with a .rseng-agent-skills-relaxed file.)",
-    file=sys.stderr,
-)
-sys.exit(2)
+    sys.exit(2)
+
+phase_lib.record_write()
+sys.exit(0)

@@ -12,6 +12,8 @@ import json
 import pathlib
 import sys
 
+import phase_lib
+
 data = json.load(sys.stdin)
 if data.get("stop_hook_active") or pathlib.Path(".rseng-agent-skills-relaxed").exists():
     sys.exit(0)
@@ -48,31 +50,36 @@ if not (
 ):
     missing.append("environment/dependency declaration (uv + pyproject or PEP 723)")
 
-coverage = pathlib.Path(".rseng-agent-skills-coverage.md")
-phases_file = pathlib.Path(__file__).parent / "phases.json"
-phases = (
-    json.loads(phases_file.read_text(encoding="utf-8"))
-    if phases_file.is_file()
-    else {}
-)
-if phases:
-    text = coverage.read_text(encoding="utf-8").lower() if coverage.is_file() else ""
-    for phase, clusters in phases.items():
-        absent = [c for c in clusters if c.lower() not in text]
-        if f"## {phase.lower()}" not in text or absent:
-            missing.append(
-                f".rseng-agent-skills-coverage.md '## {phase}' section - record per "
-                "cluster 'applied: <skills and what they changed>' or "
-                "'n/a: <reason>'. Unaddressed: "
-                + ("; ".join(absent) if absent else "section heading")
-            )
+phases = phase_lib.load_phases(pathlib.Path(__file__).parent)
+text = phase_lib.coverage_text()
+ledger = phase_lib.consulted_skills()
+for phase in phases:
+    missing.extend(phase_lib.phase_problems(phases, phase, text, ledger))
 
-ledger = pathlib.Path(".rseng-agent-skills-usage.log")
-consulted = ledger.is_file() and any(
-    line.startswith("rseng-") for line in ledger.read_text(encoding="utf-8").splitlines()
-)
-if not consulted:
-    missing.append("consult the relevant rseng-* skills (router: rseng-quality-framework)")
+# The cross-cutting skills are a standing obligation: every one of
+# them must actually have been opened by the end, not just cited.
+crosscut = next(iter(phases.get("Throughout", {}).values()), [])
+unopened = [s for s in crosscut if s not in ledger]
+if unopened:
+    missing.append(
+        "cross-cutting skills never consulted - open each with the "
+        "Skill tool and apply it: " + ", ".join(unopened)
+    )
+
+# Shipping code without engineering practice applied is not an option,
+# and a handful of consultations is the floor for a real project.
+if phases and not phase_lib.cluster_applied(
+    phases, "Core engineering", text, ledger
+):
+    missing.append(
+        "Core engineering must be 'applied' (ledger-backed) when code "
+        "ships - n/a is not available for this cluster"
+    )
+if len(ledger) < 5:
+    missing.append(
+        f"only {len(ledger)} distinct rseng-* skills consulted - a coded "
+        "deliverable draws on at least 5 (router: rseng-quality-framework)"
+    )
 
 if not missing:
     sys.exit(0)

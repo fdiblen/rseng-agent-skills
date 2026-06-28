@@ -41,6 +41,18 @@ PHASES: dict[str, list[str]] = {
     ],
 }
 
+# Skills exercised across the whole lifecycle, from before the first
+# file is written until the final stop: they also belong to their home
+# clusters, but the hooks track them as a standing obligation.
+THROUGHOUT: list[str] = [
+    "rseng-project-tracking",
+    "rseng-version-control-review",
+    "rseng-ai-declaration",
+    "rseng-code-review",
+    "rseng-honesty",
+    "rseng-human-verification",
+]
+
 CLUSTERS: dict[str, list[str]] = {
     "Core engineering": [
         "rseng-testing",
@@ -194,8 +206,14 @@ def main() -> None:
     clusters.write_text("\n".join(CLUSTERS) + "\n", encoding="utf-8")
     import json as _json
 
-    phased = {ph: cl for ph, cl in PHASES.items()}
-    assert sorted(c for cl in phased.values() for c in cl) == sorted(CLUSTERS)
+    assert sorted(c for cl in PHASES.values() for c in cl) == sorted(CLUSTERS)
+    all_skills = {s for skills in CLUSTERS.values() for s in skills}
+    unknown = [s for s in THROUGHOUT if s not in all_skills]
+    assert not unknown, f"THROUGHOUT names unknown skills: {unknown}"
+    phased = {
+        ph: {c: CLUSTERS[c] for c in cl} for ph, cl in PHASES.items()
+    }
+    phased["Throughout"] = {"Cross-cutting practices": THROUGHOUT}
     (repo_root / "hooks" / "phases.json").write_text(
         _json.dumps(phased, indent=2) + "\n", encoding="utf-8"
     )

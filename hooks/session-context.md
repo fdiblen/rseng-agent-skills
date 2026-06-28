@@ -9,18 +9,28 @@ by what ships:
   requirements.txt), CITATION.cff, and an up-to-date aidecl.yaml.
   For larger work add what the tier demands: tracker/decision
   notes, docs, CI, contributor files.
-- Work the skills in phases, recorded in .rseng-agent-skills-coverage.md as
-  three sections you fill AS YOU GO, each listing every cluster with
-  "applied: <skills and decisions>" or "n/a: <reason>":
+- Work the skills in phases, recorded in .rseng-agent-skills-coverage.md
+  (always writable through the gate) as sections you fill AS YOU GO,
+  each listing every cluster with "applied: <rseng-* skills and
+  decisions>" or "n/a: <one-line reason>":
   "## Start" BEFORE writing any file (Planning and operations;
   Research data; Publishing, credit and reuse; Specialized - plan,
   stack, data sensitivity, reuse/licensing; the write gate enforces
-  this); "## During" while developing (Core engineering;
-  Reproducibility and workflows; Numerics and performance - tests,
-  defensive coding, environments, seeds as you build, not after);
-  "## Finish" before ending (Integrity, security and compliance;
-  Communication and interfaces; Community and people - verification,
-  docs, citation currency; the Stop check enforces completeness).
+  this); "## Throughout" also from the beginning: the cross-cutting
+  skills live for the WHOLE session - rseng-project-tracking,
+  rseng-version-control-review, rseng-ai-declaration, rseng-code-review,
+  rseng-honesty, rseng-human-verification - open each and keep applying
+  them as you work (the Stop check requires all of them consulted);
+  "## During" while developing (Core engineering; Reproducibility
+  and workflows; Numerics and performance - tests, defensive coding,
+  environments, seeds as you build; the gate demands this section
+  once development is under way); "## Finish" before ending
+  (Integrity, security and compliance; Communication and interfaces;
+  Community and people - verification, docs, citation currency; the
+  Stop check enforces completeness).
+- An "applied" claim only counts when a skill named in it was
+  actually opened with the Skill tool - claims are cross-checked
+  against the consultation ledger, so consult first, then record.
 - Also self-audit against the skill directory
   (rseng-quality-framework routes every practice area - project
   management, tech-stack choice, community, communication,
