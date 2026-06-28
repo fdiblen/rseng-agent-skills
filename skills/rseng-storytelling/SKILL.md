@@ -1,18 +1,18 @@
 ---
 name: rseng-storytelling
 description: >-
-  Covers telling the story of research data, research software and
-  research projects to broad audiences: narrative structure for
-  data stories, turning software and project milestones into
-  human-centered stories, and engagement with citizen scientists
-  and the public - recruiting contributors, closing the feedback
-  loop with data stories, and honest narrative that never
-  oversells. Use when the user wants to explain a project, dataset
-  or tool to non-specialists, mentions storytelling, outreach,
-  public engagement or citizen science, needs project stories for
-  websites, funders or volunteers, or runs a citizen-science
-  project whose contributors deserve to see what their data
-  became.
+  Covers telling the story of research data, research software and research
+  projects to broad audiences: narrative structure for data stories, turning
+  software and project milestones into human-centered stories, and engagement
+  with citizen scientists and the public - recruiting contributors, closing
+  the feedback loop with data stories, and honest narrative that never
+  oversells. Use when the user wants to explain a project, dataset or tool to
+  non-specialists, mentions storytelling, outreach, public engagement or
+  citizen science, needs project stories for websites, funders or volunteers,
+  or runs a citizen-science project whose contributors deserve to see what
+  their data became. For research-facing outputs - software papers, talks,
+  release announcements - see rseng-science-communication; for in-repo docs see
+  rseng-documentation.
 license: CC-BY-4.0
 metadata:
   version: 0.1.0
@@ -139,3 +139,18 @@ rseng-science-communication.
 
 Based on the ECSA principles, citizen-science platform practice
 and honest-narrative craft for research communication.
+
+<!-- related-skills:begin -->
+
+## Related skills
+
+Check whether any of these applies before moving on:
+
+- rseng-ai-declaration - disclose AI-assisted storytelling
+- rseng-community-governance - consent and recognition habits
+- rseng-data-management - truthful data practices in stories
+- rseng-science-communication - research-facing communication mechanics
+- rseng-scientific-visualization - honest figures for lay audiences
+- rseng-ux-accessibility - alt text and plain language
+
+<!-- related-skills:end -->

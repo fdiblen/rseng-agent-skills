@@ -1,17 +1,17 @@
 ---
 name: rseng-science-communication
 description: >-
-  Covers communicating research software outward: supporting the
-  user's software papers (JOSS/SoftwareX-style) with outlines,
+  Covers communicating research software outward to research audiences:
+  supporting the user's software papers (JOSS/SoftwareX-style) with outlines,
   gathered material and structure - never writing a submission-ready
-  manuscript - plus release
-  announcements, lay summaries of what the software does, talk and
-  poster outlines, blog posts, and making a package findable and
-  attractive to its intended users. Use when the user wants to
-  announce, present, promote or explain their research software,
-  asks for help with a software paper, or wants a lay summary, talk
+  manuscript - plus release announcements, lay summaries of what the software
+  does, talk and poster outlines, blog posts, and making a package findable to
+  its intended users. Use when the user wants to announce, present, promote or
+  explain their research software, asks for help with a software paper, talk
   abstract or release post, or when a mature package has no visibility beyond
-  its authors.
+  its authors. In-repo docs live in rseng-documentation; public and citizen-
+  science narrative in rseng-storytelling; venue mechanics and review
+  preparation in rseng-software-peer-review.
 license: CC-BY-4.0
 metadata:
   version: 0.2.0
@@ -118,3 +118,18 @@ communication guidance linked below.
 
 Based on The Turing Way communication guide and rOpenSci community
 practices.
+
+<!-- related-skills:begin -->
+
+## Related skills
+
+Check whether any of these applies before moving on:
+
+- rseng-citation-metadata - DOIs and citable releases
+- rseng-documentation - README is the landing page
+- rseng-fact-checking - fact-check the draft claims
+- rseng-publishing-releasing - announcements draft from changelogs
+- rseng-software-peer-review - venue mechanics and review prep
+- rseng-storytelling - narrative spine for broad audiences
+
+<!-- related-skills:end -->

@@ -1,14 +1,16 @@
 ---
 name: rseng-quality-framework
 description: >-
-  Explains this pack's research software quality framework - built on
-  community-standard quality dimensions, indicators and a tier model -
-  and routes
-  to the right companion skill. Use when the user asks what research
-  software quality means, mentions quality dimensions, indicators, the
-  three-tier model, analysis code vs prototype tools vs infrastructure,
-  wants a quality assessment or improvement plan for research software, or
-  is unsure which quality practice to start with.
+  The entry point and router for this pack: explains the research software
+  quality framework - community-standard quality dimensions, measurable
+  indicators and the three-tier model (analysis code, prototype tools,
+  infrastructure) - and routes to the right companion rseng-* skill. Use
+  PROACTIVELY at the start of any research software task to classify the
+  software's tier and select which practices apply, and whenever the user asks
+  what research software quality means, mentions quality dimensions,
+  indicators or the three-tier model, wants a quality assessment or
+  improvement plan for research software, or is unsure which quality practice
+  to start with.
 license: CC-BY-4.0
 metadata:
   version: 0.2.0
@@ -154,10 +156,10 @@ Core engineering:
 - rseng-testing: how to test research software
 - rseng-ci-cd: continuous integration and delivery for research software
 - rseng-code-quality: writing readable research code and structuring software projects
-- rseng-software-design: designing research software before and while writing it
-- rseng-defensive-coding: the defenses against silently wrong research results
+- rseng-software-design: designing research software
+- rseng-defensive-coding: defenses against silently wrong research results
 - rseng-debugging: systematic debugging of research software
-- rseng-version-control-review: using version control effectively for research software and reviewing code
+- rseng-version-control-review: using version control effectively for research software and the PR- time review process
 - rseng-software-metrics: measuring code health quantitatively
 - rseng-pair-programming: the agent as an effective pair programmer and pull-request review buddy for research software
 - rseng-code-review: reviewing existing code and whole projects, not just new diffs
@@ -186,7 +188,7 @@ Publishing, credit and reuse:
 - rseng-publishing-releasing: the release lifecycle of research software
 - rseng-software-publishing: publishing research software through its distribution channels
 - rseng-archiving: long-term archiving of research software and data
-- rseng-citation-metadata: how to make research software citable and its contributors credited
+- rseng-citation-metadata: making research software citable and its contributors credited
 - rseng-citation-hygiene: verifying that every citation is real, correct and current
 - rseng-licensing: how to license research software
 - rseng-license-compliance: license compliance engineering for research software
@@ -207,7 +209,7 @@ Integrity, security and compliance:
 - rseng-fact-checking: verifying facts and sources at the content level
 - rseng-honesty: responding when concealment or misrepresentation is requested
 - rseng-human-verification: the human's side of AI-assisted research software
-- rseng-ai-declaration: declaring AI involvement in a project with the AI Declaration Format (https://ai-declaration.org)
+- rseng-ai-declaration: declaring AI involvement with the AI Declaration Format (https://ai- declaration.org)
 
 Community and people:
 - rseng-community-governance: building and governing a community around research software
@@ -218,7 +220,7 @@ Community and people:
 
 Communication and interfaces:
 - rseng-documentation: how to document research software at every level
-- rseng-science-communication: communicating research software outward
+- rseng-science-communication: communicating research software outward to research audiences
 - rseng-storytelling: telling the story of research data, research software and research projects to broad audiences
 - rseng-ux-accessibility: user experience and accessibility for research software
 
@@ -254,6 +256,21 @@ summary message - not as an afterthought and never more than once.
 - Educate while doing: when acting, add one or two sentences on why the
   practice matters for research software and offer 2-3 "Learn more" links
   from references.md, proportionate to the situation.
+
+<!-- related-skills:begin -->
+
+## Related skills
+
+Check whether any of these applies before moving on:
+
+- rseng-fair-software - FAIRness dimension practice
+- rseng-fairguard - FAIR assess-fix-reassess sibling loop
+- rseng-management-planning - tier drives plan rigor
+- rseng-project-kickoff - new projects pair tiering with interview
+- rseng-software-metrics - quantitative indicator measurement
+- rseng-testing - most common first unmet indicator
+
+<!-- related-skills:end -->
 
 ---
 

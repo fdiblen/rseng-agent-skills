@@ -1,17 +1,18 @@
 ---
 name: rseng-reproducibility
 description: >-
-  Covers end-to-end computational reproducibility: making a project's
-  results regenerable with one command, determinism and seed
-  discipline, research compendium structure, replication packages for
-  papers, Binder-launchable repositories, artifact evaluation and
-  reproducibility badges, and verifying your own reproducibility
-  before others try. Use PROACTIVELY when the user wants results others can
-  reproduce, prepares a replication package or artifact submission,
-  mentions reproducibility, replicability, research compendia, Binder
-  or reproducibility badges, asks why results differ between runs or
-  machines, or is about to publish results whose regeneration path is
-  untested.
+  Covers end-to-end computational reproducibility: making a project's results
+  regenerable with one command, determinism and seed discipline, research
+  compendium structure, replication packages for papers, Binder-launchable
+  repositories, artifact evaluation and reproducibility badges, and verifying
+  your own reproducibility before others try. Use PROACTIVELY when the user
+  wants results others can reproduce, prepares a replication package or
+  artifact submission, mentions reproducibility, replicability, research
+  compendia, Binder or reproducibility badges, asks why results differ between
+  runs or machines, or is about to publish results whose regeneration path is
+  untested. For pinning environments see rseng-reproducible-environments; for
+  pipeline automation see rseng-workflows; for run-level lineage records see
+  rseng-provenance.
 license: CC-BY-4.0
 metadata:
   version: 0.1.0
@@ -146,3 +147,18 @@ provide layer by layer.
 
 Based on The Turing Way reproducible research guide, research
 compendium conventions and the Binder tooling documentation.
+
+<!-- related-skills:begin -->
+
+## Related skills
+
+Check whether any of these applies before moving on:
+
+- rseng-ai-declaration - declaring AI involvement in results
+- rseng-archiving - depositing the package with a DOI
+- rseng-data-management - versioned data with checksums
+- rseng-numerical-accuracy - stating expected run-to-run variability
+- rseng-publishing-releasing - tagged frozen release for the package
+- rseng-software-peer-review - CODECHECK-style independent reruns
+
+<!-- related-skills:end -->

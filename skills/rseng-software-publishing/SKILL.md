@@ -1,17 +1,18 @@
 ---
 name: rseng-software-publishing
 description: >-
-  Covers publishing research software through its distribution
-  channels: packaging for and releasing on package indexes (PyPI,
-  conda-forge, CRAN and ecosystem equivalents), registering in
-  research software registries (Research Software Directory
-  instances), submitting to software journals (JOSS-style), and
-  choosing the right channel mix for a project's audience. Use when
-  the user wants their software installable by others, asks how to
-  publish on PyPI, CRAN, conda-forge or similar, wants the software
-  registered or listed where researchers search, mentions
-  distribution channels or publishing the package, or when a mature
-  project is only obtainable by cloning its repository.
+  Covers publishing research software through its distribution channels:
+  packaging for and releasing on package indexes (PyPI, conda-forge, CRAN and
+  ecosystem equivalents), registering in research software registries
+  (Research Software Directory instances), submitting to software journals
+  (JOSS-style), and choosing the right channel mix for a project's audience.
+  Use when the user wants their software installable by others, asks how to
+  publish on PyPI, CRAN, conda-forge or similar, wants the software registered
+  or listed where researchers search, mentions distribution channels, or when
+  a mature project is only obtainable by cloning its repository. (Cutting
+  versioned releases, changelogs and DOIs is rseng-publishing-releasing; the
+  JOSS review process itself is rseng-software-peer-review; preservation is rseng-
+  archiving.)
 license: CC-BY-4.0
 metadata:
   version: 0.1.0
@@ -135,3 +136,18 @@ channel-specific end of the publishing chain.
 
 Based on the PyPA, conda-forge, CRAN and rOpenSci packaging
 guidance and research software registry practice.
+
+<!-- related-skills:begin -->
+
+## Related skills
+
+Check whether any of these applies before moving on:
+
+- rseng-ci-cd - trusted publishing from CI
+- rseng-citation-metadata - registries harvest CITATION.cff/codemeta
+- rseng-project-scaffolding - installable package structure
+- rseng-publishing-releasing - release mechanics behind each channel
+- rseng-reproducible-environments - fresh-install verification clean room
+- rseng-software-peer-review - JOSS submission pathway
+
+<!-- related-skills:end -->

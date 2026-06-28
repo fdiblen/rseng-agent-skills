@@ -2,13 +2,15 @@
 name: rseng-reproducible-environments
 description: >-
   Covers making research software environments reproducible: pinning a
-  language version and its dependencies in a per-project virtual
-  environment, choosing a package/environment manager, and packaging code
-  and its full stack into a container. Use when the user asks how to set up
+  language version and its dependencies in a per-project virtual environment,
+  choosing a package/environment manager, and packaging code and its full
+  stack into a container. Use when the user asks how to set up
   venv/conda/poetry/uv/renv, lock or pin dependencies, share a runnable
   environment, escape "dependency hell" or "works on my machine", write a
-  Dockerfile, build an Apptainer/Singularity image for HPC, or decide
-  between a virtual environment and a container.
+  Dockerfile, build an Apptainer/Singularity image for HPC, or decide between
+  a virtual environment and a container. For regenerating a project's results
+  end to end see rseng-reproducibility; for environments of multi-step pipelines
+  see rseng-workflows.
 license: CC-BY-4.0
 metadata:
   version: 0.2.0
@@ -221,6 +223,21 @@ Learn more (verified pointers):
 - Docker overview - https://docs.docker.com/get-started/docker-overview/
 - Apptainer user guide -
   https://apptainer.org/docs/user/latest/index.html
+
+<!-- related-skills:begin -->
+
+## Related skills
+
+Check whether any of these applies before moving on:
+
+- rseng-dependency-management - pinning policy and update cadence
+- rseng-hpc-computing - Apptainer on clusters without root
+- rseng-legacy-code - running old code in isolated environments
+- rseng-notebooks - kernel environments belong in lockfiles
+- rseng-security - scanning images and pinned dependencies
+- rseng-workflows - per-step environments in pipelines
+
+<!-- related-skills:end -->
 
 ---
 

@@ -1,14 +1,17 @@
 ---
 name: rseng-testing
 description: >-
-  Covers how to test research software: choosing test types and levels
-  (unit, integration, system, regression), applying test frameworks and
-  coverage, and taming large CI testing matrices across compilers,
-  platforms, and dependency versions. Use when the user asks how to write
-  tests, set up pytest/testthat/JUnit, decide what to test, raise or
-  interpret code coverage, do test-driven development, or when a CI matrix
-  is exploding across compiler, OS, or library-version combinations. Also use PROACTIVELY when new
-  result-bearing code is being written or committed without tests.
+  Covers how to test research software: choosing test types and levels (unit,
+  integration, system, regression, property-based, golden-master), test
+  frameworks and coverage, TDD, validating analysis code against reference
+  cases, and taming large CI testing matrices across compilers, platforms, and
+  dependency versions. Use when the user asks how to write tests, set up
+  pytest/testthat/JUnit, decide what to test, raise or interpret code
+  coverage, do test-driven development, or when a CI matrix is exploding
+  across compiler, OS, or library-version combinations. Also use PROACTIVELY
+  when new result-bearing code is being written or committed without tests.
+  For CI pipeline setup itself see rseng-ci-cd; for review-time test scrutiny
+  see rseng-code-review.
 license: CC-BY-4.0
 metadata:
   version: 0.2.0
@@ -277,6 +280,21 @@ Learn more (verified pointers):
   https://docs.gitlab.com/ee/ci/pipelines/downstream_pipelines.html#dynamic-child-pipelines
 - Docker multi-stage builds -
   https://docs.docker.com/build/building/multi-stage/
+
+<!-- related-skills:begin -->
+
+## Related skills
+
+Check whether any of these applies before moving on:
+
+- rseng-ci-cd - running the suite on every push
+- rseng-debugging - every fix becomes a regression test
+- rseng-defensive-coding - runtime checks become test assertions
+- rseng-green-computing - budgeting energy cost of full matrices
+- rseng-legacy-code - characterization tests before changing inherited code
+- rseng-numerical-accuracy - choosing tolerances for numerical assertions
+
+<!-- related-skills:end -->
 
 ---
 

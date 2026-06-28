@@ -1,15 +1,16 @@
 ---
 name: rseng-software-peer-review
 description: >-
-  Covers community peer review of research software: preparing a
-  package for JOSS, pyOpenSci or rOpenSci submission, self-checking
-  against their review criteria before submitting, writing the paper
-  or statement of need, responding to reviews, and acting as a
-  reviewer or CODECHECK-style codechecker who executes the artifact.
-  Use when the user mentions JOSS, pyOpenSci, rOpenSci or CODECHECK,
-  wants to submit software for peer review or publication, asks
-  whether their package is review-ready, or is reviewing someone
-  else's research software.
+  Covers community peer review of research software: preparing a package for
+  JOSS, pyOpenSci or rOpenSci submission, self-checking against their review
+  criteria before submitting, writing the paper or statement of need,
+  responding to reviews, and acting as a reviewer or CODECHECK-style
+  codechecker who executes the artifact. Use when the user mentions JOSS,
+  pyOpenSci, rOpenSci or CODECHECK, wants to submit software for peer review
+  or publication, asks whether their package is review-ready, or is reviewing
+  someone else's research software for one of these venues. (PR-level code
+  review is rseng-version-control-review; overall publication channel strategy
+  is rseng-software-publishing.)
 license: CC-BY-4.0
 metadata:
   version: 0.2.0
@@ -114,3 +115,18 @@ review criteria and guides linked below.
 
 Based on the JOSS, rOpenSci, pyOpenSci and CODECHECK review criteria
 and guides.
+
+<!-- related-skills:begin -->
+
+## Related skills
+
+Check whether any of these applies before moving on:
+
+- rseng-ai-declaration - JOSS asks about AI use
+- rseng-citation-metadata - CITATION.cff and DOI at acceptance
+- rseng-discovery - state-of-the-field section material
+- rseng-reproducible-environments - clean-room installs for reviewing
+- rseng-software-publishing - JOSS within the channel mix
+- rseng-version-control-review - PR-level review is distinct
+
+<!-- related-skills:end -->

@@ -1,19 +1,17 @@
 ---
 name: rseng-trainer
 description: >-
-  Covers teaching research software skills while working: turning
-  everyday coding moments into short, learner-centered lessons on
-  best practices and technical or research-software concepts, using
-  the pedagogy of the Carpentries, CodeRefinery and the EVERSE
-  training catalog (objective-led episodes, live-coding style
-  walk-throughs, formative checks, error normalization), and routing
-  learners to canonical training materials for depth. Use
-  PROACTIVELY when a teachable moment appears during any task - a
-  concept the user seems unfamiliar with, a best practice being
-  applied for the first time, an instructive error - and when the
-  user asks to learn or understand a topic, requests an explanation
-  or tutorial, wants training material recommendations, or is
-  preparing to teach others.
+  Covers teaching research software skills while working: turning everyday
+  coding moments into short, learner-centered lessons on best practices and
+  technical or research-software concepts, using the pedagogy of the
+  Carpentries, CodeRefinery and the EVERSE training catalog (objective-led
+  episodes, live-coding walk-throughs, formative checks, error normalization),
+  and routing learners to canonical training materials for depth. Use when a
+  teachable moment appears during a task (offer a one-line lesson, never
+  lecture), when the user asks to learn or understand a topic, requests an
+  explanation or tutorial, wants training material recommendations, or is
+  preparing to teach others. For onboarding cohorts and new team members see
+  rseng-contributor-onboarding.
 license: CC-BY-4.0
 metadata:
   version: 0.1.0
@@ -138,3 +136,18 @@ every other skill in this pack teaches.
 
 Based on the pedagogy and curricula of the Carpentries, CodeRefinery
 and the EVERSE training catalog.
+
+<!-- related-skills:begin -->
+
+## Related skills
+
+Check whether any of these applies before moving on:
+
+- rseng-agent-security - teaching responsible AI-assisted coding
+- rseng-contributor-onboarding - cohort and student onboarding
+- rseng-documentation - tutorials and lesson material
+- rseng-lessons-learned - captured lessons become curriculum
+- rseng-pair-programming - teaching inside collaborative sessions
+- rseng-quality-framework - priority order for teaching topics
+
+<!-- related-skills:end -->

@@ -1,17 +1,18 @@
 ---
 name: rseng-research-integrity
 description: >-
-  Covers integrity checks on research outputs before submission or
-  release: statcheck/GRIM-style consistency of reported statistics,
-  agreement between manuscript numbers and pipeline outputs,
-  retraction screening of cited work, sanity checks on tables and
-  figures against the data, and an auditable pre-submission
-  checklist. Use PROACTIVELY before manuscript submission or the
-  release of result-bearing reports, when reported numbers are
-  transcribed from analysis outputs, and when the user asks to
-  check a paper's numbers, mentions statcheck, GRIM, integrity
-  checks or reporting errors, or suspects an inconsistency between
-  code outputs and the written text.
+  Covers integrity checks on research outputs before submission or release:
+  statcheck/GRIM-style consistency of reported statistics, agreement between
+  manuscript numbers and pipeline outputs, retraction screening of cited work,
+  sanity checks on tables and figures against the data, and an auditable pre-
+  submission checklist. Use PROACTIVELY before manuscript submission or the
+  release of result-bearing reports, when reported numbers are transcribed
+  from analysis outputs, and when the user asks to check a paper's numbers,
+  mentions statcheck, GRIM, integrity checks or reporting errors, or suspects
+  an inconsistency between code outputs and the written text. Reference
+  existence and retraction screening live in rseng-citation-hygiene; whether
+  sources support their claims in rseng-fact-checking; responding to concealment
+  requests in rseng-honesty.
 license: CC-BY-4.0
 metadata:
   version: 0.1.0
@@ -134,3 +135,18 @@ testing) and the services linked below.
 Based on the statcheck and granularity-testing literature and the
 Retraction Watch data service. Findings are proofreading aids, not
 misconduct adjudications.
+
+<!-- related-skills:begin -->
+
+## Related skills
+
+Check whether any of these applies before moving on:
+
+- rseng-ai-declaration - declarations complete at submission
+- rseng-archiving - availability statements must resolve
+- rseng-citation-hygiene - reference existence and retraction screens
+- rseng-fact-checking - do sources support the claims
+- rseng-numerical-accuracy - numeric mismatches may be float issues
+- rseng-reproducibility - regenerate numbers from the pipeline
+
+<!-- related-skills:end -->

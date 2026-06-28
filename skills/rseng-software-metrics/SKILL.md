@@ -1,18 +1,17 @@
 ---
 name: rseng-software-metrics
 description: >-
-  Covers measuring code health quantitatively: cyclomatic
-  complexity, code duplication, coupling and cohesion, code churn,
-  maintainability index, size conventions and documentation
-  coverage - running the measuring tools (radon, lizard, jscpd,
-  interrogate and SonarQube-class platforms), interpreting numbers
-  against community conventions and the software's tier, wiring
-  metric gates into CI, and avoiding metric gaming. Use when the
-  user asks how healthy, complex or maintainable their code is,
-  wants code metrics, complexity or duplication measured, mentions
-  cyclomatic complexity, churn, coupling, maintainability index or
-  documentation coverage, or when a quality assessment (EVERSE
-  indicators, rseng-quality-framework) needs the quantitative half.
+  Covers measuring code health quantitatively: cyclomatic complexity, code
+  duplication, coupling and cohesion, code churn, maintainability index, size
+  conventions and documentation coverage - running radon, lizard, jscpd,
+  interrogate and SonarQube-class tools, interpreting numbers against
+  community conventions and the software's tier, wiring metric gates into CI,
+  and avoiding metric gaming. Use when the user asks how healthy, complex or
+  maintainable their code is, wants metrics or duplication measured, mentions
+  cyclomatic complexity, churn, coupling or maintainability index, or when a
+  quality assessment (rseng-quality-framework) needs the quantitative half. For
+  style and linting see rseng-code-quality; for runtime performance measurement
+  see rseng-performance-profiling.
 license: CC-BY-4.0
 metadata:
   version: 0.1.0
@@ -141,3 +140,18 @@ rseng-performance-profiling owns runtime measurement.
 
 Based on the EVERSE quality indicator definitions and the linked
 measurement-tool documentation.
+
+<!-- related-skills:begin -->
+
+## Related skills
+
+Check whether any of these applies before moving on:
+
+- rseng-community-metrics - project-level counterpart to code metrics
+- rseng-documentation - doc-coverage is its measurable slice
+- rseng-legacy-code - hotspot map targets refactoring
+- rseng-maintenance-sustainability - trend tracking signals sustainability risk
+- rseng-quality-framework - supplies the quantitative half of assessments
+- rseng-software-design - coupling numbers test the design
+
+<!-- related-skills:end -->

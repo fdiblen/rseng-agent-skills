@@ -2,17 +2,17 @@
 name: rseng-software-reuse
 description: >-
   Covers discovering and reusing existing research software instead of
-  rebuilding it, using Research Software Directory (RSD) instances such
-  as research-software-directory.org (Netherlands eScience Center) and
-  helmholtz.software (Helmholtz). Use PROACTIVELY when a research
-  project is about to implement functionality that likely already
-  exists - data readers, converters, solvers, analysis tools, domain
-  libraries - and when the user asks whether a tool already exists,
-  wants to find research software for a domain, mentions the Research
-  Software Directory or RSD, or wants their own software to be
-  discoverable in one. Ships bundled catalog snapshots (data/*.json,
-  with per-entry keywords and programming languages) so concrete,
-  stack-relevant candidates can be suggested without a live query.
+  rebuilding it, using Research Software Directory (RSD) instances such as
+  research-software-directory.org (Netherlands eScience Center) and
+  helmholtz.software (Helmholtz). Use PROACTIVELY when a research project is
+  about to implement functionality that likely already exists - data readers,
+  converters, solvers, analysis tools, domain libraries - and when the user
+  asks whether a tool already exists, wants to find research software for a
+  domain, mentions the Research Software Directory or RSD, or wants their own
+  software discoverable in one. Ships bundled catalog snapshots (data/*.json)
+  for offline candidate suggestions. (Broad prior-art surveys across
+  publications and all software sources are rseng-discovery; vetting a chosen
+  candidate before adoption is rseng-dependency-management.)
 license: CC-BY-4.0
 metadata:
   version: 0.2.0
@@ -125,3 +125,18 @@ recommended, say which instance you searched and link it once.
 
 Based on the Research Software Directory instances and the
 RSD-as-a-service platform documentation.
+
+<!-- related-skills:begin -->
+
+## Related skills
+
+Check whether any of these applies before moving on:
+
+- rseng-citation-metadata - citing adopted software
+- rseng-dependency-management - intake vetting of candidates
+- rseng-discovery - broad landscape survey first
+- rseng-fair-software - being findable yourself
+- rseng-lessons-learned - recording build-vs-reuse decisions
+- rseng-open-source-migration - adoption instead of porting
+
+<!-- related-skills:end -->

@@ -1,17 +1,17 @@
 ---
 name: rseng-security
 description: >-
-  Covers securing research software and its supply chain: secrets
-  and sensitive-file hygiene (env files, keys, credentials and the
-  catalog of files that must never be committed) with leak
-  response, dependency vulnerability scanning and
-  pinning, OpenSSF Scorecard and Best Practices badge, SLSA provenance
-  levels, SBOMs, signed releases and repository hardening. Use
-  PROACTIVELY when setting up CI or releases for research software,
-  when credentials or tokens appear in code or history, when the user
-  asks how secure their project or dependencies are, mentions
-  Scorecard, SLSA, SBOM, CVEs or secret scanning, or handles data that
-  makes the software a target.
+  Covers securing research software and its supply chain: secrets and
+  sensitive-file hygiene (env files, keys, credentials and the never-commit
+  file catalog) with leak response, dependency vulnerability scanning and
+  pinning, OpenSSF Scorecard and Best Practices badge, SLSA provenance levels,
+  SBOMs, signed releases and repository hardening. Use PROACTIVELY when
+  setting up CI or releases for research software, when credentials or tokens
+  appear in code or history, when the user asks how secure their project or
+  dependencies are, or mentions Scorecard, SLSA, SBOM, CVEs or secret
+  scanning. For securing the AI coding agent itself see rseng-agent-security;
+  for GDPR and personal-data obligations see rseng-regulatory-compliance; for
+  sensitive-data storage practice see rseng-data-management.
 license: CC-BY-4.0
 metadata:
   version: 0.2.0
@@ -164,3 +164,18 @@ linked below.
 
 Based on OpenSSF Scorecard and Best Practices, SLSA, and published
 research-software security assessments.
+
+<!-- related-skills:begin -->
+
+## Related skills
+
+Check whether any of these applies before moving on:
+
+- rseng-agent-security - least-privilege applied to the agent
+- rseng-ci-cd - hardening CI tokens and workflows
+- rseng-dependency-management - vetting and updating dependencies
+- rseng-publishing-releasing - signed releases, SBOMs, provenance
+- rseng-regulatory-compliance - personal data raises legal duties
+- rseng-reproducible-environments - lockfiles pin the supply chain
+
+<!-- related-skills:end -->

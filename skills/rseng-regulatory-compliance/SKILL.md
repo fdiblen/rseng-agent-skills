@@ -1,16 +1,18 @@
 ---
 name: rseng-regulatory-compliance
 description: >-
-  Covers checking research code and data against data-protection and
-  AI regulation: GDPR obligations in code (personal data discovery,
-  minimization, pseudonymization vs anonymization, retention,
-  data-subject rights, DPIA triggers), the EU AI Act (risk tiers,
-  the scientific-research carve-out, transparency and documentation
-  duties), and similar regimes elsewhere. Use when a project
-  processes personal or sensitive data, trains or ships AI/ML
+  Covers checking research code and data against data-protection and AI
+  regulation: GDPR obligations in code (personal data discovery, minimization,
+  pseudonymization vs anonymization, retention, data-subject rights, DPIA
+  triggers), the EU AI Act (risk tiers, the scientific-research carve-out,
+  transparency and documentation duties), and similar regimes elsewhere. Use
+  when a project processes personal or sensitive data, trains or ships AI/ML
   systems, when the user asks about GDPR, the AI Act, DPIAs, consent,
   anonymization or regulatory compliance of their software, or before
-  publishing datasets or models derived from people.
+  publishing datasets or models derived from people. For secrets hygiene and
+  protective controls see rseng-security; for sensitive-data storage and
+  stewardship see rseng-data-management; for AI-use disclosure see rseng-ai-
+  declaration.
 license: CC-BY-4.0
 metadata:
   version: 0.1.0
@@ -150,3 +152,18 @@ controls, rseng-ai-declaration owns AI-use disclosure.
 Based on the GDPR and EU AI Act texts and official guidance. Not
 legal advice; consequential decisions belong with the DPO, ethics
 board and legal office.
+
+<!-- related-skills:begin -->
+
+## Related skills
+
+Check whether any of these applies before moving on:
+
+- rseng-ai-declaration - seeds AI Act documentation trail
+- rseng-archiving - publishing datasets triggers obligations
+- rseng-data-management - sensitive-data storage and stewardship
+- rseng-fair-ml - training-data documentation duties
+- rseng-security - encryption, access control, leak response
+- rseng-testing - robustness evidence for AI Act
+
+<!-- related-skills:end -->

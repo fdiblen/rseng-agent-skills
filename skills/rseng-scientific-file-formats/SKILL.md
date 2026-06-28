@@ -1,15 +1,16 @@
 ---
 name: rseng-scientific-file-formats
 description: >-
-  Covers choosing and handling scientific data formats in code: HDF5
-  and NetCDF for array data, CF conventions and standard metadata,
-  Parquet for tabular data, domain standards (NeXus and similar),
-  self-describing files, chunking and compression choices, and
-  migrating away from fragile formats like pickles and ad-hoc
-  binaries. Use when the user chooses a file format for research
-  data, reads or writes HDF5/NetCDF/Parquet/zarr-style stores, asks
-  about chunking, compression or metadata embedding, or ships data in
-  CSV, pickle, MAT or homegrown binary formats that deserve scrutiny.
+  Covers choosing and handling scientific data formats in code: HDF5 and
+  NetCDF for array data, CF conventions and standard metadata, Parquet for
+  tabular data, domain standards (NeXus and similar), self-describing files,
+  chunking and compression choices, and migrating away from fragile formats
+  like pickles and ad-hoc binaries. Use when the user chooses a file format
+  for research data, reads or writes HDF5/NetCDF/Parquet/zarr-style stores,
+  asks about chunking, compression or metadata embedding, or ships data in
+  CSV, pickle, MAT or homegrown binary formats that deserve scrutiny. (The
+  surrounding data practice - versioning, deposit, licensing, documentation -
+  is rseng-data-management.)
 license: CC-BY-4.0
 metadata:
   version: 0.1.0
@@ -106,3 +107,18 @@ specifications and community conventions linked below.
 
 Based on the CF, NetCDF, HDF5, Parquet and NeXus specifications and
 Pangeo community practice.
+
+<!-- related-skills:begin -->
+
+## Related skills
+
+Check whether any of these applies before moving on:
+
+- rseng-big-data-processing - chunked stores enable scalable reads
+- rseng-data-management - surrounding dataset practice and deposit
+- rseng-fair-software - domain standards serve interoperability
+- rseng-legacy-code - schema versioning and old-format readers
+- rseng-numerical-accuracy - round-trip tests need float tolerances
+- rseng-testing - golden-file and compatibility tests
+
+<!-- related-skills:end -->

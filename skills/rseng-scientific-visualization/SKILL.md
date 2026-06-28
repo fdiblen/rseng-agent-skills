@@ -102,3 +102,18 @@ ParaView documentation linked below.
 
 Based on the ParaView and VTK documentation and scientific
 visualization practice.
+
+<!-- related-skills:begin -->
+
+## Related skills
+
+Check whether any of these applies before moving on:
+
+- rseng-hpc-computing - parallel rendering and in-situ output
+- rseng-reproducibility - regenerable figures from scripts
+- rseng-science-communication - framing figures for talks and papers
+- rseng-scientific-file-formats - mesh and volume data layouts
+- rseng-ux-accessibility - colorblind-safe maps and annotations
+- rseng-workflows - figures regenerate inside pipelines
+
+<!-- related-skills:end -->
