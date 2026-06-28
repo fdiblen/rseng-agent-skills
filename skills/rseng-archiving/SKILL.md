@@ -1,17 +1,17 @@
 ---
 name: rseng-archiving
 description: >-
-  Covers long-term archiving of research software and data: Software
-  Heritage save requests and SWHID persistent identifiers, Zenodo
-  deposits with versioned DOIs and forge integration, choosing
-  domain and institutional repositories, deciding what to archive
-  (code, data, environments, documentation) and when, and archiving
-  at project retirement. Use when the user wants their software or
-  data preserved beyond the life of a forge account, grant or lab,
-  mentions Software Heritage, SWHIDs, Zenodo deposits or archiving,
-  retires or hands over a project, prepares artifacts that must stay
-  resolvable for a paper, or when funder policy requires long-term
-  preservation.
+  Covers long-term archiving of research software and data: Software Heritage
+  save requests and SWHID persistent identifiers, Zenodo deposits with
+  versioned DOIs and forge integration, choosing domain and institutional
+  repositories, deciding what to archive (code, data, environments,
+  documentation) and when, and archiving at project retirement. Use when the
+  user wants software or data preserved beyond the life of a forge account,
+  grant or lab, mentions Software Heritage, SWHIDs, Zenodo deposits or
+  archiving, retires or hands over a project, prepares artifacts that must
+  stay resolvable for a paper, or when funder policy requires long-term
+  preservation. (Cutting the release itself is rseng-publishing-releasing; day-
+  to-day data storage and repository choice is rseng-data-management.)
 license: CC-BY-4.0
 metadata:
   version: 0.1.0
@@ -141,3 +141,18 @@ preservation end of the publishing chain
 
 Based on the Software Heritage, SWHID and Zenodo documentation and
 the RSQKit archiving guidance.
+
+<!-- related-skills:begin -->
+
+## Related skills
+
+Check whether any of these applies before moving on:
+
+- rseng-citation-metadata - wire DOIs into citation files
+- rseng-data-management - domain data repository choice
+- rseng-legacy-code - retire path terminates in archive
+- rseng-maintenance-sustainability - succession and wind-down archiving
+- rseng-publishing-releasing - archive every citable release
+- rseng-reproducible-environments - environment capture inside deposits
+
+<!-- related-skills:end -->

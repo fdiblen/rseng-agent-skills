@@ -31,6 +31,13 @@ by what ships:
 - An "applied" claim only counts when a skill named in it was
   actually opened with the Skill tool - claims are cross-checked
   against the consultation ledger, so consult first, then record.
+- KNOW the full inventory: the clustered directory of every skill
+  lives in the rseng-quality-framework router skill (and AGENTS.md) -
+  read it at Start so no practice area is missed for lack of
+  awareness. Every skill ends with a "Related skills" section, and
+  each consultation surfaces its neighbors - when a related skill's
+  trigger matches the task, open it (or record a one-line reason
+  why not).
 - Also self-audit against the skill directory
   (rseng-quality-framework routes every practice area - project
   management, tech-stack choice, community, communication,

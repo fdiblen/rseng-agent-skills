@@ -20,10 +20,10 @@ Core engineering:
 - rseng-testing: how to test research software
 - rseng-ci-cd: continuous integration and delivery for research software
 - rseng-code-quality: writing readable research code and structuring software projects
-- rseng-software-design: designing research software before and while writing it
-- rseng-defensive-coding: the defenses against silently wrong research results
+- rseng-software-design: designing research software
+- rseng-defensive-coding: defenses against silently wrong research results
 - rseng-debugging: systematic debugging of research software
-- rseng-version-control-review: using version control effectively for research software and reviewing code
+- rseng-version-control-review: using version control effectively for research software and the PR- time review process
 - rseng-software-metrics: measuring code health quantitatively
 - rseng-pair-programming: the agent as an effective pair programmer and pull-request review buddy for research software
 - rseng-code-review: reviewing existing code and whole projects, not just new diffs
@@ -52,7 +52,7 @@ Publishing, credit and reuse:
 - rseng-publishing-releasing: the release lifecycle of research software
 - rseng-software-publishing: publishing research software through its distribution channels
 - rseng-archiving: long-term archiving of research software and data
-- rseng-citation-metadata: how to make research software citable and its contributors credited
+- rseng-citation-metadata: making research software citable and its contributors credited
 - rseng-citation-hygiene: verifying that every citation is real, correct and current
 - rseng-licensing: how to license research software
 - rseng-license-compliance: license compliance engineering for research software
@@ -73,7 +73,7 @@ Integrity, security and compliance:
 - rseng-fact-checking: verifying facts and sources at the content level
 - rseng-honesty: responding when concealment or misrepresentation is requested
 - rseng-human-verification: the human's side of AI-assisted research software
-- rseng-ai-declaration: declaring AI involvement in a project with the AI Declaration Format (https://ai-declaration.org)
+- rseng-ai-declaration: declaring AI involvement with the AI Declaration Format (https://ai- declaration.org)
 
 Community and people:
 - rseng-community-governance: building and governing a community around research software
@@ -84,7 +84,7 @@ Community and people:
 
 Communication and interfaces:
 - rseng-documentation: how to document research software at every level
-- rseng-science-communication: communicating research software outward
+- rseng-science-communication: communicating research software outward to research audiences
 - rseng-storytelling: telling the story of research data, research software and research projects to broad audiences
 - rseng-ux-accessibility: user experience and accessibility for research software
 

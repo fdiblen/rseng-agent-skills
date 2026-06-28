@@ -1,6 +1,19 @@
 ---
 name: rseng-citation-metadata
-description: 'Covers how to make research software citable and its contributors credited:
+description: >-
+  Covers making research software citable and its contributors credited:
+  writing a CITATION.cff citation file, describing software with CodeMeta
+  (codemeta.json), minting persistent identifiers such as DOIs and ORCIDs,
+  tracking contributors of every kind (commits, reviews, issues, docs, forge
+  activity) and recording credit for career and assessment cases. Use when the
+  user asks how to make software citable, add a CITATION.cff or codemeta.json
+  file, obtain a DOI, ensure contributors get credit, or mentions CFF,
+  CodeMeta, ORCID, CRediT, or persistent identifiers. Also use PROACTIVELY at
+  release preparation and when citation files are edited, to check recorded
+  contributors against the project's actual contribution history. (Verifying
+  the references you cite is rseng-citation-hygiene; picking versioning schemes
+  and cutting the DOI-minting release is rseng-publishing-releasing.)
+
   writing a CITATION.cff citation file, describing software with CodeMeta (codemeta.json),
   minting persistent identifiers such as DOIs and ORCIDs, choosing versioning schemes,
   tracking contributors of every kind (commits, reviews, issues, docs, forge activity)
@@ -270,6 +283,21 @@ Learn more (verified pointers):
 - CodeRefinery lessons - https://coderefinery.org/lessons/
 - The Carpentries - https://carpentries.org/
 - ELIXIR TeSS training portal - https://tess.elixir-europe.org/
+
+<!-- related-skills:begin -->
+
+## Related skills
+
+Check whether any of these applies before moving on:
+
+- rseng-archiving - deposit metadata reuses codemeta
+- rseng-citation-hygiene - verifying outbound references
+- rseng-community-governance - authorship policy decisions
+- rseng-fair-software - metadata implements findability
+- rseng-publishing-releasing - DOI minting at release
+- rseng-software-reuse - citing adopted software
+
+<!-- related-skills:end -->
 
 ---
 

@@ -1,15 +1,16 @@
 ---
 name: rseng-big-data-processing
 description: >-
-  Covers processing research data that outgrows one machine's
-  memory: out-of-core and chunked computation, Dask for scaling the
-  scientific Python stack, Spark for distributed tabular pipelines,
-  lazy evaluation, partitioning strategies, idempotent and
-  restartable batch jobs, and knowing when NOT to distribute. Use
-  when datasets no longer fit in memory, when the user mentions
-  Dask, Spark, out-of-core or larger-than-memory data, when a
-  pandas/NumPy workflow hits memory limits, or when designing batch
-  pipelines over many files.
+  Covers processing research data that outgrows one machine's memory: out-of-
+  core and chunked computation, Dask for scaling the scientific Python stack,
+  Spark for distributed tabular pipelines, lazy evaluation, partitioning
+  strategies, idempotent and restartable batch jobs, and knowing when NOT to
+  distribute. Use when datasets no longer fit in memory, when the user
+  mentions Dask, Spark, out-of-core or larger-than-memory data, when a
+  pandas/NumPy workflow hits memory limits, or when designing batch pipelines
+  over many files. (Cluster job submission and job arrays are rseng-hpc-
+  computing; pipeline orchestration engines are rseng-workflows; profile first
+  with rseng-performance-profiling.)
 license: CC-BY-4.0
 metadata:
   version: 0.1.0
@@ -109,3 +110,18 @@ documentation and community practice linked below.
 
 Based on Dask, Spark and Pangeo documentation and the Ten Simple
 Rules for large-scale data processing.
+
+<!-- related-skills:begin -->
+
+## Related skills
+
+Check whether any of these applies before moving on:
+
+- rseng-green-computing - distributed runs carry energy cost
+- rseng-hpc-computing - job arrays and cluster allocations
+- rseng-performance-profiling - profile before scaling out
+- rseng-scientific-file-formats - Parquet and chunked stores enable it
+- rseng-testing - test transforms on in-memory subsets
+- rseng-workflows - restartable pipelines via engines
+
+<!-- related-skills:end -->

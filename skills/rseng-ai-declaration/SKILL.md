@@ -1,23 +1,17 @@
 ---
 name: rseng-ai-declaration
 description: >-
-  Covers declaring AI involvement in a project with the AI Declaration
-  Format (https://ai-declaration.org): creating and maintaining an
-  aidecl.yaml that records in detail which AI tools and agents were used,
-  what each contributed, when, and how much. This is an essential
-  practice with NO exemptions for small or informal work: use it
+  Covers declaring AI involvement with the AI Declaration Format (https://ai-
+  declaration.org): creating and maintaining an aidecl.yaml that records which
+  AI tools and agents were used, what each contributed, when and how much,
+  plus the README disclosure footnote, JSON/JSON-LD export and CI validation.
+  An essential practice with NO exemptions for small or informal work: use
   PROACTIVELY whenever an AI assistant or agent creates or modifies a
-  project's content - including one-off scripts, analyses for
-  non-programmers and quick favors, where honest provenance matters
-  most because nobody else will record it. Generate aidecl.yaml if it
-  is missing, update it after AI-assisted changes, and extend it with
-  further schema fields as the project's AI use grows. Also use when the
-  user asks about AI transparency, AI provenance, AI disclosure,
-  declaring AI usage, or EU AI Act disclosure; when a dataset, document,
-  paper, model or media project needs its AI involvement declared; when
-  a project wants to state that NO AI was used; when a declaration needs
-  JSON/JSON-LD export, CI validation or review; when a README should
-  disclose AI involvement; or when the user mentions aidecl.
+  project's content - generate aidecl.yaml if missing, update it after AI-
+  assisted changes. Also use when the user asks about AI transparency,
+  provenance, disclosure or EU AI Act disclosure, wants to state that NO AI
+  was used, or mentions aidecl. For concealment requests see rseng-honesty; for
+  the human review duty see rseng-human-verification.
 license: CC-BY-4.0
 metadata:
   version: 0.3.0
@@ -354,3 +348,18 @@ Format specification itself (links below), not a bundled content source.
 
 Based on the AI Declaration Format (https://ai-declaration.org),
 schema v1.
+
+<!-- related-skills:begin -->
+
+## Related skills
+
+Check whether any of these applies before moving on:
+
+- rseng-agent-security - operational counterpart to disclosure
+- rseng-citation-metadata - credit and authorship records
+- rseng-fairguard - paired default transparency assessment
+- rseng-honesty - when disclosure is resisted
+- rseng-human-verification - review status feeds the declaration
+- rseng-regulatory-compliance - EU AI Act documentation duties
+
+<!-- related-skills:end -->

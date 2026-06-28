@@ -1,16 +1,17 @@
 ---
 name: rseng-code-review
 description: >-
-  Covers reviewing existing code and whole projects, not just new
-  diffs: structured codebase reviews that produce ranked findings
-  and then implement the agreed improvements, recurring project
-  reviews after major tasks and milestones, review scoping by risk
-  and tier, and turning review findings into tracked work and
-  lessons. Use when the user asks for a code review, codebase
-  audit or health check of existing code, wants improvements
-  suggested and applied, mentions reviewing the project after a
-  milestone or before a release or submission, or when inherited
-  or long-unreviewed code needs a structured pass.
+  Covers reviewing existing code and whole projects, not just new diffs:
+  structured codebase audits that produce ranked findings and then implement
+  the agreed improvements, recurring project reviews after major tasks and
+  milestones, review scoping by risk and tier, and turning review findings
+  into tracked work and lessons. Use when the user asks for a code review,
+  codebase audit or health check of existing code, wants improvements
+  suggested and applied, mentions reviewing the project after a milestone or
+  before a release or submission, or when inherited or long-unreviewed code
+  needs a structured pass. For diff-time pre-review of new work see rseng-pair-
+  programming; for PR-time review process and rules see rseng-version-control-
+  review.
 license: CC-BY-4.0
 metadata:
   version: 0.1.0
@@ -141,3 +142,18 @@ feeds rseng-project-tracking and rseng-lessons-learned.
 
 Based on structured code-review practice applied retrospectively
 to research software.
+
+<!-- related-skills:begin -->
+
+## Related skills
+
+Check whether any of these applies before moving on:
+
+- rseng-fairguard - assessment reruns during milestone reviews
+- rseng-legacy-code - characterization tests before implementing fixes
+- rseng-lessons-learned - findings become recorded lessons
+- rseng-project-tracking - findings become tracked tasks
+- rseng-quality-framework - tier calibrates the review bar
+- rseng-software-metrics - hotspot map scopes the review
+
+<!-- related-skills:end -->

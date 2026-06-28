@@ -1,17 +1,18 @@
 ---
 name: rseng-agent-security
 description: >-
-  Covers operating AI coding agents securely: auditing whether the
-  agent runs sandboxed, reviewing permission configuration and
-  dangerous-command allowances, containerized or devcontainer agent
-  environments, keeping secrets out of agent context, limiting
-  network egress and token privileges, and prompt-injection risk
-  from untrusted repository content. Use PROACTIVELY at the start of
-  work in a new project to check the agent's own operating
-  conditions, when the user asks how to run coding agents safely,
-  mentions sandboxing, permission modes, dangerous-skip flags or
-  agent containerization, or when the agent is asked to process
-  untrusted code, issues or web content.
+  Covers operating AI coding agents securely: auditing whether the agent runs
+  sandboxed, reviewing permission configuration and dangerous-command
+  allowances, containerized or devcontainer agent environments, keeping
+  secrets out of agent context, limiting network egress and token privileges,
+  and prompt-injection risk from untrusted repository content. Use PROACTIVELY
+  when permission gating is broadly disabled (skip-permissions modes), when
+  secrets are visible to the agent's shell, or when the agent is asked to
+  process untrusted code, issues or web content; also when the user asks how
+  to run coding agents safely or mentions sandboxing, permission modes,
+  dangerous-skip flags or agent containerization. For project and supply-chain
+  security see rseng-security; for disclosing agent contributions see rseng-ai-
+  declaration.
 license: CC-BY-4.0
 metadata:
   version: 0.1.0
@@ -147,3 +148,18 @@ rseng-security's principles to the agent itself.
 
 Based on agent-harness security documentation, the devcontainer
 specification and OWASP LLM security guidance.
+
+<!-- related-skills:begin -->
+
+## Related skills
+
+Check whether any of these applies before moving on:
+
+- rseng-ai-declaration - disclose agent contributions
+- rseng-human-verification - human reviews agent output
+- rseng-regulatory-compliance - personal data near agent context
+- rseng-reproducible-environments - devcontainers contain the agent
+- rseng-security - same principles, project side
+- rseng-version-control-review - agent config diffs are security-relevant
+
+<!-- related-skills:end -->

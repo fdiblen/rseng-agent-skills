@@ -2,13 +2,14 @@
 name: rseng-ci-cd
 description: >-
   Covers continuous integration and delivery for research software: CI/CD
-  concepts, automating builds and tests with GitHub Actions and GitLab
-  CI/CD, and wiring an organization's GitLab CI infrastructure to a
-  GitHub-hosted project. Use when the user asks to set up CI, write a
-  pipeline or workflow, add automated builds/tests on push or pull request,
-  create a .github/workflows file or .gitlab-ci.yml, choose between GitHub
-  Actions and GitLab CI, use self-hosted or GPU runners, mirror a repo, or
-  report external CI status back to GitHub.
+  concepts, automating builds and tests with GitHub Actions and GitLab CI/CD,
+  and wiring an organization's GitLab CI infrastructure to a GitHub-hosted
+  project. Use when the user asks to set up CI, write a pipeline or workflow
+  file (.github/workflows, .gitlab-ci.yml), add automated builds/tests on push
+  or pull request, choose between GitHub Actions and GitLab CI, use self-
+  hosted or GPU runners, mirror a repo, or report external CI status back to
+  GitHub. For what to test and shrinking a test matrix see rseng-testing; for
+  linter and pre-commit policy see rseng-code-quality.
 license: CC-BY-4.0
 metadata:
   version: 0.1.0
@@ -232,6 +233,21 @@ example, why testing across the supported platforms catches integration
 bugs) and offer two or three "Learn more" links chosen from
 `references.md`, proportionate to the question and never a
 lecture.
+
+<!-- related-skills:begin -->
+
+## Related skills
+
+Check whether any of these applies before moving on:
+
+- rseng-green-computing - pipeline energy and runner cost
+- rseng-hpc-computing - GPU/HPC runners for heavy jobs
+- rseng-publishing-releasing - release automation triggered from CI
+- rseng-reproducible-environments - testing inside the shipped container
+- rseng-security - secrets management in pipelines
+- rseng-testing - what the pipeline should actually run
+
+<!-- related-skills:end -->
 
 ---
 

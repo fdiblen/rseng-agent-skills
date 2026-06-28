@@ -38,6 +38,7 @@ jobs:
         run: |
           uv run --directory pipeline python -m rseng_pipeline.assembler
           uv run --directory pipeline python -m rseng_pipeline.references
+          uv run --directory pipeline python -m rseng_pipeline.related_skills
           uv run --directory pipeline python -m rseng_pipeline.build_adapters
       - name: README table and counts must match committed ones
         run: |

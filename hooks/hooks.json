@@ -40,6 +40,17 @@
         ]
       }
     ],
+    "PostToolUse": [
+      {
+        "matcher": "Skill",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/related_nudge.py\""
+          }
+        ]
+      }
+    ],
     "Stop": [
       {
         "hooks": [

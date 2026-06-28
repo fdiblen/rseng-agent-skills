@@ -68,12 +68,12 @@ without touching your edits, and `doctor` checks install health.
 | Skill | Purpose |
 | --- | --- |
 | `rseng-agent-security` | operating AI coding agents securely |
-| `rseng-ai-declaration` | declaring AI involvement in a project with the AI Declaration Format (https://ai-declaration.org) |
+| `rseng-ai-declaration` | declaring AI involvement with the AI Declaration Format (https://ai- declaration.org) |
 | `rseng-archiving` | long-term archiving of research software and data |
 | `rseng-big-data-processing` | processing research data that outgrows one machine's memory |
 | `rseng-ci-cd` | continuous integration and delivery for research software |
 | `rseng-citation-hygiene` | verifying that every citation is real, correct and current |
-| `rseng-citation-metadata` | how to make research software citable and its contributors credited |
+| `rseng-citation-metadata` | making research software citable and its contributors credited |
 | `rseng-code-quality` | writing readable research code and structuring software projects |
 | `rseng-code-review` | reviewing existing code and whole projects, not just new diffs |
 | `rseng-community-governance` | building and governing a community around research software |
@@ -82,7 +82,7 @@ without touching your edits, and `doctor` checks install health.
 | `rseng-data-management` | research data management around software |
 | `rseng-data-management-plans` | data management plans (DMPs) for research projects |
 | `rseng-debugging` | systematic debugging of research software |
-| `rseng-defensive-coding` | the defenses against silently wrong research results |
+| `rseng-defensive-coding` | defenses against silently wrong research results |
 | `rseng-dependency-management` | the full lifecycle of third-party dependencies |
 | `rseng-discovery` | discovering the research landscape around a topic or project |
 | `rseng-documentation` | how to document research software at every level |
@@ -113,16 +113,16 @@ without touching your edits, and `doctor` checks install health.
 | `rseng-project-tracking` | the operational side of running a research software project |
 | `rseng-provenance` | capturing and packaging the provenance of software and data |
 | `rseng-publishing-releasing` | the release lifecycle of research software |
-| `rseng-quality-framework` | this pack's research software quality framework - built on community-standard quality dimensions, indicators... |
+| `rseng-quality-framework` | The entry point and router for this pack |
 | `rseng-regulatory-compliance` | checking research code and data against data-protection and AI regulation |
 | `rseng-reproducibility` | end-to-end computational reproducibility |
 | `rseng-reproducible-environments` | making research software environments reproducible |
 | `rseng-research-integrity` | integrity checks on research outputs before submission or release |
-| `rseng-science-communication` | communicating research software outward |
+| `rseng-science-communication` | communicating research software outward to research audiences |
 | `rseng-scientific-file-formats` | choosing and handling scientific data formats in code |
 | `rseng-scientific-visualization` | visualization of scientific data beyond publication figures |
 | `rseng-security` | securing research software and its supply chain |
-| `rseng-software-design` | designing research software before and while writing it |
+| `rseng-software-design` | designing research software |
 | `rseng-software-metrics` | measuring code health quantitatively |
 | `rseng-software-peer-review` | community peer review of research software |
 | `rseng-software-publishing` | publishing research software through its distribution channels |
@@ -132,7 +132,7 @@ without touching your edits, and `doctor` checks install health.
 | `rseng-trainer` | teaching research software skills while working |
 | `rseng-user-support` | running user support as an operation for research software |
 | `rseng-ux-accessibility` | user experience and accessibility for research software |
-| `rseng-version-control-review` | using version control effectively for research software and reviewing code |
+| `rseng-version-control-review` | using version control effectively for research software and the PR- time review process |
 | `rseng-workflows` | building, choosing, discovering, describing, and sharing computational workflows with workflow management... |
 
 <!-- skills-list:end -->

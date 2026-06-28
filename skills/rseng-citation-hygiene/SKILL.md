@@ -1,18 +1,17 @@
 ---
 name: rseng-citation-hygiene
 description: >-
-  Covers verifying that every citation is real, correct and current:
-  checking references in manuscripts, READMEs, references files and
-  code metadata against Crossref and OpenAlex, screening cited DOIs
-  against the Retraction Watch database, catching fabricated or
-  mis-attributed citations (a documented AI failure mode), and
-  keeping bibliographies and CITATION.cff files resolvable. Use
-  PROACTIVELY before any bibliography, reference list or citation
-  metadata is finalized or published, whenever the agent itself has
-  produced citations, and when the user asks to check references,
-  mentions broken DOIs, retracted papers or citation verification,
-  or prepares a manuscript, README or software paper with
-  references.
+  Covers verifying that every citation is real, correct and current: checking
+  references in manuscripts, READMEs, references files and code metadata
+  against Crossref and OpenAlex, screening cited DOIs against the Retraction
+  Watch database, catching fabricated or mis-attributed citations (a
+  documented AI failure mode), and keeping bibliographies and CITATION.cff
+  files resolvable. Use PROACTIVELY before any bibliography, reference list or
+  citation metadata is finalized or published, whenever the agent itself has
+  produced citations, and when the user asks to check references, mentions
+  broken DOIs, retracted papers or citation verification, or prepares a
+  manuscript, README or software paper with references. (Making your own
+  software citable is rseng-citation-metadata.)
 license: CC-BY-4.0
 metadata:
   version: 0.1.0
@@ -123,3 +122,18 @@ rseng-research-integrity's pre-submission checks.
 ---
 
 Based on the Crossref, OpenAlex and Retraction Watch documentation.
+
+<!-- related-skills:begin -->
+
+## Related skills
+
+Check whether any of these applies before moving on:
+
+- rseng-ci-cd - reference resolution checks in CI
+- rseng-citation-metadata - making own software citable
+- rseng-discovery - verifying surveyed literature leads
+- rseng-fact-checking - verifying non-citation claims
+- rseng-open-science-practices - preprint-to-published version links
+- rseng-research-integrity - pre-submission verification battery
+
+<!-- related-skills:end -->

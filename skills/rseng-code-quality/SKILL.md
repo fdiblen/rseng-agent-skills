@@ -2,12 +2,15 @@
 name: rseng-code-quality
 description: >-
   Covers writing readable research code and structuring software projects:
-  naming, formatting, style guides, linters and formatters, modular design,
-  and a conventional directory layout with top-level metadata files. Use
-  when the user asks how to make code readable or clean, pick or enforce a
-  style guide, set up linting/formatting, name variables and functions,
-  organise a repo, decide where files and data go, or scaffold a new
-  project layout.
+  naming, formatting, style guides, linters and formatters, pre-commit hooks,
+  modular design, and a conventional directory layout with top-level metadata
+  files. Use when the user asks how to make code readable or clean, pick or
+  enforce a style guide, set up linting/formatting or pre-commit, name
+  variables and functions, organise a repo, or decide where files and data go.
+  For generating a new project from a maintained template see rseng-project-
+  scaffolding; for quantitative complexity and duplication measurement see
+  rseng-software-metrics; for architecture-level structure see rseng-software-
+  design.
 license: CC-BY-4.0
 metadata:
   version: 0.2.0
@@ -229,6 +232,21 @@ Learn more (verified pointers):
   https://book.the-turing-way.org/project-design/pd-overview/project-repo/project-repo-advanced/
 - Citation File Format (CITATION.cff) -
   https://citation-file-format.github.io/
+
+<!-- related-skills:begin -->
+
+## Related skills
+
+Check whether any of these applies before moving on:
+
+- rseng-documentation - docstrings and README quality
+- rseng-fair-software - readability serves reusability
+- rseng-language-guides - per-language style and tool choice
+- rseng-legacy-code - repo-wide reformat cautions
+- rseng-project-scaffolding - templates encode this tooling baseline
+- rseng-software-metrics - quantifying complexity and duplication
+
+<!-- related-skills:end -->
 
 ---
 
