@@ -1,14 +1,16 @@
 ---
 name: rseng-version-control-review
 description: >-
-  Covers using version control effectively for research software and
-  reviewing code: choosing a VCS, branching and commit practice,
+  Covers using version control effectively for research software and the PR-
+  time review process: choosing a VCS, branching and commit practice,
   collaboration workflows on GitHub/GitLab, and running constructive,
-  checklist-driven code reviews. Use when the user asks how to set up git,
-  design a branching strategy, write commit messages, handle large binary
-  files, open or review a pull/merge request, review a pull request, decide what
-  to look for (or ignore) in review, or wire linters and CI into the review
-  loop.
+  checklist-driven pull-request reviews. Use when the user asks how to set up
+  git, design a branching strategy, write commit messages, handle large binary
+  files, open or review a pull/merge request, decide what to look for (or
+  ignore) in review, or wire linters and CI into the review loop. For
+  retrospective audits of existing code and milestone project reviews see rseng-
+  code-review; for pre-reviewing your own draft before human reviewers see
+  rseng-pair-programming.
 license: CC-BY-4.0
 metadata:
   version: 0.2.0
@@ -199,6 +201,21 @@ Learn more (verified pointers):
 - The Carpentries - https://carpentries.org/
 - ELIXIR TeSS training portal - https://tess.elixir-europe.org/
 - CODECHECK - https://codecheck.org.uk/
+
+<!-- related-skills:begin -->
+
+## Related skills
+
+Check whether any of these applies before moving on:
+
+- rseng-ci-cd - CI gating merges before human review
+- rseng-contributor-onboarding - review as an onboarding channel
+- rseng-data-management - DVC/git-annex for large data files
+- rseng-notebooks - jupytext twins make notebook diffs reviewable
+- rseng-publishing-releasing - tags marking published versions
+- rseng-software-peer-review - CODECHECK-style heavier review of paper code
+
+<!-- related-skills:end -->
 
 ---
 

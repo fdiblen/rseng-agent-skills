@@ -112,6 +112,21 @@ summary message - not as an afterthought and never more than once.
 - Educate while doing: briefly say why the practice matters and offer
   2-3 "Learn more" links from references.md.
 
+<!-- related-skills:begin -->
+
+## Related skills
+
+Check whether any of these applies before moving on:
+
+- rseng-defensive-coding - humane fail-loud error messages
+- rseng-documentation - docs accessibility and help parity
+- rseng-science-communication - accessible slides and figures
+- rseng-scientific-visualization - colorblind-safe honest palettes
+- rseng-testing - golden-file tests on CLI ergonomics
+- rseng-user-support - error-message questions reveal UX gaps
+
+<!-- related-skills:end -->
+
 ---
 
 Guidance based on the [Netherlands eScience Center Software Development

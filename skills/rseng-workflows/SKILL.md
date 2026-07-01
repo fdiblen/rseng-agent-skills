@@ -199,6 +199,21 @@ Learn more (verified pointers):
 - FAIR principles for workflows (Nature Sci Data) -
   https://doi.org/10.1038/s41597-025-04451-9
 
+<!-- related-skills:begin -->
+
+## Related skills
+
+Check whether any of these applies before moving on:
+
+- rseng-big-data-processing - scaling pipelines across many datasets
+- rseng-discovery - finding reusable workflows in registries
+- rseng-fair-software - FAIR principles applied to workflows
+- rseng-hpc-computing - running stages on clusters
+- rseng-provenance - engine logs are provenance capture
+- rseng-reproducible-environments - per-step pinned environments
+
+<!-- related-skills:end -->
+
 ---
 
 Guidance based on [RSQKit](https://everse.software/RSQKit/) by the EVERSE
