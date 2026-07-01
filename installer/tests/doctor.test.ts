@@ -20,7 +20,7 @@ function target(): AgentTarget {
     agent: "cursor",
     scope: "project",
     marker: path.join(destRoot, ".cursor"),
-    installDir: path.join(destRoot, ".cursor", "rules"),
+    installDir: path.join(destRoot, ".cursor"),
     detected: true,
   };
 }
@@ -48,7 +48,7 @@ describe("diagnose", () => {
     const report = diagnose(packRoot, target());
     expect(report.installed).toBe(true);
     expect(report.stale).toBe(false);
-    expect(report.intact).toEqual(["one.mdc"]);
+    expect(report.intact).toEqual([path.join("rules", "one.mdc")]);
     expect(formatReport(report)).toContain("up to date");
   });
 
@@ -60,13 +60,13 @@ describe("diagnose", () => {
   });
 
   it("flags user-edited and missing files", () => {
-    fs.writeFileSync(path.join(target().installDir, "one.mdc"), "edited\n");
+    fs.writeFileSync(path.join(target().installDir, "rules", "one.mdc"), "edited\n");
     let report = diagnose(packRoot, target());
-    expect(report.edited).toEqual(["one.mdc"]);
+    expect(report.edited).toEqual([path.join("rules", "one.mdc")]);
 
-    fs.rmSync(path.join(target().installDir, "one.mdc"));
+    fs.rmSync(path.join(target().installDir, "rules", "one.mdc"));
     report = diagnose(packRoot, target());
-    expect(report.missing).toEqual(["one.mdc"]);
+    expect(report.missing).toEqual([path.join("rules", "one.mdc")]);
     expect(formatReport(report)).toContain("MISSING");
   });
 

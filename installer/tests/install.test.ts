@@ -30,7 +30,7 @@ function cursorTarget(): AgentTarget {
     agent: "cursor",
     scope: "project",
     marker: path.join(destRoot, ".cursor"),
-    installDir: path.join(destRoot, ".cursor", "rules"),
+    installDir: path.join(destRoot, ".cursor"),
     detected: true,
   };
 }
@@ -49,6 +49,7 @@ beforeEach(() => {
   write("dist/cursor/.cursor/rules/rseng-testing.mdc", "rule two\n");
   write("dist/codex/AGENTS.md", "agents file\n");
   write("dist/codex/skills/rseng-testing/SKILL.md", "skill copy\n");
+  write("dist/codex/rseng-check/rseng_check.py", "check script\n");
 });
 
 afterEach(() => {
@@ -62,7 +63,10 @@ describe("planInstall", () => {
     const dests = plan.copies.map((c) =>
       path.relative(cursorTarget().installDir, c.to),
     );
-    expect(dests.sort()).toEqual(["rseng-overview.mdc", "rseng-testing.mdc"]);
+    expect(dests.sort()).toEqual([
+      path.join("rules", "rseng-overview.mdc"),
+      path.join("rules", "rseng-testing.mdc"),
+    ]);
   });
 
   it("handles single-file sources (codex AGENTS.md)", () => {
@@ -77,6 +81,7 @@ describe("planInstall", () => {
     const dests = plan.copies.map((c) => path.relative(destRoot, c.to)).sort();
     expect(dests).toEqual([
       "AGENTS.md",
+      path.join("rseng-check", "rseng_check.py"),
       path.join("skills", "rseng-testing", "SKILL.md"),
     ]);
   });
@@ -116,12 +121,12 @@ describe("executePlan", () => {
     const target = cursorTarget();
     executePlan(ctx(), planInstall(packRoot, target));
     expect(
-      fs.existsSync(path.join(target.installDir, "rseng-overview.mdc")),
+      fs.existsSync(path.join(target.installDir, "rules", "rseng-overview.mdc")),
     ).toBe(true);
     const manifest = readManifest(target.installDir);
     expect(Object.keys(manifest?.files ?? {}).sort()).toEqual([
-      "rseng-overview.mdc",
-      "rseng-testing.mdc",
+      path.join("rules", "rseng-overview.mdc"),
+      path.join("rules", "rseng-testing.mdc"),
     ]);
     for (const hash of Object.values(manifest?.files ?? {})) {
       expect(hash).toMatch(/^[0-9a-f]{64}$/);

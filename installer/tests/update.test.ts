@@ -26,7 +26,7 @@ function target(): AgentTarget {
     agent: "cursor",
     scope: "project",
     marker: path.join(destRoot, ".cursor"),
-    installDir: path.join(destRoot, ".cursor", "rules"),
+    installDir: path.join(destRoot, ".cursor"),
     detected: true,
   };
 }
@@ -54,24 +54,24 @@ describe("executeUpdate", () => {
     expect(result.updated).toBe(2);
     expect(result.preserved).toEqual([]);
     const updated = fs.readFileSync(
-      path.join(target().installDir, "one.mdc"),
+      path.join(target().installDir, "rules", "one.mdc"),
       "utf8",
     );
     expect(updated).toBe("rule one v2\n");
   });
 
   it("preserves user-edited files and reports them", () => {
-    const edited = path.join(target().installDir, "two.mdc");
+    const edited = path.join(target().installDir, "rules", "two.mdc");
     fs.writeFileSync(edited, "my local customization\n");
     write("dist/cursor/.cursor/rules/two.mdc", "rule two v2\n");
 
     const result = executeUpdate(ctx(), planInstall(packRoot, target()));
-    expect(result.preserved).toEqual(["two.mdc"]);
+    expect(result.preserved).toEqual([path.join("rules", "two.mdc")]);
     expect(fs.readFileSync(edited, "utf8")).toBe("my local customization\n");
     // The preserved file's manifest hash now matches its edited content,
     // so a second update still leaves it alone.
     const again = executeUpdate(ctx(), planInstall(packRoot, target()));
-    expect(again.preserved).toEqual(["two.mdc"]);
+    expect(again.preserved).toEqual([path.join("rules", "two.mdc")]);
   });
 
   it("backs up managed files before replacing", () => {
@@ -79,7 +79,7 @@ describe("executeUpdate", () => {
     const result = executeUpdate(ctx(), planInstall(packRoot, target()));
     expect(result.backupDir).toBeDefined();
     const backup = fs.readFileSync(
-      path.join(result.backupDir as string, "one.mdc"),
+      path.join(result.backupDir as string, "rules", "one.mdc"),
       "utf8",
     );
     expect(backup).toBe("rule one v1\n");
@@ -89,7 +89,7 @@ describe("executeUpdate", () => {
     write("dist/cursor/.cursor/rules/one.mdc", "rule one v2\n");
     executeUpdate(ctx(true), planInstall(packRoot, target()));
     const current = fs.readFileSync(
-      path.join(target().installDir, "one.mdc"),
+      path.join(target().installDir, "rules", "one.mdc"),
       "utf8",
     );
     expect(current).toBe("rule one v1\n");

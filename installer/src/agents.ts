@@ -53,7 +53,7 @@ const SPECS: AgentSpec[] = [
     agent: "cursor",
     scope: "project",
     marker: (p) => path.join(p, ".cursor"),
-    installDir: (p) => path.join(p, ".cursor", "rules"),
+    installDir: (p) => path.join(p, ".cursor"),
   },
   {
     agent: "codex",

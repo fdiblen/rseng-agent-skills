@@ -18,6 +18,13 @@ data = json.load(sys.stdin)
 if data.get("stop_hook_active") or pathlib.Path(".rseng-agent-skills-relaxed").exists():
     sys.exit(0)
 
+# Read-only sessions (audits, reviews, Q&A) authored nothing: the gaps
+# of a repo under inspection are findings to report, not this session's
+# obligations. The gate records every approved write; zero means the
+# artifact floor does not apply here.
+if phase_lib.write_count() == 0:
+    sys.exit(0)
+
 cwd = pathlib.Path(".")
 code = [
     p

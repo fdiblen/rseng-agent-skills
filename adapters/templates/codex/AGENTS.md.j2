@@ -61,6 +61,15 @@ Source pages:
 - For a full quality assessment, use the indicator checklist in
   skills/rseng-quality-framework/references.md and report
   met / partial / missing / not-applicable per indicator for the tier.
+- Work in phases, recorded as you go in .rseng-agent-skills-coverage.md with
+  Start / During / Finish / Throughout sections covering every cluster
+  in rseng-check/phases.json ('applied: <skills and decisions>' or
+  'n/a: <reason>'). Every skill file ends with a Related skills
+  section - when consulting one, check whether a related skill applies.
+- Before declaring any coding task complete, run the bundled
+  self-check from the project root - `python3 <dir>/rseng_check.py`
+  where <dir> is the rseng-check/ directory next to this AGENTS.md -
+  and fix everything it reports.
 
 {% for src in sources %}
 Content: {{ src.short_title }} @ {{ src.commit[:8] }} ({{ src.license }}).

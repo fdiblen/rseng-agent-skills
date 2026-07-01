@@ -7,6 +7,16 @@ alwaysApply: false
 
 {{ skill.scope }}
 
+Full skill text (read it when this rule attaches):
+.cursor/skills/{{ skill.name }}/SKILL.md - references in
+.cursor/skills/{{ skill.name }}/references.md.
+
+{% if skill.related %}
+Related skills - check whether any applies to the task at hand:
+{% for rel in skill.related %}
+- {{ rel.name }} ({{ rel.reason }})
+{% endfor +%}
+{% endif %}
 {% if skill.pages %}
 Authoritative source pages (deep-link users here for the full guidance):
 {% for page in skill.pages %}

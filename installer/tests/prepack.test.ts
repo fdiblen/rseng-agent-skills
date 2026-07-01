@@ -28,6 +28,7 @@ describe("prepack whitelist", () => {
     expect(whitelist).toEqual([
       "skills",
       "commands",
+      "hooks",
       "agents",
       "dist",
       "AGENTS.md",

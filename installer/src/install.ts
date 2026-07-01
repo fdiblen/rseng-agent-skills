@@ -18,10 +18,11 @@ const SOURCES: Record<string, { from: string; to: string }[]> = {
     { from: "agents", to: "agents" },
   ],
   copilot: [{ from: "dist/copilot/.github", to: "." }],
-  cursor: [{ from: "dist/cursor/.cursor/rules", to: "." }],
+  cursor: [{ from: "dist/cursor/.cursor", to: "." }],
   codex: [
     { from: "dist/codex/AGENTS.md", to: "AGENTS.md" },
     { from: "dist/codex/skills", to: "skills" },
+    { from: "dist/codex/rseng-check", to: "rseng-check" },
   ],
   gemini: [{ from: "dist/gemini", to: "." }],
 };

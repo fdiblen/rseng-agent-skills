@@ -44,6 +44,16 @@ practice guidance in this pack. Detailed skill files live in
   tool, research infrastructure) as defined in the
   rseng-quality-framework skill; do not hold analysis scripts to
   infrastructure standards.
+- Work in phases, recorded as you go in .rseng-agent-skills-coverage.md with
+  Start / During / Finish / Throughout sections covering every cluster
+  in .github/rseng-check/phases.json ('applied: <skills and decisions>'
+  or 'n/a: <reason>'). Every skill file under .github/skills/ ends with
+  a Related skills section - when consulting one, check whether a
+  related skill applies. Reusable workflow prompts live in
+  .github/prompts/.
+- Before declaring any coding task complete, run
+  `python3 .github/rseng-check/rseng_check.py` from the project root and
+  fix everything it reports.
 
 {% for src in sources %}
 Content: {{ src.short_title }} @ {{ src.commit[:8] }} ({{ src.license }}).

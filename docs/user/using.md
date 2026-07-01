@@ -97,11 +97,14 @@ releasing, code quality, version control and review, maintenance and
 sustainability, management and planning, workflows, and the overall quality
 framework - trigger the same way when your request matches them.
 
-## Claude Code slash commands
+## Slash commands
 
-The plugin adds twelve commands for tasks you want to run deliberately
+The plugin adds fourteen commands for tasks you want to run deliberately
 rather than wait for a skill to trigger. Each inspects your repository
-read-first and produces a concrete artifact. The full set:
+read-first and produces a concrete artifact. Besides Claude Code, the
+commands ship translated for Gemini CLI (TOML custom commands), GitHub
+Copilot (`.github/prompts/*.prompt.md` prompt files) and Cursor
+(`.cursor/commands/*.md`). The full set:
 
 - `/rseng-check` - assess the repository against research software
   engineering practice.
@@ -118,6 +121,18 @@ read-first and produces a concrete artifact. The full set:
 - `/rseng-lesson` - record a lesson learned and draft its prevention
   artifact.
 - `/rseng-onboard` - generate a project-specific onboarding checklist.
+- `/rseng-kickoff` - interview-driven setup of a new research software
+  project.
+- `/rseng-panel` - convene a panel of role-scoped expert subagents on a
+  question (Claude Code only).
+
+On agents without a hook system (Codex, Gemini, Copilot, Cursor) the
+install also ships `rseng-check/rseng_check.py`, a dependency-free
+self-check the agent is instructed to run before finishing any coding
+task: it audits the practice artifact floor (README, LICENSE,
+aidecl.yaml, CITATION.cff, tests, environment declaration) and the
+phased practice worklog, mirroring what Claude Code enforces through
+hooks.
 
 The three commands below are described in more detail because they are the
 ones you will likely reach for first; the others follow the same pattern
