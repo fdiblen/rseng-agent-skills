@@ -235,6 +235,16 @@ new component when the agent enters a new area. Prefer appending facts
 over rewriting history - the declaration is a provenance record, not a
 marketing summary.
 
+The declaration complements - never replaces or corrects - the
+version-control record. Authorship, co-authorship and signatures stay
+in commit METADATA (author/committer fields, Co-authored-by trailers,
+signed commits and tags - rseng-version-control-review); record agent
+involvement there only in the form the project's policy prescribes,
+and never adjust author fields, dates or history to change what the
+metadata says happened (rseng-honesty). aidecl.yaml documents the AI's
+role; git documents who committed what, and both must tell the same
+story.
+
 ## Update discipline
 
 After every AI-assisted working session, walk this checklist:

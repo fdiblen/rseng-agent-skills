@@ -3,17 +3,20 @@ name: rseng-version-control-review
 description: >-
   Covers using version control effectively for research software and the PR-
   time review process: choosing a VCS, branching and commit practice,
-  collaboration workflows on GitHub/GitLab, and running constructive,
-  checklist-driven pull-request reviews. Use when the user asks how to set up
-  git, design a branching strategy, write commit messages, handle large binary
-  files, open or review a pull/merge request, decide what to look for (or
-  ignore) in review, or wire linters and CI into the review loop. For
-  retrospective audits of existing code and milestone project reviews see rseng-
-  code-review; for pre-reviewing your own draft before human reviewers see
+  authorship and signatures in commit metadata (author/committer identity,
+  Co-authored-by trailers, signed commits and tags, .mailmap), collaboration
+  workflows on GitHub/GitLab, and running constructive, checklist-driven
+  pull-request reviews. Use when the user asks how to set up git, design a
+  branching strategy, write commit messages, record who authored or
+  co-authored a change, sign commits or tags, handle large binary files, open
+  or review a pull/merge request, decide what to look for (or ignore) in
+  review, or wire linters and CI into the review loop. For retrospective
+  audits of existing code and milestone project reviews see rseng-code-review;
+  for pre-reviewing your own draft before human reviewers see
   rseng-pair-programming.
 license: CC-BY-4.0
 metadata:
-  version: 0.2.0
+  version: 0.3.0
   source_pages: [using_version_control, code_review]
   source: https://everse.software/RSQKit/
   source_doi: 10.5281/zenodo.14923573
@@ -71,6 +74,46 @@ Choosing a tool is the easy part; the value comes from an agreed workflow:
 Commit-message checklist: imperative summary line under ~50 characters; a
 body that explains motivation and any trade-offs; reference the issue or
 ticket it addresses; avoid dumping unrelated changes into one commit.
+
+## Authorship and signatures live in commit metadata
+
+Who wrote a change, who committed it, and whether it is verified are
+facts git records in dedicated, machine-readable places. Keep them
+there - not in file headers, not in commit-message prose:
+
+- Identity is configuration. Set `user.name` and `user.email` correctly
+  per project (institutional vs personal identity) BEFORE the first
+  commit; forges, citation harvesters and contributor counts all read
+  these fields. Use `git commit --author` when committing a change
+  someone else wrote - git separates author (wrote it) from committer
+  (recorded it) for exactly this case.
+- Multiple authors are trailers. Record co-authors with
+  `Co-authored-by: Name <email>` trailers - the standard,
+  forge-recognized mechanism - rather than naming people in the message
+  body or a file header.
+- Signatures are commit signatures. Verification means signed commits
+  and signed tags (`commit.gpgsign`, `gpg.format ssh` for SSH signing
+  keys, `git tag -s` for releases), checked with
+  `git log --show-signature` or the `%G?` format field. Sign at least
+  the release tags that publications cite - a signed tag anchors
+  provenance (rseng-provenance) far better than any statement in a
+  README.
+- Fix identities with .mailmap. When names or emails vary across
+  history, normalize them with a `.mailmap` file - the metadata-native
+  correction - and NEVER rewrite published history to edit authors or
+  signatures; corrections go forward.
+- Do not duplicate metadata into files. "Author: X, modified by Y on
+  <date>" headers in source files rot immediately and contradict the
+  history; `git log` and `git blame` are the record (license/SPDX
+  headers are a different thing and are fine). Likewise keep commit
+  messages about the WHY of the change - the who/when/verified facts
+  already live in the metadata fields.
+- Keep it truthful. The author field, trailers and signatures must
+  reflect who actually did the work - including agent contributions
+  where project policy records them; misrepresenting authorship in
+  metadata is a concealment request (rseng-honesty), and accurate
+  metadata is what contributor credit is harvested from
+  (rseng-citation-metadata).
 
 ## Run code review as a first-class practice
 
@@ -209,6 +252,7 @@ Learn more (verified pointers):
 Check whether any of these applies before moving on:
 
 - rseng-ci-cd - CI gating merges before human review
+- rseng-citation-metadata - commit metadata feeds contributor credit
 - rseng-contributor-onboarding - review as an onboarding channel
 - rseng-data-management - DVC/git-annex for large data files
 - rseng-notebooks - jupytext twins make notebook diffs reviewable

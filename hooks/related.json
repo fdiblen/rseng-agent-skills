@@ -53,7 +53,8 @@
     "rseng-community-governance": "authorship policy decisions",
     "rseng-fair-software": "metadata implements findability",
     "rseng-publishing-releasing": "DOI minting at release",
-    "rseng-software-reuse": "citing adopted software"
+    "rseng-software-reuse": "citing adopted software",
+    "rseng-version-control-review": "authorship harvested from commit metadata"
   },
   "rseng-code-quality": {
     "rseng-documentation": "docstrings and README quality",
@@ -521,6 +522,7 @@
   },
   "rseng-version-control-review": {
     "rseng-ci-cd": "CI gating merges before human review",
+    "rseng-citation-metadata": "commit metadata feeds contributor credit",
     "rseng-contributor-onboarding": "review as an onboarding channel",
     "rseng-data-management": "DVC/git-annex for large data files",
     "rseng-notebooks": "jupytext twins make notebook diffs reviewable",

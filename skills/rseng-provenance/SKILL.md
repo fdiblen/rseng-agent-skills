@@ -42,7 +42,12 @@ every run writes its own record:
   (the actual parameters, not the defaults file), the
   environment (lockfile hash or container digest), seeds, start/
   end times, and the executing agent - human, scheduler or AI
-  (rseng-ai-declaration's runtime counterpart).
+  (rseng-ai-declaration's runtime counterpart). For the code side,
+  lean on git's own metadata rather than restating it: authorship
+  is the commit author/committer fields and trailers, and a SIGNED
+  release tag is a cryptographic provenance anchor
+  (rseng-version-control-review) - reference the tag, do not copy
+  names and dates into the manifest by hand.
 - Write the record NEXT TO the outputs (a run manifest per
   results directory - JSON or YAML), so results and their origin
   travel together; a results file without its manifest is an

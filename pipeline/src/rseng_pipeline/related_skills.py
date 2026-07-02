@@ -97,7 +97,10 @@ RELATED: dict[str, dict[str, str]] = {'rseng-agent-security': {'rseng-ai-declara
                                                 'findability',
                            'rseng-publishing-releasing': 'DOI minting at '
                                                        'release',
-                           'rseng-software-reuse': 'citing adopted software'},
+                           'rseng-software-reuse': 'citing adopted software',
+                           'rseng-version-control-review': 'authorship '
+                                                         'harvested from '
+                                                         'commit metadata'},
  'rseng-code-quality': {'rseng-documentation': 'docstrings and README quality',
                       'rseng-fair-software': 'readability serves reusability',
                       'rseng-language-guides': 'per-language style and tool '
@@ -827,6 +830,10 @@ RELATED: dict[str, dict[str, str]] = {'rseng-agent-security': {'rseng-ai-declara
                                               'reveal UX gaps'},
  'rseng-version-control-review': {'rseng-ci-cd': 'CI gating merges before '
                                              'human review',
+                                'rseng-citation-metadata': 'commit metadata '
+                                                         'feeds '
+                                                         'contributor '
+                                                         'credit',
                                 'rseng-contributor-onboarding': 'review as '
                                                               'an '
                                                               'onboarding '

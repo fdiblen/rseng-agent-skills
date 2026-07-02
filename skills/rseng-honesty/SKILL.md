@@ -112,7 +112,12 @@ tests ran (rseng-testing), "reproducible" means someone reproduced
 it (rseng-reproducibility), claimed compliance means the check
 passed (rseng-fairguard, rseng-security). Every skill in this pack
 assumes its records are true; this skill is the keeper of that
-assumption when it comes under pressure.
+assumption when it comes under pressure. Commit metadata is the
+sharpest case: the author and committer fields, trailers,
+timestamps and signatures are the permanent record of who did
+what and when (rseng-version-control-review) - requests to set
+them to anything other than what happened are concealment
+requests, whatever the stated motive.
 
 ## Working with this skill
 

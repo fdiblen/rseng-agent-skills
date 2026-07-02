@@ -217,6 +217,14 @@ contributions and suggest updates rather than waiting to be asked:
   discussion/support activity. The all-contributors specification
   names these categories precisely because commit logs miss them -
   review and triage are the classically uncredited work.
+- Harvest authorship from commit METADATA, where it belongs: the
+  author and committer fields, `Co-authored-by:` trailers and the
+  repository's `.mailmap` (which normalizes identity variants
+  without rewriting history) are the machine-readable record this
+  skill reads - names pasted into commit-message prose or source
+  file headers are not (rseng-version-control-review). If authorship
+  is recorded in the wrong place, fix the practice at the source
+  before fixing the citation files.
 - Diff activity against the records: compare the contribution
   history with `CITATION.cff` authors, `codemeta.json`
   author/contributor entries and the CONTRIBUTORS file, and report
@@ -296,6 +304,7 @@ Check whether any of these applies before moving on:
 - rseng-fair-software - metadata implements findability
 - rseng-publishing-releasing - DOI minting at release
 - rseng-software-reuse - citing adopted software
+- rseng-version-control-review - authorship harvested from commit metadata
 
 <!-- related-skills:end -->
 
