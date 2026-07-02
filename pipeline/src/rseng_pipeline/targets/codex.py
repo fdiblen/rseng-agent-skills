@@ -10,7 +10,7 @@ from pathlib import Path
 
 from jinja2 import Environment
 
-from ..adapters import copy_skills, render_to, target
+from ..adapters import copy_check, copy_skills, render_to, target
 from ..checks import SIZE_BUDGETS
 
 AGENTS_MD_BUDGET = SIZE_BUDGETS["AGENTS.md"]
@@ -27,4 +27,5 @@ def build_codex(
             f"AGENTS.md is {size} bytes, over the {AGENTS_MD_BUDGET} budget"
         )
     copy_skills(repo_root, target_dir / "skills")
-    return [agents_md, *sorted((target_dir / "skills").rglob("SKILL.md"))]
+    checks = copy_check(repo_root, target_dir)
+    return [agents_md, *sorted((target_dir / "skills").rglob("SKILL.md")), *checks]

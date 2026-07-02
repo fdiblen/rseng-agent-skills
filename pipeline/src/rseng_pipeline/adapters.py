@@ -44,16 +44,27 @@ def _skill_entries(repo_root: Path, sources: list) -> list[dict]:
     list; their scope falls back to the coverage half of the frontmatter
     description.
     """
+    related_file = repo_root / "hooks" / "related.json"
+    related_map = (
+        json.loads(related_file.read_text(encoding="utf-8"))
+        if related_file.is_file()
+        else {}
+    )
     entries: dict[str, dict] = {}
     for skill_md in sorted((repo_root / "skills").glob("*/SKILL.md")):
         meta = frontmatter.loads(skill_md.read_text(encoding="utf-8")).metadata
         description = " ".join(str(meta["description"]).split())
-        entries[skill_md.parent.name] = {
-            "name": skill_md.parent.name,
+        name = skill_md.parent.name
+        entries[name] = {
+            "name": name,
             "description": description,
             "scope": description.split(". Use", 1)[0].split(". This", 1)[0],
             "brief": _brief(description),
             "pages": [],
+            "related": [
+                {"name": rel, "reason": reason}
+                for rel, reason in related_map.get(name, {}).items()
+            ],
         }
     for source, content in sources:
         taxonomy = load_taxonomy(source.dir / "taxonomy.yml")
@@ -154,6 +165,23 @@ def copy_skills(repo_root: Path, target_dir: Path) -> None:
     for skill_md in sorted((repo_root / "skills").glob("*/SKILL.md")):
         skill_dir = skill_md.parent
         shutil.copytree(skill_dir, target_dir / skill_dir.name, dirs_exist_ok=True)
+
+
+def copy_check(repo_root: Path, target_dir: Path) -> list[Path]:
+    """Ship the platform-neutral self-check next to a target's context
+    files: hookless agents are instructed to run it before finishing."""
+    check_dir = target_dir / "rseng-check"
+    check_dir.mkdir(parents=True, exist_ok=True)
+    written = []
+    for src in (
+        repo_root / "adapters" / "rseng_check.py",
+        repo_root / "hooks" / "phases.json",
+        repo_root / "hooks" / "related.json",
+    ):
+        dest = check_dir / src.name
+        shutil.copy(src, dest)
+        written.append(dest)
+    return written
 
 
 def render_to(env: Environment, template_name: str, context: dict, out: Path) -> Path:

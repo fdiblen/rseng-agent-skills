@@ -12,7 +12,7 @@ from pathlib import Path
 
 from jinja2 import Environment
 
-from ..adapters import copy_skills, render_to, target
+from ..adapters import copy_check, copy_skills, render_to, target
 
 
 def _gemini_body(body: str) -> str:
@@ -46,4 +46,5 @@ def build_gemini(
         )
     copy_skills(repo_root, target_dir / "skills")
     written.extend(sorted((target_dir / "skills").rglob("SKILL.md")))
+    written.extend(copy_check(repo_root, target_dir))
     return written

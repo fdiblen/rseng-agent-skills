@@ -84,6 +84,7 @@ def check_target(target_dir: Path, commit: str | None = None) -> list[str]:
         if (
             "references" in path.parts
             or "data" in path.parts
+            or "rseng-check" in path.parts
             or path.name == "SKILL.md"
             or path.name == "references.md"
         ):
