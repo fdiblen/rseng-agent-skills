@@ -88,6 +88,31 @@ if len(ledger) < 5:
         "deliverable draws on at least 5 (router: rseng-quality-framework)"
     )
 
+# Relevance is mechanical where evidence exists: project contents that
+# imply a skill require that skill consulted or explicitly waived.
+for rule_name, evidence, unconsulted in phase_lib.unmet_signals(
+    pathlib.Path(__file__).parent, ledger, text
+):
+    missing.append(
+        f"the project contains {rule_name} ({evidence}) but "
+        f"{', '.join(unconsulted)} was never consulted - open it with "
+        "the Skill tool and apply it, or record 'n/a: <skill> - "
+        "<reason>' in .rseng-agent-skills-coverage.md"
+    )
+
+# Full inventory: every skill in the pack gets a disposition - consulted
+# (ledger) or named in the coverage worklog with applied/n-a.
+absent = phase_lib.undispositioned(phases, text, ledger)
+if absent:
+    shown = ", ".join(absent[:12]) + (
+        f" and {len(absent) - 12} more" if len(absent) > 12 else ""
+    )
+    missing.append(
+        f"{len(absent)} skills have no disposition - add each to "
+        ".rseng-agent-skills-coverage.md as 'applied' (after consulting) or "
+        f"'n/a: <reason>': {shown}"
+    )
+
 if not missing:
     sys.exit(0)
 print(

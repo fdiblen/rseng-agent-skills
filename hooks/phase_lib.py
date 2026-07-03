@@ -123,6 +123,85 @@ def phase_problems(phases, phase, text, ledger):
     return problems
 
 
+def all_skills(phases):
+    return {s for cl in phases.values() for skills in cl.values() for s in skills}
+
+
+def undispositioned(phases, text, ledger):
+    """Skills neither consulted (ledger) nor mentioned in the coverage
+    worklog (applied or n/a). The full-inventory rule: every skill gets
+    a disposition."""
+    return sorted(s for s in all_skills(phases) if s not in ledger and s not in text)
+
+
+def _project_files(root, limit=4000):
+    files = []
+    for p in root.rglob("*"):
+        if len(files) >= limit:
+            break
+        if p.is_file() and not any(
+            part.startswith(".") or part == "node_modules" for part in p.parts
+        ):
+            files.append(p)
+    return files
+
+
+def unmet_signals(script_dir, ledger, text, root=None):
+    """Signal rules whose evidence exists in the project but whose
+    skills were neither consulted nor explicitly waived (an 'n/a'
+    naming the skill in the coverage worklog). Returns
+    (rule_name, evidence, missing_skills) tuples."""
+    import re
+
+    signals_file = pathlib.Path(script_dir) / "signals.json"
+    if not signals_file.is_file():
+        return []
+    rules = json.loads(signals_file.read_text(encoding="utf-8"))
+    root = pathlib.Path(root or ".")
+    files = _project_files(root)
+    source_files = [p for p in files if p.suffix in (".py", ".R", ".jl", ".sh", ".ipynb")]
+    unmet = []
+    for rule in rules:
+        evidence = None
+        for pattern in rule.get("patterns", []):
+            hits = [p for p in files if p.match(pattern)]
+            if hits:
+                evidence = str(hits[0])
+                break
+        if evidence is None:
+            for regex in rule.get("content", []):
+                pat = re.compile(regex)
+                for p in source_files[:60]:
+                    try:
+                        body = p.read_text(encoding="utf-8", errors="ignore")[:200_000]
+                    except OSError:
+                        continue
+                    if pat.search(body):
+                        evidence = f"{p} matches /{regex}/"
+                        break
+                if evidence:
+                    break
+        if evidence is None:
+            continue
+        missing = [
+            s
+            for s in rule["skills"]
+            if s not in ledger and not _waived(s, text)
+        ]
+        if missing:
+            unmet.append((rule["name"], evidence, missing))
+    return unmet
+
+
+def _waived(skill, text):
+    pos = text.find(skill)
+    while pos >= 0:
+        if "n/a" in text[pos : pos + 200]:
+            return True
+        pos = text.find(skill, pos + 1)
+    return False
+
+
 def cluster_applied(phases, cluster, text, ledger):
     """True when this cluster is recorded applied and ledger-backed."""
     all_clusters = [c for cl in phases.values() for c in cl]

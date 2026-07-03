@@ -177,6 +177,7 @@ def copy_check(repo_root: Path, target_dir: Path) -> list[Path]:
         repo_root / "adapters" / "rseng_check.py",
         repo_root / "hooks" / "phases.json",
         repo_root / "hooks" / "related.json",
+        repo_root / "hooks" / "signals.json",
     ):
         dest = check_dir / src.name
         shutil.copy(src, dest)

@@ -38,6 +38,14 @@ by what ships:
   each consultation surfaces its neighbors - when a related skill's
   trigger matches the task, open it (or record a one-line reason
   why not).
+- EVERY skill gets a disposition by the end: consulted-and-applied,
+  or a one-line "n/a: <skill> - <reason>" in the coverage worklog.
+  Relevance is also checked mechanically: notebooks, data files,
+  environment files, CI configs, tests, ML/GPU/HPC/visualization
+  code and similar evidence each REQUIRE their mapped skill
+  consulted (writes that touch such files trigger a reminder; the
+  Stop check blocks on any relevant-but-unconsulted skill without a
+  recorded waiver).
 - Also self-audit against the skill directory
   (rseng-quality-framework routes every practice area - project
   management, tech-stack choice, community, communication,

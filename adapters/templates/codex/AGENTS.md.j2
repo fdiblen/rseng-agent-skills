@@ -64,7 +64,10 @@ Source pages:
 - Work in phases, recorded as you go in .rseng-agent-skills-coverage.md with
   Start / During / Finish / Throughout sections covering every cluster
   in rseng-check/phases.json ('applied: <skills and decisions>' or
-  'n/a: <reason>'). Every skill file ends with a Related skills
+  'n/a: <reason>'), and give EVERY skill in phases.json a disposition;
+  project contents (notebooks, data files, CI configs, ML/GPU/HPC
+  code...) make their mapped skills in rseng-check/signals.json
+  mandatory unless explicitly waived with a reason. Every skill file ends with a Related skills
   section - when consulting one, check whether a related skill applies.
 - Before declaring any coding task complete, run the bundled
   self-check from the project root - `python3 <dir>/rseng_check.py`

@@ -44,6 +44,62 @@ PHASES: dict[str, list[str]] = {
 # Skills exercised across the whole lifecycle, from before the first
 # file is written until the final stop: they also belong to their home
 # clusters, but the hooks track them as a standing obligation.
+# Relevance signals: when a project contains these files (patterns) or
+# its sources match these regexes (content), the mapped skills ARE
+# relevant - the hooks require each to be consulted or explicitly
+# waived with a reasoned n/a. High-precision rules only: a false
+# "relevant" costs an agent a pointless consultation on every project.
+SIGNALS: list[dict] = [
+    {"name": "notebooks", "patterns": ["*.ipynb"], "skills": ["rseng-notebooks"]},
+    {"name": "tabular data", "patterns": ["*.csv", "*.tsv"],
+     "skills": ["rseng-data-management"]},
+    {"name": "scientific data formats",
+     "patterns": ["*.h5", "*.hdf5", "*.nc", "*.parquet", "*.zarr"],
+     "skills": ["rseng-scientific-file-formats", "rseng-data-management"]},
+    {"name": "environment declaration",
+     "patterns": ["pyproject.toml", "requirements*.txt", "environment*.yml",
+                  "environment*.yaml", "uv.lock", "Pipfile"],
+     "skills": ["rseng-reproducible-environments", "rseng-dependency-management"]},
+    {"name": "containers", "patterns": ["Dockerfile*", "*.def", "docker-compose*"],
+     "skills": ["rseng-reproducible-environments"]},
+    {"name": "ci pipelines",
+     "patterns": [".github/workflows/*", ".gitlab-ci.yml"],
+     "skills": ["rseng-ci-cd"]},
+    {"name": "tests", "patterns": ["test_*.py", "*_test.py", "conftest.py"],
+     "skills": ["rseng-testing"]},
+    {"name": "license", "patterns": ["LICENSE*", "COPYING*"],
+     "skills": ["rseng-licensing"]},
+    {"name": "citation metadata", "patterns": ["CITATION.cff", "codemeta.json"],
+     "skills": ["rseng-citation-metadata"]},
+    {"name": "documentation site",
+     "patterns": ["mkdocs.yml", "docs/conf.py", "Doxyfile", "README*"],
+     "skills": ["rseng-documentation"]},
+    {"name": "hpc jobs", "patterns": ["*.sbatch", "*.slurm"],
+     "content": [r"#SBATCH|\bsbatch |\bsrun "],
+     "skills": ["rseng-hpc-computing"]},
+    {"name": "workflow engines",
+     "patterns": ["Snakefile", "*.smk", "*.nf", "nextflow.config", "*.cwl"],
+     "skills": ["rseng-workflows"]},
+    {"name": "visualization code",
+     "content": [r"matplotlib|plotly|seaborn|ggplot"],
+     "skills": ["rseng-scientific-visualization"]},
+    {"name": "machine learning code",
+     "content": [r"\btorch\b|tensorflow|sklearn|keras|xgboost"],
+     "skills": ["rseng-fair-ml"]},
+    {"name": "randomness",
+     "content": [r"np\.random|random\.seed|default_rng|set\.seed\("],
+     "skills": ["rseng-defensive-coding"]},
+    {"name": "gpu code", "content": [r"\bcuda\b|\bcupy\b"],
+     "skills": ["rseng-gpu-computing"]},
+    {"name": "community files",
+     "patterns": ["CONTRIBUTING*", "CODE_OF_CONDUCT*"],
+     "skills": ["rseng-community-governance"]},
+    {"name": "changelog", "patterns": ["CHANGELOG*"],
+     "skills": ["rseng-publishing-releasing"]},
+    {"name": "secret-bearing files", "patterns": [".env", "*.pem"],
+     "skills": ["rseng-security"]},
+]
+
 THROUGHOUT: list[str] = [
     "rseng-project-tracking",
     "rseng-version-control-review",
@@ -216,6 +272,12 @@ def main() -> None:
     phased["Throughout"] = {"Cross-cutting practices": THROUGHOUT}
     (repo_root / "hooks" / "phases.json").write_text(
         _json.dumps(phased, indent=2) + "\n", encoding="utf-8"
+    )
+    for rule in SIGNALS:
+        bad = [s for s in rule["skills"] if s not in all_skills]
+        assert not bad, f"SIGNALS rule {rule['name']!r} names unknown skills: {bad}"
+    (repo_root / "hooks" / "signals.json").write_text(
+        _json.dumps(SIGNALS, indent=2) + "\n", encoding="utf-8"
     )
     print("skill directory regenerated in AGENTS.md and the router skill")
 

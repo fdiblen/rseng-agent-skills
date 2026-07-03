@@ -23,11 +23,19 @@ for phase in phases:
     parts.append(f"{phase}: {'ok' if n == 0 else f'{n} open'}")
 crosscut = next(iter(phases.get("Throughout", {}).values()), [])
 unopened = [s for s in crosscut if s not in ledger]
+inventory = phase_lib.all_skills(phases)
+open_dispositions = len(phase_lib.undispositioned(phases, text, ledger))
 line = (
     "rseng-agent-skills phases [" + "; ".join(parts) + "] - "
-    f"{len(ledger)} skills consulted, {phase_lib.write_count()} writes."
+    f"{len(ledger)} skills consulted, {phase_lib.write_count()} writes, "
+    f"{len(inventory) - open_dispositions}/{len(inventory)} skills dispositioned."
 )
 if unopened:
     line += " Cross-cutting skills not yet opened: " + ", ".join(unopened) + "."
+unmet = phase_lib.unmet_signals(pathlib.Path(__file__).parent, ledger, text)
+if unmet:
+    line += " Relevant-but-unconsulted: " + "; ".join(
+        f"{', '.join(m)} ({name})" for name, _e, m in unmet[:4]
+    ) + "."
 print(line)
 sys.exit(0)

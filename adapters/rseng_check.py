@@ -68,6 +68,73 @@ def main() -> int:
 
     coverage = root / ".rseng-agent-skills-coverage.md"
     text = coverage.read_text(encoding="utf-8").lower() if coverage.is_file() else ""
+
+    # Relevance signals: project contents that imply a skill require
+    # that skill dispositioned (applied or reasoned n/a) in the worklog.
+    import re
+
+    signals_file = here / "signals.json"
+    if signals_file.is_file():
+        rules = json.loads(signals_file.read_text(encoding="utf-8"))
+        all_files = [
+            p
+            for p in root.rglob("*")
+            if p.is_file()
+            and not any(
+                part.startswith(".") or part == "node_modules" for part in p.parts
+            )
+        ][:4000]
+        sources = [p for p in all_files if p.suffix in (".py", ".R", ".jl", ".sh")]
+        for rule in rules:
+            evidence = next(
+                (
+                    str(p)
+                    for pattern in rule.get("patterns", [])
+                    for p in all_files
+                    if p.match(pattern)
+                ),
+                None,
+            )
+            if evidence is None:
+                for regex in rule.get("content", []):
+                    pat = re.compile(regex)
+                    hit = next(
+                        (
+                            p
+                            for p in sources[:60]
+                            if pat.search(
+                                p.read_text(encoding="utf-8", errors="ignore")[:200_000]
+                            )
+                        ),
+                        None,
+                    )
+                    if hit:
+                        evidence = str(hit)
+                        break
+            if evidence is None:
+                continue
+            for skill in rule["skills"]:
+                if skill not in text:
+                    missing.append(
+                        f"{rule['name']} present ({evidence}) but {skill} has "
+                        "no coverage entry - apply it or record "
+                        f"'n/a: {skill} - <reason>'"
+                    )
+
+    # Full inventory: every skill in the pack gets a disposition.
+    inventory = sorted(
+        {s for cl in phases.values() for skills in cl.values() for s in skills}
+    )
+    absent = [s for s in inventory if s not in text]
+    if absent:
+        shown = ", ".join(absent[:12]) + (
+            f" and {len(absent) - 12} more" if len(absent) > 12 else ""
+        )
+        missing.append(
+            f"{len(absent)} skills lack a disposition in the coverage "
+            f"worklog (applied or 'n/a: <reason>'): {shown}"
+        )
+
     for phase, clusters in phases.items():
         if f"## {phase.lower()}" not in text:
             missing.append(

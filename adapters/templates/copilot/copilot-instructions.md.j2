@@ -47,7 +47,11 @@ practice guidance in this pack. Detailed skill files live in
 - Work in phases, recorded as you go in .rseng-agent-skills-coverage.md with
   Start / During / Finish / Throughout sections covering every cluster
   in .github/rseng-check/phases.json ('applied: <skills and decisions>'
-  or 'n/a: <reason>'). Every skill file under .github/skills/ ends with
+  or 'n/a: <reason>'), and give EVERY skill in phases.json a
+  disposition; project contents (notebooks, data files, CI configs,
+  ML/GPU/HPC code...) make their mapped skills in
+  .github/rseng-check/signals.json mandatory unless explicitly waived
+  with a reason. Every skill file under .github/skills/ ends with
   a Related skills section - when consulting one, check whether a
   related skill applies. Reusable workflow prompts live in
   .github/prompts/.
