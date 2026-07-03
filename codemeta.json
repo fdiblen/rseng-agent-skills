@@ -2,12 +2,13 @@
   "@context": "https://w3id.org/codemeta/3.0",
   "@type": "SoftwareSourceCode",
   "name": "rseng-agent-skills",
-  "description": "Research software engineering skills for AI coding agents, with pluggable content sources; the bundled source derives from RSQKit (the Research Software Quality Kit by the EVERSE project).",
+  "description": "A research software engineering skills pack for AI coding agents (Claude Code, GitHub Copilot, Cursor, Codex CLI, Gemini CLI): 67 skills covering research software practice, with workflow commands, subagents and a phased practice-enforcement layer. Most skills are hand-authored against verified primary references; a minority are generated from two pinned CC-BY-4.0 community sources by a reproducible pipeline that stamps per-source provenance.",
   "author": [
     {
       "@type": "Person",
       "familyName": "Diblen",
-      "givenName": "Faruk"
+      "givenName": "Faruk",
+      "email": "faruk.diblen@resoftlabs.com"
     }
   ],
   "license": "https://spdx.org/licenses/MIT",
@@ -15,17 +16,38 @@
   "programmingLanguage": ["Python", "TypeScript"],
   "keywords": [
     "research software",
+    "research software engineering",
     "software quality",
+    "AI coding agents",
+    "agent skills",
+    "FAIR software",
     "RSQKit",
-    "EVERSE",
-    "AI coding agents"
+    "EVERSE"
   ],
   "version": "0.1.0",
-  "isBasedOn": {
-    "@type": "CreativeWork",
-    "name": "RSQKit: Research Software Quality Kit",
-    "url": "https://everse.software/RSQKit/",
-    "identifier": "https://doi.org/10.5281/zenodo.14923573",
-    "license": "https://spdx.org/licenses/CC-BY-4.0"
+  "isBasedOn": [
+    {
+      "@type": "CreativeWork",
+      "name": "RSQKit: Research Software Quality Kit",
+      "url": "https://everse.software/RSQKit/",
+      "identifier": "https://doi.org/10.5281/zenodo.14923573",
+      "license": "https://spdx.org/licenses/CC-BY-4.0"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Netherlands eScience Center Software Development Guide",
+      "url": "https://guide.esciencecenter.nl/",
+      "license": "https://spdx.org/licenses/CC-BY-4.0"
+    }
+  ],
+  "referencePublication": {
+    "@type": "ScholarlyArticle",
+    "name": "Introducing the FAIR Principles for research software",
+    "identifier": "https://doi.org/10.1038/s41597-022-01710-x",
+    "isPartOf": {
+      "@type": "Periodical",
+      "name": "Scientific Data"
+    },
+    "datePublished": "2022"
   }
 }

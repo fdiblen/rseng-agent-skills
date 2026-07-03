@@ -3,20 +3,30 @@ message: If you use this skill pack, please cite it as below.
 type: software
 title: "rseng-agent-skills: research software engineering skills for AI coding agents"
 abstract: >-
-  Research software engineering skills for AI coding agents, with
-  pluggable content sources; the bundled source derives from RSQKit (the
-  Research Software Quality Kit by the EVERSE project).
+  A research software engineering skills pack for AI coding agents
+  (Claude Code, GitHub Copilot, Cursor, Codex CLI, Gemini CLI): 67
+  skills covering research software practice, with workflow commands,
+  subagents and a phased practice-enforcement layer. Most skills are
+  hand-authored against verified primary references; a minority are
+  generated from two pinned CC-BY-4.0 community sources (RSQKit by the
+  EVERSE project, and the Netherlands eScience Center Software
+  Development Guide) by a reproducible pipeline that stamps per-source
+  provenance.
 authors:
   - family-names: Diblen
     given-names: Faruk
+    email: faruk.diblen@resoftlabs.com
 license: MIT
 repository-code: https://github.com/fdiblen/rseng-agent-skills
 keywords:
   - research software
+  - research software engineering
   - software quality
+  - AI coding agents
+  - agent skills
+  - FAIR software
   - RSQKit
   - EVERSE
-  - AI coding agents
 version: 0.1.0
 references:
   - type: generic
@@ -25,3 +35,67 @@ references:
       - name: EVERSE project, RSQKit team and contributors
     doi: 10.5281/zenodo.14923573
     url: https://everse.software/RSQKit/
+    notes: >-
+      Pinned CC-BY-4.0 content source; a minority of skills adapt its
+      guidance (see ATTRIBUTION.md).
+  - type: generic
+    title: Netherlands eScience Center Software Development Guide
+    authors:
+      - name: Netherlands eScience Center
+    url: https://guide.esciencecenter.nl/
+    repository-code: https://github.com/NLeSC/guide
+    notes: >-
+      Pinned CC-BY-4.0 content source; a minority of skills adapt its
+      guidance (see ATTRIBUTION.md).
+  - type: article
+    title: Introducing the FAIR Principles for research software
+    authors:
+      - family-names: Barker
+        given-names: Michelle
+      - family-names: Chue Hong
+        given-names: Neil P.
+      - family-names: Katz
+        given-names: Daniel S.
+      - family-names: Lamprecht
+        given-names: Anna-Lena
+      - family-names: Martinez-Ortiz
+        given-names: Carlos
+      - family-names: Psomopoulos
+        given-names: Fotis
+      - family-names: Harrow
+        given-names: Jennifer
+      - family-names: Castro
+        given-names: Leyla Jael
+      - family-names: Gruenpeter
+        given-names: Morane
+      - family-names: Martinez
+        given-names: Michelle
+      - family-names: Honeyman
+        given-names: Tom
+    journal: Scientific Data
+    volume: 9
+    year: 2022
+    doi: 10.1038/s41597-022-01710-x
+    notes: FAIR4RS principles underlying the pack's FAIR skills.
+  - type: generic
+    title: Agent Skills specification
+    authors:
+      - name: Agent Skills contributors
+    url: https://agentskills.io
+    notes: Skill format the pack's skills are authored in.
+  - type: generic
+    title: AI Declaration Format
+    authors:
+      - name: AI Declaration Format contributors
+    url: https://ai-declaration.org
+    notes: >-
+      Declaration format maintained as an essential default by the
+      rseng-ai-declaration skill.
+  - type: software
+    title: "FAIRGuard: FAIR compliance checking for research software"
+    authors:
+      - name: FAIRGuard contributors
+    url: https://www.fairguard.org
+    notes: >-
+      FAIR4RS assessment tool run as an essential default by the
+      rseng-fairguard skill.
