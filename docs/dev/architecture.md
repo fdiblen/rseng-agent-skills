@@ -130,11 +130,11 @@ pinned content whenever needed.
 Claude is the first-class target and needs no adapter. Its files are
 authored and live in the repository directly:
 
-- `commands/*.md` - the twelve slash commands (`rseng-check`, `rseng-cite`,
+- `commands/*.md` - the fourteen slash commands (`rseng-check`, `rseng-cite`,
   `rseng-plan`, `rseng-release`, `rseng-reproduce`, `rseng-deps`,
   `rseng-integrity`, `rseng-declare`, `rseng-metrics`, `rseng-digest`,
-  `rseng-lesson`, `rseng-onboard`) that reference skills via
-  `${CLAUDE_PLUGIN_ROOT}`.
+  `rseng-lesson`, `rseng-onboard`, `rseng-kickoff`, `rseng-panel`) that
+  reference skills via `${CLAUDE_PLUGIN_ROOT}`.
 - `agents/*.md` - the six subagents (`rseng-auditor`, `rseng-reviewer`,
   `rseng-librarian`, `rseng-scout`, `rseng-compliance-officer`, `rseng-mentor`).
 - `.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json` - the

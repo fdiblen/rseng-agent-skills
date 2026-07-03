@@ -10,8 +10,8 @@ description: >-
   grant or lab, mentions Software Heritage, SWHIDs, Zenodo deposits or
   archiving, retires or hands over a project, prepares artifacts that must
   stay resolvable for a paper, or when funder policy requires long-term
-  preservation. (Cutting the release itself is rseng-publishing-releasing; day-
-  to-day data storage and repository choice is rseng-data-management.)
+  preservation. (Cutting the release itself is rseng-publishing-releasing;
+  day-to-day data storage and repository choice is rseng-data-management.)
 license: CC-BY-4.0
 metadata:
   version: 0.1.0

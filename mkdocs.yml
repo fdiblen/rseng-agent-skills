@@ -36,5 +36,6 @@ nav:
       - Skill authoring template: dev/skill-authoring-template.md
 
 copyright: >-
-  Content adapted from RSQKit (EVERSE project), CC-BY-4.0.
- 
+  Content adapted in part from RSQKit (EVERSE project) and the
+  Netherlands eScience Center Software Development Guide, both
+  CC-BY-4.0.

@@ -1,16 +1,16 @@
 ---
 name: rseng-big-data-processing
 description: >-
-  Covers processing research data that outgrows one machine's memory: out-of-
-  core and chunked computation, Dask for scaling the scientific Python stack,
-  Spark for distributed tabular pipelines, lazy evaluation, partitioning
-  strategies, idempotent and restartable batch jobs, and knowing when NOT to
-  distribute. Use when datasets no longer fit in memory, when the user
-  mentions Dask, Spark, out-of-core or larger-than-memory data, when a
+  Covers processing research data that outgrows one machine's memory:
+  out-of-core and chunked computation, Dask for scaling the scientific Python
+  stack, Spark for distributed tabular pipelines, lazy evaluation,
+  partitioning strategies, idempotent and restartable batch jobs, and knowing
+  when NOT to distribute. Use when datasets no longer fit in memory, when the
+  user mentions Dask, Spark, out-of-core or larger-than-memory data, when a
   pandas/NumPy workflow hits memory limits, or when designing batch pipelines
-  over many files. (Cluster job submission and job arrays are rseng-hpc-
-  computing; pipeline orchestration engines are rseng-workflows; profile first
-  with rseng-performance-profiling.)
+  over many files. (Cluster job submission and job arrays are
+  rseng-hpc-computing; pipeline orchestration engines are rseng-workflows; profile
+  first with rseng-performance-profiling.)
 license: CC-BY-4.0
 metadata:
   version: 0.1.0

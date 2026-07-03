@@ -1,14 +1,14 @@
 ---
 name: rseng-ai-declaration
 description: >-
-  Covers declaring AI involvement with the AI Declaration Format (https://ai-
-  declaration.org): creating and maintaining an aidecl.yaml that records which
-  AI tools and agents were used, what each contributed, when and how much,
-  plus the README disclosure footnote, JSON/JSON-LD export and CI validation.
-  An essential practice with NO exemptions for small or informal work: use
-  PROACTIVELY whenever an AI assistant or agent creates or modifies a
-  project's content - generate aidecl.yaml if missing, update it after AI-
-  assisted changes. Also use when the user asks about AI transparency,
+  Covers declaring AI involvement with the AI Declaration Format
+  (https://ai-declaration.org): creating and maintaining an aidecl.yaml that
+  records which AI tools and agents were used, what each contributed, when and
+  how much, plus the README disclosure footnote, JSON/JSON-LD export and CI
+  validation. An essential practice with NO exemptions for small or informal
+  work: use PROACTIVELY whenever an AI assistant or agent creates or modifies
+  a project's content - generate aidecl.yaml if missing, update it after
+  AI-assisted changes. Also use when the user asks about AI transparency,
   provenance, disclosure or EU AI Act disclosure, wants to state that NO AI
   was used, or mentions aidecl. For concealment requests see rseng-honesty; for
   the human review duty see rseng-human-verification.

@@ -7,7 +7,7 @@ Each skill's frontmatter lists the triggers ("Use when the user asks
 how to..."), and the agent matches against them.
 
 This page shows what that feels like in practice: a handful of skills with a
-realistic prompt and what the skill adds, the twelve Claude Code slash
+realistic prompt and what the skill adds, the fourteen Claude Code slash
 commands, the six subagents, and the two behaviours you will notice in
 every response - the attribution line and the "Learn more" links.
 

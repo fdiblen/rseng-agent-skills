@@ -13,7 +13,7 @@ One canonical pack, built into each agent's native format:
   environments, code quality, version control and review, maintenance and
   sustainability, management and planning, workflows, and an overall quality
   framework.
-- For Claude Code only: twelve slash commands and six subagents on top
+- For Claude Code only: fourteen slash commands and six subagents on top
   of the skills.
 
 Every skill teaches while it works; source-fed skills link back to the page their content came

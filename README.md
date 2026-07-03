@@ -1,7 +1,7 @@
 # rseng-agent-skills
 
 Research software engineering (RSEng) skills for AI coding agents:
-65 skills covering the practices that make research software good -
+67 skills covering the practices that make research software good -
 testing, CI/CD, documentation, licensing, citation, FAIR, publishing,
 reproducibility, code review, code quality, maintenance, planning and
 workflows - built into native formats for the major agents.
@@ -20,7 +20,7 @@ full credits are in ATTRIBUTION.md.
 
 ```bash
 # Claude Code: install as a plugin
-/plugin marketplace add <owner>/rseng-agent-skills
+/plugin marketplace add fdiblen/rseng-agent-skills
 /plugin install rseng-agent-skills
 
 # any other supported agent (auto-detected):
@@ -37,7 +37,7 @@ software best practice as you go.
 
 | Agent | What you get | Install |
 |---|---|---|
-| Claude Code | all skills, workflow commands and subagents | `/plugin marketplace add <owner>/rseng-agent-skills` then `/plugin install rseng-agent-skills` |
+| Claude Code | all skills, workflow commands and subagents | `/plugin marketplace add fdiblen/rseng-agent-skills` then `/plugin install rseng-agent-skills` |
 | GitHub Copilot | repo instructions + per-skill instructions + skills | `npx rseng-agent-skills install copilot` |
 | Cursor | always-on overview + per-topic rules | `npx rseng-agent-skills install cursor` |
 | Codex CLI | AGENTS.md + skills folders | `npx rseng-agent-skills install codex` |
@@ -68,7 +68,7 @@ without touching your edits, and `doctor` checks install health.
 | Skill | Purpose |
 | --- | --- |
 | `rseng-agent-security` | operating AI coding agents securely |
-| `rseng-ai-declaration` | declaring AI involvement with the AI Declaration Format (https://ai- declaration.org) |
+| `rseng-ai-declaration` | declaring AI involvement with the AI Declaration Format (https://ai-declaration.org) |
 | `rseng-archiving` | long-term archiving of research software and data |
 | `rseng-big-data-processing` | processing research data that outgrows one machine's memory |
 | `rseng-ci-cd` | continuous integration and delivery for research software |
@@ -132,7 +132,7 @@ without touching your edits, and `doctor` checks install health.
 | `rseng-trainer` | teaching research software skills while working |
 | `rseng-user-support` | running user support as an operation for research software |
 | `rseng-ux-accessibility` | user experience and accessibility for research software |
-| `rseng-version-control-review` | using version control effectively for research software and the PR- time review process |
+| `rseng-version-control-review` | using version control effectively for research software and the PR-time review process |
 | `rseng-workflows` | building, choosing, discovering, describing, and sharing computational workflows with workflow management... |
 
 <!-- skills-list:end -->

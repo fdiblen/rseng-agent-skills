@@ -11,8 +11,8 @@ description: >-
   process untrusted code, issues or web content; also when the user asks how
   to run coding agents safely or mentions sandboxing, permission modes,
   dangerous-skip flags or agent containerization. For project and supply-chain
-  security see rseng-security; for disclosing agent contributions see rseng-ai-
-  declaration.
+  security see rseng-security; for disclosing agent contributions see
+  rseng-ai-declaration.
 license: CC-BY-4.0
 metadata:
   version: 0.1.0
