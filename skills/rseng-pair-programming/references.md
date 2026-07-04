@@ -3,7 +3,7 @@
 
 # References
 
-Based on established pair-programming and code-review practice adapted to human-agent collaboration on research software.
+Based on established pair-programming and code-review practice adapted to human-agent collaboration on research software. <!-- related-skills:begin --> ## Related skills Check whether any of these applies before moving on: - rseng-agent-security - agent never approves its own work - rseng-ai-declaration - recording agent collaboration honestly - rseng-research-integrity - evidence questions at review time - rseng-testing - ping-pong TDD produces the suite - rseng-trainer - narrated pairing is the teaching channel - rseng-version-control-review - small commits during sessions <!-- related-skills:end -->
 
 Learn more:
 

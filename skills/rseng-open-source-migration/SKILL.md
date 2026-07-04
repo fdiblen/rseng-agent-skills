@@ -3,14 +3,14 @@ name: rseng-open-source-migration
 description: >-
   Covers migrating research code from commercial, license-bound platforms to
   open source alternatives: MATLAB to Octave or Python/NumPy, IDL to Python,
-  SAS/SPSS/Stata to R or pandas, Mathematica to SymPy/Julia, and the platform-
-  specific pitfalls (indexing, copy semantics, toolbox equivalents, numerical
-  parity). Use when the user wants to leave MATLAB, IDL, SAS, SPSS, Stata,
-  Mathematica, LabVIEW or another proprietary platform, asks for an open or
-  free alternative to commercial scientific software, can no longer afford or
-  access a license, or needs collaborators without licenses to run the code.
-  (The characterization-test safety net and general inherited-code discipline
-  are rseng-legacy-code.)
+  SAS/SPSS/Stata to R or pandas, Mathematica to SymPy/Julia, and the
+  platform-specific pitfalls (indexing, copy semantics, toolbox equivalents,
+  numerical parity). Use when the user wants to leave MATLAB, IDL, SAS, SPSS,
+  Stata, Mathematica, LabVIEW or another proprietary platform, asks for an
+  open or free alternative to commercial scientific software, can no longer
+  afford or access a license, or needs collaborators without licenses to run
+  the code. (The characterization-test safety net and general inherited-code
+  discipline are rseng-legacy-code.)
 license: CC-BY-4.0
 metadata:
   version: 0.1.0

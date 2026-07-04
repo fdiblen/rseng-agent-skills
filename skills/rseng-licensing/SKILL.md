@@ -3,14 +3,14 @@ name: rseng-licensing
 description: >-
   Covers how to license research software: copyright and public-domain basics,
   choosing between permissive, copyleft, and Creative Commons licenses, basic
-  compatibility with dependency licenses, and adding a LICENSE file or per-
-  file SPDX/REUSE metadata. Use when the user asks which open source license
-  to pick, how to add a LICENSE file, what MIT vs GPL vs Apache means, whether
-  two licenses are compatible, how to license documentation or data alongside
-  code, or mentions REUSE, SPDX, CC0, or public domain. Also use PROACTIVELY
-  when a repository has no LICENSE file - an unlicensed repository legally
-  blocks all reuse. (Full dependency-tree audits, SPDX expressions, dual
-  licensing and CI license enforcement are rseng-license-compliance.)
+  compatibility with dependency licenses, and adding a LICENSE file or
+  per-file SPDX/REUSE metadata. Use when the user asks which open source
+  license to pick, how to add a LICENSE file, what MIT vs GPL vs Apache means,
+  whether two licenses are compatible, how to license documentation or data
+  alongside code, or mentions REUSE, SPDX, CC0, or public domain. Also use
+  PROACTIVELY when a repository has no LICENSE file - an unlicensed repository
+  legally blocks all reuse. (Full dependency-tree audits, SPDX expressions,
+  dual licensing and CI license enforcement are rseng-license-compliance.)
 license: CC-BY-4.0
 metadata:
   version: 0.2.0

@@ -3,7 +3,7 @@
 
 # References
 
-Based on community migration practice between scientific computing platforms and the linked ecosystem documentation.
+Based on community migration practice between scientific computing platforms and the linked ecosystem documentation. <!-- related-skills:begin --> ## Related skills Check whether any of these applies before moving on: - rseng-legacy-code - characterization tests and strangler pattern - rseng-licensing - license the freed code - rseng-numerical-accuracy - parity tolerances across platforms - rseng-reproducible-environments - target-ecosystem pinning as you go - rseng-scientific-file-formats - exporting proprietary data formats first - rseng-software-reuse - adopt an existing open reimplementation <!-- related-skills:end -->
 
 Learn more:
 

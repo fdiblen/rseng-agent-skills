@@ -9,9 +9,9 @@ description: >-
   decide which language or framework to start a project in (Python, C++, R,
   Julia, Rust, Fortran, JavaScript), pick a project template or boilerplate,
   or weigh reuse, sustainability, and funder requirements at the start of a
-  project. (Data management plans, maDMPs, DS-Wizard and DMPonline are rseng-
-  data-management-plans; interactive new-project setup is rseng-project-kickoff;
-  week-to-week task tracking is rseng-project-tracking.)
+  project. (Data management plans, maDMPs, DS-Wizard and DMPonline are
+  rseng-data-management-plans; interactive new-project setup is
+  rseng-project-kickoff; week-to-week task tracking is rseng-project-tracking.)
 license: CC-BY-4.0
 metadata:
   version: 0.2.0

@@ -1,15 +1,14 @@
 ---
 name: rseng-open-science-practices
 description: >-
-  Covers the researcher-facing open science workflow: setting up
-  OSF projects that link materials, data, code and registrations,
-  preregistering studies and analysis plans, depositing preprints
-  and linking them to published versions, participating in open
-  peer review, and choosing openness levels honestly. Use when the
-  user mentions open science, OSF, preregistration, registered
-  reports or preprints, wants their research process (not just the
-  software) open, asks where to preregister or preprint, or when a
-  project's openness claims should become verifiable practice.
+  Covers the researcher-facing open science workflow: setting up OSF projects
+  that link materials, data, code and registrations, preregistering studies
+  and analysis plans, depositing preprints and linking them to published
+  versions, participating in open peer review, and choosing openness levels
+  honestly. Use when the user mentions open science, OSF, preregistration,
+  registered reports or preprints, wants their research process (not just the
+  software) open, asks where to preregister or preprint, or when a project's
+  openness claims should become verifiable practice.
 license: CC-BY-4.0
 metadata:
   version: 0.1.0

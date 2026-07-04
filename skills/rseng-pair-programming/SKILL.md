@@ -6,11 +6,11 @@ description: >-
   reasoning, ping-pong test-driven pairing, keeping the human in charge of
   scientific decisions, pre-review of pull requests before human reviewers see
   them, and constructive review-comment craft. Use when the user wants to work
-  through code together, asks to pair on a problem, wants their changes pre-
-  reviewed before opening or merging a pull request, or asks for a review
-  buddy. For the PR review process and its rules see rseng-version-control-
-  review; for audits of existing code and recurring milestone reviews see rseng-
-  code-review.
+  through code together, asks to pair on a problem, wants their changes
+  pre-reviewed before opening or merging a pull request, or asks for a review
+  buddy. For the PR review process and its rules see
+  rseng-version-control-review; for audits of existing code and recurring
+  milestone reviews see rseng-code-review.
 license: CC-BY-4.0
 metadata:
   version: 0.1.0

@@ -1,15 +1,14 @@
 ---
 name: rseng-numerical-accuracy
 description: >-
-  Covers floating-point correctness in research code: why 0.1 + 0.2
-  != 0.3, choosing absolute vs relative tolerances in tests,
-  accumulation error and safe summation, precision choices (float32
-  vs float64), catastrophic cancellation, NaN and infinity handling,
-  and cross-platform or cross-library result drift. Use PROACTIVELY when
-  floating-point comparisons fail mysteriously, when writing
-  numerical tests or choosing tolerances, when results differ across
-  machines, compilers, BLAS builds or library versions, or when
-  precision or numerical stability questions arise in analysis or
+  Covers floating-point correctness in research code: why 0.1 + 0.2 != 0.3,
+  choosing absolute vs relative tolerances in tests, accumulation error and
+  safe summation, precision choices (float32 vs float64), catastrophic
+  cancellation, NaN and infinity handling, and cross-platform or cross-library
+  result drift. Use PROACTIVELY when floating-point comparisons fail
+  mysteriously, when writing numerical tests or choosing tolerances, when
+  results differ across machines, compilers, BLAS builds or library versions,
+  or when precision or numerical stability questions arise in analysis or
   simulation code.
 license: CC-BY-4.0
 metadata:

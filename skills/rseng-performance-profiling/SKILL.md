@@ -2,13 +2,12 @@
 name: rseng-performance-profiling
 description: >-
   Covers making research code faster with evidence: profiling before
-  optimizing (py-spy and language-native profilers), interpreting
-  hotspots, choosing optimizations by measured payoff, benchmark
-  regression tracking with airspeed velocity (asv), and scaling
-  measurements. Use when the user says their code is slow, asks to
-  optimize or speed something up, wants benchmarks or performance
-  regression tests, or before recommending rewrites, parallelism or
-  GPUs on performance grounds.
+  optimizing (py-spy and language-native profilers), interpreting hotspots,
+  choosing optimizations by measured payoff, benchmark regression tracking
+  with airspeed velocity (asv), and scaling measurements. Use when the user
+  says their code is slow, asks to optimize or speed something up, wants
+  benchmarks or performance regression tests, or before recommending rewrites,
+  parallelism or GPUs on performance grounds.
 license: CC-BY-4.0
 metadata:
   version: 0.1.0
