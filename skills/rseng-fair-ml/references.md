@@ -3,7 +3,7 @@
 
 # References
 
-Based on the RDA FAIR4ML direction, the Croissant specification and established model-card practice.
+Based on the RDA FAIR4ML direction, the Croissant specification and established model-card practice. <!-- related-skills:begin --> ## Related skills Check whether any of these applies before moving on: - rseng-archiving - DOIs for model and dataset snapshots - rseng-data-management - dataset documentation beneath Croissant - rseng-fair-software - the general FAIR baseline - rseng-gpu-computing - hardware requirements for model reuse - rseng-licensing - licensing weights and training data - rseng-reproducibility - model cards written from actual runs <!-- related-skills:end -->
 
 Learn more:
 

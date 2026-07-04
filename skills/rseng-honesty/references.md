@@ -3,7 +3,7 @@
 
 # References
 
-Based on the ALLEA and Singapore research-integrity codes, venue disclosure policies and the pack's own transparency defaults.
+Based on the ALLEA and Singapore research-integrity codes, venue disclosure policies and the pack's own transparency defaults. <!-- related-skills:begin --> ## Related skills Check whether any of these applies before moving on: - rseng-ai-declaration - honest disclosure mechanics - rseng-citation-metadata - authorship reflects real contribution - rseng-human-verification - unverified must not claim verified - rseng-research-integrity - fabricated results have detection context - rseng-storytelling - tell the honest story well - rseng-version-control-review - clean history forward, never rewrite <!-- related-skills:end -->
 
 Learn more:
 

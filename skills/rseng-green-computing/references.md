@@ -3,7 +3,7 @@
 
 # References
 
-Based on the GREENER principles, the SCI specification and the CodeCarbon and CATS documentation.
+Based on the GREENER principles, the SCI specification and the CodeCarbon and CATS documentation. <!-- related-skills:begin --> ## Related skills Check whether any of these applies before moving on: - rseng-ci-cd - lean pipelines waste less compute - rseng-data-management - storage retention has a footprint - rseng-gpu-computing - matching hardware to workload efficiency - rseng-hpc-computing - right-sized resource requests save energy - rseng-performance-profiling - speedups cut energy roughly proportionally - rseng-workflows - caching avoids recomputing pipeline stages <!-- related-skills:end -->
 
 Learn more:
 

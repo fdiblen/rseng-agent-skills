@@ -1,15 +1,14 @@
 ---
 name: rseng-legacy-code
 description: >-
-  Covers working safely with inherited research code: characterization
-  tests before any change, incremental modernization of untested
-  scripts, recovering intent from code without documentation,
-  and deciding between refactor, rewrite and retire. Use when the user
-  inherits a codebase from a departed researcher, mentions legacy or
-  untested code they are afraid to touch, or wants to change code that
-  has no tests. (Migrating off commercial platforms like MATLAB, IDL or
-  SAS to open alternatives is rseng-open-source-migration; this skill
-  supplies the characterization-test safety net it builds on.)
+  Covers working safely with inherited research code: characterization tests
+  before any change, incremental modernization of untested scripts, recovering
+  intent from code without documentation, and deciding between refactor,
+  rewrite and retire. Use when the user inherits a codebase from a departed
+  researcher, mentions legacy or untested code they are afraid to touch, or
+  wants to change code that has no tests. (Migrating off commercial platforms
+  like MATLAB, IDL or SAS to open alternatives is rseng-open-source-migration;
+  this skill supplies the characterization-test safety net it builds on.)
 license: CC-BY-4.0
 metadata:
   version: 0.2.0

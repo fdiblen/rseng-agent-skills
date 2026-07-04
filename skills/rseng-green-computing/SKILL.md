@@ -9,8 +9,8 @@ description: >-
   computations, wants to make workloads greener, mentions sustainability of
   computing, or when planning large training runs, simulations or parameter
   sweeps whose footprint is worth measuring. (Keeping the software project
-  itself alive is rseng-maintenance-sustainability; making code faster is rseng-
-  performance-profiling.)
+  itself alive is rseng-maintenance-sustainability; making code faster is
+  rseng-performance-profiling.)
 license: CC-BY-4.0
 metadata:
   version: 0.1.0

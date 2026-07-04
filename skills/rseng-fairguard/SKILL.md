@@ -10,8 +10,8 @@ description: >-
   its findings. Also use when the user asks to check FAIR compliance, wants a
   FAIR score, report or badge level, wants a FAIR quality gate in CI, or
   mentions fairguard, FAIR4RS or .fairguard.yml. (FAIR concepts, principles
-  and hand-guided improvement are rseng-fair-software; ML artifacts are rseng-
-  fair-ml.)
+  and hand-guided improvement are rseng-fair-software; ML artifacts are
+  rseng-fair-ml.)
 license: CC-BY-4.0
 metadata:
   version: 0.2.0

@@ -1,14 +1,14 @@
 ---
 name: rseng-language-guides
 description: >-
-  Covers language-specific research software practice: per-language conventions for Python, R,
-  JavaScript/TypeScript, C/C++, Fortran, Rust and Bash - setup,
-  development environments, style standards, packaging, testing, quality
-  assurance, optimization, logging, documentation and dependency
-  management. Use when the user asks which tools or conventions to use
-  FOR A SPECIFIC LANGUAGE in research software (e.g. Python packaging,
-  R style, C++ QA, Fortran tooling, Rust starting points, shell
-  scripting practice), or wants a language-by-language comparison.
+  Covers language-specific research software practice: per-language
+  conventions for Python, R, JavaScript/TypeScript, C/C++, Fortran, Rust and
+  Bash - setup, development environments, style standards, packaging, testing,
+  quality assurance, optimization, logging, documentation and dependency
+  management. Use when the user asks which tools or conventions to use FOR A
+  SPECIFIC LANGUAGE in research software (e.g. Python packaging, R style, C++
+  QA, Fortran tooling, Rust starting points, shell scripting practice), or
+  wants a language-by-language comparison.
 license: CC-BY-4.0
 metadata:
   version: 0.2.0

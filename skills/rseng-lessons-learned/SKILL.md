@@ -1,18 +1,16 @@
 ---
 name: rseng-lessons-learned
 description: >-
-  Covers capturing and reusing what a project learns: a
-  lessons-learned record fed from debugging sessions, code review
-  findings, failed and successful research approaches, incidents
-  and near-misses; blameless postmortems for the big ones;
-  retrospectives on a cadence; and routing each lesson into the
-  artifact that prevents its repetition (test, doc, checklist,
-  onboarding note). Use PROACTIVELY when a nontrivial bug is
-  fixed, a review uncovers a recurring pattern, an approach is
-  abandoned, or an incident is resolved - and when the user asks
-  to record a lesson, run a retrospective or postmortem, wants a
-  LESSONS or NOTES file, or asks why the same mistake keeps
-  happening.
+  Covers capturing and reusing what a project learns: a lessons-learned record
+  fed from debugging sessions, code review findings, failed and successful
+  research approaches, incidents and near-misses; blameless postmortems for
+  the big ones; retrospectives on a cadence; and routing each lesson into the
+  artifact that prevents its repetition (test, doc, checklist, onboarding
+  note). Use PROACTIVELY when a nontrivial bug is fixed, a review uncovers a
+  recurring pattern, an approach is abandoned, or an incident is resolved -
+  and when the user asks to record a lesson, run a retrospective or
+  postmortem, wants a LESSONS or NOTES file, or asks why the same mistake
+  keeps happening.
 license: CC-BY-4.0
 metadata:
   version: 0.1.0

@@ -7,10 +7,10 @@ description: >-
   stacks, MPI basics, checkpointing, and scaling from laptop to cluster
   reproducibly. Use when the user mentions a cluster, supercomputer, SLURM,
   sbatch, MPI, Apptainer or Singularity, module load, job arrays or walltime,
-  or when a compute workload has outgrown a single machine. (Larger-than-
-  memory data processing with Dask or Spark is rseng-big-data-processing;
-  measuring scaling before requesting allocations is rseng-performance-
-  profiling.)
+  or when a compute workload has outgrown a single machine.
+  (Larger-than-memory data processing with Dask or Spark is
+  rseng-big-data-processing; measuring scaling before requesting allocations is
+  rseng-performance-profiling.)
 license: CC-BY-4.0
 metadata:
   version: 0.1.0

@@ -9,9 +9,9 @@ description: >-
   output has just been generated - deliver the reminder once, with the
   concrete review path - and when the user asks how to check AI-written code,
   whether they can trust an output, or is about to publish, merge or decide on
-  results no human has examined. Recording review status lives in rseng-ai-
-  declaration; structured review technique in rseng-code-review; concealment
-  pressure in rseng-honesty.
+  results no human has examined. Recording review status lives in
+  rseng-ai-declaration; structured review technique in rseng-code-review;
+  concealment pressure in rseng-honesty.
 license: CC-BY-4.0
 metadata:
   version: 0.1.0

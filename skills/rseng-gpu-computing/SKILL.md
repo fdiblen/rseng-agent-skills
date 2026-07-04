@@ -1,14 +1,13 @@
 ---
 name: rseng-gpu-computing
 description: >-
-  Covers GPU and accelerator programming for research software:
-  choosing a programming model (CUDA, HIP, SYCL, OpenACC, OpenMP
-  offloading), GPU libraries, language bindings such as CuPy, PyCUDA
-  and CUDA.jl, portability layers like Kokkos and Raja,
-  source-to-source translation, kernel profiling and auto-tuning. Use
-  when the user wants to port research code to GPUs, pick between CUDA
-  and portable alternatives, call GPU code from Python or Julia, tune
-  or profile kernels, or mentions HIP, SYCL, OpenACC, Kokkos or Kernel
+  Covers GPU and accelerator programming for research software: choosing a
+  programming model (CUDA, HIP, SYCL, OpenACC, OpenMP offloading), GPU
+  libraries, language bindings such as CuPy, PyCUDA and CUDA.jl, portability
+  layers like Kokkos and Raja, source-to-source translation, kernel profiling
+  and auto-tuning. Use when the user wants to port research code to GPUs, pick
+  between CUDA and portable alternatives, call GPU code from Python or Julia,
+  tune or profile kernels, or mentions HIP, SYCL, OpenACC, Kokkos or Kernel
   Tuner.
 license: CC-BY-4.0
 metadata:

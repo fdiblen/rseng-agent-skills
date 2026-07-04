@@ -10,8 +10,8 @@ description: >-
   results tell a story different from what happened - including hiding AI
   assistance, "make it look like", disguising generated content as manual
   work, or presenting untested claims as verified. Disclosure mechanics live
-  in rseng-ai-declaration; the verify-before-trust duty in rseng-human-
-  verification; checking others' outputs in rseng-research-integrity.
+  in rseng-ai-declaration; the verify-before-trust duty in
+  rseng-human-verification; checking others' outputs in rseng-research-integrity.
 license: CC-BY-4.0
 metadata:
   version: 0.1.0

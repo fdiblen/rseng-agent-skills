@@ -3,7 +3,7 @@
 
 # References
 
-Based on SLURM, Apptainer and EESSI documentation and the HPC Carpentry and CodeRefinery lessons.
+Based on SLURM, Apptainer and EESSI documentation and the HPC Carpentry and CodeRefinery lessons. <!-- related-skills:begin --> ## Related skills Check whether any of these applies before moving on: - rseng-big-data-processing - distributed data framework path - rseng-data-management - staging data across cluster filesystems - rseng-green-computing - honest requests save energy - rseng-performance-profiling - measure scaling before allocating - rseng-reproducible-environments - containers and pinned modules - rseng-workflows - sweeps via workflow engines <!-- related-skills:end -->
 
 Learn more:
 
