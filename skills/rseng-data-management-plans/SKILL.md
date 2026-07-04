@@ -3,14 +3,15 @@ name: rseng-data-management-plans
 description: >-
   Covers data management plans (DMPs) for research projects: what funders
   require, drafting a DMP from the project's actual data reality (types,
-  volumes, storage, sharing, preservation, responsibilities, costs), machine-
-  actionable DMPs (RDA common standard, Data Stewardship Wizard, DMPonline
-  funder templates), and keeping the plan synchronized with practice. Use when
-  a proposal or project needs a DMP, when the user mentions data management
-  plans, maDMPs, DS-Wizard or DMPonline, when funder or institutional data
-  policy applies, or when the existing DMP has drifted from what the project
-  actually does with its data. (Day-to-day data practice is rseng-data-
-  management; the software management plan twin is rseng-management-planning.)
+  volumes, storage, sharing, preservation, responsibilities, costs),
+  machine-actionable DMPs (RDA common standard, Data Stewardship Wizard,
+  DMPonline funder templates), and keeping the plan synchronized with
+  practice. Use when a proposal or project needs a DMP, when the user mentions
+  data management plans, maDMPs, DS-Wizard or DMPonline, when funder or
+  institutional data policy applies, or when the existing DMP has drifted from
+  what the project actually does with its data. (Day-to-day data practice is
+  rseng-data-management; the software management plan twin is
+  rseng-management-planning.)
 license: CC-BY-4.0
 metadata:
   version: 0.1.0

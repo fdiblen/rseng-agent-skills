@@ -7,10 +7,10 @@ description: >-
   files. Use when the user asks how to make code readable or clean, pick or
   enforce a style guide, set up linting/formatting or pre-commit, name
   variables and functions, organise a repo, or decide where files and data go.
-  For generating a new project from a maintained template see rseng-project-
-  scaffolding; for quantitative complexity and duplication measurement see
-  rseng-software-metrics; for architecture-level structure see rseng-software-
-  design.
+  For generating a new project from a maintained template see
+  rseng-project-scaffolding; for quantitative complexity and duplication
+  measurement see rseng-software-metrics; for architecture-level structure see
+  rseng-software-design.
 license: CC-BY-4.0
 metadata:
   version: 0.2.0

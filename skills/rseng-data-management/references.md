@@ -3,7 +3,7 @@
 
 # References
 
-Based on the FAIR data principles and community research data management guidance (The Turing Way, ELIXIR RDMkit).
+Based on the FAIR data principles and community research data management guidance (The Turing Way, ELIXIR RDMkit). <!-- related-skills:begin --> ## Related skills Check whether any of these applies before moving on: - rseng-archiving - long-term data deposit - rseng-citation-metadata - data DOIs and two-way citation - rseng-data-management-plans - funder plan over the practice - rseng-regulatory-compliance - sensitive and personal data obligations - rseng-scientific-file-formats - choosing and engineering the format - rseng-workflows - scripted regeneration of derived data <!-- related-skills:end -->
 
 Learn more:
 

@@ -3,7 +3,7 @@
 
 # References
 
-Based on the CHAOSS metrics definitions and scientific community management practice (CSCCE).
+Based on the CHAOSS metrics definitions and scientific community management practice (CSCCE). <!-- related-skills:begin --> ## Related skills Check whether any of these applies before moving on: - rseng-community-governance - metrics route to governance actions - rseng-contributor-onboarding - fixes the funnel leaks found - rseng-maintenance-sustainability - bus-factor risk response - rseng-management-planning - grant reports need community evidence - rseng-software-metrics - same measurement discipline, code side - rseng-user-support - support load is a signal <!-- related-skills:end -->
 
 Learn more:
 

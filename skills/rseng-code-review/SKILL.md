@@ -9,9 +9,9 @@ description: >-
   codebase audit or health check of existing code, wants improvements
   suggested and applied, mentions reviewing the project after a milestone or
   before a release or submission, or when inherited or long-unreviewed code
-  needs a structured pass. For diff-time pre-review of new work see rseng-pair-
-  programming; for PR-time review process and rules see rseng-version-control-
-  review.
+  needs a structured pass. For diff-time pre-review of new work see
+  rseng-pair-programming; for PR-time review process and rules see
+  rseng-version-control-review.
 license: CC-BY-4.0
 metadata:
   version: 0.1.0

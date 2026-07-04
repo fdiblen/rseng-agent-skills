@@ -3,7 +3,7 @@
 
 # References
 
-Based on the deps.dev, OSV and automated-update tool documentation and supply-chain practice for research software.
+Based on the deps.dev, OSV and automated-update tool documentation and supply-chain practice for research software. <!-- related-skills:begin --> ## Related skills Check whether any of these applies before moving on: - rseng-ci-cd - tests absorb automated update PRs - rseng-license-compliance - license axis analysis - rseng-maintenance-sustainability - upstream bus-factor and succession signals - rseng-reproducible-environments - pinning and lockfiles - rseng-security - vulnerabilities, SBOM, supply chain signals - rseng-software-reuse - candidates entering the intake gate <!-- related-skills:end -->
 
 Learn more:
 

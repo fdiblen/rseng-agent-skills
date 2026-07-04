@@ -1,15 +1,14 @@
 ---
 name: rseng-contributor-onboarding
 description: >-
-  Covers turning users into contributors and contributors into
-  regulars: curating genuinely good first issues, onboarding
-  paths and checklists generated from the repository, first-PR
-  shepherding, mentorship and buddy structures, and measuring
-  where the contribution funnel leaks. Use when a project wants
-  contributors but gets none, when first-time contributors do not
-  return, when the user asks for good-first-issue curation,
-  onboarding documentation or mentorship structure, or when a
-  team member or student is joining a research software project.
+  Covers turning users into contributors and contributors into regulars:
+  curating genuinely good first issues, onboarding paths and checklists
+  generated from the repository, first-PR shepherding, mentorship and buddy
+  structures, and measuring where the contribution funnel leaks. Use when a
+  project wants contributors but gets none, when first-time contributors do
+  not return, when the user asks for good-first-issue curation, onboarding
+  documentation or mentorship structure, or when a team member or student is
+  joining a research software project.
 license: CC-BY-4.0
 metadata:
   version: 0.1.0

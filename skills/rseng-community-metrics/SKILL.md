@@ -1,17 +1,16 @@
 ---
 name: rseng-community-metrics
 description: >-
-  Covers measuring community health with CHAOSS-style metrics:
-  contributor growth and retention, bus factor, first-response and
-  review latency, the casual-to-regular contributor conversion
-  funnel, and organizational diversity - computed from forge data,
-  interpreted against project stage, and turned into community
-  actions rather than vanity dashboards. Use when the user asks how
-  healthy their community is, wants contributor or responsiveness
-  statistics, mentions CHAOSS or community metrics, prepares a
-  sustainability report or grant renewal needing community
-  evidence, or when community trends (rising latency, shrinking
-  contributor base) should be checked rather than felt.
+  Covers measuring community health with CHAOSS-style metrics: contributor
+  growth and retention, bus factor, first-response and review latency, the
+  casual-to-regular contributor conversion funnel, and organizational
+  diversity - computed from forge data, interpreted against project stage, and
+  turned into community actions rather than vanity dashboards. Use when the
+  user asks how healthy their community is, wants contributor or
+  responsiveness statistics, mentions CHAOSS or community metrics, prepares a
+  sustainability report or grant renewal needing community evidence, or when
+  community trends (rising latency, shrinking contributor base) should be
+  checked rather than felt.
 license: CC-BY-4.0
 metadata:
   version: 0.1.0

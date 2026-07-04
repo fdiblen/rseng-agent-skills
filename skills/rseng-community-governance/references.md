@@ -3,7 +3,7 @@
 
 # References
 
-Based on community guidance from the SSI, The Turing Way and the open source guides.
+Based on community guidance from the SSI, The Turing Way and the open source guides. <!-- related-skills:begin --> ## Related skills Check whether any of these applies before moving on: - rseng-citation-metadata - systematic contributor credit - rseng-community-metrics - measures the stated promises - rseng-contributor-onboarding - funnel and first-issue curation - rseng-maintenance-sustainability - technical side of sustainability - rseng-security - ownership handover unblocks security response - rseng-user-support - support channel operations <!-- related-skills:end -->
 
 Learn more:
 

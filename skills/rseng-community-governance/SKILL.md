@@ -2,15 +2,15 @@
 name: rseng-community-governance
 description: >-
   Covers building and governing a community around research software:
-  CONTRIBUTING guides, codes of conduct, governance models and decision-
-  making, contributor recognition policy, issue and discussion hygiene, and
-  handing over or sharing maintainership. Use when a project wants external
-  contributors, when the user asks for a CONTRIBUTING.md, code of conduct or
-  governance document, when maintainer burnout or bus-factor risks come up, or
-  when a project is moving from single-author to team or community ownership.
-  The contributor funnel and good-first-issue curation live in rseng-
-  contributor-onboarding; health measurement in rseng-community-metrics; support
-  operations in rseng-user-support.
+  CONTRIBUTING guides, codes of conduct, governance models and
+  decision-making, contributor recognition policy, issue and discussion
+  hygiene, and handing over or sharing maintainership. Use when a project
+  wants external contributors, when the user asks for a CONTRIBUTING.md, code
+  of conduct or governance document, when maintainer burnout or bus-factor
+  risks come up, or when a project is moving from single-author to team or
+  community ownership. The contributor funnel and good-first-issue curation
+  live in rseng-contributor-onboarding; health measurement in
+  rseng-community-metrics; support operations in rseng-user-support.
 license: CC-BY-4.0
 metadata:
   version: 0.2.0

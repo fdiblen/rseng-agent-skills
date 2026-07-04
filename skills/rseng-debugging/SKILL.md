@@ -9,9 +9,9 @@ description: >-
   regression test. Use when the user reports a bug, a crash, wrong or changed
   results, a heisenbug or an it-works-on-my-machine discrepancy, when a
   pipeline fails at scale but not in tests, or when the user is stuck guessing
-  instead of diagnosing. For preventing silent wrong-result bugs see rseng-
-  defensive-coding; for judging whether numerical differences matter see rseng-
-  numerical-accuracy.
+  instead of diagnosing. For preventing silent wrong-result bugs see
+  rseng-defensive-coding; for judging whether numerical differences matter see
+  rseng-numerical-accuracy.
 license: CC-BY-4.0
 metadata:
   version: 0.1.0
