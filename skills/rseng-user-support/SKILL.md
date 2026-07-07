@@ -1,15 +1,14 @@
 ---
 name: rseng-user-support
 description: >-
-  Covers running user support as an operation for research
-  software: triaging and answering support requests, converting
-  recurring questions into documentation and FAQ entries, office
-  hours and support channels, forum gardening, and feeding support
-  signals into the roadmap. Use when support questions arrive
-  faster than they are answered, when the same question keeps
-  being answered by hand, when the user asks how to organize
-  support, office hours or a helpdesk for their software, or when
-  support load is invisible to planning.
+  Covers running user support as an operation for research software: triaging
+  and answering support requests, converting recurring questions into
+  documentation and FAQ entries, office hours and support channels, forum
+  gardening, and feeding support signals into the roadmap. Use when support
+  questions arrive faster than they are answered, when the same question keeps
+  being answered by hand, when the user asks how to organize support, office
+  hours or a helpdesk for their software, or when support load is invisible to
+  planning.
 license: CC-BY-4.0
 metadata:
   version: 0.1.0

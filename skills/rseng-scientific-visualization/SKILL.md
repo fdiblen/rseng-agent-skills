@@ -1,15 +1,14 @@
 ---
 name: rseng-scientific-visualization
 description: >-
-  Covers visualization of scientific data beyond publication figures:
-  3D and volumetric rendering with ParaView and VTK, scripted and
-  reproducible visualization pipelines, state files and Python trace
-  for repeatability, in-situ visualization of running simulations,
-  web-delivered interactive 3D (trame-style apps), and choosing
-  honest colormaps and representations for spatial data. Use when
-  the user works with 3D, volumetric, mesh or simulation output
-  data, mentions ParaView, VTK or interactive 3D viewers, needs a
-  visualization others can regenerate, or wants to inspect large
+  Covers visualization of scientific data beyond publication figures: 3D and
+  volumetric rendering with ParaView and VTK, scripted and reproducible
+  visualization pipelines, state files and Python trace for repeatability,
+  in-situ visualization of running simulations, web-delivered interactive 3D
+  (trame-style apps), and choosing honest colormaps and representations for
+  spatial data. Use when the user works with 3D, volumetric, mesh or
+  simulation output data, mentions ParaView, VTK or interactive 3D viewers,
+  needs a visualization others can regenerate, or wants to inspect large
   simulation results.
 license: CC-BY-4.0
 metadata:

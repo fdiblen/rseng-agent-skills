@@ -2,13 +2,13 @@
 name: rseng-workflows
 description: >-
   Covers building, choosing, discovering, describing, and sharing
-  computational workflows with workflow management systems - when to move
-  off ad-hoc scripts onto a WMS, how to make workflows FAIR, and where to
-  find or register them. Use when the user asks how to automate a
-  multi-step data pipeline, mentions Snakemake, Nextflow, CWL, WDL, Galaxy,
-  Apache Airflow, Parsl, nf-core, or WorkflowHub, wants to pick a workflow
-  engine, package a workflow with RO-Crate metadata, or make an analysis
-  pipeline reproducible and reusable.
+  computational workflows with workflow management systems - when to move off
+  ad-hoc scripts onto a WMS, how to make workflows FAIR, and where to find or
+  register them. Use when the user asks how to automate a multi-step data
+  pipeline, mentions Snakemake, Nextflow, CWL, WDL, Galaxy, Apache Airflow,
+  Parsl, nf-core, or WorkflowHub, wants to pick a workflow engine, package a
+  workflow with RO-Crate metadata, or make an analysis pipeline reproducible
+  and reusable.
 license: CC-BY-4.0
 metadata:
   version: 0.1.0

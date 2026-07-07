@@ -1,8 +1,8 @@
 ---
 name: rseng-version-control-review
 description: >-
-  Covers using version control effectively for research software and the PR-
-  time review process: choosing a VCS, branching and commit practice,
+  Covers using version control effectively for research software and the
+  PR-time review process: choosing a VCS, branching and commit practice,
   authorship and signatures in commit metadata (author/committer identity,
   Co-authored-by trailers, signed commits and tags, .mailmap), collaboration
   workflows on GitHub/GitLab, and running constructive, checklist-driven

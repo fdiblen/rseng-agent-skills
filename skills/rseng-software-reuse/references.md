@@ -3,7 +3,7 @@
 
 # References
 
-Based on the Research Software Directory instances and the RSD-as-a-service platform documentation.
+Based on the Research Software Directory instances and the RSD-as-a-service platform documentation. <!-- related-skills:begin --> ## Related skills Check whether any of these applies before moving on: - rseng-citation-metadata - citing adopted software - rseng-dependency-management - intake vetting of candidates - rseng-discovery - broad landscape survey first - rseng-fair-software - being findable yourself - rseng-lessons-learned - recording build-vs-reuse decisions - rseng-open-source-migration - adoption instead of porting <!-- related-skills:end -->
 
 Learn more:
 

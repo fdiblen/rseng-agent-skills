@@ -3,7 +3,7 @@
 
 # References
 
-Based on OpenSSF Scorecard and Best Practices, SLSA, and published research-software security assessments.
+Based on OpenSSF Scorecard and Best Practices, SLSA, and published research-software security assessments. <!-- related-skills:begin --> ## Related skills Check whether any of these applies before moving on: - rseng-agent-security - least-privilege applied to the agent - rseng-ci-cd - hardening CI tokens and workflows - rseng-dependency-management - vetting and updating dependencies - rseng-publishing-releasing - signed releases, SBOMs, provenance - rseng-regulatory-compliance - personal data raises legal duties - rseng-reproducible-environments - lockfiles pin the supply chain <!-- related-skills:end -->
 
 Learn more:
 

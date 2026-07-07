@@ -3,7 +3,7 @@
 
 # References
 
-Based on the PyPA, conda-forge, CRAN and rOpenSci packaging guidance and research software registry practice.
+Based on the PyPA, conda-forge, CRAN and rOpenSci packaging guidance and research software registry practice. <!-- related-skills:begin --> ## Related skills Check whether any of these applies before moving on: - rseng-ci-cd - trusted publishing from CI - rseng-citation-metadata - registries harvest CITATION.cff/codemeta - rseng-project-scaffolding - installable package structure - rseng-publishing-releasing - release mechanics behind each channel - rseng-reproducible-environments - fresh-install verification clean room - rseng-software-peer-review - JOSS submission pathway <!-- related-skills:end -->
 
 Learn more:
 

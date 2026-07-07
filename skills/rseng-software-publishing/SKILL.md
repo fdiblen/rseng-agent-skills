@@ -11,8 +11,8 @@ description: >-
   or listed where researchers search, mentions distribution channels, or when
   a mature project is only obtainable by cloning its repository. (Cutting
   versioned releases, changelogs and DOIs is rseng-publishing-releasing; the
-  JOSS review process itself is rseng-software-peer-review; preservation is rseng-
-  archiving.)
+  JOSS review process itself is rseng-software-peer-review; preservation is
+  rseng-archiving.)
 license: CC-BY-4.0
 metadata:
   version: 0.1.0

@@ -3,7 +3,7 @@
 
 # References
 
-Based on the pedagogy and curricula of the Carpentries, CodeRefinery and the EVERSE training catalog.
+Based on the pedagogy and curricula of the Carpentries, CodeRefinery and the EVERSE training catalog. <!-- related-skills:begin --> ## Related skills Check whether any of these applies before moving on: - rseng-agent-security - teaching responsible AI-assisted coding - rseng-contributor-onboarding - cohort and student onboarding - rseng-documentation - tutorials and lesson material - rseng-lessons-learned - captured lessons become curriculum - rseng-pair-programming - teaching inside collaborative sessions - rseng-quality-framework - priority order for teaching topics <!-- related-skills:end -->
 
 Learn more:
 

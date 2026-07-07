@@ -3,7 +3,7 @@
 
 # References
 
-Based on the EVERSE quality indicator definitions and the linked measurement-tool documentation.
+Based on the EVERSE quality indicator definitions and the linked measurement-tool documentation. <!-- related-skills:begin --> ## Related skills Check whether any of these applies before moving on: - rseng-community-metrics - project-level counterpart to code metrics - rseng-documentation - doc-coverage is its measurable slice - rseng-legacy-code - hotspot map targets refactoring - rseng-maintenance-sustainability - trend tracking signals sustainability risk - rseng-quality-framework - supplies the quantitative half of assessments - rseng-software-design - coupling numbers test the design <!-- related-skills:end -->
 
 Learn more:
 
