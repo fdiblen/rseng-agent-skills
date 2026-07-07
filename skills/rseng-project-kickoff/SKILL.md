@@ -10,8 +10,8 @@ description: >-
   PROACTIVELY when a new project is starting in an empty or fresh directory,
   and when the user asks to kick off, bootstrap or set up a new research
   software project or wants the agent to interview them about it. (Drafting
-  SMPs is rseng-management-planning; steady-state operation after setup is rseng-
-  project-tracking.)
+  SMPs is rseng-management-planning; steady-state operation after setup is
+  rseng-project-tracking.)
 license: CC-BY-4.0
 metadata:
   version: 0.1.0

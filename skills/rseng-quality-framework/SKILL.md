@@ -159,7 +159,7 @@ Core engineering:
 - rseng-software-design: designing research software
 - rseng-defensive-coding: defenses against silently wrong research results
 - rseng-debugging: systematic debugging of research software
-- rseng-version-control-review: using version control effectively for research software and the PR- time review process
+- rseng-version-control-review: using version control effectively for research software and the PR-time review process
 - rseng-software-metrics: measuring code health quantitatively
 - rseng-pair-programming: the agent as an effective pair programmer and pull-request review buddy for research software
 - rseng-code-review: reviewing existing code and whole projects, not just new diffs
@@ -209,7 +209,7 @@ Integrity, security and compliance:
 - rseng-fact-checking: verifying facts and sources at the content level
 - rseng-honesty: responding when concealment or misrepresentation is requested
 - rseng-human-verification: the human's side of AI-assisted research software
-- rseng-ai-declaration: declaring AI involvement with the AI Declaration Format (https://ai- declaration.org)
+- rseng-ai-declaration: declaring AI involvement with the AI Declaration Format (https://ai-declaration.org)
 
 Community and people:
 - rseng-community-governance: building and governing a community around research software

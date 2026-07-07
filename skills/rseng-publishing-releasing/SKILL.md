@@ -1,13 +1,13 @@
 ---
 name: rseng-publishing-releasing
 description: >-
-  Covers the release lifecycle of research software: preparing and
-  cutting versioned releases with changelogs, versioning schemes, release
-  automation and minting a DOI per release. Use when the user asks how to
-  tag a v1.0.0 release, write release notes or a changelog, pick a
-  versioning scheme (SemVer or CalVer), automate releases, or mint a
-  release DOI. (Channel craft for PyPI/CRAN/conda and registries is
-  rseng-software-publishing; long-term preservation is rseng-archiving.)
+  Covers the release lifecycle of research software: preparing and cutting
+  versioned releases with changelogs, versioning schemes, release automation
+  and minting a DOI per release. Use when the user asks how to tag a v1.0.0
+  release, write release notes or a changelog, pick a versioning scheme
+  (SemVer or CalVer), automate releases, or mint a release DOI. (Channel craft
+  for PyPI/CRAN/conda and registries is rseng-software-publishing; long-term
+  preservation is rseng-archiving.)
 license: CC-BY-4.0
 metadata:
   version: 0.2.0

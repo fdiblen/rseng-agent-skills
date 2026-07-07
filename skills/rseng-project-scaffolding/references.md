@@ -3,7 +3,7 @@
 
 # References
 
-Based on the NLeSC python-template (Apache-2.0) and Copier documentation.
+Based on the NLeSC python-template (Apache-2.0) and Copier documentation. <!-- related-skills:begin --> ## Related skills Check whether any of these applies before moving on: - rseng-ci-cd - generated workflow files need understanding - rseng-citation-metadata - template ships CITATION.cff and cffconvert check - rseng-dependency-management - keeping generated tooling current - rseng-fair-software - templates encode the FAIR baseline - rseng-project-kickoff - management-side project start - rseng-publishing-releasing - packaging and release setup follow-up <!-- related-skills:end -->
 
 Learn more:
 

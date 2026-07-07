@@ -4,9 +4,9 @@ description: >-
   Covers integrity checks on research outputs before submission or release:
   statcheck/GRIM-style consistency of reported statistics, agreement between
   manuscript numbers and pipeline outputs, retraction screening of cited work,
-  sanity checks on tables and figures against the data, and an auditable pre-
-  submission checklist. Use PROACTIVELY before manuscript submission or the
-  release of result-bearing reports, when reported numbers are transcribed
+  sanity checks on tables and figures against the data, and an auditable
+  pre-submission checklist. Use PROACTIVELY before manuscript submission or
+  the release of result-bearing reports, when reported numbers are transcribed
   from analysis outputs, and when the user asks to check a paper's numbers,
   mentions statcheck, GRIM, integrity checks or reporting errors, or suspects
   an inconsistency between code outputs and the written text. Reference

@@ -3,7 +3,7 @@
 
 # References
 
-Based on lightweight project-operations practice proportioned for research software projects.
+Based on lightweight project-operations practice proportioned for research software projects. <!-- related-skills:begin --> ## Related skills Check whether any of these applies before moving on: - rseng-ai-declaration - disclosing AI-drafted project records - rseng-community-governance - issue templates and triage promises - rseng-honesty - honest schedules and visible scope cuts - rseng-lessons-learned - milestone reviews feed lessons capture - rseng-management-planning - strategic plan the tracker executes - rseng-version-control-review - linking commits and PRs to issues <!-- related-skills:end -->
 
 Learn more:
 

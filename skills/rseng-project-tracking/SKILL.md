@@ -12,8 +12,8 @@ description: >-
   status report or decision log, mentions issue triage or prioritization, or
   when a project has more than one person or more than one month of work.
   (Strategic planning and SMPs are rseng-management-planning; new-project setup
-  is rseng-project-kickoff; retrospectives and postmortems are rseng-lessons-
-  learned.)
+  is rseng-project-kickoff; retrospectives and postmortems are
+  rseng-lessons-learned.)
 license: CC-BY-4.0
 metadata:
   version: 0.3.0

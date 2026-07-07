@@ -9,8 +9,8 @@ description: >-
   its intended users. Use when the user wants to announce, present, promote or
   explain their research software, asks for help with a software paper, talk
   abstract or release post, or when a mature package has no visibility beyond
-  its authors. In-repo docs live in rseng-documentation; public and citizen-
-  science narrative in rseng-storytelling; venue mechanics and review
+  its authors. In-repo docs live in rseng-documentation; public and
+  citizen-science narrative in rseng-storytelling; venue mechanics and review
   preparation in rseng-software-peer-review.
 license: CC-BY-4.0
 metadata:

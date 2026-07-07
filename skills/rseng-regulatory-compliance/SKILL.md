@@ -11,8 +11,8 @@ description: >-
   anonymization or regulatory compliance of their software, or before
   publishing datasets or models derived from people. For secrets hygiene and
   protective controls see rseng-security; for sensitive-data storage and
-  stewardship see rseng-data-management; for AI-use disclosure see rseng-ai-
-  declaration.
+  stewardship see rseng-data-management; for AI-use disclosure see
+  rseng-ai-declaration.
 license: CC-BY-4.0
 metadata:
   version: 0.1.0

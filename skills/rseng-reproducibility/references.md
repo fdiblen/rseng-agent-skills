@@ -3,7 +3,7 @@
 
 # References
 
-Based on The Turing Way reproducible research guide, research compendium conventions and the Binder tooling documentation.
+Based on The Turing Way reproducible research guide, research compendium conventions and the Binder tooling documentation. <!-- related-skills:begin --> ## Related skills Check whether any of these applies before moving on: - rseng-ai-declaration - declaring AI involvement in results - rseng-archiving - depositing the package with a DOI - rseng-data-management - versioned data with checksums - rseng-numerical-accuracy - stating expected run-to-run variability - rseng-publishing-releasing - tagged frozen release for the package - rseng-software-peer-review - CODECHECK-style independent reruns <!-- related-skills:end -->
 
 Learn more:
 
