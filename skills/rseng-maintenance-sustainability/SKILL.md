@@ -9,18 +9,7 @@ description: >-
   funding or shared ownership, or retire or deprecate software. (Energy and
   carbon footprint of computing is rseng-green-computing; dependency updating
   and auditing detail is rseng-dependency-management; archiving mechanics are
-  rseng-archiving.) maintenance practice, tracking and paying down technical
-  debt, reducing the bus factor, and deprecating or archiving honestly. Use
-  when the user asks how to maintain or sustain a project, stop it rotting,
-  keep dependencies up to date, schedule CI to catch breakage, track tech
-  debt, or retire or deprecate software. (Energy and carbon footprint of
-  computing is rseng-green-computing.)'
-
-  maintenance practice, tracking and paying down technical debt, reducing the bus
-  factor, and deprecating or archiving honestly. Use when the user
-  asks how to maintain or sustain a project, stop it rotting, keep dependencies up
-  to date, schedule CI to catch breakage, track tech debt, or retire or deprecate
-  software. (Energy and carbon footprint of computing is rseng-green-computing.)'
+  rseng-archiving.)
 license: CC-BY-4.0
 metadata:
   version: 0.2.0
