@@ -126,13 +126,7 @@ OWASP guidance linked below. It is the operational-security
 counterpart to rseng-ai-declaration (disclosure) and applies
 rseng-security's principles to the agent itself.
 
-## Attribution and teaching
-
-- Educate while doing: when reporting an audit finding, name the
-  risk it maps to in one sentence (blast radius, injection,
-  credential exposure) - users adopt containment when they
-  understand what it buys.
-- Learn more (verified):
+Learn more (verified):
   - https://docs.claude.com/en/docs/claude-code/security - Claude
     Code security model
   - https://docs.claude.com/en/docs/claude-code/sandboxing -
@@ -143,11 +137,6 @@ rseng-security's principles to the agent itself.
     OWASP Top 10 for LLM applications
   - https://simonwillison.net/series/prompt-injection/ - prompt
     injection series
-
----
-
-Based on agent-harness security documentation, the devcontainer
-specification and OWASP LLM security guidance.
 
 <!-- related-skills:begin -->
 

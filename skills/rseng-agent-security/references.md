@@ -3,8 +3,6 @@
 
 # References
 
-Based on agent-harness security documentation, the devcontainer specification and OWASP LLM security guidance. <!-- related-skills:begin --> ## Related skills Check whether any of these applies before moving on: - rseng-ai-declaration - disclose agent contributions - rseng-human-verification - human reviews agent output - rseng-regulatory-compliance - personal data near agent context - rseng-reproducible-environments - devcontainers contain the agent - rseng-security - same principles, project side - rseng-version-control-review - agent config diffs are security-relevant <!-- related-skills:end -->
-
 Learn more:
 
 - https://docs.claude.com/en/docs/claude-code/security - Claude Code security model

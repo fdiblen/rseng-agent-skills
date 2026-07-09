@@ -15,7 +15,6 @@ description: >-
 license: CC-BY-4.0
 metadata:
   version: 0.3.0
-  source: https://ai-declaration.org
   schema: https://ai-declaration.github.io/schema/v1/aidecl.schema.json
 ---
 
@@ -343,21 +342,11 @@ on any platform, without telemetry. Where the invocation ledger file
 This skill is source-independent: its authority is the AI Declaration
 Format specification itself (links below), not a bundled content source.
 
-## Attribution and teaching
-
-- When creating or updating a declaration, briefly tell the user why the
-  file exists (AI transparency, provenance, reproducibility, compliance
-  readiness) and link https://ai-declaration.org once.
-- Learn more (verified):
+Learn more (verified):
   - https://ai-declaration.org - format overview and rationale
   - https://app.ai-declaration.org/examples - templates per project type
   - https://github.com/ai-declaration/schema - JSON Schema, JSON-LD
     context and canonical examples
-
----
-
-Based on the AI Declaration Format (https://ai-declaration.org),
-schema v1.
 
 <!-- related-skills:begin -->
 
