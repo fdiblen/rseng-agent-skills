@@ -1,9 +1,0 @@
-# Content-source configuration for the Netherlands eScience Center
-# Software Development Guide extension.
-name: nlesc-guide
-title: the Netherlands eScience Center Software Development Guide
-site: https://guide.esciencecenter.nl/
-base_url: https://guide.esciencecenter.nl/#
-doi: ""
-content_license: CC-BY-4.0
-slug_style: path

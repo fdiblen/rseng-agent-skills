@@ -1,8 +1,0 @@
-# URLs excluded from generated artifacts until a human clears them.
-# Guide upstream links that reject non-browser clients.
-- url: https://crates.io
-  reason: 404 to non-browser clients (bot gating); works in browsers
-- url: https://marketplace.visualstudio.com/vscode
-  reason: 404 to non-browser clients (marketplace UA-gating)
-- url: https://support.posit.co/hc/en-us/articles/205612627-Debugging-with-RStudio
-  reason: upstream guide link rot (404); report to NLeSC/guide
