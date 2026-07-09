@@ -120,12 +120,7 @@ Heritage, SWHID and Zenodo documentation linked below. It is the
 preservation end of the publishing chain
 (rseng-publishing-releasing -> rseng-archiving).
 
-## Attribution and teaching
-
-- Educate while doing: when submitting a save request or wiring a
-  deposit, state what each identifier survives (forge deletion,
-  lab closure) - the threat model is what makes archiving click.
-- Learn more (verified):
+Learn more (verified):
   - https://archive.softwareheritage.org - Software Heritage
     archive (save code, browse, SWHID resolution)
   - https://www.swhid.org - SWHID identifier specification
@@ -134,13 +129,7 @@ preservation end of the publishing chain
     forge integration, versioned DOIs)
   - https://www.coretrustseal.org - CoreTrustSeal certified
     repositories
-  - https://everse.software/RSQKit/archiving_software - RSQKit
     task page on archiving software
-
----
-
-Based on the Software Heritage, SWHID and Zenodo documentation and
-the RSQKit archiving guidance.
 
 <!-- related-skills:begin -->
 

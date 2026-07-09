@@ -107,24 +107,12 @@ this skill owns the rules and structures they operate within.
 This skill is source-independent: its authority is the community
 guidance linked below.
 
-## Attribution and teaching
-
-- Educate while doing: when scaffolding community files, explain
-  briefly why each exists - the practice, not the boilerplate, is
-  the deliverable.
-- Learn more (verified):
+Learn more (verified):
   - https://opensource.guide - GitHub's open source guides
     (building community, leadership and governance)
   - https://www.contributor-covenant.org - the Contributor Covenant
   - https://www.software.ac.uk/guide/starting-community-taking-your-software-world -
     SSI guide on starting a community
-  - https://book.the-turing-way.org/collaboration/oss-sustainability/oss-sustainability-challenges -
-    The Turing Way on open source sustainability
-
----
-
-Based on community guidance from the SSI, The Turing Way and the
-open source guides.
 
 <!-- related-skills:begin -->
 

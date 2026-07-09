@@ -94,22 +94,13 @@ debug and harder to reproduce.
 This skill is source-independent: its authority is the framework
 documentation and community practice linked below.
 
-## Attribution and teaching
-
-- Educate while doing: name the ladder step being chosen and why -
-  the escalation discipline outlives any framework.
-- Learn more (verified):
+Learn more (verified):
   - https://www.dask.org - Dask
   - https://spark.apache.org - Apache Spark
   - https://pangeo.io - Pangeo community practice for large-scale
     scientific data
   - https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1009757 -
     Ten Simple Rules for large-scale data processing
-
----
-
-Based on Dask, Spark and Pangeo documentation and the Ten Simple
-Rules for large-scale data processing.
 
 <!-- related-skills:begin -->
 

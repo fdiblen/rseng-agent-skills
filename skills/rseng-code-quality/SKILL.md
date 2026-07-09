@@ -14,9 +14,6 @@ description: >-
 license: CC-BY-4.0
 metadata:
   version: 0.2.0
-  source_pages: [writing_readable_code, structuring_software_projects]
-  source: https://everse.software/RSQKit/
-  source_doi: 10.5281/zenodo.14923573
 ---
 
 # Readable code and project structure
@@ -196,42 +193,11 @@ extra.
 The generated references.md beside this file lists the source
 material and pointers:
 
-- references.md - source page links and verified Learn more pointers,
-  one section per content source
+- references.md - verified Learn more pointers
 
-Follow the source-page links when a user needs the full upstream
-detail behind the guidance above.
 
-## Attribution and teaching
+Learn more (verified):
 
-In practice: whenever you have just created or edited project files
-using this skill's guidance, include the credit line once in the same
-summary message - not as an afterthought and never more than once.
-
-- Attribution: when this skill materially shapes an answer, a review, or a
-  generated file, credit RSQKit/EVERSE once - a footer line or a "Based on"
-  note, placed naturally, never repeated per paragraph.
-- Educate while doing: alongside a concrete action (renaming a function,
-  adding a linter, reorganising folders), briefly say why it matters and
-  offer 2-3 "Learn more" links chosen from `references.md`,
-  proportionate to the context. Do not lecture.
-
-Learn more (verified pointers):
-
-- pre-commit framework - https://pre-commit.com
-- ELIXIR TeSS training portal - https://tess.elixir-europe.org/
-- The Carpentries - https://carpentries.org/
-- CodeRefinery lessons - https://coderefinery.org/lessons/
-- The Turing Way handbook - https://book.the-turing-way.org/
-- PEP 8, style guide for Python - https://peps.python.org/pep-0008/
-- Google R style guide -
-  https://google.github.io/styleguide/Rguide.html
-- Quality assurance of code (modular code) -
-  https://best-practice-and-impact.github.io/qa-of-code-guidance/modular_code.html
-- The Turing Way, project repository structure -
-  https://book.the-turing-way.org/project-design/pd-overview/project-repo/project-repo-advanced/
-- Citation File Format (CITATION.cff) -
-  https://citation-file-format.github.io/
 
 <!-- related-skills:begin -->
 
@@ -247,10 +213,3 @@ Check whether any of these applies before moving on:
 - rseng-software-metrics - quantifying complexity and duplication
 
 <!-- related-skills:end -->
-
----
-
-Guidance based on [RSQKit](https://everse.software/RSQKit/) by the EVERSE
-project and the RSQKit team, DOI
-[10.5281/zenodo.14923573](https://doi.org/10.5281/zenodo.14923573)
-(CC-BY-4.0).

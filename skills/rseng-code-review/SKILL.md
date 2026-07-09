@@ -125,23 +125,12 @@ code-review practice applied retrospectively to research
 software. It composes the pack's lenses into one undertaking and
 feeds rseng-project-tracking and rseng-lessons-learned.
 
-## Attribution and teaching
-
-- Educate while doing: rank findings with the reason for the
-  rank, and show the metrics delta after implementation -
-  review literacy is knowing why a finding matters and what
-  fixing it bought.
-- Learn more (verified):
+Learn more (verified):
   - https://google.github.io/eng-practices/review/ - Google
     engineering review practices
   - https://bssw.io/items?topic=peer-code-review - BSSW peer
     code review resources
   - https://conventionalcomments.org - conventional comments
-
----
-
-Based on structured code-review practice applied retrospectively
-to research software.
 
 <!-- related-skills:begin -->
 

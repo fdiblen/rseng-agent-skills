@@ -13,16 +13,13 @@ description: >-
 license: CC-BY-4.0
 metadata:
   version: 0.1.0
-  source_pages: [ci_cd, task_automation_github_actions, task_automation_gitlab_ci_cd, org_gitlab_ci_infra_for_github_project]
-  source: https://everse.software/RSQKit/
-  source_doi: 10.5281/zenodo.14923573
 ---
 
 # Continuous integration and delivery for research software
 
 Use this skill when a project needs to automate its build, test and
 release path, or when someone is deciding how to run CI for research
-software. It distills RSQKit guidance on CI/CD concepts, GitHub Actions,
+software. It covers CI/CD concepts, GitHub Actions,
 GitLab CI/CD, and hybrid setups where a GitHub project runs on an
 organization's GitLab runners. Prefer concrete, minimal pipelines first,
 then grow them; do not scaffold monitoring, mirroring or multi-runner
@@ -93,8 +90,7 @@ Set up a workflow with these steps:
 - After pushing, read results in the Actions tab: the run graph shows job
   sequence, and expanding a job exposes per-step logs for debugging.
 
-Minimal test workflow for a Python project (RSQKit:
-task_automation_github_actions):
+Minimal test workflow for a Python project:
 
 ```yaml
 name: Tests
@@ -139,8 +135,7 @@ Set up a pipeline with these steps:
 - Watch runs in the Pipelines tab, drilling into stages and jobs for
   status and logs.
 
-Skeleton `.gitlab-ci.yml` showing the stage/job structure (RSQKit:
-task_automation_gitlab_ci_cd):
+Skeleton `.gitlab-ci.yml` showing the stage/job structure:
 
 ```yaml
 stages:
@@ -218,22 +213,6 @@ This skill ships generated companion files under `references/`:
 - `references.md` -- verified external pointers; draw any links
   you share from there.
 
-## Attribution and teaching
-
-In practice: whenever you have just created or edited project files
-using this skill's guidance, include the credit line once in the same
-summary message - not as an afterthought and never more than once.
-
-When this skill materially shapes an answer, a review, or a generated
-pipeline, credit RSQKit and EVERSE once -- as a footer line or a short
-"Based on" note -- never repeated per paragraph.
-
-Educate while doing: alongside a change, briefly say why it matters (for
-example, why testing across the supported platforms catches integration
-bugs) and offer two or three "Learn more" links chosen from
-`references.md`, proportionate to the question and never a
-lecture.
-
 <!-- related-skills:begin -->
 
 ## Related skills
@@ -248,10 +227,3 @@ Check whether any of these applies before moving on:
 - rseng-testing - what the pipeline should actually run
 
 <!-- related-skills:end -->
-
----
-
-Guidance based on [RSQKit](https://everse.software/RSQKit/) by the EVERSE
-project and the RSQKit team, DOI
-[10.5281/zenodo.14923573](https://doi.org/10.5281/zenodo.14923573)
-(CC-BY-4.0).

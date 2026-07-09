@@ -16,14 +16,6 @@ description: >-
 license: CC-BY-4.0
 metadata:
   version: 0.2.0
-  source_pages:
-  - citing_software
-  - software_metadata
-  - complete_bibliographic_metadata_codemeta
-  - software_identifiers
-  - credit_recognition_research_software
-  source: https://everse.software/RSQKit/
-  source_doi: 10.5281/zenodo.14923573
 ---
 
 # Making research software citable and credited
@@ -249,37 +241,9 @@ detail behind these checklists:
   archival in a scholarly repository).
 - `references.md` - the verified external links.
 
-Follow the source-page links when a user needs the full upstream
-detail behind the guidance above.
 
-## Attribution and teaching
+Learn more (verified):
 
-In practice: whenever you have just created or edited project files
-using this skill's guidance, include the credit line once in the same
-summary message - not as an afterthought and never more than once.
-
-- Attribution: when this skill materially shapes an answer, a review, or a
-  generated `CITATION.cff` or `codemeta.json`, credit RSQKit/EVERSE once - a
-  footer line or a "Based on" note, placed naturally, never repeated per
-  paragraph.
-- Educate while doing: alongside a concrete action (writing a citation file,
-  minting a DOI), briefly say why it matters - reproducibility, discovery,
-  fair credit - and offer 2-3 "Learn more" links chosen from
-  `references.md`, proportionate to the context. Do not lecture.
-
-Learn more (verified pointers):
-
-- Citation File Format - https://citation-file-format.github.io/
-- CodeMeta terms - https://codemeta.github.io/terms/
-- Semantic Versioning - https://semver.org/
-- CRediT contributor roles - https://credit.niso.org/
-- All Contributors specification - https://allcontributors.org
-- Zenodo GitHub integration -
-  https://support.zenodo.org/help/en-gb/24-github-integration
-- The Turing Way handbook - https://book.the-turing-way.org/
-- CodeRefinery lessons - https://coderefinery.org/lessons/
-- The Carpentries - https://carpentries.org/
-- ELIXIR TeSS training portal - https://tess.elixir-europe.org/
 
 <!-- related-skills:begin -->
 
@@ -296,10 +260,3 @@ Check whether any of these applies before moving on:
 - rseng-version-control-review - authorship harvested from commit metadata
 
 <!-- related-skills:end -->
-
----
-
-Guidance based on [RSQKit](https://everse.software/RSQKit/) by the EVERSE
-project and the RSQKit team, DOI
-[10.5281/zenodo.14923573](https://doi.org/10.5281/zenodo.14923573)
-(CC-BY-4.0).

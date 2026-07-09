@@ -105,22 +105,12 @@ metrics definitions and community-health practice linked below.
 It is the measurement arm of rseng-community-governance, the
 community analogue of rseng-software-metrics.
 
-## Attribution and teaching
-
-- Educate while doing: pair each metric with its definition and
-  the action it routes to - community-metrics literacy is knowing
-  what the number can support.
-- Learn more (verified):
+Learn more (verified):
   - https://chaoss.community - CHAOSS community health metrics
   - https://www.cscce.org - Center for Scientific Collaboration
     and Community Engagement
   - https://opensource.guide - open source guides (community
     sections)
-
----
-
-Based on the CHAOSS metrics definitions and scientific community
-management practice (CSCCE).
 
 <!-- related-skills:begin -->
 

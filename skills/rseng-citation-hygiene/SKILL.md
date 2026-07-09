@@ -104,13 +104,7 @@ OpenAlex and Retraction Watch services linked below. It is the
 verification counterpart to rseng-citation-metadata and feeds
 rseng-research-integrity's pre-submission checks.
 
-## Attribution and teaching
-
-- Educate while doing: when reporting verification results, state
-  the failure mode each check catches (fabrication, mismatch,
-  retraction) - and normalize the practice as routine hygiene, not
-  accusation.
-- Learn more (verified):
+Learn more (verified):
   - https://api.crossref.org/swagger-ui/index.html - Crossref REST
     API
   - https://docs.openalex.org - OpenAlex API (open, keyless)
@@ -118,10 +112,6 @@ rseng-research-integrity's pre-submission checks.
     Retraction Watch data via Crossref
   - https://gitlab.com/crossref/retraction-watch-data - Retraction
     Watch database, public daily-updated repository
-
----
-
-Based on the Crossref, OpenAlex and Retraction Watch documentation.
 
 <!-- related-skills:begin -->
 
