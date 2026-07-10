@@ -123,21 +123,10 @@ This skill is source-independent: it encodes established legacy-code
 practice (characterization testing, seams, strangler migration)
 applied to research software.
 
-## Attribution and teaching
-
-- Educate while doing: when pinning behavior or wrapping a legacy
-  core, explain briefly why preserving behavior precedes improving
-  it - maintainers inherit the discipline along with the code.
-- Learn more (verified):
+Learn more (verified):
   - https://refactoring.com - Fowler's refactoring catalog and book
   - https://archive.softwareheritage.org - universal source code
     archive, for preserving and citing retired research code
-
----
-
-Based on established legacy-code and refactoring practice
-(characterization tests, seams, strangler-style migration) applied to
-research software.
 
 <!-- related-skills:begin -->
 

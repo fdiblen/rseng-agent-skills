@@ -100,22 +100,13 @@ elsewhere, because the numbers ARE the result.
 This skill is source-independent: it encodes IEEE-754 floating-point
 practice as applied in scientific computing.
 
-## Attribution and teaching
-
-- Educate while doing: when setting a tolerance or restructuring a
-  formula, state the numerical reason in one sentence - float
-  literacy is transferable to every future project.
-- Learn more (verified):
+Learn more (verified):
   - https://floating-point-gui.de - the floating-point guide
   - https://numpy.org/doc/stable/reference/routines.testing.html -
     NumPy testing helpers (assert_allclose and friends)
   - https://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html -
     Goldberg, What Every Computer Scientist Should Know About
     Floating-Point Arithmetic
-
----
-
-Based on IEEE-754 floating-point practice in scientific computing.
 
 <!-- related-skills:begin -->
 

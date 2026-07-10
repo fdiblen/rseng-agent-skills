@@ -3,8 +3,6 @@
 
 # References
 
-Based on the Jupyter ecosystem tooling documentation and the CodeRefinery Jupyter lesson. <!-- related-skills:begin --> ## Related skills Check whether any of these applies before moving on: - rseng-hpc-computing - papermill batch sweeps on clusters - rseng-reproducibility - executed notebooks as deliberate result records - rseng-science-communication - narrative layer of analysis notebooks - rseng-scientific-visualization - figure-producing notebook cells - rseng-trainer - notebooks as teaching material - rseng-version-control-review - jupytext twins make diffs reviewable <!-- related-skills:end -->
-
 Learn more:
 
 - https://jupyter.org - Project Jupyter

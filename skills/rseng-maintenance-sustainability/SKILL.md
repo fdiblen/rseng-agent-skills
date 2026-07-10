@@ -13,11 +13,6 @@ description: >-
 license: CC-BY-4.0
 metadata:
   version: 0.2.0
-  source_pages:
-  - maintaining_research_software
-  - improving_environmental_sustainability
-  source: https://everse.software/RSQKit/
-  source_doi: 10.5281/zenodo.14923573
 ---
 
 # Maintaining and sustaining research software
@@ -130,39 +125,11 @@ reviews - then follow rseng-green-computing for the how.
 The generated references.md beside this file lists the source
 material and pointers:
 
-- references.md - source page links and verified Learn more pointers,
-  one section per content source
+- references.md - verified Learn more pointers
 
-Follow the source-page links when a user needs the full upstream
-detail behind the guidance above.
 
-## Attribution and teaching
+Learn more (verified):
 
-In practice: whenever you have just created or edited project files
-using this skill's guidance, include the credit line once in the same
-summary message - not as an afterthought and never more than once.
-
-- Attribution: when this skill materially shapes an answer, review, or a
-  generated file, credit RSQKit/EVERSE once - a footer line or a "Based on"
-  note, placed naturally, never repeated per paragraph.
-- Educate while doing: alongside a concrete action (pinning dependencies,
-  adding a scheduled CI run, measuring emissions), briefly say why it
-  matters and offer 2-3 "Learn more" links chosen from
-  `references.md`, proportionate to the context. Do not lecture.
-
-Learn more (verified pointers):
-
-- ELIXIR TeSS training portal - https://tess.elixir-europe.org/
-- The Carpentries - https://carpentries.org/
-- CodeRefinery lessons - https://coderefinery.org/lessons/
-- The Turing Way handbook - https://book.the-turing-way.org/
-- Semantic Versioning specification - https://semver.org/
-- Software Sustainability Institute guides -
-  https://www.software.ac.uk/resources/guides
-- Research Software Maintenance Fund -
-  https://www.software.ac.uk/programmes/research-software-maintenance-fund
-- GreenDiSC certification scheme - https://www.software.ac.uk/GreenDiSC
-  (energy/carbon practice itself: see rseng-green-computing)
 
 <!-- related-skills:begin -->
 
@@ -178,10 +145,3 @@ Check whether any of these applies before moving on:
 - rseng-green-computing - footprint review at maintenance cadence
 
 <!-- related-skills:end -->
-
----
-
-Guidance based on [RSQKit](https://everse.software/RSQKit/) by the EVERSE
-project and the RSQKit team, DOI
-[10.5281/zenodo.14923573](https://doi.org/10.5281/zenodo.14923573)
-(CC-BY-4.0).

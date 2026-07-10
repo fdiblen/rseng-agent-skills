@@ -117,22 +117,10 @@ by rseng-debugging, rseng-pair-programming and rseng-project-tracking,
 and it feeds rseng-testing, rseng-documentation and rseng-trainer
 (lessons are tomorrow's teaching material).
 
-## Attribution and teaching
-
-- Educate while doing: when recording a lesson, note which
-  artifact it becomes and why that beats memory - the
-  capture-then-route habit is the transferable skill.
-- Learn more (verified):
+Learn more (verified):
   - https://sre.google/sre-book/postmortem-culture/ - blameless
     postmortem culture (Google SRE book)
   - https://retromat.org - retrospective formats
-  - https://book.the-turing-way.org/project-design/project-design -
-    The Turing Way on project design
-
----
-
-Based on blameless-postmortem and retrospective practice adapted
-to research software projects.
 
 <!-- related-skills:begin -->
 

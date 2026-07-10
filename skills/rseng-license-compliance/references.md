@@ -3,8 +3,6 @@
 
 # References
 
-Based on the SPDX and REUSE specifications, FSF and OSI license references, and license-scanning tool documentation. Not legal advice. <!-- related-skills:begin --> ## Related skills Check whether any of these applies before moving on: - rseng-ci-cd - policy-as-code license gates - rseng-community-governance - CLA implications of dual licensing - rseng-dependency-management - license axis of intake vetting - rseng-licensing - first license choice basics - rseng-publishing-releasing - notice obligations at release - rseng-security - SBOM carries license data <!-- related-skills:end -->
-
 Learn more:
 
 - https://spdx.org/licenses/ - SPDX license list and identifiers

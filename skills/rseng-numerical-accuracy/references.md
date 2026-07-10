@@ -3,8 +3,6 @@
 
 # References
 
-Based on IEEE-754 floating-point practice in scientific computing. <!-- related-skills:begin --> ## Related skills Check whether any of these applies before moving on: - rseng-debugging - diagnosing cross-platform result differences - rseng-gpu-computing - float32 and mixed precision trade-offs - rseng-legacy-code - characterization-test tolerance sign-off - rseng-performance-profiling - precision changes as deliberate optimization - rseng-reproducible-environments - pinned libraries limit result drift - rseng-testing - tolerance-based numerical test design <!-- related-skills:end -->
-
 Learn more:
 
 - https://floating-point-gui.de - the floating-point guide

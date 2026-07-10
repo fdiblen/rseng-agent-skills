@@ -144,12 +144,7 @@ REUSE specifications, the FSF and OSI license references and the
 tool documentation linked below. It complements rseng-licensing
 (fundamentals and first license choice).
 
-## Attribution and teaching
-
-- Educate while doing: when flagging a conflict or obligation, name
-  the rule that triggers it in one sentence - license literacy is
-  the transferable part.
-- Learn more (verified):
+Learn more (verified):
   - https://spdx.org/licenses/ - SPDX license list and identifiers
   - https://reuse.software - REUSE specification and tooling
   - https://www.gnu.org/licenses/license-list.html - FSF license
@@ -162,12 +157,6 @@ tool documentation linked below. It complements rseng-licensing
     Toolkit license scanner
   - https://github.com/raimon49/pip-licenses - pip-licenses
     dependency license reporting
-
----
-
-Based on the SPDX and REUSE specifications, FSF and OSI license
-references, and license-scanning tool documentation. Not legal
-advice.
 
 <!-- related-skills:begin -->
 

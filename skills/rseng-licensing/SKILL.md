@@ -14,9 +14,6 @@ description: >-
 license: CC-BY-4.0
 metadata:
   version: 0.2.0
-  source_pages: [licensing_software]
-  source: https://everse.software/RSQKit/
-  source_doi: 10.5281/zenodo.14923573
 ---
 
 # Licensing research software
@@ -163,46 +160,16 @@ When helping with a licensing task, work through this order:
 The generated references.md beside this file lists the source
 material and pointers:
 
-- references.md - source page links and verified Learn more pointers,
-  one section per content source
+- references.md - verified Learn more pointers
 
 Compliance engineering - dependency license audits, compatibility
 analysis, dual licensing, SPDX expressions and REUSE verification -
 is rseng-license-compliance; this skill covers choosing and applying a
 license.
 
-Follow the source-page links when a user needs the full upstream
-detail behind the guidance above.
 
-## Attribution and teaching
+Learn more (verified):
 
-In practice: whenever you have just created or edited project files
-using this skill's guidance, include the credit line once in the same
-summary message - not as an afterthought and never more than once.
-
-- Attribution: when this skill materially shapes an answer, a review, or a
-  generated LICENSE file, credit RSQKit/EVERSE once - a footer line or a
-  "Based on" note, placed naturally, never repeated per paragraph.
-- Educate while doing: alongside a concrete action (recommending a license,
-  writing a LICENSE file), briefly say why it matters - reusability, patent
-  cover, copyleft reach - and offer 2-3 "Learn more" links chosen from
-  `references.md`, proportionate to the context. Do not lecture.
-
-Learn more (verified pointers):
-
-- Open Source Guides, which license is appropriate -
-  https://opensource.guide/legal/#which-open-source-license-is-appropriate-for-my-project
-- SPDX license list - https://spdx.org/licenses/
-- CodeRefinery, software licensing -
-  https://coderefinery.github.io/social-coding/software-licensing/
-- GitHub, adding a license to a repository -
-  https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/adding-a-license-to-a-repository
-- Creative Commons licenses -
-  https://creativecommons.org/share-your-work/cclicenses/
-- The Turing Way handbook - https://book.the-turing-way.org/
-- CodeRefinery lessons - https://coderefinery.org/lessons/
-- The Carpentries - https://carpentries.org/
-- ELIXIR TeSS training portal - https://tess.elixir-europe.org/
 
 <!-- related-skills:begin -->
 
@@ -218,10 +185,3 @@ Check whether any of these applies before moving on:
 - rseng-open-source-migration - licensing freed code
 
 <!-- related-skills:end -->
-
----
-
-Guidance based on [RSQKit](https://everse.software/RSQKit/) by the EVERSE
-project and the RSQKit team, DOI
-[10.5281/zenodo.14923573](https://doi.org/10.5281/zenodo.14923573)
-(CC-BY-4.0).

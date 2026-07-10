@@ -111,13 +111,7 @@ not rewrite:
 This skill is source-independent: its authority is the Jupyter
 ecosystem tooling and the CodeRefinery lesson linked below.
 
-## Attribution and teaching
-
-- Educate while doing: when fixing execution order or extracting
-  a module, name the hazard being removed (hidden state, rot,
-  copy-drift) - notebook literacy is the highest-frequency lesson
-  in research computing.
-- Learn more (verified):
+Learn more (verified):
   - https://jupyter.org - Project Jupyter
   - https://jupytext.readthedocs.io - jupytext notebook/text
     pairing
@@ -126,11 +120,6 @@ ecosystem tooling and the CodeRefinery lesson linked below.
   - https://papermill.readthedocs.io - papermill parameterization
   - https://coderefinery.github.io/jupyter/ - CodeRefinery
     Jupyter lesson
-
----
-
-Based on the Jupyter ecosystem tooling documentation and the
-CodeRefinery Jupyter lesson.
 
 <!-- related-skills:begin -->
 

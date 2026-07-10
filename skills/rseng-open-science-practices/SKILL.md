@@ -113,31 +113,19 @@ in aidecl.yaml (rseng-ai-declaration).
 ## Working with this skill
 
 This skill is source-independent: its authority is the OSF and
-Center for Open Science documentation, ASAPbio resources and The
-Turing Way's open research guide linked below. It is the
+Center for Open Science documentation and ASAPbio resources linked
+below. It is the
 researcher-workflow face of what rseng-fair-software,
 rseng-reproducibility and rseng-archiving provide at the artifact
 level.
 
-## Attribution and teaching
-
-- Educate while doing: when wiring a registration or preprint
-  link, state what it protects (priority, hindsight, reuse) - the
-  incentives, not the ideology, convert people.
-- Learn more (verified):
+Learn more (verified):
   - https://osf.io - Open Science Framework
   - https://www.cos.io - Center for Open Science
   - https://www.cos.io/initiatives/prereg - preregistration
     guidance
   - https://asapbio.org - ASAPbio preprint resources
-  - https://book.the-turing-way.org/reproducible-research/open -
-    The Turing Way on open research
   - https://orcid.org - ORCID researcher identifiers
-
----
-
-Based on OSF and Center for Open Science documentation, ASAPbio
-resources and The Turing Way open research guide.
 
 <!-- related-skills:begin -->
 

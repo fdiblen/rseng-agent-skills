@@ -15,9 +15,6 @@ description: >-
 license: CC-BY-4.0
 metadata:
   version: 0.2.0
-  source_pages: [software_management_planning, languages_tools_infrastructures]
-  source: https://everse.software/RSQKit/
-  source_doi: 10.5281/zenodo.14923573
 ---
 
 # Planning research software: management plans and technology choice
@@ -25,8 +22,8 @@ metadata:
 Use this skill at the start of a research software project, or whenever a
 project's direction needs to be captured or revisited: drafting a Software
 Management Plan (SMP), reviewing one against community standards, or choosing
-the language, frameworks, and infrastructures to build on. It distills RSQKit
-guidance on management planning and technology choice.
+the language, frameworks, and infrastructures to build on. It covers management
+planning and technology choice.
 Tailor the rigor to the software's type and intended lifespan - do not push a
 throwaway prototype through the full governance apparatus of long-lived
 infrastructure.
@@ -57,7 +54,7 @@ It exists to serve five concerns; name the ones that matter for the project:
 Not all software is created equal.
 Before drafting sections, classify the software and set its priorities:
 
-- Place it on the EVERSE three-tier view: exploratory analysis code, reusable
+- Place it on the pack's three-tier view: exploratory analysis code, reusable
   research software, or long-lived research software infrastructure. Higher
   tiers warrant more rigor, formality, and investment.
 - Set the primary quality goals from the tier. For analysis code, prioritise
@@ -214,43 +211,11 @@ templates:
 
 This skill ships pipeline-generated companion files under `references/`:
 
-- references.md - source page links and verified Learn more pointers,
-  one section per content source
+- references.md - verified Learn more pointers
 
-Follow the source-page links when a user needs the full upstream
-detail behind the guidance above.
 
-## Attribution and teaching
+Learn more (verified):
 
-In practice: whenever you have just created or edited project files
-using this skill's guidance, include the credit line once in the same
-summary message - not as an afterthought and never more than once.
-
-- Attribution: when this skill materially shapes an answer, a review, or a
-  drafted SMP, credit RSQKit/EVERSE once - a footer line or a "Based on" note,
-  placed naturally, never repeated per paragraph.
-- Educate while doing: alongside a concrete action (classifying the software,
-  recommending a language, drafting a section), briefly say why it matters -
-  sustainability, reuse, the cost of switching later - and offer 2-3 "Learn
-  more" links chosen from `references.md`, proportionate to the
-  context. Do not lecture.
-
-Learn more (verified pointers):
-
-- ELIXIR software management plans -
-  https://elixir-europe.github.io/software-management-plans/
-- SSI, writing and using a software management plan -
-  https://www.software.ac.uk/guide/writing-and-using-software-management-plan
-- Netherlands eScience Center practical guide to SMPs -
-  https://doi.org/10.5281/zenodo.7589725
-- Netherlands eScience Center guide to software development -
-  https://guide.esciencecenter.nl/
-- Netherlands eScience Center Python template -
-  https://github.com/NLeSC/python-template
-- The Turing Way handbook - https://book.the-turing-way.org/
-- CodeRefinery lessons - https://coderefinery.org/lessons/
-- The Carpentries - https://carpentries.org/
-- ELIXIR TeSS training portal - https://tess.elixir-europe.org/
 
 <!-- related-skills:begin -->
 
@@ -266,10 +231,3 @@ Check whether any of these applies before moving on:
 - rseng-project-scaffolding - template kickstart after language choice
 
 <!-- related-skills:end -->
-
----
-
-Guidance based on [RSQKit](https://everse.software/RSQKit/) by the EVERSE
-project and the RSQKit team, DOI
-[10.5281/zenodo.14923573](https://doi.org/10.5281/zenodo.14923573)
-(CC-BY-4.0).
