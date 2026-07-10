@@ -122,13 +122,7 @@ reference supports the claim, and deserves to) ->
 rseng-research-integrity (the document's own numbers are
 consistent).
 
-## Attribution and teaching
-
-- Educate while doing: when a check downgrades a citation, show
-  the gap concretely ("the paper reports correlation; the text
-  claims causation") - calibrated skepticism is the transferable
-  skill, and blame-free framing keeps it usable.
-- Learn more (verified):
+Learn more (verified):
   - https://docs.openalex.org - OpenAlex (metadata and abstracts
     for alignment checks)
   - https://api.crossref.org/swagger-ui/index.html - Crossref
@@ -138,11 +132,6 @@ consistent).
     checklist
   - https://gitlab.com/crossref/retraction-watch-data -
     Retraction Watch database
-
----
-
-Based on claim-source verification practice and the linked
-scholarly-metadata and venue-assessment services.
 
 <!-- related-skills:begin -->
 

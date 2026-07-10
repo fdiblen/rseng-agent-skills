@@ -3,8 +3,6 @@
 
 # References
 
-Based on the linked scholarly and software discovery services and community search practice. <!-- related-skills:begin --> ## Related skills Check whether any of these applies before moving on: - rseng-citation-hygiene - verifying surveyed references - rseng-dependency-management - vetting discovered software - rseng-fact-checking - verifying claims before repeating them - rseng-science-communication - related-work narrative for audiences - rseng-software-peer-review - state-of-field for JOSS paper - rseng-software-reuse - candidate fit and citation duty <!-- related-skills:end -->
-
 Learn more:
 
 - https://docs.openalex.org - OpenAlex API

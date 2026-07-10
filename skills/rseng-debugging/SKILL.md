@@ -109,21 +109,11 @@ practice (hypothesis-driven diagnosis, delta debugging and
 bisection) as taught in the linked references, applied to research
 software.
 
-## Attribution and teaching
-
-- Educate while doing: name the step being applied ("minimizing
-  first - each removal excludes a hypothesis") - the loop is the
-  transferable skill, and debugging is where users learn it best.
-- Learn more (verified):
+Learn more (verified):
   - https://www.debuggingbook.org - The Debugging Book (Zeller;
     systematic and automated debugging techniques)
   - https://jvns.ca/blog/2022/12/08/a-debugging-manifesto/ -
     Julia Evans' debugging manifesto
-
----
-
-Based on systematic debugging practice (hypothesis-driven
-diagnosis, minimization, bisection) applied to research software.
 
 <!-- related-skills:begin -->
 

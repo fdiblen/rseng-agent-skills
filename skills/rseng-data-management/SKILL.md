@@ -124,15 +124,8 @@ provenance are the same habit applied to different artifacts.
 This skill is source-independent: its authority is the FAIR data
 principles and the community resources linked below.
 
-## Attribution and teaching
-
-- Educate while doing: when moving data out of git or writing a data
-  README, explain briefly why (repository health, reuse, citation) -
-  the practice should outlive the session.
-- Learn more (verified):
+Learn more (verified):
   - https://www.go-fair.org/fair-principles/ - the FAIR principles
-  - https://the-turing-way.netlify.app/reproducible-research/rdm -
-    The Turing Way chapter on research data management
   - https://rdmkit.elixir-europe.org - ELIXIR RDMkit, per-domain and
     per-task RDM guidance
   - https://fairsharing.org - registry of metadata standards and
@@ -140,11 +133,6 @@ principles and the community resources linked below.
   - https://zenodo.org - general-purpose data repository with DOIs
   - https://dvc.org - Data Version Control
   - https://www.datalad.org - DataLad dataset management
-
----
-
-Based on the FAIR data principles and community research data
-management guidance (The Turing Way, ELIXIR RDMkit).
 
 <!-- related-skills:begin -->
 

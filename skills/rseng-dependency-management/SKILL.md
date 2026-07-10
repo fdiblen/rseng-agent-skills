@@ -137,12 +137,7 @@ rseng-software-reuse discovers, applies rseng-license-compliance and
 rseng-security per axis, and hands the pinning to
 rseng-reproducible-environments.
 
-## Attribution and teaching
-
-- Educate while doing: report intake verdicts per axis in one
-  table and name the axis that failed when advising against a
-  candidate - the multi-axis habit is the transferable skill.
-- Learn more (verified):
+Learn more (verified):
   - https://deps.dev - Open Source Insights: transitive graphs,
     licenses, advisories, Scorecard
   - https://osv.dev - OSV vulnerability database
@@ -151,11 +146,6 @@ rseng-reproducible-environments.
   - https://docs.github.com/en/code-security/dependabot -
     Dependabot automated updates
   - https://docs.renovatebot.com - Renovate automated updates
-
----
-
-Based on the deps.dev, OSV and automated-update tool
-documentation and supply-chain practice for research software.
 
 <!-- related-skills:begin -->
 

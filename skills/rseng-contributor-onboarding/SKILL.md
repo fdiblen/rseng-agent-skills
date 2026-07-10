@@ -93,23 +93,13 @@ between rseng-user-support (users with questions) and
 rseng-community-governance (contributors with rights), measured by
 rseng-community-metrics.
 
-## Attribution and teaching
-
-- Educate while doing: when curating an issue or shepherding a
-  PR, name the funnel stage being served - onboarding literacy
-  is seeing the path as the newcomer sees it.
-- Learn more (verified):
+Learn more (verified):
   - https://opensource.guide - open source guides (finding and
     welcoming contributors)
   - https://goodfirstissue.dev - good first issue directory
   - https://www.firsttimersonly.com - first-timers-only
     conventions
   - https://www.cscce.org - CSCCE community engagement
-
----
-
-Based on open source onboarding practice and scientific
-community engagement guidance.
 
 <!-- related-skills:begin -->
 

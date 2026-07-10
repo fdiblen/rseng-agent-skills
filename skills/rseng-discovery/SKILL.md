@@ -107,12 +107,7 @@ services linked below. It is the front end of a chain: discovery
 finds, rseng-software-reuse and rseng-dependency-management judge,
 rseng-fact-checking and rseng-citation-hygiene verify.
 
-## Attribution and teaching
-
-- Educate while doing: name which nets were cast and which came
-  back empty - a stated search scope is what makes "nothing
-  exists" a finding rather than a guess.
-- Learn more (verified):
+Learn more (verified):
   - https://docs.openalex.org - OpenAlex API
   - https://arxiv.org - arXiv
   - https://www.semanticscholar.org - Semantic Scholar
@@ -124,11 +119,6 @@ rseng-fact-checking and rseng-citation-hygiene verify.
   - https://github.com/sindresorhus/awesome - the awesome-list
     index
   - https://paperswithcode.com - Papers with Code
-
----
-
-Based on the linked scholarly and software discovery services and
-community search practice.
 
 <!-- related-skills:begin -->
 

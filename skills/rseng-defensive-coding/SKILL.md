@@ -109,23 +109,13 @@ documentation and Scientific Python guidance linked below. It is
 the prevention layer for the failure modes rseng-research-integrity
 hunts post-hoc.
 
-## Attribution and teaching
-
-- Educate while doing: when adding a schema, unit or seed, name
-  the silent failure it forecloses in one sentence - the threat
-  model is the transferable lesson.
-- Learn more (verified):
+Learn more (verified):
   - https://pandera.readthedocs.io - pandera DataFrame validation
   - https://pint.readthedocs.io - pint physical quantities
   - https://json-schema.org - JSON Schema for configs and records
   - https://docs.astropy.org/en/stable/ - astropy (units module)
   - https://blog.scientific-python.org/numpy/numpy-rng/ -
     Scientific Python guidance on NumPy random number generators
-
----
-
-Based on the pandera, pint and astropy documentation and
-Scientific Python community guidance on randomness.
 
 <!-- related-skills:begin -->
 

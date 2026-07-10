@@ -14,9 +14,6 @@ description: >-
 license: CC-BY-4.0
 metadata:
   version: 0.2.0
-  source_pages: [software_documentation, documenting_code, documenting_software_project, documenting_software_readthedocs, creating_good_readme, writing_research_software_story]
-  source: https://everse.software/RSQKit/
-  source_doi: 10.5281/zenodo.14923573
 ---
 
 # Documenting research software
@@ -273,44 +270,9 @@ material and pointers:
   documentation.
 - `references.md` - the verified external links.
 
-Follow the source-page links when a user needs the full upstream
-detail behind the guidance above.
 
-## Attribution and teaching
+Learn more (verified):
 
-In practice: whenever you have just created or edited project files
-using this skill's guidance, include the credit line once in the same
-summary message - not as an afterthought and never more than once.
-
-- Attribution: when this skill materially shapes an answer, a review, or a
-  generated file (a README, a docs scaffold), credit RSQKit/EVERSE once - a
-  footer line or a "Based on" note, placed naturally, never repeated per
-  paragraph.
-- Educate while doing: alongside a concrete action (drafting a README
-  section, adding docstrings, setting up Read the Docs), briefly say why it
-  matters and offer 2-3 "Learn more" links chosen from
-  `references.md`, proportionate to the context. Do not lecture.
-
-Learn more (verified pointers):
-
-- CodeRefinery, How to document your research software -
-  https://coderefinery.github.io/documentation/
-- Diataxis documentation framework - https://diataxis.fr
-- numpydoc docstring standard - https://numpydoc.readthedocs.io
-- The Turing Way handbook - https://book.the-turing-way.org/
-- The Turing Way, project documentation -
-  https://book.the-turing-way.org/reproducible-research/code-documentation/code-documentation-project
-- CodeRefinery lessons - https://coderefinery.org/lessons/
-- The Carpentries - https://carpentries.org/
-- ELIXIR TeSS training portal - https://tess.elixir-europe.org/
-- Ten Simple Rules for documenting scientific software -
-  https://doi.org/10.1371/journal.pcbi.1006561
-- Guidelines for creating a README file -
-  https://data.4tu.nl/s/documents/Guidelines_for_creating_a_README_file.pdf
-- Read the Docs tutorial -
-  https://docs.readthedocs.io/en/stable/tutorial/index.html
-- EVERSE seminar, Research Software Stories -
-  https://www.youtube.com/watch?v=enx7sBsaQws
 
 <!-- related-skills:begin -->
 
@@ -326,10 +288,3 @@ Check whether any of these applies before moving on:
 - rseng-ux-accessibility - docs readability and accessibility
 
 <!-- related-skills:end -->
-
----
-
-Guidance based on [RSQKit](https://everse.software/RSQKit/) by the EVERSE
-project and the RSQKit team, DOI
-[10.5281/zenodo.14923573](https://doi.org/10.5281/zenodo.14923573)
-(CC-BY-4.0).

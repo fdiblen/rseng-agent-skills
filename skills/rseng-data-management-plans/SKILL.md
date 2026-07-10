@@ -106,23 +106,13 @@ linked below. It is the data twin of
 the SMP practice in rseng-management-planning; rseng-data-management holds the
 underlying practice.
 
-## Attribution and teaching
-
-- Educate while doing: a DMP written from reality costs little and
-  prevents the end-of-grant data scramble - say so, and show which
-  section each existing practice already satisfies.
-- Learn more (verified):
+Learn more (verified):
   - https://rdmkit.elixir-europe.org/data_management_plan - RDMkit
     on data management plans
   - https://github.com/RDA-DMP-Common/RDA-DMP-Common-Standard -
     RDA maDMP common standard
   - https://ds-wizard.org - Data Stewardship Wizard
   - https://dmponline.dcc.ac.uk - DMPonline funder templates
-
----
-
-Based on the RDA DMP Common Standard, DS-Wizard and DMPonline
-documentation and ELIXIR RDMkit guidance.
 
 <!-- related-skills:begin -->
 
