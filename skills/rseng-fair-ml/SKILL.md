@@ -106,13 +106,7 @@ work, the Croissant specification and model-card practice linked
 below. It extends rseng-fair-software to ML artifacts; rseng-fairguard
 assesses the software side.
 
-## Attribution and teaching
-
-- Educate while doing: when writing a model card or Croissant
-  record, name what each field protects downstream users from -
-  FAIR-ML literacy is mostly understanding the failure modes of
-  undocumented models.
-- Learn more (verified):
+Learn more (verified):
   - https://www.rd-alliance.org/groups/fair-machine-learning-fair4ml-ig/ -
     RDA FAIR4ML interest group
   - https://mlcommons.org/working-groups/data/croissant/ -
@@ -121,11 +115,6 @@ assesses the software side.
     format and guidance
   - https://www.go-fair.org/fair-principles/ - the FAIR principles
   - https://onnx.ai - ONNX model interchange format
-
----
-
-Based on the RDA FAIR4ML direction, the Croissant specification
-and established model-card practice.
 
 <!-- related-skills:begin -->
 

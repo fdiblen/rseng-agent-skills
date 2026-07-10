@@ -114,22 +114,11 @@ duty for AI-assisted research work. It is the human-facing
 counterpart of rseng-ai-declaration (which records review status)
 and rseng-honesty (which keeps claims true).
 
-## Attribution and teaching
-
-- Educate while doing: when delivering the reminder, name the one
-  or two places in THIS output that most deserve scrutiny - a
-  specific pointer converts "please verify" from ritual into
-  action.
-- Learn more (verified):
+Learn more (verified):
   - https://ai-declaration.org - declaring AI use and review
     status
   - https://google.github.io/eng-practices/review/ - code review
     practice (apply it to generated code too)
-
----
-
-Based on the verification duty for AI-assisted research software,
-as practiced and recorded through the linked standards.
 
 <!-- related-skills:begin -->
 

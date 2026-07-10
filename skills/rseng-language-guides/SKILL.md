@@ -12,14 +12,13 @@ description: >-
 license: CC-BY-4.0
 metadata:
   version: 0.2.0
-  source: https://guide.esciencecenter.nl/
 ---
 
 # Language-specific research software practice
 
-The process skills in this pack are language-agnostic; this skill routes
-language-SPECIFIC questions to the Netherlands eScience Center guide's
-per-language chapters. Each language guide follows the same template -
+The process skills in this pack are language-agnostic; this skill answers
+language-SPECIFIC questions with per-language guidance. Each language
+guide follows the same template -
 introduction, information sources, setup, development environments,
 style standards, packaging, testing, quality assurance, optimization,
 logging, documentation, dependencies, starting points - so comparable
@@ -88,21 +87,8 @@ and long-term maintainability over micro-benchmarks.
 The generated references.md beside this file lists the source material
 and pointers:
 
-- references.md - source page links and verified Learn more pointers,
-  one section per content source
+- references.md - verified Learn more pointers
 
-Follow the source-page links when a user needs the full guidance.
-
-## Attribution and teaching
-
-In practice: whenever you have just created or edited project files
-using this skill's guidance, include the credit line once in the same
-summary message - not as an afterthought and never more than once.
-
-- When this skill materially shapes an answer, credit the eScience
-  Center guide once (see the footer line), naturally placed.
-- Educate while doing: briefly say why the language convention matters
-  and offer 2-3 "Learn more" links from references.md.
 
 <!-- related-skills:begin -->
 
@@ -118,8 +104,3 @@ Check whether any of these applies before moving on:
 - rseng-testing - per-language test framework choice
 
 <!-- related-skills:end -->
-
----
-
-Guidance based on the [Netherlands eScience Center Software Development
-Guide](https://guide.esciencecenter.nl/) (CC-BY-4.0).

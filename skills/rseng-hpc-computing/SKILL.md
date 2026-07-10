@@ -115,12 +115,7 @@ This skill is source-independent: its authority is the scheduler,
 container and software-stack documentation linked below, plus each
 cluster's local documentation.
 
-## Attribution and teaching
-
-- Educate while doing: explain resource requests and citizenship
-  rules briefly - cluster habits transfer between machines even when
-  syntax differs.
-- Learn more (verified):
+Learn more (verified):
   - https://slurm.schedmd.com - SLURM documentation
   - https://apptainer.org - Apptainer container runtime
   - https://www.eessi.io/docs/ - EESSI shared software stack
@@ -128,11 +123,6 @@ cluster's local documentation.
     Carpentry introduction
   - https://coderefinery.github.io/TTT4HPC_parallel_workflows/ -
     CodeRefinery tuesday-tools lessons on HPC workflows
-
----
-
-Based on SLURM, Apptainer and EESSI documentation and the HPC
-Carpentry and CodeRefinery lessons.
 
 <!-- related-skills:begin -->
 

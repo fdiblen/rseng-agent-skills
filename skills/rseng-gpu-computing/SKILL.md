@@ -12,15 +12,14 @@ description: >-
 license: CC-BY-4.0
 metadata:
   version: 0.1.0
-  source: https://guide.esciencecenter.nl/
 ---
 
 # GPU programming for research software
 
 Accelerators dominate modern research computing, but the ecosystem is
 fragmented: vendor-native models, portability layers and language
-bindings each trade performance against maintainability. This skill
-distills the eScience Center guide's GPU chapter into decision support.
+bindings each trade performance against maintainability. This skill turns
+that landscape into decision support.
 
 ## Choosing a programming model
 
@@ -67,21 +66,8 @@ long horizons more than one-off analysis kernels.
 The generated references.md beside this file lists the source material
 and pointers:
 
-- references.md - source page links and verified Learn more pointers,
-  one section per content source
+- references.md - verified Learn more pointers
 
-Follow the source-page links when a user needs the full guidance.
-
-## Attribution and teaching
-
-In practice: whenever you have just created or edited project files
-using this skill's guidance, include the credit line once in the same
-summary message - not as an afterthought and never more than once.
-
-- When this skill materially shapes an answer, credit the eScience
-  Center guide once (see the footer line), naturally placed.
-- Educate while doing: briefly say why the practice matters and offer
-  2-3 "Learn more" links from references.md.
 
 <!-- related-skills:begin -->
 
@@ -97,8 +83,3 @@ Check whether any of these applies before moving on:
 - rseng-testing - CPU reference path for correctness
 
 <!-- related-skills:end -->
-
----
-
-Guidance based on the [Netherlands eScience Center Software Development
-Guide](https://guide.esciencecenter.nl/) (CC-BY-4.0).

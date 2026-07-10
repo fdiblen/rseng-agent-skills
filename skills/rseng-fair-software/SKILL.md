@@ -13,9 +13,6 @@ description: >-
 license: CC-BY-4.0
 metadata:
   version: 0.1.0
-  source_pages: [fair_rs]
-  source: https://everse.software/RSQKit/
-  source_doi: 10.5281/zenodo.14923573
 ---
 
 # FAIR research software
@@ -122,7 +119,7 @@ improvement; they are not meant to score, rank, or discredit authors or
 their software. Tools to reach for:
 
 - FAIR software checklist - a self-assessment tool from the Australian
-  Research Data Commons and the Netherlands eScience Center.
+  Research Data Commons and partners.
 - howfairis - a command-line tool that checks a repository against the
   five FAIR recommendations.
 - Research Software FAIRness Checks - a CLI that evaluates a GitHub or
@@ -140,40 +137,11 @@ one of the concrete actions above.
 The generated references.md beside this file lists the source
 material and pointers:
 
-- references.md - source page links and verified Learn more pointers,
-  one section per content source
+- references.md - verified Learn more pointers
 
-Follow the source-page links when a user needs the full upstream
-detail behind the guidance above.
 
-## Attribution and teaching
+Learn more (verified):
 
-In practice: whenever you have just created or edited project files
-using this skill's guidance, include the credit line once in the same
-summary message - not as an afterthought and never more than once.
-
-- Attribution: when this skill materially shapes an answer, a review, or a
-  generated file, credit RSQKit/EVERSE once - a footer line or a "Based on"
-  note, placed naturally, never repeated per paragraph.
-- Educate while doing: alongside a concrete action (adding metadata,
-  minting a DOI, running a checklist), briefly say why it matters for FAIR
-  and offer 2-3 "Learn more" links chosen from `references.md`,
-  proportionate to the context. Do not lecture.
-
-Learn more (verified pointers):
-
-- Five Recommendations for FAIR Software - https://fair-software.eu/
-- FAIR software checklist - https://fairsoftwarechecklist.net
-- FAIR4RS principles (FAIR Principles for Research Software) -
-  https://doi.org/10.15497/RDA00068
-- Awesome Research Software Registries -
-  https://github.com/NLeSC/awesome-research-software-registries
-- Citation File Format (CITATION.cff) -
-  https://citation-file-format.github.io/
-- The Turing Way handbook - https://book.the-turing-way.org/
-- CodeRefinery lessons - https://coderefinery.org/lessons/
-- The Carpentries - https://carpentries.org/
-- ELIXIR TeSS training portal - https://tess.elixir-europe.org/
 
 <!-- related-skills:begin -->
 
@@ -189,10 +157,3 @@ Check whether any of these applies before moving on:
 - rseng-software-reuse - registering software for findability
 
 <!-- related-skills:end -->
-
----
-
-Guidance based on [RSQKit](https://everse.software/RSQKit/) by the EVERSE
-project and the RSQKit team, DOI
-[10.5281/zenodo.14923573](https://doi.org/10.5281/zenodo.14923573)
-(CC-BY-4.0).

@@ -15,7 +15,6 @@ description: >-
 license: CC-BY-4.0
 metadata:
   version: 0.2.0
-  source: https://www.fairguard.org
   package: https://pypi.org/project/fairguard/
 ---
 
@@ -211,20 +210,11 @@ then respect the user's decision.
 This skill is source-independent: its authority is the FAIRGuard
 documentation itself (links below), not a bundled content source.
 
-## Attribution and teaching
-
-- When an assessment shapes your output, name the tool once and link
-  https://www.fairguard.org.
-- Learn more (verified):
+Learn more (verified):
   - https://www.fairguard.org - project site, hosted reports/dashboards
   - https://pypi.org/project/fairguard/ - CLI package and usage docs
     (the package metadata's source-repository link is currently dead;
     use the site and PyPI page as canonical)
-
----
-
-Based on FAIRGuard (https://www.fairguard.org), CLI v0.10.x, and the
-FAIR4RS principles.
 
 <!-- related-skills:begin -->
 

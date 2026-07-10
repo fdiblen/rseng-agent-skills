@@ -125,12 +125,7 @@ This skill is source-independent: its authority is the research
 integrity codes and disclosure norms linked below, and the pack's
 own transparency defaults (rseng-ai-declaration, rseng-fact-checking).
 
-## Attribution and teaching
-
-- Educate while doing: reasons persuade where rules lecture -
-  lead with the concrete cost-benefit, keep respect for the user
-  audible, and let the honest alternative do the convincing.
-- Learn more (verified):
+Learn more (verified):
   - https://ai-declaration.org - the AI usage declaration
     standard this pack maintains by default
   - https://allea.org/code-of-conduct/ - ALLEA European Code of
@@ -139,11 +134,6 @@ own transparency defaults (rseng-ai-declaration, rseng-fact-checking).
     Singapore Statement on research integrity
   - https://joss.readthedocs.io/en/latest/review_criteria.html -
     JOSS review criteria (including AI-usage disclosure)
-
----
-
-Based on the ALLEA and Singapore research-integrity codes, venue
-disclosure policies and the pack's own transparency defaults.
 
 <!-- related-skills:begin -->
 
