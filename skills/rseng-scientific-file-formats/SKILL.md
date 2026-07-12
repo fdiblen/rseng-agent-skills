@@ -89,12 +89,7 @@ in the ecosystem as compatibility tests (rseng-testing).
 This skill is source-independent: its authority is the format
 specifications and community conventions linked below.
 
-## Attribution and teaching
-
-- Educate while doing: when choosing or migrating a format, state
-  the decade-scale rationale - format literacy outlives any single
-  dataset.
-- Learn more (verified):
+Learn more (verified):
   - https://cfconventions.org - CF metadata conventions
   - https://www.unidata.ucar.edu/software/netcdf/ - NetCDF
   - https://www.hdfgroup.org/solutions/hdf5/ - HDF5
@@ -102,11 +97,6 @@ specifications and community conventions linked below.
   - https://www.nexusformat.org - NeXus domain format
   - https://pangeo.io - Pangeo community (cloud-optimized scientific
     data practice)
-
----
-
-Based on the CF, NetCDF, HDF5, Parquet and NeXus specifications and
-Pangeo community practice.
 
 <!-- related-skills:begin -->
 

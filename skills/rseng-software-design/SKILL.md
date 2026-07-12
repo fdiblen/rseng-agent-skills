@@ -177,23 +177,13 @@ design practice proportioned for research software. BSSW's design
 topic collects the community's deeper material; CodeRefinery
 teaches the modular-development moves hands-on.
 
-## Attribution and teaching
-
-- Educate while doing: when extracting a module or purifying a
-  core, state the change-cost argument in one sentence - design
-  literacy is knowing WHY the structure, not memorizing patterns.
-- Learn more (verified):
+Learn more (verified):
   - https://bssw.io/items?topic=design - Better Scientific
     Software design resources
   - https://coderefinery.github.io/modular-type-along/ -
     CodeRefinery modular code development
   - https://adr.github.io - architecture decision records
   - https://c4model.com - the C4 model for architecture diagrams
-
----
-
-Based on established software design practice as applied to
-research software, and the BSSW and CodeRefinery materials.
 
 <!-- related-skills:begin -->
 

@@ -70,8 +70,7 @@ Structure the repository as a compendium - the recognized shape for
 reproducible research projects: data (raw read-only, processed
 generated), code, environment specification, outputs, and a README
 tying them together with the one command. Conventions and examples
-live at research-compendium.science; the Turing Way's reproducible
-research guide covers the surrounding practice. For projects headed
+live at research-compendium.science. For projects headed
 to review, the compendium IS the replication package.
 
 ## Replication packages and artifact evaluation
@@ -129,24 +128,12 @@ reproducibility guidance and tooling linked below. It assembles what
 rseng-reproducible-environments, rseng-workflows and rseng-data-management
 provide layer by layer.
 
-## Attribution and teaching
-
-- Educate while doing: when adding seeds, manifests or the one
-  command, say which reproduction failure each prevents - the stack,
-  not the checklist, is the lesson.
-- Learn more (verified):
-  - https://book.the-turing-way.org/reproducible-research/reproducible-research -
-    The Turing Way guide to reproducible research
+Learn more (verified):
   - https://research-compendium.science - research compendium
     conventions and examples
   - https://mybinder.org - Binder
   - https://github.com/jupyterhub/repo2docker - repo2docker
   - https://codecheck.org.uk/ - CODECHECK independent execution
-
----
-
-Based on The Turing Way reproducible research guide, research
-compendium conventions and the Binder tooling documentation.
 
 <!-- related-skills:begin -->
 

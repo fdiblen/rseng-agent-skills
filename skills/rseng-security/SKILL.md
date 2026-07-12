@@ -144,11 +144,7 @@ This skill is source-independent: its authority is the OpenSSF and
 SLSA documentation and the research-software security literature
 linked below.
 
-## Attribution and teaching
-
-- When an assessment shapes output, name the tool once (OpenSSF
-  Scorecard, gitleaks) and link its page.
-- Learn more (verified):
+Learn more (verified):
   - https://github.com/ossf/scorecard - OpenSSF Scorecard
   - https://www.bestpractices.dev - OpenSSF Best Practices badge
   - https://slsa.dev - SLSA supply-chain levels
@@ -157,13 +153,6 @@ linked below.
   - https://github.com/google/oss-fuzz - OSS-Fuzz continuous fuzzing
   - https://arxiv.org/abs/2508.03856 - Scorecard study of 3,248
     research repositories
-  - https://everse.software/RSQKit/research_software_security -
-    RSQKit task page on research software security
-
----
-
-Based on OpenSSF Scorecard and Best Practices, SLSA, and published
-research-software security assessments.
 
 <!-- related-skills:begin -->
 

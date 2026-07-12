@@ -103,21 +103,10 @@ For every meaningful release (rseng-publishing-releasing):
 This skill is source-independent: its authority is the community
 communication guidance linked below.
 
-## Attribution and teaching
-
-- Educate while doing: explain briefly why an artifact is framed
-  audience-first - communication habits compound across a career.
-- Learn more (verified):
-  - https://book.the-turing-way.org/communication/communication -
-    The Turing Way guide to communication
+Learn more (verified):
   - https://devguide.ropensci.org - rOpenSci dev guide (includes
     package promotion/marketing)
   - https://joss.theoj.org - JOSS, the software-paper venue
-
----
-
-Based on The Turing Way communication guide and rOpenSci community
-practices.
 
 <!-- related-skills:begin -->
 

@@ -130,12 +130,7 @@ checkable half and routes the rest; rseng-data-management owns
 sensitive-data storage practice, rseng-security owns the protective
 controls, rseng-ai-declaration owns AI-use disclosure.
 
-## Attribution and teaching
-
-- Educate while doing: when flagging a finding, name the obligation
-  it maps to in one sentence - regulation literacy prevents the
-  next violation, and fear-free explanations beat vague warnings.
-- Learn more (verified):
+Learn more (verified):
   - https://eur-lex.europa.eu/eli/reg/2016/679/oj - GDPR, official
     text
   - https://eur-lex.europa.eu/eli/reg/2024/1689/oj - EU AI Act,
@@ -146,12 +141,6 @@ controls, rseng-ai-declaration owns AI-use disclosure.
     guidance
   - https://gdpr.eu - GDPR explainers and checklists
   - https://github.com/microsoft/presidio - PII detection tooling
-
----
-
-Based on the GDPR and EU AI Act texts and official guidance. Not
-legal advice; consequential decisions belong with the DPO, ethics
-board and legal office.
 
 <!-- related-skills:begin -->
 

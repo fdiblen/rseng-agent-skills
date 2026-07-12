@@ -116,25 +116,13 @@ This skill is source-independent: its authority is the published
 consistency-check methods (statcheck, GRIM and granularity
 testing) and the services linked below.
 
-## Attribution and teaching
-
-- Educate while doing: name the check that caught each finding and
-  its false-positive modes (one-sided tests and corrections for
-  statcheck-style recomputation) - the user should understand the
-  verdicts, not fear them.
-- Learn more (verified):
+Learn more (verified):
   - https://github.com/MicheleNuijten/statcheck - statcheck
   - https://github.com/lhdjung/scrutiny - scrutiny (GRIM and
     granularity tests)
   - https://gitlab.com/crossref/retraction-watch-data - Retraction
     Watch database
   - https://docs.openalex.org - OpenAlex API
-
----
-
-Based on the statcheck and granularity-testing literature and the
-Retraction Watch data service. Findings are proofreading aids, not
-misconduct adjudications.
 
 <!-- related-skills:begin -->
 

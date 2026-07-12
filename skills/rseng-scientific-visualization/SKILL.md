@@ -86,21 +86,11 @@ is needed again. Make visualizations regenerable:
 This skill is source-independent: its authority is the VTK and
 ParaView documentation linked below.
 
-## Attribution and teaching
-
-- Educate while doing: when scripting a formerly-interactive
-  visualization, say why - regenerability is the habit worth
-  transferring.
-- Learn more (verified):
+Learn more (verified):
   - https://docs.paraview.org/en/latest/ - ParaView documentation
   - https://vtk.org - the Visualization Toolkit
   - https://kitware.github.io/trame/ - trame web framework for
     VTK/ParaView apps
-
----
-
-Based on the ParaView and VTK documentation and scientific
-visualization practice.
 
 <!-- related-skills:begin -->
 

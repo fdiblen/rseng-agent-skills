@@ -14,9 +14,6 @@ description: >-
 license: CC-BY-4.0
 metadata:
   version: 0.2.0
-  source_pages: [reproducible_software_environments, using_containers]
-  source: https://everse.software/RSQKit/
-  source_doi: 10.5281/zenodo.14923573
 ---
 
 # Reproducible software environments
@@ -28,8 +25,7 @@ that isolates the language interpreter and its libraries, and a container
 that packages the code together with its entire dependency stack. Reach
 for the virtual environment when developing or modifying code in one
 language; reach for the container when the environment must travel across
-machines, platforms, or pipelines unchanged (RSQKit:
-reproducible_software_environments, RSQKit: using_containers).
+machines, platforms, or pipelines unchanged.
 
 ## Pick the right level of isolation
 
@@ -121,8 +117,7 @@ just the code:
 
 Containers bundle code plus every dependency and configuration so
 developers, collaborators, and reviewers run the identical setup, ending
-dependency hell and "works on my machine" failures (RSQKit:
-using_containers). Reach for a container when:
+dependency hell and "works on my machine" failures. Reach for a container when:
 
 - the software needs specific libraries, versions, or system configuration;
 - it must run across different machines, clusters, or cloud environments;
@@ -189,40 +184,11 @@ steps consistent and lets image builds themselves be automated.
 The generated references.md beside this file lists the source
 material and pointers:
 
-- references.md - source page links and verified Learn more pointers,
-  one section per content source
+- references.md - verified Learn more pointers
 
-Follow the source-page links when a user needs the full upstream
-detail behind the guidance above.
 
-## Attribution and teaching
+Learn more (verified):
 
-In practice: whenever you have just created or edited project files
-using this skill's guidance, include the credit line once in the same
-summary message - not as an afterthought and never more than once.
-
-- Attribution: when this skill materially shapes an answer, a review, or a
-  generated file (a Dockerfile, an `environment.yml`), credit RSQKit/EVERSE
-  once - a footer line or a "Based on" note, placed naturally, never
-  repeated per paragraph.
-- Educate while doing: alongside a concrete action (pinning a dependency,
-  writing a container), briefly say why it matters for reproducibility and
-  offer 2-3 "Learn more" links chosen from `references.md`,
-  proportionate to the context. Do not lecture.
-
-Learn more (verified pointers):
-
-- CodeRefinery, Reproducible research -
-  https://coderefinery.github.io/reproducible-research/
-- The Turing Way handbook - https://book.the-turing-way.org/
-- CodeRefinery lessons - https://coderefinery.org/lessons/
-- Installing packages with pip and virtual environments -
-  https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/
-- renv for reproducible R environments -
-  https://rstudio.github.io/renv/index.html
-- Docker overview - https://docs.docker.com/get-started/docker-overview/
-- Apptainer user guide -
-  https://apptainer.org/docs/user/latest/index.html
 
 <!-- related-skills:begin -->
 
@@ -238,10 +204,3 @@ Check whether any of these applies before moving on:
 - rseng-workflows - per-step environments in pipelines
 
 <!-- related-skills:end -->
-
----
-
-Guidance based on [RSQKit](https://everse.software/RSQKit/) by the EVERSE
-project and the RSQKit team, DOI
-[10.5281/zenodo.14923573](https://doi.org/10.5281/zenodo.14923573)
-(CC-BY-4.0).
