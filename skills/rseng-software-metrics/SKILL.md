@@ -20,7 +20,7 @@ metadata:
 # Software metrics for research code
 
 Quality talk stays opinion until something is measured. A cluster
-of the EVERSE research software quality indicators is explicitly
+of the community research software quality indicators is explicitly
 quantitative - complexity, duplication, cohesion/coupling, churn,
 maintainability index, size and documentation coverage "within
 community conventions" - and all of it is measurable in minutes
@@ -52,7 +52,7 @@ hazard - when a metric becomes a target, it stops measuring
   language (rseng-language-guides).
 - Documentation coverage: fraction of public functions/classes
   with docstrings (interrogate-style) - the measurable slice of
-  rseng-documentation, and an explicit EVERSE indicator.
+  rseng-documentation, and an explicit quality indicator.
 
 ## Measuring: the tool layer
 
@@ -75,7 +75,7 @@ so every number is actionable.
 
 ## Interpreting against conventions and tier
 
-"Community conventions" is the EVERSE phrasing for a reason -
+"Community conventions" is the catalog phrasing for a reason -
 absolute thresholds are folklore, but working defaults exist:
 complexity warnings commonly start around 10 per function,
 duplication tolerance a few percent, doc coverage expectations
@@ -114,17 +114,12 @@ wins and the exception gets a comment.
 ## Working with this skill
 
 This skill is source-independent: its authority is the tool
-documentation and the EVERSE indicator definitions linked below.
+documentation and the published indicator definitions linked below.
 It supplies the quantitative half of rseng-quality-framework
 assessments; rseng-code-quality owns style and linting,
 rseng-performance-profiling owns runtime measurement.
 
-## Attribution and teaching
-
-- Educate while doing: pair each reported number with what it
-  indicates and one concrete next action - metrics literacy is
-  knowing what the number can and cannot say.
-- Learn more (verified):
+Learn more (verified):
   - https://radon.readthedocs.io - radon (Python complexity and
     maintainability)
   - https://github.com/terryyin/lizard - lizard multi-language
@@ -133,13 +128,6 @@ rseng-performance-profiling owns runtime measurement.
     detection
   - https://interrogate.readthedocs.io - interrogate docstring
     coverage
-  - https://everse.software/indicators/website/indicators.html -
-    EVERSE research software quality indicators
-
----
-
-Based on the EVERSE quality indicator definitions and the linked
-measurement-tool documentation.
 
 <!-- related-skills:begin -->
 

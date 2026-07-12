@@ -114,14 +114,7 @@ This skill is source-independent: its authority is the packaging
 guides and index policies linked below. It orchestrates the
 channel-specific end of the publishing chain.
 
-## Attribution and teaching
-
-- Educate while doing: when meeting an index's gate, explain what
-  the rule protects (CRAN's checks protect users on platforms you
-  do not own; conda-forge review protects the shared stack) -
-  channel literacy converts one-time publishing into maintained
-  presence.
-- Learn more (verified):
+Learn more (verified):
   - https://packaging.python.org - Python Packaging User Guide
   - https://pypi.org - PyPI
   - https://conda-forge.org - conda-forge
@@ -131,11 +124,6 @@ channel-specific end of the publishing chain.
   - https://joss.theoj.org - Journal of Open Source Software
   - https://research-software-directory.org - Research Software
     Directory
-
----
-
-Based on the PyPA, conda-forge, CRAN and rOpenSci packaging
-guidance and research software registry practice.
 
 <!-- related-skills:begin -->
 

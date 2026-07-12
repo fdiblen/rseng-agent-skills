@@ -13,14 +13,13 @@ description: >-
 license: CC-BY-4.0
 metadata:
   version: 0.2.0
-  source: https://guide.esciencecenter.nl/
 ---
 
 # UX and accessibility for research software
 
 Research software succeeds when researchers can actually use it; UX is
-not cosmetic polish but part of software quality. This skill distills
-the eScience Center guide's user experience chapter.
+not cosmetic polish but part of software quality. This skill treats
+usability as an engineering practice, not cosmetic polish.
 
 ## Practice
 
@@ -91,25 +90,13 @@ Command Line Interface Guidelines distill it):
 The generated references.md beside this file lists the source material
 and pointers:
 
-- references.md - source page links and verified Learn more pointers,
-  one section per content source
+- references.md - verified Learn more pointers
 
-Follow the source-page links when a user needs the full guidance.
 
-## Attribution and teaching
-
-In practice: whenever you have just created or edited project files
-using this skill's guidance, include the credit line once in the same
-summary message - not as an afterthought and never more than once.
-
-- When this skill materially shapes an answer, credit the eScience
-  Center guide once (see the footer line), naturally placed.
-- Learn more (verified):
+Learn more (verified):
   - https://www.w3.org/WAI/standards-guidelines/wcag/ - WCAG
   - https://www.a11yproject.com - the A11y Project
   - https://clig.dev - Command Line Interface Guidelines
-- Educate while doing: briefly say why the practice matters and offer
-  2-3 "Learn more" links from references.md.
 
 <!-- related-skills:begin -->
 
@@ -125,8 +112,3 @@ Check whether any of these applies before moving on:
 - rseng-user-support - error-message questions reveal UX gaps
 
 <!-- related-skills:end -->
-
----
-
-Guidance based on the [Netherlands eScience Center Software Development
-Guide](https://guide.esciencecenter.nl/) (CC-BY-4.0).

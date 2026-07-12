@@ -100,21 +100,11 @@ practice for research software. It feeds rseng-documentation and
 rseng-project-tracking and draws on rseng-community-metrics for its
 health signals.
 
-## Attribution and teaching
-
-- Educate while doing: when routing a question into docs, note
-  the answer-once principle - support literacy turns load into
-  assets.
-- Learn more (verified):
+Learn more (verified):
   - https://opensource.guide - open source guides (best
     practices for maintainers)
   - https://www.cscce.org - CSCCE community engagement resources
   - https://chaoss.community - CHAOSS metrics (responsiveness)
-
----
-
-Based on open source maintainer practice and scientific
-community engagement guidance.
 
 <!-- related-skills:begin -->
 

@@ -119,13 +119,7 @@ combined with the verified artifacts of the project itself. It is
 the broad-audience narrative layer over
 rseng-science-communication.
 
-## Attribution and teaching
-
-- Educate while doing: when reshaping facts into story, show the
-  before/after and name the technique (concrete anchor, arc,
-  loop-closing) - narrative craft transfers to every future
-  grant, talk and website.
-- Learn more (verified):
+Learn more (verified):
   - https://ecsa.citizen-science.net - European Citizen Science
     Association (ten principles of citizen science)
   - https://eu-citizen.science - EU-Citizen.Science platform
@@ -134,11 +128,6 @@ rseng-science-communication.
     Participatory Sciences
   - https://riojournal.com/article/21283/ - principles for
     citizen-science apps and platforms
-
----
-
-Based on the ECSA principles, citizen-science platform practice
-and honest-narrative craft for research communication.
 
 <!-- related-skills:begin -->
 

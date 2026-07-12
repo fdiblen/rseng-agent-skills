@@ -4,7 +4,7 @@ description: >-
   Covers teaching research software skills while working: turning everyday
   coding moments into short, learner-centered lessons on best practices and
   technical or research-software concepts, using the pedagogy of the
-  Carpentries, CodeRefinery and the EVERSE training catalog (objective-led
+  Carpentries, CodeRefinery and community training catalogs (objective-led
   episodes, live-coding walk-throughs, formative checks, error normalization),
   and routing learners to canonical training materials for depth. Use when a
   teachable moment appears during a task (offer a one-line lesson, never
@@ -64,8 +64,8 @@ Teach in the shape the community's lessons use:
    failures.
 4. Close with one key point and one canonical link: a single-line
    takeaway plus a pointer into the real training landscape
-   (a CodeRefinery lesson, Carpentries episode, EVERSE catalog
-   entry or Turing Way chapter) for self-paced depth. The agent is
+   (a CodeRefinery lesson, Carpentries episode or training-catalog
+   entry) for self-paced depth. The agent is
    a gateway to the ecosystem, not a replacement for it.
 
 ## Errors are the curriculum
@@ -115,11 +115,7 @@ This skill is source-independent: its authority is the pedagogy and
 curricula of the training organizations linked below. It shapes how
 every other skill in this pack teaches.
 
-## Attribution and teaching
-
-- When a lesson draws on a specific curriculum, name it once and
-  link it - learners deserve to find the source community.
-- Learn more (verified):
+Learn more (verified):
   - https://everse-training.app.cern.ch/materials - EVERSE training
     catalog (competency-levelled research software quality
     materials)
@@ -131,11 +127,6 @@ every other skill in this pack teaches.
   - https://www.software.ac.uk/training - SSI curated training list
   - https://hsf-training.org/training-center/ - HSF training center
   - https://intersect-training.org - INTERSECT RSE training modules
-
----
-
-Based on the pedagogy and curricula of the Carpentries, CodeRefinery
-and the EVERSE training catalog.
 
 <!-- related-skills:begin -->
 

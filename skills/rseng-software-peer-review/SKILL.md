@@ -96,11 +96,7 @@ When the user is the reviewer:
 This skill is source-independent: its authority is the venues' own
 review criteria and guides linked below.
 
-## Attribution and teaching
-
-- When preparing or conducting a review, name the venue's checklist
-  as the standard being applied and link it once.
-- Learn more (verified):
+Learn more (verified):
   - https://joss.readthedocs.io/en/latest/review_checklist.html -
     JOSS review checklist
   - https://joss.theoj.org - Journal of Open Source Software
@@ -110,11 +106,6 @@ review criteria and guides linked below.
     review guide
   - https://codecheck.org.uk/ - CODECHECK independent execution
     certificates
-
----
-
-Based on the JOSS, rOpenSci, pyOpenSci and CODECHECK review criteria
-and guides.
 
 <!-- related-skills:begin -->
 

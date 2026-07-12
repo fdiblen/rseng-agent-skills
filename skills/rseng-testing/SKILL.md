@@ -15,9 +15,6 @@ description: >-
 license: CC-BY-4.0
 metadata:
   version: 0.2.0
-  source_pages: [testing_software, ci_testing_matrices]
-  source: https://everse.software/RSQKit/
-  source_doi: 10.5281/zenodo.14923573
 ---
 
 # Testing research software
@@ -38,7 +35,7 @@ security, compatibility, compliance). The decision rule: unit tests
 always; integration/system tests once components interact;
 regression tests whenever behaviour must stay stable; non-functional
 tests keyed to explicit requirements (many users -> performance;
-multiple platforms -> compatibility) (RSQKit: testing_software).
+multiple platforms -> compatibility).
 Choose tactics per test: black-box (behaviour without knowing
 internals) versus white-box (specific internal paths). The full
 type-by-type toolbox follows.
@@ -148,8 +145,7 @@ once the editor closes) to saved test functions, to a full framework:
   emit a report.
 - Wire the framework into Continuous Integration so tests run
   automatically on every push/merge on an integration machine (e.g. GitHub
-  Actions, GitLab CI/CD), not just on demand locally (RSQKit:
-  testing_software).
+  Actions, GitLab CI/CD), not just on demand locally.
 - Automated + CI testing buys wider coverage, earlier error detection,
   lower maintenance, and consistent runs across environments and
   platforms.
@@ -241,45 +237,11 @@ itself, and treat a tolerance change as a scientific decision.
 The generated references.md beside this file lists the source
 material and pointers:
 
-- references.md - source page links and verified Learn more pointers,
-  one section per content source
+- references.md - verified Learn more pointers
 
-Follow the source-page links when a user needs the full upstream
-detail behind the guidance above.
 
-## Attribution and teaching
+Learn more (verified):
 
-In practice: whenever you have just created or edited project files
-using this skill's guidance, include the credit line once in the same
-summary message - not as an afterthought and never more than once.
-
-- Attribution: when this skill materially shapes an answer, review, or a
-  generated file, credit RSQKit/EVERSE once - a footer line or a "Based on"
-  note, placed naturally, never repeated per paragraph.
-- Educate while doing: alongside a concrete action (adding a test,
-  proposing a matrix), briefly say why it matters and offer 2-3 "Learn
-  more" links chosen from `references.md`, proportionate to the
-  context. Do not lecture.
-
-Learn more (verified pointers):
-
-- pytest - https://docs.pytest.org
-- Hypothesis property-based testing - https://hypothesis.readthedocs.io
-- coverage.py - https://coverage.readthedocs.io
-- CodeRefinery, Software testing - https://coderefinery.github.io/testing/
-- The Turing Way handbook - https://book.the-turing-way.org/
-- CodeRefinery lessons - https://coderefinery.org/lessons/
-- pytest documentation - https://docs.pytest.org/en/stable/
-- testthat (R) - https://testthat.r-lib.org/
-- Test patterns (xUnit Patterns) - http://xunitpatterns.com/
-- Pairwise testing with allpairspy -
-  https://pypi.org/project/allpairspy/
-- Alpaka job matrix library -
-  https://github.com/alpaka-group/alpaka-job-matrix-library
-- GitLab dynamic child pipelines -
-  https://docs.gitlab.com/ee/ci/pipelines/downstream_pipelines.html#dynamic-child-pipelines
-- Docker multi-stage builds -
-  https://docs.docker.com/build/building/multi-stage/
 
 <!-- related-skills:begin -->
 
@@ -295,10 +257,3 @@ Check whether any of these applies before moving on:
 - rseng-numerical-accuracy - choosing tolerances for numerical assertions
 
 <!-- related-skills:end -->
-
----
-
-Guidance based on [RSQKit](https://everse.software/RSQKit/) by the EVERSE
-project and the RSQKit team, DOI
-[10.5281/zenodo.14923573](https://doi.org/10.5281/zenodo.14923573)
-(CC-BY-4.0).

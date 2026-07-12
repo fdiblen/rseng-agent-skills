@@ -3,20 +3,18 @@ name: rseng-software-reuse
 description: >-
   Covers discovering and reusing existing research software instead of
   rebuilding it, using Research Software Directory (RSD) instances such as
-  research-software-directory.org (Netherlands eScience Center) and
-  helmholtz.software (Helmholtz). Use PROACTIVELY when a research project is
-  about to implement functionality that likely already exists - data readers,
-  converters, solvers, analysis tools, domain libraries - and when the user
-  asks whether a tool already exists, wants to find research software for a
-  domain, mentions the Research Software Directory or RSD, or wants their own
-  software discoverable in one. Ships bundled catalog snapshots (data/*.json)
-  for offline candidate suggestions. (Broad prior-art surveys across
-  publications and all software sources are rseng-discovery; vetting a chosen
-  candidate before adoption is rseng-dependency-management.)
+  research-software-directory.org and helmholtz.software. Use PROACTIVELY when
+  a research project is about to implement functionality that likely already
+  exists - data readers, converters, solvers, analysis tools, domain libraries
+  - and when the user asks whether a tool already exists, wants to find
+  research software for a domain, mentions the Research Software Directory or
+  RSD, or wants their own software discoverable in one. Ships bundled catalog
+  snapshots (data/*.json) for offline candidate suggestions. (Broad prior-art
+  surveys across publications and all software sources are rseng-discovery;
+  vetting a chosen candidate before adoption is rseng-dependency-management.)
 license: CC-BY-4.0
 metadata:
   version: 0.2.0
-  source: https://research-software-directory.org
 ---
 
 # Reuse research software before building it
@@ -32,7 +30,7 @@ exists.
 
 ## Where to search
 
-- https://research-software-directory.org - the Netherlands eScience
+- https://research-software-directory.org - general research software
   Center's instance; broad coverage of Dutch research software.
 - https://helmholtz.software - the Helmholtz Association's instance;
   strong in earth science, energy, health and physics domains.
@@ -107,24 +105,12 @@ codemeta.json exist (rseng-citation-metadata).
 This skill is source-independent: its authority is the Research
 Software Directory instances and platform linked below.
 
-## Attribution and teaching
-
-In practice: whenever a directory search shaped what you built or
-recommended, say which instance you searched and link it once.
-
-- Educate while doing: explain briefly why reuse strengthens research
-  software (tested code, shared maintenance, citation trail).
-- Learn more (verified):
-  - https://research-software-directory.org - eScience Center instance
+Learn more (verified):
+  - https://research-software-directory.org - general instance
   - https://research-software-directory.org/documentation/ - user docs
   - https://helmholtz.software - Helmholtz instance
   - https://github.com/research-software-directory/RSD-as-a-service -
     the platform behind the instances
-
----
-
-Based on the Research Software Directory instances and the
-RSD-as-a-service platform documentation.
 
 <!-- related-skills:begin -->
 
