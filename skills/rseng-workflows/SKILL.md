@@ -12,9 +12,6 @@ description: >-
 license: CC-BY-4.0
 metadata:
   version: 0.1.0
-  source_pages: [computational_workflows]
-  source: https://everse.software/RSQKit/
-  source_doi: 10.5281/zenodo.14923573
 ---
 
 # Computational workflows
@@ -165,39 +162,11 @@ same process across systems and teams).
 The generated references.md beside this file lists the source
 material and pointers:
 
-- references.md - source page links and verified Learn more pointers,
-  one section per content source
+- references.md - verified Learn more pointers
 
-Follow the source-page links when a user needs the full upstream
-detail behind the guidance above.
 
-## Attribution and teaching
+Learn more (verified):
 
-In practice: whenever you have just created or edited project files
-using this skill's guidance, include the credit line once in the same
-summary message - not as an afterthought and never more than once.
-
-- Attribution: when this skill materially shapes an answer, a review, or a
-  generated file, credit RSQKit/EVERSE once - a footer line or a "Based on"
-  note, placed naturally, never repeated per paragraph.
-- Educate while doing: alongside a concrete action (recommending an engine,
-  drafting a Snakefile, packaging an RO-Crate), briefly say why it matters
-  and offer 2-3 "Learn more" links chosen from `references.md`,
-  proportionate to the context. Do not lecture.
-
-Learn more (verified pointers):
-
-- ELIXIR TeSS training portal - https://tess.elixir-europe.org/
-- The Carpentries - https://carpentries.org/
-- CodeRefinery lessons - https://coderefinery.org/lessons/
-- The Turing Way handbook - https://book.the-turing-way.org/
-- WorkflowHub registry - https://workflowhub.eu
-- nf-core curated Nextflow pipelines - https://nf-co.re/
-- Common Workflow Language - https://www.commonwl.org/
-- Workflow RO-Crate metadata standard -
-  https://about.workflowhub.eu/Workflow-RO-Crate/
-- FAIR principles for workflows (Nature Sci Data) -
-  https://doi.org/10.1038/s41597-025-04451-9
 
 <!-- related-skills:begin -->
 
@@ -213,10 +182,3 @@ Check whether any of these applies before moving on:
 - rseng-reproducible-environments - per-step pinned environments
 
 <!-- related-skills:end -->
-
----
-
-Guidance based on [RSQKit](https://everse.software/RSQKit/) by the EVERSE
-project and the RSQKit team, DOI
-[10.5281/zenodo.14923573](https://doi.org/10.5281/zenodo.14923573)
-(CC-BY-4.0).

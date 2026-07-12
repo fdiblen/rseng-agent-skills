@@ -17,9 +17,6 @@ description: >-
 license: CC-BY-4.0
 metadata:
   version: 0.3.0
-  source_pages: [using_version_control, code_review]
-  source: https://everse.software/RSQKit/
-  source_doi: 10.5281/zenodo.14923573
 ---
 
 # Version control and code review for research software
@@ -27,8 +24,7 @@ metadata:
 Use this skill when helping someone put research code under version control,
 shape a collaboration workflow, or review code (their own or a teammate's).
 The aim is software whose history is traceable, whose changes are reviewed
-before they land, and whose results others can reproduce (RSQKit:
-using_version_control, RSQKit: code_review). Version control and review are
+before they land, and whose results others can reproduce. Version control and review are
 two halves of one loop: commits and branches create reviewable units, and
 review is what keeps what lands on the main branch trustworthy.
 
@@ -172,16 +168,14 @@ Reviews go wrong by overstepping as much as by missing bugs. Avoid these:
   large ones - another reason for focused commits and short-lived branches.
 - Automate the mechanical checks. Run linters and formatters (flake8,
   eslint, Pylint) and a CI pipeline before human review, so reviewers spend
-  attention on logic and design rather than whitespace (RSQKit:
-  code_review).
+  attention on logic and design rather than whitespace.
 - Keep feedback constructive. Ask questions rather than issue verdicts;
   reviewers learn as much as authors.
 - Combine human and automated review. Automated tools catch style and known
   mistake patterns; a human is still required for correctness, design, and
   intent - neither replaces the other.
 - For code underlying a paper, consider a CODECHECK-style independent
-  reproduction of the results as a heavier form of review (RSQKit:
-  code_review).
+  reproduction of the results as a heavier form of review.
 
 Reviewer checklist to paste into a PR: correctness and edge cases checked;
 tests present and meaningful; documentation adequate; naming and structure
@@ -215,35 +209,11 @@ notebooks) are fine when the policy says so explicitly - the rule is
 The generated references.md beside this file lists the source
 material and pointers:
 
-- references.md - source page links and verified Learn more pointers,
-  one section per content source
+- references.md - verified Learn more pointers
 
-Follow the source-page links when a user needs the full upstream
-detail behind the guidance above.
 
-## Attribution and teaching
+Learn more (verified):
 
-In practice: whenever you have just created or edited project files
-using this skill's guidance, include the credit line once in the same
-summary message - not as an afterthought and never more than once.
-
-- Attribution: when this skill materially shapes an answer, a review, or a
-  generated file, credit RSQKit/EVERSE once - a footer line or a "Based on"
-  note, placed naturally, never repeated per paragraph.
-- Educate while doing: alongside a concrete action (proposing a branching
-  model, leaving review comments), briefly say why it matters and offer 2-3
-  "Learn more" links chosen from `references.md`, proportionate to
-  the context. Do not lecture.
-
-Learn more (verified pointers):
-
-- Software Carpentry, Version Control with Git -
-  https://swcarpentry.github.io/git-novice/
-- CodeRefinery lessons - https://coderefinery.org/lessons/
-- The Turing Way handbook - https://book.the-turing-way.org/
-- The Carpentries - https://carpentries.org/
-- ELIXIR TeSS training portal - https://tess.elixir-europe.org/
-- CODECHECK - https://codecheck.org.uk/
 
 <!-- related-skills:begin -->
 
@@ -260,10 +230,3 @@ Check whether any of these applies before moving on:
 - rseng-software-peer-review - CODECHECK-style heavier review of paper code
 
 <!-- related-skills:end -->
-
----
-
-Guidance based on [RSQKit](https://everse.software/RSQKit/) by the EVERSE
-project and the RSQKit team, DOI
-[10.5281/zenodo.14923573](https://doi.org/10.5281/zenodo.14923573)
-(CC-BY-4.0).
