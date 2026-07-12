@@ -113,24 +113,13 @@ This skill is source-independent: it encodes established pairing
 and code-review practice adapted to human-agent research software
 collaboration.
 
-## Attribution and teaching
-
-- Educate while doing: pairing IS the teaching channel - narrate
-  reasoning at decision points and name the practice being applied
-  once, without turning the session into a lecture
-  (rseng-trainer's consensual-offer rule governs).
-- Learn more (verified):
+Learn more (verified):
   - https://martinfowler.com/articles/on-pair-programming.html -
     On Pair Programming (Fowler/Boeckeler-Siessegger)
   - https://google.github.io/eng-practices/review/ - Google
     engineering review practices
   - https://conventionalcomments.org - conventional comments for
     review threads
-
----
-
-Based on established pair-programming and code-review practice
-adapted to human-agent collaboration on research software.
 
 <!-- related-skills:begin -->
 

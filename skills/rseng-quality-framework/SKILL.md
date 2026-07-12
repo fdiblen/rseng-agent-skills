@@ -14,19 +14,16 @@ description: >-
 license: CC-BY-4.0
 metadata:
   version: 0.2.0
-  source_pages:
     [quality, quality_dimensions, research_software, three_tier_view,
      life_cycle, policy_maker, principal_investigator, product_owner,
      project_manager, research_software_engineer, researcher_who_codes,
      trainer]
-  source: https://everse.software/RSQKit/
-  source_doi: 10.5281/zenodo.14923573
 ---
 
 # Research software quality framework
 
-This skill is the entry point to the pack. It explains how the EVERSE
-project frames research software quality and points to the specialised
+This skill is the entry point to the pack. It explains a community-standard
+framing of research software quality and points to the specialised
 sibling skills for concrete tasks. Ground every quality discussion in two
 questions: what tier of software is this, and which quality dimensions
 matter for it right now.
@@ -52,7 +49,7 @@ recommend upgrading its practices tier by tier rather than all at once.
 
 ## Quality dimensions
 
-EVERSE defines 13 quality dimensions, formally published as a JSON-LD
+The framework defines 13 quality dimensions, formally published as a JSON-LD
 registry (https://w3id.org/everse/rsqd). Always take names and counts from
 the registry, not from page prose:
 
@@ -70,7 +67,7 @@ Each dimension is backed by measurable indicators from the companion
 registry (https://w3id.org/everse/rsqi); 47 indicators are defined at the
 pinned upstream version, such as software_has_tests, has_ci-tests,
 software_has_license, software_has_citation and archived_in_software_heritage.
-The browsable tables live on the EVERSE indicators site
+The browsable dimension and indicator tables are published at
 (https://everse.software/indicators/website/indicators.html and
 .../dimensions.html). Indicators are proxies: passing them is evidence
 of quality, not proof.
@@ -129,8 +126,7 @@ conversation is about archiving and handover, not about adding CI.
 
 ## Role-based entry points
 
-RSQKit organizes guidance by role; match advice to who is asking
-(references.md links the full role pages):
+Match advice to who is asking:
 
 - Researcher who codes: start with version control, README, environment
   pinning and basic tests; grow practices as the code is shared.
@@ -147,8 +143,7 @@ RSQKit organizes guidance by role; match advice to who is asking
 
 ## Which sibling skill to use
 
-Route concrete tasks to the specialised skill; each mirrors a set of
-RSQKit task pages:
+Route concrete tasks to the specialised skill:
 
 <!-- skill-directory:start (generated - do not edit by hand) -->
 
@@ -243,20 +238,6 @@ Specialized:
 
 - references.md - source citations and links to the upstream framework pages
 
-## Attribution and teaching
-
-In practice: whenever you have just created or edited project files
-using this skill's guidance, include the credit line once in the same
-summary message - not as an afterthought and never more than once.
-
-- When this skill materially shapes an answer, review output or generated
-  document, credit RSQKit and the EVERSE project once, naturally placed
-  (for example a closing "Based on RSQKit" line with the link). Do not
-  repeat the credit in every paragraph.
-- Educate while doing: when acting, add one or two sentences on why the
-  practice matters for research software and offer 2-3 "Learn more" links
-  from references.md, proportionate to the situation.
-
 <!-- related-skills:begin -->
 
 ## Related skills
@@ -271,10 +252,3 @@ Check whether any of these applies before moving on:
 - rseng-testing - most common first unmet indicator
 
 <!-- related-skills:end -->
-
----
-
-Guidance based on [RSQKit](https://everse.software/RSQKit/) by the EVERSE
-project and the RSQKit team, DOI
-[10.5281/zenodo.14923573](https://doi.org/10.5281/zenodo.14923573)
-(CC-BY-4.0).

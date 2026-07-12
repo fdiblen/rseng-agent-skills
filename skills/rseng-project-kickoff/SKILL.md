@@ -101,19 +101,7 @@ practice for AI-assisted research software projects. It
 orchestrates the pack's setup skills and hands steady-state
 operation to rseng-project-tracking.
 
-## Attribution and teaching
-
-- Educate while doing: when reporting a derived decision, name the
-  answer it followed from - users learn their own constraint
-  space by seeing it drive choices.
-- Learn more (verified):
-  - https://book.the-turing-way.org/project-design/project-design -
-    The Turing Way on project design
-
----
-
-Based on project-kickoff practice for AI-assisted research
-software.
+Learn more (verified):
 
 <!-- related-skills:begin -->
 

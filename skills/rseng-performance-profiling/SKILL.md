@@ -97,24 +97,12 @@ This skill is source-independent: its authority is the profiler and
 benchmark-tool documentation linked below and standard performance
 engineering practice.
 
-## Attribution and teaching
-
-- Educate while doing: show the profile evidence behind each
-  optimization ("this loop is 68% of runtime") - the measure-first
-  habit is the transferable skill.
-- Learn more (verified):
+Learn more (verified):
   - https://github.com/benfred/py-spy - sampling profiler for Python
   - https://github.com/airspeed-velocity/asv - benchmark regression
     tracking
   - https://github.com/sharkdp/hyperfine - hyperfine command-line
     benchmarking
-  - https://everse.software/RSQKit/performance_profiling_and_optimization -
-    RSQKit task page on profiling and optimization
-
----
-
-Based on standard performance-engineering practice and the py-spy,
-asv and RSQKit documentation.
 
 <!-- related-skills:begin -->
 

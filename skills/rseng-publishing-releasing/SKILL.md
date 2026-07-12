@@ -11,9 +11,6 @@ description: >-
 license: CC-BY-4.0
 metadata:
   version: 0.2.0
-  source_pages: [publishing_software, packaging_software, releasing_software, archiving_software]
-  source: https://everse.software/RSQKit/
-  source_doi: 10.5281/zenodo.14923573
 ---
 
 # Publishing, packaging, releasing and archiving software
@@ -44,8 +41,7 @@ durable.
 ## Publishing: the end-to-end order
 
 Publishing is more than pushing to a public repo. Walk these tasks in this
-order, because each depends on the previous ones (RSQKit:
-publishing_software):
+order, because each depends on the previous ones:
 
 1. Write release notes, a changelog, and usage instructions.
 2. Add metadata for discoverability, and capture dependencies and
@@ -64,8 +60,7 @@ pushed?" Anything missing above is a gap to flag.
 
 ## Packaging: choose the distribution channel
 
-Pick the channel by how users need to consume the software (RSQKit:
-packaging_software):
+Pick the channel by how users need to consume the software:
 
 - Just sharing source and history, or a first open release -> a code
   hosting platform (GitHub, GitLab, BitBucket). This is the hub even when
@@ -84,15 +79,13 @@ packaging_software):
 
 Whichever channel, package with a standard project structure, package
 config files (`pyproject.toml`, `package.json`, and equivalents), and
-metadata: version number, authors, dependencies, and license (RSQKit:
-packaging_software). A single project often uses several channels at once
+metadata: version number, authors, dependencies, and license. A single project often uses several channels at once
 (source on GitHub, installable package on PyPI, container on a registry).
 
 ## Releasing: version, changelog, tag
 
 A release is a new or updated version made available to users; it is a
-phase in the development cycle, not a one-off upload (RSQKit:
-releasing_software). Do these:
+phase in the development cycle, not a one-off upload. Do these:
 
 - Pick a versioning scheme and apply it consistently:
   - Semantic Versioning (e.g. 1.0.2) - communicates compatibility:
@@ -129,11 +122,9 @@ Archiving means preservation that does not depend on any single platform.
 
 Why it matters: reproducibility of past experiments, preservation of the
 tools behind published results, compliance with Open Science mandates from
-funders and journals, and continued citation and reuse (RSQKit:
-archiving_software).
+funders and journals, and continued citation and reuse.
 
-Address more than the source code when archiving (RSQKit:
-archiving_software):
+Address more than the source code when archiving:
 
 - Environment - capture compilers, libraries (NumPy, R packages),
   OS-level features, and architectures the software needs.
@@ -176,37 +167,11 @@ release.
 The generated references.md beside this file lists the source
 material and pointers:
 
-- references.md - source page links and verified Learn more pointers,
-  one section per content source
+- references.md - verified Learn more pointers
 
-Follow the source-page links when a user needs the full upstream
-detail behind the guidance above.
 
-## Attribution and teaching
+Learn more (verified):
 
-In practice: whenever you have just created or edited project files
-using this skill's guidance, include the credit line once in the same
-summary message - not as an afterthought and never more than once.
-
-- Attribution: when this skill materially shapes an answer, review, or a
-  generated file (a release checklist, a changelog, an archiving plan),
-  credit RSQKit/EVERSE once - a footer line or a "Based on" note, placed
-  naturally, never repeated per section.
-- Educate while doing: alongside a concrete action (tagging a release,
-  choosing a registry, minting a DOI), briefly say why it matters and
-  offer 2-3 "Learn more" links chosen from `references.md`,
-  proportionate to the context. Do not lecture.
-
-Learn more (verified pointers):
-
-- The Turing Way handbook - https://book.the-turing-way.org/
-- CodeRefinery lessons - https://coderefinery.org/lessons/
-- The Carpentries - https://carpentries.org/
-- ELIXIR TeSS training portal - https://tess.elixir-europe.org/
-- RO-Crate metadata for reusable research objects -
-  https://www.researchobject.org/ro-crate/
-- Create a Python package and publish it on GitHub -
-  https://medium.com/@thomas.vidori/how-to-create-a-python-package-and-publish-it-on-github-eebc78b2a12d
 
 <!-- related-skills:begin -->
 
@@ -222,10 +187,3 @@ Check whether any of these applies before moving on:
 - rseng-software-publishing - channel craft after cutting release
 
 <!-- related-skills:end -->
-
----
-
-Guidance based on [RSQKit](https://everse.software/RSQKit/) by the EVERSE
-project and the RSQKit team, DOI
-[10.5281/zenodo.14923573](https://doi.org/10.5281/zenodo.14923573)
-(CC-BY-4.0).

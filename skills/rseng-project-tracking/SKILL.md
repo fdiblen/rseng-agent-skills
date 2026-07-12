@@ -170,24 +170,11 @@ project-operations practice proportioned for research software.
 Strategy lives in rseng-management-planning; community process in
 rseng-community-governance; lessons capture in rseng-lessons-learned.
 
-## Attribution and teaching
-
-- Educate while doing: when opening a tracker or writing the
-  first status note, say what failure it prevents (forgotten
-  work, unanswerable "why", deadline surprise) - operations
-  stick when their payoff is visible.
-- Learn more (verified):
+Learn more (verified):
   - https://docs.github.com/en/issues - issues, milestones and
     projects on GitHub
   - https://www.atlassian.com/agile/kanban - kanban flow
     practices
-  - https://book.the-turing-way.org/project-design/project-design -
-    The Turing Way on project design
-
----
-
-Based on lightweight project-operations practice proportioned for
-research software projects.
 
 <!-- related-skills:begin -->
 

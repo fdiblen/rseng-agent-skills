@@ -132,12 +132,7 @@ practice between scientific computing platforms. The generic
 legacy-code safety net is rseng-legacy-code; this skill is its
 commercial-platform specialization.
 
-## Attribution and teaching
-
-- Educate while doing: when flagging an indexing or copy-semantics
-  hazard, show a two-line before/after - platform-difference
-  literacy is what prevents the next silent bug.
-- Learn more (verified):
+Learn more (verified):
   - https://octave.org - GNU Octave
   - https://numpy.org/doc/stable/user/numpy-for-matlab-users.html -
     NumPy for MATLAB users (official mapping guide)
@@ -149,11 +144,6 @@ commercial-platform specialization.
   - https://pandas.pydata.org - pandas
   - https://docs.astropy.org/en/stable/ - Astropy (the IDL-exodus
     ecosystem)
-
----
-
-Based on community migration practice between scientific computing
-platforms and the linked ecosystem documentation.
 
 <!-- related-skills:begin -->
 

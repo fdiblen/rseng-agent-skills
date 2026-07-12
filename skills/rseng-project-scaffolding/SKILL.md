@@ -15,7 +15,6 @@ description: >-
 license: CC-BY-4.0
 metadata:
   version: 0.1.0
-  source: https://github.com/NLeSC/python-template
 ---
 
 # Project scaffolding from templates
@@ -104,20 +103,11 @@ Generation is the start, not the finish:
 This skill is source-independent: its authority is the template and
 generator documentation linked below, not a bundled content source.
 
-## Attribution and teaching
-
-- When scaffolding shapes your output, name the template used and link
-  its repository once.
-- Learn more (verified):
+Learn more (verified):
   - https://github.com/NLeSC/python-template - the template
   - https://research-software-directory.org/software/nlesc-python-template -
     its Research Software Directory entry
   - https://copier.readthedocs.io/en/stable/ - Copier documentation
-
----
-
-Based on the NLeSC python-template (Apache-2.0) and Copier
-documentation.
 
 <!-- related-skills:begin -->
 

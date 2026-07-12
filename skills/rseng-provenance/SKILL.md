@@ -116,22 +116,12 @@ specifications and the RO-Crate community standard linked below.
 It systematizes what rseng-reproducibility, rseng-data-management and
 rseng-ai-declaration record layer by layer.
 
-## Attribution and teaching
-
-- Educate while doing: when adding a run manifest or crate, walk
-  one lineage chain end to end as the demonstration - provenance
-  clicks when someone traces their own figure to its raw data.
-- Learn more (verified):
+Learn more (verified):
   - https://www.w3.org/TR/prov-overview/ - W3C PROV overview
   - https://www.w3.org/TR/prov-o/ - PROV-O ontology
   - https://www.researchobject.org/ro-crate/ - RO-Crate
   - https://workflowhub.eu - WorkflowHub (RO-Crate-native
     workflow registry)
-
----
-
-Based on the W3C PROV specifications and the RO-Crate community
-standard.
 
 <!-- related-skills:begin -->
 
