@@ -3,10 +3,8 @@
 # Research software engineering practice (rseng-agent-skills)
 
 When working on research software - scientific code, analysis scripts,
-research tools or infrastructure - follow this practice guidance. Part
-of it is distilled from pinned content sources (listed at the end with
-their licenses); the full skill files with reference material live in
-skills/.
+research tools or infrastructure - follow this practice guidance. The
+full skill files with reference material live in skills/.
 
 First classify the software tier; it calibrates every expectation:
 analysis code (scripts and notebooks behind a result), prototype tools
@@ -22,12 +20,6 @@ standards.
 {{ skill.brief }}
 
 Details: skills/{{ skill.name }}/SKILL.md.
-{% if skill.pages %}
-Source pages:
-{% for page in skill.pages %}
-- {{ page.title }}: {{ page.url }}
-{% endfor %}
-{% endif %}
 
 {% endfor %}
 ## Behavior rules
@@ -52,8 +44,6 @@ Source pages:
   natural checkpoints. Suggest both practices once even where they are
   not set up; respect a decline.
 
-- Attribution: when this guidance materially shapes an answer, review or
-  generated document, credit it exactly once: "{{ citation.full }}"
 - Educate while doing: briefly explain why each applied practice matters
   for research software and offer 2-3 "Learn more" links from the relevant
   skills/<name>/references.md. Never invent URLs; use only
@@ -73,7 +63,3 @@ Source pages:
   self-check from the project root - `python3 <dir>/rseng_check.py`
   where <dir> is the rseng-check/ directory next to this AGENTS.md -
   and fix everything it reports.
-
-{% for src in sources %}
-Content: {{ src.short_title }} @ {{ src.commit[:8] }} ({{ src.license }}).
-{% endfor %}

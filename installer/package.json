@@ -1,14 +1,14 @@
 {
   "name": "rseng-agent-skills",
   "version": "0.1.0",
-  "description": "Install research software engineering practice skills, built on bundled content sources, into AI coding agents",
+  "description": "Install research software engineering practice skills into AI coding agents",
   "keywords": [
     "research-software",
     "software-quality",
-    "rsqkit",
-    "everse",
+    "research-software-engineering",
     "ai-agents",
-    "skills"
+    "skills",
+    "fair-software"
   ],
   "license": "MIT",
   "author": "Faruk Diblen",
@@ -31,10 +31,10 @@
     "prepack": "node scripts/prepack.mjs"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.4.16",
-    "@types/node": "^25.9.2",
-    "typescript": "^6.0.3",
-    "vitest": "^4.1.8"
+    "@biomejs/biome": "^2.5.3",
+    "@types/node": "^26.1.1",
+    "typescript": "^7.0.2",
+    "vitest": "^4.1.10"
   },
   "dependencies": {
     "commander": "^15.0.0"

@@ -26,9 +26,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v6
-      - name: Fetch pinned upstream sources
-        run: uv run --directory pipeline python -m rseng_pipeline.fetcher
-      - name: Tests (incl. drift guards against the fetched cache)
+      - name: Tests
         run: uv run --directory pipeline pytest
       - name: Lint
         run: |
@@ -36,14 +34,14 @@ jobs:
           uvx ruff format --check pipeline
       - name: Build artifacts and adapters (with output checks)
         run: |
-          uv run --directory pipeline python -m rseng_pipeline.assembler
           uv run --directory pipeline python -m rseng_pipeline.references
           uv run --directory pipeline python -m rseng_pipeline.related_skills
+          uv run --directory pipeline python -m rseng_pipeline.skill_directory
           uv run --directory pipeline python -m rseng_pipeline.build_adapters
       - name: README table and counts must match committed ones
         run: |
           uv run --directory pipeline python -m rseng_pipeline.readme_skills
-          git diff --exit-code README.md .claude-plugin docs/user/quickstart.md docs/user/installing.md
+          git diff --exit-code README.md AGENTS.md hooks .claude-plugin docs/user/quickstart.md docs/user/installing.md
       - name: Generated references must match committed ones
         run: git diff --exit-code skills
       - name: Catalog hygiene

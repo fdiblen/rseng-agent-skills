@@ -1,0 +1,71 @@
+# from extensions/nlesc-guide/data/url_quarantine.yml
+# URLs excluded from generated artifacts until a human clears them.
+# Guide upstream links that reject non-browser clients.
+- url: https://crates.io
+  reason: 404 to non-browser clients (bot gating); works in browsers
+- url: https://marketplace.visualstudio.com/vscode
+  reason: 404 to non-browser clients (marketplace UA-gating)
+- url: https://support.posit.co/hc/en-us/articles/205612627-Debugging-with-RStudio
+  reason: upstream guide link rot (404); report to NLeSC/guide
+
+# from extensions/rsqkit/data/url_quarantine.yml
+# URLs excluded from generated artifacts until a human clears them.
+# Seeded from a manual audit of the upstream tool registry: both entries
+# point at non-canonical catalog sites instead of the tools' real homes.
+- url: https://catalogforge.net/projects/checkstyle/
+  tool: checkstyle
+  reason: not the canonical Checkstyle site (expected checkstyle.org)
+- url: https://www.sonarcatalog.com/products/sonarqube/
+  tool: sonarqube
+  reason: not the canonical SonarQube site (expected sonarsource.com)
+# Upstream link rot found by the artifact link checker at the pinned
+# commit (report upstream via the task-88 issue; re-check after sync).
+- url: https://github.com/EVERSE-ResearchSoftware/RSQKit/blob/630-product-owner/pages/roles/principal_investigator
+  reason: links a deleted upstream working branch
+- url: https://github.com/EVERSE-ResearchSoftware/RSQKit/blob/630-product-owner/pages/roles/project_manager
+  reason: links a deleted upstream working branch
+- url: https://github.com/EVERSE-ResearchSoftware/RSQKit/blob/630-product-owner/pages/roles/research_software_engineer
+  reason: links a deleted upstream working branch
+- url: https://everse.software/RSQKit/continuous_integration_continuous_delivery_deployment
+  reason: upstream internal link to a nonexistent slug (page is ci_cd)
+- url: https://everse.software/RSQKit/documenting_software
+  reason: upstream internal link to a nonexistent slug (page is software_documentation)
+- url: https://everse.software/RSQKit/organising_software_projects
+  reason: upstream internal link to a nonexistent slug
+- url: https://everse.software/RSQKit/performing_code_review
+  reason: upstream internal link to a nonexistent slug (page is code_review)
+- url: https://everse.software/RSQKit/indicators
+  reason: upstream internal link to a nonexistent slug (site page is all_indicators)
+- url: https://everse.software/RSQKit/quality-dimensions
+  reason: upstream internal link with wrong separator (page is quality_dimensions)
+- url: https://everse.software/RSQKit/techradar
+  reason: upstream internal link to a nonexistent slug
+- url: https://everse.software/RSQKit/swhid
+  reason: upstream internal link to a nonexistent slug
+- url: https://github.com/yourusername/your-repo
+  reason: intentional placeholder in upstream example
+- url: https://github.com/yourusername/your-repo/issues
+  reason: intentional placeholder in upstream example
+- url: https://doi.org/10.1234/exampledoi
+  reason: intentional placeholder DOI in upstream example
+- url: https://doi.org/10.1016/j.jsc.2023.10.001
+  reason: DOI does not resolve (404 at doi.org)
+- url: https://doi.org/10.5063/schema/codemeta-3.1
+  reason: DOI does not resolve (404 at doi.org)
+- url: https://marketplace.visualstudio.com/items?itemName=njpwerner.autodocstring
+  reason: 404 to non-browser clients (marketplace UA-gating); verify manually
+- url: https://www.imperial.ac.uk/admin-services/ict/self-service/research-support/rcs/service-offering/research-software-engineering/resources-for-pis/
+  reason: page removed upstream (404)
+- url: https://medium.com/@sjalexandre/python-tutorial-managing-projects-with-poetry-cd2deab72697
+  reason: article gone (410)
+# Pack-own skill content: placeholders and not-yet-live links.
+- url: https://codeberg.org/owner/repo
+  reason: illustrative placeholder in the fairguard usage example
+- url: https://github.com/example/growthfit
+  reason: illustrative placeholder in the ai-declaration example
+- url: https://github.com/fdiblen/rseng-agent-skills
+  reason: pack repository; goes live at the first release
+- url: https://ai-declaration.github.io/schema/v1/aidecl.schema.json
+  reason: JSON Schema $id (identifier, not dereferenceable); file lives in the schema repo
+- url: https://codeberg.org/fairguard/fairguard-cli
+  reason: dead source link from PyPI metadata; canonical = fairguard.org + PyPI

@@ -17,20 +17,5 @@ Related skills - check whether any applies to the task at hand:
 - {{ rel.name }} ({{ rel.reason }})
 {% endfor +%}
 {% endif %}
-{% if skill.pages %}
-Authoritative source pages (deep-link users here for the full guidance):
-{% for page in skill.pages %}
-- {{ page.title }}: {{ page.url }}
-{% endfor +%}
-{% endif %}
-
 Explain briefly why the practice matters for research software while
-applying it. When this guidance shapes your output, credit its source
-once{% if skill.pages %}:
-{{ citation.full }}
-
-{% for src in sources %}Content source: {{ src.short_title }} @ {{ src.commit[:8] }} ({{ src.license }}). {% endfor +%}
-{% else %} (the standard named in the skill).
-
-Pack content build: {% for src in sources %}{{ src.short_title }} @ {{ src.commit[:8] }}{% if not loop.last %}; {% endif %}{% endfor %}.
-{% endif %}
+applying it.

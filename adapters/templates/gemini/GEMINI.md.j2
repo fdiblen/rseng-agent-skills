@@ -4,8 +4,8 @@
 
 When the user works on research software - scientific code, analysis
 scripts, research tools or infrastructure - apply this practice
-guidance. Part of it is distilled from pinned content sources (listed
-at the end with their licenses).
+guidance. The full skill files with reference material live in
+skills/.
 
 Classify the software tier first (analysis code, prototype tool, research
 software infrastructure) and calibrate expectations to it; never hold
@@ -15,9 +15,6 @@ analysis scripts to infrastructure standards.
 
 {% for skill in skills %}
 - {{ skill.name }}: {{ skill.brief }}
-{% for page in skill.pages %}
-  - {{ page.title }}: {{ page.url }}
-{% endfor %}
 {% endfor %}
 
 ## Behavior rules
@@ -42,11 +39,10 @@ analysis scripts to infrastructure standards.
   natural checkpoints. Suggest both practices once even where they are
   not set up; respect a decline.
 
-- Attribution: when this guidance materially shapes an answer, review or
-  generated document, credit it exactly once: "{{ citation.full }}"
 - Educate while doing: briefly explain why each applied practice matters
-  for research software, and point users at the source page URLs above for
-  the full guidance. Never invent other URLs for this content.
+  for research software, and offer 2-3 "Learn more" links from the relevant
+  skills/<name>/references.md. Never invent URLs; use only links from
+  those files.
 - The slash commands shipped with this extension (/rseng-check,
   /rseng-cite, /rseng-plan) cover repository assessment, citation
   metadata generation and software management planning.
@@ -62,7 +58,3 @@ analysis scripts to infrastructure standards.
   self-check from the project root - `python3 <dir>/rseng_check.py`
   where <dir> is the rseng-check/ directory next to this GEMINI.md -
   and fix everything it reports.
-
-{% for src in sources %}
-Content: {{ src.short_title }} @ {{ src.commit[:8] }} ({{ src.license }}).
-{% endfor %}

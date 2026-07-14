@@ -4,7 +4,7 @@
 
 When working on research software in this repository, follow the
 practice guidance in this pack. Detailed skill files live in
-.github/skills/; content sources and licenses are listed at the end.
+.github/skills/.
 
 ## Topic guide
 
@@ -34,9 +34,6 @@ practice guidance in this pack. Detailed skill files live in
   natural checkpoints. Suggest both practices once even where they are
   not set up; respect a decline.
 
-- When this guidance materially shapes an answer, a review or a generated
-  document, credit it once: "{{ citation.full }}". Never repeat the credit
-  per paragraph.
 - Educate while doing: briefly explain why a practice matters for research
   software and offer 2-3 "Learn more" links from the relevant skill's
   references.md. Only use links that appear in those files.
@@ -58,7 +55,3 @@ practice guidance in this pack. Detailed skill files live in
 - Before declaring any coding task complete, run
   `python3 .github/rseng-check/rseng_check.py` from the project root and
   fix everything it reports.
-
-{% for src in sources %}
-Content: {{ src.short_title }} @ {{ src.commit[:8] }} ({{ src.license }}).
-{% endfor %}
