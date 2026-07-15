@@ -16,7 +16,7 @@ import datetime
 import json
 from pathlib import Path
 
-from .fetcher import _get
+from .net import http_get as _get
 
 INSTANCES = [
     {

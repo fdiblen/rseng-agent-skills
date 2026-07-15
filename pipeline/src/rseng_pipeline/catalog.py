@@ -22,7 +22,7 @@ from pathlib import Path
 
 import yaml
 
-from .fetcher import _get
+from .net import http_get as _get
 
 KINDS = {"github", "website", "marketplace", "registry"}
 STATUSES = {"proposed", "reviewed", "included"}
