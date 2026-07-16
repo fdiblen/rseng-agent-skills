@@ -1,12 +1,13 @@
 # Attribution
 
 rseng-agent-skills is a general research software engineering skills project.
-Most skills are source-independent. A minority distill guidance from
-bundled, pinned content sources under extensions/; this file is the
-canonical credit record for all of them, and each source-fed skill's
-references.md carries the same citation next to the content.
+Part of the skill content was originally adapted from the two
+community-maintained sources credited below. This file is the canonical
+record of that content provenance; the repository no longer bundles or
+synchronizes with these sources, but the credit stands for the adapted
+material that remains in the skill content.
 
-## RSQKit (extensions/rsqkit/)
+## RSQKit
 
 Created by the EVERSE project, maintained by the RSQKit team and
 contributors.
@@ -15,7 +16,7 @@ contributors.
 - Source repository: https://github.com/EVERSE-ResearchSoftware/RSQKit
 - Cite as: RSQKit, EVERSE project, DOI 10.5281/zenodo.14923573
 
-## Netherlands eScience Center Software Development Guide (extensions/nlesc-guide/)
+## Netherlands eScience Center Software Development Guide
 
 Created and maintained by the Netherlands eScience Center.
 
@@ -25,13 +26,13 @@ Created and maintained by the Netherlands eScience Center.
 
 Both sources' content is licensed under the Creative Commons Attribution 4.0
 International license (CC-BY-4.0). The skill content and documentation in
-this repository are adaptations of that material and are distributed under
-the same license (see LICENSE-content). The tooling and code in this
+this repository are in part adaptations of that material and are distributed
+under the same license (see LICENSE-content). The tooling and code in this
 repository are distributed under the MIT license (see LICENSE).
 
-Adaptations here condense and restructure source pages for use by AI coding
-agents. They are not a replacement for the original pages; skills link back
-to the relevant RSQKit pages so users can read the full guidance in context.
+The adaptations condense and restructure the original guidance for use by
+AI coding agents. They are not a replacement for the original pages; read
+the sources above for the full guidance in context.
 
 ## Bundled catalogue data
 
@@ -53,8 +54,21 @@ redistributed as factual catalogue data, credited to the instance they came
 from. If either operator would rather they were not bundled here, they will
 be removed.
 
+## Referenced, not adapted
+
+Skill bodies link out to further reading - the Turing Way, opensource.guide,
+the Software Sustainability Institute, CodeRefinery, JOSS and others. Those
+are pointers to their authors' work. No text is taken from them, which is
+why they are not credited as sources above.
+
+Two external tools the skills instruct agents to use, neither bundled here:
+
+- FAIRGuard - https://www.fairguard.org
+- AI Declaration Format - https://ai-declaration.org
+
 ## Status
 
 This is an independent, unofficial adaptation. It is not published or
-endorsed by the EVERSE project. Should EVERSE adopt or endorse the pack at
-some point, this notice will be updated.
+endorsed by the EVERSE project or the Netherlands eScience Center. Should
+either adopt or endorse the pack at some point, this notice will be
+updated.

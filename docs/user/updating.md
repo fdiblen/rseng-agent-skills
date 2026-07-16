@@ -169,15 +169,10 @@ from the pack with a fresh `install`.
 
 ### Where should I report a problem
 
-- Problems with the guidance content itself - a factual error, an outdated
-  recommendation, an incomplete practice - may originate upstream in a
-  content source when the skill is source-fed. Report those to the
-  source project - each extension's upstream.lock names its
-  repository, and the skill's references.md links the pages.
-- Problems with the packaging - a skill not installing, a broken CLI
-  command, wrong file placement for an agent, incorrect `doctor` output -
-  belong to this project. Report those on the rseng-agent-skills issue tracker at
-  [https://github.com/fdiblen/rseng-agent-skills](https://github.com/fdiblen/rseng-agent-skills).
-
-When in doubt: if the words are wrong, it is upstream; if the files or the
-tools are wrong, it is here.
+Both content and packaging problems belong to this project - a factual
+error or outdated recommendation in a skill body, as much as a skill not
+installing, a broken CLI command, wrong file placement for an agent, or
+incorrect `doctor` output. Report either on the rseng-agent-skills issue tracker
+at [https://github.com/fdiblen/rseng-agent-skills](https://github.com/fdiblen/rseng-agent-skills).
+If a "Learn more" link points at material that is itself wrong or stale,
+that belongs to the linked project; report the link choice here.

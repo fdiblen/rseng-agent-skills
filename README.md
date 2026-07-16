@@ -6,15 +6,14 @@ testing, CI/CD, documentation, licensing, citation, FAIR, publishing,
 reproducibility, code review, code quality, maintenance, planning and
 workflows - built into native formats for the major agents.
 
-Skills teach while doing (verified "Learn more" links) and credit their
-content sources whenever those shape an answer.
+Skills teach while doing: each carries curated, verified "Learn more"
+links so the guidance stays traceable to real material rather than
+generic.
 
-Reference content comes from pluggable content sources under
-extensions/. Most skills are source-independent; a minority are
-generated from pinned, community-maintained content sources whose
-CC-BY-4.0 material feeds the skills' references. This project is
-independent of, and not endorsed by, the upstream source projects;
-full credits are in ATTRIBUTION.md.
+Part of the skill content was originally adapted from
+community-maintained CC-BY-4.0 material. This project is independent
+of, and not endorsed by, those projects; full credits are in
+ATTRIBUTION.md.
 
 ## Quick start (TL;DR)
 
@@ -51,14 +50,12 @@ without touching your edits, and `doctor` checks install health.
 ## What is inside
 
 - skills/ - canonical SKILL.md folders (agentskills.io format), one per
-  topic, each with a generated references.md (source citations and
-  verified learn-more links)
+  topic, each with a generated references.md (verified learn-more
+  links)
 - commands/, agents/, hooks/ - Claude Code slash commands, subagents
   and session hooks that keep the skills actively used
-- pipeline/ - the source-agnostic build engine that ingests pinned
-  content sources and regenerates everything above
-- extensions/ - content sources; extensions/rsqkit/ is the bundled one
-  (upstream pin, taxonomy, curated data)
+- pipeline/ - the build pipeline that derives everything generated
+  (references, directory, relations, adapter outputs) from the skills
 - installer/ - the TypeScript CLI published to npm as `rseng-agent-skills`
 
 ## Skills
@@ -177,15 +174,14 @@ without touching your edits, and `doctor` checks install health.
 
 ## Versioning
 
-Semantic versioning against the pack content: patch = regenerated content
-only, minor = skill body updates or new skills, major = taxonomy
-restructuring. Release notes state the pinned commit of every content
-source a release was built from.
+Semantic versioning against the pack content: patch = regenerated
+content only, minor = skill body updates or new skills, major = skills
+removed or renamed in a way that reshapes the skill set.
 
 ## Attribution
 
-Source-fed skills adapt CC-BY-4.0 content from pinned community
-sources. Full credits live in [ATTRIBUTION.md](ATTRIBUTION.md), and
-every source-fed skill carries its source citation in its own
-references.md, next to the content it credits. The adaptations are
-independent and not endorsed by the upstream projects.
+Part of the skill content was originally adapted from
+community-maintained material published under CC-BY-4.0. Full credits
+live in [ATTRIBUTION.md](ATTRIBUTION.md), the canonical record of that
+content provenance. The adaptations are independent and not endorsed
+by the original projects.

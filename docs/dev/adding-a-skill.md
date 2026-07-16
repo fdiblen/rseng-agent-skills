@@ -2,113 +2,67 @@
 
 A skill is one hand-authored `skills/rseng-<topic>/SKILL.md` plus a
 pipeline-generated `references.md` beside it. Skills are the canonical
-content; every adapter is derived from them. Adding one is mostly editorial
-work (the taxonomy mapping and the body) followed by a regeneration and
-validation loop that is entirely mechanical.
+content; every adapter is derived from them. Adding one is mostly
+editorial work (the body and its curated links) followed by a
+regeneration and validation loop that is entirely mechanical.
 
-Most skills are source-independent: they map no upstream pages, so they
-skip the taxonomy steps below (steps 1 and the page_id parts of step 2)
-and get their `references.md` generated from the curated links in their
-own SKILL.md. For a source-fed skill, the contract that ties it to
-upstream is the content source's taxonomy
-(`extensions/<source>/taxonomy.yml`; this guide uses the rsqkit
-extension as the example). It maps source page_ids to skills, and the
-generated `references.md`, the adapters and the sync impact reports are
-all derived from it. A page_id that does not appear in the taxonomy is
-not part of any skill; a page_id that appears twice breaks the "exactly
-once" rule the taxonomy header states.
-
-## 1. Map the upstream pages in taxonomy.yml
-
-Open `extensions/rsqkit/taxonomy.yml` and add an entry under `skills:`. The key is the
-skill name (`rseng-<topic>`, a stable identifier - installs key off it, so it
-must not change casually). An entry has a `scope` and up to three page lists:
-
-- `pages` - task pages (the how-to content a skill is built around)
-- `concept_pages` - framework/concept pages
-- `role_pages` - role entry-point pages
-
-Only `rseng-quality-framework` uses `concept_pages` and `role_pages` today;
-most topic skills use `pages` only. Follow the shape of an existing entry:
-
-```yaml
-  rseng-testing:
-    scope: >-
-      Writing and running software tests: test types and levels, testing
-      frameworks, coverage, and managing complex CI testing matrices across
-      compilers, platforms and dependencies.
-    pages:
-      - testing_software
-      - ci_testing_matrices
-```
-
-The page_ids must be **true upstream page_ids** - the basename of a page under
-the source paths listed in `extensions/rsqkit/upstream.lock` (`pages/tasks/`,
-`pages/roles/`, `pages/research_software_and_quality/`). The pipeline resolves
-each page_id against the assembled `content.json`; a page_id with no matching
-upstream fragment fails the reference build with
-`no fragment for page_id '<id>'` (see `references.py`,
-`generate_references`). Every task, concept and role page at the pinned commit
-must appear exactly once across all skills - if you are adding a skill to cover
-pages that another skill currently owns, move them, do not duplicate them.
-
-## 2. Author SKILL.md
+## 1. Author SKILL.md
 
 Create `skills/rseng-<topic>/SKILL.md` and follow the authoring template at
-[Skill authoring template](skill-authoring-template.md) - it is the source of
-truth for the frontmatter fields, the body structure (overview, guidance
-sections citing page_ids inline, `## Working with this skill`,
-`## Attribution and teaching`, attribution footer) and the hard constraints
-(body <= 500 lines, plain ASCII, no ReSoft Labs mention in the body, no
-hand-typed URLs). Do not restate those rules here; read the template.
+[Skill authoring template](skill-authoring-template.md) - it is the source
+of truth for the frontmatter fields, the body structure (overview,
+guidance sections, `## Working with this skill`, the curated
+"Learn more (verified)" links) and the hard constraints (body <= 500
+lines, plain ASCII, no unverified
+URLs). Do not restate those rules here; read the template.
 
-Two frontmatter fields couple back to step 1 and to the generated references:
-
-- `metadata.source_pages` must list the same page_ids you put in the taxonomy
-  entry. Keep them in sync by hand.
-- The body cites page_ids inline (for example `(RSQKit: testing_software)`)
-  rather than pasting upstream prose; the generated `references.md` links
-  each mapped source page so a reader can reach the full text.
+The skill name (`rseng-<topic>`) is a stable identifier - installs key off
+it, so it must not change casually.
 
 ### Make the description trigger distinct
 
-The `description` is what every agent uses to decide when to load the skill,
-so it has to be distinguishable from its siblings. Read the sibling entries in
-`extensions/rsqkit/taxonomy.yml` and the neighbouring `SKILL.md` descriptions before
-writing yours, and make sure the trigger conditions do not overlap. Cover both
-everyday phrasing and domain terms a user might use (the template calls this
-out: "write tests" as well as "CI matrix"). This is the cross-review pass the
-template refers to - a description that could equally match `rseng-testing`
-and `rseng-ci-cd` will cause the wrong skill to fire.
+The `description` is what every agent uses to decide when to load the
+skill, so it has to be distinguishable from its siblings. Read the
+neighbouring `SKILL.md` descriptions before writing yours, and make sure
+the trigger conditions do not overlap. Cover both everyday phrasing and
+domain terms a user might use (the template calls this out: "write
+tests" as well as "CI matrix"). This is the cross-review pass the
+template refers to - a description that could equally match
+`rseng-testing` and `rseng-ci-cd` will cause the wrong skill to fire.
 
-## 3. Regenerate references
+## 2. Register the skill in the curated maps
 
-`references.md` is generated and never hand-edited. After the taxonomy and
-SKILL.md are in place, rebuild it:
+Two pipeline modules keep curated maps that must know every skill; both
+fail loudly on a missing entry, so the build tells you if you forget:
+
+- `pipeline/src/rseng_pipeline/skill_directory.py` - add the skill to the
+  `CLUSTERS` map (which practice cluster it belongs to) and, if a file
+  pattern in a project signals that the skill applies, to the relevance
+  signals.
+- `pipeline/src/rseng_pipeline/related_skills.py` - add an entry to the
+  `RELATED` map: for each neighbouring skill, one short line saying when
+  that neighbour becomes relevant. Add the reverse edges on the
+  neighbours too, where they make sense.
+
+## 3. Regenerate
+
+`references.md`, the directory blocks, the "Related skills" sections and
+the README tables are generated and never hand-edited. After the
+SKILL.md and the map entries are in place, rebuild them (relations last,
+since that step rewrites skill files):
 
 ```
 uv run --directory pipeline python -m rseng_pipeline.references
+uv run --directory pipeline python -m rseng_pipeline.skill_directory
+uv run --directory pipeline python -m rseng_pipeline.related_skills
+uv run --directory pipeline python -m rseng_pipeline.readme_skills
 ```
 
-This rewrites `references.md` for every skill from the build artifacts,
-so a removed page prunes automatically and a new skill gets its file
-written. Each source-fed skill gets one section per content source:
-the source's citation line, links to the mapped source pages, and the
-verified "Learn more" pointers. A source-independent skill gets its
-`references.md` derived from the curated links in its own SKILL.md. If
-the generator reports a page_id missing from the content build, the
-page_id in your taxonomy entry does not exist at the pinned commit - fix
-the id (or the pin) rather than the generator.
-
-The reference build reads `pipeline/build/<source>/` (content.json and
-fragments), which the assembler produces from the fetched upstream cache.
-If `build/` is stale or absent, run the assembler first, exactly as the
-publish workflow does:
-
-```
-uv run --directory pipeline python -m rseng_pipeline.assembler
-uv run --directory pipeline python -m rseng_pipeline.references
-```
+This writes the new skill's `references.md` from its curated
+"Learn more" links, adds it to the grouped directory in `AGENTS.md` and
+the router skill, renders its "Related skills" block, refreshes the
+hooks' data files (`hooks/phases.json`, `related.json`, `signals.json`,
+`clusters.txt`) and updates the README tables and counts.
 
 ## 4. Rebuild the adapters
 
@@ -120,9 +74,10 @@ uv run --directory pipeline python -m rseng_pipeline.build_adapters
 ```
 
 This rebuilds `dist/<target>/` from scratch and runs the post-render checks
-(`checks.py`) on each output; a check failure fails the build. `dist/` is
-generated and not committed. If you are adding an entirely new agent target
-rather than a skill, see [Adding an adapter](adding-an-adapter.md).
+(`checks.py`) plus the structural completeness checks on each output; a
+check failure fails the build. `dist/` is generated and not committed.
+If you are adding an entirely new agent target rather than a skill, see
+[Adding an adapter](adding-an-adapter.md).
 
 ## 5. Validate
 
@@ -140,9 +95,12 @@ rather than a skill, see [Adding an adapter](adding-an-adapter.md).
 
 Keep commits small and focused, matching the repository's existing history:
 
-- One commit for the `taxonomy.yml` mapping and the hand-authored `SKILL.md`.
-- A separate commit for the regenerated `references.md` (it is a mechanical
-  artifact; keeping it apart makes the authored change reviewable on its own).
+- One commit for the hand-authored `SKILL.md` and the map entries in
+  `skill_directory.py` / `related_skills.py`.
+- A separate commit for the regenerated artifacts (`references.md`, the
+  directory and relations blocks, the hooks data, the README tables);
+  they are mechanical, and keeping them apart makes the authored change
+  reviewable on its own.
 
 Do not fold unrelated formatting or other skills' files into the same commit.
 The generated `dist/` is not committed, so it does not appear in your diff.

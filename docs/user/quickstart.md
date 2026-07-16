@@ -16,8 +16,9 @@ One canonical pack, built into each agent's native format:
 - For Claude Code only: fourteen slash commands and six subagents on top
   of the skills.
 
-Every skill teaches while it works; source-fed skills link back to the page their content came
-from, so the guidance is traceable rather than generic.
+Every skill teaches while it works: each carries curated, verified
+"Learn more" links in its references.md, so the guidance points at
+real material rather than staying generic.
 
 ## Claude Code
 
@@ -33,7 +34,7 @@ That gives you the full set:
 
 - 67 skills the agent invokes when a task matches (for example, writing a
   CITATION.cff or setting up CI).
-- Twelve slash commands:
+- Fourteen slash commands:
     - `/rseng-check` - assess this repository against research software
       engineering practice.
     - `/rseng-cite` - generate or update `CITATION.cff` and
@@ -51,6 +52,10 @@ That gives you the full set:
     - `/rseng-lesson` - record a lesson learned and draft its prevention
       artifact.
     - `/rseng-onboard` - generate a project-specific onboarding checklist.
+    - `/rseng-kickoff` - interview-driven setup of a new research software
+      project.
+    - `/rseng-panel` - convene a panel of role-scoped expert subagents on
+      a question.
 - Six subagents:
     - `rseng-auditor` - read-only quality audit with severity-rated findings.
     - `rseng-reviewer` - code review that implements agreed improvements.
@@ -97,5 +102,6 @@ project-versus-user scope, the devcontainer feature and a CI snippet.
 
 ---
 
-Source-fed content derives from pinned community sources (credits in ATTRIBUTION.md and each skill's references.md); it
-is adapted under CC-BY-4.0 and not endorsed by the upstream projects.
+Part of the skill content was originally adapted from
+community-maintained CC-BY-4.0 material and is not endorsed by those
+projects; the repository's ATTRIBUTION.md holds the full credit record.

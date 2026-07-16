@@ -7,22 +7,23 @@ function, plus a folder of Jinja templates under `adapters/templates/<name>/`.
 The build framework in `adapters.py` supplies the render context and the
 template environment; the target decides what files to emit and where.
 
-There are two building blocks every target uses from `..adapters`:
+There are three building blocks every target uses from `..adapters`:
 
 - `render_to(env, template_name, context, out)` - render one template to one
   output path.
 - `copy_skills(repo_root, target_dir)` - passthrough: copy the canonical
-  `skills/rseng-*` folders (SKILL.md plus the generated `references.md`)
+  skill folders (SKILL.md plus the generated `references.md`)
   verbatim into the target.
+- `copy_check(repo_root, target_dir)` - ship the platform-neutral
+  self-check (`rseng-check/rseng_check.py` plus the hooks' JSON data files)
+  next to the target's context files; hookless agents are instructed to
+  run it before finishing.
 
-A target combines these however its agent needs. The two established shapes:
-
-- **Rendered-only** (Cursor): everything the agent reads is a rendered
-  template; no skill folders are copied. `cursor.py` writes one always-on
-  overview rule and one rule per skill under `.cursor/rules/`.
-- **Rendered plus passthrough** (Copilot, Codex, Gemini): a few rendered
-  context/instruction files plus the canonical skill folders copied in whole,
-  so the agent can open the real SKILL.md and its references.
+A target combines these however its agent needs. All four established
+targets follow the same shape - a few rendered context/instruction
+files, translated command files, the canonical skill folders copied in
+whole so the agent can open the real SKILL.md and its references, and
+the self-check folder.
 
 ## The render context
 
@@ -30,11 +31,10 @@ A target combines these however its agent needs. The two established shapes:
 every template. Its keys:
 
 - `generated_note` - the "do not edit" banner string.
-- `upstream` - the pinned repo/commit/ref from `content.json`.
-- `citation` - the citation fields from `extensions/rsqkit/data/citation.yml`
-  (whitespace-collapsed), including `citation.full`.
-- `skills` - a list of `{name, description, scope, pages}` per skill, where
-  `pages` is `{page_id, title, url}` resolved through the taxonomy.
+- `skills` - a list of `{name, description, scope, brief, related}` per
+  skill: the description from the skill's `SKILL.md` frontmatter, the
+  scope and brief derived from its coverage half, and the related skills
+  (with reasons) from `hooks/related.json`.
 - `commands` - a list of `{name, description, body}` read from the plugin's
   `commands/*.md` files.
 
@@ -65,8 +65,9 @@ The placeholder rewrite is not optional: `${CLAUDE_PLUGIN_ROOT}` and
 `CLAUDE_PLUGIN_ROOT` reaches a non-Claude output (see checks below). Whenever a
 target reuses command bodies, translate them.
 
-Rendered plus passthrough (Copilot) - render a repo-wide summary and one
-instruction file per skill, then copy the skill folders in whole:
+Rendered plus passthrough (Copilot) - render a repo-wide summary, one
+instruction file per skill and one prompt file per command, then copy
+the skill folders and the self-check in whole:
 
 ```python
 @target("copilot")
@@ -79,8 +80,15 @@ def build_copilot(repo_root, env, context, target_dir):
             env, "copilot/skill.instructions.md.j2",
             {**context, "skill": skill},
             github_dir / "instructions" / f"{skill['name']}.instructions.md"))
+    for command in context["commands"]:
+        adapted = {**command, "body": _copilot_body(command["body"])}
+        written.append(render_to(
+            env, "copilot/command.prompt.md.j2",
+            {**context, "command": adapted},
+            github_dir / "prompts" / f"{command['name']}.prompt.md"))
     copy_skills(repo_root, github_dir / "skills")
     written.extend(sorted((github_dir / "skills").rglob("SKILL.md")))
+    written.extend(copy_check(repo_root, github_dir))
     return written
 ```
 
@@ -122,7 +130,7 @@ problem it returns fails the whole build. It is format-driven, so a new target
 is covered automatically as long as its filenames match the conventions:
 
 - **Size budgets** - files agents load whole have a byte budget
-  (`copilot-instructions.md` 12 KiB, `GEMINI.md` 24 KiB, `AGENTS.md` 32 KiB).
+  (`copilot-instructions.md` 16 KiB, `GEMINI.md` 24 KiB, `AGENTS.md` 32 KiB).
   If your target emits a whole-file context doc, add its filename and budget to
   `SIZE_BUDGETS`.
 - **Frontmatter fields** - `*.instructions.md` must carry `description` and
@@ -151,12 +159,17 @@ so an install never sweeps up stray files:
 
 ```typescript
 const SOURCES: Record<string, { from: string; to: string }[]> = {
-  claude: [{ from: "skills", to: "." }],
+  claude: [
+    { from: "skills", to: "skills" },
+    { from: "commands", to: "commands" },
+    { from: "agents", to: "agents" },
+  ],
   copilot: [{ from: "dist/copilot/.github", to: "." }],
-  cursor: [{ from: "dist/cursor/.cursor/rules", to: "." }],
+  cursor: [{ from: "dist/cursor/.cursor", to: "." }],
   codex: [
     { from: "dist/codex/AGENTS.md", to: "AGENTS.md" },
     { from: "dist/codex/skills", to: "skills" },
+    { from: "dist/codex/rseng-check", to: "rseng-check" },
   ],
   gemini: [{ from: "dist/gemini", to: "." }],
 };

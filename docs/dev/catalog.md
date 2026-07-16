@@ -36,9 +36,9 @@ vendored). `python -m rseng_pipeline.catalog check` runs in CI and fails
 when an included entry is malformed or its vendored skills are missing;
 it never touches the network.
 
-## Sources vs catalog
+## Catalog vs authored skills
 
-Content-source extensions (extensions/) feed reference material INTO
-existing skills through a pinned pipeline; the catalog brings in WHOLE
-third-party skills. A catalog entry that turns out to deserve deep
-integration can graduate into an extension later.
+The catalog brings in WHOLE third-party skills; it does not feed
+material into the hand-authored ones. A vendored catalog skill that
+turns out to deserve deep integration can be rewritten as a regular
+authored skill later, following [Adding a skill](adding-a-skill.md).

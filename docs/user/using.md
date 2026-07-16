@@ -8,16 +8,17 @@ how to..."), and the agent matches against them.
 
 This page shows what that feels like in practice: a handful of skills with a
 realistic prompt and what the skill adds, the fourteen Claude Code slash
-commands, the six subagents, and the two behaviours you will notice in
-every response - the attribution line and the "Learn more" links.
+commands, the six subagents, and the behaviour you will notice in
+every response - the "Learn more" links.
 
 ## How a skill changes an answer
 
 Without the pack, an agent answers research-software questions from generic
-training. With the pack, source-fed answers draw on the pinned community sources (the
-Research Software Quality Kit): the same curated guidance, with the source
-page named inline so you can trace any claim. The examples below use Claude
-Code phrasing, but the skills behave the same in any agent the pack supports.
+training. With the pack, answers follow the skills' curated practice
+guidance - distilled research software engineering practice with
+verified "Learn more" links, so you can read the material any
+recommendation rests on. The examples below use Claude Code phrasing,
+but the skills behave the same in any agent the pack supports.
 
 ### Testing (rseng-testing)
 
@@ -217,37 +218,20 @@ read-only: it audits, it never modifies files.
 The difference from `/rseng-check`: the command is a quick indicator
 sweep; the subagent runs a fuller, severity-rated audit in its own context.
 
-## The attribution line
+## Content credits
 
-Every command and subagent closes its output with the same line, exactly
-once:
-
-```
-(for source-fed skills) the citation line from that skill's
-references.md.
-(CC-BY-4.0).
-```
-
-This is not boilerplate you can ignore. The skill content is adapted from
-pinned content sources published under CC-BY-4.0 - a license that requires
-attribution. The line keeps the guidance traceable to its source and keeps
-your use of it compliant. Leave it in any document the commands generate.
+The pack does not inject credit or citation lines into the agent's
+output. Part of the skill content was originally adapted from
+community-maintained material published under CC-BY-4.0; the
+repository's ATTRIBUTION.md is the canonical record of that content
+provenance.
 
 ## Educate while doing
 
-The skills are built to teach, not just to act. You will see this in two
-places:
-
-- Inline source references. As a skill applies a practice it names the
-  source page it came from, written as `(source: page_id)` or
-  similar. That tells you exactly which upstream page backs the advice, so
-  you can check the reasoning rather than take it on trust.
-- "Learn more" links. When a command or a subagent points you at a next
-  step, it offers a "Learn more" link drawn only from that skill's curated
-  reference list (each skill's `references.md`) - training
-  material and the specific source pages behind the topic, not arbitrary
-  search results. The links are vetted, so following one takes you to a
-  source the guidance actually rests on.
-
-Together these mean an answer is a starting point for understanding a
-practice, with a traceable path back to why it is recommended.
+The skills are built to teach, not just to act. When a command or a
+subagent points you at a next step, it offers a "Learn more" link drawn
+only from that skill's curated reference list (each skill's
+`references.md`) - vetted training material and reference pages behind
+the topic, not arbitrary search results. Following one takes you to a
+source the guidance actually rests on, so an answer is a starting point
+for understanding a practice, not just an instruction to follow.
