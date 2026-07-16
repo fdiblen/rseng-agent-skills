@@ -24,7 +24,8 @@ collaboration - with one non-negotiable adaptation for research
 software: the human owns the scientific decisions (what to compute,
 what counts as correct, what tolerances mean); the agent
 contributes engineering rigor, pattern knowledge and tirelessness.
-An agent that quietly makes scientific choices is not pairing, it
+An agent that makes scientific choices without saying so is not
+pairing, it
 is autopiloting - say which decisions are being handed back.
 
 ## Pairing: driver and navigator

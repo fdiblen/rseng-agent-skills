@@ -21,7 +21,7 @@ Use this skill when someone wants their software to be Findable,
 Accessible, Interoperable, and Reusable, or when reviewing how well a
 project meets those principles. FAIR is a set of principles for increasing
 the visibility and usefulness of research to others; the data principles
-from 2016 now extend to software, workflows, and machine-learning projects. Treat FAIR as a crucial subset of overall software
+from 2016 now extend to software, workflows, and machine-learning projects. Treat FAIR as one subset of overall software
 quality: it ensures software can be discovered, understood, and rerun by
 others (or by the author months later), but it says nothing about whether
 the software is correct - pair it with testing and the other quality
@@ -86,8 +86,8 @@ Software should be usable (it can be executed) and reusable (it can be
 understood, modified, built upon, or incorporated into other software). Recommend:
 
 - Document the software: what it does, how to install it, and how to run
-  it, so others can understand and extend it. This is the single highest-
-  leverage reuse action.
+  it, so others can understand and extend it. Nothing else does more
+  for reuse.
 - Give it a license that clearly states how it may be reused. Point to an
   open-source license guide or Choose an open source license to pick one;
   without a license, others legally cannot reuse the code even if it is

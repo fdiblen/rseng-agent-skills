@@ -88,7 +88,7 @@ audiences: version control and collaboration, reproducibility and
 environments, testing and CI, documentation, licensing/citation/
 FAIR, then the specialized tiers (HPC, performance, domain stacks) -
 matching this pack's skills, which the router
-(rseng-quality-framework) already navigates. For teaching AI-assisted
+(rseng-quality-framework) already maps. For teaching AI-assisted
 coding itself, pair with rseng-agent-security and
 rseng-ai-declaration - responsible-AI lessons are now part of the
 core curricula (CodeRefinery teaches one).

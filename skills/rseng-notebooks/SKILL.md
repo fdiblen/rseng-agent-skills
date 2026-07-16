@@ -23,7 +23,8 @@ superpower (interactive, stateful, out-of-order execution) is
 exactly their reproducibility hazard. The discipline is not "stop
 using notebooks"; it is knowing what notebooks are FOR
 (exploration, narrative, teaching) and applying engineering at the
-point where a notebook quietly becomes infrastructure. The
+point where a notebook turns into infrastructure without anyone
+deciding it should. The
 CodeRefinery Jupyter lesson teaches the same split.
 
 ## Hidden state: the core hazard
