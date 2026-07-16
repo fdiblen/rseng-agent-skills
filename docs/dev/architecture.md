@@ -123,6 +123,9 @@ committed - it is rebuilt from the skills whenever needed.
 
 ## The hooks enforcement layer
 
+(The full protocol - phases, worklog format, signals, escape hatch -
+is on the [Practice enforcement](enforcement.md) page.)
+
 `hooks/` is what keeps the skills actively used in a Claude Code
 session rather than passively installed. `session-context.md` is
 injected at session start; `phase_status.py` keeps the current practice

@@ -31,6 +31,9 @@ by what ships:
 - An "applied" claim only counts when a skill named in it was
   actually opened with the Skill tool - claims are cross-checked
   against the consultation ledger, so consult first, then record.
+  Keep the .rseng-agent-skills-* session records out of version control
+  (add them to .git/info/exclude); they are working state, not
+  project content.
 - KNOW the full inventory: the clustered directory of every skill
   lives in the rseng-quality-framework router skill (and AGENTS.md) -
   read it at Start so no practice area is missed for lack of

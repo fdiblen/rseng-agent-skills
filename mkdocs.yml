@@ -26,6 +26,7 @@ nav:
       - Updating and troubleshooting: user/updating.md
   - Developer guide:
       - Architecture: dev/architecture.md
+      - Practice enforcement: dev/enforcement.md
       - Content pipeline: dev/pipeline.md
       - External skills catalog: dev/catalog.md
       - Adding a skill: dev/adding-a-skill.md
