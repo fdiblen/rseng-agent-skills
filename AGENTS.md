@@ -52,10 +52,10 @@ Publishing, credit and reuse:
 - rseng-publishing-releasing: the release lifecycle of research software
 - rseng-software-publishing: publishing research software through its distribution channels
 - rseng-archiving: long-term archiving of research software and data
-- rseng-citation-metadata: making research software citable and its contributors credited
+- rseng-citation-metadata: making research software citable and contributors credited
 - rseng-citation-hygiene: verifying that every citation is real, correct and current
 - rseng-licensing: how to license research software
-- rseng-license-compliance: license compliance engineering for research software
+- rseng-license-compliance: license compliance engineering
 - rseng-fair-software: how to apply the FAIR principles - findable, accessible, interoperable, reusable - to research software, and how...
 - rseng-fair-ml: applying FAIR principles to machine learning artifacts
 - rseng-fairguard: assessing research software against the 17 FAIR4RS principles with FAIRGuard (https://www.fairguard.org)
@@ -85,7 +85,7 @@ Community and people:
 Communication and interfaces:
 - rseng-documentation: how to document research software at every level
 - rseng-science-communication: communicating research software outward to research audiences
-- rseng-storytelling: telling the story of research data, research software and research projects to broad audiences
+- rseng-storytelling: telling the story of research data, software and projects to broad audiences
 - rseng-ux-accessibility: user experience and accessibility for research software
 
 Planning and operations:

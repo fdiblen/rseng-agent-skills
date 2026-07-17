@@ -7,11 +7,10 @@ description: >-
   a research project is about to implement functionality that likely already
   exists - data readers, converters, solvers, analysis tools, domain libraries
   - and when the user asks whether a tool already exists, wants to find
-  research software for a domain, mentions the Research Software Directory or
-  RSD, or wants their own software discoverable in one. Ships bundled catalog
+  research software for a domain, or mentions the RSD. Ships bundled catalog
   snapshots (data/*.json) for offline candidate suggestions. (Broad prior-art
-  surveys across publications and all software sources are rseng-discovery;
-  vetting a chosen candidate before adoption is rseng-dependency-management.)
+  surveys across publications and all sources: rseng-discovery; vetting a chosen
+  candidate: rseng-dependency-management.)
 license: CC-BY-4.0
 metadata:
   version: 0.2.0
@@ -30,8 +29,8 @@ exists.
 
 ## Where to search
 
-- https://research-software-directory.org - general research software
-  Center's instance; broad coverage of Dutch research software.
+- https://research-software-directory.org - the original instance;
+  broad coverage of Dutch research software.
 - https://helmholtz.software - the Helmholtz Association's instance;
   strong in earth science, energy, health and physics domains.
 - Both run the open-source RSD-as-a-service platform

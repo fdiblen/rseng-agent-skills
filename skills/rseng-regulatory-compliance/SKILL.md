@@ -4,15 +4,13 @@ description: >-
   Covers checking research code and data against data-protection and AI
   regulation: GDPR obligations in code (personal data discovery, minimization,
   pseudonymization vs anonymization, retention, data-subject rights, DPIA
-  triggers), the EU AI Act (risk tiers, the scientific-research carve-out,
-  transparency and documentation duties), and similar regimes elsewhere. Use
-  when a project processes personal or sensitive data, trains or ships AI/ML
-  systems, when the user asks about GDPR, the AI Act, DPIAs, consent,
-  anonymization or regulatory compliance of their software, or before
-  publishing datasets or models derived from people. For secrets hygiene and
-  protective controls see rseng-security; for sensitive-data storage and
-  stewardship see rseng-data-management; for AI-use disclosure see
-  rseng-ai-declaration.
+  triggers), the EU AI Act (risk tiers, research carve-out, transparency
+  duties), and similar regimes. Use when a project processes personal or
+  sensitive data, trains or ships AI/ML systems, when the user asks about
+  GDPR, the AI Act, DPIAs, consent or anonymization, or before publishing
+  datasets or models derived from people. (Secrets hygiene and protective
+  controls: rseng-security; sensitive-data stewardship: rseng-data-management;
+  AI-use disclosure: rseng-ai-declaration.)
 license: CC-BY-4.0
 metadata:
   version: 0.1.0

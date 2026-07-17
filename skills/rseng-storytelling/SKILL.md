@@ -1,18 +1,15 @@
 ---
 name: rseng-storytelling
 description: >-
-  Covers telling the story of research data, research software and research
-  projects to broad audiences: narrative structure for data stories, turning
-  software and project milestones into human-centered stories, and engagement
-  with citizen scientists and the public - recruiting contributors, closing
-  the feedback loop with data stories, and honest narrative that never
-  oversells. Use when the user wants to explain a project, dataset or tool to
-  non-specialists, mentions storytelling, outreach, public engagement or
-  citizen science, needs project stories for websites, funders or volunteers,
-  or runs a citizen-science project whose contributors deserve to see what
-  their data became. For research-facing outputs - software papers, talks,
-  release announcements - see rseng-science-communication; for in-repo docs see
-  rseng-documentation.
+  Covers telling the story of research data, software and projects to broad
+  audiences: narrative structure for data stories, turning milestones into
+  human-centered stories, and citizen-science engagement - recruiting
+  contributors, closing the feedback loop with data stories, honest narrative
+  that never oversells. Use when the user wants to explain a project, dataset
+  or tool to non-specialists, mentions storytelling, outreach, public
+  engagement or citizen science, or needs project stories for websites,
+  funders or volunteers. (Research-facing outputs - software papers, talks,
+  announcements: rseng-science-communication; in-repo docs: rseng-documentation.)
 license: CC-BY-4.0
 metadata:
   version: 0.1.0

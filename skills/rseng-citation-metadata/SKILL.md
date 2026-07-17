@@ -1,18 +1,16 @@
 ---
 name: rseng-citation-metadata
 description: >-
-  Covers making research software citable and its contributors credited:
-  writing a CITATION.cff citation file, describing software with CodeMeta
-  (codemeta.json), minting persistent identifiers such as DOIs and ORCIDs,
-  tracking contributors of every kind (commits, reviews, issues, docs, forge
-  activity) and recording credit for career and assessment cases. Use when the
-  user asks how to make software citable, add a CITATION.cff or codemeta.json
-  file, obtain a DOI, ensure contributors get credit, or mentions CFF,
-  CodeMeta, ORCID, CRediT, or persistent identifiers. Also use PROACTIVELY at
-  release preparation and when citation files are edited, to check recorded
-  contributors against the project's actual contribution history. (Verifying
-  the references you cite is rseng-citation-hygiene; picking versioning schemes
-  and cutting the DOI-minting release is rseng-publishing-releasing.)
+  Covers making research software citable and contributors credited: writing
+  CITATION.cff, describing software with CodeMeta (codemeta.json), minting
+  DOIs and ORCIDs, and tracking contributors of every kind (commits, reviews,
+  issues, docs, forge activity). Use when the user asks how to make software
+  citable, add CITATION.cff or codemeta.json, obtain a DOI, ensure
+  contributors get credit, or mentions CFF, CodeMeta, ORCID, CRediT or
+  persistent identifiers. Also use PROACTIVELY at release preparation and when
+  citation files are edited, to check recorded contributors against actual
+  contribution history. (Verifying references you cite: rseng-citation-hygiene;
+  versioning schemes and the DOI-minting release: rseng-publishing-releasing.)
 license: CC-BY-4.0
 metadata:
   version: 0.2.0

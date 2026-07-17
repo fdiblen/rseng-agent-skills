@@ -70,7 +70,7 @@ without touching your edits, and `doctor` checks install health.
 | `rseng-big-data-processing` | processing research data that outgrows one machine's memory |
 | `rseng-ci-cd` | continuous integration and delivery for research software |
 | `rseng-citation-hygiene` | verifying that every citation is real, correct and current |
-| `rseng-citation-metadata` | making research software citable and its contributors credited |
+| `rseng-citation-metadata` | making research software citable and contributors credited |
 | `rseng-code-quality` | writing readable research code and structuring software projects |
 | `rseng-code-review` | reviewing existing code and whole projects, not just new diffs |
 | `rseng-community-governance` | building and governing a community around research software |
@@ -95,7 +95,7 @@ without touching your edits, and `doctor` checks install health.
 | `rseng-language-guides` | language-specific research software practice |
 | `rseng-legacy-code` | working safely with inherited research code |
 | `rseng-lessons-learned` | capturing and reusing what a project learns |
-| `rseng-license-compliance` | license compliance engineering for research software |
+| `rseng-license-compliance` | license compliance engineering |
 | `rseng-licensing` | how to license research software |
 | `rseng-maintenance-sustainability` | keeping research software alive and responsible over time |
 | `rseng-management-planning` | planning research software work |
@@ -124,7 +124,7 @@ without touching your edits, and `doctor` checks install health.
 | `rseng-software-peer-review` | community peer review of research software |
 | `rseng-software-publishing` | publishing research software through its distribution channels |
 | `rseng-software-reuse` | discovering and reusing existing research software instead of rebuilding it, using Research Software Directory... |
-| `rseng-storytelling` | telling the story of research data, research software and research projects to broad audiences |
+| `rseng-storytelling` | telling the story of research data, software and projects to broad audiences |
 | `rseng-testing` | how to test research software |
 | `rseng-trainer` | teaching research software skills while working |
 | `rseng-user-support` | running user support as an operation for research software |

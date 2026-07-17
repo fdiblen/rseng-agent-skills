@@ -1,18 +1,15 @@
 ---
 name: rseng-license-compliance
 description: >-
-  Covers license compliance engineering for research software: auditing the
-  licenses of the full dependency tree, analyzing license compatibility
-  (permissive vs weak vs strong copyleft, GPL interactions, combining and
-  linking), suggesting a license from project constraints, dual and
-  multi-licensing strategies, SPDX expressions and REUSE-compliant
-  repositories, fulfilling attribution and NOTICE obligations, and enforcing
-  license policy in CI. Use when the user asks whether their dependencies'
-  licenses are compatible, wants a license audit or compliance check,
-  considers dual licensing or relicensing, must satisfy GPL/LGPL obligations,
-  mentions SPDX expressions, REUSE compliance, NOTICE files or license
-  scanners, or needs a license recommendation under real constraints. (License
-  basics, first-time license choice and adding a LICENSE file are
+  Covers license compliance engineering: auditing the full dependency tree's
+  licenses, compatibility analysis (permissive vs weak vs strong copyleft, GPL
+  interactions, combining and linking), dual and multi-licensing, SPDX
+  expressions and REUSE-compliant repositories, attribution and NOTICE
+  obligations, and license policy in CI. Use when the user asks whether
+  dependencies' licenses are compatible, wants a license audit, considers dual
+  licensing or relicensing, must satisfy GPL/LGPL obligations, mentions SPDX,
+  REUSE, NOTICE files or license scanners, or needs a license recommendation
+  under real constraints. (License basics and first-time license choice:
   rseng-licensing.)
 license: CC-BY-4.0
 metadata:

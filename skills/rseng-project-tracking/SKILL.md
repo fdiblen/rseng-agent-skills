@@ -3,17 +3,15 @@ name: rseng-project-tracking
 description: >-
   Covers the operational side of running a research software project: turning
   plans into tracked, prioritized tasks (issues, milestones, boards), planning
-  cadence around research deadlines, estimation and time management for
-  uncertain research work (ranged estimates, timeboxed spikes, capacity
-  planning), and disciplined bookkeeping - decision logs, status records,
-  meeting notes, milestone reviews and two-altitude project logs. Use when
-  work is untracked or lives in heads and inboxes, when the user asks how to
-  organize tasks, backlogs, milestones or boards, wants a project record,
-  status report or decision log, mentions issue triage or prioritization, or
-  when a project has more than one person or more than one month of work.
-  (Strategic planning and SMPs are rseng-management-planning; new-project setup
-  is rseng-project-kickoff; retrospectives and postmortems are
-  rseng-lessons-learned.)
+  cadence around research deadlines, ranged estimates and timeboxed spikes for
+  uncertain work, and disciplined bookkeeping - decision logs, status records,
+  meeting notes and two-altitude project logs. Use when work is untracked or
+  lives in heads and inboxes, when the user asks how to organize tasks,
+  backlogs, milestones or boards, wants a status report or decision log,
+  mentions issue triage or prioritization, or when a project has more than one
+  person or month of work. (Strategic planning and SMPs:
+  rseng-management-planning; new-project setup: rseng-project-kickoff;
+  retrospectives: rseng-lessons-learned.)
 license: CC-BY-4.0
 metadata:
   version: 0.3.0

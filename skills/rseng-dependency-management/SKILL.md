@@ -1,18 +1,17 @@
 ---
 name: rseng-dependency-management
 description: >-
-  Covers the full lifecycle of third-party dependencies: vetting a library or
-  tool before adoption on every axis that matters - suitability, license,
-  trust and vulnerabilities including the transitive tree, documentation
-  quality, maintenance and version currency - then keeping dependencies
-  current with lockfiles and automated updates, and removing or replacing them
-  when they rot. Use PROACTIVELY whenever a new dependency is about to be
-  added, when dependencies are outdated or unpinned, when the user asks
-  whether a library is safe, maintained or well chosen, mentions dependency
-  updates, dependabot/renovate, transitive dependencies or version pinning, or
-  when a dependency audit is due. (Finding candidates is rseng-software-reuse;
-  deep license compatibility analysis is rseng-license-compliance; lockfile
-  mechanics are rseng-reproducible-environments.)
+  Covers the full lifecycle of third-party dependencies: vetting a library
+  before adoption on every axis that matters - suitability, license, trust and
+  vulnerabilities including the transitive tree, documentation, maintenance
+  and version currency - then keeping dependencies current with lockfiles and
+  automated updates, and replacing them when they rot. Use PROACTIVELY
+  whenever a new dependency is about to be added, when dependencies are
+  outdated or unpinned, when the user asks whether a library is safe or well
+  chosen, mentions dependabot/renovate, transitive dependencies or version
+  pinning, or when an audit is due. (Finding candidates: rseng-software-reuse;
+  deep license analysis: rseng-license-compliance; lockfile mechanics:
+  rseng-reproducible-environments.)
 license: CC-BY-4.0
 metadata:
   version: 0.2.0

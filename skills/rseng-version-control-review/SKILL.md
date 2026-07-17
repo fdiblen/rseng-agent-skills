@@ -5,15 +5,13 @@ description: >-
   PR-time review process: choosing a VCS, branching and commit practice,
   authorship and signatures in commit metadata (author/committer identity,
   Co-authored-by trailers, signed commits and tags, .mailmap), collaboration
-  workflows on GitHub/GitLab, and running constructive, checklist-driven
-  pull-request reviews. Use when the user asks how to set up git, design a
-  branching strategy, write commit messages, record who authored or
-  co-authored a change, sign commits or tags, handle large binary files, open
-  or review a pull/merge request, decide what to look for (or ignore) in
-  review, or wire linters and CI into the review loop. For retrospective
-  audits of existing code and milestone project reviews see rseng-code-review;
-  for pre-reviewing your own draft before human reviewers see
-  rseng-pair-programming.
+  on GitHub/GitLab, and constructive checklist-driven pull-request reviews.
+  Use when the user asks how to set up git, design a branching strategy, write
+  commit messages, record who authored or co-authored a change, sign commits
+  or tags, handle large binary files, open or review a pull/merge request, or
+  wire linters and CI into review. (Audits of existing code and milestone
+  reviews: rseng-code-review; pre-reviewing your own draft:
+  rseng-pair-programming.)
 license: CC-BY-4.0
 metadata:
   version: 0.3.0

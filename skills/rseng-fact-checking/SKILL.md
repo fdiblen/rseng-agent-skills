@@ -4,15 +4,13 @@ description: >-
   Covers verifying facts and sources at the content level: checking that a
   cited source actually contains and supports the claim it is cited for
   (claim-source alignment), assessing source trustworthiness (peer-review
-  status, venue reputation, predatory-publishing signals, primary vs secondary
-  sources), verifying factual claims against authoritative sources before they
-  enter documents or code comments, and flagging fabricated or misattributed
-  support. Use PROACTIVELY whenever the agent itself asserts checkable facts
-  or attaches sources to claims, and when the user asks to fact-check a
-  document, verify that references support their claims, assess whether a
-  source is trustworthy, or suspects a citation says something other than
-  claimed. rseng-citation-hygiene verifies references exist and are unretracted;
-  rseng-research-integrity checks a document's own numbers.
+  status, venue reputation, predatory-publishing signals, primary vs
+  secondary), and flagging fabricated or misattributed support. Use
+  PROACTIVELY whenever the agent itself asserts checkable facts or attaches
+  sources to claims, and when the user asks to fact-check a document, verify
+  that references support their claims, or assess whether a source is
+  trustworthy. (rseng-citation-hygiene verifies references exist and are
+  unretracted; rseng-research-integrity checks a document's own numbers.)
 license: CC-BY-4.0
 metadata:
   version: 0.1.0

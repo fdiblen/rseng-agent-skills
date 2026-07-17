@@ -2,17 +2,15 @@
 name: rseng-agent-security
 description: >-
   Covers operating AI coding agents securely: auditing whether the agent runs
-  sandboxed, reviewing permission configuration and dangerous-command
-  allowances, containerized or devcontainer agent environments, keeping
-  secrets out of agent context, limiting network egress and token privileges,
-  and prompt-injection risk from untrusted repository content. Use PROACTIVELY
-  when permission gating is broadly disabled (skip-permissions modes), when
-  secrets are visible to the agent's shell, or when the agent is asked to
-  process untrusted code, issues or web content; also when the user asks how
-  to run coding agents safely or mentions sandboxing, permission modes,
-  dangerous-skip flags or agent containerization. For project and supply-chain
-  security see rseng-security; for disclosing agent contributions see
-  rseng-ai-declaration.
+  sandboxed, permission configuration and dangerous-command allowances,
+  containerized agent environments, keeping secrets out of agent context,
+  limiting network egress and token privileges, and prompt-injection risk from
+  untrusted repository content. Use PROACTIVELY when permission gating is
+  broadly disabled (skip-permissions modes), when secrets are visible to the
+  agent's shell, or when the agent processes untrusted code, issues or web
+  content; also when the user asks how to run coding agents safely or mentions
+  sandboxing or permission modes. (Project and supply-chain security:
+  rseng-security; disclosing agent contributions: rseng-ai-declaration.)
 license: CC-BY-4.0
 metadata:
   version: 0.1.0

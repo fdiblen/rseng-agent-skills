@@ -6,13 +6,12 @@ description: >-
   manuscript numbers and pipeline outputs, retraction screening of cited work,
   sanity checks on tables and figures against the data, and an auditable
   pre-submission checklist. Use PROACTIVELY before manuscript submission or
-  the release of result-bearing reports, when reported numbers are transcribed
+  release of result-bearing reports, when reported numbers are transcribed
   from analysis outputs, and when the user asks to check a paper's numbers,
-  mentions statcheck, GRIM, integrity checks or reporting errors, or suspects
-  an inconsistency between code outputs and the written text. Reference
-  existence and retraction screening live in rseng-citation-hygiene; whether
-  sources support their claims in rseng-fact-checking; responding to concealment
-  requests in rseng-honesty.
+  mentions statcheck, GRIM or integrity checks, or suspects a mismatch between
+  code outputs and text. (Reference existence and retractions:
+  rseng-citation-hygiene; claim-source support: rseng-fact-checking; concealment
+  requests: rseng-honesty.)
 license: CC-BY-4.0
 metadata:
   version: 0.1.0
