@@ -1,8 +1,11 @@
-"""GitHub Copilot target.
+"""GitHub Copilot target: repo instructions + native skills tree.
 
-Output layout mirrors what a consumer repository receives under .github/:
-copilot-instructions.md (repo-wide summary), instructions/*.instructions.md
-(one per skill, glob-scoped) and skills/ (canonical skill passthrough).
+Copilot reads `.agents/skills/` natively, and skills work across the
+whole Copilot surface (agent mode, CLI, code review, cloud agents) -
+unlike the per-skill instruction files and prompt files this target
+used to render, which never reached cloud agents and attached ~124KB
+of always-on instructions per request. What remains under .github/ is
+the repo-wide behavior instructions and the self-check.
 """
 
 from __future__ import annotations
@@ -11,12 +14,7 @@ from pathlib import Path
 
 from jinja2 import Environment
 
-from ..adapters import copy_check, copy_skills, render_to, target
-
-
-def _copilot_body(body: str) -> str:
-    translated = body.replace("${CLAUDE_PLUGIN_ROOT}/", ".github/")
-    return translated.replace("$ARGUMENTS", "${input:arguments}")
+from ..adapters import build_agents_skills, copy_check, render_to, target
 
 
 @target("copilot")
@@ -32,26 +30,6 @@ def build_copilot(
             github_dir / "copilot-instructions.md",
         )
     ]
-    for skill in context["skills"]:
-        written.append(
-            render_to(
-                env,
-                "copilot/skill.instructions.md.j2",
-                {**context, "skill": skill},
-                github_dir / "instructions" / f"{skill['name']}.instructions.md",
-            )
-        )
-    for command in context["commands"]:
-        adapted = {**command, "body": _copilot_body(command["body"])}
-        written.append(
-            render_to(
-                env,
-                "copilot/command.prompt.md.j2",
-                {**context, "command": adapted},
-                github_dir / "prompts" / f"{command['name']}.prompt.md",
-            )
-        )
-    copy_skills(repo_root, github_dir / "skills")
-    written.extend(sorted((github_dir / "skills").rglob("SKILL.md")))
-    written.extend(copy_check(repo_root, github_dir))
+    written += build_agents_skills(repo_root, context, target_dir)
+    written += copy_check(repo_root, github_dir)
     return written

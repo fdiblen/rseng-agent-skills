@@ -5,13 +5,14 @@ alwaysApply: true
 
 <!-- {{ generated_note }} -->
 
-For research software quality topics, consult the topic rules in
-.cursor/rules/ (one per rseng- skill) before advising; each rule points
-at its full skill text under .cursor/skills/ and lists related skills
-to check. Judge expectations by software tier: analysis code,
+For research software quality topics, consult the native skills in
+.agents/skills/ (one per rseng- topic; Cursor loads them by description
+relevance) before advising; each SKILL.md lists related skills to
+check. Judge expectations by software tier: analysis code,
 prototype tool, or research infrastructure. Work in phases recorded in
 .rseng-agent-skills-coverage.md (Start / During / Finish / Throughout sections
 covering the clusters in .cursor/rseng-check/phases.json), and before
 declaring a coding task complete run
 `python3 .cursor/rseng-check/rseng_check.py` and fix what it reports.
-Custom commands for common workflows live in .cursor/commands/.
+Explicitly invocable command-skills (rseng-check, rseng-cite,
+rseng-plan, ...) live in the same tree.

@@ -1,7 +1,10 @@
-"""Codex CLI target: generated AGENTS.md plus canonical skills passthrough.
+"""Codex CLI target: behavior-rules AGENTS.md + native skills tree.
 
-Codex reads at most 32 KiB of project docs per file by default, so the
-generated AGENTS.md is size-checked at build time.
+Codex reads `.agents/skills/` natively (implicit invocation by
+description match), so AGENTS.md no longer carries a skill directory -
+only the behavior rules, the phased-practice protocol and the
+self-check pointer. Command-skills carry agents/openai.yaml with
+implicit invocation disabled.
 """
 
 from __future__ import annotations
@@ -10,7 +13,7 @@ from pathlib import Path
 
 from jinja2 import Environment
 
-from ..adapters import copy_check, copy_skills, render_to, target
+from ..adapters import build_agents_skills, copy_check, render_to, target
 from ..checks import SIZE_BUDGETS
 
 AGENTS_MD_BUDGET = SIZE_BUDGETS["AGENTS.md"]
@@ -26,6 +29,7 @@ def build_codex(
         raise RuntimeError(
             f"AGENTS.md is {size} bytes, over the {AGENTS_MD_BUDGET} budget"
         )
-    copy_skills(repo_root, target_dir / "skills")
-    checks = copy_check(repo_root, target_dir)
-    return [agents_md, *sorted((target_dir / "skills").rglob("SKILL.md")), *checks]
+    written = [agents_md]
+    written += build_agents_skills(repo_root, context, target_dir)
+    written += copy_check(repo_root, target_dir)
+    return written

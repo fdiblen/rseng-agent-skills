@@ -3,14 +3,9 @@
 # Research software engineering practice
 
 When working on research software in this repository, follow the
-practice guidance in this pack. Detailed skill files live in
-.github/skills/.
-
-## Topic guide
-
-{% for skill in skills %}
-- {{ skill.name }}: {{ skill.brief }}
-{% endfor %}
+practice guidance in this pack. The full skill set is installed at
+.agents/skills/ and loads natively across Copilot surfaces; consult
+skills whose descriptions match the work before advising.
 
 ## Behavior rules
 
@@ -48,10 +43,10 @@ practice guidance in this pack. Detailed skill files live in
   disposition; project contents (notebooks, data files, CI configs,
   ML/GPU/HPC code...) make their mapped skills in
   .github/rseng-check/signals.json mandatory unless explicitly waived
-  with a reason. Every skill file under .github/skills/ ends with
+  with a reason. Every skill file under .agents/skills/ ends with
   a Related skills section - when consulting one, check whether a
-  related skill applies. Reusable workflow prompts live in
-  .github/prompts/.
+  related skill applies. Explicitly invocable command-skills
+  (rseng-check, rseng-cite, rseng-plan, ...) live in the same tree.
 - Before declaring any coding task complete, run
   `python3 .github/rseng-check/rseng_check.py` from the project root and
   fix everything it reports.

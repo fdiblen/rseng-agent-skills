@@ -98,6 +98,70 @@ def copy_skills(repo_root: Path, target_dir: Path) -> None:
         shutil.copytree(skill_dir, target_dir / skill_dir.name, dirs_exist_ok=True)
 
 
+# The panel command orchestrates Claude subagents, which exist on no
+# other platform; it stays out of the portable command-skills.
+CLAUDE_ONLY_COMMANDS = {"rseng-panel"}
+
+
+def build_command_skills(context: dict, target_dir: Path) -> list[Path]:
+    """Render the plugin's commands as explicitly-invoked skills.
+
+    Agent Skills is now native on every target platform, and both
+    Cursor and Claude honor `disable-model-invocation` while Codex
+    reads agents/openai.yaml - so one generated skill per command
+    replaces the three per-platform command formats.
+    """
+    written = []
+    for command in context["commands"]:
+        if command["name"] in CLAUDE_ONLY_COMMANDS:
+            continue
+        body = command["body"].replace("${CLAUDE_PLUGIN_ROOT}/", ".agents/")
+        body = body.replace("$ARGUMENTS", "the arguments given with the command")
+        skill_dir = target_dir / command["name"]
+        skill_dir.mkdir(parents=True, exist_ok=True)
+        description = " ".join(str(command["description"]).split()) or command["name"]
+        frontmatter_text = (
+            "---\n"
+            f"name: {command['name']}\n"
+            "description: >-\n"
+            + "".join(f"  {line}\n" for line in _wrap(description))
+            + "disable-model-invocation: true\n"
+            "---\n\n"
+        )
+        out = skill_dir / "SKILL.md"
+        out.write_text(frontmatter_text + body.rstrip() + "\n", encoding="utf-8")
+        written.append(out)
+        agents_dir = skill_dir / "agents"
+        agents_dir.mkdir(exist_ok=True)
+        openai_yaml = agents_dir / "openai.yaml"
+        openai_yaml.write_text(
+            "policy:\n  allow_implicit_invocation: false\n", encoding="utf-8"
+        )
+        written.append(openai_yaml)
+    return written
+
+
+def _wrap(text: str, width: int = 76) -> list[str]:
+    import textwrap
+
+    return textwrap.wrap(
+        text, width=width, break_on_hyphens=False, break_long_words=False
+    )
+
+
+def build_agents_skills(
+    repo_root: Path, context: dict, target_dir: Path
+) -> list[Path]:
+    """The unified native tree: .agents/skills/ holding every canonical
+    skill plus the command-skills. Codex, Cursor and Copilot all read
+    this location natively."""
+    tree = target_dir / ".agents" / "skills"
+    copy_skills(repo_root, tree)
+    written = sorted(tree.rglob("SKILL.md"))
+    written += build_command_skills(context, tree)
+    return written
+
+
 def copy_check(repo_root: Path, target_dir: Path) -> list[Path]:
     """Ship the platform-neutral self-check next to a target's context
     files: hookless agents are instructed to run it before finishing."""

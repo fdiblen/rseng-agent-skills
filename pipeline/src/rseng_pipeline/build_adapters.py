@@ -24,28 +24,29 @@ def _structure_problems(dist_dir: Path, name: str, context: dict) -> list[str]:
     n_skills = len(context["skills"])
     n_commands = len(context["commands"])
     target = dist_dir / name
+    n_cmd_skills = n_commands - 1  # rseng-panel stays Claude-only
+    unified = [
+        (".agents/skills/*/SKILL.md", n_skills + n_cmd_skills),
+        (".agents/skills/rseng-check/agents/openai.yaml", 1),
+    ]
     expected: dict[str, list[tuple[str, int]]] = {
-        "codex": [
-            ("skills/*/SKILL.md", n_skills),
+        "codex": unified + [
+            ("AGENTS.md", 1),
             ("rseng-check/rseng_check.py", 1),
             ("rseng-check/phases.json", 1),
+        ],
+        "cursor": unified + [
+            (".cursor/rules/*.mdc", 1),
+            (".cursor/rseng-check/rseng_check.py", 1),
+        ],
+        "copilot": unified + [
+            (".github/copilot-instructions.md", 1),
+            (".github/rseng-check/rseng_check.py", 1),
         ],
         "gemini": [
             ("skills/*/SKILL.md", n_skills),
             ("commands/*.toml", n_commands),
             ("rseng-check/rseng_check.py", 1),
-        ],
-        "copilot": [
-            (".github/instructions/*.instructions.md", n_skills),
-            (".github/skills/*/SKILL.md", n_skills),
-            (".github/prompts/*.prompt.md", n_commands),
-            (".github/rseng-check/rseng_check.py", 1),
-        ],
-        "cursor": [
-            (".cursor/rules/*.mdc", n_skills + 1),
-            (".cursor/commands/*.md", n_commands),
-            (".cursor/skills/*/SKILL.md", n_skills),
-            (".cursor/rseng-check/rseng_check.py", 1),
         ],
     }
     problems = []
@@ -53,21 +54,6 @@ def _structure_problems(dist_dir: Path, name: str, context: dict) -> list[str]:
         found = len(list(target.glob(pattern)))
         if found != count:
             problems.append(f"{name}: {pattern} has {found} files, expected {count}")
-    if name == "cursor":
-        rules = [
-            p
-            for p in target.glob(".cursor/rules/rseng-*.mdc")
-            if p.name != "rseng-overview.mdc"
-        ]
-        missing = [
-            p.name
-            for p in rules
-            if "Related skills" not in p.read_text(encoding="utf-8")
-        ]
-        if missing:
-            problems.append(
-                f"cursor: rules missing a Related skills block: {missing[:5]}"
-            )
     return problems
 
 

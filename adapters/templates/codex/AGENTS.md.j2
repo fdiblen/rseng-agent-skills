@@ -4,7 +4,7 @@
 
 When working on research software - scientific code, analysis scripts,
 research tools or infrastructure - follow this practice guidance. The
-full skill files with reference material live in skills/.
+full skill files with reference material live in .agents/skills/.
 
 First classify the software tier; it calibrates every expectation:
 analysis code (scripts and notebooks behind a result), prototype tools
@@ -12,16 +12,17 @@ analysis code (scripts and notebooks behind a result), prototype tools
 (what communities depend on). Do not hold analysis code to infrastructure
 standards.
 
-## Topics
+## Skills
 
-{% for skill in skills %}
-### {{ skill.name }}
+The full skill set is installed at .agents/skills/ and loads
+natively: each skill's description states when it applies, and its
+SKILL.md carries the guidance plus a Related skills section. Consult
+skills whose descriptions match the work BEFORE deciding; explicitly
+invocable command-skills (rseng-check, rseng-cite, rseng-plan, ...) cover
+deliberate workflows. The platform's startup listing may truncate;
+the FULL inventory is:
+{% for skill in skills %}{{ skill.name }}{% if not loop.last %}, {% endif %}{% endfor %}.
 
-{{ skill.brief }}
-
-Details: skills/{{ skill.name }}/SKILL.md.
-
-{% endfor %}
 ## Behavior rules
 
 - Publication authorship boundary: never produce a submission-ready
@@ -46,10 +47,10 @@ Details: skills/{{ skill.name }}/SKILL.md.
 
 - Educate while doing: briefly explain why each applied practice matters
   for research software and offer 2-3 "Learn more" links from the relevant
-  skills/<name>/references.md. Never invent URLs; use only
+  .agents/skills/<name>/references.md. Never invent URLs; use only
   links from those files.
 - For a full quality assessment, use the indicator checklist in
-  skills/rseng-quality-framework/references.md and report
+  .agents/skills/rseng-quality-framework/references.md and report
   met / partial / missing / not-applicable per indicator for the tier.
 - Work in phases, recorded as you go in .rseng-agent-skills-coverage.md with
   Start / During / Finish / Throughout sections covering every cluster
