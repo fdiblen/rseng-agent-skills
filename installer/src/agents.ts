@@ -47,19 +47,19 @@ const SPECS: AgentSpec[] = [
     agent: "copilot",
     scope: "project",
     marker: (p) => path.join(p, ".github"),
-    installDir: (p) => path.join(p, ".github"),
+    installDir: (p) => p,
   },
   {
     agent: "cursor",
     scope: "project",
     marker: (p) => path.join(p, ".cursor"),
-    installDir: (p) => path.join(p, ".cursor"),
+    installDir: (p) => p,
   },
   {
     agent: "codex",
-    scope: "user",
+    scope: "project",
     marker: (_p, h) => path.join(h, ".codex"),
-    installDir: (_p, h) => path.join(h, ".codex"),
+    installDir: (p) => p,
   },
   {
     agent: "gemini",

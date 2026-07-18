@@ -4,7 +4,7 @@ import type { CliContext } from "./context.js";
 import {
   executePlan,
   type InstallPlan,
-  MANIFEST_NAME,
+  manifestName,
   readManifest,
   sha256,
 } from "./install.js";
@@ -26,9 +26,11 @@ export function executeUpdate(
   plan: InstallPlan,
 ): UpdateResult {
   const installDir = plan.target.installDir;
-  const manifest = readManifest(installDir);
+  const manifest = readManifest(installDir, plan.target.agent);
   if (!manifest) {
-    throw new Error(`${installDir} has no ${MANIFEST_NAME}; run install first`);
+    throw new Error(
+      `${installDir} has no ${manifestName(plan.target.agent)}; run install first`,
+    );
   }
 
   const preserved: string[] = [];
@@ -74,7 +76,7 @@ export function executeUpdate(
   // Preserved files keep their ORIGINAL recorded hash: the manifest must
   // keep remembering what the pack installed, so the file still counts as
   // user-edited (and stays protected) on every future update.
-  const written = readManifest(installDir);
+  const written = readManifest(installDir, plan.target.agent);
   if (written) {
     for (const rel of preserved) {
       const original = manifest.files[rel];
@@ -83,7 +85,7 @@ export function executeUpdate(
       }
     }
     fs.writeFileSync(
-      path.join(installDir, MANIFEST_NAME),
+      path.join(installDir, manifestName(plan.target.agent)),
       `${JSON.stringify(written, null, 2)}\n`,
     );
   }

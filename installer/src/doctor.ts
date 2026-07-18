@@ -27,7 +27,7 @@ function packVersion(packRoot: string): string | undefined {
 
 /** Inspect one agent target's install state without modifying anything. */
 export function diagnose(packRoot: string, target: AgentTarget): DoctorReport {
-  const manifest = readManifest(target.installDir);
+  const manifest = readManifest(target.installDir, target.agent);
   const current = packVersion(packRoot);
   if (!manifest) {
     return {

@@ -48,7 +48,7 @@ registerCommand(
     const wanted = (args.positionals[0] as string[] | undefined) ?? [];
     const installed = detectAgents().filter(
       (target) =>
-        readManifest(target.installDir) !== undefined &&
+        readManifest(target.installDir, target.agent) !== undefined &&
         (wanted.length === 0 || wanted.includes(target.agent)),
     );
     if (installed.length === 0) {

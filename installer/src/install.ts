@@ -4,7 +4,14 @@ import path from "node:path";
 import type { AgentTarget } from "./agents.js";
 import type { CliContext } from "./context.js";
 
-export const MANIFEST_NAME = ".rseng-agent-skills.json";
+/**
+ * Per-agent manifest: the unified targets (codex, cursor, copilot) all
+ * install into the project root, so each agent's record needs its own
+ * file name to coexist.
+ */
+export function manifestName(agent: string): string {
+  return `.rseng-agent-skills.${agent}.json`;
+}
 
 /**
  * What gets copied per agent, relative to the pack root. Sources are an
@@ -17,11 +24,17 @@ const SOURCES: Record<string, { from: string; to: string }[]> = {
     { from: "commands", to: "commands" },
     { from: "agents", to: "agents" },
   ],
-  copilot: [{ from: "dist/copilot/.github", to: "." }],
-  cursor: [{ from: "dist/cursor/.cursor", to: "." }],
+  copilot: [
+    { from: "dist/copilot/.github", to: ".github" },
+    { from: "dist/copilot/.agents", to: ".agents" },
+  ],
+  cursor: [
+    { from: "dist/cursor/.cursor", to: ".cursor" },
+    { from: "dist/cursor/.agents", to: ".agents" },
+  ],
   codex: [
     { from: "dist/codex/AGENTS.md", to: "AGENTS.md" },
-    { from: "dist/codex/skills", to: "skills" },
+    { from: "dist/codex/.agents", to: ".agents" },
     { from: "dist/codex/rseng-check", to: "rseng-check" },
   ],
   gemini: [{ from: "dist/gemini", to: "." }],
@@ -113,7 +126,10 @@ export function executePlan(ctx: CliContext, plan: InstallPlan): void {
       copy.to,
     );
   }
-  const manifestPath = path.join(plan.target.installDir, MANIFEST_NAME);
+  const manifestPath = path.join(
+    plan.target.installDir,
+    manifestName(plan.target.agent),
+  );
   fs.writeFileSync(
     manifestPath,
     `${JSON.stringify({ version: "0.1.0", files: manifestFiles }, null, 2)}\n`,
@@ -123,8 +139,9 @@ export function executePlan(ctx: CliContext, plan: InstallPlan): void {
 
 export function readManifest(
   installDir: string,
+  agent = "cursor",
 ): { version: string; files: Record<string, string> } | undefined {
-  const manifestPath = path.join(installDir, MANIFEST_NAME);
+  const manifestPath = path.join(installDir, manifestName(agent));
   if (!fs.existsSync(manifestPath)) {
     return undefined;
   }
