@@ -27,7 +27,10 @@ def _brief(description: str) -> str:
         return head
     if len(scope) <= 120:
         return scope
-    cut = scope[:120].rsplit(" ", 1)[0]
+    head_120 = scope[:120]
+    # Prefer a clause boundary so the brief never ends mid-thought.
+    clause = head_120.rsplit(", ", 1)[0]
+    cut = clause if len(clause) >= 60 else head_120.rsplit(" ", 1)[0]
     return cut.rstrip(",;") + "..."
 
 
@@ -116,7 +119,7 @@ def build_command_skills(context: dict, target_dir: Path) -> list[Path]:
         if command["name"] in CLAUDE_ONLY_COMMANDS:
             continue
         body = command["body"].replace("${CLAUDE_PLUGIN_ROOT}/", ".agents/")
-        body = body.replace("$ARGUMENTS", "the arguments given with the command")
+        body = body.replace("$ARGUMENTS", "any arguments provided with the invocation")
         skill_dir = target_dir / command["name"]
         skill_dir.mkdir(parents=True, exist_ok=True)
         description = " ".join(str(command["description"]).split()) or command["name"]
