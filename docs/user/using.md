@@ -103,9 +103,10 @@ framework - trigger the same way when your request matches them.
 The plugin adds fourteen commands for tasks you want to run deliberately
 rather than wait for a skill to trigger. Each inspects your repository
 read-first and produces a concrete artifact. Besides Claude Code, the
-commands ship translated for Gemini CLI (TOML custom commands), GitHub
-Copilot (`.github/prompts/*.prompt.md` prompt files) and Cursor
-(`.cursor/commands/*.md`). The full set:
+commands ship as explicitly-invoked command-skills in `.agents/skills/`
+for Codex, Cursor and Copilot - run them by name, `$rseng-check` on
+Codex or `/rseng-check` on Cursor - and as TOML custom commands for
+Gemini CLI. The full set:
 
 - `/rseng-check` - assess the repository against research software
   engineering practice.

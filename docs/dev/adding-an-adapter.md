@@ -7,23 +7,31 @@ function, plus a folder of Jinja templates under `adapters/templates/<name>/`.
 The build framework in `adapters.py` supplies the render context and the
 template environment; the target decides what files to emit and where.
 
-There are three building blocks every target uses from `..adapters`:
+There are four building blocks every target uses from `..adapters`:
 
 - `render_to(env, template_name, context, out)` - render one template to one
   output path.
 - `copy_skills(repo_root, target_dir)` - passthrough: copy the canonical
   skill folders (SKILL.md plus the generated `references.md`)
   verbatim into the target.
+- `build_agents_skills(repo_root, context, target_dir)` - the unified
+  native tree: `.agents/skills/` holding every canonical skill plus one
+  generated command-skill per plugin command. Command-skills are
+  explicitly invoked: their frontmatter carries
+  `disable-model-invocation: true` and each ships an
+  `agents/openai.yaml` disabling implicit invocation for Codex
+  (`rseng-panel` is excluded as Claude-only).
 - `copy_check(repo_root, target_dir)` - ship the platform-neutral
   self-check (`rseng-check/rseng_check.py` plus the hooks' JSON data files)
   next to the target's context files; hookless agents are instructed to
   run it before finishing.
 
-A target combines these however its agent needs. All four established
-targets follow the same shape - a few rendered context/instruction
-files, translated command files, the canonical skill folders copied in
-whole so the agent can open the real SKILL.md and its references, and
-the self-check folder.
+A target combines these however its agent needs. The three unified
+targets (Copilot, Cursor, Codex) follow one shape - a single thin
+rendered context file carrying the behavior rules, the unified
+`.agents/skills/` tree the agent reads natively, and the self-check
+folder. Gemini is the exception: it bundles an extension with
+translated TOML command files and its own `skills/` copy.
 
 ## The render context
 
@@ -63,11 +71,12 @@ def _gemini_body(body: str) -> str:
 The placeholder rewrite is not optional: `${CLAUDE_PLUGIN_ROOT}` and
 `$ARGUMENTS` are Claude-only, and the post-render checks fail the build if
 `CLAUDE_PLUGIN_ROOT` reaches a non-Claude output (see checks below). Whenever a
-target reuses command bodies, translate them.
+target reuses command bodies, translate them. Gemini's per-command
+render passes an extended context (`{**context, "command": adapted}`)
+so the template can reference `command` directly.
 
-Rendered plus passthrough (Copilot) - render a repo-wide summary, one
-instruction file per skill and one prompt file per command, then copy
-the skill folders and the self-check in whole:
+Thin context plus the unified tree (Copilot) - render the repo-wide
+instructions, then emit the shared native tree and the self-check:
 
 ```python
 @target("copilot")
@@ -75,28 +84,17 @@ def build_copilot(repo_root, env, context, target_dir):
     github_dir = target_dir / ".github"
     written = [render_to(env, "copilot/copilot-instructions.md.j2",
                          context, github_dir / "copilot-instructions.md")]
-    for skill in context["skills"]:
-        written.append(render_to(
-            env, "copilot/skill.instructions.md.j2",
-            {**context, "skill": skill},
-            github_dir / "instructions" / f"{skill['name']}.instructions.md"))
-    for command in context["commands"]:
-        adapted = {**command, "body": _copilot_body(command["body"])}
-        written.append(render_to(
-            env, "copilot/command.prompt.md.j2",
-            {**context, "command": adapted},
-            github_dir / "prompts" / f"{command['name']}.prompt.md"))
-    copy_skills(repo_root, github_dir / "skills")
-    written.extend(sorted((github_dir / "skills").rglob("SKILL.md")))
-    written.extend(copy_check(repo_root, github_dir))
+    written += build_agents_skills(repo_root, context, target_dir)
+    written += copy_check(repo_root, github_dir)
     return written
 ```
 
-Note the per-item render passes an extended context (`{**context, "skill": skill}`)
-so the template can reference `skill` directly. `codex.py` shows a third wrinkle:
-it size-checks its generated `AGENTS.md` against a 32 KiB budget inside the
-build function and raises if it is exceeded, because Codex only reads the first
-32 KiB of a project doc.
+`cursor.py` is the same shape with a single always-on
+`.cursor/rules/rseng-overview.mdc` rule as its context file. `codex.py`
+shows a third wrinkle: it size-checks its generated `AGENTS.md`
+against the budget in `SIZE_BUDGETS` inside the build function and
+raises if it is exceeded, because Codex loads the file whole on every
+session.
 
 ## 2. Add the templates
 
@@ -104,8 +102,8 @@ Put the target's Jinja templates under `adapters/templates/<name>/`. The
 environment has `trim_blocks` and `lstrip_blocks` on and keeps trailing
 newlines. Templates read from the render context; a per-skill or per-command
 template also sees the injected `skill` or `command` key. Match the output
-format the agent expects (frontmatter for Copilot instructions and Cursor
-rules, TOML for Gemini commands, plain Markdown for context files), and emit
+format the agent expects (frontmatter for Cursor rules, TOML for Gemini
+commands, plain Markdown for context files), and emit
 the `generated_note` banner near the top so the output is visibly generated.
 The existing folders under `adapters/templates/` are the reference for each
 format.
@@ -164,11 +162,17 @@ const SOURCES: Record<string, { from: string; to: string }[]> = {
     { from: "commands", to: "commands" },
     { from: "agents", to: "agents" },
   ],
-  copilot: [{ from: "dist/copilot/.github", to: "." }],
-  cursor: [{ from: "dist/cursor/.cursor", to: "." }],
+  copilot: [
+    { from: "dist/copilot/.github", to: ".github" },
+    { from: "dist/copilot/.agents", to: ".agents" },
+  ],
+  cursor: [
+    { from: "dist/cursor/.cursor", to: ".cursor" },
+    { from: "dist/cursor/.agents", to: ".agents" },
+  ],
   codex: [
     { from: "dist/codex/AGENTS.md", to: "AGENTS.md" },
-    { from: "dist/codex/skills", to: "skills" },
+    { from: "dist/codex/.agents", to: ".agents" },
     { from: "dist/codex/rseng-check", to: "rseng-check" },
   ],
   gemini: [{ from: "dist/gemini", to: "." }],
@@ -183,9 +187,15 @@ entry and the build output must agree.
 agent name, its scope (`project` drops files into the current repo, `user`
 into the home directory), a `marker` directory whose presence means the agent
 is in use (used for auto-detection), and the `installDir` where the pack lands.
-For example, Gemini is user-scoped, marked by `~/.gemini`, and installs into
-`~/.gemini/extensions/rseng-agent-skills`. Match the layout your `SOURCES` entry
-copies into.
+The unified targets (copilot, cursor, codex) are project-scoped with the
+project root as their install directory, so their shared `.agents/skills/`
+tree lands once per repository (codex is detected by `~/.codex` in the
+home directory but still installs into the project). Gemini is
+user-scoped, marked by `~/.gemini`, and installs into
+`~/.gemini/extensions/rseng-agent-skills`. Because several agents can share one
+install directory, each install records its files in a per-agent
+manifest, `.rseng-agent-skills.<agent>.json`. Match the layout your `SOURCES`
+entry copies into.
 
 ## 6. Validate
 

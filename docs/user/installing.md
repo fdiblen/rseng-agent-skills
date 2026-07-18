@@ -48,14 +48,20 @@ some into your home directory (user scope):
 |---|---|---|---|
 | Claude Code | project | `.claude/` | `.claude/skills/` |
 | Claude Code | user | `~/.claude/` | `~/.claude/skills/` |
-| Copilot | project | `.github/` | `.github/` |
-| Cursor | project | `.cursor/` | `.cursor/rules/` |
-| Codex CLI | user | `~/.codex/` | `~/.codex/` |
+| Copilot | project | `.github/` | project root: `.github/` + `.agents/skills/` |
+| Cursor | project | `.cursor/` | project root: `.cursor/` + `.agents/skills/` |
+| Codex CLI | project | `~/.codex/` | project root: `AGENTS.md` + `.agents/skills/` + `rseng-check/` |
 | Gemini CLI | user | `~/.gemini/` | `~/.gemini/extensions/rseng-agent-skills/` |
 
 Project-scoped installs live with the repository, so they are shared with
 anyone who clones it (and can be committed). User-scoped installs apply to
 every project you open with that agent on your machine.
+
+Copilot, Cursor and Codex all read the same native skills tree,
+`.agents/skills/`, so installing for more than one of them shares that
+tree at the project root. Each install records its own files in a
+per-agent manifest (`.rseng-agent-skills.<agent>.json`), so `update` and
+`doctor` track every agent separately even in the same directory.
 
 Claude Code has both a project and a user target. When you run
 `install claude`, both are forced, so the skills land in `.claude/skills/`
@@ -99,11 +105,12 @@ slash commands and auditor subagent come with the plugin.
 npx rseng-agent-skills install copilot
 ```
 
-Copilot is project-scoped. The install writes the pack's `.github` layout
-into your repository's `.github/` directory: repository instructions,
-per-skill instruction files, and the skill folders, all in the form Copilot
-reads. Commit the `.github/` files to share the guidance with collaborators
-and the Copilot coding agent.
+Copilot is project-scoped. The install writes the repository
+instructions into `.github/` (with the self-check under
+`.github/rseng-check/`) and the skill folders into `.agents/skills/`,
+which Copilot reads natively across its whole surface - agent mode,
+the CLI, code review and the cloud coding agent. Commit the files to
+share the guidance with collaborators.
 
 ## Cursor
 
@@ -111,9 +118,12 @@ and the Copilot coding agent.
 npx rseng-agent-skills install cursor
 ```
 
-Cursor is project-scoped. The install writes rule files into
-`.cursor/rules/`: an always-on overview plus one rule per topic, in Cursor's
-rules format.
+Cursor is project-scoped. The install writes a single always-on
+overview rule into `.cursor/rules/` (with the self-check under
+`.cursor/rseng-check/`) and the skill folders into `.agents/skills/`,
+which Cursor loads natively by description relevance. The command
+workflows are in the same tree as explicitly-invoked skills
+(`/rseng-check` and friends).
 
 ## Codex CLI
 
@@ -121,14 +131,22 @@ rules format.
 npx rseng-agent-skills install codex
 ```
 
-Codex is user-scoped. The install writes two things into `~/.codex/`:
+Codex is project-scoped (it is detected by `~/.codex/` in your home
+directory, but the files land in the repository). The install writes
+three things into the project root:
 
-- `AGENTS.md` - the top-level guidance Codex reads.
-- `skills/` - the standard `SKILL.md` folders.
+- `AGENTS.md` - compact top-level guidance: the behavior rules plus the
+  full skill-name inventory. Codex's native startup skills listing has
+  a context budget and may truncate the visible list; the inventory in
+  `AGENTS.md` compensates.
+- `.agents/skills/` - the standard `SKILL.md` folders, read natively by
+  Codex, including the explicitly-invoked command-skills (`$rseng-check`
+  and friends).
+- `rseng-check/` - the dependency-free self-check.
 
-Because these are standard `AGENTS.md` plus `SKILL.md` layouts, the same
-files work for other agents that follow those conventions (Zed, opencode,
-Goose and similar).
+Because these are standard `AGENTS.md` plus `.agents/skills/` layouts,
+the same files work for other agents that follow those conventions
+(Zed, opencode, Goose and similar).
 
 ## Gemini CLI
 

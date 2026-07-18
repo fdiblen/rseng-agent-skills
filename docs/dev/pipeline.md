@@ -126,7 +126,17 @@ The adapter build framework (not a runnable stage on its own).
   `adapters/templates/` with `StrictUndefined` (so a missing variable is a
   hard error).
 - `copy_skills(repo_root, target_dir)` copies the canonical
-  skill folders through verbatim (used by every target).
+  skill folders through verbatim (used by the unified tree and the
+  Gemini bundle).
+- `build_command_skills(context, target_dir)` renders each plugin
+  command (minus `CLAUDE_ONLY_COMMANDS`, currently `rseng-panel`) as an
+  explicitly-invoked skill: a `SKILL.md` carrying
+  `disable-model-invocation: true` in its frontmatter plus an
+  `agents/openai.yaml` that disables implicit invocation for Codex.
+- `build_agents_skills(repo_root, context, target_dir)` assembles the
+  unified native tree `.agents/skills/` - every canonical skill copied
+  through plus the command-skills - which Codex, Cursor and Copilot
+  all read natively.
 - `copy_check(repo_root, target_dir)` ships the platform-neutral
   self-check (`rseng_check.py` plus the hooks' `phases.json`,
   `related.json` and `signals.json`) next to a target's context files;
@@ -146,8 +156,8 @@ Builds every registered adapter target into `dist/`.
   calls the target's build function, and runs two layers of validation
   on the result: the format-driven output checks (`check_target` in
   `checks.py`) and a static structural check that every skill, every
-  command and the self-check actually landed where that platform reads
-  them. Any problem aborts the build with `SystemExit`.
+  command-skill and the self-check actually landed where that platform
+  reads them. Any problem aborts the build with `SystemExit`.
 
 Run it (all targets, or a subset):
 
@@ -156,15 +166,19 @@ uv run --directory pipeline python -m rseng_pipeline.build_adapters
 uv run --directory pipeline python -m rseng_pipeline.build_adapters copilot gemini
 ```
 
-The per-target modules define the output layout: Copilot writes
-`.github/copilot-instructions.md` plus one `instructions/*.instructions.md`
-per skill, prompt files for the commands and a `skills/` passthrough;
-Cursor writes `.cursor/rules/*.mdc` (one overview rule plus one per
-skill), `.cursor/commands/*.md` and a `skills/` passthrough; Codex
-writes a size-checked `AGENTS.md` plus a `skills/` passthrough; Gemini
-writes an extension manifest, `GEMINI.md`, TOML commands translated
-from the Claude command bodies, and a `skills/` passthrough. Each also
-carries the `rseng-check/` self-check folder.
+The per-target modules define the output layout. Copilot, Cursor and
+Codex all emit the same unified native tree, `.agents/skills/`
+(via `build_agents_skills`): every canonical skill folder verbatim
+plus the generated command-skills. On top of that each renders one
+thin context file carrying the behavior rules - Copilot
+`.github/copilot-instructions.md`, Cursor a single always-on
+`.cursor/rules/rseng-overview.mdc` rule, Codex a size-checked
+`AGENTS.md` that also carries the compact full skill inventory
+(Codex's native startup skills listing has a context budget and may
+truncate). Gemini keeps its extension layout: a manifest, `GEMINI.md`,
+TOML commands translated from the Claude command bodies, and a
+`skills/` passthrough. Each target also carries the `rseng-check/`
+self-check folder.
 
 ## checks.py
 

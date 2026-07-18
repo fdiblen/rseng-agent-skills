@@ -76,7 +76,8 @@ while every other agent is served by a rendered adapter under `dist/`.
           v
    [ build_adapters ]
    dist/<target>/  (copilot, cursor, codex, gemini)
-   jinja2 templates + canonical skill passthrough + output checks
+   thin rendered context files + unified .agents/skills tree
+   (gemini: extension bundle) + output checks
           |
           v
    Claude reads skills/ natively; other agents read dist/<target>/
@@ -108,16 +109,35 @@ for them. `build_adapters` assembles one render context from the
 canonical sources (each skill's `SKILL.md` frontmatter, the relations
 graph in `hooks/related.json`, and the plugin command files) and runs
 the jinja2 templates in `adapters/templates/` for each registered
-target, writing into `dist/<target>/`. Every target also copies the
-canonical `skills/` folders through verbatim, so agents that support
-skill-like material read the same bodies Claude does, and ships the
+target, writing into `dist/<target>/`.
+
+All four platforms support Agent Skills natively, so Copilot, Cursor
+and Codex consume one canonical tree: `.agents/skills/`, holding every
+skill folder copied through verbatim plus one generated
+"command-skill" per plugin command (`rseng-panel` excepted - it
+orchestrates Claude subagents and stays Claude-only). A command-skill
+is the command body rendered as an explicitly-invoked skill:
+`disable-model-invocation: true` in its frontmatter keeps skill-aware
+agents from triggering it implicitly, and an `agents/openai.yaml`
+disables implicit invocation for Codex. What each of those three
+targets renders per-platform is a single thin context file carrying
+the behavior rules - Codex a size-checked `AGENTS.md` (which also
+lists the full skill inventory compactly, since Codex's native
+startup skills listing has a context budget and may truncate), Cursor
+one always-on `.cursor/rules/rseng-overview.mdc` rule, Copilot
+`.github/copilot-instructions.md`. Each also ships the
 platform-neutral self-check (`rseng-check/rseng_check.py` plus the hooks'
-JSON data) that hookless agents are instructed to run before finishing.
+JSON data) that hookless agents are instructed to run before
+finishing. Gemini keeps its own extension layout: a manifest,
+`GEMINI.md`, TOML commands translated from the Claude command bodies,
+a bundled `skills/` copy and the self-check.
+
 After each target renders, two layers of checks run: format-driven
 output checks in `checks.py` (size budgets, frontmatter validity,
 TOML/JSON validity, placeholder-residue detection) and structural
 completeness checks in `build_adapters` itself (every skill, every
-command and the self-check must land where that platform reads them).
+command-skill and the self-check must land where that platform reads
+them).
 Any failure fails the build. `dist/` is generated output and is never
 committed - it is rebuilt from the skills whenever needed.
 
@@ -181,9 +201,12 @@ the bundling step and the install step work from explicit whitelists.
   content. It fails loudly if `dist/` is missing, i.e. if the adapter
   build was not run first.
 - `src/install.ts` expands a per-agent source whitelist into concrete file
-  copies (Claude gets `skills/`, `commands/` and `agents/`, the others get
-  their `dist/<target>/` output) and records every installed file with its
-  SHA-256 in a `.rseng-agent-skills.json` manifest.
+  copies (Claude gets `skills/`, `commands/` and `agents/`; the unified
+  targets - copilot, cursor, codex - get their `dist/<target>/` output
+  placed at the project root, `.agents/skills/` included; Gemini gets its
+  extension bundle) and records every installed file with its SHA-256 in
+  a per-agent `.rseng-agent-skills.<agent>.json` manifest, so targets sharing
+  the project root can coexist.
 - `src/update.ts` uses that manifest to replace only files the pack still
   owns (on-disk hash still matches), preserving and reporting any file the
   user has edited, and backs up managed files before writing.
