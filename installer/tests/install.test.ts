@@ -6,7 +6,7 @@ import type { AgentTarget } from "../src/agents.js";
 import type { CliContext } from "../src/context.js";
 import {
   executePlan,
-  MANIFEST_NAME,
+  manifestName,
   planInstall,
   readManifest,
 } from "../src/install.js";
@@ -30,7 +30,7 @@ function cursorTarget(): AgentTarget {
     agent: "cursor",
     scope: "project",
     marker: path.join(destRoot, ".cursor"),
-    installDir: path.join(destRoot, ".cursor"),
+    installDir: destRoot,
     detected: true,
   };
 }
@@ -47,8 +47,10 @@ beforeEach(() => {
   write("extensions/rsqkit/some-page.md", "not part of any install\n");
   write("dist/cursor/.cursor/rules/rseng-overview.mdc", "rule one\n");
   write("dist/cursor/.cursor/rules/rseng-testing.mdc", "rule two\n");
+  write("dist/cursor/.agents/skills/rseng-testing/SKILL.md", "native skill\n");
+  write("dist/cursor/stray-notes.md", "not whitelisted\n");
   write("dist/codex/AGENTS.md", "agents file\n");
-  write("dist/codex/skills/rseng-testing/SKILL.md", "skill copy\n");
+  write("dist/codex/.agents/skills/rseng-testing/SKILL.md", "skill copy\n");
   write("dist/codex/rseng-check/rseng_check.py", "check script\n");
 });
 
@@ -64,25 +66,28 @@ describe("planInstall", () => {
       path.relative(cursorTarget().installDir, c.to),
     );
     expect(dests.sort()).toEqual([
-      path.join("rules", "rseng-overview.mdc"),
-      path.join("rules", "rseng-testing.mdc"),
+      path.join(".agents", "skills", "rseng-testing", "SKILL.md"),
+      path.join(".cursor", "rules", "rseng-overview.mdc"),
+      path.join(".cursor", "rules", "rseng-testing.mdc"),
     ]);
+    // Whitelist only: files sitting next to whitelisted dirs are not swept.
+    expect(dests.some((d) => d.includes("stray-notes"))).toBe(false);
   });
 
   it("handles single-file sources (codex AGENTS.md)", () => {
     const target: AgentTarget = {
       agent: "codex",
-      scope: "user",
-      marker: destRoot,
+      scope: "project",
+      marker: path.join(destRoot, ".codex"),
       installDir: destRoot,
       detected: true,
     };
     const plan = planInstall(packRoot, target);
     const dests = plan.copies.map((c) => path.relative(destRoot, c.to)).sort();
     expect(dests).toEqual([
+      path.join(".agents", "skills", "rseng-testing", "SKILL.md"),
       "AGENTS.md",
       path.join("rseng-check", "rseng_check.py"),
-      path.join("skills", "rseng-testing", "SKILL.md"),
     ]);
   });
 
@@ -121,27 +126,45 @@ describe("executePlan", () => {
     const target = cursorTarget();
     executePlan(ctx(), planInstall(packRoot, target));
     expect(
-      fs.existsSync(path.join(target.installDir, "rules", "rseng-overview.mdc")),
+      fs.existsSync(
+        path.join(target.installDir, ".cursor", "rules", "rseng-overview.mdc"),
+      ),
     ).toBe(true);
-    const manifest = readManifest(target.installDir);
+    const manifest = readManifest(target.installDir, "cursor");
     expect(Object.keys(manifest?.files ?? {}).sort()).toEqual([
-      path.join("rules", "rseng-overview.mdc"),
-      path.join("rules", "rseng-testing.mdc"),
+      path.join(".agents", "skills", "rseng-testing", "SKILL.md"),
+      path.join(".cursor", "rules", "rseng-overview.mdc"),
+      path.join(".cursor", "rules", "rseng-testing.mdc"),
     ]);
     for (const hash of Object.values(manifest?.files ?? {})) {
       expect(hash).toMatch(/^[0-9a-f]{64}$/);
     }
   });
 
+  it("names the manifest after the agent so unified targets coexist", () => {
+    const target = cursorTarget();
+    executePlan(ctx(), planInstall(packRoot, target));
+    expect(
+      fs.existsSync(
+        path.join(target.installDir, ".rseng-agent-skills.cursor.json"),
+      ),
+    ).toBe(true);
+    expect(readManifest(target.installDir, "codex")).toBeUndefined();
+  });
+
   it("writes nothing in dry-run mode", () => {
     const target = cursorTarget();
     executePlan(ctx(true), planInstall(packRoot, target));
-    expect(fs.existsSync(target.installDir)).toBe(false);
+    expect(fs.existsSync(path.join(target.installDir, ".cursor"))).toBe(false);
+    expect(fs.existsSync(path.join(target.installDir, ".agents"))).toBe(false);
+    expect(readManifest(target.installDir, "cursor")).toBeUndefined();
     expect(logs.some((l) => l.includes("[dry-run]"))).toBe(true);
   });
 
   it("readManifest returns undefined before any install", () => {
-    expect(readManifest(destRoot)).toBeUndefined();
-    expect(fs.existsSync(path.join(destRoot, MANIFEST_NAME))).toBe(false);
+    expect(readManifest(destRoot, "cursor")).toBeUndefined();
+    expect(fs.existsSync(path.join(destRoot, manifestName("cursor")))).toBe(
+      false,
+    );
   });
 });

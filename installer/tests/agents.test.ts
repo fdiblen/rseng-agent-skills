@@ -56,6 +56,21 @@ describe("detectAgents", () => {
     );
   });
 
+  it("unified targets install into the project root", () => {
+    const targets = detectAgents({ projectDir, homeDir }).filter((t) =>
+      ["cursor", "copilot", "codex"].includes(t.agent),
+    );
+    expect(targets).toHaveLength(3);
+    for (const t of targets) {
+      expect(t.scope).toBe("project");
+      expect(t.installDir).toBe(projectDir);
+    }
+    // codex is still detected via the home marker even though it installs
+    // into the project.
+    const codex = targets.find((t) => t.agent === "codex");
+    expect(codex?.marker).toBe(path.join(homeDir, ".codex"));
+  });
+
   it("claude installs directly under .claude in both scopes", () => {
     const targets = detectAgents({ projectDir, homeDir }).filter(
       (t) => t.agent === "claude",
@@ -121,7 +136,7 @@ describe("resolveExplicitTargets", () => {
   it("leaves single-scope agents untouched", () => {
     const all = detectAgents({ projectDir, homeDir });
     expect(resolveExplicitTargets(all, ["codex"]).map((t) => t.scope)).toEqual([
-      "user",
+      "project",
     ]);
     expect(resolveExplicitTargets(all, ["cursor"]).map((t) => t.scope)).toEqual(
       ["project"],

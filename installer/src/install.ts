@@ -139,7 +139,7 @@ export function executePlan(ctx: CliContext, plan: InstallPlan): void {
 
 export function readManifest(
   installDir: string,
-  agent = "cursor",
+  agent: string,
 ): { version: string; files: Record<string, string> } | undefined {
   const manifestPath = path.join(installDir, manifestName(agent));
   if (!fs.existsSync(manifestPath)) {

@@ -26,7 +26,7 @@ function target(): AgentTarget {
     agent: "cursor",
     scope: "project",
     marker: path.join(destRoot, ".cursor"),
-    installDir: path.join(destRoot, ".cursor"),
+    installDir: destRoot,
     detected: true,
   };
 }
@@ -39,6 +39,7 @@ beforeEach(() => {
   write("skills/.keep", "");
   write("dist/cursor/.cursor/rules/one.mdc", "rule one v1\n");
   write("dist/cursor/.cursor/rules/two.mdc", "rule two v1\n");
+  write("dist/cursor/.agents/skills/rseng-testing/SKILL.md", "skill v1\n");
   executePlan(ctx(), planInstall(packRoot, target()));
 });
 
@@ -51,27 +52,34 @@ describe("executeUpdate", () => {
   it("replaces managed files with new content", () => {
     write("dist/cursor/.cursor/rules/one.mdc", "rule one v2\n");
     const result = executeUpdate(ctx(), planInstall(packRoot, target()));
-    expect(result.updated).toBe(2);
+    expect(result.updated).toBe(3);
     expect(result.preserved).toEqual([]);
     const updated = fs.readFileSync(
-      path.join(target().installDir, "rules", "one.mdc"),
+      path.join(target().installDir, ".cursor", "rules", "one.mdc"),
       "utf8",
     );
     expect(updated).toBe("rule one v2\n");
   });
 
   it("preserves user-edited files and reports them", () => {
-    const edited = path.join(target().installDir, "rules", "two.mdc");
+    const edited = path.join(
+      target().installDir,
+      ".cursor",
+      "rules",
+      "two.mdc",
+    );
     fs.writeFileSync(edited, "my local customization\n");
     write("dist/cursor/.cursor/rules/two.mdc", "rule two v2\n");
 
     const result = executeUpdate(ctx(), planInstall(packRoot, target()));
-    expect(result.preserved).toEqual([path.join("rules", "two.mdc")]);
+    expect(result.preserved).toEqual([
+      path.join(".cursor", "rules", "two.mdc"),
+    ]);
     expect(fs.readFileSync(edited, "utf8")).toBe("my local customization\n");
     // The preserved file's manifest hash now matches its edited content,
     // so a second update still leaves it alone.
     const again = executeUpdate(ctx(), planInstall(packRoot, target()));
-    expect(again.preserved).toEqual([path.join("rules", "two.mdc")]);
+    expect(again.preserved).toEqual([path.join(".cursor", "rules", "two.mdc")]);
   });
 
   it("backs up managed files before replacing", () => {
@@ -79,7 +87,7 @@ describe("executeUpdate", () => {
     const result = executeUpdate(ctx(), planInstall(packRoot, target()));
     expect(result.backupDir).toBeDefined();
     const backup = fs.readFileSync(
-      path.join(result.backupDir as string, "rules", "one.mdc"),
+      path.join(result.backupDir as string, ".cursor", "rules", "one.mdc"),
       "utf8",
     );
     expect(backup).toBe("rule one v1\n");
@@ -89,7 +97,7 @@ describe("executeUpdate", () => {
     write("dist/cursor/.cursor/rules/one.mdc", "rule one v2\n");
     executeUpdate(ctx(true), planInstall(packRoot, target()));
     const current = fs.readFileSync(
-      path.join(target().installDir, "rules", "one.mdc"),
+      path.join(target().installDir, ".cursor", "rules", "one.mdc"),
       "utf8",
     );
     expect(current).toBe("rule one v1\n");
@@ -97,10 +105,12 @@ describe("executeUpdate", () => {
   });
 
   it("refuses to update without a manifest", () => {
-    fs.rmSync(path.join(target().installDir, ".rseng-agent-skills.json"));
+    fs.rmSync(
+      path.join(target().installDir, ".rseng-agent-skills.cursor.json"),
+    );
     expect(() => executeUpdate(ctx(), planInstall(packRoot, target()))).toThrow(
       /run install first/,
     );
-    expect(readManifest(target().installDir)).toBeUndefined();
+    expect(readManifest(target().installDir, "cursor")).toBeUndefined();
   });
 });
