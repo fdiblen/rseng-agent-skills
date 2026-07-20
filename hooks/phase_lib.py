@@ -194,11 +194,12 @@ def unmet_signals(script_dir, ledger, text, root=None):
 
 
 def _waived(skill, text):
-    pos = text.find(skill)
-    while pos >= 0:
-        if "n/a" in text[pos : pos + 200]:
+    """A waiver is any worklog line mentioning the skill together with
+    'n/a' - both documented orders ('n/a: skill - reason' and
+    'skill: n/a - reason') count."""
+    for line in text.splitlines():
+        if skill in line and "n/a" in line:
             return True
-        pos = text.find(skill, pos + 1)
     return False
 
 

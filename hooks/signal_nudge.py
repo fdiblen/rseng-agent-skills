@@ -30,7 +30,11 @@ for rule in rules:
     if not any(path.match(p) for p in rule.get("patterns", [])):
         continue
     for skill in rule["skills"]:
-        if skill not in ledger and skill not in text and skill not in pending:
+        if (
+            skill not in ledger
+            and not phase_lib._waived(skill, text)
+            and skill not in pending
+        ):
             pending.append(skill)
 
 if pending:

@@ -84,7 +84,11 @@ def main() -> int:
                 part.startswith(".") or part == "node_modules" for part in p.parts
             )
         ][:4000]
-        sources = [p for p in all_files if p.suffix in (".py", ".R", ".jl", ".sh")]
+        sources = [
+            p
+            for p in all_files
+            if p.suffix in (".py", ".R", ".jl", ".sh", ".ipynb")
+        ]
         for rule in rules:
             evidence = next(
                 (
