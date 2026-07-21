@@ -4,9 +4,9 @@ repos:
     hooks:
       # Fixture pages are verbatim upstream copies; keep their bytes intact.
       - id: trailing-whitespace
-        exclude: ^pipeline/tests/fixtures/
+        exclude: ^$
       - id: end-of-file-fixer
-        exclude: ^pipeline/tests/fixtures/
+        exclude: ^$
       - id: check-yaml
       - id: check-toml
       - id: check-added-large-files

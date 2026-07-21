@@ -30,7 +30,7 @@ jobs:
         run: uv run --directory pipeline pytest
       - name: Lint
         run: |
-          uvx ruff check pipeline
+          uvx ruff check pipeline hooks adapters tests
           uvx ruff format --check pipeline
       - name: Build artifacts and adapters (with output checks)
         run: |

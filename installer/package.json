@@ -31,12 +31,17 @@
     "prepack": "node scripts/prepack.mjs"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.5.3",
+    "@biomejs/biome": "^2.5.4",
     "@types/node": "^26.1.1",
     "typescript": "^7.0.2",
     "vitest": "^4.1.10"
   },
   "dependencies": {
     "commander": "^15.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fdiblen/rseng-agent-skills.git",
+    "directory": "installer"
   }
 }

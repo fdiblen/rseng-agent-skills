@@ -16,7 +16,7 @@ export type CommandAction = (
 export const program = new Command()
   .name("rseng-agent-skills")
   .description(
-    "Install research software engineering practice skills, built on bundled content sources, into AI coding agents",
+    "Install research software engineering practice skills, into AI coding agents",
   )
   .version("0.1.0")
   .option("--dry-run", "report planned changes without writing anything")

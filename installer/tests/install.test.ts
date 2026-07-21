@@ -44,7 +44,7 @@ beforeEach(() => {
   write("skills/rseng-testing/SKILL.md", "---\nname: rseng-testing\n---\n");
   write("commands/rseng-check.md", "check command\n");
   write("agents/rseng-reviewer.md", "reviewer agent\n");
-  write("extensions/rsqkit/some-page.md", "not part of any install\n");
+  write("notes/some-page.md", "not part of any install\n");
   write("dist/cursor/.cursor/rules/rseng-overview.mdc", "rule one\n");
   write("dist/cursor/.cursor/rules/rseng-testing.mdc", "rule two\n");
   write("dist/cursor/.agents/skills/rseng-testing/SKILL.md", "native skill\n");
@@ -110,7 +110,7 @@ describe("planInstall", () => {
       path.join("skills", "rseng-testing", "SKILL.md"),
     ]);
     // Whitelist only: nothing outside skills/commands/agents is swept up.
-    expect(dests.some((d) => d.includes("extensions"))).toBe(false);
+    expect(dests.some((d) => d.includes("notes"))).toBe(false);
   });
 
   it("fails clearly when adapter output is missing", () => {

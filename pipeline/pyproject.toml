@@ -1,18 +1,18 @@
 [project]
 name = "rseng-agent-skills-pipeline"
 version = "0.1.0"
-description = "Content pipeline that turns pinned RSQKit sources into skill references and adapter inputs"
+description = "Build pipeline deriving references, relations, directories and adapter outputs from the skills"
 license = "MIT"
 requires-python = ">=3.12"
 dependencies = [
     "pyyaml>=6.0.3",
-    "python-frontmatter>=1.1.0",
+    "python-frontmatter>=1.3.0",
     "jinja2>=3.1.6",
 ]
 
 [dependency-groups]
 dev = [
-    "pytest>=9.0.2",
+    "pytest>=9.1.1",
 ]
 
 [build-system]

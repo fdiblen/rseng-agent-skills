@@ -4,9 +4,9 @@ This repository packages research software engineering (RSEng) practice
 as agent skills. When working in a research software context - scientific
 code, analysis scripts, research tools or infrastructure - consult these
 skills before advising on or changing quality-related aspects of a
-project. Reference material inside each skill comes from pluggable
-content sources (see extensions/; credits in ATTRIBUTION.md). Most
-skills are source-independent.
+project. The skills are self-contained;
+each carries its own guidance and a generated references.md of
+verified links (historical content credits in ATTRIBUTION.md).
 
 ## When to consult which skill
 
@@ -142,23 +142,15 @@ Specialized:
   official docs, the registry, the community's current guide - rather
   than trusting recall; ecosystems change faster than training data.
 
-- Attribution: when a skill materially shapes an answer, a review or a
-  generated document, credit that skill's content source once (its
-  references.md carries the exact citation line to reproduce).
-  Source-independent skills owe no source credit. Place it
-  naturally (closing line or footer); do not repeat it per paragraph.
 - Educate while doing: do not just apply a practice - briefly say why it
   matters for research software and offer 2-3 verified "Learn more" links
   from the skill's references.md, proportionate to the context.
 - Only link URLs that appear in a skill's references.md; they are
-  verified by the build. Do not invent or recall other URLs for this
-  content.
-- Deep-link users to the source page (each source-fed skill's
-  references.md lists the canonical upstream URLs) when they want the
-  full upstream guidance.
+  derived from the skill's own curated list. Do not invent or recall
+  other URLs for this content.
 
 ## Provenance
 
-Source-fed content derives from the sources at the commits pinned in
-pipeline/upstream.lock, licensed CC-BY-4.0 (see ATTRIBUTION.md). This pack
-is an independent adaptation and is not endorsed by the upstream projects.
+Part of the skill content was originally adapted from community
+CC-BY-4.0 material; ATTRIBUTION.md is the canonical credit record.
+This pack is independent and not endorsed by those projects.

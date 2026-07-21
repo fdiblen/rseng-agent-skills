@@ -1,4 +1,3 @@
-# from extensions/nlesc-guide/data/url_quarantine.yml
 # URLs excluded from generated artifacts until a human clears them.
 # Guide upstream links that reject non-browser clients.
 - url: https://crates.io
@@ -8,7 +7,6 @@
 - url: https://support.posit.co/hc/en-us/articles/205612627-Debugging-with-RStudio
   reason: upstream guide link rot (404); report to NLeSC/guide
 
-# from extensions/rsqkit/data/url_quarantine.yml
 # URLs excluded from generated artifacts until a human clears them.
 # Seeded from a manual audit of the upstream tool registry: both entries
 # point at non-canonical catalog sites instead of the tools' real homes.
@@ -19,7 +17,7 @@
   tool: sonarqube
   reason: not the canonical SonarQube site (expected sonarsource.com)
 # Upstream link rot found by the artifact link checker at the pinned
-# commit (report upstream via the task-88 issue; re-check after sync).
+# commit (report upstream via the flagged by review
 - url: https://github.com/EVERSE-ResearchSoftware/RSQKit/blob/630-product-owner/pages/roles/principal_investigator
   reason: links a deleted upstream working branch
 - url: https://github.com/EVERSE-ResearchSoftware/RSQKit/blob/630-product-owner/pages/roles/project_manager

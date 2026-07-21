@@ -39,5 +39,4 @@ Close the generated document with this attribution line, exactly once:
 
 If content from source-fed skills shaped the output, close with each
 contributing source's citation line exactly once (each skill's
-references.md carries its source citation, e.g. RSQKit's CC-BY-4.0
 credit). Source-independent skills need no source credit.

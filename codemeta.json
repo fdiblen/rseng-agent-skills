@@ -2,7 +2,7 @@
   "@context": "https://w3id.org/codemeta/3.0",
   "@type": "SoftwareSourceCode",
   "name": "rseng-agent-skills",
-  "description": "A research software engineering skills pack for AI coding agents (Claude Code, GitHub Copilot, Cursor, Codex CLI, Gemini CLI): 67 skills covering research software practice, with workflow commands, subagents and a phased practice-enforcement layer. Most skills are hand-authored against verified primary references; a minority are generated from two pinned CC-BY-4.0 community sources by a reproducible pipeline that stamps per-source provenance.",
+  "description": "A research software engineering skills pack for AI coding agents (Claude Code, GitHub Copilot, Cursor, Codex CLI, Gemini CLI): 67 skills covering research software practice, with workflow commands, subagents and a phased practice-enforcement layer. Most skills are hand-authored against verified primary references; part of the content was originally adapted from two CC-BY-4.0 community sources (see ATTRIBUTION.md).",
   "author": [
     {
       "@type": "Person",
@@ -13,7 +13,10 @@
   ],
   "license": "https://spdx.org/licenses/MIT",
   "codeRepository": "https://github.com/fdiblen/rseng-agent-skills",
-  "programmingLanguage": ["Python", "TypeScript"],
+  "programmingLanguage": [
+    "Python",
+    "TypeScript"
+  ],
   "keywords": [
     "research software",
     "research software engineering",

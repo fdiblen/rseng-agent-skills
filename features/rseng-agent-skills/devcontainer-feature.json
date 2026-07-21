@@ -2,7 +2,7 @@
   "id": "rseng-agent-skills",
   "version": "0.1.0",
   "name": "rseng-agent-skills",
-  "description": "Install RSQKit research software quality skills for AI coding agents in the container",
+  "description": "Install the rseng-agent-skills research software engineering practice pack for AI coding agents",
   "options": {
     "agents": {
       "type": "string",
@@ -10,5 +10,7 @@
       "description": "Space-separated agents to install for (claude copilot cursor codex gemini)"
     }
   },
-  "installsAfter": ["ghcr.io/devcontainers/features/node"]
+  "installsAfter": [
+    "ghcr.io/devcontainers/features/node"
+  ]
 }

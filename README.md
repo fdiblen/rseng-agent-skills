@@ -37,9 +37,9 @@ software best practice as you go.
 | Agent | What you get | Install |
 |---|---|---|
 | Claude Code | all skills, workflow commands and subagents | `/plugin marketplace add fdiblen/rseng-agent-skills` then `/plugin install rseng-agent-skills` |
-| GitHub Copilot | repo instructions + per-skill instructions + skills | `npx rseng-agent-skills install copilot` |
-| Cursor | always-on overview + per-topic rules | `npx rseng-agent-skills install cursor` |
-| Codex CLI | AGENTS.md + skills folders | `npx rseng-agent-skills install codex` |
+| GitHub Copilot | repo instructions + native `.agents/skills` tree | `npx rseng-agent-skills install copilot` |
+| Cursor | always-on overview rule + native `.agents/skills` tree | `npx rseng-agent-skills install cursor` |
+| Codex CLI | AGENTS.md + native `.agents/skills` tree | `npx rseng-agent-skills install codex` |
 | Gemini CLI | extension with context, commands and skills | `npx rseng-agent-skills install gemini` |
 | others (Zed, opencode, Goose, ...) | AGENTS.md + standard SKILL.md folders work as-is | `npx rseng-agent-skills install claude` (standard layout) |
 

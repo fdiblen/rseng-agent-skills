@@ -9,9 +9,10 @@ precedence = "aggregate"
 SPDX-FileCopyrightText = "2026 Faruk Diblen"
 SPDX-License-Identifier = "MIT"
 
-# Skill content and documentation derived from RSQKit (CC-BY-4.0 upstream)
+# Skill content and documentation (partially adapted from CC-BY-4.0
+# community sources; full credits in ATTRIBUTION.md)
 [[annotations]]
 path = ["skills/**", "docs/**"]
 precedence = "aggregate"
-SPDX-FileCopyrightText = "EVERSE project, RSQKit team and contributors; adaptation 2026 Faruk Diblen"
+SPDX-FileCopyrightText = "2026 Faruk Diblen and the sources credited in ATTRIBUTION.md"
 SPDX-License-Identifier = "CC-BY-4.0"
