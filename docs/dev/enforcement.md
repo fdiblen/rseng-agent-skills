@@ -103,8 +103,8 @@ as instructions plus `rseng-check/rseng_check.py`, a dependency-free
 self-check performing the Stop audit's file-level checks (artifact
 floor, worklog completeness, signals, inventory) that the context
 files instruct the agent to run before declaring a task complete.
-Everything ledger-based is Claude-only; the per-platform status is
-tracked in the compatibility overview.
+Everything ledger-based is Claude-only; mid-session gating exists
+only where a hook system does.
 
 ## Debugging and testing
 
