@@ -23,7 +23,6 @@ SIZE_BUDGETS = {
 }
 
 _FRONTMATTER_REQUIRED = {
-    ".instructions.md": ("description", "applyTo"),
     ".mdc": ("description", "alwaysApply"),
 }
 

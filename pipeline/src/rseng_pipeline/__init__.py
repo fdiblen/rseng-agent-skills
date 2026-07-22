@@ -1,5 +1,5 @@
-"""Content pipeline for the rseng-agent-skills pack.
+"""Build pipeline for the rseng-agent-skills pack.
 
-Turns pinned RSQKit sources into normalized page records, registry lookups
-and build artifacts consumed by skill references and adapters.
+Derives skill references, the relations graph, the skill directory and
+per-agent adapter outputs from the canonical skills/ tree.
 """
