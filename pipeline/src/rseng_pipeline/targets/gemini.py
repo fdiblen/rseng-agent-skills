@@ -34,7 +34,13 @@ def build_gemini(
         ),
         render_to(env, "gemini/GEMINI.md.j2", context, target_dir / "GEMINI.md"),
     ]
+    from ..adapters import CLAUDE_ONLY_COMMANDS
+
     for command in context["commands"]:
+        # rseng-panel orchestrates Claude subagents that do not ship in
+        # the extension; keep it out of every non-Claude target.
+        if command["name"] in CLAUDE_ONLY_COMMANDS:
+            continue
         adapted = {**command, "body": _gemini_body(command["body"])}
         written.append(
             render_to(

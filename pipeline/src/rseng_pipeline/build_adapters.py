@@ -45,7 +45,7 @@ def _structure_problems(dist_dir: Path, name: str, context: dict) -> list[str]:
         ],
         "gemini": [
             ("skills/*/SKILL.md", n_skills),
-            ("commands/*.toml", n_commands),
+            ("commands/*.toml", n_cmd_skills),
             ("rseng-check/rseng_check.py", 1),
         ],
     }
