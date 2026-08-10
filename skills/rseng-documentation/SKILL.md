@@ -140,6 +140,11 @@ structure information logically, keep it current, make it easy to find and
 navigate (e.g. GitHub Pages), and include enough detail - environment,
 data, example workflows - for others to reproduce results.
 
+Architecture, API and data-flow diagrams belong in the developer
+docs as diagrams-as-code (Mermaid renders inline on forges and doc
+sites; sources committed, exports regenerated) - what to draw and
+how to keep it honest is rseng-software-design's diagram practice.
+
 ## Publish hosted documentation with Read the Docs
 
 When a project needs a browsable docs site, generate static pages with

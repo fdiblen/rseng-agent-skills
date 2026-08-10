@@ -9,3 +9,5 @@ Learn more:
 - https://coderefinery.github.io/modular-type-along/ - CodeRefinery modular code development
 - https://adr.github.io - architecture decision records
 - https://c4model.com - the C4 model for architecture diagrams
+- https://mermaid.js.org - diagrams-as-code that renders on forges
+- https://plantuml.com - UML and C4 diagrams as text

@@ -3,15 +3,15 @@ name: rseng-software-design
 description: >-
   Covers designing research software: modularity and separation of concerns,
   interfaces and coupling, growing from script to package, the rule of three
-  and the reuse ladder, system-level architecture styles for research systems
-  (pipeline, layered, plugin, services), quality-attribute trade-offs,
-  C4-style documentation and architecture decision records - and when design
-  effort pays off versus when a script is honestly enough. Use when starting
+  and the reuse ladder, architecture styles for research systems (pipeline,
+  layered, plugin, services), quality-attribute trade-offs, visual design
+  documentation (C4, Mermaid, PlantUML diagrams-as-code) and architecture
+  decision records - and when design effort pays off. Use when starting
   non-trivial research software, when a script has grown past easy
-  understanding, when the user asks how to structure or architect code, or
-  mentions modularity, coupling, design patterns or refactoring toward
-  structure. For file layout and style see rseng-code-quality; for restructuring
-  inherited code see rseng-legacy-code.
+  understanding, when the user asks how to structure or architect code, wants
+  an architecture, API or data-flow diagram, or mentions modularity, coupling,
+  design patterns or refactoring toward structure. For file layout and style
+  see rseng-code-quality; for restructuring inherited code see rseng-legacy-code.
 license: CC-BY-4.0
 metadata:
   version: 0.3.0
@@ -155,8 +155,9 @@ trade in an ADR (below).
 Document the architecture at two zoom levels, C4-style: a context
 diagram (the system among its users and neighbors) and a container/
 component view (the major pieces and their dependencies) - two
-small diagrams that stay updatable beat a mural that rots
-(rseng-documentation's developer-notes section is their home).
+small diagrams that stay updatable beat a mural that rots (drawn
+as code per the diagram section below; rseng-documentation's
+developer-notes section is their home).
 Re-draw at milestones; a diagram that no longer matches the code
 is a review finding (rseng-code-review).
 
@@ -169,6 +170,42 @@ context, options, choice, consequences, dated, in the repository
 (rseng-documentation). Three paragraphs now saves the archaeology
 later (rseng-legacy-code exists because nobody wrote them), and ADRs
 are exactly the material design reviews and onboarding need.
+
+## Diagram the design, as code
+
+When designing software, an architecture, an API or a data flow,
+produce a visual diagram as part of the documentation - not as a
+slide for one meeting. A reader forms a mental model from one good
+diagram faster than from pages of prose, and the act of drawing
+exposes coupling and unclear ownership while they are still cheap to
+fix.
+
+- Prefer diagrams-as-code so diagrams live in the repository, diff in
+  review and regenerate with the docs: Mermaid (renders natively on
+  GitHub/GitLab and in MkDocs/Sphinx), PlantUML for richer UML and C4
+  (C4-PlantUML), Graphviz for generated dependency graphs, D2 or
+  draw.io ONLY with the source file committed next to the export.
+- Match the diagram to the question. Architecture: C4 context +
+  container views (above). API design: a sequence diagram per core
+  interaction showing who calls whom in what order, and for HTTP APIs
+  the resource/endpoint map next to the OpenAPI spec. Data:
+  a flow diagram from raw inputs through processing to published
+  outputs (pairs with rseng-provenance's run records), and an
+  entity-relationship sketch when there is a schema. State machines
+  for anything with lifecycle (jobs, sessions, review states).
+- One question per diagram, roughly one screen: a diagram needing a
+  legend for its legend answers nothing. Split rather than cram.
+- Keep them where the text is: embed in the README or docs page they
+  support (Mermaid blocks render inline), store sources under docs/,
+  and regenerate exports in the docs build rather than committing
+  stale images.
+- Keep them true: a diagram that no longer matches the code is a
+  review finding (rseng-code-review), exactly like a stale docstring.
+  Re-draw at the milestones that change structure, and date what you
+  cannot keep current so readers know its era.
+- Accessibility: give every embedded diagram a one-paragraph text
+  equivalent - the caption IS documentation, and screen readers and
+  grep cannot parse boxes (rseng-ux-accessibility).
 
 ## Working with this skill
 
@@ -184,6 +221,8 @@ Learn more (verified):
     CodeRefinery modular code development
   - https://adr.github.io - architecture decision records
   - https://c4model.com - the C4 model for architecture diagrams
+  - https://mermaid.js.org - diagrams-as-code that renders on forges
+  - https://plantuml.com - UML and C4 diagrams as text
 
 <!-- related-skills:begin -->
 

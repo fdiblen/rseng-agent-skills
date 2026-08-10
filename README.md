@@ -85,7 +85,7 @@ without touching your edits, and `doctor` checks install health.
 | `rseng-documentation` | how to document research software at every level |
 | `rseng-fact-checking` | verifying facts and sources at the content level |
 | `rseng-fair-ml` | applying FAIR principles to machine learning artifacts |
-| `rseng-fair-software` | how to apply the FAIR principles - findable, accessible, interoperable, reusable - to research software, and how... |
+| `rseng-fair-software` | how to apply the FAIR principles - findable, accessible, interoperable, reusable - to research software... |
 | `rseng-fairguard` | assessing research software against the 17 FAIR4RS principles with FAIRGuard (https://www.fairguard.org) |
 | `rseng-gpu-computing` | GPU and accelerator programming for research software |
 | `rseng-green-computing` | the environmental footprint of research computing |
@@ -123,7 +123,7 @@ without touching your edits, and `doctor` checks install health.
 | `rseng-software-metrics` | measuring code health quantitatively |
 | `rseng-software-peer-review` | community peer review of research software |
 | `rseng-software-publishing` | publishing research software through its distribution channels |
-| `rseng-software-reuse` | discovering and reusing existing research software instead of rebuilding it, using Research Software Directory... |
+| `rseng-software-reuse` | discovering and reusing existing research software instead of rebuilding it... |
 | `rseng-storytelling` | telling the story of research data, software and projects to broad audiences |
 | `rseng-testing` | how to test research software |
 | `rseng-trainer` | teaching research software skills while working |
