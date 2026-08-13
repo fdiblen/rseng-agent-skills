@@ -100,7 +100,13 @@ SIGNALS: list[dict] = [
      "skills": ["rseng-security"]},
 ]
 
+# The router is every session's entry point and stays relevant for
+# the whole task; it lives outside the clusters but inside the
+# Throughout phase so the enforcement inventory covers all skills.
+ROUTER = "rseng-quality-framework"
+
 THROUGHOUT: list[str] = [
+    ROUTER,
     "rseng-project-tracking",
     "rseng-version-control-review",
     "rseng-ai-declaration",
@@ -264,12 +270,23 @@ def main() -> None:
 
     assert sorted(c for cl in PHASES.values() for c in cl) == sorted(CLUSTERS)
     all_skills = {s for skills in CLUSTERS.values() for s in skills}
-    unknown = [s for s in THROUGHOUT if s not in all_skills]
+    unknown = [s for s in THROUGHOUT if s not in all_skills | {ROUTER}]
     assert not unknown, f"THROUGHOUT names unknown skills: {unknown}"
     phased = {
         ph: {c: CLUSTERS[c] for c in cl} for ph, cl in PHASES.items()
     }
     phased["Throughout"] = {"Cross-cutting practices": THROUGHOUT}
+    # Every skill on disk must belong to at least one phase - a skill
+    # outside the phase map escapes the disposition and coverage
+    # checks entirely.
+    on_disk = {
+        d.name
+        for d in (repo_root / "skills").iterdir()
+        if (d / "SKILL.md").is_file()
+    }
+    in_phases = {s for cl in phased.values() for ss in cl.values() for s in ss}
+    unphased = sorted(on_disk - in_phases)
+    assert not unphased, f"skills in no phase: {unphased}"
     (repo_root / "hooks" / "phases.json").write_text(
         _json.dumps(phased, indent=2) + "\n", encoding="utf-8"
     )

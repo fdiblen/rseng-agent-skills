@@ -17,7 +17,8 @@ by what ships:
   Research data; Publishing, credit and reuse; Specialized - plan,
   stack, data sensitivity, reuse/licensing; the write gate enforces
   this); "## Throughout" also from the beginning: the cross-cutting
-  skills live for the WHOLE session - rseng-project-tracking,
+  skills live for the WHOLE session - rseng-quality-framework (the
+  router), rseng-project-tracking,
   rseng-version-control-review, rseng-ai-declaration, rseng-code-review,
   rseng-honesty, rseng-human-verification - open each and keep applying
   them as you work (the Stop check requires all of them consulted);

@@ -24,10 +24,12 @@ Practice work is organized into four phase groups, generated into
   and performance. Worked while developing, not retrofitted.
 - Finish - Integrity, security and compliance; Communication and
   interfaces; Community and people. Verified before the session ends.
-- Throughout - a named list of cross-cutting skills (project
-  tracking, version-control review, AI declaration, code review,
-  honesty, human verification) that stay active for the whole
-  session; the Stop audit requires every one of them consulted.
+- Throughout - a named list of cross-cutting skills (the
+  rseng-quality-framework router, project tracking, version-control
+  review, AI declaration, code review, honesty, human verification)
+  that stay active for the whole session; the Stop audit requires
+  every one of them consulted. Every skill in the pack belongs to at
+  least one phase - the generator fails if one is left out.
 
 The agent records its pass through these phases in a worklog file,
 `.rseng-agent-skills-coverage.md`, at the project root: one section per phase
