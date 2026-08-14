@@ -93,7 +93,7 @@ brief it rewrites and emits:
   `AGENTS.md` and in `skills/rseng-quality-framework/SKILL.md` (the
   router skill), so the two lists can never drift apart;
 - `hooks/phases.json` (phase -> cluster -> skills), `hooks/signals.json`
-  and `hooks/clusters.txt`, the data files behind the phased
+  the data files behind the phased
   enforcement hooks.
 
 A skill missing from the cluster map fails the run.

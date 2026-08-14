@@ -36,7 +36,7 @@ hooks/                  Claude plugin session hooks (enforcement layer)
   signal_nudge.py       PostToolUse(Write/Edit): file-pattern nudges
   session-context.md    SessionStart context injected into the session
   hooks.json            the hook wiring
-  phases.json, related.json, signals.json, clusters.txt  GENERATED
+  phases.json, related.json, signals.json  GENERATED
 .claude-plugin/         Claude plugin + marketplace manifests (native)
 pipeline/               the Python build pipeline (uv project)
   src/rseng_pipeline/     generators, adapter build, checks, utilities
@@ -68,7 +68,7 @@ while every other agent is served by a rendered adapter under `dist/`.
  skill's own
  Learn-more       [ skill_directory ]
  links)           directory blocks in AGENTS.md + router skill
-          |       + hooks/phases.json, signals.json, clusters.txt
+          |       + hooks/phases.json, signals.json
           |
           |       [ readme_skills ]
           |       skills/commands/agents tables + counts in README.md
@@ -95,7 +95,7 @@ into every SKILL.md from a curated relations graph and emits
 `hooks/related.json` for the consultation nudge hook. `skill_directory`
 rewrites the grouped skill directory in `AGENTS.md` and in the router
 skill from a cluster map, and emits `hooks/phases.json`,
-`hooks/signals.json` and `hooks/clusters.txt` for the phased
+`hooks/signals.json` for the phased
 enforcement hooks. `readme_skills` rewrites the marker-delimited
 skills, commands and agents tables (and the spelled-out counts) in the
 root `README.md`. All four fail loudly on a missing or unknown skill,

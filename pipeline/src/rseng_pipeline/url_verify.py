@@ -84,16 +84,3 @@ def verify_url(
     else:
         status = "broken"
     return URLCheck(url=url, status=status, code=code)
-
-
-def verify_urls(
-    urls: Iterable[str],
-    quarantine: dict[str, str] | None = None,
-    probe: ProbeFn = probe_url,
-) -> dict[str, URLCheck]:
-    """Verify each distinct URL once; results keyed by URL."""
-    results: dict[str, URLCheck] = {}
-    for url in urls:
-        if url not in results:
-            results[url] = verify_url(url, quarantine=quarantine, probe=probe)
-    return results

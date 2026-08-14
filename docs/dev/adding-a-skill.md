@@ -62,7 +62,7 @@ This writes the new skill's `references.md` from its curated
 "Learn more" links, adds it to the grouped directory in `AGENTS.md` and
 the router skill, renders its "Related skills" block, refreshes the
 hooks' data files (`hooks/phases.json`, `related.json`, `signals.json`,
-`clusters.txt`) and updates the README tables and counts.
+and updates the README tables and counts.
 
 ## 4. Rebuild the adapters
 
