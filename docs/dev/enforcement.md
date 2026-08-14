@@ -35,7 +35,13 @@ The agent records its pass through these phases in a worklog file,
 `.rseng-agent-skills-coverage.md`, at the project root: one section per phase
 (`## Start`, `## Throughout`, `## During`, `## Finish`), each listing
 every cluster with either `applied: <skills and decisions>` or
-`n/a: <one-line reason>`.
+`n/a: <one-line reason>`. Dispositions work at cluster granularity:
+a cluster-level n/a disposes every skill in that cluster, and an
+applied cluster names its applied skills plus `rest n/a: <reason>`
+for the others - twelve cluster lines cover the full inventory.
+Signal-matched skills still need individual attention. Agents are
+told to consult skills in batches (several Skill calls per message),
+which cuts session turns sharply.
 
 ## The hook chain
 

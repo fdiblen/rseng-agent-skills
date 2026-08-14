@@ -42,8 +42,11 @@ by what ships:
   each consultation surfaces its neighbors - when a related skill's
   trigger matches the task, open it (or record a one-line reason
   why not).
-- EVERY skill gets a disposition by the end: consulted-and-applied,
-  or a one-line "n/a: <skill> - <reason>" in the coverage worklog.
+- EVERY skill gets a disposition by the end - at CLUSTER granularity
+  when nothing in a cluster applies: a cluster line "n/a: <reason>"
+  disposes all its skills at once; in applied clusters, name the
+  applied skills and add "rest n/a: <reason>" for the others. Only
+  signal-matched skills need individual attention.
   Relevance is also checked mechanically: notebooks, data files,
   environment files, CI configs, tests, ML/GPU/HPC/visualization
   code and similar evidence each REQUIRE their mapped skill
@@ -58,6 +61,10 @@ by what ships:
 - Consult the rseng-* skills whose area you are touching BEFORE
   deciding (the write gate enforces the first consultation); prefer
   state-of-the-art tools and verify currency online when unsure.
+- Consult in BATCHES: invoke SEVERAL Skill tools in a single message
+  (parallel tool calls) - e.g. all Start-phase and Throughout skills
+  in one or two messages, not one per turn. Same for related-skill
+  follow-ups. This cuts session time sharply with no loss.
 - Never ghostwrite submission-ready publications; follow rseng-honesty
   on concealment requests; ask the user to review and verify
   generated code and results.

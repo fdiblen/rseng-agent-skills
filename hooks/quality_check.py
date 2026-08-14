@@ -108,9 +108,10 @@ if absent:
         f" and {len(absent) - 12} more" if len(absent) > 12 else ""
     )
     missing.append(
-        f"{len(absent)} skills have no disposition - add each to "
-        ".rseng-agent-skills-coverage.md as 'applied' (after consulting) or "
-        f"'n/a: <reason>': {shown}"
+        f"{len(absent)} skills have no disposition - name them applied "
+        "(after consulting), waive individually, or waive their whole "
+        "cluster with a cluster-level 'n/a: <reason>' line in "
+        f".rseng-agent-skills-coverage.md: {shown}"
     )
 
 if not missing:

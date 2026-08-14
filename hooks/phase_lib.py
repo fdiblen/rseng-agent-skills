@@ -128,10 +128,24 @@ def all_skills(phases):
 
 
 def undispositioned(phases, text, ledger):
-    """Skills neither consulted (ledger) nor mentioned in the coverage
-    worklog (applied or n/a). The full-inventory rule: every skill gets
-    a disposition."""
-    return sorted(s for s in all_skills(phases) if s not in ledger and s not in text)
+    """Skills with no disposition: not consulted (ledger), not named
+    in the worklog, and not covered by a cluster-level n/a. A cluster
+    segment containing "n/a" disposes every skill in that cluster at
+    once ("n/a: <reason>" for a whole cluster, or "applied: X, Y;
+    rest n/a: <reason>"), keeping the full-inventory rule without
+    67 individual lines."""
+    all_clusters = [c for cl in phases.values() for c in cl]
+    covered = set()
+    for clusters in phases.values():
+        for cluster, skills in clusters.items():
+            seg = _segment(text, cluster, all_clusters)
+            if seg is not None and "n/a" in seg:
+                covered.update(skills)
+    return sorted(
+        s
+        for s in all_skills(phases)
+        if s not in ledger and s not in text and s not in covered
+    )
 
 
 def _project_files(root, limit=4000):
