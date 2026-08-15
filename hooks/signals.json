@@ -196,10 +196,124 @@
     "name": "secret-bearing files",
     "patterns": [
       ".env",
+      ".env.*",
+      "*.envrc",
       "*.pem"
     ],
     "skills": [
       "rseng-security"
+    ]
+  },
+  {
+    "name": "R sources",
+    "patterns": [
+      "*.R",
+      "*.Rmd"
+    ],
+    "skills": [
+      "rseng-language-guides"
+    ]
+  },
+  {
+    "name": "julia sources",
+    "patterns": [
+      "*.jl"
+    ],
+    "skills": [
+      "rseng-language-guides"
+    ]
+  },
+  {
+    "name": "model artifacts",
+    "patterns": [
+      "*.joblib",
+      "*.pkl",
+      "*.onnx",
+      "*.pt",
+      "*.keras"
+    ],
+    "skills": [
+      "rseng-fair-ml",
+      "rseng-provenance"
+    ]
+  },
+  {
+    "name": "data versioning",
+    "patterns": [
+      "dvc.yaml",
+      "*.dvc",
+      ".dvcignore"
+    ],
+    "skills": [
+      "rseng-data-management"
+    ]
+  },
+  {
+    "name": "software metadata",
+    "patterns": [
+      "codemeta.json"
+    ],
+    "skills": [
+      "rseng-citation-metadata"
+    ]
+  },
+  {
+    "name": "archive deposit config",
+    "patterns": [
+      ".zenodo.json"
+    ],
+    "skills": [
+      "rseng-archiving"
+    ]
+  },
+  {
+    "name": "bibliography",
+    "patterns": [
+      "*.bib"
+    ],
+    "skills": [
+      "rseng-citation-hygiene"
+    ]
+  },
+  {
+    "name": "array data dumps",
+    "patterns": [
+      "*.npz",
+      "*.npy"
+    ],
+    "skills": [
+      "rseng-scientific-file-formats"
+    ]
+  },
+  {
+    "name": "person-level data files",
+    "patterns": [
+      "*participant*.csv",
+      "*survey*.csv",
+      "*patient*.csv",
+      "*cohort*.csv"
+    ],
+    "skills": [
+      "rseng-regulatory-compliance",
+      "rseng-data-management"
+    ]
+  },
+  {
+    "name": "statistical modeling code",
+    "content": [
+      "statsmodels|\\bscipy\\.stats\\b|\\blme4\\b"
+    ],
+    "skills": [
+      "rseng-numerical-accuracy"
+    ]
+  },
+  {
+    "name": "checkpoint-restart code",
+    "content": [
+      "checkpoint|\\brestart\\b.*\\bresume\\b"
+    ],
+    "skills": [
+      "rseng-hpc-computing"
     ]
   }
 ]
