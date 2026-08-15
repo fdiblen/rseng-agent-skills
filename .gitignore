@@ -6,6 +6,7 @@ staging/
 # tool and dependency directories
 node_modules/
 .venv/
+venv/
 __pycache__/
 *.py[cod]
 *.egg-info/
@@ -18,3 +19,10 @@ __pycache__/
 *.cache
 *_cache
 pipeline/cache/
+
+# rseng-agent-skills session records (runtime working state, not content)
+.rseng-agent-skills-*
+
+# editor and OS droppings
+.DS_Store
+*.swp
