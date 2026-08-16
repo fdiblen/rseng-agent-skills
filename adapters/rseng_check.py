@@ -40,6 +40,18 @@ def main() -> int:
         return 0
 
     missing = []
+    agent_dirs = (".claude", ".agents", ".cursor", ".codex", ".gemini")
+    present = [d for d in agent_dirs if (root / d).is_dir()]
+    if present:
+        gi = root / ".gitignore"
+        gi_text = gi.read_text(encoding="utf-8") if gi.is_file() else ""
+        uncovered = [d for d in present if d not in gi_text]
+        if uncovered:
+            missing.append(
+                ".gitignore missing the agent working directories present "
+                f"here ({', '.join(uncovered)}) - add them plus .env and "
+                ".rseng-agent-skills-* session records"
+            )
     if not list(root.glob("README*")):
         missing.append("README with purpose and how-to-run")
     if not list(root.glob("LICENSE*")):

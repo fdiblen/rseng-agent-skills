@@ -223,3 +223,24 @@ def cluster_applied(phases, cluster, text, ledger):
     if seg is None or "applied" not in seg:
         return False
     return bool(set(re.findall(r"rseng-[a-z0-9-]+", seg)) & ledger)
+
+AGENT_DIRS = (".claude", ".agents", ".cursor", ".codex", ".gemini")
+
+
+def gitignore_gap(root):
+    """Agent working dirs present but not ignored: the generated
+    project would commit local agent config/session state."""
+    present = [d for d in AGENT_DIRS if (root / d).is_dir()]
+    if not present:
+        return None
+    gi = root / ".gitignore"
+    text = gi.read_text(encoding="utf-8") if gi.is_file() else ""
+    missing = [d for d in present if d not in text]
+    if missing:
+        return (
+            ".gitignore does not cover the agent working directories "
+            f"present here ({', '.join(missing)}) - add them (plus .env "
+            "and .rseng-agent-skills-* session records); commit shared agent "
+            "config back explicitly only if the team intends it"
+        )
+    return None

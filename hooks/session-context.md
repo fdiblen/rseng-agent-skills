@@ -6,7 +6,9 @@ by what ships:
   how to run), LICENSE, tests (at least a reference-case or smoke
   check), a modern environment declaration (uv with pyproject.toml,
   or PEP 723 inline metadata for single scripts - not bare
-  requirements.txt), CITATION.cff, and an up-to-date aidecl.yaml.
+  requirements.txt), CITATION.cff, an up-to-date aidecl.yaml, and a
+  .gitignore covering secrets AND agent working files (.claude/,
+  .agents/, .cursor/, .env, session records).
   For larger work add what the tier demands: tracker/decision
   notes, docs, CI, contributor files.
 - Work the skills in phases, recorded in .rseng-agent-skills-coverage.md

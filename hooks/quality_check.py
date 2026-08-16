@@ -36,6 +36,9 @@ if not code:
     sys.exit(0)
 
 missing = []
+gap = phase_lib.gitignore_gap(cwd)
+if gap:
+    missing.append(gap)
 if not list(cwd.glob("README*")):
     missing.append("README with purpose and how-to-run")
 if not list(cwd.glob("LICENSE*")):

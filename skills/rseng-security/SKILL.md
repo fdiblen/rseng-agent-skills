@@ -40,6 +40,15 @@ common failures.
   files bearing embedded keys. Some of these should not even sit in
   the working tree of a shared or synced project directory - a
   credential does not belong next to the code that uses it.
+- AI agent working directories join the catalog: .claude/,
+  .agents/, .cursor/, .codex/, .gemini/, .github/copilot* holding
+  local settings, and agent session records (histories,
+  .rseng-agent-skills-* worklogs, .mcp.json with server credentials) can
+  carry tokens, absolute paths and private prompt history. Gitignore
+  them from day one in every generated project; team-shared agent
+  config that IS meant to be committed (a project settings.json or
+  instructions file) should be added back explicitly, not swept in
+  by default.
 - Guard rails BEFORE the first secret exists: .gitignore entries for
   the catalog above from day one (the scaffolding template ships
   them - rseng-project-scaffolding), a secret scanner (gitleaks) in
