@@ -6,12 +6,12 @@ description: >-
   and the reuse ladder, architecture styles for research systems (pipeline,
   layered, plugin, services), quality-attribute trade-offs, visual design
   documentation (C4, Mermaid, PlantUML diagrams-as-code) and architecture
-  decision records - and when design effort pays off. Use when starting
-  non-trivial research software, when a script has grown past easy
-  understanding, when the user asks how to structure or architect code, wants
-  an architecture, API or data-flow diagram, or mentions modularity, coupling,
-  design patterns or refactoring toward structure. For file layout and style
-  see rseng-code-quality; for restructuring inherited code see rseng-legacy-code.
+  decision records. Use when starting non-trivial research software, when a
+  script has grown past easy understanding, when the user asks how to
+  structure or architect code, wants an architecture, API or data-flow
+  diagram, or mentions modularity, coupling, design patterns or refactoring
+  toward structure. For file layout and style see rseng-code-quality; for
+  restructuring inherited code see rseng-legacy-code.
 license: CC-BY-4.0
 metadata:
   version: 0.3.0
