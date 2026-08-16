@@ -1,6 +1,6 @@
 """Check every external URL in generated artifacts.
 
-Scans dist/ and the generated each skill's generated references.md for http(s)
+Scans dist/ and each skill's generated references.md for http(s)
 URLs, verifies each distinct URL once (quarantine list respected, HEAD
 with GET fallback, parallel probes) and reports. Broken links fail the
 run; quarantined links are skipped by design; network errors are warnings
@@ -56,7 +56,6 @@ def main() -> None:
     )
     roots = [root for root in roots if root.exists()]
 
-    # Quarantine entries live beside the pipeline data.
     quarantine: dict[str, str] = {}
     for path in sorted(repo_root.glob("pipeline/data/url_quarantine.yml")):
         quarantine.update(load_quarantine(path))

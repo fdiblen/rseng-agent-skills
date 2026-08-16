@@ -43,7 +43,6 @@ def extract_curated(skill_md: str) -> list[str]:
             bullets[-1] += " " + stripped
         else:
             collecting = False
-    # de-duplicate, preserving order
     seen: set[str] = set()
     unique = []
     for b in bullets:

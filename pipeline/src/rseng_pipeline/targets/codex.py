@@ -1,10 +1,9 @@
 """Codex CLI target: behavior-rules AGENTS.md + native skills tree.
 
 Codex reads `.agents/skills/` natively (implicit invocation by
-description match), so AGENTS.md no longer carries a skill directory -
-only the behavior rules, the phased-practice protocol and the
-self-check pointer. Command-skills carry agents/openai.yaml with
-implicit invocation disabled.
+description match), so AGENTS.md carries only the behavior rules, the
+phased-practice protocol and the self-check pointer. Command-skills
+carry agents/openai.yaml with implicit invocation disabled.
 """
 
 from __future__ import annotations

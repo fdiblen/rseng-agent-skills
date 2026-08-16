@@ -132,8 +132,7 @@ def undispositioned(phases, text, ledger):
     in the worklog, and not covered by a cluster-level n/a. A cluster
     segment containing "n/a" disposes every skill in that cluster at
     once ("n/a: <reason>" for a whole cluster, or "applied: X, Y;
-    rest n/a: <reason>"), keeping the full-inventory rule without
-    67 individual lines."""
+    rest n/a: <reason>")."""
     all_clusters = [c for cl in phases.values() for c in cl]
     covered = set()
     for clusters in phases.values():

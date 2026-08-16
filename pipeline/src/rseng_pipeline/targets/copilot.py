@@ -1,11 +1,8 @@
 """GitHub Copilot target: repo instructions + native skills tree.
 
 Copilot reads `.agents/skills/` natively, and skills work across the
-whole Copilot surface (agent mode, CLI, code review, cloud agents) -
-unlike the per-skill instruction files and prompt files this target
-used to render, which never reached cloud agents and attached ~124KB
-of always-on instructions per request. What remains under .github/ is
-the repo-wide behavior instructions and the self-check.
+whole Copilot surface (agent mode, CLI, code review, cloud agents).
+.github/ holds the repo-wide behavior instructions and the self-check.
 """
 
 from __future__ import annotations

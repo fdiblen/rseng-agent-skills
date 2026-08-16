@@ -109,10 +109,8 @@ CLAUDE_ONLY_COMMANDS = {"rseng-panel"}
 def build_command_skills(context: dict, target_dir: Path) -> list[Path]:
     """Render the plugin's commands as explicitly-invoked skills.
 
-    Agent Skills is now native on every target platform, and both
-    Cursor and Claude honor `disable-model-invocation` while Codex
-    reads agents/openai.yaml - so one generated skill per command
-    replaces the three per-platform command formats.
+    Cursor and Claude honor `disable-model-invocation`; Codex reads
+    agents/openai.yaml with implicit invocation disabled.
     """
     written = []
     for command in context["commands"]:

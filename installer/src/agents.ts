@@ -94,7 +94,7 @@ export function usableTargets(options: DetectOptions = {}): AgentTarget[] {
 
 /**
  * Targets for explicitly named agents. With --scope the match is filtered
- * to that scope, exactly as before. Without --scope an agent known in both
+ * to that scope. Without --scope an agent known in both
  * scopes resolves to a single target: project when the project marker
  * exists, user otherwise. Installing into the home directory while a
  * project marker is present requires an explicit --scope user.
