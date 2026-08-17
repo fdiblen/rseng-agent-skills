@@ -72,7 +72,8 @@ Seven hooks, wired in `hooks/hooks.json` (and mirrored into test
    for read-only sessions (zero gated writes). Otherwise it blocks
    the first stop attempt until: the artifact floor is present
    (README, LICENSE, aidecl.yaml, CITATION.cff, tests, an
-   environment declaration); all four worklog sections are complete
+   environment declaration, and a .gitignore covering any agent
+   working directories present); all four worklog sections are complete
    with ledger-backed claims; every Throughout skill was consulted;
    Core engineering is applied, not waived; at least five distinct
    skills were consulted; every signal with evidence in the project
