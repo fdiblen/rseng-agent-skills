@@ -106,7 +106,10 @@ Map the underlying worry to a legitimate solution:
 
 ## Beyond AI: the same rule everywhere
 
-The skill's rule generalizes: authorship reflects contribution
+The skill's rule generalizes: code that adapts a publication,
+website or existing codebase says so where the adaptation lives -
+omitting the source misrepresents originality
+(rseng-citation-metadata's crediting section); authorship reflects contribution
 (rseng-citation-metadata's credit discipline), "tested" means the
 tests ran (rseng-testing), "reproducible" means someone reproduced
 it (rseng-reproducibility), claimed compliance means the check

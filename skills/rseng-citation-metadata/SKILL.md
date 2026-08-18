@@ -3,14 +3,14 @@ name: rseng-citation-metadata
 description: >-
   Covers making research software citable and contributors credited: writing
   CITATION.cff, describing software with CodeMeta (codemeta.json), minting
-  DOIs and ORCIDs, and tracking contributors of every kind (commits, reviews,
-  issues, docs, forge activity). Use when the user asks how to make software
-  citable, add CITATION.cff or codemeta.json, obtain a DOI, ensure
-  contributors get credit, or mentions CFF, CodeMeta, ORCID, CRediT or
-  persistent identifiers. Also use PROACTIVELY at release preparation and when
-  citation files are edited, to check recorded contributors against actual
-  contribution history. (Verifying references you cite: rseng-citation-hygiene;
-  versioning schemes and the DOI-minting release: rseng-publishing-releasing.)
+  DOIs and ORCIDs, and tracking contributors of every kind. Use when the user
+  asks how to make software citable, add CITATION.cff or codemeta.json, obtain
+  a DOI, ensure contributors get credit, or mentions CFF, CodeMeta, ORCID,
+  CRediT or persistent identifiers. Use PROACTIVELY when generated code draws
+  on a publication, website or existing code (credit it at the code site and
+  in the references), at release preparation, and when citation files are
+  edited. (Verifying references you cite: rseng-citation-hygiene; versioning
+  schemes and the DOI-minting release: rseng-publishing-releasing.)
 license: CC-BY-4.0
 metadata:
   version: 0.2.0
@@ -224,6 +224,39 @@ contributions and suggest updates rather than waiting to be asked:
   records categorized contributions in the README as they happen;
   a release-checklist item ("contributor records current?") makes
   the check routine (rseng-publishing-releasing).
+
+## Credit what the code came from
+
+Crediting flows both ways: the sources that INFORM generated or
+hand-written code deserve the same rigor as the project's own
+citability. Whenever a website, publication, algorithm description,
+existing codebase, or a Q&A answer shapes code, record it in every
+place a future reader will look:
+
+- At the code site: a short comment where the adaptation lives -
+  source URL or DOI, what was taken (algorithm, approach, snippet),
+  and the source's license whenever actual code was copied or
+  ported. If code was copied, license compatibility must be checked
+  first (rseng-license-compliance); incompatible source license means
+  reimplement from the description, not copy.
+- In the references: load-bearing sources - the paper whose method
+  the code implements, software that was adapted - belong in
+  CITATION.cff `references` entries (type, title, authors, DOI/URL)
+  and in the project documentation's references section, not only
+  in a comment.
+- In the AI declaration: when an agent generated the code, the
+  aidecl.yaml component notes name the sources it drew on
+  (rseng-ai-declaration) - provenance of the inputs, not just the
+  tool.
+- Honestly: omitting a source that materially shaped the code
+  misrepresents the work's originality (rseng-honesty), and a cited
+  source must actually support what it is cited for
+  (rseng-fact-checking).
+
+There is no file pattern that reveals an uncredited source, so no
+mechanical check exists - this is a discipline to apply AT
+GENERATION TIME, and a review question afterwards (rseng-code-review:
+"where did this method come from, and does the code say so?").
 
 ## Working with this skill
 

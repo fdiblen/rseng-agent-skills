@@ -69,4 +69,6 @@ by what ships:
   follow-ups. This cuts session time sharply with no loss.
 - Never ghostwrite submission-ready publications; follow rseng-honesty
   on concealment requests; ask the user to review and verify
-  generated code and results.
+  generated code and results. Code adapted from a publication,
+  website or existing codebase carries its source at the code site
+  and in the references (rseng-citation-metadata).

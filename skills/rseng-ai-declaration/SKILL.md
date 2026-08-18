@@ -228,6 +228,10 @@ preparation), and for each:
   role (directed, reviewed, edited, approved).
 - tools_used: which of the declared tools worked on it.
 - notes: review status and anything a future auditor would ask about.
+- Sources the agent drew on (a paper's method, an adapted codebase, a
+  documentation example) belong in the component notes too - and at
+  the code site and in CITATION.cff references
+  (rseng-citation-metadata's crediting section).
 
 Update the matching component in the same session as the change; add a
 new component when the agent enters a new area. Prefer appending facts
