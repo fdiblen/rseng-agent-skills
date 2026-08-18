@@ -23,7 +23,30 @@ if data.get("tool_name") not in ("Write", "Edit", "MultiEdit", "NotebookEdit"):
 
 tool_input = data.get("tool_input") or {}
 target = tool_input.get("file_path") or tool_input.get("notebook_path") or ""
-if pathlib.Path(target).name.startswith(".rseng-agent-skills"):
+target_path = pathlib.Path(target)
+
+# The enforcement infrastructure protects itself - agents may not
+# edit the hook scripts, their data files, or the machine-written
+# session records. Fail-closed here is safe: these writes are never
+# part of legitimate project work.
+name = target_path.name
+parts = target_path.parts
+if (
+    (".claude" in parts and "rseng" in parts)
+    or name in (".rseng-agent-skills-usage.log", ".rseng-agent-skills-writes")
+):
+    print(
+        "rseng-agent-skills gate - the enforcement infrastructure (hook scripts, "
+        "their data, the consultation ledger and the write counter) is "
+        "not writable by the session; it records what happened, it is "
+        "not project content.",
+        file=sys.stderr,
+    )
+    sys.exit(2)
+
+# Only the coverage worklog (agent-authored by design) passes the
+# gate freely; .rseng-agent-skills-relaxed may be created deliberately.
+if name in (".rseng-agent-skills-coverage.md", ".rseng-agent-skills-relaxed"):
     sys.exit(0)
 
 phases = phase_lib.load_phases(pathlib.Path(__file__).parent)
