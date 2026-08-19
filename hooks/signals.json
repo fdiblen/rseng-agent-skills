@@ -291,12 +291,15 @@
       "*participant*.csv",
       "*survey*.csv",
       "*patient*.csv",
-      "*cohort*.csv"
+      "*cohort*.csv",
+      "*persons*.csv",
+      "*subjects*.csv"
     ],
     "skills": [
       "rseng-regulatory-compliance",
       "rseng-data-management"
-    ]
+    ],
+    "severity": "privacy"
   },
   {
     "name": "statistical modeling code",

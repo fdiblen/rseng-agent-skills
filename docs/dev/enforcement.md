@@ -64,10 +64,13 @@ Seven hooks, wired in `hooks/hooks.json` (and mirrored into test
    writes in `.rseng-agent-skills-writes`.
 5. PostToolUse on Skill runs `related_nudge.py`: each consultation
    surfaces the skill's neighbors from `related.json`.
-6. PostToolUse on Write/Edit runs `signal_nudge.py`: writing a file
-   that matches a relevance signal (a notebook, a CI config, a data
-   file...) surfaces the mapped skills the moment they become
-   relevant.
+6. PostToolUse on Write/Edit/Read runs `signal_nudge.py`: touching a
+   file that matches a relevance signal (a notebook, a CI config, a
+   data file...) surfaces the mapped skills the moment they become
+   relevant. Signals with severity "privacy" (person-level data
+   patterns) additionally produce an explicit privacy warning on
+   every touch including reads - the user must know when sensitive
+   data is being processed.
 7. Stop runs `quality_check.py`, the final audit. It exits silently
    for read-only sessions (zero gated writes). Otherwise it blocks
    the first stop attempt until: the artifact floor is present

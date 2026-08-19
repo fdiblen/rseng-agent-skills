@@ -2,15 +2,16 @@
 name: rseng-agent-security
 description: >-
   Covers operating AI coding agents securely: auditing whether the agent runs
-  sandboxed, permission configuration and dangerous-command allowances,
-  containerized agent environments, keeping secrets out of agent context,
-  limiting network egress and token privileges, and prompt-injection risk from
-  untrusted repository content. Use PROACTIVELY when permission gating is
-  broadly disabled (skip-permissions modes), when secrets are visible to the
-  agent's shell, or when the agent processes untrusted code, issues or web
-  content; also when the user asks how to run coding agents safely or mentions
-  sandboxing or permission modes. (Project and supply-chain security:
-  rseng-security; disclosing agent contributions: rseng-ai-declaration.)
+  sandboxed, permission and dangerous-command configuration, containerized
+  environments, secrets kept out of context, network egress and token
+  privileges, prompt-injection risk, and the privacy of agent use itself. Use
+  PROACTIVELY when permission gating is broadly disabled (skip-permissions
+  modes), when secrets are visible to the agent's shell, or when the agent
+  processes untrusted code, issues or web content; when a project holds
+  personal or confidential data while a cloud agent is active (what leaves
+  the machine, retention, training use), or when the user asks how to run
+  coding agents safely or privately. (Supply-chain security: rseng-security;
+  disclosing agent contributions: rseng-ai-declaration.)
 license: CC-BY-4.0
 metadata:
   version: 0.1.0
@@ -100,6 +101,36 @@ Practical defenses:
   an unknown repository is exactly when containment pays.
 - Keep the dangerous combination apart: broad autonomy + untrusted
   input + access to secrets should never coexist in one session.
+
+## Privacy of using the agent itself
+
+Security asks what the agent can damage; privacy asks what leaves
+the machine. Check and tell the user plainly:
+
+- What is transmitted: prompts, opened files, repository context
+  and often terminal output go to the provider on every request -
+  anything visible to the agent's context can leave the machine.
+  Sensitive data the agent never needs should not sit in the
+  directories it works in (rseng-data-management keeps person-level
+  data out of the working tree).
+- Provider posture differs by TIER, not just vendor: consumer and
+  enterprise plans of the same product typically differ on data
+  retention and whether content trains future models. Do not rely
+  on remembered policies - they change; check the provider's
+  current data-usage page for the tier in use, and prefer tiers
+  with training-use off and bounded retention for research data.
+- Warn PROACTIVELY when the two exposures combine: a project
+  containing personal, clinical or otherwise confidential material
+  AND an active cloud agent. The user decides; the agent's duty is
+  that the decision is informed (and recorded in the worklog).
+- Reduce exposure structurally: gitignored agent working dirs (the
+  never-commit catalog in rseng-security), minimal context (do not
+  paste secrets or raw person-level data into prompts), local or
+  self-hosted models for the most sensitive work, and the
+  provider's zero-retention endpoints where offered.
+- Telemetry beyond content: usage metadata, crash reports and
+  update pings are separate channels with their own settings;
+  enterprise deployments can usually disable them centrally.
 
 ## Team practice
 
