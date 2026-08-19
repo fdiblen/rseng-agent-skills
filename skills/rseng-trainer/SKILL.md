@@ -3,15 +3,16 @@ name: rseng-trainer
 description: >-
   Covers teaching research software skills while working: turning everyday
   coding moments into short, learner-centered lessons on best practices and
-  technical or research-software concepts, using the pedagogy of the
-  Carpentries, CodeRefinery and community training catalogs (objective-led
-  episodes, live-coding walk-throughs, formative checks, error normalization),
-  and routing learners to canonical training materials for depth. Use when a
-  teachable moment appears during a task (offer a one-line lesson, never
-  lecture), when the user asks to learn or understand a topic, requests an
-  explanation or tutorial, wants training material recommendations, or is
-  preparing to teach others. For onboarding cohorts and new team members see
-  rseng-contributor-onboarding.
+  technical or research-software concepts, using
+  Carpentries/CodeRefinery-style pedagogy (objective-led episodes, formative
+  checks, error normalization), and routing learners to canonical training
+  materials. Use when a teachable moment appears during a task (offer a
+  one-line lesson, never lecture), when the user asks to learn or understand a
+  topic, requests an explanation or tutorial, wants training material
+  recommendations, is preparing to teach others, or when a developed project
+  should ship a build story (docs/BUILD-STORY.md) explaining its
+  technological, design, project and process choices for new developers. For
+  onboarding cohorts and new team members see rseng-contributor-onboarding.
 license: CC-BY-4.0
 metadata:
   version: 0.1.0
@@ -92,6 +93,38 @@ matching this pack's skills, which the router
 coding itself, pair with rseng-agent-security and
 rseng-ai-declaration - responsible-AI lessons are now part of the
 core curricula (CodeRefinery teaches one).
+
+## Write the build story
+
+After developing software - especially when an agent did much of the
+building - produce a document that explains HOW and WHY the project
+was built the way it was: docs/BUILD-STORY.md (or a docs-site page).
+It is an educational artifact, written for a new developer who wants
+to learn from the project, not a changelog.
+
+Cover every kind of choice, each as decision -> alternatives
+considered -> why this one -> what would change the answer:
+
+- Technological: language, packages, tools (uv, pytest, CI service),
+  data formats - and what was deliberately NOT used.
+- Design: architecture shape, module boundaries, API style, error
+  handling strategy (condensed from the ADRs - rseng-software-design;
+  the build story narrates, ADRs remain the record).
+- Project: tier classification, scope cuts, testing depth, licensing
+  and citation choices, what was deferred and why.
+- Communication and process: how decisions were recorded, how the
+  work was tracked, review practice, how AI assistance was used and
+  verified (rseng-ai-declaration tells WHAT; the build story teaches
+  WHY it was directed that way).
+
+Write it as teaching material: short sections, one honest trade-off
+per choice, links into the code ("see src/x.py for where this
+bites"), and the mistakes worth learning from (rseng-lessons-learned
+entries are the raw material). Date it and mark it as describing the
+project at a moment - build stories are allowed to age; note major
+revisions rather than silently rewriting. For tier-1 analysis code a
+few paragraphs in the README ("How this was built") is enough; write
+the standalone document from tier 2 up.
 
 ## Supporting users who teach
 

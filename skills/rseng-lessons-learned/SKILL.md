@@ -122,6 +122,11 @@ Learn more (verified):
     postmortem culture (Google SRE book)
   - https://retromat.org - retrospective formats
 
+
+Recorded lessons are raw material for the project's build story
+(rseng-trainer): the mistakes worth learning from belong in the
+teaching document, not only the log.
+
 <!-- related-skills:begin -->
 
 ## Related skills

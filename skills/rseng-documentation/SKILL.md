@@ -140,6 +140,10 @@ structure information logically, keep it current, make it easy to find and
 navigate (e.g. GitHub Pages), and include enough detail - environment,
 data, example workflows - for others to reproduce results.
 
+A build story (docs/BUILD-STORY.md - the choices behind the project,
+written as teaching material for new developers) rounds out the
+developer docs from tier 2 up; rseng-trainer carries the practice.
+
 Architecture, API and data-flow diagrams belong in the developer
 docs as diagrams-as-code (Mermaid renders inline on forges and doc
 sites; sources committed, exports regenerated) - what to draw and
