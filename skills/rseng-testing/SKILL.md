@@ -241,6 +241,14 @@ material and pointers:
 
 
 Learn more (verified):
+  - https://docs.pytest.org - pytest documentation
+  - https://hypothesis.readthedocs.io - Hypothesis property-based
+    testing for Python
+  - https://testthat.r-lib.org - testthat unit testing for R
+  - https://coderefinery.github.io/testing/ - CodeRefinery automated
+    testing lesson
+  - https://book.the-turing-way.org/reproducible-research/testing -
+    Turing Way code testing chapter
 
 
 <!-- related-skills:begin -->

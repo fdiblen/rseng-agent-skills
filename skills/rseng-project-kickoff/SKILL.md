@@ -102,6 +102,13 @@ orchestrates the pack's setup skills and hands steady-state
 operation to rseng-project-tracking.
 
 Learn more (verified):
+  - https://opensource.guide/starting-a-project/ - starting an open
+    source project
+  - https://learn.scientific-python.org/development/ - Scientific
+    Python development guide
+  - https://book.the-turing-way.org - The Turing Way handbook
+  - https://www.software.ac.uk/resource-hub - Software Sustainability
+    Institute resources
 
 <!-- related-skills:begin -->
 

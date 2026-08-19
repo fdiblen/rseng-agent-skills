@@ -69,6 +69,14 @@ and pointers:
 - references.md - verified Learn more pointers
 
 
+Learn more (verified):
+  - https://docs.nvidia.com/cuda/ - NVIDIA CUDA Toolkit documentation
+  - https://rocm.docs.amd.com - AMD ROCm and HIP documentation
+  - https://docs.cupy.dev - CuPy GPU array library for Python
+  - https://kokkos.org - Kokkos performance portability ecosystem
+  - https://enccs.github.io/gpu-programming/ - ENCCS GPU
+    programming lesson
+
 <!-- related-skills:begin -->
 
 ## Related skills

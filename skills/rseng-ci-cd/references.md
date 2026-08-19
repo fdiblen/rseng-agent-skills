@@ -3,4 +3,9 @@
 
 # References
 
-No curated external links for this skill yet.
+Learn more:
+
+- https://docs.github.com/en/actions - GitHub Actions documentation
+- https://docs.gitlab.com/ci/ - GitLab CI/CD documentation
+- https://coderefinery.github.io/testing/ - CodeRefinery automated testing lesson
+- https://book.the-turing-way.org/reproducible-research/ci - Turing Way continuous integration chapter

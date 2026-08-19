@@ -129,6 +129,12 @@ material and pointers:
 
 
 Learn more (verified):
+  - https://opensource.guide/best-practices/ - best practices for
+    open source maintainers
+  - https://www.software.ac.uk - Software Sustainability Institute
+  - https://chaoss.community/kb-metrics-and-metrics-models/ - CHAOSS
+    community health metrics
+  - https://endoflife.date - end-of-life dates for dependencies
 
 
 <!-- related-skills:begin -->

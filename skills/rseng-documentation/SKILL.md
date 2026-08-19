@@ -277,6 +277,12 @@ material and pointers:
 
 
 Learn more (verified):
+  - https://www.writethedocs.org/guide/ - Write the Docs
+    documentation guide
+  - https://diataxis.fr - Diataxis documentation framework
+  - https://www.sphinx-doc.org - Sphinx documentation generator
+  - https://www.mkdocs.org - MkDocs project documentation tool
+  - https://docs.readthedocs.com - Read the Docs user documentation
 
 
 <!-- related-skills:begin -->

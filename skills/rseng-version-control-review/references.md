@@ -3,4 +3,9 @@
 
 # References
 
-No curated external links for this skill yet.
+Learn more:
+
+- https://git-scm.com/book/en/v2 - the Pro Git book
+- https://swcarpentry.github.io/git-novice/ - Software Carpentry Git lesson
+- https://www.conventionalcommits.org/en/v1.0.0/ - Conventional Commits specification
+- https://google.github.io/eng-practices/review/ - Google code review guidelines

@@ -3,4 +3,10 @@
 
 # References
 
-No curated external links for this skill yet.
+Learn more:
+
+- https://peps.python.org/pep-0008/ - PEP 8 style guide for Python code
+- https://style.tidyverse.org - Tidyverse style guide for R
+- https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines - C++ Core Guidelines
+- https://doc.rust-lang.org/book/ - The Rust Programming Language book
+- https://fortran-lang.org/learn/ - Fortran-lang community learning resources

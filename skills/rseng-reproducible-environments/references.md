@@ -3,4 +3,10 @@
 
 # References
 
-No curated external links for this skill yet.
+Learn more:
+
+- https://docs.conda.io - conda package and environment manager
+- https://docs.astral.sh/uv/ - uv Python package manager
+- https://rstudio.github.io/renv/ - renv reproducible R environments
+- https://apptainer.org/documentation/ - Apptainer container documentation
+- https://book.the-turing-way.org/reproducible-research/renv - Turing Way reproducible environments chapter
