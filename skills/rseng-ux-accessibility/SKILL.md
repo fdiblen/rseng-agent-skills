@@ -6,10 +6,12 @@ description: >-
   Viable Product versus a Minimum Loveable Product, Nielsen's usability
   heuristics, and prototyping with tools like Figma and Miro. Also covers WCAG
   conformance for web-facing tools, accessibility testing, CLI usability
-  guidelines and inclusive defaults. Use when the user designs a research
-  tool's interface (web, GUI or CLI), asks how to make research software
-  usable or accessible, plans user testing or prototyping, or mentions
-  usability heuristics, WCAG, UX or a11y in a research software context.
+  guidelines and inclusive defaults. Use PROACTIVELY when creating or
+  reshaping a user-facing interface (CLI, GUI, web), and when the user designs
+  a research tool's interface (web, GUI or CLI), asks how to make research
+  software usable or accessible, plans user testing or prototyping, or
+  mentions usability heuristics, WCAG, UX or a11y in a research software
+  context.
 license: CC-BY-4.0
 metadata:
   version: 0.2.0

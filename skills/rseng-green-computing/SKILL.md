@@ -7,9 +7,10 @@ description: >-
   scheduling (CATS), the GREENER principles and the Software Carbon Intensity
   metric. Use when the user asks about the carbon or energy cost of their
   computations, wants to make workloads greener, mentions sustainability of
-  computing, or when planning large training runs, simulations or parameter
-  sweeps whose footprint is worth measuring. (Keeping the software project
-  itself alive is rseng-maintenance-sustainability; making code faster is
+  computing, Use PROACTIVELY when planning large training runs, simulations or
+  parameter sweeps - footprint measurement is worthless retrospectively.
+  (Keeping the software project itself alive is
+  rseng-maintenance-sustainability; making code faster is
   rseng-performance-profiling.)
 license: CC-BY-4.0
 metadata:

@@ -94,6 +94,7 @@
   "Throughout": {
     "Cross-cutting practices": [
       "rseng-quality-framework",
+      "rseng-agent-security",
       "rseng-project-tracking",
       "rseng-version-control-review",
       "rseng-ai-declaration",

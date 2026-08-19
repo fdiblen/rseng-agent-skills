@@ -238,6 +238,14 @@ Specialized:
 
 - references.md - source citations and links to the upstream framework pages
 
+Learn more (verified):
+  - https://everse.software/RSQKit/ - Research Software Quality Kit
+  - https://www.bestpractices.dev - OpenSSF Best Practices badge
+    program
+  - https://fair-software.eu - five recommendations for FAIR software
+  - https://guide.esciencecenter.nl - Netherlands eScience Center guide
+  - https://book.the-turing-way.org - The Turing Way handbook
+
 <!-- related-skills:begin -->
 
 ## Related skills

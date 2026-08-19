@@ -172,7 +172,13 @@ def unmet_signals(script_dir, ledger, text, root=None):
     rules = json.loads(signals_file.read_text(encoding="utf-8"))
     root = pathlib.Path(root or ".")
     files = _project_files(root)
-    source_files = [p for p in files if p.suffix in (".py", ".R", ".jl", ".sh", ".ipynb")]
+    source_files = [
+        p
+        for p in files
+        if p.suffix
+        in (".py", ".R", ".jl", ".sh", ".ipynb",
+            ".c", ".h", ".cpp", ".cu", ".cuh", ".f", ".f90", ".F90")
+    ]
     unmet = []
     for rule in rules:
         evidence = None

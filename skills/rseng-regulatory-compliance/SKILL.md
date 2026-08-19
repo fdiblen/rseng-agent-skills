@@ -5,7 +5,8 @@ description: >-
   regulation: GDPR obligations in code (personal data discovery, minimization,
   pseudonymization vs anonymization, retention, data-subject rights, DPIA
   triggers), the EU AI Act (risk tiers, research carve-out, transparency
-  duties), and similar regimes. Use when a project processes personal or
+  duties), and similar regimes. Use PROACTIVELY when person-level or sensitive
+  data is evident in the project, and when a project processes personal or
   sensitive data, trains or ships AI/ML systems, when the user asks about
   GDPR, the AI Act, DPIAs, consent or anonymization, or before publishing
   datasets or models derived from people. (Secrets hygiene and protective

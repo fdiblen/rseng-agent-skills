@@ -127,6 +127,24 @@ SIGNALS: list[dict] = [
     {"name": "checkpoint-restart code",
      "content": [r"checkpoint|\brestart\b.*\bresume\b"],
      "skills": ["rseng-hpc-computing"]},
+    {"name": "distributed data code", "content": [r"\bdask\b|pyspark"],
+     "skills": ["rseng-big-data-processing"]},
+    {"name": "gpu sources", "patterns": ["*.cu", "*.cuh"],
+     "skills": ["rseng-gpu-computing"]},
+    {"name": "fortran sources", "patterns": ["*.f90", "*.F90", "*.f"],
+     "skills": ["rseng-language-guides"]},
+    {"name": "manuscript sources", "patterns": ["*.tex", "paper.md"],
+     "skills": ["rseng-citation-hygiene", "rseng-research-integrity"]},
+    {"name": "review-venue paper", "patterns": ["paper.md"],
+     "skills": ["rseng-software-peer-review"]},
+    {"name": "proprietary platform sources",
+     "patterns": ["*.m", "*.sas", "*.mat"],
+     "skills": ["rseng-open-source-migration"]},
+    {"name": "matlab data files", "patterns": ["*.mat"],
+     "skills": ["rseng-scientific-file-formats"]},
+    {"name": "agent configuration",
+     "patterns": [".mcp.json", ".claude/settings*.json"],
+     "skills": ["rseng-agent-security"]},
 ]
 
 # The router is every session's entry point and stays relevant for
@@ -136,6 +154,7 @@ ROUTER = "rseng-quality-framework"
 
 THROUGHOUT: list[str] = [
     ROUTER,
+    "rseng-agent-security",
     "rseng-project-tracking",
     "rseng-version-control-review",
     "rseng-ai-declaration",

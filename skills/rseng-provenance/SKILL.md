@@ -5,11 +5,11 @@ description: >-
   inputs, code versions, parameters, environments and agents produced each
   result, recorded run by run; the W3C PROV model for describing it, RO-Crate
   for packaging research objects with their provenance, embedding provenance
-  in file metadata, and data-flow lineage across pipelines. Use PROACTIVELY
-  when the user asks where a result came from or whether it can be traced,
-  wants provenance capture, lineage or an RO-Crate, mentions PROV, research
-  objects or audit trails for results, or when a pipeline produces results
-  whose origins must be reconstructable long after the run.
+  in file metadata, and data-flow lineage across pipelines. Use when the user
+  asks where a result came from or whether it can be traced, wants provenance
+  capture, lineage or an RO-Crate, or mentions PROV, research objects or audit
+  trails; use PROACTIVELY when a pipeline produces results whose origins must
+  be reconstructable long after the run.
 license: CC-BY-4.0
 metadata:
   version: 0.1.0
