@@ -24,7 +24,7 @@ import yaml
 # room under the Agent Skills spec cap (1024 chars ~ 256 tokens);
 # the routing surface is what every session pays before any work.
 DESCRIPTION_BUDGET = 200
-BODY_BUDGET = 4_000
+BODY_BUDGET = 3_500
 ROUTING_SURFACE_BUDGET = 13_000
 SESSION_CONTEXT_BUDGET = 1_100
 
@@ -97,9 +97,10 @@ def main() -> None:
         f"session context ~{report['session_context_tokens']:,}"
     )
     worst = sorted(report["skills"], key=lambda s: -s["description_tokens"])[:5]
-    print("largest descriptions: " + ", ".join(
-        f"{s['name']} ~{s['description_tokens']}" for s in worst
-    ))
+    print(
+        "largest descriptions: "
+        + ", ".join(f"{s['name']} ~{s['description_tokens']}" for s in worst)
+    )
     found = problems(report)
     if found and "--report" not in sys.argv:
         print("over budget:")
