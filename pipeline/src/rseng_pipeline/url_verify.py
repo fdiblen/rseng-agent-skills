@@ -10,7 +10,7 @@ from __future__ import annotations
 
 import urllib.error
 import urllib.request
-from collections.abc import Callable, Iterable
+from collections.abc import Callable
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -75,7 +75,7 @@ def verify_url(
         return URLCheck(url=url, status="quarantined", reason=quarantine[url])
     try:
         code = probe(url)
-    except Exception as error:  # DNS failure, timeout, TLS error, ...
+    except Exception as error:  # noqa: BLE001 - any probe failure is a report
         return URLCheck(url=url, status="error", reason=str(error))
     if code < 400:
         status = "ok"
