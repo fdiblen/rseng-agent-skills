@@ -47,6 +47,7 @@ describe("detectAgents", () => {
       (t) => t.detected,
     );
     expect(detected.map((t) => `${t.agent}:${t.scope}`).sort()).toEqual([
+      "antigravity:user",
       "claude:user",
       "gemini:user",
     ]);
@@ -54,6 +55,8 @@ describe("detectAgents", () => {
     expect(gemini?.installDir).toBe(
       path.join(homeDir, ".gemini", "extensions", "rseng-agent-skills"),
     );
+    const agy = detected.find((t) => t.agent === "antigravity");
+    expect(agy?.installDir).toBe(path.join(homeDir, ".gemini", "config"));
   });
 
   it("unified targets install into the project root", () => {

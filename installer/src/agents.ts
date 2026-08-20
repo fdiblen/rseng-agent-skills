@@ -63,10 +63,28 @@ const SPECS: AgentSpec[] = [
   },
   {
     agent: "gemini",
+    scope: "project",
+    marker: (p) => path.join(p, "GEMINI.md"),
+    installDir: (p) => p,
+  },
+  {
+    agent: "gemini",
     scope: "user",
     marker: (_p, h) => path.join(h, ".gemini"),
     installDir: (_p, h) =>
       path.join(h, ".gemini", "extensions", "rseng-agent-skills"),
+  },
+  {
+    agent: "antigravity",
+    scope: "project",
+    marker: (p) => path.join(p, ".agents"),
+    installDir: (p) => p,
+  },
+  {
+    agent: "antigravity",
+    scope: "user",
+    marker: (_p, h) => path.join(h, ".gemini"),
+    installDir: (_p, h) => path.join(h, ".gemini", "config"),
   },
 ];
 

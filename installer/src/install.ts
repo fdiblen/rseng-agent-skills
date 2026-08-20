@@ -38,6 +38,7 @@ const SOURCES: Record<string, { from: string; to: string }[]> = {
     { from: "dist/codex/rseng-check", to: "rseng-check" },
   ],
   gemini: [{ from: "dist/gemini", to: "." }],
+  antigravity: [{ from: "dist/gemini", to: "." }],
 };
 
 export interface FileCopy {
