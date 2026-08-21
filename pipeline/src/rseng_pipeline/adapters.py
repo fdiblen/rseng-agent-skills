@@ -150,9 +150,7 @@ def _wrap(text: str, width: int = 76) -> list[str]:
     )
 
 
-def build_agents_skills(
-    repo_root: Path, context: dict, target_dir: Path
-) -> list[Path]:
+def build_agents_skills(repo_root: Path, context: dict, target_dir: Path) -> list[Path]:
     """The unified native tree: .agents/skills/ holding every canonical
     skill plus the command-skills. Codex, Cursor and Copilot all read
     this location natively."""

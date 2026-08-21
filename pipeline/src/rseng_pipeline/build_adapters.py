@@ -30,22 +30,31 @@ def _structure_problems(dist_dir: Path, name: str, context: dict) -> list[str]:
         (".agents/skills/rseng-check/agents/openai.yaml", 1),
     ]
     expected: dict[str, list[tuple[str, int]]] = {
-        "codex": unified + [
+        "codex": unified
+        + [
             ("AGENTS.md", 1),
             ("rseng-check/rseng_check.py", 1),
             ("rseng-check/phases.json", 1),
         ],
-        "cursor": unified + [
+        "cursor": unified
+        + [
             (".cursor/rules/*.mdc", 1),
             (".cursor/rseng-check/rseng_check.py", 1),
         ],
-        "copilot": unified + [
+        "copilot": unified
+        + [
             (".github/copilot-instructions.md", 1),
             (".github/rseng-check/rseng_check.py", 1),
         ],
-        "gemini": [
-            ("skills/*/SKILL.md", n_skills),
-            ("commands/*.toml", n_cmd_skills),
+        "gemini": unified
+        + [
+            ("GEMINI.md", 1),
+            ("rseng-check/rseng_check.py", 1),
+        ],
+        "antigravity": unified
+        + [
+            ("GEMINI.md", 1),
+            ("AGENTS.md", 1),
             ("rseng-check/rseng_check.py", 1),
         ],
     }
