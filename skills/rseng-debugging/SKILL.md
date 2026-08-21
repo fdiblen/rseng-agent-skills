@@ -83,6 +83,18 @@ debuggers change, the method does not.
   timing or uninitialized state; prefer low-intrusion observation
   (sampling profilers, core dumps, logging) over stepping.
 
+## Service startup failures
+
+When a delivered stack fails at launch (compose service exits, API
+returns 500s on first request), debug from the logs, not the code:
+`docker compose logs <service>` / the server's stderr almost always
+names the true failure - a missing env var, an unreachable
+database host, a port collision, a schema mismatch. Fix the FIRST
+error in the log (later ones cascade), restart, re-read; repeat
+until startup is clean, then re-run the request that failed. The
+same loop applies outside containers: read the traceback of the
+crashing entry point before touching application code.
+
 ## Mechanics worth teaching
 
 - Read the WHOLE error: the bottom-most frame of the traceback in

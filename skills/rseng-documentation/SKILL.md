@@ -5,8 +5,9 @@ description: >-
   code-level docs (comments, docstrings, API and CLI help), project docs
   (INSTALL, CONTRIBUTING, LICENSE, CITATION, changelog), publishing hosted
   documentation with Read the Docs, and capturing a Research Software Story.
-  Use when the user asks how to write or improve a README, add docstrings or
-  inline comments, document an API or CLI, set up Sphinx/MkDocs/Doxygen, host
+  Use when the user asks how to write or improve a README, decide what
+  documentation their project needs, add docstrings or inline comments,
+  document an API or CLI, set up Sphinx/MkDocs/Doxygen, host
   docs on Read the Docs, structure a docs site, or write the narrative context
   and history behind a project. For outward-facing papers, talks and
   announcements see rseng-science-communication; for public and citizen-science
@@ -155,17 +156,14 @@ When a project needs a browsable docs site, generate static pages with
 Sphinx or MkDocs and publish them. Read the Docs is a common host that
 integrates with GitHub/GitLab and rebuilds via CI:
 
-1. Create the source: `sphinx-quickstart` (Sphinx) or `mkdocs new my-project`
-   (MkDocs).
-2. Push code and docs to a Git remote on GitHub or GitLab.
-3. Import the project on Read the Docs: link the account, pick the repo, set
-   name, doc type, branch, and any Python requirements.
-4. Add a `.readthedocs.yaml` (config version 2) at the repo root declaring
-   the Python environment and the builder (`sphinx: configuration: ...` or
-   `mkdocs: config: ...`).
-5. Set up webhooks / CI so pushes and pull requests trigger rebuilds.
-6. Customise theme and add PDF/ePub outputs if needed; check build logs.
-7. Publish - docs appear at `https://<your-project>.readthedocs.io/`.
+1. Create the source (`sphinx-quickstart` or `mkdocs new`) and push it
+   with the code.
+2. Import the repo on Read the Docs and add a `.readthedocs.yaml`
+   (config version 2) at the repo root declaring the Python
+   environment and the builder.
+3. Wire webhooks/CI so pushes and pull requests trigger rebuilds;
+   check build logs; docs appear at
+   `https://<your-project>.readthedocs.io/`.
 
 ## Write a Research Software Story
 
@@ -179,27 +177,12 @@ Guide the user through the template sections - the problem addressed, the
 communities involved, the technical nature, dependencies, development
 practices, onboarding, tooling, documentation/FAIR/openness, and
 sustainability/governance. Emphasise clarity over technical depth; a reader
-should grasp the project without reading the code.
-
-To produce a first draft:
-
-- Write directly through the template - two or three sentences per section
-  is enough for a useful version-zero. Hardest in practice.
-- Interview a teammate: one asks using the template as structure, the other
-  answers; record and transcribe, and repeat answers back with "did we miss
-  anything?" to draw out more detail. Often the richest source of language.
-- Structured LLM prompting: use a system prompt that flips the model into
-  interviewer mode, asking template-driven questions, requesting supporting
-  material (README, notes), probing gaps, then assembling a draft. Instruct
-  it to prefer the interviewee's own words and not to invent missing facts.
-
-The important step is producing any version-zero draft; refine afterward,
-checking that processes are captured clearly, key tools are linked, and
-documentation/tutorial links exist and work.
-
-A concrete docs stack (NLeSC python-template): Sphinx sources with a
-.readthedocs.yaml for hosted builds, a docs-build GitHub Action as the
-PR gate, and a separate README.dev.md for developer-facing setup.
+should grasp the project without reading the code. Any version-zero
+draft counts - two or three sentences per section, written directly,
+drawn out by interviewing a teammate through the template, or drafted
+via interviewer-mode LLM prompting that prefers the interviewee's own
+words and never invents missing facts. Refine afterward, checking that
+processes are captured and linked tools and tutorials exist and work.
 
 ## Descriptive completeness: the full picture a stranger needs
 
@@ -207,28 +190,20 @@ Good project documentation answers every question a newcomer,
 reviewer or future maintainer brings - check for ALL of these and
 flag the gaps, proportionate to tier:
 
-- Background and motivation: the research problem, why this
-  software exists, the statement of need in domain language - not
-  just what it does but why anyone should care.
-- Usage, end to end: installation from a clean environment,
-  a quickstart that runs, worked examples on realistic data,
-  configuration reference, troubleshooting/FAQ, and stated
-  limitations - what the software does NOT do is documentation
-  too.
-- Developer notes: architecture overview and key decisions (link
-  the decision log/ADRs), development environment setup, how to
-  run tests, release runbook, and where help is wanted - the
-  onboarding path from user to contributor.
-- Alternatives and related projects: name the neighboring tools
-  and how this one differs or interoperates - the comparison
-  helps users choose honestly and reviewers place the work
-  (the same state-of-the-field survey that software papers and
-  reuse decisions need). A documented "when NOT to use this,
-  use X instead" earns more trust than silence about
-  competitors.
-- Provenance and status: citation instructions, license, AI
-  involvement disclosure, maintenance status and support
-  expectations.
+- Background and motivation: the research problem and statement of
+  need in domain language - why anyone should care.
+- Usage, end to end: install from clean environment, a quickstart
+  that runs, worked examples on realistic data, configuration
+  reference, troubleshooting, and stated limitations - what the
+  software does NOT do is documentation too.
+- Developer notes: architecture and key decisions (link ADRs), dev
+  environment setup, running tests, release runbook, where help is
+  wanted - the onboarding path from user to contributor.
+- Alternatives: name neighboring tools and how this one differs or
+  interoperates; "when NOT to use this, use X instead" earns more
+  trust than silence about competitors.
+- Provenance and status: citation, license, AI involvement
+  disclosure, maintenance status and support expectations.
 
 ## Standards adherence for code and developer docs
 
@@ -268,17 +243,9 @@ gaming hazards).
 
 ## Working with this skill
 
-The generated references.md beside this file lists the source
-material and pointers:
-
-- references.md - source citations and links to the upstream pages with the full
-  detail and examples (Keras usage examples, the khmer changelog practice,
-  the `.readthedocs.yaml` snippets, the seminar walkthrough) behind the
-  checklists above.
-- `references.md` - the quality-indicator checklist for
-  documentation.
-- `references.md` - the verified external links.
-
+The generated references.md beside this file carries the source
+citations, the documentation quality-indicator checklist, and links
+to the upstream pages with full examples behind the checklists above.
 
 Learn more (verified):
   - https://www.writethedocs.org/guide/ - Write the Docs

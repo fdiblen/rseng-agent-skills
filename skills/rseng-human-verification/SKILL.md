@@ -95,6 +95,18 @@ own checks:
   feeding a decision or publication needs the reference-case
   standard - say which level applies.
 
+## Run it before handing it over
+
+Verification the agent can do mechanically happens BEFORE the human
+is asked to review: start the delivered entry point (compose stack,
+CLI, app) exactly as the README says, exercise one real request per
+integration seam, and read the startup logs for errors. Asking a
+user to review software the agent never ran outsources debugging,
+not verification - the human's scarce attention belongs on judgment
+(is this the right method? do results make sense?), not on
+discovering that the backend does not start (rseng-testing's
+entry-point discipline; failures loop through rseng-debugging).
+
 ## The boundary this skill guards
 
 The division of labor from rseng-pair-programming, stated for

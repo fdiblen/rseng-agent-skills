@@ -6,9 +6,10 @@ description: >-
   and wiring an organization's GitLab CI infrastructure to a GitHub-hosted
   project. Use when the user asks to set up CI, write a pipeline or workflow
   file (.github/workflows, .gitlab-ci.yml), add automated builds/tests on push
-  or pull request, choose between GitHub Actions and GitLab CI, use
-  self-hosted or GPU runners, mirror a repo, or report external CI status back
-  to GitHub. For what to test and shrinking a test matrix see rseng-testing; for
+  or pull request, publish a package or deploy docs when a tag or release is
+  cut, cache dependencies to speed up CI runs, choose between GitHub Actions
+  and GitLab CI, use self-hosted or GPU runners, mirror a repo, or report
+  external CI status back to GitHub. For what to test and shrinking a test matrix see rseng-testing; for
   linter and pre-commit policy see rseng-code-quality.
 license: CC-BY-4.0
 metadata:
