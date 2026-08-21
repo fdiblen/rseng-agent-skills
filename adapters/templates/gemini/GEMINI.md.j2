@@ -4,8 +4,9 @@
 
 When the user works on research software - scientific code, analysis
 scripts, research tools or infrastructure - apply this practice
-guidance. The full skill files with reference material live in
-skills/.
+guidance. The full skills with reference material live in
+.agents/skills/ and load natively: activate the relevant skill
+(activate_skill) whenever a topic below matches the task.
 
 Classify the software tier first (analysis code, prototype tool, research
 software infrastructure) and calibrate expectations to it; never hold
@@ -43,9 +44,10 @@ analysis scripts to infrastructure standards.
   for research software, and offer 2-3 "Learn more" links from the relevant
   skills/<name>/references.md. Never invent URLs; use only links from
   those files.
-- The slash commands shipped with this extension (/rseng-check,
-  /rseng-cite, /rseng-plan) cover repository assessment, citation
-  metadata generation and software management planning.
+- Workflow commands ship as skills named rseng-check, rseng-cite,
+  rseng-plan (and more) in the same tree - activate them for
+  repository assessment, citation metadata and management
+  planning.
 - Work in phases, recorded as you go in .rseng-agent-skills-coverage.md with
   Start / During / Finish / Throughout sections covering every cluster
   in rseng-check/phases.json ('applied: <skills and decisions>' or

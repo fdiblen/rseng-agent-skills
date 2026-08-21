@@ -1,9 +1,12 @@
-"""Gemini CLI target: extension manifest, GEMINI.md context, TOML commands.
+"""Gemini CLI target: GEMINI.md context + the native skills tree.
 
-Command bodies are reused from the Claude plugin's commands/ files with
-the Claude-specific placeholders translated: ${CLAUDE_PLUGIN_ROOT} becomes
-a path into the extension's bundled skills/ copy, and $ARGUMENTS becomes
-Gemini's {{args}}.
+Gemini CLI reads workspace skills from .agents/skills/ natively (the
+same unified tree Codex, Cursor and Copilot consume) with
+progressive disclosure and an activate_skill confirmation, so the
+target ships the canonical tree plus a GEMINI.md carrying the
+behavior rules and phased protocol. The former extension format
+(gemini-extension.json, TOML commands, bundled skills/ copies) is
+retired; command-skills in the tree replace the TOML commands.
 """
 
 from __future__ import annotations
@@ -12,13 +15,8 @@ from pathlib import Path
 
 from jinja2 import Environment
 
-from ..adapters import copy_check, copy_skills, render_to, target
-
-
-def _gemini_body(body: str) -> str:
-    translated = body.replace("${CLAUDE_PLUGIN_ROOT}/", "the extension's ")
-    translated = translated.replace("$ARGUMENTS", "{{args}}")
-    return translated
+from ..adapters import build_agents_skills, copy_check, render_to, target
+from ..hook_wiring import write_hooks
 
 
 @target("gemini")
@@ -26,31 +24,23 @@ def build_gemini(
     repo_root: Path, env: Environment, context: dict, target_dir: Path
 ) -> list[Path]:
     written = [
-        render_to(
-            env,
-            "gemini/gemini-extension.json.j2",
-            context,
-            target_dir / "gemini-extension.json",
-        ),
         render_to(env, "gemini/GEMINI.md.j2", context, target_dir / "GEMINI.md"),
     ]
-    from ..adapters import CLAUDE_ONLY_COMMANDS
+    written += build_agents_skills(repo_root, context, target_dir)
+    written += copy_check(repo_root, target_dir)
+    # The proactive layer, for the agents whose CLI runs hooks.
+    written += write_hooks(repo_root, "gemini", target_dir)
+    return written
 
-    for command in context["commands"]:
-        # rseng-panel orchestrates Claude subagents that do not ship in
-        # the extension; keep it out of every non-Claude target.
-        if command["name"] in CLAUDE_ONLY_COMMANDS:
-            continue
-        adapted = {**command, "body": _gemini_body(command["body"])}
-        written.append(
-            render_to(
-                env,
-                "gemini/command.toml.j2",
-                {**context, "command": adapted},
-                target_dir / "commands" / f"{command['name']}.toml",
-            )
-        )
-    copy_skills(repo_root, target_dir / "skills")
-    written.extend(sorted((target_dir / "skills").rglob("SKILL.md")))
-    written.extend(copy_check(repo_root, target_dir))
+
+@target("antigravity")
+def build_antigravity(
+    repo_root: Path, env: Environment, context: dict, target_dir: Path
+) -> list[Path]:
+    written = [
+        render_to(env, "gemini/GEMINI.md.j2", context, target_dir / "GEMINI.md"),
+        render_to(env, "codex/AGENTS.md.j2", context, target_dir / "AGENTS.md"),
+    ]
+    written += build_agents_skills(repo_root, context, target_dir)
+    written += copy_check(repo_root, target_dir)
     return written

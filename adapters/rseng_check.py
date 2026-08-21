@@ -100,8 +100,21 @@ def main() -> int:
             p
             for p in all_files
             if p.suffix
-            in (".py", ".R", ".jl", ".sh", ".ipynb",
-                ".c", ".h", ".cpp", ".cu", ".cuh", ".f", ".f90", ".F90")
+            in (
+                ".py",
+                ".R",
+                ".jl",
+                ".sh",
+                ".ipynb",
+                ".c",
+                ".h",
+                ".cpp",
+                ".cu",
+                ".cuh",
+                ".f",
+                ".f90",
+                ".F90",
+            )
         ]
         for rule in rules:
             evidence = next(
