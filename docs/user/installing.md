@@ -48,17 +48,20 @@ some into your home directory (user scope):
 |---|---|---|---|
 | Claude Code | project | `.claude/` | `.claude/skills/` |
 | Claude Code | user | `~/.claude/` | `~/.claude/skills/` |
+| Google Antigravity | project | `.agents/` | project root: `GEMINI.md` + `AGENTS.md` + `.agents/skills/` + `rseng-check/` |
+| Google Antigravity | user | `~/.gemini/` | `~/.gemini/config/` (global skills and rules) |
+| Gemini CLI | project | `GEMINI.md` | project root: `GEMINI.md` + `.agents/skills/` + `rseng-check/` |
+| Gemini CLI | user | `~/.gemini/` | `~/.gemini/extensions/rseng-agent-skills/` |
 | Copilot | project | `.github/` | project root: `.github/` + `.agents/skills/` |
 | Cursor | project | `.cursor/` | project root: `.cursor/` + `.agents/skills/` |
 | Codex CLI | project | `~/.codex/` | project root: `AGENTS.md` + `.agents/skills/` + `rseng-check/` |
-| Gemini CLI | user | `~/.gemini/` | `~/.gemini/extensions/rseng-agent-skills/` |
 
 Project-scoped installs live with the repository, so they are shared with
 anyone who clones it (and can be committed). User-scoped installs apply to
 every project you open with that agent on your machine.
 
-Copilot, Cursor and Codex all read the same native skills tree,
-`.agents/skills/`, so installing for more than one of them shares that
+Google Antigravity, Copilot, Cursor, Codex, and Gemini CLI all read the same native
+skills tree, `.agents/skills/`, so installing for more than one of them shares that
 tree at the project root. Each install records its own files in a
 per-agent manifest (`.rseng-agent-skills.<agent>.json`), so `update` and
 `doctor` track every agent separately even in the same directory.
@@ -67,6 +70,40 @@ Claude Code has both a project and a user target. When you run
 `install claude`, both are forced, so the skills land in `.claude/skills/`
 and `~/.claude/skills/`. With a bare `install` (no agent named), only the
 scopes whose marker directory exists are written.
+
+## Google Antigravity
+
+```bash
+# Project-scoped install (recommended for teams and repos):
+npx rseng-agent-skills install antigravity --scope project
+
+# User-scoped install (applies across all local workspaces):
+npx rseng-agent-skills install antigravity --scope user
+```
+
+Antigravity (the IDE and the `agy` CLI) reads from several places. A
+project-scoped install writes the behaviour rules to `GEMINI.md` and
+`AGENTS.md`, the skills to `.agents/skills/`, project-wide rules to
+`.agents/rules/`, and the self-check to `rseng-check/`. Skill bodies are not
+loaded up front - the tree carries names and scopes, and a skill is opened
+when it becomes relevant. A user-scoped install puts the skills in
+`~/.gemini/config/skills/` instead, where they apply to every project on the
+machine. Slash commands, tools and subagents run natively.
+
+## Gemini CLI
+
+```bash
+# User-scoped extension:
+npx rseng-agent-skills install gemini --scope user
+
+# Or project-scoped workspace tree:
+npx rseng-agent-skills install gemini --scope project
+```
+
+For Gemini CLI the installer either provisions
+`~/.gemini/extensions/rseng-agent-skills/` as a bundled extension carrying the
+context file, the skill descriptions and the command workflows, or drops
+`.agents/skills/` and `GEMINI.md` straight into the current repository.
 
 ## Claude Code
 
@@ -148,16 +185,6 @@ Because these are standard `AGENTS.md` plus `.agents/skills/` layouts,
 the same files work for other agents that follow those conventions
 (Zed, opencode, Goose and similar).
 
-## Gemini CLI
-
-```
-npx rseng-agent-skills install gemini
-```
-
-Gemini is user-scoped. The install writes a Gemini extension into
-`~/.gemini/extensions/rseng-agent-skills/`, bundling the context, commands and
-skills so Gemini loads them as one extension.
-
 ## Devcontainers
 
 The repository ships a devcontainer feature at `features/rseng-agent-skills`. Add
@@ -193,3 +220,25 @@ the agent runs. The repository keeps a ready-made snippet at
 ```
 
 Adjust the agent list to match the agent running in your workflow.
+
+## Permissions and trust
+
+What each surface asks for, and why:
+
+- Plugin or installer users: the pack ships NO pre-approved tool
+  permissions. On first launch in a project with the hooks
+  installed, claude shows its standard one-time trust confirmation
+  for the project's `.claude/settings.json` (the enforcement hooks
+  live there); nothing is approved on your behalf, and every tool
+  call is prompted per your own permission settings.
+- Contributors working in a checkout of this repository: the same -
+  the repository does not commit or ship a `settings.local.json`,
+  so a fresh checkout pre-approves nothing. Approvals you grant
+  during your own sessions accumulate locally and stay local.
+- Test-harness sandboxes: headless runs use the agent CLI's own
+  skip-permissions flag inside a throwaway sandbox; interactive
+  sandboxes prompt per tool like any project.
+
+If a trust dialog ever lists pre-approved permissions, they came
+from your own local sessions, not from this pack; they are safe to
+clear.

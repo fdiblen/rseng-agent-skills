@@ -32,6 +32,8 @@ jobs:
         run: |
           uvx ruff check pipeline hooks adapters tests
           uvx ruff format --check pipeline
+      - name: Skill frontmatter lint
+        run: uv run --directory pipeline python -m rseng_pipeline.skill_lint
       - name: Build artifacts and adapters (with output checks)
         run: |
           uv run --directory pipeline python -m rseng_pipeline.references

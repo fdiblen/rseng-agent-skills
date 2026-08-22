@@ -10,9 +10,36 @@ hand-maintained.
 1. Bump the version in `installer/package.json` (`"version"`). The installed
    manifest also carries a version, and the plugin manifests
    (`.claude-plugin/plugin.json`) have their own - keep them consistent for a
-   release.
-2. Tag the commit `v<version>` (for example `v0.1.0`) and push the tag.
-3. Publishing the GitHub release object triggers the artifact attach.
+   release; `CITATION.cff`, `codemeta.json` and the changelog entry carry it
+   too.
+2. Move the `Unreleased` items in `CHANGELOG.md` under a new version
+   heading with the date, and refresh the compare links at the bottom.
+3. Tag the commit `v<version>` (for example `v0.1.0`) and push the tag.
+4. Publishing the GitHub release object triggers the artifact attach.
+
+## Release notes
+
+The GitHub release body is written from the changelog entry, expanded
+with a per-skill summary: list skills added, skills with substantive
+body updates, and skills removed or renamed since the previous tag
+(`git diff --stat v<prev>..v<new> -- skills/` locates them). Keep the
+npm side automatic - the package README ships as-is; only the GitHub
+release carries the narrative notes.
+
+## Archive the release
+
+- Zenodo: the repository carries `.zenodo.json` (kept consistent with
+  `CITATION.cff` and `codemeta.json` - same title, description shape,
+  creators, license, keywords). With the GitHub-Zenodo integration
+  enabled for the repository, publishing the GitHub release deposits
+  the archive and mints the version DOI automatically; copy the DOI
+  badge into the README and add the DOI to `CITATION.cff` afterwards.
+- Software Heritage: after the release is public, submit the
+  repository at https://archive.softwareheritage.org/save/ (save code
+  now, origin type git, the repository URL) - or POST to
+  `https://archive.softwareheritage.org/api/1/origin/save/git/url/<repo-url>/`.
+  No account is needed; the save request is idempotent, so repeat it
+  at every release.
 
 ## What the workflows do
 
