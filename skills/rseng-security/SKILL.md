@@ -6,11 +6,11 @@ description: >-
   file catalog) with leak response, dependency vulnerability scanning and
   pinning, OpenSSF Scorecard and Best Practices badge, SLSA provenance levels,
   SBOMs, signed releases and repository hardening. Use PROACTIVELY when
-  setting up CI or releases for research software, when credentials or tokens
-  appear in code or history, when the user asks how secure their project or
-  dependencies are, or mentions Scorecard, SLSA, SBOM, CVEs or secret
-  scanning. For securing the AI coding agent itself see rseng-agent-security;
-  for GDPR and personal-data obligations see rseng-regulatory-compliance; for
+  setting up CI or releases, when an API key, password, credential or token
+  is committed or appears in code or history, when the user asks how secure
+  their project or dependencies are, or mentions Scorecard, SLSA, SBOM, CVEs
+  or secret scanning. For the agent itself see rseng-agent-security; for GDPR
+  and personal-data obligations see rseng-regulatory-compliance; for
   sensitive-data storage practice see rseng-data-management.
 license: CC-BY-4.0
 metadata:

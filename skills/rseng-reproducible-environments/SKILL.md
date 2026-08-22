@@ -197,6 +197,18 @@ Learn more (verified):
     Turing Way reproducible environments chapter
 
 
+## Parity between dev and the shipped runtime
+
+When a project runs both bare (dev) and containerized (compose,
+production), the two environments drift: an env var set in the
+shell but absent from compose, a dependency in the image but not
+the lockfile, different service hostnames. Declare shared
+configuration ONCE (.env.example consumed by both), derive the
+image from the same lockfile the dev environment uses, and treat
+"works locally, fails in compose" as an environment diff to be
+found (rseng-debugging reads the startup logs; rseng-testing's
+entry-point check catches it before handoff).
+
 <!-- related-skills:begin -->
 
 ## Related skills

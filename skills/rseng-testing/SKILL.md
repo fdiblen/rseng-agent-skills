@@ -4,14 +4,14 @@ description: >-
   Covers how to test research software: choosing test types and levels (unit,
   integration, system, regression, property-based, golden-master), test
   frameworks and coverage, TDD, validating analysis code against reference
-  cases, and taming large CI testing matrices across compilers, platforms, and
+  cases, and taming CI testing matrices across compilers, platforms and
   dependency versions. Use when the user asks how to write tests, set up
   pytest/testthat/JUnit, decide what to test, raise or interpret code
-  coverage, do test-driven development, or when a CI matrix is exploding
-  across compiler, OS, or library-version combinations. Also use PROACTIVELY
-  when new result-bearing code is being written or committed without tests.
-  For CI pipeline setup itself see rseng-ci-cd; for review-time test scrutiny
-  see rseng-code-review.
+  coverage, do test-driven development, or when a CI matrix is exploding.
+  Also use PROACTIVELY when new result-bearing code is written without tests,
+  and before declaring any deliverable complete - the shipped entry point
+  must be run and verified working, not only the test suite. For CI pipeline
+  setup see rseng-ci-cd; for review-time test scrutiny see rseng-code-review.
 license: CC-BY-4.0
 metadata:
   version: 0.2.0
@@ -217,6 +217,32 @@ each parameter and exclusion exists.
 A concrete reference stack (NLeSC python-template): pytest with branch
 coverage enabled, and a tox matrix spanning the Python versions the
 SPEC 0 policy currently designates (the three most recent minors).
+
+## Verify the delivered entry point, not just the suite
+
+A green unit-test suite is not the finish line: software has been
+handed over "complete" with a broken `docker compose up` because
+nothing ever ran the app the way its users would. Before declaring
+work done, verify through the same door the user will enter:
+
+- Ship-with-compose project: `docker compose up --build` must
+  succeed and every service reach healthy; then one real request
+  per exposed endpoint (curl the API route, load the page).
+- CLI: run the actual commands from the README quickstart against
+  the example data, not only the test suite.
+- Library: execute the quickstart snippet in a fresh interpreter.
+- Web app with a frontend: the page must load AND talk to its
+  backend - one round-trip through each integration seam
+  (frontend-to-API, service-to-service, app-to-database), because
+  unit tests structurally miss cross-boundary wiring: mismatched
+  routes, schemas, env vars and ports live exactly there.
+
+Re-run the entry point after every wiring change (routes, schemas,
+configuration, env vars) and at every milestone, not once at the
+end - a failure found next to its cause is cheap. Never report
+completion while the entry point fails or was never run: state
+plainly what was run and what passed (rseng-honesty), and run it
+yourself before asking the user to (rseng-human-verification).
 
 ## A functional-correctness measure for analysis code
 

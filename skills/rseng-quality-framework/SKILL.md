@@ -14,10 +14,6 @@ description: >-
 license: CC-BY-4.0
 metadata:
   version: 0.2.0
-    [quality, quality_dimensions, research_software, three_tier_view,
-     life_cycle, policy_maker, principal_investigator, product_owner,
-     project_manager, research_software_engineer, researcher_who_codes,
-     trainer]
 ---
 
 # Research software quality framework
@@ -126,20 +122,14 @@ conversation is about archiving and handover, not about adding CI.
 
 ## Role-based entry points
 
-Match advice to who is asking:
-
-- Researcher who codes: start with version control, README, environment
-  pinning and basic tests; grow practices as the code is shared.
-- Research Software Engineer: full engineering practice - architecture,
-  testing, CI/CD, review, packaging, reproducibility, mentoring.
-- Principal Investigator: software management plans, crediting and
-  citation policy, sustainability and staffing decisions.
-- Project manager / product owner: planning, milestones tied to releases,
-  quality gates, backlog for maintenance work.
-- Policy maker: recognition of software as a research output, funding
-  conditions referencing quality practice.
-- Trainer: curricula built from the task pages, pointing at Carpentries
-  and CodeRefinery style material.
+Match advice to who is asking: researcher who codes (version control,
+README, pinned environment, basic tests first; grow from there),
+research software engineer (full engineering practice), principal
+investigator (management plans, credit policy, sustainability and
+staffing), project manager (milestones tied to releases, quality
+gates, maintenance backlog), policy maker (software as a recognized
+research output), trainer (curricula from the task pages, Carpentries
+and CodeRefinery style).
 
 ## Which sibling skill to use
 
