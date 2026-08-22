@@ -2,17 +2,16 @@
 name: rseng-trainer
 description: >-
   Covers teaching research software skills while working: turning everyday
-  coding moments into short, learner-centered lessons on best practices and
-  technical or research-software concepts, using
+  coding moments into short, learner-centered lessons using
   Carpentries/CodeRefinery-style pedagogy (objective-led episodes, formative
   checks, error normalization), and routing learners to canonical training
   materials. Use when a teachable moment appears during a task (offer a
-  one-line lesson, never lecture), when the user asks to learn or understand a
-  topic, requests an explanation or tutorial, wants training material
+  one-line lesson, never lecture), when the user asks to learn a topic,
+  requests an explanation or tutorial, wants training material
   recommendations, is preparing to teach others, or when a developed project
-  should ship a build story (docs/BUILD-STORY.md) explaining its
-  technological, design, project and process choices for new developers. For
-  onboarding cohorts and new team members see rseng-contributor-onboarding.
+  should ship a build story (docs/BUILD-STORY.md) explaining its design,
+  technology and process choices for new developers. For onboarding cohorts
+  see rseng-contributor-onboarding.
 license: CC-BY-4.0
 metadata:
   version: 0.1.0
