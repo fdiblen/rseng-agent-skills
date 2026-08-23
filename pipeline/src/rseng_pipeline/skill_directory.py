@@ -51,105 +51,325 @@ PHASES: dict[str, list[str]] = {
 # "relevant" costs an agent a pointless consultation on every project.
 SIGNALS: list[dict] = [
     {"name": "notebooks", "patterns": ["*.ipynb"], "skills": ["rseng-notebooks"]},
-    {"name": "tabular data", "patterns": ["*.csv", "*.tsv"],
-     "skills": ["rseng-data-management"]},
-    {"name": "scientific data formats",
-     "patterns": ["*.h5", "*.hdf5", "*.nc", "*.parquet", "*.zarr"],
-     "skills": ["rseng-scientific-file-formats", "rseng-data-management"]},
-    {"name": "environment declaration",
-     "patterns": ["pyproject.toml", "requirements*.txt", "environment*.yml",
-                  "environment*.yaml", "uv.lock", "Pipfile"],
-     "skills": ["rseng-reproducible-environments", "rseng-dependency-management"]},
-    {"name": "containers", "patterns": ["Dockerfile*", "*.def", "docker-compose*"],
-     "skills": ["rseng-reproducible-environments"]},
-    {"name": "ci pipelines",
-     "patterns": [".github/workflows/*", ".gitlab-ci.yml"],
-     "skills": ["rseng-ci-cd"]},
-    {"name": "tests", "patterns": ["test_*.py", "*_test.py", "conftest.py"],
-     "skills": ["rseng-testing"]},
-    {"name": "license", "patterns": ["LICENSE*", "COPYING*"],
-     "skills": ["rseng-licensing"]},
-    {"name": "citation metadata", "patterns": ["CITATION.cff", "codemeta.json"],
-     "skills": ["rseng-citation-metadata"]},
-    {"name": "documentation site",
-     "patterns": ["mkdocs.yml", "docs/conf.py", "Doxyfile", "README*"],
-     "skills": ["rseng-documentation"]},
-    {"name": "hpc jobs", "patterns": ["*.sbatch", "*.slurm"],
-     "content": [r"#SBATCH|\bsbatch |\bsrun "],
-     "skills": ["rseng-hpc-computing"]},
-    {"name": "workflow engines",
-     "patterns": ["Snakefile", "*.smk", "*.nf", "nextflow.config", "*.cwl"],
-     "skills": ["rseng-workflows"]},
-    {"name": "visualization code",
-     "content": [r"matplotlib|plotly|seaborn|ggplot"],
-     "skills": ["rseng-scientific-visualization"]},
-    {"name": "machine learning code",
-     "content": [r"\btorch\b|tensorflow|sklearn|keras|xgboost"],
-     "skills": ["rseng-fair-ml"]},
-    {"name": "randomness",
-     "content": [r"np\.random|random\.seed|default_rng|set\.seed\("],
-     "skills": ["rseng-defensive-coding"]},
-    {"name": "gpu code", "content": [r"\bcuda\b|\bcupy\b"],
-     "skills": ["rseng-gpu-computing"]},
-    {"name": "community files",
-     "patterns": ["CONTRIBUTING*", "CODE_OF_CONDUCT*"],
-     "skills": ["rseng-community-governance"]},
-    {"name": "changelog", "patterns": ["CHANGELOG*"],
-     "skills": ["rseng-publishing-releasing"]},
-    {"name": "secret-bearing files",
-     "patterns": [".env", ".env.*", "*.envrc", "*.pem"],
-     "skills": ["rseng-security"]},
-    {"name": "R sources", "patterns": ["*.R", "*.Rmd"],
-     "skills": ["rseng-language-guides"]},
-    {"name": "julia sources", "patterns": ["*.jl"],
-     "skills": ["rseng-language-guides"]},
-    {"name": "model artifacts",
-     "patterns": ["*.joblib", "*.pkl", "*.onnx", "*.pt", "*.keras"],
-     "skills": ["rseng-fair-ml", "rseng-provenance"]},
-    {"name": "data versioning", "patterns": ["dvc.yaml", "*.dvc", ".dvcignore"],
-     "skills": ["rseng-data-management"]},
-    {"name": "software metadata", "patterns": ["codemeta.json"],
-     "skills": ["rseng-citation-metadata"]},
-    {"name": "archive deposit config", "patterns": [".zenodo.json"],
-     "skills": ["rseng-archiving"]},
-    {"name": "bibliography", "patterns": ["*.bib"],
-     "skills": ["rseng-citation-hygiene"]},
-    {"name": "array data dumps", "patterns": ["*.npz", "*.npy"],
-     "skills": ["rseng-scientific-file-formats"]},
-    {"name": "person-level data files",
-     "patterns": ["*participant*.csv", "*survey*.csv", "*patient*.csv",
-                  "*cohort*.csv", "*persons*.csv", "*subjects*.csv"],
-     "skills": ["rseng-regulatory-compliance", "rseng-data-management"],
-     "severity": "privacy"},
-    {"name": "statistical modeling code",
-     "content": [r"statsmodels|\bscipy\.stats\b|\blme4\b"],
-     "skills": ["rseng-numerical-accuracy"]},
-    {"name": "checkpoint-restart code",
-     "content": [r"checkpoint|\brestart\b.*\bresume\b"],
-     "skills": ["rseng-hpc-computing"]},
-    {"name": "distributed data code", "content": [r"\bdask\b|pyspark"],
-     "skills": ["rseng-big-data-processing"]},
-    {"name": "gpu sources", "patterns": ["*.cu", "*.cuh"],
-     "skills": ["rseng-gpu-computing"]},
-    {"name": "fortran sources", "patterns": ["*.f90", "*.F90", "*.f"],
-     "skills": ["rseng-language-guides"]},
-    {"name": "manuscript sources", "patterns": ["*.tex", "paper.md"],
-     "skills": ["rseng-citation-hygiene", "rseng-research-integrity"]},
-    {"name": "review-venue paper", "patterns": ["paper.md"],
-     "skills": ["rseng-software-peer-review"]},
-    {"name": "proprietary platform sources",
-     "patterns": ["*.m", "*.sas", "*.mat"],
-     "skills": ["rseng-open-source-migration"]},
-    {"name": "matlab data files", "patterns": ["*.mat"],
-     "skills": ["rseng-scientific-file-formats"]},
-    {"name": "agent configuration",
-     "patterns": [".mcp.json", ".claude/settings*.json"],
-     "skills": ["rseng-agent-security"]},
+    {
+        "name": "tabular data",
+        "patterns": ["*.csv", "*.tsv"],
+        "skills": ["rseng-data-management"],
+    },
+    {
+        "name": "scientific data formats",
+        "patterns": ["*.h5", "*.hdf5", "*.nc", "*.parquet", "*.zarr"],
+        "skills": ["rseng-scientific-file-formats", "rseng-data-management"],
+    },
+    {
+        "name": "environment declaration",
+        "patterns": [
+            "pyproject.toml",
+            "requirements*.txt",
+            "environment*.yml",
+            "environment*.yaml",
+            "uv.lock",
+            "Pipfile",
+        ],
+        "skills": ["rseng-reproducible-environments", "rseng-dependency-management"],
+    },
+    {
+        "name": "containers",
+        "patterns": ["Dockerfile*", "*.def", "docker-compose*"],
+        "skills": ["rseng-reproducible-environments"],
+    },
+    {
+        "name": "ci pipelines",
+        "patterns": [".github/workflows/*", ".gitlab-ci.yml"],
+        "skills": ["rseng-ci-cd"],
+    },
+    {
+        "name": "tests",
+        "patterns": ["test_*.py", "*_test.py", "conftest.py"],
+        "skills": ["rseng-testing"],
+    },
+    {
+        "name": "license",
+        "patterns": ["LICENSE*", "COPYING*"],
+        "skills": ["rseng-licensing"],
+    },
+    {
+        "name": "citation metadata",
+        "patterns": ["CITATION.cff", "codemeta.json"],
+        "skills": ["rseng-citation-metadata"],
+    },
+    {
+        "name": "documentation site",
+        "patterns": ["mkdocs.yml", "docs/conf.py", "Doxyfile", "README*"],
+        "skills": ["rseng-documentation"],
+    },
+    {
+        "name": "hpc jobs",
+        "patterns": ["*.sbatch", "*.slurm"],
+        "content": [r"#SBATCH|\bsbatch |\bsrun "],
+        "skills": ["rseng-hpc-computing"],
+    },
+    {
+        "name": "workflow engines",
+        "patterns": ["Snakefile", "*.smk", "*.nf", "nextflow.config", "*.cwl"],
+        "skills": ["rseng-workflows"],
+    },
+    {
+        "name": "visualization code",
+        "content": [r"matplotlib|plotly|seaborn|ggplot"],
+        "skills": ["rseng-scientific-visualization"],
+    },
+    {
+        "name": "machine learning code",
+        "content": [r"\btorch\b|tensorflow|sklearn|keras|xgboost"],
+        "skills": ["rseng-fair-ml"],
+    },
+    {
+        "name": "randomness",
+        "content": [r"np\.random|random\.seed|default_rng|set\.seed\("],
+        "skills": ["rseng-defensive-coding"],
+    },
+    {
+        "name": "gpu code",
+        "content": [r"\bcuda\b|\bcupy\b"],
+        "skills": ["rseng-gpu-computing"],
+    },
+    {
+        "name": "community files",
+        "patterns": ["CONTRIBUTING*", "CODE_OF_CONDUCT*"],
+        "skills": ["rseng-community-governance"],
+    },
+    {
+        "name": "changelog",
+        "patterns": ["CHANGELOG*"],
+        "skills": ["rseng-publishing-releasing"],
+    },
+    {
+        "name": "secret-bearing files",
+        "patterns": [".env", ".env.*", "*.envrc", "*.pem"],
+        "skills": ["rseng-security"],
+    },
+    {
+        "name": "R sources",
+        "patterns": ["*.R", "*.Rmd"],
+        "skills": ["rseng-language-guides"],
+    },
+    {
+        "name": "julia sources",
+        "patterns": ["*.jl"],
+        "skills": ["rseng-language-guides"],
+    },
+    {
+        "name": "model artifacts",
+        "patterns": ["*.joblib", "*.pkl", "*.onnx", "*.pt", "*.keras"],
+        "skills": ["rseng-fair-ml", "rseng-provenance"],
+    },
+    {
+        "name": "data versioning",
+        "patterns": ["dvc.yaml", "*.dvc", ".dvcignore"],
+        "skills": ["rseng-data-management"],
+    },
+    {
+        "name": "software metadata",
+        "patterns": ["codemeta.json"],
+        "skills": ["rseng-citation-metadata"],
+    },
+    {
+        "name": "archive deposit config",
+        "patterns": [".zenodo.json"],
+        "skills": ["rseng-archiving"],
+    },
+    {
+        "name": "bibliography",
+        "patterns": ["*.bib", "references.bib", "bibliography.*"],
+        "skills": ["rseng-citation-hygiene", "rseng-fact-checking"],
+    },
+    {
+        "name": "array data dumps",
+        "patterns": ["*.npz", "*.npy"],
+        "skills": ["rseng-scientific-file-formats"],
+    },
+    {
+        "name": "person-level data files",
+        "patterns": [
+            "*participant*.csv",
+            "*survey*.csv",
+            "*patient*.csv",
+            "*cohort*.csv",
+            "*persons*.csv",
+            "*subjects*.csv",
+        ],
+        "skills": ["rseng-regulatory-compliance", "rseng-data-management"],
+        "severity": "privacy",
+    },
+    {
+        "name": "statistical modeling code",
+        "content": [r"statsmodels|\bscipy\.stats\b|\blme4\b"],
+        "skills": ["rseng-numerical-accuracy"],
+    },
+    {
+        "name": "checkpoint-restart code",
+        "content": [r"checkpoint|\brestart\b.*\bresume\b"],
+        "skills": ["rseng-hpc-computing"],
+    },
+    {
+        "name": "distributed data code",
+        "content": [r"\bdask\b|pyspark"],
+        "skills": ["rseng-big-data-processing"],
+    },
+    {
+        "name": "gpu sources",
+        "patterns": ["*.cu", "*.cuh"],
+        "skills": ["rseng-gpu-computing"],
+    },
+    {
+        "name": "fortran sources",
+        "patterns": ["*.f90", "*.F90", "*.f"],
+        "skills": ["rseng-language-guides"],
+    },
+    {
+        "name": "manuscript sources",
+        "patterns": ["*.tex", "paper.md"],
+        "skills": ["rseng-citation-hygiene", "rseng-research-integrity"],
+    },
+    {
+        "name": "review-venue paper",
+        "patterns": ["paper.md"],
+        "skills": ["rseng-software-peer-review"],
+    },
+    {
+        "name": "proprietary platform sources",
+        "patterns": ["*.m", "*.sas", "*.mat"],
+        "skills": ["rseng-open-source-migration"],
+    },
+    {
+        "name": "matlab data files",
+        "patterns": ["*.mat"],
+        "skills": ["rseng-scientific-file-formats"],
+    },
+    {
+        "name": "agent configuration",
+        "patterns": [".mcp.json", ".claude/settings*.json"],
+        "skills": ["rseng-agent-security"],
+    },
+    # --- a PROACTIVE route for skills that own an artifact --------
+    # Phases route every skill at session level, but a phase nudge is
+    # generic; a signal fires at the moment the relevant file is
+    # touched. High-precision only: each pattern names the artifact the
+    # skill is about, so a match is not a guess.
+    {
+        "name": "AI declaration",
+        "patterns": ["aidecl.yaml", "aidecl.yml", "AI_DECLARATION*"],
+        "skills": ["rseng-ai-declaration"],
+    },
+    {
+        "name": "licence and notices",
+        "patterns": ["LICENSE*", "LICENCE*", "NOTICE*", "COPYING*", "THIRD_PARTY*"],
+        "skills": ["rseng-licensing", "rseng-license-compliance"],
+    },
+    {
+        "name": "contributor-facing docs",
+        "patterns": ["CONTRIBUTING*", "CODE_OF_CONDUCT*", "GOVERNANCE*"],
+        "skills": ["rseng-community-governance", "rseng-contributor-onboarding"],
+    },
+    {
+        "name": "user support surfaces",
+        "patterns": ["SUPPORT*", "ISSUE_TEMPLATE*"],
+        "skills": ["rseng-user-support"],
+    },
+    {
+        "name": "maintenance and security policy",
+        "patterns": ["SECURITY*", "MAINTAINERS*", "CODEOWNERS"],
+        "skills": ["rseng-maintenance-sustainability"],
+    },
+    {
+        "name": "release records",
+        "patterns": ["CHANGELOG*", "RELEASE*", "HISTORY*", "NEWS*"],
+        "skills": ["rseng-publishing-releasing"],
+    },
+    {
+        "name": "archive and deposit metadata",
+        "patterns": [".zenodo.json", "codemeta.json", "datacite*"],
+        "skills": ["rseng-archiving", "rseng-software-publishing"],
+    },
+    {
+        "name": "planning documents",
+        "patterns": [
+            "*dmp*.md",
+            "*data-management-plan*",
+            "*software-management-plan*",
+        ],
+        "skills": ["rseng-data-management-plans", "rseng-management-planning"],
+    },
+    {
+        "name": "project tracking",
+        "patterns": ["TODO*", "ROADMAP*", "BACKLOG*"],
+        "skills": ["rseng-project-tracking"],
+    },
+    {
+        "name": "lessons and retrospectives",
+        "patterns": ["LESSONS*", "*postmortem*", "*retrospective*"],
+        "skills": ["rseng-lessons-learned"],
+    },
+    {
+        "name": "profiling output",
+        "patterns": ["*.prof", "*.lprof", "benchmark*"],
+        "skills": ["rseng-performance-profiling"],
+    },
+    {
+        "name": "project templates",
+        "patterns": ["cookiecutter.json", "copier.yml", "copier.yaml"],
+        "skills": ["rseng-project-scaffolding"],
+    },
+    {
+        "name": "version-control configuration",
+        "patterns": [".pre-commit-config.yaml", ".gitattributes", ".gitignore"],
+        "skills": ["rseng-version-control-review"],
+    },
+    {
+        "name": "web and interface assets",
+        "patterns": ["*.html", "*.css", "*.svelte", "*.vue"],
+        "skills": ["rseng-ux-accessibility"],
+    },
 ]
 
 # The router is every session's entry point and stays relevant for
 # the whole task; it lives outside the clusters but inside the
 # Throughout phase so the enforcement inventory covers all skills.
+# Skills with no characteristic file, so no signal can fire for them.
+# They are routed by phase instead - a session-level obligation rather
+# than a file-touch trigger. Declared explicitly with the reason,
+# because the alternative is inventing a pattern that matches
+# everything: a signal that fires on every *.py file would nudge on
+# every project and teach the agent to ignore signals.
+#
+# main() asserts every skill is either signalled or listed here, so a
+# new skill cannot arrive with no proactive route at all.
+PHASE_ONLY: dict[str, str] = {
+    "rseng-quality-framework": "the router itself; consulted at session start",
+    "rseng-honesty": "conduct when concealment is requested, not a file",
+    "rseng-human-verification": "conduct toward the user, not a file",
+    "rseng-pair-programming": "how the agent behaves across a session",
+    "rseng-trainer": "teaching the user while working",
+    "rseng-code-quality": "applies to all source; a pattern would fire on every file",
+    "rseng-code-review": "an activity over existing code, not an artifact",
+    "rseng-software-design": "applies to structure, not to any one file",
+    "rseng-software-metrics": "measures code that is already there",
+    "rseng-debugging": "triggered by a failure, not by a file being touched",
+    "rseng-legacy-code": "a property of inherited code, not a filename",
+    "rseng-reproducibility": "an end-to-end property; its artifacts belong to other skills",
+    "rseng-fair-software": "an assessment across the project",
+    "rseng-fairguard": "an assessment across the project",
+    "rseng-green-computing": "a property of how compute is used",
+    "rseng-discovery": "searching the literature around a project",
+    "rseng-software-reuse": "searching for existing software before building",
+    "rseng-project-kickoff": "an interview before any file exists",
+    "rseng-open-science-practices": "a workflow across platforms, not a file",
+    "rseng-science-communication": "communication aimed outside the repository",
+    "rseng-storytelling": "narrative for broad audiences",
+    "rseng-community-metrics": "measured from project history, not from a file",
+}
+
 ROUTER = "rseng-quality-framework"
 
 THROUGHOUT: list[str] = [
@@ -318,17 +538,13 @@ def main() -> None:
     all_skills = {s for skills in CLUSTERS.values() for s in skills}
     unknown = [s for s in THROUGHOUT if s not in all_skills | {ROUTER}]
     assert not unknown, f"THROUGHOUT names unknown skills: {unknown}"
-    phased = {
-        ph: {c: CLUSTERS[c] for c in cl} for ph, cl in PHASES.items()
-    }
+    phased = {ph: {c: CLUSTERS[c] for c in cl} for ph, cl in PHASES.items()}
     phased["Throughout"] = {"Cross-cutting practices": THROUGHOUT}
     # Every skill on disk must belong to at least one phase - a skill
     # outside the phase map escapes the disposition and coverage
     # checks entirely.
     on_disk = {
-        d.name
-        for d in (repo_root / "skills").iterdir()
-        if (d / "SKILL.md").is_file()
+        d.name for d in (repo_root / "skills").iterdir() if (d / "SKILL.md").is_file()
     }
     in_phases = {s for cl in phased.values() for ss in cl.values() for s in ss}
     unphased = sorted(on_disk - in_phases)
@@ -339,6 +555,36 @@ def main() -> None:
     for rule in SIGNALS:
         bad = [s for s in rule["skills"] if s not in all_skills]
         assert not bad, f"SIGNALS rule {rule['name']!r} names unknown skills: {bad}"
+
+    # Every skill needs a proactive route: a file signal, or an
+    # explicit statement that no file can indicate it. Without this a
+    # new skill joins the pack, is routed only by the generic phase
+    # nudge, and is never consulted by anything that notices what the
+    # agent is actually doing.
+    names = [rule["name"] for rule in SIGNALS]
+    duplicates = sorted({n for n in names if names.count(n) > 1})
+    assert not duplicates, f"SIGNALS has duplicate rule name(s): {duplicates}"
+
+    # Only rules that can actually fire count as a route. Rules with
+    # neither patterns nor content match nothing, and counting them as
+    # coverage is how four skills came to be "signalled" by a rule the
+    # hook silently skipped.
+    signalled = {
+        s
+        for rule in SIGNALS
+        if rule.get("patterns") or rule.get("content")
+        for s in rule["skills"]
+    }
+    stray = sorted(s for s in PHASE_ONLY if s not in on_disk)
+    assert not stray, f"PHASE_ONLY names skills that do not exist: {stray}"
+    overlap = sorted(signalled & set(PHASE_ONLY))
+    assert not overlap, f"skills both signalled and declared phase-only: {overlap}"
+    unrouted = sorted(on_disk - signalled - set(PHASE_ONLY))
+    assert not unrouted, (
+        f"{len(unrouted)} skill(s) have no file signal and no stated reason "
+        f"for having none: {unrouted}. Add a high-precision rule to SIGNALS, "
+        "or list the skill in PHASE_ONLY with why no file can indicate it."
+    )
     (repo_root / "hooks" / "signals.json").write_text(
         _json.dumps(SIGNALS, indent=2) + "\n", encoding="utf-8"
     )

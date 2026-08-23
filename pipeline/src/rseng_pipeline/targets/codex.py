@@ -14,6 +14,7 @@ from jinja2 import Environment
 
 from ..adapters import build_agents_skills, copy_check, render_to, target
 from ..checks import SIZE_BUDGETS
+from ..hook_wiring import write_hooks
 
 AGENTS_MD_BUDGET = SIZE_BUDGETS["AGENTS.md"]
 
@@ -31,4 +32,8 @@ def build_codex(
     written = [agents_md]
     written += build_agents_skills(repo_root, context, target_dir)
     written += copy_check(repo_root, target_dir)
+    # Codex takes the same hook configuration shape as Claude Code,
+    # so the proactive layer ships here too rather than claude being
+    # the only agent that gets nudged toward a skill.
+    written += write_hooks(repo_root, "codex", target_dir)
     return written

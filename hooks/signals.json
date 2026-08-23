@@ -269,10 +269,13 @@
   {
     "name": "bibliography",
     "patterns": [
-      "*.bib"
+      "*.bib",
+      "references.bib",
+      "bibliography.*"
     ],
     "skills": [
-      "rseng-citation-hygiene"
+      "rseng-citation-hygiene",
+      "rseng-fact-checking"
     ]
   },
   {
@@ -397,6 +400,167 @@
     ],
     "skills": [
       "rseng-agent-security"
+    ]
+  },
+  {
+    "name": "AI declaration",
+    "patterns": [
+      "aidecl.yaml",
+      "aidecl.yml",
+      "AI_DECLARATION*"
+    ],
+    "skills": [
+      "rseng-ai-declaration"
+    ]
+  },
+  {
+    "name": "licence and notices",
+    "patterns": [
+      "LICENSE*",
+      "LICENCE*",
+      "NOTICE*",
+      "COPYING*",
+      "THIRD_PARTY*"
+    ],
+    "skills": [
+      "rseng-licensing",
+      "rseng-license-compliance"
+    ]
+  },
+  {
+    "name": "contributor-facing docs",
+    "patterns": [
+      "CONTRIBUTING*",
+      "CODE_OF_CONDUCT*",
+      "GOVERNANCE*"
+    ],
+    "skills": [
+      "rseng-community-governance",
+      "rseng-contributor-onboarding"
+    ]
+  },
+  {
+    "name": "user support surfaces",
+    "patterns": [
+      "SUPPORT*",
+      "ISSUE_TEMPLATE*"
+    ],
+    "skills": [
+      "rseng-user-support"
+    ]
+  },
+  {
+    "name": "maintenance and security policy",
+    "patterns": [
+      "SECURITY*",
+      "MAINTAINERS*",
+      "CODEOWNERS"
+    ],
+    "skills": [
+      "rseng-maintenance-sustainability"
+    ]
+  },
+  {
+    "name": "release records",
+    "patterns": [
+      "CHANGELOG*",
+      "RELEASE*",
+      "HISTORY*",
+      "NEWS*"
+    ],
+    "skills": [
+      "rseng-publishing-releasing"
+    ]
+  },
+  {
+    "name": "archive and deposit metadata",
+    "patterns": [
+      ".zenodo.json",
+      "codemeta.json",
+      "datacite*"
+    ],
+    "skills": [
+      "rseng-archiving",
+      "rseng-software-publishing"
+    ]
+  },
+  {
+    "name": "planning documents",
+    "patterns": [
+      "*dmp*.md",
+      "*data-management-plan*",
+      "*software-management-plan*"
+    ],
+    "skills": [
+      "rseng-data-management-plans",
+      "rseng-management-planning"
+    ]
+  },
+  {
+    "name": "project tracking",
+    "patterns": [
+      "TODO*",
+      "ROADMAP*",
+      "BACKLOG*"
+    ],
+    "skills": [
+      "rseng-project-tracking"
+    ]
+  },
+  {
+    "name": "lessons and retrospectives",
+    "patterns": [
+      "LESSONS*",
+      "*postmortem*",
+      "*retrospective*"
+    ],
+    "skills": [
+      "rseng-lessons-learned"
+    ]
+  },
+  {
+    "name": "profiling output",
+    "patterns": [
+      "*.prof",
+      "*.lprof",
+      "benchmark*"
+    ],
+    "skills": [
+      "rseng-performance-profiling"
+    ]
+  },
+  {
+    "name": "project templates",
+    "patterns": [
+      "cookiecutter.json",
+      "copier.yml",
+      "copier.yaml"
+    ],
+    "skills": [
+      "rseng-project-scaffolding"
+    ]
+  },
+  {
+    "name": "version-control configuration",
+    "patterns": [
+      ".pre-commit-config.yaml",
+      ".gitattributes",
+      ".gitignore"
+    ],
+    "skills": [
+      "rseng-version-control-review"
+    ]
+  },
+  {
+    "name": "web and interface assets",
+    "patterns": [
+      "*.html",
+      "*.css",
+      "*.svelte",
+      "*.vue"
+    ],
+    "skills": [
+      "rseng-ux-accessibility"
     ]
   }
 ]
