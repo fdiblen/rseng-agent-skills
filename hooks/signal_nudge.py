@@ -1,24 +1,31 @@
-"""PostToolUse hook on Write/Edit/Read: when a just-touched file
-matches a relevance signal whose skills have not been consulted, say
-so NOW - at the moment the relevant work is happening, not at Stop
-time. Signals carrying severity "privacy" produce an explicit warning
-whenever the file is touched, consulted or not: the user must know
-sensitive data is being processed. Awareness nudge only - never
-blocks."""
+"""PostToolUse hook: when a just-touched file matches a relevance
+signal whose skills have not been consulted, say so NOW - at the moment
+the relevant work is happening, not at Stop time. Signals carrying
+severity "privacy" produce an explicit warning whenever the file is
+touched, consulted or not: the user must know sensitive data is being
+processed. Awareness nudge only - never blocks.
+
+Agent-neutral: the tool names and payload shapes differ per agent, so
+which files a call touched is worked out by tool_event rather than by
+testing for claude's Write/Edit/Read and claude's "file_path".
+"""
 
 import json
 import pathlib
+import re
 import sys
 
 import phase_lib
+import tool_event
 
 data = json.load(sys.stdin)
-tool = data.get("tool_name")
-if tool not in ("Write", "Edit", "MultiEdit", "NotebookEdit", "Read"):
+phase_lib.record_hook("signal_nudge")
+tool = data.get("tool_name") or ""
+if not (tool_event.is_write(tool) or tool_event.is_read(tool)):
     sys.exit(0)
 tool_input = data.get("tool_input") or {}
-target = tool_input.get("file_path") or tool_input.get("notebook_path") or ""
-if not target:
+touched = tool_event.targets(data)
+if not touched:
     sys.exit(0)
 
 signals_file = pathlib.Path(__file__).parent / "signals.json"
@@ -27,26 +34,40 @@ if not signals_file.is_file():
 rules = json.loads(signals_file.read_text(encoding="utf-8"))
 ledger = phase_lib.consulted_skills()
 text = phase_lib.coverage_text()
-path = pathlib.Path(target)
+
+
+def _matches(rule, path, body):
+    """A rule fires on the filename, or on what the file contains."""
+    if any(path.match(p) for p in (rule.get("patterns") or [])):
+        return True
+    return bool(body) and any(
+        re.search(expr, body) for expr in (rule.get("content") or [])
+    )
+
 
 pending = []
 privacy_hit = None
-for rule in rules:
-    if not any(path.match(p) for p in rule.get("patterns", [])):
-        continue
-    if rule.get("severity") == "privacy":
-        privacy_hit = rule["name"]
-    # Read-side touches only warn for privacy signals; consultation
-    # nudges stay write-side so ordinary reads are not noisy.
-    if tool == "Read":
-        continue
-    for skill in rule["skills"]:
-        if (
-            skill not in ledger
-            and not phase_lib._waived(skill, text)
-            and skill not in pending
-        ):
-            pending.append(skill)
+path = pathlib.Path(touched[0])
+for candidate in touched:
+    where = pathlib.Path(candidate)
+    contents = tool_event.body(data, candidate)
+    for rule in rules:
+        if not _matches(rule, where, contents):
+            continue
+        if rule.get("severity") == "privacy":
+            privacy_hit = rule["name"]
+            path = where
+        # Read-side touches only warn for privacy signals; consultation
+        # nudges stay write-side so ordinary reads are not noisy.
+        if tool_event.is_read(tool):
+            continue
+        for skill in rule["skills"]:
+            if (
+                skill not in ledger
+                and not phase_lib._waived(skill, text)
+                and skill not in pending
+            ):
+                pending.append(skill)
 
 if privacy_hit:
     print(
@@ -77,9 +98,9 @@ if pending:
                     "hookEventName": "PostToolUse",
                     "additionalContext": (
                         f"{path.name} makes these skills relevant - consult "
-                        "each with the Skill tool before going further (or "
-                        "record a reasoned n/a in .rseng-agent-skills-coverage.md): "
-                        + ", ".join(pending)
+                        "each before going further, by invoking it or reading "
+                        "its SKILL.md (or record a reasoned n/a in "
+                        ".rseng-agent-skills-coverage.md): " + ", ".join(pending)
                     ),
                 }
             }
