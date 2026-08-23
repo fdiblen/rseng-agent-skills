@@ -9,6 +9,7 @@ the ledger - self-report has to be backed by an actual consultation.
 """
 
 import json
+import os
 import pathlib
 import re
 
@@ -23,11 +24,7 @@ def load_phases(script_dir):
         return {}
     data = json.loads(f.read_text(encoding="utf-8"))
     return {
-        phase: (
-            clusters
-            if isinstance(clusters, dict)
-            else {c: [] for c in clusters}
-        )
+        phase: (clusters if isinstance(clusters, dict) else {c: [] for c in clusters})
         for phase, clusters in data.items()
     }
 
@@ -176,8 +173,21 @@ def unmet_signals(script_dir, ledger, text, root=None):
         p
         for p in files
         if p.suffix
-        in (".py", ".R", ".jl", ".sh", ".ipynb",
-            ".c", ".h", ".cpp", ".cu", ".cuh", ".f", ".f90", ".F90")
+        in (
+            ".py",
+            ".R",
+            ".jl",
+            ".sh",
+            ".ipynb",
+            ".c",
+            ".h",
+            ".cpp",
+            ".cu",
+            ".cuh",
+            ".f",
+            ".f90",
+            ".F90",
+        )
     ]
     unmet = []
     for rule in rules:
@@ -203,9 +213,7 @@ def unmet_signals(script_dir, ledger, text, root=None):
         if evidence is None:
             continue
         missing = [
-            s
-            for s in rule["skills"]
-            if s not in ledger and not _waived(s, text)
+            s for s in rule["skills"] if s not in ledger and not _waived(s, text)
         ]
         if missing:
             unmet.append((rule["name"], evidence, missing))
@@ -230,6 +238,7 @@ def cluster_applied(phases, cluster, text, ledger):
         return False
     return bool(set(re.findall(r"rseng-[a-z0-9-]+", seg)) & ledger)
 
+
 AGENT_DIRS = (".claude", ".agents", ".cursor", ".codex", ".gemini")
 
 
@@ -250,3 +259,32 @@ def gitignore_gap(root):
             "config back explicitly only if the team intends it"
         )
     return None
+
+
+# Whether the proactive layer actually ran, rather than merely being
+# installed. A config on disk is not evidence that the agent executed
+# it - codex in particular installs the hooks without them ever being
+# seen to fire. Each hook records itself here.
+HOOKS_FIRED = pathlib.Path(".rseng-hooks-fired.log")
+
+# Opt-in. The log answers one question - did the agent execute the
+# hooks, or were they only installed - and nothing in a normal project
+# consumes it. Writing it unconditionally dropped a growing file into
+# every repository the pack was installed in; a few hundred lines had
+# accumulated here before anyone asked what it was. Set
+# RSENG_HOOK_TELEMETRY=1 when you want the record.
+TELEMETRY_ENV = "RSENG_HOOK_TELEMETRY"
+
+
+def record_hook(name):
+    """Note that a hook ran, when telemetry is switched on.
+
+    Never raises: a hook must not fail because its own bookkeeping did.
+    """
+    if os.environ.get(TELEMETRY_ENV) != "1":
+        return
+    try:
+        with HOOKS_FIRED.open("a", encoding="utf-8") as handle:
+            handle.write(f"{name}\n")
+    except OSError:
+        pass

@@ -7,6 +7,7 @@ import sys
 
 import phase_lib
 
+phase_lib.record_hook("phase_status")
 if pathlib.Path(".rseng-agent-skills-relaxed").exists():
     sys.exit(0)
 
@@ -34,8 +35,10 @@ if unopened:
     line += " Cross-cutting skills not yet opened: " + ", ".join(unopened) + "."
 unmet = phase_lib.unmet_signals(pathlib.Path(__file__).parent, ledger, text)
 if unmet:
-    line += " Relevant-but-unconsulted: " + "; ".join(
-        f"{', '.join(m)} ({name})" for name, _e, m in unmet[:4]
-    ) + "."
+    line += (
+        " Relevant-but-unconsulted: "
+        + "; ".join(f"{', '.join(m)} ({name})" for name, _e, m in unmet[:4])
+        + "."
+    )
 print(line)
 sys.exit(0)

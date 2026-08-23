@@ -6,7 +6,10 @@ import json
 import pathlib
 import sys
 
+import phase_lib
+
 data = json.load(sys.stdin)
+phase_lib.record_hook("related_nudge")
 skill = (data.get("tool_input") or {}).get("skill", "")
 related_file = pathlib.Path(__file__).parent / "related.json"
 if not skill or not related_file.is_file():

@@ -16,6 +16,7 @@ import sys
 import phase_lib
 
 data = json.load(sys.stdin)
+phase_lib.record_hook("gate")
 if pathlib.Path(".rseng-agent-skills-relaxed").exists():
     sys.exit(0)
 if data.get("tool_name") not in ("Write", "Edit", "MultiEdit", "NotebookEdit"):
@@ -31,9 +32,9 @@ target_path = pathlib.Path(target)
 # part of legitimate project work.
 name = target_path.name
 parts = target_path.parts
-if (
-    (".claude" in parts and "rseng" in parts)
-    or name in (".rseng-agent-skills-usage.log", ".rseng-agent-skills-writes")
+if (".claude" in parts and "rseng" in parts) or name in (
+    ".rseng-agent-skills-usage.log",
+    ".rseng-agent-skills-writes",
 ):
     print(
         "rseng-agent-skills gate - the enforcement infrastructure (hook scripts, "

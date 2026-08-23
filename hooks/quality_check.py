@@ -15,6 +15,7 @@ import sys
 import phase_lib
 
 data = json.load(sys.stdin)
+phase_lib.record_hook("quality_check")
 if data.get("stop_hook_active") or pathlib.Path(".rseng-agent-skills-relaxed").exists():
     sys.exit(0)
 
@@ -56,7 +57,11 @@ if not (
     or list(cwd.glob("uv.lock"))
     or list(cwd.glob("requirements*.txt"))
     or list(cwd.glob("environment*.y*ml"))
-    or any("# /// script" in p.read_text(encoding="utf-8", errors="ignore") for p in code[:10] if p.suffix == ".py")
+    or any(
+        "# /// script" in p.read_text(encoding="utf-8", errors="ignore")
+        for p in code[:10]
+        if p.suffix == ".py"
+    )
 ):
     missing.append("environment/dependency declaration (uv + pyproject or PEP 723)")
 
@@ -78,9 +83,7 @@ if unopened:
 
 # Shipping code without engineering practice applied is not an option,
 # and a handful of consultations is the floor for a real project.
-if phases and not phase_lib.cluster_applied(
-    phases, "Core engineering", text, ledger
-):
+if phases and not phase_lib.cluster_applied(phases, "Core engineering", text, ledger):
     missing.append(
         "Core engineering must be 'applied' (ledger-backed) when code "
         "ships - n/a is not available for this cluster"
