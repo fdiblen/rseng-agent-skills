@@ -55,32 +55,26 @@ mark estimates as estimates.
 
 The format covers far more than "an agent wrote code"; act on these too:
 
-- No AI used: a declaration with `ai_usage.used: false` is valuable
-  transparency in itself (reviewers stop guessing). Offer it for
-  projects that want to state the negative explicitly.
+- No AI used: `ai_usage.used: false` is valuable transparency in
+  itself - offer it when a project wants to state the negative.
 - Non-software work: content_type covers dataset, document, model and
-  media. Declare AI involvement in data preparation, papers and reports,
-  trained models (pair with the model's own card) and generated media -
-  the same detail standard applies.
-- Machine consumption: export aidecl.json when tooling needs it, and
-  add the JSON-LD @context so auditors and compliance tools can query
-  declarations as RDF (fields map to PROV-O, Schema.org, SPDX, Dublin
-  Core). Keep YAML as the human-edited source of truth.
-- CI validation: validate the declaration on every push like any other
-  schema-checked artifact, so a stale or malformed declaration fails
-  fast.
-- Audits and reviews: when a DPIA reviewer, journal, funder or
-  compliance check asks about AI involvement, answer FROM the
-  declaration (compliance_eu_ai_act, data_handling and governance hold
-  exactly what Article 50-style reviews ask for); extend it where their
-  questions expose gaps.
-- Reviewing declarations: when asked to review someone else's
-  aidecl.yaml, check schema validity, internal consistency (tools vs
-  components vs proportions), and plausibility against the repository's
-  actual history.
-- Migration: when a project carries ad-hoc AI notes (README badges,
-  "written with ChatGPT" footnotes), consolidate them into a proper
-  declaration and link it from where the notes were.
+  media; declare AI involvement in data preparation, papers, trained
+  models (pair with the model card) and generated media alike.
+- Machine consumption: export aidecl.json when tooling needs it, with
+  the JSON-LD @context for RDF queries (PROV-O, Schema.org, SPDX);
+  YAML stays the human-edited source of truth.
+- CI validation: validate on every push, so a stale or malformed
+  declaration fails fast.
+- Audits: when a DPIA reviewer, journal or funder asks about AI
+  involvement, answer FROM the declaration (compliance_eu_ai_act,
+  data_handling and governance hold what Article 50-style reviews
+  ask); extend it where their questions expose gaps.
+- Reviewing others' declarations: check schema validity, internal
+  consistency (tools vs components vs proportions) and plausibility
+  against the repository's history.
+- Migration: consolidate ad-hoc AI notes (README badges, "written
+  with ChatGPT" footnotes) into a proper declaration and link it
+  from where the notes were.
 
 ## The detail standard
 
@@ -111,55 +105,34 @@ ai_usage:
   tools:
     - name: Claude Code
       vendor: Anthropic
-      type: agent           # assistant|agent|model_runner|standalone|...
-      model: claude-fable-5 # the actual model, when known
-      version: "2.1"        # tool version, when known
-      hosting: cloud_vendor # cloud_vendor|cloud_self_hosted|on_premise|...
-      data_region: EU       # when known from the vendor account
-      trains_on_data: false # per the vendor's stated policy, when known
-      period:               # when this tool was in use on the project
-        start: "2026-01-10"
-        end: "2026-01-24"
-      purpose:
-        - code generation
-        - test writing
-        - documentation
-    - name: GitHub Copilot
-      vendor: GitHub
-      type: assistant
-      hosting: cloud_vendor
-      period: { start: "2026-02-01" }
-      purpose: [code completion]
+      type: agent           # agent|assistant|model_runner|standalone|...
+      model: claude-fable-5 # actual model, version, hosting, data_region
+      version: "2.1"        # and trains_on_data whenever known - these
+      hosting: cloud_vendor # are the facts impossible to reconstruct later
+      trains_on_data: false
+      period: { start: "2026-01-10", end: "2026-01-24" }
+      purpose: [code generation, test writing, documentation]
 
-  activities:               # every activity AI touched, not just the top one
-    - code_generation
-    - testing
-    - documentation
-    - refactoring
+  activities: [code_generation, testing, documentation, refactoring]
 
-  scope:                    # set every flag you can answer, true AND false
-    code_generation: true
-    code_completion: true
+  scope:                    # set every flag you can answer; an explicit
+    code_generation: true   # false is information too - "checked, not used"
     code_review: false
     documentation: true
     testing: true
-    debugging: true
     infrastructure: false
-    refactoring: true
 
   code_proportion:          # honest numbers beat missing numbers
     ai_generated_percent: 55
     ai_assisted_percent: 20
     human_only_percent: 25
     method: self_reported   # self_reported|tool_measured|audit_estimated
-    estimation_notes: >-
-      Line-count estimate over src/ and tests/ at v0.3.0; docs excluded.
+    estimation_notes: line-count estimate over src/ and tests/ at v0.3.0
 
   generated_content:
     documentation_percent: 80
-    artifacts:              # concrete files/areas that are largely AI-made
-      - src/growthfit/fitting.py
-      - tests/test_fitting.py
+    artifacts:              # the largely AI-made files - what reviewers
+      - src/growthfit/fitting.py   # and auditors look for first
       - docs/usage.md
 
   components:               # THE core provenance record - see below
@@ -176,44 +149,24 @@ ai_usage:
       ai_involvement: agent-written alongside the module, human-extended
       tools_used: [Claude Code]
       notes: two human-authored regression tests added later
-    - name: user documentation (docs/, README)
-      description: usage guide, API notes, README
-      ai_involvement: agent-drafted, human-edited for tone and accuracy
-      tools_used: [Claude Code, GitHub Copilot]
-      notes: examples verified by running them
 
 declaration:
   date: "2026-02-03"        # bumped on every update
-  declared_by: Jane Maintainer     # a human or team, never the agent
+  declared_by: Jane Maintainer   # a human or team, never the agent
   contact: jane@example.org
-  organization: Example Lab
   reviewed_by: Jane Maintainer
-  review_date: "2026-02-03"
-  next_review: "2026-08-01"
-  notes: >-
+  next_review: "2026-08-01"      # so staleness is visible
+  notes: >-                      # dated, append-only update history
     2026-01-10 initial declaration with first agent session.
     2026-01-18 fitting module reviewed and approved.
-    2026-02-03 added Copilot usage and refreshed proportions.
+    2026-02-03 refreshed proportions after refactoring help.
 ```
 
-Field-by-field expectations:
-
-- tools: one entry per distinct tool or agent. Record model, version,
-  hosting, data_region, trains_on_data and period whenever they are
-  known - these are exactly the facts impossible to reconstruct later.
-  Type "agent" for autonomous coding agents, "assistant" for
-  completion-style helpers.
-- activities and scope: enumerate everything AI touched. In scope, an
-  explicit `false` is information too - it says "checked, not used".
-- code_proportion / ai_proportion: give numbers with a method; explain
-  the estimation basis in estimation_notes. Self-reported estimates are
-  legitimate when marked as such.
-- generated_content.artifacts: name the concrete files or areas that are
-  substantially AI-made; this is what reviewers and auditors look for
-  first.
-- components: the heart of agent provenance (next section).
-- declaration: always declared_by a human; keep a dated, append-only
-  history of updates in notes; set next_review so staleness is visible.
+One tools entry per distinct tool ("agent" for autonomous agents,
+"assistant" for completion helpers); enumerate every touched activity;
+give proportion numbers with their method - self-reported estimates
+are legitimate when marked as such. components is the heart of agent
+provenance (next section); declaration is always declared_by a human.
 
 ## Recording agent contributions
 
@@ -340,6 +293,21 @@ the declaration double as a cross-agent usage ledger: anyone can
 verify from aidecl.yaml alone which practice guidance was consulted,
 on any platform, without telemetry. Where the invocation ledger file
 (.rseng-agent-skills-usage.log) exists, keep the two consistent.
+
+Declare the pack itself in `tools:` too, beside the model: the same
+model with and without this guidance writes materially different
+projects, so naming only the model omits half of what shaped the work.
+
+```yaml
+    - name: rseng-agent-skills
+      type: guidance      # a pack consulted, not a model
+      version: "v0.4.2"   # the installed version, never "latest"
+      url: https://github.com/fdiblen/rseng-agent-skills
+      skills_consulted: [rseng-testing, rseng-citation-metadata]
+```
+
+Pin the version, and list only the skills actually consulted - naming
+all of them overstates the guidance in force.
 
 ## Working with this skill
 
