@@ -63,75 +63,127 @@ without touching your edits, and `doctor` checks install health.
 
 <!-- skills-list:start (generated - do not edit by hand) -->
 
+### Start here
+
 | Skill | Purpose |
 | --- | --- |
-| `rseng-agent-security` | operating AI coding agents securely |
-| `rseng-ai-declaration` | declaring AI involvement with the AI Declaration Format (https://ai-declaration.org) |
-| `rseng-archiving` | long-term archiving of research software and data |
-| `rseng-big-data-processing` | processing research data that outgrows one machine's memory |
+| `rseng-quality-framework` | The entry point and router for this pack |
+
+### Core engineering
+
+| Skill | Purpose |
+| --- | --- |
+| `rseng-testing` | how to test research software |
 | `rseng-ci-cd` | continuous integration and delivery for research software |
-| `rseng-citation-hygiene` | verifying that every citation is real, correct and current |
-| `rseng-citation-metadata` | making research software citable and contributors credited |
 | `rseng-code-quality` | writing readable research code and structuring software projects |
+| `rseng-software-design` | designing research software |
+| `rseng-defensive-coding` | defenses against silently wrong research results |
+| `rseng-debugging` | systematic debugging of research software |
+| `rseng-version-control-review` | using version control effectively for research software and the PR-time review process |
+| `rseng-software-metrics` | measuring code health quantitatively |
+| `rseng-pair-programming` | the agent as an effective pair programmer and pull-request review buddy for research software |
 | `rseng-code-review` | reviewing existing code and whole projects, not just new diffs |
+| `rseng-project-scaffolding` | starting research software projects from maintained templates and keeping them in sync |
+
+### Reproducibility and workflows
+
+| Skill | Purpose |
+| --- | --- |
+| `rseng-reproducible-environments` | making research software environments reproducible |
+| `rseng-reproducibility` | end-to-end computational reproducibility |
+| `rseng-workflows` | building, choosing, discovering, describing, and sharing computational workflows with workflow management... |
+| `rseng-provenance` | capturing and packaging the provenance of software and data |
+| `rseng-notebooks` | engineering discipline for computational notebooks |
+
+### Research data
+
+| Skill | Purpose |
+| --- | --- |
+| `rseng-data-management` | research data management around software |
+| `rseng-scientific-file-formats` | choosing and handling scientific data formats in code |
+| `rseng-big-data-processing` | processing research data that outgrows one machine's memory |
+| `rseng-data-management-plans` | data management plans (DMPs) for research projects |
+
+### Numerics and performance
+
+| Skill | Purpose |
+| --- | --- |
+| `rseng-numerical-accuracy` | floating-point correctness in research code |
+| `rseng-performance-profiling` | making research code faster with evidence |
+| `rseng-gpu-computing` | GPU and accelerator programming for research software |
+| `rseng-hpc-computing` | working effectively on high-performance computing clusters |
+
+### Publishing, credit and reuse
+
+| Skill | Purpose |
+| --- | --- |
+| `rseng-publishing-releasing` | the release lifecycle of research software |
+| `rseng-software-publishing` | publishing research software through its distribution channels |
+| `rseng-archiving` | long-term archiving of research software and data |
+| `rseng-citation-metadata` | making research software citable and contributors credited |
+| `rseng-citation-hygiene` | verifying that every citation is real, correct and current |
+| `rseng-licensing` | how to license research software |
+| `rseng-license-compliance` | license compliance engineering |
+| `rseng-fair-software` | how to apply the FAIR principles - findable, accessible, interoperable, reusable - to research software... |
+| `rseng-fair-ml` | applying FAIR principles to machine learning artifacts |
+| `rseng-fairguard` | assessing research software against the 17 FAIR4RS principles with FAIRGuard (https://www.fairguard.org) |
+| `rseng-software-reuse` | discovering and reusing existing research software instead of rebuilding it... |
+| `rseng-discovery` | discovering the research landscape around a topic or project |
+| `rseng-dependency-management` | the full lifecycle of third-party dependencies |
+| `rseng-software-peer-review` | community peer review of research software |
+| `rseng-open-science-practices` | the researcher-facing open science workflow |
+
+### Integrity, security and compliance
+
+| Skill | Purpose |
+| --- | --- |
+| `rseng-security` | securing research software and its supply chain |
+| `rseng-agent-security` | operating AI coding agents securely |
+| `rseng-regulatory-compliance` | checking research code and data against data-protection and AI regulation |
+| `rseng-research-integrity` | integrity checks on research outputs before submission or release |
+| `rseng-fact-checking` | verifying facts and sources at the content level |
+| `rseng-honesty` | responding when concealment or misrepresentation is requested |
+| `rseng-human-verification` | the human's side of AI-assisted research software |
+| `rseng-ai-declaration` | declaring AI involvement with the AI Declaration Format (https://ai-declaration.org) |
+
+### Community and people
+
+| Skill | Purpose |
+| --- | --- |
 | `rseng-community-governance` | building and governing a community around research software |
 | `rseng-community-metrics` | measuring community health with CHAOSS-style metrics |
 | `rseng-contributor-onboarding` | turning users into contributors and contributors into regulars |
-| `rseng-data-management` | research data management around software |
-| `rseng-data-management-plans` | data management plans (DMPs) for research projects |
-| `rseng-debugging` | systematic debugging of research software |
-| `rseng-defensive-coding` | defenses against silently wrong research results |
-| `rseng-dependency-management` | the full lifecycle of third-party dependencies |
-| `rseng-discovery` | discovering the research landscape around a topic or project |
+| `rseng-user-support` | running user support as an operation for research software |
+| `rseng-trainer` | teaching research software skills while working |
+
+### Communication and interfaces
+
+| Skill | Purpose |
+| --- | --- |
 | `rseng-documentation` | how to document research software at every level |
-| `rseng-fact-checking` | verifying facts and sources at the content level |
-| `rseng-fair-ml` | applying FAIR principles to machine learning artifacts |
-| `rseng-fair-software` | how to apply the FAIR principles - findable, accessible, interoperable, reusable - to research software... |
-| `rseng-fairguard` | assessing research software against the 17 FAIR4RS principles with FAIRGuard (https://www.fairguard.org) |
-| `rseng-gpu-computing` | GPU and accelerator programming for research software |
+| `rseng-science-communication` | communicating research software outward to research audiences |
+| `rseng-storytelling` | telling the story of research data, software and projects to broad audiences |
+| `rseng-ux-accessibility` | user experience and accessibility for research software |
+
+### Planning and operations
+
+| Skill | Purpose |
+| --- | --- |
+| `rseng-management-planning` | planning research software work |
+| `rseng-project-kickoff` | starting a new research software project with a short kickoff interview |
+| `rseng-project-tracking` | the operational side of running a research software project |
+| `rseng-lessons-learned` | capturing and reusing what a project learns |
+| `rseng-maintenance-sustainability` | keeping research software alive and responsible over time |
 | `rseng-green-computing` | the environmental footprint of research computing |
-| `rseng-honesty` | responding when concealment or misrepresentation is requested |
-| `rseng-hpc-computing` | working effectively on high-performance computing clusters |
-| `rseng-human-verification` | the human's side of AI-assisted research software |
+
+### Specialized
+
+| Skill | Purpose |
+| --- | --- |
 | `rseng-language-guides` | language-specific research software practice |
 | `rseng-legacy-code` | working safely with inherited research code |
-| `rseng-lessons-learned` | capturing and reusing what a project learns |
-| `rseng-license-compliance` | license compliance engineering |
-| `rseng-licensing` | how to license research software |
-| `rseng-maintenance-sustainability` | keeping research software alive and responsible over time |
-| `rseng-management-planning` | planning research software work |
-| `rseng-notebooks` | engineering discipline for computational notebooks |
-| `rseng-numerical-accuracy` | floating-point correctness in research code |
-| `rseng-open-science-practices` | the researcher-facing open science workflow |
 | `rseng-open-source-migration` | migrating research code from commercial, license-bound platforms to open source alternatives |
-| `rseng-pair-programming` | the agent as an effective pair programmer and pull-request review buddy for research software |
-| `rseng-performance-profiling` | making research code faster with evidence |
-| `rseng-project-kickoff` | starting a new research software project with a short kickoff interview |
-| `rseng-project-scaffolding` | starting research software projects from maintained templates and keeping them in sync |
-| `rseng-project-tracking` | the operational side of running a research software project |
-| `rseng-provenance` | capturing and packaging the provenance of software and data |
-| `rseng-publishing-releasing` | the release lifecycle of research software |
-| `rseng-quality-framework` | The entry point and router for this pack |
-| `rseng-regulatory-compliance` | checking research code and data against data-protection and AI regulation |
-| `rseng-reproducibility` | end-to-end computational reproducibility |
-| `rseng-reproducible-environments` | making research software environments reproducible |
-| `rseng-research-integrity` | integrity checks on research outputs before submission or release |
-| `rseng-science-communication` | communicating research software outward to research audiences |
-| `rseng-scientific-file-formats` | choosing and handling scientific data formats in code |
 | `rseng-scientific-visualization` | visualization of scientific data beyond publication figures |
-| `rseng-security` | securing research software and its supply chain |
-| `rseng-software-design` | designing research software |
-| `rseng-software-metrics` | measuring code health quantitatively |
-| `rseng-software-peer-review` | community peer review of research software |
-| `rseng-software-publishing` | publishing research software through its distribution channels |
-| `rseng-software-reuse` | discovering and reusing existing research software instead of rebuilding it... |
-| `rseng-storytelling` | telling the story of research data, software and projects to broad audiences |
-| `rseng-testing` | how to test research software |
-| `rseng-trainer` | teaching research software skills while working |
-| `rseng-user-support` | running user support as an operation for research software |
-| `rseng-ux-accessibility` | user experience and accessibility for research software |
-| `rseng-version-control-review` | using version control effectively for research software and the PR-time review process |
-| `rseng-workflows` | building, choosing, discovering, describing, and sharing computational workflows with workflow management... |
 
 <!-- skills-list:end -->
 

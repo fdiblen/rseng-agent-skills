@@ -14,6 +14,7 @@ from pathlib import Path
 import frontmatter
 
 from .adapters import _brief
+from .skill_directory import CLUSTERS, ROUTER
 
 START = "<!-- skills-list:start (generated - do not edit by hand) -->"
 END = "<!-- skills-list:end -->"
@@ -39,21 +40,65 @@ def _spell(n: int) -> str:
     return words.get(n, str(n))
 
 
-def skills_block(skills_dir: Path) -> str:
-    lines = []
+def _briefs(skills_dir: Path) -> dict[str, str]:
+    out = {}
     for skill_dir in sorted(skills_dir.iterdir()):
         skill_md = skill_dir / "SKILL.md"
         if not skill_md.is_file():
             continue
         post = frontmatter.loads(skill_md.read_text(encoding="utf-8"))
-        name = post.get("name", skill_dir.name)
+        name = str(post.get("name", skill_dir.name))
         brief = _brief(str(post.get("description", "")))
-        if brief.startswith("Covers "):
-            brief = brief[len("Covers ") :]
-        elif brief.startswith("Explains "):
-            brief = brief[len("Explains ") :]
-        lines.append(f"| `{name}` | {brief} |")
-    return "\n".join(["| Skill | Purpose |", "| --- | --- |", *lines])
+        for prefix in ("Covers ", "Explains "):
+            if brief.startswith(prefix):
+                brief = brief[len(prefix) :]
+                break
+        out[name] = brief
+    return out
+
+
+def skills_block(skills_dir: Path) -> str:
+    """One table per cluster, in the cluster map's own order.
+
+    The grouping comes from skill_directory.CLUSTERS rather than a second
+    list kept here, so a new skill lands in the README under the same
+    heading the agent-facing directory files it under.
+    """
+    briefs = _briefs(skills_dir)
+    blocks = []
+    # The router sits outside the cluster map by design - it is what sends
+    # you to the rest - so it gets its own heading instead of falling into
+    # a catch-all at the bottom.
+    if ROUTER in briefs:
+        blocks.append(
+            "\n".join(
+                [
+                    "### Start here",
+                    "",
+                    "| Skill | Purpose |",
+                    "| --- | --- |",
+                    f"| `{ROUTER}` | {briefs[ROUTER]} |",
+                ]
+            )
+        )
+    for cluster, names in CLUSTERS.items():
+        rows = [f"| `{n}` | {briefs[n]} |" for n in names if n in briefs]
+        if not rows:
+            continue
+        blocks.append(
+            "\n".join(
+                [f"### {cluster}", "", "| Skill | Purpose |", "| --- | --- |", *rows]
+            )
+        )
+    listed = {n for names in CLUSTERS.values() for n in names} | {ROUTER}
+    # A safety net only: skill_directory refuses to build if a skill is
+    # missing from the cluster map, so this should always be empty.
+    rest = [f"| `{n}` | {b} |" for n, b in briefs.items() if n not in listed]
+    if rest:
+        blocks.append(
+            "\n".join(["### Other", "", "| Skill | Purpose |", "| --- | --- |", *rest])
+        )
+    return "\n\n".join(blocks)
 
 
 def commands_block(commands_dir: Path) -> str:
@@ -95,7 +140,8 @@ def main() -> None:
         text, AGENT_START, AGENT_END, agents_block(repo_root / "agents")
     )
     readme.write_text(text, encoding="utf-8")
-    count = block.count("\n") - 1  # minus the two table header rows
+    # Count the skills, not the lines: the block is several tables now.
+    count = len(_briefs(repo_root / "skills"))
 
     import re
 
