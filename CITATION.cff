@@ -6,12 +6,11 @@ abstract: >-
   A research software engineering skills pack for AI coding agents
   (Claude Code, GitHub Copilot, Cursor, Codex CLI, Gemini CLI): 67
   skills covering research software practice, with workflow commands,
-  subagents and a phased practice-enforcement layer. Most skills are
-  hand-authored against verified primary references; a minority are
-  generated from two pinned CC-BY-4.0 community sources (RSQKit by the
-  EVERSE project, and the Netherlands eScience Center Software
-  Development Guide) by a reproducible pipeline that stamps per-source
-  provenance.
+  subagents and a phased practice-enforcement layer. Skills are
+  hand-authored against verified primary references; part of the
+  content was originally adapted from two CC-BY-4.0 community sources
+  (RSQKit by the EVERSE project, and the Netherlands eScience Center
+  Software Development Guide) - see ATTRIBUTION.md.
 authors:
   - family-names: Diblen
     given-names: Faruk
@@ -36,8 +35,8 @@ references:
     doi: 10.5281/zenodo.14923573
     url: https://everse.software/RSQKit/
     notes: >-
-      Pinned CC-BY-4.0 content source; a minority of skills adapt its
-      guidance (see ATTRIBUTION.md).
+      CC-BY-4.0 community source; part of the content was originally
+      adapted from it (see ATTRIBUTION.md).
   - type: generic
     title: Netherlands eScience Center Software Development Guide
     authors:
@@ -45,8 +44,8 @@ references:
     url: https://guide.esciencecenter.nl/
     repository-code: https://github.com/NLeSC/guide
     notes: >-
-      Pinned CC-BY-4.0 content source; a minority of skills adapt its
-      guidance (see ATTRIBUTION.md).
+      CC-BY-4.0 community source; part of the content was originally
+      adapted from it (see ATTRIBUTION.md).
   - type: article
     title: Introducing the FAIR Principles for research software
     authors:

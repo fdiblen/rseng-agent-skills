@@ -26,3 +26,6 @@ pipeline/cache/
 # editor and OS droppings
 .DS_Store
 *.swp
+
+
+examples

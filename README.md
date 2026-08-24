@@ -23,7 +23,7 @@ ATTRIBUTION.md.
 /plugin install rseng-agent-skills
 
 # any other supported agent (auto-detected):
-npx rseng-agent-skills install          # or: install copilot|cursor|codex|gemini
+npx rseng-agent-skills install          # or: install antigravity|gemini|copilot|cursor|codex
 npx rseng-agent-skills doctor           # verify the install
 ```
 
@@ -37,10 +37,11 @@ software best practice as you go.
 | Agent | What you get | Install |
 |---|---|---|
 | Claude Code | all skills, workflow commands and subagents | `/plugin marketplace add fdiblen/rseng-agent-skills` then `/plugin install rseng-agent-skills` |
+| Google Antigravity | GEMINI.md + AGENTS.md + native `.agents/skills` tree (or user `~/.gemini/config/`) | `npx rseng-agent-skills install antigravity` |
+| Gemini CLI | extension with context, commands and skills (or project `.agents/skills`) | `npx rseng-agent-skills install gemini` |
 | GitHub Copilot | repo instructions + native `.agents/skills` tree | `npx rseng-agent-skills install copilot` |
 | Cursor | always-on overview rule + native `.agents/skills` tree | `npx rseng-agent-skills install cursor` |
 | Codex CLI | AGENTS.md + native `.agents/skills` tree | `npx rseng-agent-skills install codex` |
-| Gemini CLI | extension with context, commands and skills | `npx rseng-agent-skills install gemini` |
 | others (Zed, opencode, Goose, ...) | AGENTS.md + standard SKILL.md folders work as-is | `npx rseng-agent-skills install claude` (standard layout) |
 
 The `npx rseng-agent-skills` CLI detects which agents you use and installs the
