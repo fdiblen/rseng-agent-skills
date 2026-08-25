@@ -105,7 +105,7 @@ crashing entry point before touching application code.
   live state, post-mortem on the crash); print/logging beats
   debugger for production, parallel and long-running contexts -
   structured, greppable, left in place behind a verbosity flag
-  (rseng-service-operations-style logs when the code is a service).
+  (service-style logs when the code runs unattended).
 - Rubber-duck honestly: explaining the bug out loud - to the
   agent - is a legitimate technique; the agent's role is to ask
   the hypothesis-forcing questions, not to guess along.

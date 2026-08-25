@@ -4,9 +4,11 @@
 adds the repo's own floor on top: the frontmatter name must match the
 skill's directory, the description must stay within the spec's
 1024-character cap (the token budget is a separate, tighter gate),
-and the fields every skill in this pack carries (license,
-metadata.version) must be present and well-formed. Runs in CI so a
-bad edit fails the build naming the skill, not a user session.
+the fields every skill in this pack carries (license,
+metadata.version) must be present and well-formed, and every rseng-*
+name a body mentions must be a skill, command or subagent that exists.
+Runs in CI so a bad edit fails the build naming the skill, not a user
+session.
 
 Usage:
     python -m rseng_pipeline.skill_lint
@@ -23,6 +25,15 @@ DESCRIPTION_CHAR_CAP = 1024
 NAME_PATTERN = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 NAME_CHAR_CAP = 64
 VERSION_PATTERN = re.compile(r"^\d+\.\d+\.\d+$")
+# rseng-* names appear in prose ("see rseng-ci-cd"), so a body can point
+# at something that was renamed or never built. The pack's own
+# rseng-debugging skill shipped a reference to rseng-service-operations,
+# a planned skill that does not exist.
+REFERENCE_PATTERN = re.compile(r"\brseng-[a-z0-9]+(?:-[a-z0-9]+)*")
+# Not skills, but legitimate to mention: the package itself, the shipped
+# self-check, and the session dotfiles that share the prefix.
+REFERENCE_ALLOWED = {"rseng-agent-skills", "rseng-check", "rseng-backup"}
+
 KNOWN_KEYS = {
     "name",
     "description",
@@ -103,11 +114,33 @@ def lint_skill(skill_md: Path) -> list[str]:
     return out
 
 
+def _known_names(repo_root: Path) -> set[str]:
+    names = {p.parent.name for p in repo_root.glob("skills/*/SKILL.md")}
+    names |= {p.stem for p in repo_root.glob("commands/*.md")}
+    names |= {p.stem for p in repo_root.glob("agents/*.md")}
+    return names | REFERENCE_ALLOWED
+
+
+def lint_references(skill_md: Path, known: set[str]) -> list[str]:
+    """Every rseng-* name in a body must resolve to something shipped."""
+    body = skill_md.read_text(encoding="utf-8")
+    problems = []
+    for name in sorted(set(REFERENCE_PATTERN.findall(body))):
+        # Dotfiles like .rseng-agent-skills-coverage.md extend an allowed
+        # name; match on the longest allowed prefix rather than the token.
+        if any(name.startswith(a) for a in known):
+            continue
+        problems.append(f"{skill_md.parent.name}: references unknown {name}")
+    return problems
+
+
 def lint_all(repo_root: Path) -> list[str]:
     skill_files = sorted(repo_root.glob("skills/*/SKILL.md"))
+    known = _known_names(repo_root)
     problems = []
     for skill_md in skill_files:
         problems += lint_skill(skill_md)
+        problems += lint_references(skill_md, known)
     if not skill_files:
         problems.append("no skills found under skills/")
     return problems
