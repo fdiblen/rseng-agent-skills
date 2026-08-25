@@ -1,63 +1,71 @@
 # rseng-agent-skills
 
-Research software engineering (RSEng) skills for AI coding agents:
-67 skills covering the practices that make research software good -
-testing, CI/CD, documentation, licensing, citation, FAIR, publishing,
-reproducibility, code review, code quality, maintenance, planning and
-workflows - built into native formats for the major agents.
+Research software engineering practice, packaged so a coding agent
+actually follows it. 67 skills covering how to test, document, license,
+cite, package, release and review research software, built into the
+native format each major agent already reads.
 
-Skills teach while doing: each carries curated, verified "Learn more"
-links so the guidance stays traceable to real material rather than
-generic.
+The point is not a checklist the agent recites. Skills activate on their
+own while it works, and each one carries curated links that were checked
+by a link checker, so its advice stays traceable to real material rather
+than to whatever the model half-remembers.
 
-Part of the skill content was originally adapted from
-community-maintained CC-BY-4.0 material. This project is independent
-of, and not endorsed by, those projects; full credits are in
-ATTRIBUTION.md.
+## Install
 
-## Quick start (TL;DR)
+Claude Code, as a plugin - this route also brings the commands, the
+subagents and the session hooks:
 
-```bash
-# Claude Code: install as a plugin
+```
 /plugin marketplace add fdiblen/rseng-agent-skills
 /plugin install rseng-agent-skills
-
-# any other supported agent (auto-detected):
-npx rseng-agent-skills install          # or: install antigravity|gemini|copilot|cursor|codex
-npx rseng-agent-skills doctor           # verify the install
 ```
 
-Then, in your agent: run `/rseng-kickoff` in a new project, `/rseng-check`
-in an existing one - or just start working; skills activate on their
-own, keep an AI usage declaration (aidecl.yaml), and suggest research
-software best practice as you go.
+Any other agent, through the CLI:
+
+```bash
+npx rseng-agent-skills install     # detects the agents you use
+npx rseng-agent-skills doctor      # check what landed and whether it is current
+```
+
+`install` takes an agent name to be explicit (`install codex`),
+`--dry-run` previews without writing, and `update` refreshes managed
+files while leaving your own edits alone.
+
+Then just start working. Or run `/rseng-kickoff` in a new project and
+`/rseng-check` in an existing one.
 
 ## Agent support
 
 | Agent | What you get | Install |
 |---|---|---|
-| Claude Code | all skills, workflow commands and subagents | `/plugin marketplace add fdiblen/rseng-agent-skills` then `/plugin install rseng-agent-skills` |
-| Google Antigravity | GEMINI.md + AGENTS.md + native `.agents/skills` tree (or user `~/.gemini/config/`) | `npx rseng-agent-skills install antigravity` |
-| Gemini CLI | extension with context, commands and skills (or project `.agents/skills`) | `npx rseng-agent-skills install gemini` |
-| GitHub Copilot | repo instructions + native `.agents/skills` tree | `npx rseng-agent-skills install copilot` |
-| Cursor | always-on overview rule + native `.agents/skills` tree | `npx rseng-agent-skills install cursor` |
-| Codex CLI | AGENTS.md + native `.agents/skills` tree | `npx rseng-agent-skills install codex` |
-| others (Zed, opencode, Goose, ...) | AGENTS.md + standard SKILL.md folders work as-is | `npx rseng-agent-skills install claude` (standard layout) |
+| Claude Code | skills, commands, subagents and session hooks | `/plugin install rseng-agent-skills` after adding the marketplace |
+| Codex CLI | AGENTS.md, `.agents/skills`, the self-check, and hook config | `npx rseng-agent-skills install codex` |
+| Gemini CLI | extension with context, commands and skills, and hook config | `npx rseng-agent-skills install gemini` |
+| Google Antigravity | GEMINI.md, AGENTS.md and `.agents/skills` | `npx rseng-agent-skills install antigravity` |
+| GitHub Copilot | repository instructions and `.agents/skills` | `npx rseng-agent-skills install copilot` |
+| Cursor | always-on overview rule and `.agents/skills` | `npx rseng-agent-skills install cursor` |
+| Zed, opencode, Goose and others | AGENTS.md and standard SKILL.md folders, which they read as-is | `npx rseng-agent-skills install claude` |
 
-The `npx rseng-agent-skills` CLI detects which agents you use and installs the
-right files; `--dry-run` previews, `update` refreshes managed files
-without touching your edits, and `doctor` checks install health.
+Only the Claude plugin and the codex and gemini installs carry hooks;
+`install claude` copies skills, commands and subagents and adds none.
 
-## What is inside
+## How it works
 
-- skills/ - canonical SKILL.md folders (agentskills.io format), one per
-  topic, each with a generated references.md (verified learn-more
-  links)
-- commands/, agents/, hooks/ - Claude Code slash commands, subagents
-  and session hooks that keep the skills actively used
-- pipeline/ - the build pipeline that derives everything generated
-  (references, directory, relations, adapter outputs) from the skills
-- installer/ - the TypeScript CLI published to npm as `rseng-agent-skills`
+Three things keep the guidance in play rather than on a shelf:
+
+- The skills are written to trigger themselves. Each declares what it
+  covers and when it should fire, so the agent opens the licensing skill
+  when it is about to write a LICENSE, not because you asked it to.
+- A router skill holds the full directory, grouped into the same
+  clusters used below, so nothing is reachable only by luck.
+- Where the agent supports hooks, they run at session start, after
+  writes and at stop, nudging toward the skills a change has made
+  relevant and checking the practice artifacts before the session ends.
+
+Everything generated - each skill's references, the directory, the
+related-skills graph and the per-agent bundles - is derived from the
+skills themselves by the pipeline, and CI fails if a committed file
+disagrees with what the pipeline produces.
 
 ## Skills
 
@@ -224,6 +232,18 @@ without touching your edits, and `doctor` checks install health.
 | `rseng-scout` | Read-only reuse and dependency scout. |
 
 <!-- agents-list:end -->
+
+## Repository layout
+
+- `skills/` - one folder per skill in the agentskills.io SKILL.md
+  format, each with a generated `references.md`
+- `commands/`, `agents/`, `hooks/` - Claude Code slash commands,
+  subagents and session hooks
+- `pipeline/` - the build that derives everything generated above from
+  the skills
+- `installer/` - the TypeScript CLI published to npm as
+  `rseng-agent-skills`
+- `adapters/` - templates the pipeline renders into each agent's format
 
 ## Versioning
 
