@@ -226,11 +226,13 @@ Adjust the agent list to match the agent running in your workflow.
 What each surface asks for, and why:
 
 - Plugin or installer users: the pack ships NO pre-approved tool
-  permissions. On first launch in a project with the hooks
-  installed, claude shows its standard one-time trust confirmation
-  for the project's `.claude/settings.json` (the enforcement hooks
-  live there); nothing is approved on your behalf, and every tool
-  call is prompted per your own permission settings.
+  permissions. Where hooks are installed - the Claude plugin carries
+  them, and `install codex` and `install gemini` write a hook config -
+  the agent shows its standard one-time trust confirmation for that
+  file on first launch. `install claude` copies skills, commands and
+  subagents only, and adds no hooks. Nothing is approved on your
+  behalf either way, and every tool call is prompted per your own
+  permission settings.
 - Contributors working in a checkout of this repository: the same -
   the repository does not commit or ship a `settings.local.json`,
   so a fresh checkout pre-approves nothing. Approvals you grant

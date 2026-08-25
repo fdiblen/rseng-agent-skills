@@ -36,6 +36,11 @@ const SOURCES: Record<string, { from: string; to: string }[]> = {
     { from: "dist/codex/AGENTS.md", to: "AGENTS.md" },
     { from: "dist/codex/.agents", to: ".agents" },
     { from: "dist/codex/rseng-check", to: "rseng-check" },
+    // The pipeline builds codex hook config into dist/codex/.codex, but this
+    // list never copied it, so codex installs silently lost the proactive
+    // layer that gemini gets. gemini only works because its source is the
+    // whole dist/gemini tree.
+    { from: "dist/codex/.codex", to: ".codex" },
   ],
   gemini: [{ from: "dist/gemini", to: "." }],
   antigravity: [{ from: "dist/gemini", to: "." }],
