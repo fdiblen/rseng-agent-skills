@@ -1,0 +1,22 @@
+Research Software Directory metadata - no licence declared upstream
+
+This identifier covers the catalogue snapshots under
+skills/*/data/rsd-*.json. They are harvested from the public APIs of
+Research Software Directory instances and hold only a name, slug, short
+summary, keywords and languages per entry.
+
+RSD-as-a-Service, the software behind those instances, is developed by
+the Netherlands eScience Center and the Helmholtz Association and is
+released under Apache-2.0. Its documentation is CC-BY-4.0 and its
+configuration CC0-1.0. Neither the project nor the instances declare a
+licence for the metadata the instances serve.
+
+Because no licence was granted, this repository does not assert one. The
+snapshots are redistributed as factual catalogue data, credited to the
+instance each came from in ATTRIBUTION.md. If either operator would
+rather they were not bundled here, they will be removed.
+
+Sources:
+  https://research-software-directory.org
+  https://helmholtz.software
+  https://github.com/research-software-directory/RSD-as-a-service

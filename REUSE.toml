@@ -16,3 +16,14 @@ path = ["skills/**", "docs/**"]
 precedence = "aggregate"
 SPDX-FileCopyrightText = "2026 Faruk Diblen and the sources credited in ATTRIBUTION.md"
 SPDX-License-Identifier = "CC-BY-4.0"
+
+# Catalogue snapshots harvested from Research Software Directory instances.
+# Their operators declare no licence for the metadata they serve, so this
+# repository does not claim one either - it is redistributed as factual
+# catalogue data, credited in ATTRIBUTION.md. Carved out of the CC-BY-4.0
+# rule above, which would otherwise assert a licence nobody granted.
+[[annotations]]
+path = ["skills/**/data/rsd-*.json"]
+precedence = "override"
+SPDX-FileCopyrightText = "the Research Software Directory instances credited in ATTRIBUTION.md"
+SPDX-License-Identifier = "LicenseRef-RSD-metadata-undeclared"
