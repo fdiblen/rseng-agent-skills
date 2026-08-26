@@ -58,8 +58,25 @@ def main() -> int:
         missing.append("LICENSE (unlicensed code legally blocks all reuse)")
     if not (root / "aidecl.yaml").is_file():
         missing.append("aidecl.yaml AI usage declaration")
-    if not (root / "CITATION.cff").is_file():
+    citation = root / "CITATION.cff"
+    if not citation.is_file():
         missing.append("CITATION.cff citation metadata")
+    else:
+        # A CITATION.cff that exists but omits half its fields still cites
+        # badly. Checked by prefix rather than parsed: this script is stdlib
+        # only, and PyYAML is not guaranteed in the project being checked.
+        text = citation.read_text(encoding="utf-8", errors="ignore")
+        absent = [
+            field
+            for field in ("title", "authors", "version", "date-released", "license")
+            if not any(
+                line.startswith(field + ":") for line in text.splitlines()
+            )
+        ]
+        if absent:
+            missing.append(
+                f"CITATION.cff fields: {', '.join(absent)}"
+            )
     tests = [p for p in root.rglob("test_*.py")] + [
         p for p in root.rglob("tests") if p.is_dir()
     ]

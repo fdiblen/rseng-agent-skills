@@ -7,7 +7,7 @@ changes or new skills, major = restructuring).
 
 ## [Unreleased]
 
-## [0.1.0] - 2026-08-29
+## [0.1.0] - 2026-09-01
 
 First public release.
 

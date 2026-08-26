@@ -27,6 +27,7 @@ keywords:
   - RSQKit
   - EVERSE
 version: 0.1.0
+date-released: "2026-09-01"
 references:
   - type: generic
     title: "RSQKit: Research Software Quality Kit"

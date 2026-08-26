@@ -2,6 +2,7 @@
   "title": "rseng-agent-skills: research software engineering skills for AI coding agents",
   "description": "A research software engineering skills pack for AI coding agents (Claude Code, GitHub Copilot, Cursor, Codex CLI, Gemini CLI): 67 skills covering research software practice, with workflow commands, subagents and a phased practice-enforcement layer. Skills are hand-authored against verified primary references; part of the content was originally adapted from two CC-BY-4.0 community sources, RSQKit by the EVERSE project and the Netherlands eScience Center Software Development Guide (see ATTRIBUTION.md).",
   "upload_type": "software",
+  "version": "0.1.0",
   "license": "MIT",
   "creators": [
     {
