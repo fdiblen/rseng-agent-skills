@@ -13,6 +13,43 @@ export interface UpdateResult {
   updated: number;
   preserved: string[];
   backupDir?: string;
+  prunedBackups?: number;
+}
+
+/**
+ * How many backup directories to keep. Each one is a full copy of every
+ * managed file, so without a cap they accumulate inside the user's project
+ * forever - one per update, unnoticed and ungitignored.
+ */
+export const BACKUPS_KEPT = 3;
+
+const BACKUP_PREFIX = ".rseng-backup-";
+
+/** Remove all but the newest BACKUPS_KEPT backup directories. */
+export function pruneBackups(installDir: string): number {
+  let entries: fs.Dirent[];
+  try {
+    entries = fs.readdirSync(installDir, { withFileTypes: true });
+  } catch {
+    return 0;
+  }
+  const backups = entries
+    .filter((e) => e.isDirectory() && e.name.startsWith(BACKUP_PREFIX))
+    .map((e) => {
+      const abs = path.join(installDir, e.name);
+      return { abs, mtime: fs.statSync(abs).mtimeMs };
+    })
+    .sort((a, b) => b.mtime - a.mtime);
+  let removed = 0;
+  for (const old of backups.slice(BACKUPS_KEPT)) {
+    try {
+      fs.rmSync(old.abs, { recursive: true, force: true });
+      removed += 1;
+    } catch {
+      // A backup we cannot remove is not worth failing an update over.
+    }
+  }
+  return removed;
 }
 
 /**
@@ -54,7 +91,7 @@ export function executeUpdate(
     return { updated: managed.length, preserved };
   }
 
-  const backupDir = fs.mkdtempSync(path.join(installDir, ".rseng-backup-"));
+  const backupDir = fs.mkdtempSync(path.join(installDir, BACKUP_PREFIX));
   for (const rel of managed) {
     const abs = path.join(installDir, rel);
     if (fs.existsSync(abs)) {
@@ -95,6 +132,17 @@ export function executeUpdate(
       `${plan.target.agent}: preserved user-edited files: ${preserved.join(", ")}`,
     );
   }
+  const prunedBackups = pruneBackups(installDir);
   ctx.log(`${plan.target.agent}: backup at ${backupDir}`);
-  return { updated: filteredPlan.copies.length, preserved, backupDir };
+  if (prunedBackups > 0) {
+    ctx.log(
+      `${plan.target.agent}: removed ${prunedBackups} older backup(s), keeping ${BACKUPS_KEPT}`,
+    );
+  }
+  return {
+    updated: filteredPlan.copies.length,
+    preserved,
+    backupDir,
+    prunedBackups,
+  };
 }

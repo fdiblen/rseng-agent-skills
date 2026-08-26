@@ -52,6 +52,12 @@ A preserved file keeps its original recorded hash in the manifest, so it
 stays recognised as user-edited and stays protected on every future update -
 you will not silently lose an edit two updates later.
 
+Backups do not pile up: after a successful update the three most recent are
+kept and older ones are removed, and the command says how many it cleared.
+Each backup is a full copy of every managed file, so without that cap they
+would grow inside your project unnoticed. If you want to keep one for
+longer, move it somewhere outside the install directory.
+
 ### Preview an update without touching anything
 
 Use the global `--dry-run` flag to see what would change:

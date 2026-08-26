@@ -5,7 +5,7 @@ import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import type { AgentTarget } from "../src/agents.js";
 import type { CliContext } from "../src/context.js";
 import { executePlan, planInstall, readManifest } from "../src/install.js";
-import { executeUpdate } from "../src/update.js";
+import { BACKUPS_KEPT, executeUpdate, pruneBackups } from "../src/update.js";
 
 let packRoot: string;
 let destRoot: string;
@@ -112,5 +112,45 @@ describe("executeUpdate", () => {
       /run install first/,
     );
     expect(readManifest(target().installDir, "cursor")).toBeUndefined();
+  });
+});
+
+describe("backup retention", () => {
+  it("keeps only the newest few and reports what it removed", () => {
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), "rseng-prune-"));
+    // Older than the keep window, and deliberately out of name order so the
+    // test proves the sort is on mtime rather than on the random suffix.
+    const made: string[] = [];
+    for (let i = 0; i < BACKUPS_KEPT + 3; i += 1) {
+      const d = path.join(dir, `.rseng-backup-${String(i).padStart(2, "0")}`);
+      fs.mkdirSync(d);
+      fs.writeFileSync(path.join(d, "kept.txt"), "x");
+      fs.utimesSync(d, 1_000 + i, 1_000 + i);
+      made.push(d);
+    }
+    const other = path.join(dir, "not-a-backup");
+    fs.mkdirSync(other);
+
+    const removed = pruneBackups(dir);
+
+    expect(removed).toBe(3);
+    const left = fs
+      .readdirSync(dir)
+      .filter((n) => n.startsWith(".rseng-backup-"))
+      .sort();
+    expect(left.length).toBe(BACKUPS_KEPT);
+    // The survivors are the most recently touched ones.
+    expect(left).toEqual(
+      made
+        .slice(-BACKUPS_KEPT)
+        .map((d) => path.basename(d))
+        .sort(),
+    );
+    expect(fs.existsSync(other)).toBe(true);
+  });
+
+  it("does nothing when the directory has no backups", () => {
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), "rseng-prune-"));
+    expect(pruneBackups(dir)).toBe(0);
   });
 });
