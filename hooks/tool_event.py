@@ -75,11 +75,11 @@ def targets(event: dict) -> list[str]:
     if isinstance(tool_input, str):
         tool_input = {"input": tool_input}
 
-    named = [
-        tool_input.get(key)
-        for key in ("file_path", "notebook_path", "path", "filename", "target_file")
-        if isinstance(tool_input.get(key), str) and tool_input.get(key)
-    ]
+    named = []
+    for key in ("file_path", "notebook_path", "path", "filename", "target_file"):
+        value = tool_input.get(key)
+        if isinstance(value, str) and value:
+            named.append(value)
     if named:
         return named
 

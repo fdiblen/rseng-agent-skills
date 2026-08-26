@@ -9,13 +9,12 @@ well. Writes to the coverage worklog itself always pass - it is the
 escape from the gate, by design. Opt out with .rseng-agent-skills-relaxed.
 """
 
-import json
 import pathlib
 import sys
 
 import phase_lib
 
-data = json.load(sys.stdin)
+data = phase_lib.read_event()
 phase_lib.record_hook("gate")
 if pathlib.Path(".rseng-agent-skills-relaxed").exists():
     sys.exit(0)

@@ -12,6 +12,7 @@ import json
 import os
 import pathlib
 import re
+import sys
 
 COVERAGE = pathlib.Path(".rseng-agent-skills-coverage.md")
 LEDGER = pathlib.Path(".rseng-agent-skills-usage.log")
@@ -274,6 +275,22 @@ HOOKS_FIRED = pathlib.Path(".rseng-hooks-fired.log")
 # accumulated here before anyone asked what it was. Set
 # RSENG_HOOK_TELEMETRY=1 when you want the record.
 TELEMETRY_ENV = "RSENG_HOOK_TELEMETRY"
+
+
+def read_event():
+    """The hook payload on stdin, or {} if it cannot be read.
+
+    A hook runs inside someone's coding session. An agent that changes its
+    event shape, sends nothing, or sends something that is not JSON must
+    not produce a Python traceback in that session - the hook should just
+    find nothing to act on and get out of the way. Same reasoning as
+    record_hook below: a hook must not fail on its own plumbing.
+    """
+    try:
+        data = json.load(sys.stdin)
+    except (ValueError, OSError):
+        return {}
+    return data if isinstance(data, dict) else {}
 
 
 def record_hook(name):

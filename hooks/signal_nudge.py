@@ -18,7 +18,7 @@ import sys
 import phase_lib
 import tool_event
 
-data = json.load(sys.stdin)
+data = phase_lib.read_event()
 phase_lib.record_hook("signal_nudge")
 tool = data.get("tool_name") or ""
 if not (tool_event.is_write(tool) or tool_event.is_read(tool)):

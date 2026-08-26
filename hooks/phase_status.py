@@ -22,7 +22,7 @@ parts = []
 for phase in phases:
     n = len(phase_lib.phase_problems(phases, phase, text, ledger))
     parts.append(f"{phase}: {'ok' if n == 0 else f'{n} open'}")
-crosscut = next(iter(phases.get("Throughout", {}).values()), [])
+crosscut: list[str] = next(iter(phases.get("Throughout", {}).values()), [])
 unopened = [s for s in crosscut if s not in ledger]
 inventory = phase_lib.all_skills(phases)
 open_dispositions = len(phase_lib.undispositioned(phases, text, ledger))

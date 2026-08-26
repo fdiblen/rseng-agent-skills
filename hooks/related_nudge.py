@@ -8,7 +8,7 @@ import sys
 
 import phase_lib
 
-data = json.load(sys.stdin)
+data = phase_lib.read_event()
 phase_lib.record_hook("related_nudge")
 skill = (data.get("tool_input") or {}).get("skill", "")
 related_file = pathlib.Path(__file__).parent / "related.json"

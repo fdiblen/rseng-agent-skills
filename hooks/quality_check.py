@@ -8,13 +8,12 @@ to this tier of work - and finishes. Never blocks twice
 (stop_hook_active); .rseng-agent-skills-relaxed disables it.
 """
 
-import json
 import pathlib
 import sys
 
 import phase_lib
 
-data = json.load(sys.stdin)
+data = phase_lib.read_event()
 phase_lib.record_hook("quality_check")
 if data.get("stop_hook_active") or pathlib.Path(".rseng-agent-skills-relaxed").exists():
     sys.exit(0)
@@ -73,7 +72,7 @@ for phase in phases:
 
 # The cross-cutting skills are a standing obligation: every one of
 # them must actually have been opened by the end, not just cited.
-crosscut = next(iter(phases.get("Throughout", {}).values()), [])
+crosscut: list[str] = next(iter(phases.get("Throughout", {}).values()), [])
 unopened = [s for s in crosscut if s not in ledger]
 if unopened:
     missing.append(
