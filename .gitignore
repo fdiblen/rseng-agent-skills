@@ -12,9 +12,6 @@ __pycache__/
 *.egg-info/
 .coverage
 
-# agent test sandboxes
-.agent-sandboxes/
-
 # caches
 *.cache
 *_cache

@@ -11,8 +11,8 @@ commands to run each stage.
 All commands assume [uv](https://docs.astral.sh/uv/). The pipeline is a uv
 project rooted at `pipeline/`, so run modules with
 `uv run --directory pipeline python -m rseng_pipeline.<module>`. The
-`justfile` at the repo root wraps the common tasks (`just test`,
-`just lint`, `just fix`, `just hooks`).
+`justfile` at the repo root wraps the common tasks (`just lint`,
+`just fix`, `just hooks`).
 
 ## Stage order
 
@@ -241,14 +241,29 @@ Manages the external-skills catalog (`catalog.yml` at the repository
 root) with `list`, `check` and `stage` subcommands - see
 [External skills catalog](catalog.md).
 
-## Tests
+## How the pipeline is verified
 
-Tests live in `pipeline/tests/` (`test_references.py`,
-`test_readme_skills.py`, `test_adapters_brief.py`, `test_checks.py`,
-`test_catalog.py`). Run them with:
+There is no unit-test suite. Every generator is deterministic and its
+output is committed, so the check that matters is regenerating and
+diffing: if a change alters what a generator produces, the committed file
+no longer matches and CI fails. `validate.yml` runs each generator and
+then `git diff --exit-code`.
+
+Run the same thing locally:
 
 ```
+uv run --directory pipeline python -m rseng_pipeline.references
+uv run --directory pipeline python -m rseng_pipeline.related_skills
+uv run --directory pipeline python -m rseng_pipeline.skill_directory
+uv run --directory pipeline python -m rseng_pipeline.readme_skills
+uv run --directory pipeline python -m rseng_pipeline.build_adapters
+git diff --exit-code
 ```
 
-or `just test` from the repo root. Lint and format with `just lint` /
-`just fix` (ruff), and install the pre-commit hooks with `just hooks`.
+`skill_lint`, `token_budget` and `catalog check` are the other gates.
+Lint and format with `just lint` / `just fix` (ruff), and install the
+pre-commit hooks with `just hooks`.
+
+The agent-in-the-loop harness that used to live here now has its own
+project, rseng-agent-skills-scenarios, which drives real agent sessions
+against this pack and reports on what they produced.

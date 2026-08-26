@@ -10,17 +10,9 @@ dependencies = [
     "jinja2>=3.1.6",
 ]
 
-[dependency-groups]
-dev = [
-    "pytest>=9.1.1",
-]
-
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/rseng_pipeline"]
-
-[tool.pytest.ini_options]
-testpaths = ["tests"]

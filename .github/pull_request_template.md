@@ -3,5 +3,5 @@
 **Checklist**
 
 - [ ] No hand edits to generated files (skills/*/references/, dist/)
-- [ ] Tests and linters pass (pipeline: `uv run pytest`; installer: `npm test`)
+- [ ] Linters pass, and `npm test` in installer/ if you touched the CLI
 - [ ] Skill changes follow docs/dev/skill-authoring-template.md

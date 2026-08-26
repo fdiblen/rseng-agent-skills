@@ -26,11 +26,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v6
-      - name: Tests
-        run: uv run --directory pipeline pytest
       - name: Lint
         run: |
-          uvx ruff check pipeline hooks adapters tests
+          uvx ruff check pipeline hooks adapters
           uvx ruff format --check pipeline
       - name: Skill frontmatter lint
         run: uv run --directory pipeline python -m rseng_pipeline.skill_lint

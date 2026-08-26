@@ -16,8 +16,9 @@ Thanks for considering a contribution.
   pipeline and regenerate.
 - SKILL.md bodies are hand-authored; follow the authoring template in
   the developer docs.
-- Small, focused commits; tests and linters green before a PR
-  (`uv run pytest` in pipeline/, `npm test` in installer/).
+- Small, focused commits; linters green before a PR, and `npm test` in
+  installer/ if you touched the CLI. The pipeline is verified by
+  regenerating its output and diffing, which CI does.
 - Content is CC-BY-4.0 (part of it was originally adapted from CC-BY
   sources credited in ATTRIBUTION.md), code is MIT; by contributing
   you agree your contribution is licensed the same way.

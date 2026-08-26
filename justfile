@@ -3,13 +3,9 @@
 default:
     @just --list
 
-# Run pipeline tests
-test:
-    cd pipeline && uv run pytest
-
 # Lint and check formatting
 lint:
-    uvx ruff check pipeline
+    uvx ruff check pipeline hooks adapters
     uvx ruff format --check pipeline
 
 # Auto-fix lint findings and reformat

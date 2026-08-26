@@ -1,12 +1,10 @@
 {
   "files.watcherExclude": {
-    "**/.agent-sandboxes/**": true,
     "**/dist/**": true,
     "**/node_modules/**": true,
     "**/.fake-home/**": true
   },
   "search.exclude": {
-    "**/.agent-sandboxes": true,
     "**/dist": true,
     "**/node_modules": true
   }
