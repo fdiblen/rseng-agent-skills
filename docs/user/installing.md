@@ -204,6 +204,10 @@ to `claude`:
 
 The feature is a thin bootstrap: it runs `npx rseng-agent-skills install` for the
 agents you list, and installs after the Node feature so `npx` is available.
+That means it needs the package on npm - it will not work against an
+unpublished checkout. Until the first release, install from a clone instead:
+build the adapters and the CLI, then run `node installer/dist/cli.js install`
+with `--pack-root` pointing at the checkout.
 
 ## Continuous integration
 

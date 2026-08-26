@@ -32,5 +32,15 @@ See docs/dev/catalog.md.
 
 ## Development setup
 
-See docs/dev/architecture.md for the layout and docs/dev/pipeline.md for
-running the pipeline. Python side uses uv, the installer uses npm.
+Python side uses uv, the installer uses npm. A fresh clone has neither the
+generated adapter bundles nor a built CLI, so do both once before anything
+that installs the pack:
+
+```bash
+uv run --directory pipeline python -m rseng_pipeline.build_adapters
+cd installer && npm ci && npm run build
+```
+
+`dist/` and `installer/dist/` are build output and are not committed. See
+docs/dev/architecture.md for the layout and docs/dev/pipeline.md for running
+the pipeline.
