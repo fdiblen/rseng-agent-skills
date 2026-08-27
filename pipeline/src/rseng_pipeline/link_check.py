@@ -18,7 +18,16 @@ from pathlib import Path
 
 from .url_verify import URLCheck, load_quarantine, probe_url, verify_url
 
-_URL_RE = re.compile(r"https?://[^\s)\"'<>\]}`]+")
+_URL_RE = re.compile(r"https?://[^\s)\"'<>{}\]`]+")
+# A URL immediately followed by a placeholder opener is a documented
+# template, not an address. _URL_RE stops at "<", so ".../works/doi:<DOI>"
+# would be probed as ".../works/doi" and reported broken forever - a failure
+# no content change could fix.
+_PLACEHOLDER_NEXT = "<{"
+# Catalogue snapshots are third-party data, truncated to 200 characters per
+# entry. A URL inside them is neither ours to fix nor necessarily whole:
+# truncation alone produced "http://op".
+_SKIP_PARTS = ("data",)
 _SCAN_SUFFIXES = {".md", ".mdc", ".toml", ".json", ".yml", ".yaml"}
 _WORKERS = 16
 
@@ -30,9 +39,14 @@ def collect_urls(roots: list[Path]) -> dict[str, list[str]]:
         for path in sorted(root.rglob("*")):
             if not path.is_file() or path.suffix not in _SCAN_SUFFIXES:
                 continue
+            if any(part in _SKIP_PARTS for part in path.parts):
+                continue
             text = path.read_text(encoding="utf-8", errors="replace")
-            for match in _URL_RE.findall(text):
-                url = match.rstrip(".,;:")
+            for match in _URL_RE.finditer(text):
+                nxt = text[match.end() : match.end() + 1]
+                if nxt in _PLACEHOLDER_NEXT:
+                    continue
+                url = match.group().rstrip(".,;:")
                 found.setdefault(url, []).append(str(path))
     return found
 
