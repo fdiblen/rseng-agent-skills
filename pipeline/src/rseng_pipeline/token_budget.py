@@ -17,6 +17,7 @@ from __future__ import annotations
 import re
 import sys
 from pathlib import Path
+from typing import Any
 
 import yaml
 
@@ -34,11 +35,17 @@ def tokens(text: str) -> int:
 
 
 def measure(repo_root: Path) -> dict:
-    skills = []
+    skills: list[dict[str, Any]] = []
     for skill_md in sorted(repo_root.glob("skills/*/SKILL.md")):
         text = skill_md.read_text(encoding="utf-8")
         fm = re.match(r"(?s)^---\n(.*?)\n---\n", text)
-        meta = yaml.safe_load(fm.group(1))
+        if fm is None:
+            raise SystemExit(
+                f"{skill_md}: no frontmatter block - run skill_lint for detail"
+            )
+        meta = yaml.safe_load(fm.group(1)) or {}
+        if "description" not in meta:
+            raise SystemExit(f"{skill_md}: frontmatter has no description")
         skills.append(
             {
                 "name": skill_md.parent.name,
