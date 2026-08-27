@@ -18,9 +18,9 @@ jobs:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v6
       - name: Build site (strict)
-        run: uvx --with mkdocs-material mkdocs build --strict
+        run: uvx --with mkdocs==1.6.1 --with mkdocs-material==9.7.7 mkdocs build --strict
       - name: Check links
         run: |
-          uvx --from linkchecker linkchecker --check-extern \
+          uvx --from linkchecker==10.6.0 linkchecker --check-extern \
             --ignore-url 'https://doi.org/.*' \
             site/
