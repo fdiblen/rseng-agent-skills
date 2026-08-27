@@ -9,6 +9,7 @@ injectable so callers and tests can run without network access.
 from __future__ import annotations
 
 import urllib.error
+import urllib.parse
 import urllib.request
 from collections.abc import Callable
 from dataclasses import dataclass
@@ -45,6 +46,11 @@ def load_quarantine(path: Path) -> dict[str, str]:
 
 
 def _request(url: str, method: str, timeout: int) -> int:
+    # Same reasoning as net.http_get: urlopen would happily honour file: or
+    # ftp:, and the URLs checked here come out of committed content.
+    scheme = urllib.parse.urlsplit(url).scheme.lower()
+    if scheme not in ("http", "https"):
+        raise ValueError(f"refusing to fetch {scheme or 'scheme-less'} URL: {url}")
     request = urllib.request.Request(
         url, method=method, headers={"User-Agent": USER_AGENT}
     )
