@@ -69,14 +69,10 @@ def main() -> int:
         absent = [
             field
             for field in ("title", "authors", "version", "date-released", "license")
-            if not any(
-                line.startswith(field + ":") for line in text.splitlines()
-            )
+            if not any(line.startswith(field + ":") for line in text.splitlines())
         ]
         if absent:
-            missing.append(
-                f"CITATION.cff fields: {', '.join(absent)}"
-            )
+            missing.append(f"CITATION.cff fields: {', '.join(absent)}")
     tests = [p for p in root.rglob("test_*.py")] + [
         p for p in root.rglob("tests") if p.is_dir()
     ]

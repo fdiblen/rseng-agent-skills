@@ -67,6 +67,20 @@ related-skills graph and the per-agent bundles - is derived from the
 skills themselves by the pipeline, and CI fails if a committed file
 disagrees with what the pipeline produces.
 
+## Declaring AI involvement
+
+One of the practices the pack applies to your work is disclosing it. When
+an agent with these skills installed writes code for you, it maintains an
+`aidecl.yaml` in your project - an AI usage declaration in the
+[AI Declaration Format](https://ai-declaration.org) recording which tools
+were used, on what, and how much. `/rseng-declare` creates or updates it,
+and the `rseng-ai-declaration` skill covers what belongs in one and how
+much detail is honest.
+
+This repository keeps its own `aidecl.yaml` alongside the checkout rather
+than committing it, so the declaration stays current with the work in
+progress instead of going stale in version control.
+
 ## Skills
 
 <!-- skills-list:start (generated - do not edit by hand) -->
