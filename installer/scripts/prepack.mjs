@@ -14,6 +14,19 @@ const WHITELIST = ["skills", "commands", "hooks", "agents", "dist", "AGENTS.md",
 
 fs.rmSync(contentDir, { recursive: true, force: true });
 fs.mkdirSync(contentDir);
+// dist/ is generated. Packing one that predates the sources it came from
+// ships stale content, and the failure only shows up for whoever installs
+// it. This bit the maintainer during a review: a test ran against a CLI
+// forty minutes older than its source and reported a fixed bug as broken.
+const newestMtime = (dir) => {
+  let newest = 0;
+  for (const e of fs.readdirSync(dir, { withFileTypes: true, recursive: true })) {
+    if (!e.isFile()) continue;
+    newest = Math.max(newest, fs.statSync(path.join(e.parentPath, e.name)).mtimeMs);
+  }
+  return newest;
+};
+
 for (const entry of WHITELIST) {
   const from = path.join(repoRoot, entry);
   if (!fs.existsSync(from)) {
@@ -21,6 +34,12 @@ for (const entry of WHITELIST) {
     process.exit(1);
   }
   fs.cpSync(from, path.join(contentDir, entry), { recursive: true });
+  if (entry === "dist" && newestMtime(from) < newestMtime(path.join(repoRoot, "skills"))) {
+    console.error(
+      "prepack: dist/ is older than skills/ - rebuild the adapters before packing",
+    );
+    process.exit(1);
+  }
 }
 // The bundled package.json version is what doctor compares against.
 fs.writeFileSync(
