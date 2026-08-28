@@ -31,10 +31,10 @@
     "prepack": "node scripts/prepack.mjs"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.5.4",
-    "@types/node": "^26.1.1",
+    "@biomejs/biome": "^2.5.12",
+    "@types/node": "^26.4.1",
     "typescript": "^7.0.2",
-    "vitest": "^4.1.10"
+    "vitest": "^4.1.11"
   },
   "dependencies": {
     "commander": "^15.0.0"
