@@ -4,6 +4,7 @@ import type { CliContext } from "./context.js";
 import {
   executePlan,
   type InstallPlan,
+  manifestKey,
   manifestName,
   readManifest,
   sha256,
@@ -105,7 +106,10 @@ export function executeUpdate(
   const filteredPlan: InstallPlan = {
     target: plan.target,
     copies: plan.copies.filter(
-      (copy) => !preserved.includes(path.relative(installDir, copy.to)),
+      // preserved holds manifest keys, which are POSIX-style; comparing a
+      // platform-separator path here would never match on Windows and the
+      // user's edited files would be overwritten.
+      (copy) => !preserved.includes(manifestKey(installDir, copy.to)),
     ),
   };
   executePlan(ctx, filteredPlan);

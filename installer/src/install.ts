@@ -112,6 +112,19 @@ export function planInstall(
 }
 
 /** Execute a plan and record installed files in a manifest. */
+/**
+ * Manifest keys are always POSIX-style.
+ *
+ * path.relative() returns the platform separator, so a manifest written on
+ * Windows records "skills\\rseng-testing\\SKILL.md". Read back on macOS or
+ * Linux that is one long filename, nothing matches, and update/doctor report
+ * every managed file as missing. Normalising on the way in and out keeps a
+ * manifest portable across the machines that share a project.
+ */
+export function manifestKey(from: string, to: string): string {
+  return path.relative(from, to).split(path.sep).join("/");
+}
+
 export function executePlan(ctx: CliContext, plan: InstallPlan): void {
   const label = `${plan.target.agent} (${plan.target.scope})`;
   if (ctx.dryRun) {
@@ -128,7 +141,7 @@ export function executePlan(ctx: CliContext, plan: InstallPlan): void {
   for (const copy of plan.copies) {
     fs.mkdirSync(path.dirname(copy.to), { recursive: true });
     fs.copyFileSync(copy.from, copy.to);
-    manifestFiles[path.relative(plan.target.installDir, copy.to)] = sha256(
+    manifestFiles[manifestKey(plan.target.installDir, copy.to)] = sha256(
       copy.to,
     );
   }

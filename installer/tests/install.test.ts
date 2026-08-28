@@ -170,3 +170,24 @@ describe("executePlan", () => {
     );
   });
 });
+
+describe("manifest portability", () => {
+  it("records POSIX-style keys whatever the platform separator is", () => {
+    const target: AgentTarget = {
+      agent: "claude",
+      scope: "project",
+      marker: path.join(destRoot, ".claude"),
+      installDir: destRoot,
+      detected: true,
+    };
+    executePlan(ctx(), planInstall(packRoot, target));
+    const manifest = readManifest(destRoot, "claude");
+    expect(manifest).toBeDefined();
+    const keys = Object.keys(manifest?.files ?? {});
+    expect(keys.length).toBeGreaterThan(0);
+    // A manifest is shared whenever a project is: it must not encode the
+    // separator of the machine that wrote it.
+    expect(keys.some((k) => k.includes("\\"))).toBe(false);
+    expect(keys.some((k) => k.includes("/"))).toBe(true);
+  });
+});
