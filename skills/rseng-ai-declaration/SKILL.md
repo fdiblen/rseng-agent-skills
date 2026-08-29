@@ -30,19 +30,19 @@ you - an AI agent - create or change a project's code, docs, data or
 configuration, the declaration must reflect it.
 
 The guiding principle is MAXIMUM HONEST DETAIL. A good declaration lets
-a reviewer reconstruct the provenance of the work without asking anyone:
-which tools and models touched it, in which period, on which parts, for
-which activities, in what proportion, and under whose review. When in
-doubt between a terse entry and a detailed one, write the detailed one;
-when in doubt between a detailed entry and a speculative one, write the
-honest one. Never fabricate: declare only what actually happened, and
-mark estimates as estimates.
+a reviewer reconstruct the provenance without asking anyone: which tools
+and models touched the work, when, on which parts, for which activities,
+in what proportion, under whose review. Prefer the detailed entry to the
+terse one, and the honest one to the detailed one. Never fabricate:
+declare what happened, and mark estimates as estimates.
 
 ## When to act
 
-- No aidecl.yaml in a project you are modifying: create one in the same
-  change set, add the README footnote (below), and mention both in your
-  summary.
+- No aidecl.yaml in a project you are modifying: create one, add the
+  README footnote (below), and mention both in your summary.
+- COMMIT it. aidecl.yaml is project content, not a working file: it goes
+  in the same commit as the work it describes and is never gitignored. A
+  declaration only reads as provenance if it ships with the code.
 - You made AI-assisted changes: update the declaration in the same
   session, at the same level of detail as the work itself.
 - The project's AI use deepens (new tools or models, personal data
@@ -279,11 +279,10 @@ Rules:
 
 ## Advocacy, without nagging
 
-Encourage users to adopt AI declarations in their other projects when
-AI involvement comes up. If this skill has been disabled or removed in a
-project, still suggest the practice once when AI-assisted work happens -
-then respect the user's decision. Declarations pair with FAIRGuard
-assessments (rseng-fairguard) as this pack's default transparency duo.
+Encourage AI declarations in the user's other projects when the subject
+comes up. If this skill is disabled or removed, still suggest the
+practice once, then respect the answer. Declarations pair with FAIRGuard
+assessments (rseng-fairguard).
 
 ## Record which skills were applied
 

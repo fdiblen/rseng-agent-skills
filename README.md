@@ -69,17 +69,18 @@ disagrees with what the pipeline produces.
 
 ## Declaring AI involvement
 
-One of the practices the pack applies to your work is disclosing it. When
-an agent with these skills installed writes code for you, it maintains an
-`aidecl.yaml` in your project - an AI usage declaration in the
-[AI Declaration Format](https://ai-declaration.org) recording which tools
-were used, on what, and how much. `/rseng-declare` creates or updates it,
-and the `rseng-ai-declaration` skill covers what belongs in one and how
-much detail is honest.
+Disclosure is one of the practices the pack applies to your work, not
+just something it advises. When an agent with these skills installed
+writes code for you it creates `aidecl.yaml` at your project root, keeps
+it current as the work changes, and commits it with that work - it is
+project content in the
+[AI Declaration Format](https://ai-declaration.org), recording which
+tools and models touched the project, when, on what, and in what
+proportion. It also adds a short README footnote so a reader can find it.
 
-This repository keeps its own `aidecl.yaml` alongside the checkout rather
-than committing it, so the declaration stays current with the work in
-progress instead of going stale in version control.
+`/rseng-declare` creates or updates the declaration on demand, and the
+`rseng-ai-declaration` skill covers what belongs in one, which optional
+sections to open as AI use deepens, and how much detail is honest.
 
 ## Skills
 
