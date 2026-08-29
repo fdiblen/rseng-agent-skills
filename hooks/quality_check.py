@@ -122,9 +122,12 @@ if absent:
 if not missing:
     sys.exit(0)
 print(
-    "rseng-agent-skills quality check - this project is missing practice "
-    "artifacts. Add each item, or state briefly why it does not apply "
-    "to this tier of work, then finish:\n- " + "\n- ".join(missing),
+    "rseng-agent-skills: a last pass before finishing. These practice "
+    "artifacts are not there yet - the agent adds each one, or says briefly "
+    "why it does not apply to this tier of work, and then finishes. Normal, "
+    "and nothing is needed from you. (Add an empty "
+    ".rseng-agent-skills-relaxed file to skip this check.)\n- "
+    + "\n- ".join(missing),
     file=sys.stderr,
 )
 sys.exit(2)

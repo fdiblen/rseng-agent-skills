@@ -34,6 +34,14 @@ files while leaving your own edits alone.
 Then just start working. Or run `/rseng-kickoff` in a new project and
 `/rseng-check` in an existing one.
 
+Nothing here pre-approves any tool or permission. Where hooks are
+installed your agent shows its normal one-time trust prompt for the hook
+file, exactly as it would for any project config - that is the agent
+asking, not the pack. On a first run the agent may also pause before its
+first write while it opens the relevant skills; that is the pack working,
+it resolves itself, and an empty `.rseng-agent-skills-relaxed` file turns
+it off.
+
 ## Agent support
 
 | Agent | What you get | Install |

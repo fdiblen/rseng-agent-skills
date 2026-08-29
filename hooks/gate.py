@@ -36,10 +36,9 @@ if (".claude" in parts and "rseng" in parts) or name in (
     ".rseng-agent-skills-writes",
 ):
     print(
-        "rseng-agent-skills gate - the enforcement infrastructure (hook scripts, "
-        "their data, the consultation ledger and the write counter) is "
-        "not writable by the session; it records what happened, it is "
-        "not project content.",
+        "rseng-agent-skills: this file records what the session did, so the "
+        "session does not edit it. Nothing is wrong - write the project's "
+        "own files instead.",
         file=sys.stderr,
     )
     sys.exit(2)
@@ -73,10 +72,15 @@ if phase_lib.write_count() >= DURING_AFTER_WRITES:
         problems += during
 
 if problems:
+    # A blocked write is the pack working, but a bystander sees only a
+    # refusal. Say whose job it is to resolve, and how to switch it off, so
+    # a first run does not read as a fault.
     print(
-        "rseng-agent-skills gate - resolve before writing project files "
-        "(.rseng-agent-skills-coverage.md itself is always writable):\n- "
-        + "\n- ".join(problems),
+        "rseng-agent-skills: holding this write until the start-of-work steps "
+        "are recorded. Expected on a first run - the agent resolves it and "
+        "nothing is needed from you. (.rseng-agent-skills-coverage.md is "
+        "always writable; add an empty .rseng-agent-skills-relaxed file to "
+        "turn the gate off.)\n- " + "\n- ".join(problems),
         file=sys.stderr,
     )
     sys.exit(2)
