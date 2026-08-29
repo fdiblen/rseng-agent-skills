@@ -40,9 +40,10 @@ declare what happened, and mark estimates as estimates.
 
 - No aidecl.yaml in a project you are modifying: create one, add the
   README footnote (below), and mention both in your summary.
-- COMMIT it. aidecl.yaml is project content, not a working file: it goes
-  in the same commit as the work it describes and is never gitignored. A
-  declaration only reads as provenance if it ships with the code.
+- COMMIT it. aidecl.yaml is project content: it goes in the same commit as
+  the work it describes and is never gitignored - a declaration is only
+  provenance if it ships with the code. If a project must defer that,
+  record why in .rseng-check-waivers so the gap reads as a decision.
 - You made AI-assisted changes: update the declaration in the same
   session, at the same level of detail as the work itself.
 - The project's AI use deepens (new tools or models, personal data
@@ -208,10 +209,9 @@ After every AI-assisted working session, walk this checklist:
 1. tools: new tool or model? period end moved?
 2. activities and scope: anything newly touched?
 3. components: affected entries updated, new areas added, dates noted?
-4. proportions and generated_content: still roughly right? Adjust and
-   note the estimation basis.
-5. summary and level: still accurate as a one-paragraph account?
-6. declaration.date bumped; a dated line appended to declaration.notes.
+4. proportions and generated_content: still right? Note the basis.
+5. summary and level: still accurate in one paragraph?
+6. declaration.date bumped, a dated line appended to declaration.notes.
 7. File still validates against the schema.
 
 ## Growing into the optional sections

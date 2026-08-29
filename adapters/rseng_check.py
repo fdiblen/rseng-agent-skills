@@ -17,9 +17,43 @@ import json
 import pathlib
 import sys
 
+WAIVER_FILE = ".rseng-check-waivers"
+
+
+def _waivers(root: pathlib.Path) -> dict[str, str]:
+    """Artifacts this project has deliberately opted out of, with reasons.
+
+    The check tells you to add each missing item "or record briefly why it
+    does not apply". Without somewhere to record that, the only way to make
+    the check pass was to comply - so a considered exception looked exactly
+    like neglect. One `artifact: reason` per line; blank lines and # ignored.
+    """
+    path = root / WAIVER_FILE
+    if not path.is_file():
+        return {}
+    out = {}
+    for line in path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line or line.startswith("#") or ":" not in line:
+            continue
+        key, _, reason = line.partition(":")
+        if reason.strip():
+            out[key.strip()] = reason.strip()
+    return out
+
 
 def main() -> int:
-    root = pathlib.Path(".")
+    # Audit the directory named on the command line, or the current one.
+    # This used to be hardcoded to ".", so passing a path was accepted in
+    # silence and the wrong project was audited with a confident verdict.
+    args = [a for a in sys.argv[1:] if not a.startswith("-")]
+    if len(args) > 1:
+        print(f"rseng-check: expected at most one path, got {len(args)}")
+        return 2
+    root = pathlib.Path(args[0]) if args else pathlib.Path(".")
+    if not root.is_dir():
+        print(f"rseng-check: not a directory: {root}")
+        return 2
     here = pathlib.Path(__file__).resolve().parent
     phases_file = here / "phases.json"
     phases = (
@@ -40,6 +74,7 @@ def main() -> int:
         return 0
 
     missing = []
+    waived = _waivers(root)
     agent_dirs = (".claude", ".agents", ".cursor", ".codex", ".gemini")
     present = [d for d in agent_dirs if (root / d).is_dir()]
     if present:
@@ -52,12 +87,23 @@ def main() -> int:
                 f"here ({', '.join(uncovered)}) - add them plus .env and "
                 ".rseng-agent-skills-* session records"
             )
-    if not list(root.glob("README*")):
-        missing.append("README with purpose and how-to-run")
-    if not list(root.glob("LICENSE*")):
-        missing.append("LICENSE (unlicensed code legally blocks all reuse)")
-    if not (root / "aidecl.yaml").is_file():
-        missing.append("aidecl.yaml AI usage declaration")
+
+    def require(key: str, ok: bool, message: str) -> None:
+        if ok or key in waived:
+            return
+        missing.append(message)
+
+    require("README", list(root.glob("README*")), "README with purpose and how-to-run")
+    require(
+        "LICENSE",
+        list(root.glob("LICENSE*")),
+        "LICENSE (unlicensed code legally blocks all reuse)",
+    )
+    require(
+        "aidecl.yaml",
+        (root / "aidecl.yaml").is_file(),
+        "aidecl.yaml AI usage declaration",
+    )
     citation = root / "CITATION.cff"
     if not citation.is_file():
         missing.append("CITATION.cff citation metadata")

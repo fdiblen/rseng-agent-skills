@@ -1,0 +1,6 @@
+# Artifacts this project deliberately does not ship yet, and why.
+# One "artifact: reason" per line. The self-check reports a waived item as a
+# recorded exception instead of a missing artifact, so a considered decision
+# does not read as neglect.
+
+aidecl.yaml: kept alongside the checkout while the pack is unreleased; it will be committed at the first release
