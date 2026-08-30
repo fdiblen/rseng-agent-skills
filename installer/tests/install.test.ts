@@ -181,13 +181,45 @@ describe("manifest portability", () => {
       detected: true,
     };
     executePlan(ctx(), planInstall(packRoot, target));
-    const manifest = readManifest(destRoot, "claude");
-    expect(manifest).toBeDefined();
-    const keys = Object.keys(manifest?.files ?? {});
+    const keys = Object.keys(readManifest(destRoot, "claude")?.files ?? {});
     expect(keys.length).toBeGreaterThan(0);
-    // A manifest is shared whenever a project is: it must not encode the
-    // separator of the machine that wrote it.
     expect(keys.some((k) => k.includes("\\"))).toBe(false);
     expect(keys.some((k) => k.includes("/"))).toBe(true);
+  });
+
+  it("migrates a manifest written with backslash keys", () => {
+    // The real regression: on POSIX path.relative already returns "/", so
+    // asserting "no backslashes" passes with or without the normalisation.
+    // Only a manifest that ALREADY holds backslash keys - one written by an
+    // older build, or on Windows - exercises the read path. Without it,
+    // every file reads as missing and update overwrites user edits.
+    const target: AgentTarget = {
+      agent: "claude",
+      scope: "project",
+      marker: path.join(destRoot, ".claude"),
+      installDir: destRoot,
+      detected: true,
+    };
+    executePlan(ctx(), planInstall(packRoot, target));
+    const manifestPath = path.join(destRoot, manifestName("claude"));
+    const original = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
+    const windowsStyle = {
+      ...original,
+      files: Object.fromEntries(
+        Object.entries(original.files).map(([k, v]) => [
+          k.split("/").join("\\"),
+          v,
+        ]),
+      ),
+    };
+    fs.writeFileSync(manifestPath, JSON.stringify(windowsStyle, null, 2));
+
+    const migrated = readManifest(destRoot, "claude");
+    expect(Object.keys(migrated?.files ?? {})).toEqual(
+      Object.keys(original.files),
+    );
+    for (const rel of Object.keys(migrated?.files ?? {})) {
+      expect(fs.existsSync(path.join(destRoot, rel))).toBe(true);
+    }
   });
 });

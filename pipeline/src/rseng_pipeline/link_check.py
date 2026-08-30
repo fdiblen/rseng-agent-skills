@@ -27,6 +27,11 @@ _PLACEHOLDER_NEXT = "<{"
 # Catalogue snapshots are third-party data, truncated to 200 characters per
 # entry. A URL inside them is neither ours to fix nor necessarily whole:
 # truncation alone produced "http://op".
+#
+# Matched against the path RELATIVE to the scan root. Matching absolute parts
+# meant a checkout under any directory called "data" - /home/me/data/repo, or
+# a CI runner path - skipped every file and the check passed having read
+# nothing. A link checker that silently verifies zero links is worse than none.
 _SKIP_PARTS = ("data",)
 _SCAN_SUFFIXES = {".md", ".mdc", ".toml", ".json", ".yml", ".yaml"}
 _WORKERS = 16
@@ -39,7 +44,7 @@ def collect_urls(roots: list[Path]) -> dict[str, list[str]]:
         for path in sorted(root.rglob("*")):
             if not path.is_file() or path.suffix not in _SCAN_SUFFIXES:
                 continue
-            if any(part in _SKIP_PARTS for part in path.parts):
+            if any(part in _SKIP_PARTS for part in path.relative_to(root).parts):
                 continue
             text = path.read_text(encoding="utf-8", errors="replace")
             for match in _URL_RE.finditer(text):

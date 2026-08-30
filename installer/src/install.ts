@@ -164,5 +164,19 @@ export function readManifest(
   if (!fs.existsSync(manifestPath)) {
     return undefined;
   }
-  return JSON.parse(fs.readFileSync(manifestPath, "utf8"));
+  const parsed = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
+  // Normalise on the way IN as well as out. Manifests written before keys
+  // were normalised, or by a Windows build, carry backslash keys; read
+  // literally on POSIX every one of them resolves to nothing, doctor calls
+  // the whole install missing, and update finds no user-edited files to
+  // preserve and overwrites them. Migrating on read costs nothing.
+  return {
+    ...parsed,
+    files: Object.fromEntries(
+      Object.entries(parsed.files ?? {}).map(([key, hash]) => [
+        key.split("\\").join("/"),
+        hash,
+      ]),
+    ),
+  };
 }

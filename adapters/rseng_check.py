@@ -50,9 +50,13 @@ def main() -> int:
     if len(args) > 1:
         print(f"rseng-check: expected at most one path, got {len(args)}")
         return 2
-    root = pathlib.Path(args[0]) if args else pathlib.Path(".")
+    # resolve(): a relative path like ../project keeps ".." in every
+    # rglob result, and the hidden-file filter below drops any part starting
+    # with "." - so the audit found zero files and reported "nothing to
+    # audit" for a project full of code.
+    root = pathlib.Path(args[0] if args else ".").resolve()
     if not root.is_dir():
-        print(f"rseng-check: not a directory: {root}")
+        print(f"rseng-check: not a directory: {args[0] if args else '.'}")
         return 2
     here = pathlib.Path(__file__).resolve().parent
     phases_file = here / "phases.json"
