@@ -97,10 +97,14 @@ def main() -> int:
             return
         missing.append(message)
 
-    require("README", list(root.glob("README*")), "README with purpose and how-to-run")
+    require(
+        "README",
+        bool(list(root.glob("README*"))),
+        "README with purpose and how-to-run",
+    )
     require(
         "LICENSE",
-        list(root.glob("LICENSE*")),
+        bool(list(root.glob("LICENSE*"))),
         "LICENSE (unlicensed code legally blocks all reuse)",
     )
     require(
