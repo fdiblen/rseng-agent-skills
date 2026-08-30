@@ -126,8 +126,7 @@ print(
     "artifacts are not there yet - the agent adds each one, or says briefly "
     "why it does not apply to this tier of work, and then finishes. Normal, "
     "and nothing is needed from you. (Add an empty "
-    ".rseng-agent-skills-relaxed file to skip this check.)\n- "
-    + "\n- ".join(missing),
+    ".rseng-agent-skills-relaxed file to skip this check.)\n- " + "\n- ".join(missing),
     file=sys.stderr,
 )
 sys.exit(2)
