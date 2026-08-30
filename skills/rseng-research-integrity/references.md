@@ -8,4 +8,4 @@ Learn more:
 - https://github.com/MicheleNuijten/statcheck - statcheck
 - https://github.com/lhdjung/scrutiny - scrutiny (GRIM and granularity tests)
 - https://gitlab.com/crossref/retraction-watch-data - Retraction Watch database
-- https://docs.openalex.org - OpenAlex API
+- https://help.openalex.org - OpenAlex API

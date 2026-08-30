@@ -117,11 +117,11 @@ the broad-audience narrative layer over
 rseng-science-communication.
 
 Learn more (verified):
-  - https://ecsa.citizen-science.net - European Citizen Science
+  - https://www.ecsa.ngo - European Citizen Science
     Association (ten principles of citizen science)
-  - https://eu-citizen.science - EU-Citizen.Science platform
+  - https://citizenscience.eu - EU-Citizen.Science platform
   - https://scistarter.org - SciStarter project platform
-  - https://www.citizenscience.org - Association for Advancing
+  - https://participatorysciences.org - Association for Advancing
     Participatory Sciences
   - https://riojournal.com/article/21283/ - principles for
     citizen-science apps and platforms

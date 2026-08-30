@@ -125,7 +125,7 @@ This skill is source-independent: its authority is the FAIR data
 principles and the community resources linked below.
 
 Learn more (verified):
-  - https://www.go-fair.org/fair-principles/ - the FAIR principles
+  - https://www.gofair.foundation/fair-principles - the FAIR principles
   - https://rdmkit.elixir-europe.org - ELIXIR RDMkit, per-domain and
     per-task RDM guidance
   - https://fairsharing.org - registry of metadata standards and

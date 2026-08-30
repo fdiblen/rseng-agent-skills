@@ -107,7 +107,7 @@ rseng-research-integrity's pre-submission checks.
 Learn more (verified):
   - https://api.crossref.org/swagger-ui/index.html - Crossref REST
     API
-  - https://docs.openalex.org - OpenAlex API (open, keyless)
+  - https://help.openalex.org - OpenAlex API (open, keyless)
   - https://www.crossref.org/documentation/retrieve-metadata/retraction-watch/ -
     Retraction Watch data via Crossref
   - https://gitlab.com/crossref/retraction-watch-data - Retraction

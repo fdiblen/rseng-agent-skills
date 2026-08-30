@@ -5,7 +5,7 @@
 
 Learn more:
 
-- https://www.go-fair.org/fair-principles/ - the FAIR principles
+- https://www.gofair.foundation/fair-principles - the FAIR principles
 - https://rdmkit.elixir-europe.org - ELIXIR RDMkit, per-domain and per-task RDM guidance
 - https://fairsharing.org - registry of metadata standards and data repositories
 - https://zenodo.org - general-purpose data repository with DOIs

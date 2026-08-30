@@ -121,7 +121,7 @@ rseng-research-integrity (the document's own numbers are
 consistent).
 
 Learn more (verified):
-  - https://docs.openalex.org - OpenAlex (metadata and abstracts
+  - https://help.openalex.org - OpenAlex (metadata and abstracts
     for alignment checks)
   - https://api.crossref.org/swagger-ui/index.html - Crossref
     REST API

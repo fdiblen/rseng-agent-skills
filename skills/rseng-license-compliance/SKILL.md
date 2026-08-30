@@ -148,7 +148,7 @@ Learn more (verified):
     list and GPL-compatibility notes
   - https://opensource.org/licenses - OSI-approved licenses
   - https://choosealicense.com - license chooser
-  - https://joinup.ec.europa.eu/collection/eupl/solution/joinup-licensing-assistant/jla-find-and-compare-software-licenses -
+  - https://interoperable-europe.ec.europa.eu/collection/eupl/solution/licensing-assistant/find-and-compare-software-licenses -
     EU Joinup Licensing Assistant compatibility checker
   - https://github.com/aboutcode-org/scancode-toolkit - ScanCode
     Toolkit license scanner

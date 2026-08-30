@@ -156,7 +156,7 @@ Learn more (verified):
     programs
   - https://carpentries.github.io/instructor-training/ - Carpentries
     instructor training (the pedagogy itself)
-  - https://www.software.ac.uk/training - SSI curated training list
+  - https://www.software.ac.uk/blog/signpost-training-resources - SSI curated training list
   - https://hsf-training.org/training-center/ - HSF training center
   - https://intersect-training.org - INTERSECT RSE training modules
 

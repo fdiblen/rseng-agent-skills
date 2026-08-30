@@ -108,7 +108,7 @@ finds, rseng-software-reuse and rseng-dependency-management judge,
 rseng-fact-checking and rseng-citation-hygiene verify.
 
 Learn more (verified):
-  - https://docs.openalex.org - OpenAlex API
+  - https://help.openalex.org - OpenAlex API
   - https://arxiv.org - arXiv
   - https://www.semanticscholar.org - Semantic Scholar
   - https://scholar.google.com - Google Scholar (interactive)
@@ -118,7 +118,7 @@ Learn more (verified):
   - https://libraries.io - cross-ecosystem package search
   - https://github.com/sindresorhus/awesome - the awesome-list
     index
-  - https://paperswithcode.com - Papers with Code
+  - https://huggingface.co/papers - Hugging Face Papers
 
 <!-- related-skills:begin -->
 

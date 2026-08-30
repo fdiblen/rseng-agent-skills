@@ -121,7 +121,7 @@ Learn more (verified):
     granularity tests)
   - https://gitlab.com/crossref/retraction-watch-data - Retraction
     Watch database
-  - https://docs.openalex.org - OpenAlex API
+  - https://help.openalex.org - OpenAlex API
 
 <!-- related-skills:begin -->
 

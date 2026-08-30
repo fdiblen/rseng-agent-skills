@@ -10,6 +10,6 @@ Learn more:
 - https://www.gnu.org/licenses/license-list.html - FSF license list and GPL-compatibility notes
 - https://opensource.org/licenses - OSI-approved licenses
 - https://choosealicense.com - license chooser
-- https://joinup.ec.europa.eu/collection/eupl/solution/joinup-licensing-assistant/jla-find-and-compare-software-licenses - EU Joinup Licensing Assistant compatibility checker
+- https://interoperable-europe.ec.europa.eu/collection/eupl/solution/licensing-assistant/find-and-compare-software-licenses - EU Joinup Licensing Assistant compatibility checker
 - https://github.com/aboutcode-org/scancode-toolkit - ScanCode Toolkit license scanner
 - https://github.com/raimon49/pip-licenses - pip-licenses dependency license reporting

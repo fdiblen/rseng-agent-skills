@@ -5,8 +5,8 @@
 
 Learn more:
 
-- https://docs.claude.com/en/docs/claude-code/security - Claude Code security model
-- https://docs.claude.com/en/docs/claude-code/sandboxing - Claude Code sandboxing
+- https://code.claude.com/docs/en/security - Claude Code security model
+- https://code.claude.com/docs/en/sandboxing - Claude Code sandboxing
 - https://containers.dev - devcontainer specification
 - https://genai.owasp.org - OWASP GenAI security project
 - https://owasp.org/www-project-top-10-for-large-language-model-applications/ - OWASP Top 10 for LLM applications

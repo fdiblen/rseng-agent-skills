@@ -10,4 +10,4 @@ Learn more:
 - https://artificialintelligenceact.eu - AI Act explorer and compliance resources
 - https://www.edpb.europa.eu - European Data Protection Board guidance
 - https://gdpr.eu - GDPR explainers and checklists
-- https://github.com/microsoft/presidio - PII detection tooling
+- https://github.com/data-privacy-stack/presidio - PII detection tooling

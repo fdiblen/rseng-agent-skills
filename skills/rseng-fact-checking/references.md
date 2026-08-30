@@ -5,7 +5,7 @@
 
 Learn more:
 
-- https://docs.openalex.org - OpenAlex (metadata and abstracts for alignment checks)
+- https://help.openalex.org - OpenAlex (metadata and abstracts for alignment checks)
 - https://api.crossref.org/swagger-ui/index.html - Crossref REST API
 - https://doaj.org - Directory of Open Access Journals
 - https://thinkchecksubmit.org - Think. Check. Submit. venue checklist

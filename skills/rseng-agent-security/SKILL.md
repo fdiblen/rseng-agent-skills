@@ -156,9 +156,9 @@ counterpart to rseng-ai-declaration (disclosure) and applies
 rseng-security's principles to the agent itself.
 
 Learn more (verified):
-  - https://docs.claude.com/en/docs/claude-code/security - Claude
+  - https://code.claude.com/docs/en/security - Claude
     Code security model
-  - https://docs.claude.com/en/docs/claude-code/sandboxing -
+  - https://code.claude.com/docs/en/sandboxing -
     Claude Code sandboxing
   - https://containers.dev - devcontainer specification
   - https://genai.owasp.org - OWASP GenAI security project
