@@ -15,6 +15,7 @@ recorded as 'applied: ...' or 'n/a: <reason>').
 
 import json
 import pathlib
+import re
 import sys
 
 WAIVER_FILE = ".rseng-check-waivers"
@@ -40,6 +41,31 @@ def _waivers(root: pathlib.Path) -> dict[str, str]:
         if reason.strip():
             out[key.strip()] = reason.strip()
     return out
+
+
+def mentions(name, text):
+    """Is this exact skill named in the text?
+
+    Plain substring matching made one skill name a prefix of another:
+    'rseng-data-management' sits inside 'rseng-data-management-plans', so
+    dispositioning the plans skill silently dispositioned the other one too.
+    \\b does not help - a hyphen is itself a word boundary - so the
+    neighbours are excluded explicitly.
+    """
+    return re.search(rf"(?<![\w-]){re.escape(name)}(?![\w-])", text) is not None
+
+
+def _is_project_file(path: pathlib.Path, root: pathlib.Path) -> bool:
+    """Does this path belong to the project, rather than to its tooling?
+
+    Judged on the path RELATIVE to the project: an absolute path can pass
+    through a dot-directory that has nothing to do with the project (a
+    checkout under ~/.local, say) and that must not hide the whole tree.
+    """
+    parts = path.relative_to(root).parts
+    return not any(part.startswith(".") for part in parts) and not (
+        {"node_modules", "vendor", "site-packages"} & set(parts)
+    )
 
 
 def main() -> int:
@@ -70,8 +96,7 @@ def main() -> int:
         p
         for ext in ("*.py", "*.R", "*.jl", "*.js", "*.ts", "*.c", "*.cpp", "*.f90")
         for p in root.rglob(ext)
-        if not any(part.startswith(".") for part in p.parts)
-        and "node_modules" not in p.parts
+        if _is_project_file(p, root)
     ]
     if not code:
         print("rseng-check: no code files found; nothing to audit")
@@ -127,8 +152,11 @@ def main() -> int:
         ]
         if absent:
             missing.append(f"CITATION.cff fields: {', '.join(absent)}")
-    tests = [p for p in root.rglob("test_*.py")] + [
-        p for p in root.rglob("tests") if p.is_dir()
+    # Filtered like the code scan: a dependency's own test files under
+    # .venv/ used to satisfy this, so a project with no tests of its own
+    # was told its practice artifacts were complete.
+    tests = [p for p in root.rglob("test_*.py") if _is_project_file(p, root)] + [
+        p for p in root.rglob("tests") if p.is_dir() and _is_project_file(p, root)
     ]
     if not tests:
         missing.append("tests (at least a smoke/reference-case check)")
@@ -150,18 +178,11 @@ def main() -> int:
 
     # Relevance signals: project contents that imply a skill require
     # that skill dispositioned (applied or reasoned n/a) in the worklog.
-    import re
-
     signals_file = here / "signals.json"
     if signals_file.is_file():
         rules = json.loads(signals_file.read_text(encoding="utf-8"))
         all_files = [
-            p
-            for p in root.rglob("*")
-            if p.is_file()
-            and not any(
-                part.startswith(".") or part == "node_modules" for part in p.parts
-            )
+            p for p in root.rglob("*") if p.is_file() and _is_project_file(p, root)
         ][:4000]
         sources = [
             p
@@ -212,7 +233,7 @@ def main() -> int:
             if evidence is None:
                 continue
             for skill in rule["skills"]:
-                if skill not in text:
+                if not mentions(skill, text):
                     missing.append(
                         f"{rule['name']} present ({evidence}) but {skill} has "
                         "no coverage entry - apply it or record "
@@ -223,7 +244,7 @@ def main() -> int:
     inventory = sorted(
         {s for cl in phases.values() for skills in cl.values() for s in skills}
     )
-    absent = [s for s in inventory if s not in text]
+    absent = [s for s in inventory if not mentions(s, text)]
     if absent:
         shown = ", ".join(absent[:12]) + (
             f" and {len(absent) - 12} more" if len(absent) > 12 else ""

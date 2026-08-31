@@ -141,7 +141,7 @@ def undispositioned(phases, text, ledger):
     return sorted(
         s
         for s in all_skills(phases)
-        if s not in ledger and s not in text and s not in covered
+        if s not in ledger and not mentions(s, text) and s not in covered
     )
 
 
@@ -221,12 +221,24 @@ def unmet_signals(script_dir, ledger, text, root=None):
     return unmet
 
 
+def mentions(name, text):
+    """Is this exact skill named in the text?
+
+    Plain substring matching made one skill name a prefix of another:
+    'rseng-data-management' sits inside 'rseng-data-management-plans', so
+    dispositioning the plans skill silently dispositioned the other one too.
+    \\b does not help - a hyphen is itself a word boundary - so the
+    neighbours are excluded explicitly.
+    """
+    return re.search(rf"(?<![\w-]){re.escape(name)}(?![\w-])", text) is not None
+
+
 def _waived(skill, text):
     """A waiver is any worklog line mentioning the skill together with
     'n/a' - both documented orders ('n/a: skill - reason' and
     'skill: n/a - reason') count."""
     for line in text.splitlines():
-        if skill in line and "n/a" in line:
+        if mentions(skill, line) and "n/a" in line:
             return True
     return False
 
