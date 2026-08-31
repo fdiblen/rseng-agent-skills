@@ -17,6 +17,47 @@ hand-maintained.
 3. Tag the commit `v<version>` (for example `v0.1.0`) and push the tag.
 4. Publishing the GitHub release object triggers the artifact attach.
 
+## Publishing credentials
+
+The publish workflow authenticates to the registry with an `NPM_TOKEN`
+repository secret. Without it the run still builds and tests everything,
+then fails at the publish step with `ENEEDAUTH`, so the workflow checks
+for the secret up front and stops immediately if it is missing.
+
+Create the token on npmjs.com under Access Tokens - granular tokens
+cannot be made from the CLI - with read and write permission and the
+shortest expiry that covers the release, then:
+
+```
+gh secret set NPM_TOKEN --repo fdiblen/rseng-agent-skills
+```
+
+A granular token can normally be restricted to this package alone. That
+is not possible for the very first publish: the package picker only
+lists packages that already exist, so the bootstrap token has to cover
+all packages. Give it a short expiry and revoke it once the package is
+on the registry.
+
+### Moving to trusted publishing
+
+Once the package exists, the token can be replaced with OIDC, which
+needs no stored credential at all:
+
+```
+npm trust github rseng-agent-skills --file publish.yml \
+  --repo fdiblen/rseng-agent-skills --allow-publish
+```
+
+The command needs npm 11.10.0 or later and prompts for a second factor,
+so it is run from a terminal rather than from CI. Trusted publishing
+cannot bootstrap a package that has never been published, which is why
+the first release goes out on a token.
+
+After it is configured, drop `NODE_AUTH_TOKEN` and the credential check
+from `publish.yml` and delete the secret. The `--provenance` flag also
+becomes unnecessary, because attestations are generated automatically
+when a publish is authenticated through OIDC.
+
 ## Release notes
 
 The GitHub release body is written from the changelog entry, expanded
@@ -45,6 +86,9 @@ release carries the narrative notes.
 
 `.github/workflows/publish.yml` runs on any `v*` tag push. It:
 
+- checks the registry credential is present, and that the tag matches the
+  version in `installer/package.json` - a mismatch would otherwise publish
+  whatever the package file says under an unrelated tag;
 - builds the adapters from scratch on a clean checkout, in the order the
   pipeline expects - `references` (regenerate every skill's
   `references.md`), then `build_adapters` (render `dist/<target>/` and

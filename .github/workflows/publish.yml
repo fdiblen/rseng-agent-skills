@@ -12,11 +12,32 @@ jobs:
       contents: read
       id-token: write
     steps:
+      - name: Registry credentials must be present
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          if [ -z "$NODE_AUTH_TOKEN" ]; then
+            echo "The NPM_TOKEN secret is not set on this repository, so the"
+            echo "publish step would fail after building everything. See the"
+            echo "publishing credentials section of docs/dev/release.md."
+            exit 1
+          fi
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 24
           registry-url: https://registry.npmjs.org
+      - name: Tag must match the package version
+        working-directory: installer
+        run: |
+          tagged="${GITHUB_REF_NAME#v}"
+          packaged="$(node -p 'require("./package.json").version')"
+          if [ "$tagged" != "$packaged" ]; then
+            echo "Tag $GITHUB_REF_NAME carries version $tagged but"
+            echo "installer/package.json says $packaged, so the tag would"
+            echo "publish the wrong version."
+            exit 1
+          fi
       - uses: astral-sh/setup-uv@v6
       - name: Build adapters
         run: |
