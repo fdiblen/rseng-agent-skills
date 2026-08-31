@@ -203,16 +203,10 @@ SonarCloud, Read the Docs) so scaffolded projects finish their setup.
 
 ## Working with this skill
 
-This skill ships generated companion files under `references/`:
+The generated references.md beside this file lists the source material
+and pointers:
 
-- references.md - source citations and links to the upstream pages for
-  `ci_cd`, `task_automation_github_actions`, `task_automation_gitlab_ci_cd`
-  and `org_gitlab_ci_infra_for_github_project`. Consult them for full
-  examples and the source runner-configuration tables.
-- `references.md` -- the quality-indicator checklist to apply
-  when reviewing a project's CI/CD setup.
-- `references.md` -- verified external pointers; draw any links
-  you share from there.
+- references.md - verified Learn more pointers
 
 Learn more (verified):
   - https://docs.github.com/en/actions - GitHub Actions documentation

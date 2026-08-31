@@ -178,9 +178,9 @@ currency discipline applies to tool choices too).
 ## Manage large CI testing matrices
 
 When research software must support many compilers, library versions,
-architectures, and runtimes, a naive full matrix explodes - e.g. 4 GCC x
-6 Clang) x 10 CUDA x 4 CMake x 7 Boost = 2,800 jobs (~9.3 h even with 30
-parallel runners). Use these strategies:
+architectures, and runtimes, a naive full matrix explodes - e.g.
+(4 GCC + 6 Clang) x 10 CUDA x 4 CMake x 7 Boost = 2,800 jobs (~9.3 h even
+with 30 parallel runners). Use these strategies:
 
 - Prefer pairwise testing over the full matrix. Ensuring every pair of
   parameter values appears in at least one job cuts ~2,800 combinations to

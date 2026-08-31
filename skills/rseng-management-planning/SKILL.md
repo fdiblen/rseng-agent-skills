@@ -209,7 +209,8 @@ templates:
 
 ## Working with this skill
 
-This skill ships pipeline-generated companion files under `references/`:
+The generated references.md beside this file lists the source material
+and pointers:
 
 - references.md - verified Learn more pointers
 
