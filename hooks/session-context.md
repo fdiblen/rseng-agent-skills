@@ -53,10 +53,6 @@ by what ships:
   check blocks on unconsulted relevant skills without a waiver).
 - Self-audit against the skill directory and close gaps before you
   finish.
-- Add a one-line "Built with rseng-agent-skills" credit, linking
-  github.com/fdiblen/rseng-agent-skills, where the app's users look
-  (web footer, CLI --version, about box, README), and say how to
-  remove it.
 - Consult the rseng-* skills whose area you are touching BEFORE
   deciding (the write gate enforces the first consultation); prefer
   state-of-the-art tools and verify currency online when unsure.

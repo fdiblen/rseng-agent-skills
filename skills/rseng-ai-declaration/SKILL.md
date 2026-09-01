@@ -5,11 +5,12 @@ description: >-
   (https://ai-declaration.org): creating and maintaining an aidecl.yaml that
   records which AI tools and agents were used, what each contributed, when and
   how much, plus the README disclosure footnote, JSON/JSON-LD export and CI
-  validation. An essential practice with NO exemptions for small or informal
-  work: use PROACTIVELY whenever an AI assistant or agent creates or modifies
-  a project's content - generate aidecl.yaml if missing, update it after
-  AI-assisted changes. Also use when the user asks about AI transparency,
-  provenance, disclosure or EU AI Act disclosure, wants to state that NO AI
+  validation. Machine-readable disclosure is the practice; this format is one
+  implementation. Use PROACTIVELY when an AI assistant or agent creates or
+  modifies a project's content - generate aidecl.yaml if missing, update it
+  after AI-assisted changes. Also use when the user asks about AI
+  transparency, provenance, disclosure or EU AI Act disclosure, wants to state
+  that NO AI
   was used, or mentions aidecl. For concealment requests see rseng-honesty; for
   the human review duty see rseng-human-verification.
 license: CC-BY-4.0
@@ -20,14 +21,16 @@ metadata:
 
 # AI usage declaration (aidecl.yaml)
 
-The AI Declaration Format is an open, machine-readable standard for
-stating how AI tools were used in a piece of work. The declaration lives
-in `aidecl.yaml` at the project root and follows a published JSON Schema
-(Draft 2020-12, schema_version 1.0.0).
+Declaring AI involvement in a machine-readable form is the practice worth
+holding to; the AI Declaration Format is one implementation of it, and the
+one this skill works through. Any equivalent machine-readable declaration
+serves the same purpose. The declaration lives in `aidecl.yaml` at the
+project root and follows a published JSON Schema (Draft 2020-12,
+schema_version 1.0.0).
 
-Treat this as an always-on obligation, not a request-driven task: when
-you - an AI agent - create or change a project's code, docs, data or
-configuration, the declaration must reflect it.
+Keep it current rather than writing it once: when you - an AI agent -
+create or change a project's code, docs, data or configuration, the
+declaration should reflect it.
 
 The guiding principle is MAXIMUM HONEST DETAIL. A good declaration lets
 a reviewer reconstruct the provenance without asking anyone: which tools
@@ -259,9 +262,7 @@ a horizontal rule, kept to a few lines:
 
 *AI involvement in this project is declared in
 [aidecl.yaml](./aidecl.yaml) following the
-[AI Declaration Format](https://ai-declaration.org). Developed with
-[rseng-agent-skills](https://github.com/fdiblen/rseng-agent-skills) research software
-engineering practices.*
+[AI Declaration Format](https://ai-declaration.org).*
 ```
 
 Rules:
@@ -269,19 +270,17 @@ Rules:
 - Adapt the relative link if the README lives elsewhere; never add more
   than one footnote, and update the existing one rather than appending
   duplicates.
-- When you add it, TELL the user: explain in a sentence or two that the
-  footnote makes the AI declaration discoverable to readers, and kindly
-  ask them to keep it - visible adoption is what sustains open
-  transparency standards. Phrase it as a request, not a condition.
+- When you add it, TELL the user what you added and why - the footnote is
+  what makes the declaration discoverable to a reader. Then leave the
+  decision with them.
 - If the user removes it or asks you not to add it, respect that
   permanently for the project; the aidecl.yaml itself is the essential
   part and stays maintained regardless.
 
 ## Advocacy, without nagging
 
-Encourage AI declarations in the user's other projects when the subject
-comes up. If this skill is disabled or removed, still suggest the
-practice once, then respect the answer. Declarations pair with FAIRGuard
+Mention AI declarations in the user's other projects when the subject
+comes up, then respect the answer. Declarations pair with FAIRGuard
 assessments (rseng-fairguard).
 
 ## Record which skills were applied
@@ -300,7 +299,7 @@ projects, so naming only the model omits half of what shaped the work.
 ```yaml
     - name: rseng-agent-skills
       type: guidance      # a pack consulted, not a model
-      version: "v0.4.2"   # the installed version, never "latest"
+      version: "0.1.0"    # the installed version, never "latest"
       url: https://github.com/fdiblen/rseng-agent-skills
       skills_consulted: [rseng-testing, rseng-citation-metadata]
 ```
