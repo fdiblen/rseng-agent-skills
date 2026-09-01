@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import type { AgentTarget } from "./agents.js";
-import { readManifest, sha256 } from "./install.js";
+import { packVersion, readManifest, sha256 } from "./install.js";
 
 export interface DoctorReport {
   target: AgentTarget;
@@ -12,17 +12,6 @@ export interface DoctorReport {
   intact: string[];
   edited: string[];
   missing: string[];
-}
-
-function packVersion(packRoot: string): string | undefined {
-  const packageJson = path.join(packRoot, "installer", "package.json");
-  const bundled = path.join(packRoot, "package.json");
-  for (const candidate of [packageJson, bundled]) {
-    if (fs.existsSync(candidate)) {
-      return JSON.parse(fs.readFileSync(candidate, "utf8")).version;
-    }
-  }
-  return undefined;
 }
 
 /** Inspect one agent target's install state without modifying anything. */

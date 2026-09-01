@@ -45,6 +45,16 @@ beforeEach(() => {
   write("commands/rseng-check.md", "check command\n");
   write("agents/rseng-reviewer.md", "reviewer agent\n");
   write("notes/some-page.md", "not part of any install\n");
+  // The notices travel with CC-BY content, so planInstall requires them.
+  write("ATTRIBUTION.md", "credit\n");
+  write("NOTICE", "credit\n");
+  write("LICENSE-content", "credit\n");
+  write("dist/cursor/ATTRIBUTION.md", "credit\n");
+  write("dist/cursor/NOTICE", "credit\n");
+  write("dist/cursor/LICENSE-content", "credit\n");
+  write("dist/codex/ATTRIBUTION.md", "credit\n");
+  write("dist/codex/NOTICE", "credit\n");
+  write("dist/codex/LICENSE-content", "credit\n");
   write("dist/cursor/.cursor/rules/rseng-overview.mdc", "rule one\n");
   write("dist/cursor/.cursor/rules/rseng-testing.mdc", "rule two\n");
   write("dist/cursor/.agents/skills/rseng-testing/SKILL.md", "native skill\n");
@@ -67,6 +77,9 @@ describe("planInstall", () => {
       path.relative(cursorTarget().installDir, c.to),
     );
     expect(dests.sort()).toEqual([
+      path.join(".agents", "ATTRIBUTION.md"),
+      path.join(".agents", "LICENSE-content"),
+      path.join(".agents", "NOTICE"),
       path.join(".agents", "skills", "rseng-testing", "SKILL.md"),
       path.join(".cursor", "rules", "rseng-overview.mdc"),
       path.join(".cursor", "rules", "rseng-testing.mdc"),
@@ -86,6 +99,9 @@ describe("planInstall", () => {
     const plan = planInstall(packRoot, target);
     const dests = plan.copies.map((c) => path.relative(destRoot, c.to)).sort();
     expect(dests).toEqual([
+      path.join(".agents", "ATTRIBUTION.md"),
+      path.join(".agents", "LICENSE-content"),
+      path.join(".agents", "NOTICE"),
       path.join(".agents", "skills", "rseng-testing", "SKILL.md"),
       path.join(".codex", "hooks.json"),
       "AGENTS.md",
@@ -109,6 +125,9 @@ describe("planInstall", () => {
       path.join("agents", "rseng-reviewer.md"),
       path.join("commands", "rseng-check.md"),
       path.join("skills", ".keep"),
+      path.join("skills", "ATTRIBUTION.md"),
+      path.join("skills", "LICENSE-content"),
+      path.join("skills", "NOTICE"),
       path.join("skills", "rseng-testing", "SKILL.md"),
     ]);
     // Whitelist only: nothing outside skills/commands/agents is swept up.
@@ -134,6 +153,9 @@ describe("executePlan", () => {
     ).toBe(true);
     const manifest = readManifest(target.installDir, "cursor");
     expect(Object.keys(manifest?.files ?? {}).sort()).toEqual([
+      path.join(".agents", "ATTRIBUTION.md"),
+      path.join(".agents", "LICENSE-content"),
+      path.join(".agents", "NOTICE"),
       path.join(".agents", "skills", "rseng-testing", "SKILL.md"),
       path.join(".cursor", "rules", "rseng-overview.mdc"),
       path.join(".cursor", "rules", "rseng-testing.mdc"),

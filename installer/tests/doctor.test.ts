@@ -33,6 +33,10 @@ beforeEach(() => {
   write("package.json", JSON.stringify({ version: "0.1.0" }));
   write("dist/cursor/.cursor/rules/one.mdc", "rule one\n");
   write("dist/cursor/.agents/skills/rseng-testing/SKILL.md", "native skill\n");
+  // The notices travel with CC-BY content, so planInstall requires them.
+  write("dist/cursor/ATTRIBUTION.md", "credit\n");
+  write("dist/cursor/NOTICE", "credit\n");
+  write("dist/cursor/LICENSE-content", "credit\n");
   executePlan(
     { dryRun: false, packRoot, log: () => {} },
     planInstall(packRoot, target()),
@@ -50,6 +54,9 @@ describe("diagnose", () => {
     expect(report.installed).toBe(true);
     expect(report.stale).toBe(false);
     expect(report.intact.sort()).toEqual([
+      path.join(".agents", "ATTRIBUTION.md"),
+      path.join(".agents", "LICENSE-content"),
+      path.join(".agents", "NOTICE"),
       path.join(".agents", "skills", "rseng-testing", "SKILL.md"),
       path.join(".cursor", "rules", "one.mdc"),
     ]);

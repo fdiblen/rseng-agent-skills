@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import type { CliContext } from "./context.js";
 import {
+  BACKUP_PREFIX,
   executePlan,
   type InstallPlan,
   manifestKey,
@@ -23,8 +24,6 @@ export interface UpdateResult {
  * forever - one per update, unnoticed and ungitignored.
  */
 export const BACKUPS_KEPT = 3;
-
-const BACKUP_PREFIX = ".rseng-backup-";
 
 /** Remove all but the newest BACKUPS_KEPT backup directories. */
 export function pruneBackups(installDir: string): number {
