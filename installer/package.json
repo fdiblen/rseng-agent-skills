@@ -18,10 +18,11 @@
   },
   "files": [
     "dist",
-    "content"
+    "content",
+    "LICENSE"
   ],
   "engines": {
-    "node": ">=20"
+    "node": ">=20.12"
   },
   "scripts": {
     "build": "tsc",

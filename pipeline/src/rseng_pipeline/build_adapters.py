@@ -16,6 +16,9 @@ from . import targets  # noqa: F401  (importing registers TARGETS)
 from .adapters import TARGETS, load_render_context, template_env
 from .checks import check_target
 
+#: Credit and licence files that travel with the content into every bundle.
+NOTICE_FILES = ("ATTRIBUTION.md", "NOTICE", "LICENSE-content")
+
 
 def _structure_problems(dist_dir: Path, name: str, context: dict) -> list[str]:
     """Static per-target completeness: every skill, command and the
@@ -28,6 +31,10 @@ def _structure_problems(dist_dir: Path, name: str, context: dict) -> list[str]:
     unified = [
         (".agents/skills/*/SKILL.md", n_skills + n_cmd_skills),
         (".agents/skills/rseng-check/agents/openai.yaml", 1),
+        # The skill bodies are CC-BY-4.0 adaptations. A bundle that carries
+        # them without the credit and the licence text cannot be
+        # redistributed, so every target is required to ship all three.
+        *((name, 1) for name in NOTICE_FILES),
     ]
     expected: dict[str, list[tuple[str, int]]] = {
         "codex": unified
@@ -84,6 +91,9 @@ def build(repo_root: Path, only: list[str] | None = None) -> dict[str, list[Path
             shutil.rmtree(target_dir)
         target_dir.mkdir(parents=True)
         results[name] = TARGETS[name](repo_root, env, context, target_dir)
+        for notice in NOTICE_FILES:
+            shutil.copyfile(repo_root / notice, target_dir / notice)
+            results[name].append(target_dir / notice)
         problems.extend(check_target(target_dir))
         problems.extend(_structure_problems(dist_dir, name, context))
     if problems:
