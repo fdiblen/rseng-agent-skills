@@ -4,8 +4,14 @@ import path from "node:path";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import type { AgentTarget } from "../src/agents.js";
 import type { CliContext } from "../src/context.js";
-import { executePlan, planInstall, readManifest } from "../src/install.js";
-import { BACKUPS_KEPT, executeUpdate, pruneBackups } from "../src/update.js";
+import {
+  BACKUPS_KEPT,
+  executePlan,
+  planInstall,
+  pruneBackups,
+  readManifest,
+} from "../src/install.js";
+import { executeUpdate } from "../src/update.js";
 
 let packRoot: string;
 let destRoot: string;

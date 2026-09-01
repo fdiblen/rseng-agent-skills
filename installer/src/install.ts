@@ -17,8 +17,7 @@ export function manifestName(agent: string): string {
  * What gets copied per agent, relative to the pack root. Sources are an
  * explicit whitelist on purpose: installs must never sweep up whatever
  * happens to sit in a directory (uncommitted files, caches).
- */
-/**
+ *
  * The skill bodies are CC-BY-4.0 adaptations, so the credit and licence
  * text have to travel with them. gemini and antigravity copy a whole
  * dist/ tree and pick these up from its root; the targets below copy
@@ -131,7 +130,6 @@ export function planInstall(
   return { target, copies };
 }
 
-/** Execute a plan and record installed files in a manifest. */
 /**
  * Manifest keys are always POSIX-style.
  *
@@ -161,27 +159,71 @@ export function packVersion(packRoot: string): string | undefined {
 }
 
 /**
- * Destinations that already exist but this agent's manifest does not claim -
- * a hand-written AGENTS.md, an existing .gemini/settings.json. update()
- * protects files it installed; nothing protected files it never installed,
- * so a first install overwrote them with no backup and no mention.
+ * How many backup directories to keep. Each one is a full copy of every
+ * managed file, so without a cap they accumulate inside the user's project
+ * forever - one per update, unnoticed and ungitignored.
  */
-function unmanagedCollisions(plan: InstallPlan): string[] {
+export const BACKUPS_KEPT = 3;
+
+/** Remove all but the newest BACKUPS_KEPT backup directories. */
+export function pruneBackups(installDir: string): number {
+  let entries: fs.Dirent[];
+  try {
+    entries = fs.readdirSync(installDir, { withFileTypes: true });
+  } catch {
+    return 0;
+  }
+  const backups = entries
+    .filter((e) => e.isDirectory() && e.name.startsWith(BACKUP_PREFIX))
+    .map((e) => {
+      const abs = path.join(installDir, e.name);
+      return { abs, mtime: fs.statSync(abs).mtimeMs };
+    })
+    .sort((a, b) => b.mtime - a.mtime);
+  let removed = 0;
+  for (const old of backups.slice(BACKUPS_KEPT)) {
+    try {
+      fs.rmSync(old.abs, { recursive: true, force: true });
+      removed += 1;
+    } catch {
+      // A backup we cannot remove is not worth failing an update over.
+    }
+  }
+  return removed;
+}
+
+/**
+ * Destinations holding content this install did not put there: a
+ * hand-written AGENTS.md, an existing .gemini/settings.json, or a managed
+ * file the user has edited since.
+ *
+ * Judged on CONTENT, not on whether the manifest lists the path. Checking
+ * only for an unknown key protected the first install but not the second:
+ * once a file was recorded, re-running install overwrote the user's edits
+ * to it silently, while update - which compares hashes - preserved them.
+ * Two commands must not differ on whether they destroy your work.
+ */
+function collisions(plan: InstallPlan): string[] {
   const manifest = readManifest(plan.target.installDir, plan.target.agent);
-  const managed = new Set(Object.keys(manifest?.files ?? {}));
+  const recorded = manifest?.files ?? {};
   return plan.copies
     .map((copy) => manifestKey(plan.target.installDir, copy.to))
-    .filter(
-      (rel) =>
-        !managed.has(rel) &&
-        fs.existsSync(path.join(plan.target.installDir, rel)),
-    )
+    .filter((rel) => {
+      const abs = path.join(plan.target.installDir, rel);
+      if (!fs.existsSync(abs)) {
+        return false;
+      }
+      // No record at all, or on-disk content that is not what we last
+      // wrote there - either way it is the user's, not ours to discard.
+      return recorded[rel] === undefined || sha256(abs) !== recorded[rel];
+    })
     .sort();
 }
 
+/** Execute a plan and record installed files in a manifest. */
 export function executePlan(ctx: CliContext, plan: InstallPlan): void {
   const label = `${plan.target.agent} (${plan.target.scope})`;
-  const collisions = unmanagedCollisions(plan);
+  const collided = collisions(plan);
   if (ctx.dryRun) {
     ctx.log(`[dry-run] ${label}: would install ${plan.copies.length} files`);
     for (const copy of plan.copies.slice(0, 5)) {
@@ -190,9 +232,9 @@ export function executePlan(ctx: CliContext, plan: InstallPlan): void {
     if (plan.copies.length > 5) {
       ctx.log(`[dry-run]   ... and ${plan.copies.length - 5} more`);
     }
-    if (collisions.length > 0) {
+    if (collided.length > 0) {
       ctx.log(
-        `[dry-run] ${label}: would copy ${collisions.length} of your own file(s) aside first: ${collisions.join(", ")}`,
+        `[dry-run] ${label}: would copy ${collided.length} of your own file(s) aside first: ${collided.join(", ")}`,
       );
     }
     return;
@@ -201,11 +243,11 @@ export function executePlan(ctx: CliContext, plan: InstallPlan): void {
   // Copy anything of the user's aside before writing over it. Same shape as
   // the update path, so both commands treat the user's own work the same way.
   let backupDir: string | undefined;
-  if (collisions.length > 0) {
+  if (collided.length > 0) {
     backupDir = fs.mkdtempSync(
       path.join(plan.target.installDir, BACKUP_PREFIX),
     );
-    for (const rel of collisions) {
+    for (const rel of collided) {
       const backupPath = path.join(backupDir, rel);
       fs.mkdirSync(path.dirname(backupPath), { recursive: true });
       fs.copyFileSync(path.join(plan.target.installDir, rel), backupPath);
@@ -237,8 +279,9 @@ export function executePlan(ctx: CliContext, plan: InstallPlan): void {
   );
   ctx.log(`${label}: installed ${plan.copies.length} files`);
   if (backupDir !== undefined) {
+    pruneBackups(plan.target.installDir);
     ctx.log(
-      `${label}: your existing ${collisions.join(", ")} kept at ${path.basename(backupDir)}`,
+      `${label}: your existing ${collided.join(", ")} kept at ${path.basename(backupDir)}`,
     );
   }
 }

@@ -3,10 +3,12 @@ import path from "node:path";
 import type { CliContext } from "./context.js";
 import {
   BACKUP_PREFIX,
+  BACKUPS_KEPT,
   executePlan,
   type InstallPlan,
   manifestKey,
   manifestName,
+  pruneBackups,
   readManifest,
   sha256,
 } from "./install.js";
@@ -16,40 +18,6 @@ export interface UpdateResult {
   preserved: string[];
   backupDir?: string;
   prunedBackups?: number;
-}
-
-/**
- * How many backup directories to keep. Each one is a full copy of every
- * managed file, so without a cap they accumulate inside the user's project
- * forever - one per update, unnoticed and ungitignored.
- */
-export const BACKUPS_KEPT = 3;
-
-/** Remove all but the newest BACKUPS_KEPT backup directories. */
-export function pruneBackups(installDir: string): number {
-  let entries: fs.Dirent[];
-  try {
-    entries = fs.readdirSync(installDir, { withFileTypes: true });
-  } catch {
-    return 0;
-  }
-  const backups = entries
-    .filter((e) => e.isDirectory() && e.name.startsWith(BACKUP_PREFIX))
-    .map((e) => {
-      const abs = path.join(installDir, e.name);
-      return { abs, mtime: fs.statSync(abs).mtimeMs };
-    })
-    .sort((a, b) => b.mtime - a.mtime);
-  let removed = 0;
-  for (const old of backups.slice(BACKUPS_KEPT)) {
-    try {
-      fs.rmSync(old.abs, { recursive: true, force: true });
-      removed += 1;
-    } catch {
-      // A backup we cannot remove is not worth failing an update over.
-    }
-  }
-  return removed;
 }
 
 /**
