@@ -16,8 +16,25 @@ import {
 export interface UpdateResult {
   updated: number;
   preserved: string[];
+  removed: string[];
   backupDir?: string;
   prunedBackups?: number;
+}
+
+/** Drop directories left empty after a retired file was removed. */
+function pruneEmptyDirs(installDir: string, rel: string): void {
+  let dir = path.dirname(path.join(installDir, rel));
+  while (dir.startsWith(installDir) && dir !== installDir) {
+    try {
+      if (fs.readdirSync(dir).length > 0) {
+        return;
+      }
+      fs.rmdirSync(dir);
+    } catch {
+      return;
+    }
+    dir = path.dirname(dir);
+  }
 }
 
 /**
@@ -49,14 +66,34 @@ export function executeUpdate(
     }
   }
 
+  // Files this release no longer ships. The manifest is rebuilt from the new
+  // plan, so without this they drop out of the record while staying on disk:
+  // untracked forever, and invisible to doctor, which only walks manifest
+  // keys. Rename a skill file upstream and every existing install keeps the
+  // stale copy. Remove only what is still byte-identical to what we put
+  // there - anything edited since is the user's and stays.
+  const planned = new Set(
+    plan.copies.map((copy) => manifestKey(installDir, copy.to)),
+  );
+  const retired = Object.keys(manifest.files)
+    .filter((rel) => !planned.has(rel))
+    .filter((rel) => {
+      const abs = path.join(installDir, rel);
+      return fs.existsSync(abs) && sha256(abs) === manifest.files[rel];
+    })
+    .sort();
+
   if (ctx.dryRun) {
     ctx.log(
       `[dry-run] ${plan.target.agent}: would update ${managed.length} managed files` +
         (preserved.length > 0
           ? `, preserving ${preserved.length} user-edited: ${preserved.join(", ")}`
+          : "") +
+        (retired.length > 0
+          ? `, removing ${retired.length} no longer shipped: ${retired.join(", ")}`
           : ""),
     );
-    return { updated: managed.length, preserved };
+    return { updated: managed.length, preserved, removed: retired };
   }
 
   const backupDir = fs.mkdtempSync(path.join(installDir, BACKUP_PREFIX));
@@ -81,6 +118,16 @@ export function executeUpdate(
   };
   executePlan(ctx, filteredPlan);
 
+  for (const rel of retired) {
+    try {
+      fs.rmSync(path.join(installDir, rel), { force: true });
+      pruneEmptyDirs(installDir, rel);
+    } catch {
+      // A file we cannot remove is not worth failing the update over; it
+      // stays on disk exactly as it did before.
+    }
+  }
+
   // Preserved files keep their ORIGINAL recorded hash: the manifest must
   // keep remembering what the pack installed, so the file still counts as
   // user-edited (and stays protected) on every future update.
@@ -103,6 +150,11 @@ export function executeUpdate(
       `${plan.target.agent}: preserved user-edited files: ${preserved.join(", ")}`,
     );
   }
+  if (retired.length > 0) {
+    ctx.log(
+      `${plan.target.agent}: removed ${retired.length} file(s) this release no longer ships: ${retired.join(", ")}`,
+    );
+  }
   const prunedBackups = pruneBackups(installDir);
   ctx.log(`${plan.target.agent}: backup at ${backupDir}`);
   if (prunedBackups > 0) {
@@ -113,6 +165,7 @@ export function executeUpdate(
   return {
     updated: filteredPlan.copies.length,
     preserved,
+    removed: retired,
     backupDir,
     prunedBackups,
   };

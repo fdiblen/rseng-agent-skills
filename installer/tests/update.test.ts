@@ -126,6 +126,38 @@ describe("executeUpdate", () => {
   });
 });
 
+describe("retired files", () => {
+  it("removes files the new release no longer ships", () => {
+    // A renamed skill file used to stay on disk while dropping out of the
+    // manifest: untracked forever, and invisible to doctor.
+    executePlan(ctx(), planInstall(packRoot, target()));
+    const gone = path.join(target().installDir, ".cursor", "rules", "two.mdc");
+    expect(fs.existsSync(gone)).toBe(true);
+
+    fs.rmSync(path.join(packRoot, "dist/cursor/.cursor/rules/two.mdc"));
+    write("dist/cursor/.cursor/rules/renamed.mdc", "rule two v2\n");
+
+    const result = executeUpdate(ctx(), planInstall(packRoot, target()));
+    expect(result.removed).toEqual([path.join(".cursor", "rules", "two.mdc")]);
+    expect(fs.existsSync(gone)).toBe(false);
+    expect(
+      Object.keys(readManifest(target().installDir, "cursor")?.files ?? {}),
+    ).toContain(path.join(".cursor", "rules", "renamed.mdc"));
+  });
+
+  it("keeps a retired file the user has edited", () => {
+    executePlan(ctx(), planInstall(packRoot, target()));
+    const kept = path.join(target().installDir, ".cursor", "rules", "two.mdc");
+    fs.writeFileSync(kept, "my own notes\n");
+
+    fs.rmSync(path.join(packRoot, "dist/cursor/.cursor/rules/two.mdc"));
+    const result = executeUpdate(ctx(), planInstall(packRoot, target()));
+
+    expect(result.removed).toEqual([]);
+    expect(fs.readFileSync(kept, "utf8")).toBe("my own notes\n");
+  });
+});
+
 describe("backup retention", () => {
   it("keeps only the newest few and reports what it removed", () => {
     const dir = fs.mkdtempSync(path.join(os.tmpdir(), "rseng-prune-"));
