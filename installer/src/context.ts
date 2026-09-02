@@ -18,10 +18,15 @@ export interface CliContext {
  */
 export function resolvePackRoot(moduleDir?: string): string {
   const here = moduleDir ?? path.dirname(fileURLToPath(import.meta.url));
-  const candidates = [
-    path.resolve(here, "..", "content"),
-    path.resolve(here, "..", ".."),
-  ];
+  // In a checkout the live sources win over any bundled snapshot. prepack
+  // writes content/ and nothing used to remove it, so after a single
+  // `npm pack` the snapshot shadowed the repo and edits to skills/ silently
+  // stopped taking effect. A sibling src/ exists only in a checkout, never
+  // in the published package, which is the honest way to tell them apart.
+  const inCheckout = fs.existsSync(path.resolve(here, "..", "src"));
+  const bundled = path.resolve(here, "..", "content");
+  const checkout = path.resolve(here, "..", "..");
+  const candidates = inCheckout ? [checkout, bundled] : [bundled, checkout];
   for (const candidate of candidates) {
     if (
       fs.existsSync(path.join(candidate, "AGENTS.md")) &&

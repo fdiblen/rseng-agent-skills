@@ -29,7 +29,8 @@
     "test": "vitest run",
     "lint": "biome check src tests",
     "fix": "biome check --write src tests",
-    "prepack": "node scripts/prepack.mjs"
+    "prepack": "node scripts/prepack.mjs",
+    "postpack": "node scripts/postpack.mjs"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.5.12",
