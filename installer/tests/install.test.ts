@@ -166,6 +166,27 @@ describe("executePlan", () => {
     }
   });
 
+  it("does not back up a file that already holds the incoming bytes", () => {
+    // codex, cursor, copilot and antigravity all install into the project
+    // root and all write .agents/**, each under its own manifest. The second
+    // agent has no record of the first one's files, so a membership-only
+    // check treated 165 byte-identical files as the user's and copied them
+    // all into a backup directory.
+    // In the real pack the shared .agents tree is byte-identical between
+    // targets; make the fixture match that.
+    write("dist/codex/.agents/skills/rseng-testing/SKILL.md", "native skill\n");
+    const first = cursorTarget();
+    executePlan(ctx(), planInstall(packRoot, first));
+    const codex: AgentTarget = { ...first, agent: "codex" };
+    logs.length = 0;
+    executePlan(ctx(), planInstall(packRoot, codex));
+    const backups = fs
+      .readdirSync(destRoot)
+      .filter((n) => n.startsWith(".rseng-backup-"));
+    expect(backups).toEqual([]);
+    expect(logs.some((l) => l.includes("kept at"))).toBe(false);
+  });
+
   it("names the manifest after the agent so unified targets coexist", () => {
     const target = cursorTarget();
     executePlan(ctx(), planInstall(packRoot, target));

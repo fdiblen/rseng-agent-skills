@@ -213,18 +213,34 @@ export function pruneBackups(installDir: string): number {
 function collisions(plan: InstallPlan): string[] {
   const manifest = readManifest(plan.target.installDir, plan.target.agent);
   const recorded = manifest?.files ?? {};
-  return plan.copies
-    .map((copy) => manifestKey(plan.target.installDir, copy.to))
-    .filter((rel) => {
-      const abs = path.join(plan.target.installDir, rel);
-      if (!fs.existsSync(abs)) {
-        return false;
-      }
-      // No record at all, or on-disk content that is not what we last
-      // wrote there - either way it is the user's, not ours to discard.
-      return recorded[rel] === undefined || sha256(abs) !== recorded[rel];
-    })
-    .sort();
+  const out: string[] = [];
+  for (const copy of plan.copies) {
+    const rel = manifestKey(plan.target.installDir, copy.to);
+    const abs = path.join(plan.target.installDir, rel);
+    if (!fs.existsSync(abs)) {
+      continue;
+    }
+    const onDisk = sha256(abs);
+    if (recorded[rel] !== undefined && onDisk === recorded[rel]) {
+      continue; // ours, untouched
+    }
+    // Nothing is lost by overwriting a file that already holds exactly the
+    // bytes we are about to write. Without this, installing a second agent
+    // into a project root the first one shares copied 165 identical files
+    // into a backup directory and printed an 8 KB log line.
+    if (onDisk === sha256(copy.from)) {
+      continue;
+    }
+    out.push(rel);
+  }
+  return out.sort();
+}
+
+/** Name a few files, then a count - a full list can run to thousands of characters. */
+function summarise(paths: string[], shown = 3): string {
+  return paths.length <= shown
+    ? paths.join(", ")
+    : `${paths.slice(0, shown).join(", ")} and ${paths.length - shown} more`;
 }
 
 /** Execute a plan and record installed files in a manifest. */
@@ -241,7 +257,7 @@ export function executePlan(ctx: CliContext, plan: InstallPlan): void {
     }
     if (collided.length > 0) {
       ctx.log(
-        `[dry-run] ${label}: would copy ${collided.length} of your own file(s) aside first: ${collided.join(", ")}`,
+        `[dry-run] ${label}: would copy ${collided.length} of your own file(s) aside first: ${summarise(collided)}`,
       );
     }
     return;
@@ -288,7 +304,7 @@ export function executePlan(ctx: CliContext, plan: InstallPlan): void {
   if (backupDir !== undefined) {
     pruneBackups(plan.target.installDir);
     ctx.log(
-      `${label}: your existing ${collided.join(", ")} kept at ${path.basename(backupDir)}`,
+      `${label}: your existing ${summarise(collided)} kept at ${path.basename(backupDir)}`,
     );
   }
 }
