@@ -9,6 +9,7 @@ import {
   manifestName,
   planInstall,
   readManifest,
+  toPosixKey,
 } from "../src/install.js";
 
 let packRoot: string;
@@ -194,19 +195,16 @@ describe("executePlan", () => {
 });
 
 describe("manifest portability", () => {
-  it("records POSIX-style keys whatever the platform separator is", () => {
-    const target: AgentTarget = {
-      agent: "claude",
-      scope: "project",
-      marker: path.join(destRoot, ".claude"),
-      installDir: destRoot,
-      detected: true,
-    };
-    executePlan(ctx(), planInstall(packRoot, target));
-    const keys = Object.keys(readManifest(destRoot, "claude")?.files ?? {});
-    expect(keys.length).toBeGreaterThan(0);
-    expect(keys.some((k) => k.includes("\\"))).toBe(false);
-    expect(keys.some((k) => k.includes("/"))).toBe(true);
+  it("normalises a Windows-style relative path to a POSIX key", () => {
+    // Asserting "the manifest holds no backslashes" proved nothing here:
+    // path.relative already returns "/" on POSIX, so that test passed with
+    // the normalisation deleted. Feeding a backslash path straight in is
+    // the only version that can fail on this platform.
+    expect(toPosixKey("skills\\rseng-testing\\SKILL.md")).toBe(
+      "skills/rseng-testing/SKILL.md",
+    );
+    expect(toPosixKey("AGENTS.md")).toBe("AGENTS.md");
+    expect(toPosixKey(path.join("skills", "a", "b.md"))).toBe("skills/a/b.md");
   });
 
   it("migrates a manifest written with backslash keys", () => {

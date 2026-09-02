@@ -139,8 +139,15 @@ export function planInstall(
  * every managed file as missing. Normalising on the way in and out keeps a
  * manifest portable across the machines that share a project.
  */
+export function toPosixKey(rel: string): string {
+  // Split on backslash as well as the platform separator. Depending on
+  // path.sep alone made this a no-op on POSIX, so the behaviour was
+  // unobservable - and so untestable - anywhere but a Windows runner.
+  return rel.split(path.sep).join("/").split("\\").join("/");
+}
+
 export function manifestKey(from: string, to: string): string {
-  return path.relative(from, to).split(path.sep).join("/");
+  return toPosixKey(path.relative(from, to));
 }
 
 export const BACKUP_PREFIX = ".rseng-backup-";
