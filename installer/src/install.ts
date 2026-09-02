@@ -293,6 +293,26 @@ export function executePlan(ctx: CliContext, plan: InstallPlan): void {
   }
 }
 
+/**
+ * Resolve a manifest key against the install directory, refusing anything
+ * that escapes it.
+ *
+ * Manifest keys come from a JSON file that lives in the user's project, so
+ * they are untrusted input. A key like "../../etc/thing" made update's
+ * retired-file cleanup delete outside the install directory entirely. The
+ * separator on the prefix matters too: without it, installDir /tmp/x would
+ * accept a path under /tmp/xy.
+ */
+export function resolveInside(
+  installDir: string,
+  rel: string,
+): string | undefined {
+  const base = path.resolve(installDir);
+  const abs = path.resolve(base, rel);
+  const prefix = base.endsWith(path.sep) ? base : base + path.sep;
+  return abs.startsWith(prefix) ? abs : undefined;
+}
+
 export function readManifest(
   installDir: string,
   agent: string,
@@ -310,10 +330,13 @@ export function readManifest(
   return {
     ...parsed,
     files: Object.fromEntries(
-      Object.entries(parsed.files ?? {}).map(([key, hash]) => [
-        key.split("\\").join("/"),
-        hash,
-      ]),
+      Object.entries(parsed.files ?? {})
+        .map(([key, hash]) => [key.split("\\").join("/"), hash] as const)
+        // Drop anything that would resolve outside the install directory.
+        // Filtering here covers every consumer at once - update's deletion
+        // path, the collision backup, doctor - instead of trusting each to
+        // remember.
+        .filter(([key]) => resolveInside(installDir, key) !== undefined),
     ),
   };
 }

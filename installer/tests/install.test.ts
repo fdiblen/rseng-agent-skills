@@ -207,6 +207,28 @@ describe("manifest portability", () => {
     expect(toPosixKey(path.join("skills", "a", "b.md"))).toBe("skills/a/b.md");
   });
 
+  it("drops manifest keys that escape the install directory", () => {
+    // The manifest is a plain file in the user's project, so its keys are
+    // untrusted. A "../" key made update's retired-file cleanup delete
+    // outside the install directory; filtering on read covers every caller.
+    fs.mkdirSync(destRoot, { recursive: true });
+    fs.writeFileSync(
+      path.join(destRoot, manifestName("cursor")),
+      JSON.stringify({
+        version: "0.1.0",
+        files: {
+          "skills/ok.md": "a".repeat(64),
+          "../escape.txt": "b".repeat(64),
+          "../../deep/escape.txt": "c".repeat(64),
+          "/etc/passwd": "d".repeat(64),
+        },
+      }),
+    );
+    expect(Object.keys(readManifest(destRoot, "cursor")?.files ?? {})).toEqual([
+      "skills/ok.md",
+    ]);
+  });
+
   it("migrates a manifest written with backslash keys", () => {
     // The real regression: on POSIX path.relative already returns "/", so
     // asserting "no backslashes" passes with or without the normalisation.
