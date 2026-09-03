@@ -166,6 +166,41 @@ describe("executePlan", () => {
     }
   });
 
+  it("backs up an edit to a file it already manages", () => {
+    // The half the collision check was rewritten for. A membership-only
+    // test passes the sibling case above while silently destroying this
+    // one, so without this the whole guard can be deleted and the suite
+    // stays green.
+    const target = cursorTarget();
+    executePlan(ctx(), planInstall(packRoot, target));
+    const managed = path.join(
+      target.installDir,
+      ".cursor",
+      "rules",
+      "rseng-overview.mdc",
+    );
+    fs.writeFileSync(managed, "MY OWN EDIT\n");
+    logs.length = 0;
+    executePlan(ctx(), planInstall(packRoot, target));
+
+    const backup = fs
+      .readdirSync(target.installDir)
+      .find((n) => n.startsWith(".rseng-backup-"));
+    expect(backup).toBeDefined();
+    expect(
+      fs.readFileSync(
+        path.join(
+          target.installDir,
+          backup as string,
+          ".cursor",
+          "rules",
+          "rseng-overview.mdc",
+        ),
+        "utf8",
+      ),
+    ).toBe("MY OWN EDIT\n");
+  });
+
   it("does not back up a file that already holds the incoming bytes", () => {
     // codex, cursor, copilot and antigravity all install into the project
     // root and all write .agents/**, each under its own manifest. The second
