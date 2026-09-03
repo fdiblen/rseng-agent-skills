@@ -146,6 +146,14 @@ export function manifestKey(from: string, to: string): string {
 
 export const BACKUP_PREFIX = ".rseng-backup-";
 
+/**
+ * Written into a backup that holds the user's own content, so pruning can
+ * tell it apart from a routine copy of pack files. Without this, three
+ * no-op updates evicted the one backup containing a hand-written AGENTS.md
+ * and left three identical copies of our own files in its place.
+ */
+export const USER_CONTENT_MARKER = ".rseng-your-files";
+
 /** The pack's own version, read from whichever layout the CLI is running in. */
 export function packVersion(packRoot: string): string | undefined {
   for (const candidate of [
@@ -176,6 +184,10 @@ export function pruneBackups(installDir: string): number {
   }
   const backups = entries
     .filter((e) => e.isDirectory() && e.name.startsWith(BACKUP_PREFIX))
+    // Never evict a backup holding files we did not put there.
+    .filter(
+      (e) => !fs.existsSync(path.join(installDir, e.name, USER_CONTENT_MARKER)),
+    )
     .map((e) => {
       const abs = path.join(installDir, e.name);
       return { abs, mtime: fs.statSync(abs).mtimeMs };
@@ -263,6 +275,12 @@ export function executePlan(ctx: CliContext, plan: InstallPlan): void {
   if (collided.length > 0) {
     backupDir = fs.mkdtempSync(
       path.join(plan.target.installDir, BACKUP_PREFIX),
+    );
+    fs.writeFileSync(
+      path.join(backupDir, USER_CONTENT_MARKER),
+      "These are your files, saved before the pack overwrote them.\n" +
+        "Nothing here was installed by rseng-agent-skills, so it is never\n" +
+        "cleaned up automatically. Delete it once you no longer need it.\n",
     );
     for (const rel of collided) {
       const backupPath = path.join(backupDir, rel);

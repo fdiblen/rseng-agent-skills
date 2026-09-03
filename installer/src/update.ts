@@ -101,13 +101,31 @@ export function executeUpdate(
     return { updated: managed.length, preserved, removed: retired };
   }
 
-  const backupDir = fs.mkdtempSync(path.join(installDir, BACKUP_PREFIX));
-  for (const rel of managed) {
+  // Only back up what is actually about to change. Backing up all 181
+  // managed files on every run - including a complete no-op - meant three
+  // routine updates aged out the backup that held the user's own files.
+  const incoming = new Map(
+    plan.copies.map((c) => [manifestKey(installDir, c.to), c.from]),
+  );
+  const changing = managed.filter((rel) => {
     const abs = path.join(installDir, rel);
-    if (fs.existsSync(abs)) {
-      const backupPath = path.join(backupDir, rel);
-      fs.mkdirSync(path.dirname(backupPath), { recursive: true });
-      fs.copyFileSync(abs, backupPath);
+    if (!fs.existsSync(abs)) {
+      return true; // missing: update restores it
+    }
+    const from = incoming.get(rel);
+    return from === undefined || sha256(abs) !== sha256(from);
+  });
+
+  let backupDir: string | undefined;
+  if (changing.length > 0) {
+    backupDir = fs.mkdtempSync(path.join(installDir, BACKUP_PREFIX));
+    for (const rel of changing) {
+      const abs = path.join(installDir, rel);
+      if (fs.existsSync(abs)) {
+        const backupPath = path.join(backupDir, rel);
+        fs.mkdirSync(path.dirname(backupPath), { recursive: true });
+        fs.copyFileSync(abs, backupPath);
+      }
     }
   }
 
@@ -161,7 +179,9 @@ export function executeUpdate(
     );
   }
   const prunedBackups = pruneBackups(installDir);
-  ctx.log(`${plan.target.agent}: backup at ${backupDir}`);
+  if (backupDir !== undefined) {
+    ctx.log(`${plan.target.agent}: backup at ${backupDir}`);
+  }
   if (prunedBackups > 0) {
     ctx.log(
       `${plan.target.agent}: removed ${prunedBackups} older backup(s), keeping ${BACKUPS_KEPT}`,

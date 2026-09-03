@@ -10,6 +10,7 @@ import {
   planInstall,
   pruneBackups,
   readManifest,
+  USER_CONTENT_MARKER,
 } from "../src/install.js";
 import { executeUpdate } from "../src/update.js";
 
@@ -123,6 +124,38 @@ describe("executeUpdate", () => {
       /run install first/,
     );
     expect(readManifest(target().installDir, "cursor")).toBeUndefined();
+  });
+});
+
+describe("backups protect the user, not the pack", () => {
+  it("creates no backup when nothing will change", () => {
+    const before = fs
+      .readdirSync(target().installDir)
+      .filter((n) => n.startsWith(".rseng-backup-"));
+    const result = executeUpdate(ctx(), planInstall(packRoot, target()));
+    const after = fs
+      .readdirSync(target().installDir)
+      .filter((n) => n.startsWith(".rseng-backup-"));
+    expect(after).toEqual(before);
+    expect(result.backupDir).toBeUndefined();
+  });
+
+  it("never prunes a backup holding the user's own files", () => {
+    // install saves a pre-existing file aside; routine update backups used
+    // to age it out after three runs, destroying the only copy.
+    const dir = target().installDir;
+    const mine = path.join(dir, `${".rseng-backup-"}mine`);
+    fs.mkdirSync(mine, { recursive: true });
+    fs.writeFileSync(path.join(mine, USER_CONTENT_MARKER), "yours\n");
+    fs.writeFileSync(path.join(mine, "AGENTS.md"), "IRREPLACEABLE\n");
+    fs.utimesSync(mine, 1, 1); // oldest by far
+    for (let i = 0; i < BACKUPS_KEPT + 2; i += 1) {
+      const d = path.join(dir, `${".rseng-backup-"}pack${i}`);
+      fs.mkdirSync(d, { recursive: true });
+      fs.utimesSync(d, 1000 + i, 1000 + i);
+    }
+    pruneBackups(dir);
+    expect(fs.existsSync(path.join(mine, "AGENTS.md"))).toBe(true);
   });
 });
 
