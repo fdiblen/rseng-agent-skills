@@ -63,8 +63,11 @@ def _is_project_file(path: pathlib.Path, root: pathlib.Path) -> bool:
     checkout under ~/.local, say) and that must not hide the whole tree.
     """
     parts = path.relative_to(root).parts
+    # node_modules and site-packages are unambiguously other people's code.
+    # "vendor" is not - plenty of projects keep their own source there, and
+    # excluding it reported a confident clean pass on an unaudited tree.
     return not any(part.startswith(".") for part in parts) and not (
-        {"node_modules", "vendor", "site-packages"} & set(parts)
+        {"node_modules", "site-packages"} & set(parts)
     )
 
 
