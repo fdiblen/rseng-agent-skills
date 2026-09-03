@@ -50,12 +50,12 @@ beforeEach(() => {
   write("ATTRIBUTION.md", "credit\n");
   write("NOTICE", "credit\n");
   write("LICENSE-content", "credit\n");
-  write("dist/cursor/ATTRIBUTION.md", "credit\n");
-  write("dist/cursor/NOTICE", "credit\n");
-  write("dist/cursor/LICENSE-content", "credit\n");
-  write("dist/codex/ATTRIBUTION.md", "credit\n");
-  write("dist/codex/NOTICE", "credit\n");
-  write("dist/codex/LICENSE-content", "credit\n");
+  write("dist/cursor/.agents/ATTRIBUTION.md", "credit\n");
+  write("dist/cursor/.agents/NOTICE", "credit\n");
+  write("dist/cursor/.agents/LICENSE-content", "credit\n");
+  write("dist/codex/.agents/ATTRIBUTION.md", "credit\n");
+  write("dist/codex/.agents/NOTICE", "credit\n");
+  write("dist/codex/.agents/LICENSE-content", "credit\n");
   write("dist/cursor/.cursor/rules/rseng-overview.mdc", "rule one\n");
   write("dist/cursor/.cursor/rules/rseng-testing.mdc", "rule two\n");
   write("dist/cursor/.agents/skills/rseng-testing/SKILL.md", "native skill\n");

@@ -19,15 +19,12 @@ export function manifestName(agent: string): string {
  * happens to sit in a directory (uncommitted files, caches).
  *
  * The skill bodies are CC-BY-4.0 adaptations, so the credit and licence
- * text have to travel with them. gemini and antigravity copy a whole
- * dist/ tree and pick these up from its root; the targets below copy
- * selected subtrees, so they name the notices explicitly and land them
- * beside the skills rather than in the user's project root.
+ * text have to travel with them. The pipeline puts all three inside each
+ * bundle's .agents/, so every target that copies .agents carries them
+ * automatically. Only claude, which copies the repo's own skills/ tree,
+ * names them here.
  */
 const NOTICES = ["ATTRIBUTION.md", "NOTICE", "LICENSE-content"];
-
-const notices = (from: string, to: string) =>
-  NOTICES.map((name) => ({ from: `${from}/${name}`, to: `${to}/${name}` }));
 
 const SOURCES: Record<string, { from: string; to: string }[]> = {
   claude: [
@@ -39,12 +36,10 @@ const SOURCES: Record<string, { from: string; to: string }[]> = {
   copilot: [
     { from: "dist/copilot/.github", to: ".github" },
     { from: "dist/copilot/.agents", to: ".agents" },
-    ...notices("dist/copilot", ".agents"),
   ],
   cursor: [
     { from: "dist/cursor/.cursor", to: ".cursor" },
     { from: "dist/cursor/.agents", to: ".agents" },
-    ...notices("dist/cursor", ".agents"),
   ],
   codex: [
     { from: "dist/codex/AGENTS.md", to: "AGENTS.md" },
@@ -55,7 +50,6 @@ const SOURCES: Record<string, { from: string; to: string }[]> = {
     // layer that gemini gets. gemini only works because its source is the
     // whole dist/gemini tree.
     { from: "dist/codex/.codex", to: ".codex" },
-    ...notices("dist/codex", ".agents"),
   ],
   gemini: [{ from: "dist/gemini", to: "." }],
   // Antigravity has its own built tree, carrying AGENTS.md and no hook

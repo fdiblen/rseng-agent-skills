@@ -47,9 +47,9 @@ beforeEach(() => {
   write("dist/cursor/.cursor/rules/two.mdc", "rule two v1\n");
   write("dist/cursor/.agents/skills/rseng-testing/SKILL.md", "skill v1\n");
   // The notices travel with CC-BY content, so planInstall requires them.
-  write("dist/cursor/ATTRIBUTION.md", "credit\n");
-  write("dist/cursor/NOTICE", "credit\n");
-  write("dist/cursor/LICENSE-content", "credit\n");
+  write("dist/cursor/.agents/ATTRIBUTION.md", "credit\n");
+  write("dist/cursor/.agents/NOTICE", "credit\n");
+  write("dist/cursor/.agents/LICENSE-content", "credit\n");
   executePlan(ctx(), planInstall(packRoot, target()));
 });
 

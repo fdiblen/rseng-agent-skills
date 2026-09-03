@@ -34,7 +34,7 @@ def _structure_problems(dist_dir: Path, name: str, context: dict) -> list[str]:
         # The skill bodies are CC-BY-4.0 adaptations. A bundle that carries
         # them without the credit and the licence text cannot be
         # redistributed, so every target is required to ship all three.
-        *((name, 1) for name in NOTICE_FILES),
+        *((f".agents/{name}", 1) for name in NOTICE_FILES),
     ]
     expected: dict[str, list[tuple[str, int]]] = {
         "codex": unified
@@ -92,8 +92,13 @@ def build(repo_root: Path, only: list[str] | None = None) -> dict[str, list[Path
         target_dir.mkdir(parents=True)
         results[name] = TARGETS[name](repo_root, env, context, target_dir)
         for notice in NOTICE_FILES:
-            shutil.copyfile(repo_root / notice, target_dir / notice)
-            results[name].append(target_dir / notice)
+            # Beside the skills, not at the bundle root: gemini and
+            # antigravity copy the whole tree into the project root, and a
+            # root-level NOTICE or LICENSE-content reads as the user's own.
+            dest = target_dir / ".agents" / notice
+            dest.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(repo_root / notice, dest)
+            results[name].append(dest)
         problems.extend(check_target(target_dir))
         problems.extend(_structure_problems(dist_dir, name, context))
     if problems:
