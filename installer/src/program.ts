@@ -1,5 +1,14 @@
 import { Command } from "commander";
-import { buildContext, type CliContext } from "./context.js";
+import { buildContext, type CliContext, resolvePackRoot } from "./context.js";
+import { packVersion } from "./install.js";
+
+function cliVersion(): string {
+  try {
+    return packVersion(resolvePackRoot()) ?? "unknown";
+  } catch {
+    return "unknown";
+  }
+}
 
 export interface CommandArgs {
   /** Positional arguments in declaration order. */
@@ -18,7 +27,11 @@ export const program = new Command()
   .description(
     "Install research software engineering practice skills, into AI coding agents",
   )
-  .version("0.1.0")
+  // Read it rather than repeat it: the same drift the install manifest
+  // had, where a literal outlived the release it named. Guarded because
+  // resolvePackRoot throws when the content is missing, and --version
+  // should still answer.
+  .version(cliVersion())
   .option("--dry-run", "report planned changes without writing anything")
   .option("--pack-root <dir>", "override the pack content root (development)");
 

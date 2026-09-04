@@ -60,7 +60,10 @@ export function formatReport(report: DoctorReport): string {
     return `${label}: not installed`;
   }
   const parts = [
-    `${label}: v${report.installedVersion}`,
+    // Name the directory: several targets resolve to $HOME, and a user who
+    // looked in their project, found nothing, and assumed it had failed is
+    // the most common confusion this tool produces.
+    `${label} ${report.target.installDir}: v${report.installedVersion}`,
     report.stale ? `STALE (pack is v${report.packVersion})` : "up to date",
     `${report.intact.length} intact`,
   ];

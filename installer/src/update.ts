@@ -80,8 +80,26 @@ export function executeUpdate(
   const planned = new Set(
     plan.copies.map((copy) => manifestKey(installDir, copy.to)),
   );
+  // Another agent installed into the same directory may still own the
+  // file. codex, cursor, copilot, gemini and antigravity all install into
+  // the project root and all write .agents/**, each under its own
+  // manifest, so updating one used to delete files the others still list
+  // and leave them reporting MISSING with no remedy.
+  const claimedElsewhere = new Set<string>();
+  for (const entry of fs.readdirSync(installDir)) {
+    const other = /^\.rseng-agent-skills\.(.+)\.json$/.exec(entry)?.[1];
+    if (other === undefined || other === plan.target.agent) {
+      continue;
+    }
+    for (const rel of Object.keys(
+      readManifest(installDir, other)?.files ?? {},
+    )) {
+      claimedElsewhere.add(rel);
+    }
+  }
+
   const retired = Object.keys(manifest.files)
-    .filter((rel) => !planned.has(rel))
+    .filter((rel) => !planned.has(rel) && !claimedElsewhere.has(rel))
     .filter((rel) => {
       const abs = path.join(installDir, rel);
       return fs.existsSync(abs) && sha256(abs) === manifest.files[rel];

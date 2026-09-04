@@ -254,7 +254,9 @@ export function executePlan(ctx: CliContext, plan: InstallPlan): void {
   const label = `${plan.target.agent} (${plan.target.scope})`;
   const collided = collisions(plan);
   if (ctx.dryRun) {
-    ctx.log(`[dry-run] ${label}: would install ${plan.copies.length} files`);
+    ctx.log(
+      `[dry-run] ${label}: would install ${plan.copies.length} files into ${plan.target.installDir}`,
+    );
     for (const copy of plan.copies.slice(0, 5)) {
       ctx.log(`[dry-run]   ${path.relative(plan.target.installDir, copy.to)}`);
     }
@@ -289,14 +291,13 @@ export function executePlan(ctx: CliContext, plan: InstallPlan): void {
     }
   }
 
-  const manifestFiles: Record<string, string> = {};
-  for (const copy of plan.copies) {
-    fs.mkdirSync(path.dirname(copy.to), { recursive: true });
-    fs.copyFileSync(copy.from, copy.to);
-    manifestFiles[manifestKey(plan.target.installDir, copy.to)] = sha256(
-      copy.to,
-    );
-  }
+  // Start from what is already recorded and write the manifest whatever
+  // happens. Writing it only after the loop meant one EACCES partway
+  // through left files updated on disk under their OLD hashes: doctor
+  // then called them "user-edited", update preserved them, and re-pinned
+  // the stale hashes - a mislabelling no documented command could undo.
+  const previous = readManifest(plan.target.installDir, plan.target.agent);
+  const manifestFiles: Record<string, string> = { ...(previous?.files ?? {}) };
   const manifestPath = path.join(
     plan.target.installDir,
     manifestName(plan.target.agent),
@@ -304,19 +305,40 @@ export function executePlan(ctx: CliContext, plan: InstallPlan): void {
   // Record the version actually being installed. A literal here meant that
   // from the next release on, doctor compared an old constant against the
   // real pack version and called every fresh install stale.
-  fs.writeFileSync(
-    manifestPath,
-    `${JSON.stringify(
-      { version: packVersion(ctx.packRoot) ?? "unknown", files: manifestFiles },
-      null,
-      2,
-    )}\n`,
+  const writeManifest = () =>
+    fs.writeFileSync(
+      manifestPath,
+      `${JSON.stringify(
+        {
+          version: packVersion(ctx.packRoot) ?? "unknown",
+          files: manifestFiles,
+        },
+        null,
+        2,
+      )}\n`,
+    );
+  try {
+    for (const copy of plan.copies) {
+      fs.mkdirSync(path.dirname(copy.to), { recursive: true });
+      fs.copyFileSync(copy.from, copy.to);
+      manifestFiles[manifestKey(plan.target.installDir, copy.to)] = sha256(
+        copy.to,
+      );
+    }
+  } finally {
+    writeManifest();
+  }
+  ctx.log(
+    `${label}: installed ${plan.copies.length} files into ${plan.target.installDir}`,
   );
-  ctx.log(`${label}: installed ${plan.copies.length} files`);
   if (backupDir !== undefined) {
     pruneBackups(plan.target.installDir);
     ctx.log(
-      `${label}: your existing ${summarise(collided)} kept at ${path.basename(backupDir)}`,
+      // "kept at" read as though the file had been left alone. install
+      // deliberately restores pack content - that is how you get back to a
+      // clean copy - so say plainly that it was replaced, and where the
+      // previous version is. update is the command that preserves edits.
+      `${label}: replaced ${summarise(collided)} - your previous version is in ${path.basename(backupDir)} (use "update" to keep your edits instead)`,
     );
   }
 }
