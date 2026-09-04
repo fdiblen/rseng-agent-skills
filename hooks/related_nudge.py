@@ -10,7 +10,11 @@ import phase_lib
 
 data = phase_lib.read_event()
 phase_lib.record_hook("related_nudge")
+# The dict lookup below needs a hashable key, and the payload shape is
+# the host's to choose: a list here raised "unhashable type: 'list'".
 skill = (data.get("tool_input") or {}).get("skill", "")
+if not isinstance(skill, str):
+    sys.exit(0)
 related_file = pathlib.Path(__file__).parent / "related.json"
 if not skill or not related_file.is_file():
     sys.exit(0)

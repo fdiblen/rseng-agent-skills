@@ -33,7 +33,7 @@ def load_phases(script_dir):
 def coverage_text():
     if not COVERAGE.is_file():
         return ""
-    return COVERAGE.read_text(encoding="utf-8").lower()
+    return COVERAGE.read_text(encoding="utf-8", errors="replace").lower()
 
 
 def consulted_skills():
@@ -41,7 +41,7 @@ def consulted_skills():
         return set()
     return {
         line.strip()
-        for line in LEDGER.read_text(encoding="utf-8").splitlines()
+        for line in LEDGER.read_text(encoding="utf-8", errors="replace").splitlines()
         if line.strip().startswith("rseng-")
     }
 
@@ -49,12 +49,17 @@ def consulted_skills():
 def write_count():
     if not WRITES.is_file():
         return 0
-    return len(WRITES.read_text(encoding="utf-8").splitlines())
+    return len(WRITES.read_text(encoding="utf-8", errors="replace").splitlines())
 
 
 def record_write():
-    with WRITES.open("a", encoding="utf-8") as f:
-        f.write("w\n")
+    """Never raises: a read-only checkout must not traceback on the success
+    path, after the agent did everything the gate asked."""
+    try:
+        with WRITES.open("a", encoding="utf-8") as f:
+            f.write("w\n")
+    except OSError:
+        pass
 
 
 def _segment(text, cluster, all_clusters):
@@ -142,6 +147,26 @@ def undispositioned(phases, text, ledger):
         s
         for s in all_skills(phases)
         if s not in ledger and not mentions(s, text) and s not in covered
+    )
+
+
+def is_project_file(path, root):
+    """Does this path belong to the project rather than its tooling?
+
+    Judged on the path RELATIVE to the project: an absolute path can run
+    through a dot-directory that has nothing to do with the project, and
+    that must not hide the whole tree. Shared with the adapter self-check
+    so the two cannot drift - they already had, and the drift let a
+    dependency's tests under .venv/ satisfy the tests requirement.
+    """
+    try:
+        parts = (
+            pathlib.Path(path).resolve().relative_to(pathlib.Path(root).resolve()).parts
+        )
+    except ValueError:
+        return False
+    return not any(part.startswith(".") for part in parts) and not (
+        {"node_modules", "site-packages"} & set(parts)
     )
 
 
@@ -302,7 +327,19 @@ def read_event():
         data = json.load(sys.stdin)
     except (ValueError, OSError):
         return {}
-    return data if isinstance(data, dict) else {}
+    if not isinstance(data, dict):
+        return {}
+    # Normalise the two fields every caller reaches into. Guarding only the
+    # top-level shape left `"tool_input": "a string"` and a numeric
+    # tool_name raising AttributeError deep inside four different hooks -
+    # and in Claude Code a PreToolUse hook that exits non-zero-but-not-2
+    # shows its stderr to the user and stops enforcing, so the traceback
+    # was both the alarming message and a silent loss of the gate.
+    if not isinstance(data.get("tool_input"), dict):
+        data["tool_input"] = {}
+    if not isinstance(data.get("tool_name"), str):
+        data["tool_name"] = ""
+    return data
 
 
 def record_hook(name):

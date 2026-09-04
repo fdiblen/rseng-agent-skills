@@ -30,7 +30,7 @@ code = [
     p
     for ext in ("*.py", "*.R", "*.jl", "*.js", "*.ts", "*.c", "*.cpp", "*.f90")
     for p in cwd.rglob(ext)
-    if ".claude" not in p.parts and not p.parts[0].startswith(".")
+    if phase_lib.is_project_file(p, cwd)
 ]
 if not code:
     sys.exit(0)
@@ -47,9 +47,12 @@ if not pathlib.Path("aidecl.yaml").is_file():
     missing.append("aidecl.yaml AI usage declaration")
 if not pathlib.Path("CITATION.cff").is_file():
     missing.append("CITATION.cff citation metadata")
-if not [p for p in cwd.rglob("test_*.py") if ".claude" not in p.parts] and not list(
-    cwd.rglob("tests")
-):
+# Filtered like the code scan: a dependency's own tests under .venv/
+# used to satisfy this, so a project with none of its own was told at
+# Stop time that its practice artifacts were complete.
+if not [
+    p for p in cwd.rglob("test_*.py") if phase_lib.is_project_file(p, cwd)
+] and not [p for p in cwd.rglob("tests") if phase_lib.is_project_file(p, cwd)]:
     missing.append("tests (at least a smoke/reference-case check)")
 if not (
     list(cwd.glob("pyproject.toml"))
