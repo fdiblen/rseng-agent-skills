@@ -11,7 +11,10 @@
       "email": "faruk.diblen@resoftlabs.com"
     }
   ],
-  "license": "https://spdx.org/licenses/MIT",
+  "license": [
+    "https://spdx.org/licenses/MIT",
+    "https://spdx.org/licenses/CC-BY-4.0"
+  ],
   "codeRepository": "https://github.com/fdiblen/rseng-agent-skills",
   "programmingLanguage": [
     "Python",

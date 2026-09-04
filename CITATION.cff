@@ -15,7 +15,9 @@ authors:
   - family-names: Diblen
     given-names: Faruk
     email: faruk.diblen@resoftlabs.com
-license: MIT
+license:
+  - MIT
+  - CC-BY-4.0
 repository-code: https://github.com/fdiblen/rseng-agent-skills
 keywords:
   - research software
