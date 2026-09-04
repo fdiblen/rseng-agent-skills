@@ -13,27 +13,33 @@ import pathlib
 import sys
 
 import phase_lib
+import tool_event
 
 data = phase_lib.read_event()
 phase_lib.record_hook("gate")
-if pathlib.Path(".rseng-agent-skills-relaxed").exists():
-    sys.exit(0)
-if data.get("tool_name") not in ("Write", "Edit", "MultiEdit", "NotebookEdit"):
+
+# Ask tool_event rather than naming Claude's tools. hook_wiring ships this
+# gate to codex and gemini too, where the write tools are apply_patch,
+# shell, write_file and replace - none of which matched the old literal
+# list, so the gate allowed every write, never recorded one, and the
+# write counter it feeds left the Stop-time audit switched off as well.
+if not tool_event.is_write(data.get("tool_name") or ""):
     sys.exit(0)
 
-tool_input = data.get("tool_input") or {}
-target = tool_input.get("file_path") or tool_input.get("notebook_path") or ""
-target_path = pathlib.Path(target)
+targets = tool_event.targets(data) or [""]
+target_path = pathlib.Path(targets[0])
 
 # The enforcement infrastructure protects itself - agents may not
 # edit the hook scripts, their data files, or the machine-written
-# session records. Fail-closed here is safe: these writes are never
-# part of legitimate project work.
+# session records. Checked BEFORE the opt-out below: the agent is
+# allowed to create .rseng-agent-skills-relaxed, so testing the opt-out
+# first let it switch the gate off and then rewrite the gate.
 name = target_path.name
 parts = target_path.parts
-if (".claude" in parts and "rseng" in parts) or name in (
+if (any(d in parts for d in phase_lib.AGENT_DIRS) and "rseng" in parts) or name in (
     ".rseng-agent-skills-usage.log",
     ".rseng-agent-skills-writes",
+    ".rseng-hooks-fired.log",
 ):
     print(
         "rseng-agent-skills: this file records what the session did, so the "
@@ -42,6 +48,9 @@ if (".claude" in parts and "rseng" in parts) or name in (
         file=sys.stderr,
     )
     sys.exit(2)
+
+if pathlib.Path(".rseng-agent-skills-relaxed").exists():
+    sys.exit(0)
 
 # Only the coverage worklog (agent-authored by design) passes the
 # gate freely; .rseng-agent-skills-relaxed may be created deliberately.

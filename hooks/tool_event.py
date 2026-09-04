@@ -57,12 +57,15 @@ SHELL_PATH = re.compile(r"(?:^|\s|['\"><])([\w./-]+\.[A-Za-z0-9]{1,8})(?=$|\s|['
 PATCH_BODY = "*** Begin Patch"
 
 
-def is_write(tool_name: str) -> bool:
-    return (tool_name or "").lower() in WRITE_TOOLS
+def is_write(tool_name: object) -> bool:
+    # Coerce rather than assume: these are public helpers reached from a
+    # payload the agent host controls, and a numeric tool_name used to
+    # raise AttributeError on .lower().
+    return str(tool_name or "").lower() in WRITE_TOOLS
 
 
-def is_read(tool_name: str) -> bool:
-    return (tool_name or "").lower() in READ_TOOLS
+def is_read(tool_name: object) -> bool:
+    return str(tool_name or "").lower() in READ_TOOLS
 
 
 def targets(event: dict) -> list[str]:
