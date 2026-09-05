@@ -63,6 +63,12 @@
   reason: illustrative placeholder in the ai-declaration example
 - url: https://github.com/fdiblen/rseng-agent-skills
   reason: pack repository; goes live at the first release
+- url: https://github.com/fdiblen/rseng-agent-skills/compare/v0.1.0...HEAD
+  reason: keep-a-changelog compare link; needs the v0.1.0 tag on the remote
+- url: https://github.com/fdiblen/rseng-agent-skills/releases/tag/v0.1.0
+  reason: >-
+    keep-a-changelog release link; needs a published GitHub release object,
+    not just a pushed tag - drop this entry once the release is cut
 - url: https://ai-declaration.github.io/schema/v1/aidecl.schema.json
   reason: JSON Schema $id (identifier, not dereferenceable); file lives in the schema repo
 - url: https://codeberg.org/fairguard/fairguard-cli
