@@ -159,9 +159,18 @@ def main() -> None:
         updated = re.sub(r"\w+ subagents", f"{_spell(agents)} subagents", updated)
         if updated != raw:
             manifest.write_text(updated, encoding="utf-8")
+    # Every place the count appears in prose. It used to stop at the two
+    # user docs, so adding a skill left README's opening paragraph saying
+    # 67 while its own table two screens down said 68 - and CI's
+    # regenerate-and-diff passed, because the generator produced exactly
+    # that.
     for doc in (
         repo_root / "docs" / "user" / "quickstart.md",
         repo_root / "docs" / "user" / "installing.md",
+        repo_root / "README.md",
+        repo_root / "docs" / "index.md",
+        repo_root / "codemeta.json",
+        repo_root / ".zenodo.json",
     ):
         if doc.is_file():
             raw = doc.read_text(encoding="utf-8")

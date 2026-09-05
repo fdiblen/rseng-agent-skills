@@ -45,7 +45,7 @@ jobs:
       - name: README table and counts must match committed ones
         run: |
           uv run --directory pipeline python -m rseng_pipeline.readme_skills
-          git diff --exit-code README.md AGENTS.md hooks .claude-plugin docs/user/quickstart.md docs/user/installing.md
+          git diff --exit-code README.md AGENTS.md hooks .claude-plugin docs/user/quickstart.md docs/user/installing.md docs/index.md codemeta.json .zenodo.json
       - name: Generated references must match committed ones
         run: git diff --exit-code skills
       - name: Catalog hygiene

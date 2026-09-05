@@ -14,8 +14,6 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from .skill_directory import CLUSTERS
-
 BEGIN = "<!-- related-skills:begin -->"
 END = "<!-- related-skills:end -->"
 
@@ -580,8 +578,12 @@ def _block(related: dict[str, str]) -> str:
 
 
 def render(repo_root: Path) -> None:
-    known = {s for skills in CLUSTERS.values() for s in skills}
-    known.add("rseng-quality-framework")
+    # Take the universe from disk, not from CLUSTERS. Deriving it from the
+    # cluster map meant a skill missing from BOTH maps was invisible to this
+    # assertion: it rendered "sections for 67 skills", exited 0, and left the
+    # new one with no related-skills block and no entry in related.json.
+    # Three documents promise this fails loudly; now it does.
+    known = {p.parent.name for p in (repo_root / "skills").glob("rseng-*/SKILL.md")}
     missing = sorted(known - set(RELATED))
     assert not missing, f"skills without a RELATED entry: {missing}"
     unknown = sorted(set(RELATED) - known)
