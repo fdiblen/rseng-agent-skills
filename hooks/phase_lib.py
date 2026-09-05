@@ -293,7 +293,8 @@ def gitignore_gap(root):
         return (
             ".gitignore does not cover the agent working directories "
             f"present here ({', '.join(missing)}) - add them (plus .env "
-            "and .rseng-agent-skills-* session records); commit shared agent "
+            "plus .rseng-agent-skills-* session records and .rseng-backup-* "
+            "directories); commit shared agent "
             "config back explicitly only if the team intends it"
         )
     return None

@@ -52,7 +52,7 @@ it off.
 | Google Antigravity | GEMINI.md, AGENTS.md and `.agents/skills` | `npx rseng-agent-skills install antigravity` |
 | GitHub Copilot | repository instructions and `.agents/skills` | `npx rseng-agent-skills install copilot` |
 | Cursor | always-on overview rule and `.agents/skills` | `npx rseng-agent-skills install cursor` |
-| Zed, opencode, Goose and others | AGENTS.md and standard SKILL.md folders, which they read as-is | `npx rseng-agent-skills install claude` |
+| Zed, opencode, Goose and others | AGENTS.md and standard SKILL.md folders, which they read as-is | `npx rseng-agent-skills install codex` |
 
 Only the Claude plugin and the codex and gemini installs carry hooks;
 `install claude` copies skills, commands and subagents and adds none.
@@ -67,8 +67,11 @@ Three things keep the guidance in play rather than on a shelf:
 - A router skill holds the full directory, grouped into the same
   clusters used below, so nothing is reachable only by luck.
 - Where the agent supports hooks, they run at session start, after
-  writes and at stop, nudging toward the skills a change has made
-  relevant and checking the practice artifacts before the session ends.
+  writes and at stop. They are not advisory: the write gate holds the
+  first write until the start-of-work steps are recorded, and the stop
+  check holds the session until the practice artifacts are there or a
+  reason is recorded. Both explain themselves, and an empty
+  `.rseng-agent-skills-relaxed` file turns the whole layer off.
 
 Everything generated - each skill's references, the directory, the
 related-skills graph and the per-agent bundles - is derived from the

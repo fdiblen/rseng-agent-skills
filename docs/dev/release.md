@@ -122,7 +122,7 @@ The version number encodes the kind of change:
 Skill names are stable identifiers, so adding a skill does not break an
 existing install - which is why new skills are a minor, not a major, bump.
 
-## Release notes
+## What the release notes cover
 
 Release notes summarize what changed per skill - added skills, updated
 bodies, removed or renamed skills - plus any installer or adapter

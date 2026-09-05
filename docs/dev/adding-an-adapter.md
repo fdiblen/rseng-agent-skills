@@ -30,8 +30,9 @@ A target combines these however its agent needs. The three unified
 targets (Copilot, Cursor, Codex) follow one shape - a single thin
 rendered context file carrying the behavior rules, the unified
 `.agents/skills/` tree the agent reads natively, and the self-check
-folder. Gemini is the exception: it bundles an extension with
-translated TOML command files and its own `skills/` copy.
+folder. Gemini follows the same shape - the extension format it used to
+ship (gemini-extension.json, TOML commands, a bundled skills/ copy) is
+retired, and command-skills in the unified tree replace the TOML files.
 
 ## The render context
 
@@ -56,16 +57,14 @@ Create `pipeline/src/rseng_pipeline/targets/<name>.py`. Register the build
 function with the `@target("<name>")` decorator and return the list of files
 written. The two real patterns to copy from:
 
-Body translation (Gemini) - when the agent reuses the Claude command bodies
-but needs the Claude-specific placeholders rewritten. `gemini.py` renders an
-extension manifest, a `GEMINI.md` context file and one TOML file per command,
-running each command body through a small translator first:
+Body translation - when a target reuses the Claude command bodies but needs
+the Claude-specific placeholders rewritten. The unified targets render each
+command as a skill in `.agents/skills/`, rewriting the placeholders on the
+way (`adapters.py`):
 
 ```python
-def _gemini_body(body: str) -> str:
-    translated = body.replace("${CLAUDE_PLUGIN_ROOT}/", "the extension's ")
-    translated = translated.replace("$ARGUMENTS", "{{args}}")
-    return translated
+body = command["body"].replace("${CLAUDE_PLUGIN_ROOT}/", ".agents/")
+body = body.replace("$ARGUMENTS", "any arguments provided with the invocation")
 ```
 
 The placeholder rewrite is not optional: `${CLAUDE_PLUGIN_ROOT}` and
@@ -102,8 +101,8 @@ Put the target's Jinja templates under `adapters/templates/<name>/`. The
 environment has `trim_blocks` and `lstrip_blocks` on and keeps trailing
 newlines. Templates read from the render context; a per-skill or per-command
 template also sees the injected `skill` or `command` key. Match the output
-format the agent expects (frontmatter for Cursor rules, TOML for Gemini
-commands, plain Markdown for context files), and emit
+format the agent expects (frontmatter for Cursor rules and for rendered
+command-skills, plain Markdown for context files), and emit
 the `generated_note` banner near the top so the output is visibly generated.
 The existing folders under `adapters/templates/` are the reference for each
 format.
@@ -135,7 +134,7 @@ is covered automatically as long as its filenames match the conventions:
   `applyTo`; `*.mdc` must carry `description` and `alwaysApply`. Extend
   `_FRONTMATTER_REQUIRED` if your target introduces a new required-frontmatter
   file suffix.
-- **TOML / JSON validity** - `.toml` files must parse and carry `description`
+- **JSON validity** - rendered JSON must parse and carry `description`
   and `prompt`; `.json` files must parse.
 - **Leak detection** - any output containing `CLAUDE_PLUGIN_ROOT` fails, and
   `.md`/`.mdc` files containing `{%` are flagged as unrendered template

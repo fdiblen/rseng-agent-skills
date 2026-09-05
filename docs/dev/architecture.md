@@ -128,13 +128,12 @@ one always-on `.cursor/rules/rseng-overview.mdc` rule, Copilot
 `.github/copilot-instructions.md`. Each also ships the
 platform-neutral self-check (`rseng-check/rseng_check.py` plus the hooks'
 JSON data) that hookless agents are instructed to run before
-finishing. Gemini keeps its own extension layout: a manifest,
-`GEMINI.md`, TOML commands translated from the Claude command bodies,
-a bundled `skills/` copy and the self-check.
+finishing. Gemini ships `GEMINI.md`, the same unified tree and the
+self-check; its former extension layout is retired.
 
 After each target renders, two layers of checks run: format-driven
 output checks in `checks.py` (size budgets, frontmatter validity,
-TOML/JSON validity, placeholder-residue detection) and structural
+JSON validity, placeholder-residue detection) and structural
 completeness checks in `build_adapters` itself (every skill, every
 command-skill and the self-check must land where that platform reads
 them).

@@ -10,11 +10,20 @@ user scope differ, and how to install inside a devcontainer or CI job.
 npx rseng-agent-skills <command> [agents...] [--dry-run] [--pack-root <dir>]
 ```
 
+Node 20.12 or newer. Every command prints the absolute directory it wrote
+to - worth reading, since several agents install into your home directory
+rather than the project.
+
 Commands:
 
 - `install [agents...]` - install the pack. With no agent named, it installs
   only for the agents it detects. Naming one or more agents forces those,
   detected or not.
+  If a file it is about to write already exists and holds something other
+  than what the pack put there - a README you wrote, an `AGENTS.md` of your
+  own - your version is copied into an `.rseng-backup-*` directory first and
+  named in the output. Those backups carry a `.rseng-your-files` marker and
+  are never cleaned up automatically.
 - `update [agents...]` - refresh the managed files of an existing install,
   preserving any edits you made. It only acts on agents that already have an
   install (a manifest); if none exist it tells you to run `install` first.
@@ -66,10 +75,12 @@ tree at the project root. Each install records its own files in a
 per-agent manifest (`.rseng-agent-skills.<agent>.json`), so `update` and
 `doctor` track every agent separately even in the same directory.
 
-Claude Code has both a project and a user target. When you run
-`install claude`, both are forced, so the skills land in `.claude/skills/`
-and `~/.claude/skills/`. With a bare `install` (no agent named), only the
-scopes whose marker directory exists are written.
+Claude Code has both a project and a user target, and an install resolves
+to ONE of them: project scope when `.claude/` already exists, user scope
+(`~/.claude/`) otherwise. Name the one you want with `--scope project` or
+`--scope user`, or run the command twice to populate both. Every install
+line prints the absolute directory it wrote to, which is worth reading -
+several targets resolve to your home directory rather than the project.
 
 ## Google Antigravity
 
@@ -132,9 +143,10 @@ with the CLI:
 npx rseng-agent-skills install claude
 ```
 
-This copies the `skills/` folders into `.claude/skills/` (project) and
-`~/.claude/skills/` (user). The file route installs the skills only; the
-slash commands and auditor subagent come with the plugin.
+This copies the `skills/` folders into `.claude/skills/`, or into
+`~/.claude/skills/` when the project has no `.claude/` directory. The file
+route installs the slash commands and the subagents as well; the plugin
+route adds the session hooks on top.
 
 ## GitHub Copilot
 

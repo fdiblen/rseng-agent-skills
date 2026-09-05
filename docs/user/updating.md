@@ -28,6 +28,12 @@ Restrict the update to specific agents by naming them:
 npx rseng-agent-skills update copilot cursor
 ```
 
+`install` differs from `update` here, deliberately: `install` restores the
+pack's own copy of a file even when you have edited it, saving your version
+into a backup first and saying so. That is how you get back to a clean copy.
+Use `update` when you want your edits kept in place. A backup holding files
+that were yours carries a `.rseng-your-files` marker and is never pruned.
+
 ### What update actually does
 
 The update is deliberately conservative. It never blindly overwrites your
@@ -38,10 +44,14 @@ files:
 - User-edited files - files whose content no longer matches the recorded
   hash, meaning you changed them - are preserved and reported by name. Your
   edits win.
-- Before anything is written, the previous state of every managed file is
-  copied into a fresh backup directory created inside the install directory,
-  named with an `.rseng-backup-` prefix. On success the command prints the
-  backup location:
+- Files the new release no longer ships are removed, but only when their
+  content still matches what was installed. Anything you edited is left
+  alone, and a file another installed agent still claims is left alone too.
+  Removals are printed by name.
+- Before anything is written, the previous state of every file that will
+  actually change is copied into a fresh backup directory inside the install
+  directory, named with an `.rseng-backup-` prefix. An update that changes
+  nothing creates no backup. On success the command prints the location:
 
 ```
 claude: preserved user-edited files: rseng-testing/SKILL.md

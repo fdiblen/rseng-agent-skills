@@ -175,10 +175,9 @@ thin context file carrying the behavior rules - Copilot
 `.cursor/rules/rseng-overview.mdc` rule, Codex a size-checked
 `AGENTS.md` that also carries the compact full skill inventory
 (Codex's native startup skills listing has a context budget and may
-truncate). Gemini keeps its extension layout: a manifest, `GEMINI.md`,
-TOML commands translated from the Claude command bodies, and a
-`skills/` passthrough. Each target also carries the `rseng-check/`
-self-check folder.
+truncate). Gemini ships `GEMINI.md` plus the same unified tree; its former
+extension layout (manifest, TOML commands, bundled `skills/` copy) is
+retired. Each target also carries the `rseng-check/` self-check folder.
 
 ## checks.py
 
@@ -190,7 +189,8 @@ non-empty problem list fails the build. Checks are format-driven:
   32 KiB).
 - Required frontmatter fields for `.instructions.md`
   (`description`, `applyTo`) and `.mdc` (`description`, `alwaysApply`).
-- TOML validity plus required `description`/`prompt` for Gemini commands;
+- frontmatter validity plus a required `description` on every rendered
+  command-skill;
   JSON validity for `.json` files.
 - Residue checks: a leaked `CLAUDE_PLUGIN_ROOT` placeholder, or unrendered
   template/Liquid `{%` markers in `.md`/`.mdc` files.

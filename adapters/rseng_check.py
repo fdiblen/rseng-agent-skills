@@ -117,7 +117,7 @@ def main() -> int:
             missing.append(
                 ".gitignore missing the agent working directories present "
                 f"here ({', '.join(uncovered)}) - add them plus .env and "
-                ".rseng-agent-skills-* session records"
+                ".rseng-agent-skills-* session records and .rseng-backup-* directories"
             )
 
     def require(key: str, ok: bool, message: str) -> None:

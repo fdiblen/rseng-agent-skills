@@ -110,11 +110,14 @@ session records, not project content.
 
 ## Non-Claude platforms
 
-Other agents have no hook system, so the adapters ship the protocol
-as instructions plus `rseng-check/rseng_check.py`, a dependency-free
+Codex CLI and Gemini CLI have hook systems of their own, and
+`hook_wiring.py` emits their configuration alongside Claude's, mapping
+each platform's write tools onto the same gate. Copilot, Cursor and
+Antigravity have none, so for those the adapters ship the protocol as
+instructions plus `rseng-check/rseng_check.py`, a dependency-free
 self-check performing the Stop audit's file-level checks (artifact
-floor, worklog completeness, signals, inventory) that the context
-files instruct the agent to run before declaring a task complete.
+floor, worklog completeness, signals, inventory) that the context files
+instruct the agent to run before declaring a task complete.
 Everything ledger-based is Claude-only; mid-session gating exists
 only where a hook system does.
 

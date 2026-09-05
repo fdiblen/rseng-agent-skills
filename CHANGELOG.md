@@ -7,7 +7,7 @@ changes or new skills, major = restructuring).
 
 ## [Unreleased]
 
-## [0.1.0] - 2026-09-01
+## [0.1.0] - 2026-09-06
 
 First public release.
 
@@ -24,14 +24,23 @@ First public release.
   injection, phase status, a write gate requiring a ledger-backed
   coverage worklog, consultation nudges, relevance signals with
   privacy warnings, and a Stop-time quality audit.
-- One canonical .agents/skills tree consumed by Claude Code, GitHub
-  Copilot, Cursor, Codex CLI and Gemini CLI targets; per-agent
-  install via the npm installer (project-scope, nothing written to
-  user configuration).
+- One canonical .agents/skills tree consumed by the Claude Code, GitHub
+  Copilot, Cursor, Codex CLI, Gemini CLI and Google Antigravity targets;
+  per-agent install via the npm installer. An install resolves to project
+  scope when the agent's marker directory exists and user scope
+  otherwise, and prints the directory it wrote to.
 - Pipeline quality gates in CI: token budgets, frontmatter lint,
-  deterministic routing evals, reference link checks, offline hook
-  tests, and an agent-in-the-loop test harness with token/context
-  analytics (markdown and self-contained HTML reports).
+  reference link checks, hook behaviour tests, REUSE compliance, and a
+  zero-drift check that regenerates every derived file and fails if a
+  committed one differs.
+- Install and update protect what is already there: a file holding
+  something other than what the pack put there is copied into an
+  .rseng-backup-* directory before being written, update preserves files
+  you have edited, and update removes files a release no longer ships
+  only when their content is untouched and no other installed agent
+  still claims them.
+- Both licence texts, ATTRIBUTION.md and NOTICE travel with the content
+  into every bundle and every install destination.
 - Citation and archive metadata: CITATION.cff, codemeta.json,
   ATTRIBUTION.md and NOTICE crediting the RSQKit (EVERSE) and
   Netherlands eScience Center guide heritage.
