@@ -17,7 +17,9 @@ from .adapters import TARGETS, load_render_context, template_env
 from .checks import check_target
 
 #: Credit and licence files that travel with the content into every bundle.
-NOTICE_FILES = ("ATTRIBUTION.md", "NOTICE", "LICENSE-content")
+#: Every bundle ships MIT code (rseng-check) alongside CC-BY content,
+#: so both licence texts travel with it, not just the content one.
+NOTICE_FILES = ("ATTRIBUTION.md", "NOTICE", "LICENSE", "LICENSE-content")
 
 
 def _structure_problems(dist_dir: Path, name: str, context: dict) -> list[str]:

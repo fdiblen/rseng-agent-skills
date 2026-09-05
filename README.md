@@ -274,6 +274,21 @@ Semantic versioning against the pack content: patch = regenerated
 content only, minor = skill body updates or new skills, major = skills
 removed or renamed in a way that reshapes the skill set.
 
+## License
+
+Two licences, because there are two kinds of thing here. The code -
+the pipeline, the installer, the hooks, the self-check - is
+[MIT](LICENSE). The skill content under `skills/` and the documentation
+are [CC-BY-4.0](LICENSE-content), which asks that you keep the credit
+with the text if you redistribute it. Installing the pack places both
+licence texts and `ATTRIBUTION.md` alongside the content it copies, so
+the terms travel with the material.
+
+The bundled Research Software Directory snapshots under
+`skills/rseng-software-reuse/data/` carry no upstream licence and are
+redistributed as factual catalogue data; see
+[LICENSES/LicenseRef-RSD-metadata-undeclared.txt](LICENSES/LicenseRef-RSD-metadata-undeclared.txt).
+
 ## Attribution
 
 Part of the skill content was originally adapted from

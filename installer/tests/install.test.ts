@@ -49,12 +49,15 @@ beforeEach(() => {
   // The notices travel with CC-BY content, so planInstall requires them.
   write("ATTRIBUTION.md", "credit\n");
   write("NOTICE", "credit\n");
+  write("LICENSE", "mit\n");
   write("LICENSE-content", "credit\n");
   write("dist/cursor/.agents/ATTRIBUTION.md", "credit\n");
   write("dist/cursor/.agents/NOTICE", "credit\n");
+  write("dist/cursor/.agents/LICENSE", "mit\n");
   write("dist/cursor/.agents/LICENSE-content", "credit\n");
   write("dist/codex/.agents/ATTRIBUTION.md", "credit\n");
   write("dist/codex/.agents/NOTICE", "credit\n");
+  write("dist/codex/.agents/LICENSE", "mit\n");
   write("dist/codex/.agents/LICENSE-content", "credit\n");
   write("dist/cursor/.cursor/rules/rseng-overview.mdc", "rule one\n");
   write("dist/cursor/.cursor/rules/rseng-testing.mdc", "rule two\n");
@@ -79,6 +82,7 @@ describe("planInstall", () => {
     );
     expect(dests.sort()).toEqual([
       path.join(".agents", "ATTRIBUTION.md"),
+      path.join(".agents", "LICENSE"),
       path.join(".agents", "LICENSE-content"),
       path.join(".agents", "NOTICE"),
       path.join(".agents", "skills", "rseng-testing", "SKILL.md"),
@@ -101,6 +105,7 @@ describe("planInstall", () => {
     const dests = plan.copies.map((c) => path.relative(destRoot, c.to)).sort();
     expect(dests).toEqual([
       path.join(".agents", "ATTRIBUTION.md"),
+      path.join(".agents", "LICENSE"),
       path.join(".agents", "LICENSE-content"),
       path.join(".agents", "NOTICE"),
       path.join(".agents", "skills", "rseng-testing", "SKILL.md"),
@@ -127,6 +132,7 @@ describe("planInstall", () => {
       path.join("commands", "rseng-check.md"),
       path.join("skills", ".keep"),
       path.join("skills", "ATTRIBUTION.md"),
+      path.join("skills", "LICENSE"),
       path.join("skills", "LICENSE-content"),
       path.join("skills", "NOTICE"),
       path.join("skills", "rseng-testing", "SKILL.md"),
@@ -155,6 +161,7 @@ describe("executePlan", () => {
     const manifest = readManifest(target.installDir, "cursor");
     expect(Object.keys(manifest?.files ?? {}).sort()).toEqual([
       path.join(".agents", "ATTRIBUTION.md"),
+      path.join(".agents", "LICENSE"),
       path.join(".agents", "LICENSE-content"),
       path.join(".agents", "NOTICE"),
       path.join(".agents", "skills", "rseng-testing", "SKILL.md"),

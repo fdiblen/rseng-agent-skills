@@ -50,6 +50,7 @@ beforeEach(() => {
   // The notices travel with CC-BY content, so planInstall requires them.
   write("dist/cursor/.agents/ATTRIBUTION.md", "credit\n");
   write("dist/cursor/.agents/NOTICE", "credit\n");
+  write("dist/cursor/.agents/LICENSE", "mit\n");
   write("dist/cursor/.agents/LICENSE-content", "credit\n");
   executePlan(ctx(), planInstall(packRoot, target()));
 });
@@ -63,8 +64,8 @@ describe("executeUpdate", () => {
   it("replaces managed files with new content", () => {
     write("dist/cursor/.cursor/rules/one.mdc", "rule one v2\n");
     const result = executeUpdate(ctx(), planInstall(packRoot, target()));
-    // 3 content files plus the three CC-BY notices that ship beside them.
-    expect(result.updated).toBe(6);
+    // 3 content files plus the four licence/credit files beside them.
+    expect(result.updated).toBe(7);
     expect(result.preserved).toEqual([]);
     const updated = fs.readFileSync(
       path.join(target().installDir, ".cursor", "rules", "one.mdc"),

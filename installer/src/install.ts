@@ -24,7 +24,7 @@ export function manifestName(agent: string): string {
  * automatically. Only claude, which copies the repo's own skills/ tree,
  * names them here.
  */
-const NOTICES = ["ATTRIBUTION.md", "NOTICE", "LICENSE-content"];
+const NOTICES = ["ATTRIBUTION.md", "NOTICE", "LICENSE", "LICENSE-content"];
 
 const SOURCES: Record<string, { from: string; to: string }[]> = {
   claude: [

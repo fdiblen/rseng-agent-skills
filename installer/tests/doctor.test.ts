@@ -36,6 +36,7 @@ beforeEach(() => {
   // The notices travel with CC-BY content, so planInstall requires them.
   write("dist/cursor/.agents/ATTRIBUTION.md", "credit\n");
   write("dist/cursor/.agents/NOTICE", "credit\n");
+  write("dist/cursor/.agents/LICENSE", "mit\n");
   write("dist/cursor/.agents/LICENSE-content", "credit\n");
   executePlan(
     { dryRun: false, packRoot, log: () => {} },
@@ -55,6 +56,7 @@ describe("diagnose", () => {
     expect(report.stale).toBe(false);
     expect(report.intact.sort()).toEqual([
       path.join(".agents", "ATTRIBUTION.md"),
+      path.join(".agents", "LICENSE"),
       path.join(".agents", "LICENSE-content"),
       path.join(".agents", "NOTICE"),
       path.join(".agents", "skills", "rseng-testing", "SKILL.md"),
