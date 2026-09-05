@@ -42,6 +42,8 @@ jobs:
           uv run --directory pipeline python -m rseng_pipeline.skill_directory
           uv run --directory pipeline python -m rseng_pipeline.token_budget
           uv run --directory pipeline python -m rseng_pipeline.build_adapters
+      - name: Self-check behaviour tests
+        run: uv run --directory pipeline --group dev pytest ../adapters/tests -q
       - name: README table and counts must match committed ones
         run: |
           uv run --directory pipeline python -m rseng_pipeline.readme_skills

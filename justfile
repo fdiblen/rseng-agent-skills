@@ -26,6 +26,8 @@ check: lint
     uv run --directory pipeline python -m rseng_pipeline.skill_directory
     uv run --directory pipeline python -m rseng_pipeline.token_budget
     uv run --directory pipeline python -m rseng_pipeline.build_adapters
+    # after build_adapters: these run the self-check as dist/ ships it
+    uv run --directory pipeline --group dev pytest ../adapters/tests -q
     uv run --directory pipeline python -m rseng_pipeline.readme_skills
     git diff --exit-code README.md AGENTS.md hooks .claude-plugin docs skills codemeta.json .zenodo.json
     uv run --directory pipeline python -m rseng_pipeline.catalog check
