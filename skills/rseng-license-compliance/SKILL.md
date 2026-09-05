@@ -118,10 +118,12 @@ unlicensed while the decision pends; that blocks everyone.
 
 Make license state machine-checkable:
 
+<!-- REUSE-IgnoreStart -->
 - Per-file SPDX tags (`SPDX-License-Identifier: Apache-2.0`) plus
   LICENSES/ directory per the REUSE specification; `reuse lint`
   then verifies the whole repository mechanically - the license
   analogue of a test suite.
+<!-- REUSE-IgnoreEnd -->
 - Enforce policy in CI (rseng-ci-cd): a license-audit step that fails
   on new dependencies outside the allowlist, and reuse lint where
   adopted. Policy-as-code prevents the quiet arrival of an

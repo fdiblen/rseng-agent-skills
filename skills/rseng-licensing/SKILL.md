@@ -133,11 +133,13 @@ Once chosen, apply it concretely:
 - A single project-wide license is recommended for small-to-moderate
   codebases. Only split licenses across parts of a large codebase when there
   is a real need.
+<!-- REUSE-IgnoreStart -->
 - To license per file (mixed licenses, or fine-grained provenance), adopt
   REUSE: add a short SPDX identifier header to each file
   (`SPDX-License-Identifier: MIT`) so licensing is machine-readable and
   every file is unambiguously covered. Use SPDX identifiers whenever a tool
   or metadata field asks for the license.
+<!-- REUSE-IgnoreEnd -->
 - For software that also ships data or documentation, consider a LICENSE
   that specifies distinct terms for software, content, and metadata (for
   example code under an OSI license, docs under CC BY).
