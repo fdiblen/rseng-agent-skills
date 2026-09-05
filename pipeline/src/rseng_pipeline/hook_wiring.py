@@ -88,6 +88,25 @@ CONFIG_LOCATION = {
 }
 
 
+# Gemini CLI names its lifecycle events differently, and shipping
+# Claude's names to it produced a config the CLI loads and then ignores:
+# three of the five events never matched anything, so the gate never
+# ran, the nudges never ran, and the proactive layer was inert while
+# looking installed. This mapping is Gemini's own, read out of
+# packages/cli/src/commands/hooks/migrate.ts - what `gemini hooks
+# migrate` applies to a Claude config.
+#
+# Stop and SessionEnd both land on AfterAgent: the end-of-session check
+# has to be able to block, and Gemini's SessionEnd is advisory only.
+GEMINI_EVENTS = {
+    "UserPromptSubmit": "BeforeAgent",
+    "PreToolUse": "BeforeTool",
+    "PostToolUse": "AfterTool",
+    "Stop": "AfterAgent",
+    "SessionEnd": "AfterAgent",
+}
+
+
 def _rseng_root(agent: str) -> str:
     return f"{CONFIG_LOCATION[agent][0]}/rseng"
 
@@ -139,16 +158,18 @@ def hooks_config(agent: str, *, root: str | None = None) -> dict:
     # Codex and gemini end a session with SessionEnd; claude with Stop.
     end_event = "SessionEnd" if agent in ("codex", "gemini") else "Stop"
     config["hooks"][end_event] = [{"hooks": [run("quality_check.py")]}]
+
+    events = GEMINI_EVENTS if agent == "gemini" else {}
+    if events:
+        renamed: dict = {}
+        for name, entries in config["hooks"].items():
+            renamed.setdefault(events.get(name, name), []).extend(entries)
+        config["hooks"] = renamed
     return config
 
 
-def write_hooks(repo_root: Path, agent: str, target_dir: Path) -> list[Path]:
-    """Emit hooks.json and the scripts it runs, for one agent."""
-    if agent not in SUPPORTED:
-        return []
-    directory, filename, shared = CONFIG_LOCATION[agent]
-    config_dir = target_dir / directory
-    rseng_dir = config_dir / "rseng"
+def write_hook_scripts(repo_root: Path, rseng_dir: Path) -> list[Path]:
+    """Copy the hook scripts and their data into one directory."""
     rseng_dir.mkdir(parents=True, exist_ok=True)
     written = []
     for name in HOOK_SCRIPTS:
@@ -158,6 +179,16 @@ def write_hooks(repo_root: Path, agent: str, target_dir: Path) -> list[Path]:
         destination = rseng_dir / name
         destination.write_text(source.read_text(encoding="utf-8"), encoding="utf-8")
         written.append(destination)
+    return written
+
+
+def write_hooks(repo_root: Path, agent: str, target_dir: Path) -> list[Path]:
+    """Emit hooks.json and the scripts it runs, for one agent."""
+    if agent not in SUPPORTED:
+        return []
+    directory, filename, shared = CONFIG_LOCATION[agent]
+    config_dir = target_dir / directory
+    written = write_hook_scripts(repo_root, config_dir / "rseng")
     hooks_file = config_dir / filename
     body = hooks_config(agent)
     if shared and hooks_file.is_file():
