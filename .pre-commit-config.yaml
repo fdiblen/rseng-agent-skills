@@ -2,11 +2,8 @@ repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
     hooks:
-      # Fixture pages are verbatim upstream copies; keep their bytes intact.
       - id: trailing-whitespace
-        exclude: ^$
       - id: end-of-file-fixer
-        exclude: ^$
       - id: check-yaml
       - id: check-toml
       - id: check-added-large-files
