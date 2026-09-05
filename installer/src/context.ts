@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import readline from "node:readline/promises";
 import { fileURLToPath } from "node:url";
 
 /** Shared state every command receives. */
@@ -9,6 +10,36 @@ export interface CliContext {
   /** Root directory holding the pack content (skills/, adapters output). */
   packRoot: string;
   log: (message: string) => void;
+  /**
+   * Ask before doing something the user may not have pictured. Returns
+   * true without asking when there is nobody to ask - a CI run must not
+   * block on a prompt nobody will ever see.
+   */
+  confirm: (question: string) => Promise<boolean>;
+}
+
+/**
+ * Read a yes/no answer from the terminal.
+ *
+ * Answers on a non-TTY stdin: an install piped through a script has no
+ * one at the keyboard, and a prompt there is a hang rather than a
+ * question. Callers that must not proceed unattended check
+ * `process.stdin.isTTY` themselves.
+ */
+export async function askTerminal(question: string): Promise<boolean> {
+  if (!process.stdin.isTTY || !process.stdout.isTTY) {
+    return true;
+  }
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
+  try {
+    const answer = await rl.question(`${question} [y/N] `);
+    return /^y(es)?$/i.test(answer.trim());
+  } finally {
+    rl.close();
+  }
 }
 
 /**
@@ -44,10 +75,12 @@ export function buildContext(options: {
   dryRun?: boolean;
   packRoot?: string;
   log?: (message: string) => void;
+  confirm?: (question: string) => Promise<boolean>;
 }): CliContext {
   return {
     dryRun: options.dryRun ?? false,
     packRoot: options.packRoot ?? resolvePackRoot(),
     log: options.log ?? ((message) => console.log(message)),
+    confirm: options.confirm ?? askTerminal,
   };
 }

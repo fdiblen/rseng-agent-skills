@@ -31,6 +31,24 @@ npx rseng-agent-skills doctor      # check what landed and whether it is current
 `--dry-run` previews without writing, and `update` refreshes managed
 files while leaving your own edits alone.
 
+Bare `install` detects every agent it finds and installs for all of
+them, which for some targets means writing under `~/.claude`, `~/.gemini`
+or `~/.codex` rather than into the repository. It lists those paths and
+asks before writing outside the current project; `--yes` skips the
+question. See [docs/user/installing.md](docs/user/installing.md) for what
+each agent gets and where.
+
+Everything written is recorded in a per-agent manifest, so nothing is
+one-way:
+
+```bash
+npx rseng-agent-skills uninstall            # remove it again
+npx rseng-agent-skills uninstall --dry-run  # or just see what that would take
+```
+
+`uninstall` removes the files it installed and leaves anything you have
+edited since, naming what it kept.
+
 Then just start working. Or run `/rseng-kickoff` in a new project and
 `/rseng-check` in an existing one.
 
@@ -38,9 +56,10 @@ Nothing here pre-approves any tool or permission. Where hooks are
 installed your agent shows its normal one-time trust prompt for the hook
 file, exactly as it would for any project config - that is the agent
 asking, not the pack. On a first run the agent may also pause before its
-first write while it opens the relevant skills; that is the pack working,
-it resolves itself, and an empty `.rseng-agent-skills-relaxed` file turns
-it off.
+first write while it opens the relevant skills; that is the pack working
+and it resolves itself. If you want it off, create an empty
+`.rseng-agent-skills-relaxed` file yourself - the agent is not permitted
+to create it, so it cannot switch off its own checks.
 
 ## Agent support
 
