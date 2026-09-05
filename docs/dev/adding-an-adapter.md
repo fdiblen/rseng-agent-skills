@@ -30,9 +30,20 @@ A target combines these however its agent needs. The three unified
 targets (Copilot, Cursor, Codex) follow one shape - a single thin
 rendered context file carrying the behavior rules, the unified
 `.agents/skills/` tree the agent reads natively, and the self-check
-folder. Gemini follows the same shape - the extension format it used to
-ship (gemini-extension.json, TOML commands, a bundled skills/ copy) is
-retired, and command-skills in the unified tree replace the TOML files.
+folder. The `gemini` target follows the same shape; the TOML command
+format it used to ship is retired, and command-skills in the unified
+tree replace it.
+
+`gemini-extension` is the exception, and it is worth reading before you
+assume a new target can reuse `build_agents_skills` as-is. Gemini CLI
+loads extensions from `~/.gemini/extensions/<name>/` and requires
+`gemini-extension.json` in the root, reads their skills from `skills/`
+rather than `.agents/skills/`, and takes their hooks from
+`hooks/hooks.json` with `${extensionPath}`-relative commands. A bundle
+missing any of that installs without error and is then never loaded.
+
+Every target needs an entry in `_structure_problems`; a target with no
+entry is rejected rather than passing an empty check.
 
 ## The render context
 

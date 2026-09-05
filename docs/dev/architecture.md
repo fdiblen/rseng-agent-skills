@@ -128,8 +128,13 @@ one always-on `.cursor/rules/rseng-overview.mdc` rule, Copilot
 `.github/copilot-instructions.md`. Each also ships the
 platform-neutral self-check (`rseng-check/rseng_check.py` plus the hooks'
 JSON data) that hookless agents are instructed to run before
-finishing. Gemini ships `GEMINI.md`, the same unified tree and the
-self-check; its former extension layout is retired.
+finishing. Gemini has two targets: `gemini` is the workspace shape
+(`GEMINI.md`, the same unified tree, the self-check), and
+`gemini-extension` is what a user-scoped install needs -
+`gemini-extension.json` in the root, skills under `skills/`, hooks in
+`hooks/hooks.json`. Gemini CLI ignores any directory in
+`~/.gemini/extensions/` without that manifest, so the two shapes cannot
+be shared.
 
 After each target renders, two layers of checks run: format-driven
 output checks in `checks.py` (size budgets, frontmatter validity,

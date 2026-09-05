@@ -75,6 +75,19 @@ def _structure_problems(dist_dir: Path, name: str, context: dict) -> list[str]:
             ("AGENTS.md", 1),
             ("rseng-check/rseng_check.py", 1),
         ],
+        # Not `unified`: an extension's skills live in skills/, its hooks
+        # in hooks/hooks.json, and without gemini-extension.json in the
+        # root Gemini CLI never loads any of it.
+        "gemini-extension": notices
+        + [
+            ("gemini-extension.json", 1),
+            ("GEMINI.md", 1),
+            ("skills/*/SKILL.md", n_skills + n_cmd_skills),
+            ("skills/rseng-check/agents/openai.yaml", 1),
+            ("hooks/hooks.json", 1),
+            ("rseng/gate.py", 1),
+            ("rseng-check/rseng_check.py", 1),
+        ],
     }
     if name not in expected:
         # A target with no entry checked nothing at all, so a new adapter

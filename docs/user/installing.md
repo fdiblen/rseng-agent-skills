@@ -94,12 +94,13 @@ npx rseng-agent-skills install antigravity --scope user
 
 Antigravity (the IDE and the `agy` CLI) reads from several places. A
 project-scoped install writes the behaviour rules to `GEMINI.md` and
-`AGENTS.md`, the skills to `.agents/skills/`, project-wide rules to
-`.agents/rules/`, and the self-check to `rseng-check/`. Skill bodies are not
-loaded up front - the tree carries names and scopes, and a skill is opened
-when it becomes relevant. A user-scoped install puts the skills in
-`~/.gemini/config/skills/` instead, where they apply to every project on the
-machine. Slash commands, tools and subagents run natively.
+`AGENTS.md`, the skills to `.agents/skills/`, and the self-check to
+`rseng-check/`. Skill bodies are not loaded up front - the tree carries
+names and scopes, and a skill is opened when it becomes relevant. A
+user-scoped install puts the same tree under `~/.gemini/config/` (so the
+skills land in `~/.gemini/config/.agents/skills/`), where it applies to
+every project on the machine. Slash commands, tools and subagents run
+natively.
 
 ## Gemini CLI
 
@@ -111,10 +112,19 @@ npx rseng-agent-skills install gemini --scope user
 npx rseng-agent-skills install gemini --scope project
 ```
 
-For Gemini CLI the installer either provisions
-`~/.gemini/extensions/rseng-agent-skills/` as a bundled extension carrying the
-context file, the skill descriptions and the command workflows, or drops
-`.agents/skills/` and `GEMINI.md` straight into the current repository.
+The two scopes install different shapes, because Gemini CLI wants
+different things from an extension and from a workspace.
+
+A user-scoped install provisions `~/.gemini/extensions/rseng-agent-skills/`
+as a real extension: `gemini-extension.json` declaring the name and
+version, `GEMINI.md` as its context file, the skills under `skills/`,
+and the hooks in `hooks/hooks.json`. It applies to every project on the
+machine, and `gemini extensions disable rseng-agent-skills` turns it off
+without uninstalling anything.
+
+A project-scoped install drops `.agents/skills/` and `GEMINI.md`
+straight into the current repository, with hook config in
+`.gemini/settings.json`, and applies only there.
 
 ## Claude Code
 

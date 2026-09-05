@@ -52,6 +52,13 @@ const SOURCES: Record<string, { from: string; to: string }[]> = {
     { from: "dist/codex/.codex", to: ".codex" },
   ],
   gemini: [{ from: "dist/gemini", to: "." }],
+  // A user-scoped gemini install lands in ~/.gemini/extensions/<name>/,
+  // and Gemini CLI will not load a directory there without
+  // gemini-extension.json in its root. It also reads an extension's
+  // skills from skills/ rather than .agents/skills/, and its hooks from
+  // hooks/hooks.json. The workspace tree satisfies none of that, so it
+  // installed cleanly and was then ignored. Same pack, different bundle.
+  "gemini:user": [{ from: "dist/gemini-extension", to: "." }],
   // Antigravity has its own built tree, carrying AGENTS.md and no hook
   // config. This pointed at dist/gemini, so antigravity installs shipped
   // no AGENTS.md and pulled in gemini's hooks - which the README promises
@@ -96,7 +103,9 @@ export function planInstall(
   packRoot: string,
   target: AgentTarget,
 ): InstallPlan {
-  const sources = SOURCES[target.agent];
+  // Scope-specific first: only gemini needs one, and only for user scope.
+  const sources =
+    SOURCES[`${target.agent}:${target.scope}`] ?? SOURCES[target.agent];
   if (!sources) {
     throw new Error(`no install sources defined for agent ${target.agent}`);
   }

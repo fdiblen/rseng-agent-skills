@@ -67,9 +67,54 @@ beforeEach(() => {
   write("dist/codex/.agents/skills/rseng-testing/SKILL.md", "skill copy\n");
   write("dist/codex/rseng-check/rseng_check.py", "check script\n");
   write("dist/codex/.codex/hooks.json", '{"hooks":{}}\n');
+  write("dist/gemini/GEMINI.md", "workspace context\n");
+  write("dist/gemini/.agents/skills/rseng-testing/SKILL.md", "skill copy\n");
+  write("dist/gemini-extension/gemini-extension.json", '{"name":"x"}\n');
+  write("dist/gemini-extension/GEMINI.md", "extension context\n");
+  write("dist/gemini-extension/skills/rseng-testing/SKILL.md", "skill copy\n");
+  write("dist/gemini-extension/hooks/hooks.json", '{"hooks":{}}\n');
+});
 
+function geminiTarget(scope: "project" | "user"): AgentTarget {
+  return {
+    agent: "gemini",
+    scope,
+    marker: path.join(destRoot, "GEMINI.md"),
+    installDir: destRoot,
+    detected: true,
+  };
+}
+
+afterEach(() => {
+  fs.rmSync(packRoot, { recursive: true, force: true });
+  fs.rmSync(destRoot, { recursive: true, force: true });
+});
 
 describe("planInstall", () => {
+  it("gives a user-scoped gemini install the extension bundle", () => {
+    // ~/.gemini/extensions/<name>/ without gemini-extension.json is a
+    // directory Gemini CLI never loads, and an extension's skills live
+    // in skills/, not .agents/skills/. Both scopes shipped the workspace
+    // tree, so the user-scoped install was inert.
+    const dests = planInstall(packRoot, geminiTarget("user")).copies.map((c) =>
+      path.relative(destRoot, c.to),
+    );
+    expect(dests).toContain("gemini-extension.json");
+    expect(dests).toContain(path.join("skills", "rseng-testing", "SKILL.md"));
+    expect(dests).toContain(path.join("hooks", "hooks.json"));
+    expect(dests.some((d) => d.startsWith(".agents"))).toBe(false);
+  });
+
+  it("leaves a project-scoped gemini install as the workspace tree", () => {
+    const dests = planInstall(packRoot, geminiTarget("project")).copies.map(
+      (c) => path.relative(destRoot, c.to),
+    );
+    expect(dests).toContain(
+      path.join(".agents", "skills", "rseng-testing", "SKILL.md"),
+    );
+    expect(dests).not.toContain("gemini-extension.json");
+  });
+
   it("expands the cursor whitelist into file copies", () => {
     const plan = planInstall(packRoot, cursorTarget());
     const dests = plan.copies.map((c) =>
