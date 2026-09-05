@@ -41,10 +41,15 @@ def collect_urls(roots: list[Path]) -> dict[str, list[str]]:
     """Distinct URLs mapped to the files they appear in."""
     found: dict[str, list[str]] = {}
     for root in roots:
-        for path in sorted(root.rglob("*")):
+        # A root may be a single file: the citation and credit files sit
+        # outside any scanned directory, which is where a wrong DOI author
+        # name went unnoticed by every automated gate.
+        candidates = [root] if root.is_file() else sorted(root.rglob("*"))
+        for path in candidates:
             if not path.is_file() or path.suffix not in _SCAN_SUFFIXES:
                 continue
-            if any(part in _SKIP_PARTS for part in path.relative_to(root).parts):
+            base = root.parent if root.is_file() else root
+            if any(part in _SKIP_PARTS for part in path.relative_to(base).parts):
                 continue
             text = path.read_text(encoding="utf-8", errors="replace")
             for match in _URL_RE.finditer(text):
@@ -71,7 +76,20 @@ def main() -> None:
     roots = (
         [Path(arg) for arg in sys.argv[1:]]
         if len(sys.argv) > 1
-        else [repo_root / "dist", repo_root / "skills"]
+        else [
+            repo_root / "dist",
+            repo_root / "skills",
+            repo_root / "docs",
+            # The citation and credit files sat outside every automated
+            # gate, which is where a wrong DOI author name lived unnoticed.
+            repo_root / "README.md",
+            repo_root / "CHANGELOG.md",
+            repo_root / "ATTRIBUTION.md",
+            repo_root / "CITATION.cff",
+            repo_root / "codemeta.json",
+            repo_root / ".zenodo.json",
+            repo_root / "catalog.yml",
+        ]
     )
     roots = [root for root in roots if root.exists()]
 
