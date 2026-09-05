@@ -39,11 +39,15 @@ Checks that need only the manuscript text:
   (the statcheck R package automates this for standard reporting
   formats; the same arithmetic can be applied directly).
 - GRIM-style granularity: reported means of integer data with
-  known sample size are only possible on a discrete grid - a mean
-  of 3.48 from n=25 integer responses is arithmetically impossible.
-  Apply to means, and percentage/count consistency generally
-  (does 34% of n=170 yield a whole person?). The scrutiny R
-  package implements these granularity tests.
+  known sample size are only possible on a discrete grid. With
+  n=25 the grid is multiples of 1/25, so a reported mean of 3.47
+  is impossible (3.47 x 25 = 86.75, and 25 integer responses
+  cannot sum to that) while the neighbouring 3.48 is attainable.
+  Work out the grid before calling a value impossible - the
+  near-miss is the whole point of the test. Apply to means, and
+  to percentage/count consistency generally (does 34% of n=170
+  yield a whole person?). The scrutiny R package implements these
+  granularity tests.
 - Arithmetic on the page: totals that sum, percentages that reach
   100 within rounding, subgroup Ns that add to the total N,
   confidence intervals consistent with the point estimate and SE.
