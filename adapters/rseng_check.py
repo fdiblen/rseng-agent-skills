@@ -88,12 +88,22 @@ def main() -> int:
         print(f"rseng-check: not a directory: {args[0] if args else '.'}")
         return 2
     here = pathlib.Path(__file__).resolve().parent
+    # A checker that cannot find its own data must not report success. Both
+    # files are skipped-if-absent-shaped work: without phases.json the whole
+    # skill inventory and every cluster check iterate over nothing, and
+    # without signals.json all the relevance rules are skipped - and the
+    # script still printed "complete". That is a pass this tool did not earn.
     phases_file = here / "phases.json"
-    phases = (
-        json.loads(phases_file.read_text(encoding="utf-8"))
-        if phases_file.is_file()
-        else {}
-    )
+    signals_file = here / "signals.json"
+    no_data = [f.name for f in (phases_file, signals_file) if not f.is_file()]
+    if no_data:
+        print(
+            f"rseng-check: cannot run - {', '.join(no_data)} missing from "
+            f"{here}. This copy of the check is incomplete; reinstall the "
+            "pack rather than trusting its result."
+        )
+        return 2
+    phases = json.loads(phases_file.read_text(encoding="utf-8"))
 
     code = [
         p
@@ -181,67 +191,66 @@ def main() -> int:
 
     # Relevance signals: project contents that imply a skill require
     # that skill dispositioned (applied or reasoned n/a) in the worklog.
-    signals_file = here / "signals.json"
-    if signals_file.is_file():
-        rules = json.loads(signals_file.read_text(encoding="utf-8"))
-        all_files = [
-            p for p in root.rglob("*") if p.is_file() and _is_project_file(p, root)
-        ][:4000]
-        sources = [
-            p
-            for p in all_files
-            if p.suffix
-            in (
-                ".py",
-                ".R",
-                ".jl",
-                ".sh",
-                ".ipynb",
-                ".c",
-                ".h",
-                ".cpp",
-                ".cu",
-                ".cuh",
-                ".f",
-                ".f90",
-                ".F90",
-            )
-        ]
-        for rule in rules:
-            evidence = next(
-                (
-                    str(p)
-                    for pattern in rule.get("patterns", [])
-                    for p in all_files
-                    if p.match(pattern)
-                ),
-                None,
-            )
-            if evidence is None:
-                for regex in rule.get("content", []):
-                    pat = re.compile(regex)
-                    hit = next(
-                        (
-                            p
-                            for p in sources[:60]
-                            if pat.search(
-                                p.read_text(encoding="utf-8", errors="ignore")[:200_000]
-                            )
-                        ),
-                        None,
-                    )
-                    if hit:
-                        evidence = str(hit)
-                        break
-            if evidence is None:
-                continue
-            for skill in rule["skills"]:
-                if not mentions(skill, text):
-                    missing.append(
-                        f"{rule['name']} present ({evidence}) but {skill} has "
-                        "no coverage entry - apply it or record "
-                        f"'n/a: {skill} - <reason>'"
-                    )
+    # signals_file was proven present at startup.
+    rules = json.loads(signals_file.read_text(encoding="utf-8"))
+    all_files = [
+        p for p in root.rglob("*") if p.is_file() and _is_project_file(p, root)
+    ][:4000]
+    sources = [
+        p
+        for p in all_files
+        if p.suffix
+        in (
+            ".py",
+            ".R",
+            ".jl",
+            ".sh",
+            ".ipynb",
+            ".c",
+            ".h",
+            ".cpp",
+            ".cu",
+            ".cuh",
+            ".f",
+            ".f90",
+            ".F90",
+        )
+    ]
+    for rule in rules:
+        evidence = next(
+            (
+                str(p)
+                for pattern in rule.get("patterns", [])
+                for p in all_files
+                if p.match(pattern)
+            ),
+            None,
+        )
+        if evidence is None:
+            for regex in rule.get("content", []):
+                pat = re.compile(regex)
+                hit = next(
+                    (
+                        p
+                        for p in sources[:60]
+                        if pat.search(
+                            p.read_text(encoding="utf-8", errors="ignore")[:200_000]
+                        )
+                    ),
+                    None,
+                )
+                if hit:
+                    evidence = str(hit)
+                    break
+        if evidence is None:
+            continue
+        for skill in rule["skills"]:
+            if not mentions(skill, text):
+                missing.append(
+                    f"{rule['name']} present ({evidence}) but {skill} has "
+                    "no coverage entry - apply it or record "
+                    f"'n/a: {skill} - <reason>'"
+                )
 
     # Full inventory: every skill in the pack gets a disposition.
     inventory = sorted(
