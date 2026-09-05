@@ -124,6 +124,32 @@ def test_gate_refuses_to_let_the_session_edit_its_own_records(project):
         assert run_hook("gate", payload, project).returncode == 2, target
 
 
+def test_the_session_cannot_create_its_own_opt_out(project):
+    """The cheapest way to satisfy a gate is to delete the gate.
+
+    The opt-out was a normal file the agent could write, so one Write of
+    .rseng-agent-skills-relaxed switched off the phases, the ledger and the
+    stop-time audit for the rest of the session - without touching anything
+    the tamper check protects. It belongs to the user, not to the session.
+    """
+    payload = json.dumps(
+        {
+            "tool_name": "Write",
+            "tool_input": {"file_path": ".rseng-agent-skills-relaxed"},
+        }
+    )
+    result = run_hook("gate", payload, project)
+    assert result.returncode == 2
+    assert "the user's to create" in result.stderr
+
+
+def test_a_user_created_opt_out_still_relaxes_the_gate(project):
+    """Refusing to let the agent create it must not break the opt-out."""
+    (project / ".rseng-agent-skills-relaxed").write_text("")
+    payload = json.dumps({"tool_name": "Write", "tool_input": {"file_path": "a.py"}})
+    assert run_hook("gate", payload, project).returncode == 0
+
+
 def test_the_opt_out_does_not_unlock_the_hook_scripts(project):
     """The opt-out is one file the agent is allowed to create, so it must
     not also be the way to reach the enforcement code."""

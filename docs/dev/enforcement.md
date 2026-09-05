@@ -100,9 +100,14 @@ consultation.
 - `.rseng-agent-skills-coverage.md` - the phased worklog (agent-written).
 - `.rseng-agent-skills-usage.log` - the consultation ledger (hook-written).
 - `.rseng-agent-skills-writes` - the approved-write counter (hook-written).
-- `.rseng-agent-skills-relaxed` - create this file to disable the gate, the
-  status line and the Stop audit entirely. This is the documented
-  escape hatch for sessions where enforcement is unwanted.
+- `.rseng-agent-skills-relaxed` - the user creates this file to disable
+  the gate, the status line and the Stop audit entirely. It is the
+  documented escape hatch for sessions where enforcement is unwanted,
+  and the gate refuses writes that would create it: while the session
+  could create it too, the cheapest way to satisfy the gate was to
+  delete the gate, and one Write bought the rest of the session.
+  A collaborator committing this file to a shared repository disables
+  enforcement for everyone, so it belongs in `.git/info/exclude`.
 
 Advise users to keep these out of version control via
 `.git/info/exclude` (or delete them when the work ships); they are
