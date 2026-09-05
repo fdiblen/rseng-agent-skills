@@ -248,10 +248,8 @@ GENERATION TIME, and a review question afterwards (rseng-code-review:
 
 ## Working with this skill
 
-The generated references.md beside this file carries the source
-citations, the quality-indicator checklist (codemeta completeness,
-scholarly archival) and the verified external links behind these
-checklists.
+The generated references.md beside this file lists the source material
+and pointers.
 
 Learn more (verified):
   - https://citation-file-format.github.io - Citation File Format

@@ -7,7 +7,8 @@ description: >-
   scheduling (CATS), the GREENER principles and the Software Carbon Intensity
   metric. Use when the user asks about the carbon or energy cost of their
   computations, wants to make workloads greener, mentions sustainability of
-  computing, Use PROACTIVELY when planning large training runs, simulations or
+  computing, CodeCarbon, CATS or the Software Carbon Intensity metric. Use
+  PROACTIVELY when planning large training runs, simulations or
   parameter sweeps - footprint measurement is worthless retrospectively.
   (Keeping the software project itself alive is
   rseng-maintenance-sustainability; making code faster is

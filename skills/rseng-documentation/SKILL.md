@@ -243,9 +243,8 @@ gaming hazards).
 
 ## Working with this skill
 
-The generated references.md beside this file carries the source
-citations, the documentation quality-indicator checklist, and links
-to the upstream pages with full examples behind the checklists above.
+The generated references.md beside this file lists the source material
+and pointers.
 
 Learn more (verified):
   - https://www.writethedocs.org/guide/ - Write the Docs

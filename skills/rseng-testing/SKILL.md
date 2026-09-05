@@ -184,7 +184,9 @@ with 30 parallel runners). Use these strategies:
 
 - Prefer pairwise testing over the full matrix. Ensuring every pair of
   parameter values appears in at least one job cuts ~2,800 combinations to
-  ~60-100 jobs (~20-30 min) while keeping all 2-way interaction coverage.
+  ~100-150 jobs (~30-45 min) while keeping all 2-way interaction coverage;
+  100 is the floor here, since every one of the 10x10 compiler/CUDA pairs
+  needs a job of its own.
   Generate jobs with a library such as `allpairspy`; random sampling
   (~200 jobs) is a weaker fallback.
 - Encode exclusion rules to drop known-incompatible combinations (e.g. an

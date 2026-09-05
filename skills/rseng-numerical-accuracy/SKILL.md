@@ -39,7 +39,7 @@ elsewhere, because the numbers ARE the result.
   missing, invalid or bug (rseng-data-management's missing-data
   discipline). Silent NaN propagation into published numbers is the
   classic silent failure.
-- Integer-degrading operations (subtracting nearly equal numbers -
+- Precision-degrading operations (subtracting nearly equal numbers -
   catastrophic cancellation; summing numbers of very different
   magnitude) lose precision structurally; restructure the formula
   (e.g. use expm1/log1p, two-pass variance algorithms) rather than
