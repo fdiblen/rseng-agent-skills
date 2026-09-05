@@ -30,13 +30,22 @@ def _structure_problems(dist_dir: Path, name: str, context: dict) -> list[str]:
     n_commands = len(context["commands"])
     target = dist_dir / name
     n_cmd_skills = n_commands - 1  # rseng-panel stays Claude-only
-    unified = [
+    # The skill bodies are CC-BY-4.0 adaptations. A bundle that carries
+    # them without the credit and the licence text cannot be
+    # redistributed, so every target is required to ship all four.
+    # Spelled out rather than derived from NOTICE_FILES: that constant
+    # is what the copy loop below iterates, so checking against it
+    # checked the writer against itself - dropping LICENSE-content
+    # from every bundle built green.
+    notices = [
+        (".agents/ATTRIBUTION.md", 1),
+        (".agents/NOTICE", 1),
+        (".agents/LICENSE", 1),
+        (".agents/LICENSE-content", 1),
+    ]
+    unified = notices + [
         (".agents/skills/*/SKILL.md", n_skills + n_cmd_skills),
         (".agents/skills/rseng-check/agents/openai.yaml", 1),
-        # The skill bodies are CC-BY-4.0 adaptations. A bundle that carries
-        # them without the credit and the licence text cannot be
-        # redistributed, so every target is required to ship all three.
-        *((f".agents/{name}", 1) for name in NOTICE_FILES),
     ]
     expected: dict[str, list[tuple[str, int]]] = {
         "codex": unified
@@ -67,8 +76,12 @@ def _structure_problems(dist_dir: Path, name: str, context: dict) -> list[str]:
             ("rseng-check/rseng_check.py", 1),
         ],
     }
+    if name not in expected:
+        # A target with no entry checked nothing at all, so a new adapter
+        # that shipped an empty directory built green.
+        return [f"{name}: no structure expectations defined for this target"]
     problems = []
-    for pattern, count in expected.get(name, []):
+    for pattern, count in expected[name]:
         found = len(list(target.glob(pattern)))
         if found != count:
             problems.append(f"{name}: {pattern} has {found} files, expected {count}")
