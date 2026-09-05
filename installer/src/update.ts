@@ -157,8 +157,9 @@ export function executeUpdate(
       (copy) => !preserved.includes(manifestKey(installDir, copy.to)),
     ),
   };
-  executePlan(ctx, filteredPlan);
-
+  // Remove retired files BEFORE the manifest is written. executePlan prunes
+  // records for files that are absent, so deleting afterwards left their
+  // hashes recorded and doctor reporting them MISSING for good.
   for (const rel of retired) {
     try {
       fs.rmSync(path.join(installDir, rel), { force: true });
@@ -168,6 +169,8 @@ export function executeUpdate(
       // stays on disk exactly as it did before.
     }
   }
+
+  executePlan(ctx, filteredPlan);
 
   // Preserved files keep their ORIGINAL recorded hash: the manifest must
   // keep remembering what the pack installed, so the file still counts as

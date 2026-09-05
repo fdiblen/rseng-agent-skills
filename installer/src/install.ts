@@ -75,7 +75,9 @@ function walkFiles(root: string): string[] {
     withFileTypes: true,
     recursive: true,
   })) {
-    if (entry.isFile()) {
+    // Skip symlinks: readdir(recursive) follows directory links, which
+    // would pull files from outside the pack tree into the copy plan.
+    if (entry.isFile() && !entry.isSymbolicLink()) {
       out.push(path.join(entry.parentPath, entry.name));
     }
   }
@@ -243,7 +245,7 @@ function collisions(plan: InstallPlan): string[] {
 }
 
 /** Name a few files, then a count - a full list can run to thousands of characters. */
-function summarise(paths: string[], shown = 3): string {
+export function summarise(paths: string[], shown = 3): string {
   return paths.length <= shown
     ? paths.join(", ")
     : `${paths.slice(0, shown).join(", ")} and ${paths.length - shown} more`;
@@ -305,20 +307,41 @@ export function executePlan(ctx: CliContext, plan: InstallPlan): void {
   // Record the version actually being installed. A literal here meant that
   // from the next release on, doctor compared an old constant against the
   // real pack version and called every fresh install stale.
-  const writeManifest = () =>
+  const writeManifest = () => {
+    // Drop records for files that are no longer on disk. Seeding from the
+    // previous manifest keeps a partial failure honest, but it also carried
+    // forward keys for files update had just retired - so doctor accused a
+    // healthy install of MISSING files, permanently, with no command that
+    // repaired it. Pruning here also heals a manifest already in that state.
+    const live = Object.fromEntries(
+      Object.entries(manifestFiles).filter(([rel]) =>
+        fs.existsSync(path.join(plan.target.installDir, rel)),
+      ),
+    );
     fs.writeFileSync(
       manifestPath,
       `${JSON.stringify(
-        {
-          version: packVersion(ctx.packRoot) ?? "unknown",
-          files: manifestFiles,
-        },
+        { version: packVersion(ctx.packRoot) ?? "unknown", files: live },
         null,
         2,
       )}\n`,
     );
+  };
   try {
     for (const copy of plan.copies) {
+      // A symlinked destination directory would send pack content outside
+      // the project. Checked per file, since the symlink may be planted
+      // between one copy and the next.
+      if (
+        resolveInside(
+          plan.target.installDir,
+          manifestKey(plan.target.installDir, copy.to),
+        ) === undefined
+      ) {
+        throw new Error(
+          `refusing to write outside ${plan.target.installDir}: ${copy.to}`,
+        );
+      }
       fs.mkdirSync(path.dirname(copy.to), { recursive: true });
       fs.copyFileSync(copy.from, copy.to);
       manifestFiles[manifestKey(plan.target.installDir, copy.to)] = sha256(
@@ -357,10 +380,37 @@ export function resolveInside(
   installDir: string,
   rel: string,
 ): string | undefined {
-  const base = path.resolve(installDir);
-  const abs = path.resolve(base, rel);
+  const base = realpath(path.resolve(installDir));
+  const target = realpath(path.resolve(base, rel));
   const prefix = base.endsWith(path.sep) ? base : base + path.sep;
-  return abs.startsWith(prefix) ? abs : undefined;
+  return target === base || target.startsWith(prefix) ? target : undefined;
+}
+
+/**
+ * Resolve symlinks, following the chain as far as the path exists.
+ *
+ * A lexical path.resolve() is not containment: a directory symlink INSIDE
+ * the install directory passes a prefix test while pointing anywhere on
+ * disk, so a manifest key of "legit-dir/config.txt" deleted a file outside
+ * the project entirely. Paths that do not exist yet are resolved through
+ * their nearest existing ancestor, which is what makes this usable for
+ * destinations as well as for files already there.
+ */
+function realpath(target: string): string {
+  let head = target;
+  const tail: string[] = [];
+  for (;;) {
+    try {
+      return path.join(fs.realpathSync(head), ...tail.reverse());
+    } catch {
+      const up = path.dirname(head);
+      if (up === head) {
+        return target;
+      }
+      tail.push(path.basename(head));
+      head = up;
+    }
+  }
 }
 
 export function readManifest(

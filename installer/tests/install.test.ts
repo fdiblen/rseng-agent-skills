@@ -67,12 +67,7 @@ beforeEach(() => {
   write("dist/codex/.agents/skills/rseng-testing/SKILL.md", "skill copy\n");
   write("dist/codex/rseng-check/rseng_check.py", "check script\n");
   write("dist/codex/.codex/hooks.json", '{"hooks":{}}\n');
-});
 
-afterEach(() => {
-  fs.rmSync(packRoot, { recursive: true, force: true });
-  fs.rmSync(destRoot, { recursive: true, force: true });
-});
 
 describe("planInstall", () => {
   it("expands the cursor whitelist into file copies", () => {
@@ -268,6 +263,47 @@ describe("manifest portability", () => {
     );
     expect(toPosixKey("AGENTS.md")).toBe("AGENTS.md");
     expect(toPosixKey(path.join("skills", "a", "b.md"))).toBe("skills/a/b.md");
+  });
+
+  it("drops manifest keys that escape through a symlinked directory", () => {
+    // A lexical prefix check is not containment: a directory symlink INSIDE
+    // the install dir passes it while pointing anywhere on disk, which let a
+    // crafted manifest delete a file outside the project entirely.
+    const outside = fs.mkdtempSync(path.join(os.tmpdir(), "rseng-outside-"));
+    try {
+      fs.writeFileSync(path.join(outside, "precious.txt"), "keep me\n");
+      fs.mkdirSync(destRoot, { recursive: true });
+      fs.symlinkSync(outside, path.join(destRoot, "legit-dir"));
+      fs.writeFileSync(
+        path.join(destRoot, manifestName("cursor")),
+        JSON.stringify({
+          version: "0.1.0",
+          files: {
+            "skills/ok.md": "a".repeat(64),
+            "legit-dir/precious.txt": "b".repeat(64),
+          },
+        }),
+      );
+      expect(
+        Object.keys(readManifest(destRoot, "cursor")?.files ?? {}),
+      ).toEqual(["skills/ok.md"]);
+    } finally {
+      fs.rmSync(outside, { recursive: true, force: true });
+    }
+  });
+
+  it("refuses to install through a symlinked destination directory", () => {
+    const outside = fs.mkdtempSync(path.join(os.tmpdir(), "rseng-outside-"));
+    try {
+      fs.mkdirSync(destRoot, { recursive: true });
+      fs.symlinkSync(outside, path.join(destRoot, ".agents"));
+      expect(() =>
+        executePlan(ctx(), planInstall(packRoot, cursorTarget())),
+      ).toThrow(/refusing to write outside/);
+      expect(fs.readdirSync(outside)).toEqual([]);
+    } finally {
+      fs.rmSync(outside, { recursive: true, force: true });
+    }
   });
 
   it("drops manifest keys that escape the install directory", () => {
