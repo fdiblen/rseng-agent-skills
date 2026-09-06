@@ -6,6 +6,7 @@ import {
   manifestName,
   pruneEmptyDirs,
   readManifest,
+  resolveInside,
   sha256,
   summarise,
 } from "./install.js";
@@ -86,7 +87,15 @@ export function executeUninstall(
   }
 
   for (const rel of doomed) {
-    const abs = path.join(target.installDir, rel);
+    // Re-resolve immediately before deleting, as executePlan does before
+    // each copy. The manifest was validated when it was read, but the
+    // confirmation prompt sits between that and this loop - a whole
+    // interactive wait in which a directory component named in the
+    // manifest can be swapped for a symlink pointing anywhere.
+    const abs = resolveInside(target.installDir, rel);
+    if (!abs) {
+      continue;
+    }
     try {
       fs.rmSync(abs, { force: true });
     } catch {

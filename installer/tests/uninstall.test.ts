@@ -4,7 +4,12 @@ import path from "node:path";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import type { AgentTarget } from "../src/agents.js";
 import type { CliContext } from "../src/context.js";
-import { executePlan, manifestName, planInstall } from "../src/install.js";
+import {
+  executePlan,
+  manifestName,
+  planInstall,
+  sha256,
+} from "../src/install.js";
 import { executeUninstall, planUninstall } from "../src/uninstall.js";
 
 let packRoot: string;
@@ -162,5 +167,44 @@ describe("executeUninstall", () => {
     );
     executeUninstall(ctx(), planUninstall(target()));
     expect(logs.join("\n")).toContain("rseng-testing");
+  });
+});
+
+describe("deletion containment", () => {
+  it("re-resolves each path at delete time, not only at plan time", () => {
+    // The manifest is validated when it is READ, but the confirmation
+    // prompt sits between that and the deletion loop - a whole
+    // interactive wait in which a directory component can be swapped for
+    // a symlink. executePlan re-checks before every copy; this must too.
+    const outside = fs.mkdtempSync(path.join(os.tmpdir(), "rseng-outside-"));
+    try {
+      fs.writeFileSync(path.join(outside, "precious.txt"), "keep me\n");
+      install();
+
+      const rel = path.join("legit", "precious.txt");
+      const legit = path.join(destRoot, "legit");
+      fs.mkdirSync(legit);
+      fs.writeFileSync(path.join(legit, "precious.txt"), "keep me\n");
+
+      // Record it while the directory is real, so the plan accepts it.
+      const manifestPath = path.join(destRoot, manifestName("codex"));
+      const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
+      manifest.files[
+        path.join("legit", "precious.txt").split(path.sep).join("/")
+      ] = sha256(path.join(legit, "precious.txt"));
+      fs.writeFileSync(manifestPath, JSON.stringify(manifest));
+      const plan = planUninstall(target());
+      expect(plan.managed).toContain(rel.split(path.sep).join("/"));
+
+      // Now swap the directory for a symlink, as an attacker would
+      // during the confirm wait.
+      fs.rmSync(legit, { recursive: true });
+      fs.symlinkSync(outside, legit);
+
+      executeUninstall(ctx(), plan, { force: true });
+      expect(fs.existsSync(path.join(outside, "precious.txt"))).toBe(true);
+    } finally {
+      fs.rmSync(outside, { recursive: true, force: true });
+    }
   });
 });
