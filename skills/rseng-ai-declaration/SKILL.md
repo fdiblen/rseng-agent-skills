@@ -298,17 +298,17 @@ projects, so naming only the model omits half of what shaped the work.
 
 ```yaml
     - name: rseng-agent-skills
-      type: guidance      # a pack consulted, not a model
+      type: standalone    # a pack consulted, not a model. Use a value
+                          # from the schema's enum - CI validates it
       version: "0.1.0"    # the installed version, never "latest"
       skills_consulted: [rseng-testing, rseng-citation-metadata]
 ```
 
 Pin the version, and list only the skills actually consulted - naming
-all of them overstates the guidance in force. Do not add a `url:` back
-to a guidance pack's home page unless the project's own authors ask for
-it: a declaration records what shaped the work, and a tool that writes
-links to itself into every project that uses it is advertising under
-the cover of provenance.
+all of them overstates the guidance in force. Leave out a `url:` back
+to the pack's home page unless the project's authors want it: a tool
+that writes links to itself into every project is advertising, not
+provenance.
 
 ## Working with this skill
 

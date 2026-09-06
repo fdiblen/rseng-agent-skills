@@ -57,7 +57,7 @@ honestly if the project is not there yet.
 
 ## The JOSS paper: the user writes it
 
-Short by design (typically 250-1000 words): summary for
+Short by design (750-1750 words): summary for
 non-specialists, statement of need, rough state of the field
 (neighboring tools and how this differs - rseng-discovery and
 rseng-software-reuse habits help here), acknowledgements, references

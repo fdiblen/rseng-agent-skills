@@ -83,9 +83,12 @@ Set up a workflow with these steps:
   `schedule`. Pick the events that match how the team collaborates.
 - Select a runner OS with `runs-on:` (Ubuntu, Windows, or macOS); use a
   matrix when the software must work across several.
-- Reuse marketplace actions instead of hand-rolling steps: pin
+- Reuse marketplace actions instead of hand-rolling steps:
   `actions/checkout` to check out the code and `actions/setup-python`
-  (or the relevant language setup) to provision the toolchain.
+  (or the relevant language setup) to provision the toolchain. A major
+  tag like `@v7` is readable but mutable; pinning means a full commit
+  SHA with the tag in a trailing comment, which is what
+  rseng-security asks for on third-party actions.
 - Store credentials and API keys as repository secrets; never inline them
   in the workflow file.
 - After pushing, read results in the Actions tab: the run graph shows job
@@ -101,11 +104,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       - name: Setup Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v7
         with:
-          python-version: '3.10'
+          python-version: '3.13'
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
