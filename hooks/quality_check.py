@@ -43,8 +43,6 @@ if not list(cwd.glob("README*")):
     missing.append("README with purpose and how-to-run")
 if not list(cwd.glob("LICENSE*")):
     missing.append("LICENSE (unlicensed code legally blocks all reuse)")
-if not pathlib.Path("aidecl.yaml").is_file():
-    missing.append("aidecl.yaml AI usage declaration")
 if not pathlib.Path("CITATION.cff").is_file():
     missing.append("CITATION.cff citation metadata")
 # Filtered like the code scan: a dependency's own tests under .venv/
@@ -122,7 +120,21 @@ if absent:
         f".rseng-agent-skills-coverage.md: {shown}"
     )
 
+# aidecl.yaml is a suggestion, not part of the floor. README, LICENSE,
+# CITATION.cff and tests are community consensus for research software;
+# the AI Declaration Format is one specific format, maintained by this
+# pack's author's organisation. Blocking a session until the author's own
+# format is present is not a quality check, whatever its merits.
+suggestions = []
+if not pathlib.Path("aidecl.yaml").is_file():
+    suggestions.append(
+        "consider an aidecl.yaml AI usage declaration (see "
+        "rseng-ai-declaration) - suggested, not required"
+    )
+
 if not missing:
+    if suggestions:
+        print("rseng-agent-skills: " + suggestions[0], file=sys.stderr)
     sys.exit(0)
 print(
     "rseng-agent-skills: a last pass before finishing. These practice "

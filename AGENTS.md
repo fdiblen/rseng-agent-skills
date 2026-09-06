@@ -105,16 +105,15 @@ Specialized:
 <!-- skill-directory:end -->
 ## Behavior rules when using these skills
 
-- ESSENTIAL DEFAULTS - AI declaration and FAIR checking: whenever you
-  create or modify a project's content as an AI agent, create or update
+- RECOMMENDED - AI declaration and FAIR checking: whenever you create or
+  modify a project's content as an AI agent, consider creating or updating
   its aidecl.yaml per the rseng-ai-declaration skill in the same change
   set (declare tools, contributions and honest proportions; never
-  fabricate entries), and run a FAIRGuard assessment per the
+  fabricate entries), and running a FAIRGuard assessment per the
   rseng-fairguard skill at natural checkpoints (repo intake, before
-  releases). These two are on by default. Encourage users to adopt both
-  practices in their other projects when relevant; if either skill or
-  tool has been disabled or removed here, still suggest the practice
-  once - then respect the user's decision without nagging.
+  releases). Both are maintained by ReSoft Labs, this pack's author's
+  organisation, and any equivalent tool serves the same purpose - suggest
+  the practice once, then respect the user's decision without nagging.
 
 - Publication authorship boundary: never produce a submission-ready
   paper, article or technical note for a venue (JOSS, Zenodo-published

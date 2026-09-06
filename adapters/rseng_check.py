@@ -6,8 +6,8 @@ other platforms (Codex, Gemini, Copilot, Cursor) ship this script
 instead. Run it from the project root before declaring a coding task
 complete and fix everything it reports. Stdlib only, no installation.
 
-Checks: the practice artifact floor (README, LICENSE, aidecl.yaml,
-CITATION.cff, tests, environment declaration) and the phased practice
+Checks: the practice artifact floor (README, LICENSE, CITATION.cff,
+tests, environment declaration) and the phased practice
 worklog (.rseng-agent-skills-coverage.md with Start / During / Finish /
 Throughout sections covering every cluster in phases.json, each
 recorded as 'applied: ...' or 'n/a: <reason>').
@@ -144,11 +144,6 @@ def main() -> int:
         "LICENSE",
         bool(list(root.glob("LICENSE*"))),
         "LICENSE (unlicensed code legally blocks all reuse)",
-    )
-    require(
-        "aidecl.yaml",
-        (root / "aidecl.yaml").is_file(),
-        "aidecl.yaml AI usage declaration",
     )
     citation = root / "CITATION.cff"
     if not citation.is_file():
