@@ -31,7 +31,7 @@
         ]
       },
       {
-        "matcher": "Write|Edit|MultiEdit|NotebookEdit",
+        "matcher": "Write|Edit|MultiEdit|NotebookEdit|Bash",
         "hooks": [
           {
             "type": "command",
@@ -51,7 +51,7 @@
         ]
       },
       {
-        "matcher": "Write|Edit|MultiEdit|NotebookEdit|Read",
+        "matcher": "Write|Edit|MultiEdit|NotebookEdit|Bash|Read",
         "hooks": [
           {
             "type": "command",

@@ -36,16 +36,20 @@ HOOK_SCRIPTS = (
 # Which tool names mean "a file was written" for each agent, as a hook
 # matcher. Claude matches tool names directly; codex names its tools
 # shell / apply_patch / exec_command.
+# Bash is in the write matchers because a shell is a write tool: the
+# matcher only decides whether the hook RUNS, and tool_event.shell_writes
+# then decides whether the command actually changes anything. Leaving it
+# out meant `cat > app.py <<EOF` was never seen by the gate at all.
 WRITE_MATCHERS = {
-    "claude": "Write|Edit|MultiEdit|NotebookEdit",
+    "claude": "Write|Edit|MultiEdit|NotebookEdit|Bash",
     "codex": "apply_patch|shell|exec_command",
-    "cursor": "Write|Edit|MultiEdit|edit_file|create_file|search_replace",
+    "cursor": "Write|Edit|MultiEdit|edit_file|create_file|search_replace|Bash",
     "gemini": "write_file|replace|edit|run_shell_command",
 }
 READ_MATCHERS = {
-    "claude": "Write|Edit|MultiEdit|NotebookEdit|Read",
+    "claude": "Write|Edit|MultiEdit|NotebookEdit|Bash|Read",
     "codex": "apply_patch|shell|exec_command|read_file",
-    "cursor": "Write|Edit|MultiEdit|edit_file|create_file|Read|read_file",
+    "cursor": "Write|Edit|MultiEdit|edit_file|create_file|Bash|Read|read_file",
     "gemini": "write_file|replace|edit|run_shell_command|read_file",
 }
 # The tool an agent uses to pull in a skill, if it has one. Codex has
