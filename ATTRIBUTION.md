@@ -66,6 +66,14 @@ Two external tools the skills instruct agents to use, neither bundled here:
 - FAIRGuard - https://www.fairguard.org
 - AI Declaration Format - https://ai-declaration.org
 
+Both are maintained by ReSoft Labs, which is this pack's author's
+organisation. That is stated here rather than left to be discovered: a
+pack that recommends its author's own tools should say so, the same way
+it credits EVERSE and the Netherlands eScience Center for the material
+it adapted. Both are openly specified and any equivalent tool serves the
+same purpose - the skills default to these because the author built
+them, not because they are the only option.
+
 ## Status
 
 This is an independent, unofficial adaptation. It is not published or

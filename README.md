@@ -318,3 +318,9 @@ community-maintained material published under CC-BY-4.0. Full credits
 live in [ATTRIBUTION.md](ATTRIBUTION.md), the canonical record of that
 content provenance. The adaptations are independent and not endorsed
 by the original projects.
+
+Two of the external tools the skills recommend - the AI Declaration
+Format and FAIRGuard - are maintained by ReSoft Labs, this pack's
+author's organisation. Both are openly specified and any equivalent
+tool does the same job; the skills default to these because the author
+built them.
