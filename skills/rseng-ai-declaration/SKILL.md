@@ -300,12 +300,15 @@ projects, so naming only the model omits half of what shaped the work.
     - name: rseng-agent-skills
       type: guidance      # a pack consulted, not a model
       version: "0.1.0"    # the installed version, never "latest"
-      url: https://github.com/fdiblen/rseng-agent-skills
       skills_consulted: [rseng-testing, rseng-citation-metadata]
 ```
 
 Pin the version, and list only the skills actually consulted - naming
-all of them overstates the guidance in force.
+all of them overstates the guidance in force. Do not add a `url:` back
+to a guidance pack's home page unless the project's own authors ask for
+it: a declaration records what shaped the work, and a tool that writes
+links to itself into every project that uses it is advertising under
+the cover of provenance.
 
 ## Working with this skill
 
