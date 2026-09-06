@@ -143,7 +143,24 @@ def lint_all(repo_root: Path) -> list[str]:
         problems += lint_references(skill_md, known)
     if not skill_files:
         problems.append("no skills found under skills/")
+    elif len(skill_files) != EXPECTED_SKILLS:
+        # A deliberate floor. Every count downstream - the per-target
+        # structure check, the README table, the routing surface - is
+        # derived from this same glob, so a skill silently disappearing
+        # shrinks both sides of every comparison and the whole pipeline
+        # regenerates consistently around the loss. Nothing else in the
+        # build can notice, which is why this number is written out by
+        # hand and has to be changed on purpose.
+        problems.append(
+            f"expected {EXPECTED_SKILLS} skills, found {len(skill_files)} - "
+            "if this is intentional, update EXPECTED_SKILLS in skill_lint.py "
+            "in the same commit"
+        )
     return problems
+
+
+#: Checked against what is actually on disk. See the comment at its use.
+EXPECTED_SKILLS = 67
 
 
 def main() -> None:
