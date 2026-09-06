@@ -61,6 +61,40 @@ def consulted_skills():
     }
 
 
+# skills/<name>/SKILL.md, .agents/skills/<name>/SKILL.md, and the same
+# under any install root.
+SKILL_FILE = re.compile(r"(?:^|/)skills/(rseng-[a-z0-9-]+)/SKILL\.md$")
+
+
+def record_consultation(paths):
+    """Record a skill as consulted because its SKILL.md was opened.
+
+    Codex, Gemini, Copilot and Antigravity have no Skill tool, so nothing
+    was ever appended to the ledger on those agents - and the gate hard
+    requires a non-empty ledger. The result was a deadlock: every write
+    blocked forever, telling the agent to use a tool it does not have.
+    On those agents, reading the file IS the consultation.
+    """
+    found = set()
+    for raw in paths:
+        match = SKILL_FILE.search(str(raw).replace("\\", "/"))
+        if match:
+            found.add(match.group(1))
+    if not found:
+        return
+    already = consulted_skills()
+    new = sorted(found - already)
+    if not new:
+        return
+    try:
+        with LEDGER.open("a", encoding="utf-8") as handle:
+            for name in new:
+                handle.write(name + "\n")
+    except OSError:
+        # Bookkeeping must never break the session it is observing.
+        pass
+
+
 def write_count():
     if not WRITES.is_file():
         return 0
@@ -135,7 +169,8 @@ def phase_problems(phases, phase, text, ledger):
                 problems.append(
                     f"{phase} / {cluster}: claimed applied, but none of "
                     "the named skills appear in the consultation ledger - "
-                    "actually open them with the Skill tool "
+                    "actually open them - Skill tool, or read "
+                    "their SKILL.md "
                     f"({', '.join(sorted(claimed)[:3])})"
                 )
     return problems

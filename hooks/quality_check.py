@@ -77,8 +77,8 @@ crosscut: list[str] = next(iter(phases.get("Throughout", {}).values()), [])
 unopened = [s for s in crosscut if s not in ledger]
 if unopened:
     missing.append(
-        "cross-cutting skills never consulted - open each with the "
-        "Skill tool and apply it: " + ", ".join(unopened)
+        "cross-cutting skills never consulted - open each (Skill tool, "
+        "or read its SKILL.md) and apply it: " + ", ".join(unopened)
     )
 
 # Shipping code without engineering practice applied is not an option,
@@ -101,8 +101,9 @@ for rule_name, evidence, unconsulted in phase_lib.unmet_signals(
 ):
     missing.append(
         f"the project contains {rule_name} ({evidence}) but "
-        f"{', '.join(unconsulted)} was never consulted - open it with "
-        "the Skill tool and apply it, or record 'n/a: <skill> - "
+        f"{', '.join(unconsulted)} was never consulted - open it "
+        "(Skill tool, or read its SKILL.md) and apply it, or record "
+        "'n/a: <skill> - "
         "<reason>' in .rseng-agent-skills-coverage.md"
     )
 

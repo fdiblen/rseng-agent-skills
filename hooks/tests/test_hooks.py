@@ -297,3 +297,63 @@ def test_hooks_do_not_fail_on_a_read_only_project(project):
         assert "Traceback" not in run_hook("gate", payload, project).stderr
     finally:
         project.chmod(0o700)
+
+
+def test_reading_a_skill_counts_as_consulting_it(project):
+    """Only claude and cursor have a Skill tool to hook, so on codex,
+    gemini, copilot and antigravity the ledger stayed empty forever - and
+    the gate hard-requires a non-empty ledger. Every write was refused for
+    the rest of the session, with a message telling the agent to use a
+    tool it does not have. Reading the file is the consultation there."""
+    skill = project / ".agents" / "skills" / "rseng-testing"
+    skill.mkdir(parents=True)
+    (skill / "SKILL.md").write_text("# rseng-testing\n")
+
+    payload = json.dumps(
+        {
+            "tool_name": "read_file",
+            "tool_input": {"file_path": ".agents/skills/rseng-testing/SKILL.md"},
+        }
+    )
+    run_hook("signal_nudge", payload, project)
+    ledger = (project / ".rseng-agent-skills-usage.log").read_text()
+    assert "rseng-testing" in ledger
+
+
+def test_a_skill_read_through_a_shell_counts_too(project):
+    skill = project / ".agents" / "skills" / "rseng-honesty"
+    skill.mkdir(parents=True)
+    (skill / "SKILL.md").write_text("# rseng-honesty\n")
+    payload = json.dumps(
+        {
+            "tool_name": "shell",
+            "tool_input": {"command": "cat .agents/skills/rseng-honesty/SKILL.md"},
+        }
+    )
+    run_hook("signal_nudge", payload, project)
+    assert "rseng-honesty" in (project / ".rseng-agent-skills-usage.log").read_text()
+
+
+def test_the_ledger_does_not_grow_a_duplicate_on_every_read(project):
+    skill = project / ".agents" / "skills" / "rseng-testing"
+    skill.mkdir(parents=True)
+    (skill / "SKILL.md").write_text("# rseng-testing\n")
+    payload = json.dumps(
+        {
+            "tool_name": "read_file",
+            "tool_input": {"file_path": ".agents/skills/rseng-testing/SKILL.md"},
+        }
+    )
+    for _ in range(3):
+        run_hook("signal_nudge", payload, project)
+    lines = (project / ".rseng-agent-skills-usage.log").read_text().split()
+    assert lines.count("rseng-testing") == 1
+
+
+def test_an_ordinary_file_read_writes_no_ledger_entry(project):
+    payload = json.dumps(
+        {"tool_name": "read_file", "tool_input": {"file_path": "src/app.py"}}
+    )
+    run_hook("signal_nudge", payload, project)
+    ledger = project / ".rseng-agent-skills-usage.log"
+    assert not ledger.is_file() or "rseng-" not in ledger.read_text()

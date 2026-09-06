@@ -94,7 +94,8 @@ problems = []
 if not ledger:
     problems.append(
         "no rseng-* skill has been consulted yet - open the relevant "
-        "skills with the Skill tool first (router: rseng-quality-framework)"
+        "skills first (the Skill tool where there is one, otherwise read "
+        "their SKILL.md; router: rseng-quality-framework)"
     )
 problems += phase_lib.phase_problems(phases, "Start", text, ledger)
 problems += phase_lib.phase_problems(phases, "Throughout", text, ledger)

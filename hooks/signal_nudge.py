@@ -28,6 +28,11 @@ touched = tool_event.targets(data)
 if not touched:
     sys.exit(0)
 
+# Opening a skill counts as consulting it. Only claude and cursor have a
+# Skill tool to hook, so without this the ledger stays empty forever on
+# every other agent - and the gate refuses every write on an empty ledger.
+phase_lib.record_consultation(touched)
+
 signals_file = pathlib.Path(__file__).parent / "signals.json"
 if not signals_file.is_file():
     sys.exit(0)
