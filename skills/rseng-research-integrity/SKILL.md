@@ -44,10 +44,13 @@ Checks that need only the manuscript text:
   is impossible (3.47 x 25 = 86.75, and 25 integer responses
   cannot sum to that) while the neighbouring 3.48 is attainable.
   Work out the grid before calling a value impossible - the
-  near-miss is the whole point of the test. Apply to means, and
-  to percentage/count consistency generally (does 34% of n=170
-  yield a whole person?). The scrutiny R package implements these
-  granularity tests.
+  near-miss is the whole point of the test. The same applies to
+  percentages, with one extra step: a reported percentage is
+  usually rounded, so test the whole interval it could have come
+  from, not the point value. 34% of n=170 gives 57.8, but 57 and
+  58 both round to 34%, so 34% is perfectly reportable; 34% of
+  n=3 is not, because no count rounds there. The scrutiny R
+  package implements these granularity tests.
 - Arithmetic on the page: totals that sum, percentages that reach
   100 within rounding, subgroup Ns that add to the total N,
   confidence intervals consistent with the point estimate and SE.

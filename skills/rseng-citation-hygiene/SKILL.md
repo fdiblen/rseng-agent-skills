@@ -56,9 +56,12 @@ For each reference with a DOI:
 The Retraction Watch database is public, CC-BY, updated every
 working day, and Crossref-distributed - screening is one step:
 
-- Per DOI: query Crossref and inspect the `update-to` field for
-  retraction/correction/expression-of-concern updates, or check
-  against the full CSV (public git repository at
+- Per DOI: query Crossref and inspect `message.updated-by`, keeping
+  entries whose `type` is retraction, correction or
+  expression_of_concern. Mind the direction: `update-to` points the
+  opposite way, from a notice to the work it corrects, so querying
+  it against a retracted paper returns nothing and the paper reads
+  as clean. Or check against the full CSV (public git repository at
   gitlab.com/crossref/retraction-watch-data).
 - Screen at these moments: finalizing a bibliography, submitting a
   manuscript (rseng-research-integrity runs the fuller pre-submission
