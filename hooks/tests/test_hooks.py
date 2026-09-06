@@ -15,6 +15,7 @@ Run with: uv run --directory pipeline pytest ../hooks/tests
 import json
 import os
 import pathlib
+import shutil
 import subprocess
 import sys
 
@@ -122,6 +123,100 @@ def test_gate_refuses_to_let_the_session_edit_its_own_records(project):
             {"tool_name": "Write", "tool_input": {"file_path": target}}
         )
         assert run_hook("gate", payload, project).returncode == 2, target
+
+
+SHELL_WRITES = [
+    ("cat > app.py <<EOF", True),
+    ("echo x >> log.txt", True),
+    ("rm .rseng-agent-skills-writes", True),
+    ("mkdir -p src", True),
+    ("sed -i s/a/b/ f.py", True),
+    ("ls && rm -rf build", True),
+    ("sudo mkdir /opt/x", True),
+    ("git add -A", True),
+    ("git apply p.patch", True),
+    ("ls -la", False),
+    ("grep -rn foo . | head", False),
+    ("cat README.md", False),
+    ("echo hi 2>&1", False),
+    ("sed s/a/b/ f.py", False),
+    ("git status --porcelain", False),
+    ("git log --oneline", False),
+    ("git rev-parse HEAD", False),
+    ("pytest -q", False),
+]
+
+
+@pytest.mark.parametrize("command,is_write", SHELL_WRITES)
+def test_a_shell_command_is_judged_by_what_it_does(command, is_write):
+    """A shell is a write tool only sometimes, and the tool name cannot
+    tell `git status` from `rm -rf`. Claude's Bash was in no write list at
+    all, so `cat > app.py <<EOF` was never gated, never counted as a
+    write, and left the stop-time audit believing nothing was written."""
+    sys.path.insert(0, str(HOOKS))
+    import tool_event
+
+    assert tool_event.shell_writes(command) is is_write, command
+
+
+@pytest.mark.parametrize("tool", ["Bash", "shell", "run_shell_command"])
+def test_the_gate_holds_a_write_made_through_a_shell(project, tool):
+    payload = json.dumps(
+        {"tool_name": tool, "tool_input": {"command": "cat > app.py <<EOF"}}
+    )
+    assert run_hook("gate", payload, project).returncode == 2
+
+
+@pytest.mark.parametrize("tool", ["Bash", "shell"])
+def test_the_gate_lets_a_shell_read_through(project, tool):
+    payload = json.dumps({"tool_name": tool, "tool_input": {"command": "ls -la"}})
+    assert run_hook("gate", payload, project).returncode == 0
+
+
+def test_one_allowed_path_does_not_shield_the_rest_of_a_command(project):
+    """The gate inspected targets[0] only, so naming the worklog first
+    carried anything else in the same command past it."""
+    payload = json.dumps(
+        {
+            "tool_name": "shell",
+            "tool_input": {"command": "touch .rseng-agent-skills-coverage.md evil.py"},
+        }
+    )
+    assert run_hook("gate", payload, project).returncode == 2
+
+
+def test_the_worklog_alone_still_passes(project):
+    payload = json.dumps(
+        {
+            "tool_name": "Write",
+            "tool_input": {"file_path": ".rseng-agent-skills-coverage.md"},
+        }
+    )
+    assert run_hook("gate", payload, project).returncode == 0
+
+
+def test_unreadable_phase_data_holds_the_write_instead_of_allowing_it(
+    project, tmp_path
+):
+    """Fail closed. An unhandled JSONDecodeError exits 1, and a PreToolUse
+    hook exiting 1 is a warning - the write proceeds. So corrupting one
+    JSON file was a way to switch the gate off from inside the project."""
+    copy = tmp_path / "hooks"
+    shutil.copytree(HOOKS, copy)
+    (copy / "phases.json").write_text("NOT JSON{")
+    payload = json.dumps({"tool_name": "Write", "tool_input": {"file_path": "a.py"}})
+    result = subprocess.run(
+        [sys.executable, str(copy / "gate.py")],
+        input=payload,
+        capture_output=True,
+        text=True,
+        cwd=project,
+        timeout=30,
+        check=False,
+    )
+    assert result.returncode == 2
+    assert "Traceback" not in result.stderr
+    assert "unreadable" in result.stderr
 
 
 def test_the_session_cannot_create_its_own_opt_out(project):

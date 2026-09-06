@@ -21,29 +21,40 @@ RELAXED = ".rseng-agent-skills-relaxed"
 data = phase_lib.read_event()
 phase_lib.record_hook("gate")
 
-# Ask tool_event rather than naming Claude's tools. hook_wiring ships this
-# gate to codex and gemini too, where the write tools are apply_patch,
-# shell, write_file and replace - none of which matched the old literal
-# list, so the gate allowed every write, never recorded one, and the
-# write counter it feeds left the Stop-time audit switched off as well.
-if not tool_event.is_write(data.get("tool_name") or ""):
+# Ask tool_event rather than naming any agent's tools. This gate ships to
+# codex and gemini too, whose write tools are apply_patch, shell,
+# write_file and replace; and it takes the whole event, because Claude's
+# Bash tool appears in no write list at all - so `cat > app.py <<EOF`
+# walked straight past, never incremented the write counter, and left the
+# Stop-time audit believing the session had written nothing.
+if not tool_event.is_write_event(data):
     sys.exit(0)
 
-targets = tool_event.targets(data) or [""]
-target_path = pathlib.Path(targets[0])
+# EVERY target, not just the first. A shell call naming the coverage
+# worklog first passed freely and carried whatever else it touched with
+# it - one allowed path shielded the rest of the command.
+paths = [pathlib.Path(t) for t in (tool_event.targets(data) or [""])]
 
 # The enforcement infrastructure protects itself - agents may not
 # edit the hook scripts, their data files, or the machine-written
 # session records. Checked BEFORE the opt-out below, or testing the
 # opt-out first would let a session switch the gate off and then
 # rewrite the gate.
-name = target_path.name
-parts = target_path.parts
-if (any(d in parts for d in phase_lib.AGENT_DIRS) and "rseng" in parts) or name in (
+RECORDS = (
     ".rseng-agent-skills-usage.log",
     ".rseng-agent-skills-writes",
     ".rseng-hooks-fired.log",
-):
+)
+
+
+def protected(path):
+    parts = path.parts
+    return (
+        any(d in parts for d in phase_lib.AGENT_DIRS) and "rseng" in parts
+    ) or path.name in RECORDS
+
+
+if any(protected(p) for p in paths):
     print(
         "rseng-agent-skills: this file records what the session did, so the "
         "session does not edit it. Nothing is wrong - write the project's "
@@ -56,7 +67,7 @@ if (any(d in parts for d in phase_lib.AGENT_DIRS) and "rseng" in parts) or name 
 # the agent could create it too, the cheapest way to satisfy the gate was
 # to delete the gate: one Write, and the phases, the ledger and the
 # Stop-time audit were all off for the rest of the session.
-if name == RELAXED:
+if any(p.name == RELAXED for p in paths):
     print(
         f"rseng-agent-skills: {RELAXED} turns this pack's checks off, so it "
         "is the user's to create, not the session's. Ask them to run "
@@ -68,8 +79,9 @@ if name == RELAXED:
 if pathlib.Path(RELAXED).exists():
     sys.exit(0)
 
-# The coverage worklog is agent-authored by design, so it passes freely.
-if name == ".rseng-agent-skills-coverage.md":
+# The coverage worklog is agent-authored by design, so it passes freely -
+# but only when it is the ONLY thing the call touches.
+if paths and all(p.name == ".rseng-agent-skills-coverage.md" for p in paths):
     sys.exit(0)
 
 phases = phase_lib.load_phases(pathlib.Path(__file__).parent)

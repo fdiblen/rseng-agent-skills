@@ -46,6 +46,84 @@ WRITE_TOOLS = {
 }
 READ_TOOLS = {"read", "read_file", "view", "cat", "read_many_files"}
 
+# Tools that hand a shell command to the system. Whether the call is a
+# write depends on the command, not the tool: `ls` and `cat > app.py`
+# arrive through the same one.
+SHELL_TOOLS = {"shell", "exec_command", "exec", "run_shell_command", "bash"}
+
+# Commands that change the filesystem. Deliberately generous - a missed
+# write switches the whole enforcement layer off for the session, while a
+# false positive costs one explained pause.
+MUTATING = {
+    "cp",
+    "mv",
+    "rm",
+    "rmdir",
+    "mkdir",
+    "touch",
+    "truncate",
+    "dd",
+    "ln",
+    "install",
+    "chmod",
+    "chown",
+    "tee",
+    "patch",
+    "sponge",
+    "shred",
+    "unzip",
+    "tar",
+    "rsync",
+    "curl",
+    "wget",
+    "git",
+    "npm",
+    "pip",
+    "uv",
+    "make",
+    "just",
+    "cargo",
+    "go",
+    "poetry",
+    "gh",
+}
+# Multiplexers whose read-only subcommands are the ones agents run most.
+# Gating `git status` would make the pack unbearable; gating `git apply`
+# is the whole point.
+READ_SUBCOMMANDS = {
+    "git": {
+        "status",
+        "log",
+        "diff",
+        "show",
+        "ls-files",
+        "ls-tree",
+        "rev-parse",
+        "rev-list",
+        "cat-file",
+        "blame",
+        "grep",
+        "describe",
+        "shortlog",
+        "config",
+        "remote",
+        "branch",
+        "tag",
+        "whatchanged",
+        "reflog",
+        "for-each-ref",
+        "check-ignore",
+        "merge-base",
+        "name-rev",
+        "var",
+    },
+}
+
+# Editors and interpreters only count when told to write in place.
+INPLACE = re.compile(r"\b(?:sed|perl|ruby)\b[^|;&]*\s-\w*i\b")
+# Any redirection that creates or appends to a file, but not 2>&1.
+REDIRECT = re.compile(r"(?<![0-9&>])>>?(?!\s*&)")
+
 # `*** Add File: path`, `*** Update File: path`, `*** Delete File: path`
 PATCH_TARGET = re.compile(
     r"^\*\*\*\s+(?:Add|Update|Delete|Move to)\s+File:\s*(.+?)\s*$", re.MULTILINE
@@ -62,6 +140,76 @@ def is_write(tool_name: object) -> bool:
     # payload the agent host controls, and a numeric tool_name used to
     # raise AttributeError on .lower().
     return str(tool_name or "").lower() in WRITE_TOOLS
+
+
+def shell_writes(command: object) -> bool:
+    """Does this shell command change the filesystem?
+
+    Claude's Bash tool was in neither the tool list nor the hook matcher,
+    so `cat > app.py <<EOF` was never gated, never counted as a write, and
+    left the stop-time audit believing the session had written nothing.
+    Deleting the write counter went the same way.
+    """
+    text = str(command or "")
+    if not text.strip():
+        return False
+    if REDIRECT.search(text) or INPLACE.search(text):
+        return True
+    try:
+        words = shlex.split(text)
+    except ValueError:
+        words = text.split()
+    # Check the head of every segment, so `ls && rm -rf x` is a write.
+    expect_command = True
+    pending = ""
+    for word in words:
+        if word in ("|", "||", "&&", ";", "&"):
+            expect_command = True
+            continue
+        if expect_command:
+            name = word.rsplit("/", 1)[-1]
+            if name in MUTATING:
+                pending = name
+                expect_command = False
+                continue
+            # env VAR=x cmd, sudo cmd, nohup cmd: keep looking.
+            expect_command = name in ("env", "sudo", "nohup", "time", "xargs")
+            pending = ""
+        elif pending:
+            # First non-flag word after a multiplexer is its subcommand.
+            if not word.startswith("-"):
+                reads = READ_SUBCOMMANDS.get(pending)
+                if reads is None or word not in reads:
+                    return True
+                pending = ""
+    # A multiplexer with no subcommand at all (`git`) prints usage.
+    return bool(pending) and pending not in READ_SUBCOMMANDS
+
+
+def is_write_event(event: dict) -> bool:
+    """Is this tool call a write, judged from the whole payload?
+
+    Shell tools are the reason this exists: the tool name alone cannot
+    tell `git status` from `rm -rf`.
+    """
+    tool = str(event.get("tool_name") or "").lower()
+    if tool in SHELL_TOOLS:
+        tool_input = event.get("tool_input") or {}
+        if isinstance(tool_input, str):
+            return shell_writes(tool_input)
+        if not isinstance(tool_input, dict):
+            return False
+        for key in ("command", "cmd", "input", "arguments"):
+            value = tool_input.get(key)
+            if isinstance(value, str):
+                return shell_writes(value)
+            if isinstance(value, list):
+                return shell_writes(" ".join(str(v) for v in value))
+        # A shell payload with no command we recognise but naming a file
+        # outright: treat it as a write. Guessing "read" is the expensive
+        # direction here - it switches the gate off for that call.
+        return bool(targets(event))
+    return is_write(tool)
 
 
 def is_read(tool_name: object) -> bool:
@@ -104,7 +252,7 @@ def targets(event: dict) -> list[str]:
             return found
 
     tool = (event.get("tool_name") or "").lower()
-    if tool in ("shell", "exec_command", "exec", "run_shell_command"):
+    if tool in SHELL_TOOLS:
         try:
             words = shlex.split(blob)
         except ValueError:
