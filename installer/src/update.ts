@@ -9,6 +9,7 @@ import {
   manifestKey,
   manifestName,
   pruneBackups,
+  pruneEmptyDirs,
   readManifest,
   sha256,
 } from "./install.js";
@@ -19,27 +20,6 @@ export interface UpdateResult {
   removed: string[];
   backupDir?: string;
   prunedBackups?: number;
-}
-
-/** Drop directories left empty after a retired file was removed. */
-function pruneEmptyDirs(installDir: string, rel: string): void {
-  // Compare with the separator appended: a bare prefix test would treat
-  // /tmp/xy as living inside /tmp/x. readManifest already refuses keys that
-  // escape, so this is the second lock on the same door.
-  const base = path.resolve(installDir);
-  const prefix = base.endsWith(path.sep) ? base : base + path.sep;
-  let dir = path.dirname(path.resolve(base, rel));
-  while (dir.startsWith(prefix) && dir !== base) {
-    try {
-      if (fs.readdirSync(dir).length > 0) {
-        return;
-      }
-      fs.rmdirSync(dir);
-    } catch {
-      return;
-    }
-    dir = path.dirname(dir);
-  }
 }
 
 /**

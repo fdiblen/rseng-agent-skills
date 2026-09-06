@@ -405,7 +405,7 @@ export function resolveInside(
  * their nearest existing ancestor, which is what makes this usable for
  * destinations as well as for files already there.
  */
-function realpath(target: string): string {
+export function realpath(target: string): string {
   let head = target;
   const tail: string[] = [];
   for (;;) {
@@ -448,4 +448,28 @@ export function readManifest(
         .filter(([key]) => resolveInside(installDir, key) !== undefined),
     ),
   };
+}
+
+/**
+ * Drop directories a removal left empty, never climbing past installDir.
+ *
+ * Resolved through realpath, not lexically: a symlinked directory inside
+ * the install dir satisfies a prefix test while pointing anywhere, which
+ * is how the deletion path escaped once already.
+ */
+export function pruneEmptyDirs(installDir: string, rel: string): void {
+  const base = realpath(path.resolve(installDir));
+  const prefix = base.endsWith(path.sep) ? base : base + path.sep;
+  let dir = path.dirname(realpath(path.resolve(base, rel)));
+  while (dir.startsWith(prefix) && dir !== base) {
+    try {
+      if (fs.readdirSync(dir).length > 0) {
+        return;
+      }
+      fs.rmdirSync(dir);
+    } catch {
+      return;
+    }
+    dir = path.dirname(dir);
+  }
 }

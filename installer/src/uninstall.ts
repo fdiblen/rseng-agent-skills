@@ -2,7 +2,13 @@ import fs from "node:fs";
 import path from "node:path";
 import type { AgentTarget } from "./agents.js";
 import type { CliContext } from "./context.js";
-import { manifestName, readManifest, sha256, summarise } from "./install.js";
+import {
+  manifestName,
+  pruneEmptyDirs,
+  readManifest,
+  sha256,
+  summarise,
+} from "./install.js";
 
 export interface UninstallPlan {
   target: AgentTarget;
@@ -50,24 +56,6 @@ export function planUninstall(target: AgentTarget): UninstallPlan {
     }
   }
   return plan;
-}
-
-/** Drop directories the removal left empty, never climbing past installDir. */
-function pruneEmptyDirs(installDir: string, rel: string): void {
-  const base = path.resolve(installDir);
-  const prefix = base.endsWith(path.sep) ? base : base + path.sep;
-  let dir = path.dirname(path.resolve(base, rel));
-  while (dir.startsWith(prefix) && dir !== base) {
-    try {
-      if (fs.readdirSync(dir).length > 0) {
-        return;
-      }
-      fs.rmdirSync(dir);
-    } catch {
-      return;
-    }
-    dir = path.dirname(dir);
-  }
 }
 
 /**
