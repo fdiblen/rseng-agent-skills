@@ -28,6 +28,12 @@ export interface CliContext {
  */
 export async function askTerminal(question: string): Promise<boolean> {
   if (!process.stdin.isTTY || !process.stdout.isTTY) {
+    // Say so rather than passing silently. A devcontainer build or a CI
+    // step cannot answer, so the run continues - but a safety question
+    // that quietly answers itself stops meaning anything.
+    console.log(
+      "Not a terminal, so continuing without asking. Use --dry-run to preview.",
+    );
     return true;
   }
   const rl = readline.createInterface({

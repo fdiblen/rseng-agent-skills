@@ -41,6 +41,9 @@ export async function confirmTargets(
   for (const target of outside) {
     ctx.log(`  ${target.agent} (${target.scope}) -> ${target.installDir}`);
   }
+  // Whether there is anyone to ask is askTerminal's problem, not this
+  // function's - keeping the TTY test here made the decision untestable
+  // and meant an injected answer was ignored.
   return ctx.confirm("Continue?");
 }
 
