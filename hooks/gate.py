@@ -47,11 +47,22 @@ RECORDS = (
 )
 
 
+# The files that WIRE the hooks up, as opposed to the scripts they run.
+# The tamper guard covered .claude/rseng/gate.py but not the
+# .claude/settings.json that points at it, so rewriting one config file
+# removed the whole layer - the exact one-step disable the guard exists
+# to prevent, reachable once the gate was otherwise satisfied.
+WIRING = ("settings.json", "hooks.json")
+
+
 def protected(path):
     parts = path.parts
+    in_agent_dir = any(d in parts for d in phase_lib.AGENT_DIRS)
     return (
-        any(d in parts for d in phase_lib.AGENT_DIRS) and "rseng" in parts
-    ) or path.name in RECORDS
+        (in_agent_dir and "rseng" in parts)
+        or (in_agent_dir and path.name in WIRING)
+        or path.name in RECORDS
+    )
 
 
 if any(protected(p) for p in paths):

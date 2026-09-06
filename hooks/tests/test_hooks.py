@@ -381,3 +381,60 @@ def test_the_brief_actually_reaches_the_agent(project):
     context = json.loads(result.stdout)["hookSpecificOutput"]["additionalContext"]
     assert "rseng" in context.lower()
     assert len(context) > 500
+
+
+def test_an_invented_skill_name_does_not_count_as_consulted(project):
+    """The ledger is a plain text file, and nothing checked the names in
+    it against the skills the pack ships - so five invented names cleared
+    the 'at least 5 skills consulted' floor, and a made-up name satisfied
+    a cluster's applied claim."""
+    (project / ".rseng-agent-skills-usage.log").write_text(
+        "rseng-testing\nrseng-not-a-real-skill\nrseng-zzz-fake\n"
+        "rseng-data-management-plan\n"  # the singular typo; real one is -plans
+    )
+    sys.path.insert(0, str(HOOKS))
+    import importlib
+
+    import phase_lib
+
+    importlib.reload(phase_lib)
+    os.chdir(project)
+    try:
+        consulted = phase_lib.consulted_skills()
+    finally:
+        os.chdir(HOOKS)
+    assert consulted == {"rseng-testing"}
+
+
+@pytest.mark.parametrize(
+    "config",
+    [
+        ".claude/settings.json",
+        ".codex/hooks.json",
+        ".gemini/settings.json",
+        ".cursor/hooks.json",
+    ],
+)
+def test_the_session_cannot_rewrite_the_hook_wiring(project, config):
+    """The guard protected .claude/rseng/gate.py but not the
+    .claude/settings.json that points at it, so once the gate was
+    otherwise satisfied one config rewrite removed the whole layer."""
+    payload = json.dumps({"tool_name": "Write", "tool_input": {"file_path": config}})
+    result = run_hook("gate", payload, project)
+    assert result.returncode == 2
+    # Assert WHICH refusal. This fixture's gate is unsatisfied, so every
+    # write is refused anyway - checking only the exit code passes with
+    # the guard removed, which is what the mutation showed.
+    assert "records what the session did" in result.stderr
+
+
+def test_a_settings_file_outside_an_agent_directory_is_the_users_own(project):
+    """A bare settings.json is the project's, not hook wiring. Both are
+    refused here because this fixture's gate is unsatisfied, so the test
+    is on WHICH refusal - the tamper guard must not be the one firing."""
+    payload = json.dumps(
+        {"tool_name": "Write", "tool_input": {"file_path": "settings.json"}}
+    )
+    stderr = run_hook("gate", payload, project).stderr
+    assert "records what the session did" not in stderr
+    assert "holding this write" in stderr

@@ -51,14 +51,32 @@ def coverage_text():
     return COVERAGE.read_text(encoding="utf-8", errors="replace").lower()
 
 
+def known_skills(script_dir=None):
+    """Every skill this pack actually ships, from phases.json."""
+    here = pathlib.Path(script_dir or pathlib.Path(__file__).parent)
+    try:
+        return all_skills(load_phases(here))
+    except SystemExit:
+        return set()
+
+
 def consulted_skills():
+    """Skills the session has actually opened.
+
+    Filtered against the shipped inventory: the ledger is a plain text
+    file and nothing stopped an invented name counting toward the
+    "at least 5 skills consulted" floor, toward a cluster's applied
+    claim, or toward clearing a relevance signal.
+    """
     if not LEDGER.is_file():
         return set()
-    return {
+    claimed = {
         line.strip()
         for line in LEDGER.read_text(encoding="utf-8", errors="replace").splitlines()
         if line.strip().startswith("rseng-")
     }
+    known = known_skills()
+    return claimed & known if known else claimed
 
 
 # skills/<name>/SKILL.md, .agents/skills/<name>/SKILL.md, and the same
