@@ -23,7 +23,22 @@ def load_phases(script_dir):
     f = pathlib.Path(script_dir) / "phases.json"
     if not f.is_file():
         return {}
-    data = json.loads(f.read_text(encoding="utf-8"))
+    # A gate that cannot read its own phases must not become a gate that
+    # allows everything. An unhandled JSONDecodeError exits 1, and a
+    # PreToolUse hook exiting 1 does not block - so corrupting this file
+    # was a one-step way to switch the gate off from inside the project.
+    # Exit 2, not an exception: a PreToolUse hook that exits 1 is only a
+    # warning and the write proceeds anyway, so raising would still have
+    # failed open.
+    try:
+        data = json.loads(f.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError) as error:
+        print(
+            f"rseng-agent-skills: {f.name} is unreadable ({error}), so the "
+            "checks cannot run and this write is held. Reinstall the pack.",
+            file=sys.stderr,
+        )
+        sys.exit(2)
     return {
         phase: (clusters if isinstance(clusters, dict) else {c: [] for c in clusters})
         for phase, clusters in data.items()
