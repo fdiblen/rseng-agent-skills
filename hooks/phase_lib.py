@@ -95,6 +95,28 @@ def record_consultation(paths):
         pass
 
 
+def emit_context(event, text):
+    """Hand text to the agent as added context, in the wire format.
+
+    Gemini CLI parses stdout as JSON and treats anything else as a bare
+    system message, so `cat`-ing a file and printing a plain status line
+    delivered neither into the model's context. Claude Code accepts this
+    same envelope, so both agents get one code path.
+    """
+    if not text:
+        return
+    json.dump(
+        {
+            "hookSpecificOutput": {
+                "hookEventName": event,
+                "additionalContext": text,
+            }
+        },
+        sys.stdout,
+    )
+    sys.stdout.write("\n")
+
+
 def write_count():
     if not WRITES.is_file():
         return 0

@@ -21,6 +21,7 @@ from pathlib import Path
 # self-contained and does not reach back into the pack.
 HOOK_SCRIPTS = (
     "gate.py",
+    "session_start.py",
     "phase_lib.py",
     "phase_status.py",
     "quality_check.py",
@@ -126,13 +127,7 @@ def hooks_config(agent: str, *, root: str | None = None) -> dict:
 
     config: dict = {
         "hooks": {
-            "SessionStart": [
-                {
-                    "hooks": [
-                        {"type": "command", "command": f"cat {base}/session-context.md"}
-                    ]
-                }
-            ],
+            "SessionStart": [{"hooks": [run("session_start.py")]}],
             "UserPromptSubmit": [{"hooks": [run("phase_status.py")]}],
             "PreToolUse": [
                 {"matcher": WRITE_MATCHERS[agent], "hooks": [run("gate.py")]}

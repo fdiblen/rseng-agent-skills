@@ -357,3 +357,27 @@ def test_an_ordinary_file_read_writes_no_ledger_entry(project):
     run_hook("signal_nudge", payload, project)
     ledger = project / ".rseng-agent-skills-usage.log"
     assert not ledger.is_file() or "rseng-" not in ledger.read_text()
+
+
+@pytest.mark.parametrize(
+    "hook,event",
+    [("session_start", "SessionStart"), ("phase_status", "UserPromptSubmit")],
+)
+def test_context_hooks_emit_json_not_bare_text(project, hook, event):
+    """Gemini CLI parses a hook's stdout as JSON and treats anything else
+    as a bare system message. SessionStart was a `cat` of the brief and
+    phase_status printed a plain line, so neither reached the model's
+    context on Gemini - the one thing those two hooks exist to do."""
+    result = run_hook(hook, "{}", project)
+    if not result.stdout.strip():
+        pytest.skip("hook had nothing to say")
+    payload = json.loads(result.stdout)
+    assert payload["hookSpecificOutput"]["hookEventName"] == event
+    assert payload["hookSpecificOutput"]["additionalContext"]
+
+
+def test_the_brief_actually_reaches_the_agent(project):
+    result = run_hook("session_start", "{}", project)
+    context = json.loads(result.stdout)["hookSpecificOutput"]["additionalContext"]
+    assert "rseng" in context.lower()
+    assert len(context) > 500

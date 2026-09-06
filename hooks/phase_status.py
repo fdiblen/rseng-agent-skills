@@ -40,5 +40,5 @@ if unmet:
         + "; ".join(f"{', '.join(m)} ({name})" for name, _e, m in unmet[:4])
         + "."
     )
-print(line)
+phase_lib.emit_context("UserPromptSubmit", line)
 sys.exit(0)
