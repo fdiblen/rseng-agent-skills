@@ -1,0 +1,18 @@
+{
+  "Start": [
+    "Planning and operations",
+    "Research data",
+    "Publishing, credit and reuse",
+    "Specialized"
+  ],
+  "During": [
+    "Core engineering",
+    "Reproducibility and workflows",
+    "Numerics and performance"
+  ],
+  "Finish": [
+    "Integrity, security and compliance",
+    "Communication and interfaces",
+    "Community and people"
+  ]
+}

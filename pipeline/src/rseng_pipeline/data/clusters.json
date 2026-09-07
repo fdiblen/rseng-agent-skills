@@ -1,0 +1,88 @@
+{
+  "Core engineering": [
+    "rseng-testing",
+    "rseng-ci-cd",
+    "rseng-code-quality",
+    "rseng-software-design",
+    "rseng-defensive-coding",
+    "rseng-debugging",
+    "rseng-version-control-review",
+    "rseng-software-metrics",
+    "rseng-pair-programming",
+    "rseng-code-review",
+    "rseng-project-scaffolding"
+  ],
+  "Reproducibility and workflows": [
+    "rseng-reproducible-environments",
+    "rseng-reproducibility",
+    "rseng-workflows",
+    "rseng-provenance",
+    "rseng-notebooks"
+  ],
+  "Research data": [
+    "rseng-data-management",
+    "rseng-scientific-file-formats",
+    "rseng-big-data-processing",
+    "rseng-data-management-plans"
+  ],
+  "Numerics and performance": [
+    "rseng-numerical-accuracy",
+    "rseng-performance-profiling",
+    "rseng-gpu-computing",
+    "rseng-hpc-computing"
+  ],
+  "Publishing, credit and reuse": [
+    "rseng-publishing-releasing",
+    "rseng-software-publishing",
+    "rseng-archiving",
+    "rseng-citation-metadata",
+    "rseng-citation-hygiene",
+    "rseng-licensing",
+    "rseng-license-compliance",
+    "rseng-fair-software",
+    "rseng-fair-ml",
+    "rseng-fairguard",
+    "rseng-software-reuse",
+    "rseng-discovery",
+    "rseng-dependency-management",
+    "rseng-software-peer-review",
+    "rseng-open-science-practices"
+  ],
+  "Integrity, security and compliance": [
+    "rseng-security",
+    "rseng-agent-security",
+    "rseng-regulatory-compliance",
+    "rseng-research-integrity",
+    "rseng-fact-checking",
+    "rseng-honesty",
+    "rseng-human-verification",
+    "rseng-ai-declaration"
+  ],
+  "Community and people": [
+    "rseng-community-governance",
+    "rseng-community-metrics",
+    "rseng-contributor-onboarding",
+    "rseng-user-support",
+    "rseng-trainer"
+  ],
+  "Communication and interfaces": [
+    "rseng-documentation",
+    "rseng-science-communication",
+    "rseng-storytelling",
+    "rseng-ux-accessibility"
+  ],
+  "Planning and operations": [
+    "rseng-management-planning",
+    "rseng-project-kickoff",
+    "rseng-project-tracking",
+    "rseng-lessons-learned",
+    "rseng-maintenance-sustainability",
+    "rseng-green-computing"
+  ],
+  "Specialized": [
+    "rseng-language-guides",
+    "rseng-legacy-code",
+    "rseng-open-source-migration",
+    "rseng-scientific-visualization"
+  ]
+}
