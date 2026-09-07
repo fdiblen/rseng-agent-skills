@@ -48,26 +48,50 @@ def _structure_problems(dist_dir: Path, name: str, context: dict) -> list[str]:
         (".agents/skills/rseng-check/agents/openai.yaml", 1),
     ]
     expected: dict[str, list[tuple[str, int]]] = {
+        # The hook layer is the reason hook_wiring.py exists, and it had
+        # no expectations at all: making write_hooks return [] dropped
+        # twelve files from codex and gemini and still built green.
         "codex": unified
         + [
             ("AGENTS.md", 1),
             ("rseng-check/rseng_check.py", 1),
             ("rseng-check/phases.json", 1),
+            ("rseng-check/signals.json", 1),
+            ("rseng-check/phases.json", 1),
+            ("rseng-check/signals.json", 1),
+            (".codex/hooks.json", 1),
+            (".codex/rseng/gate.py", 1),
+            (".codex/rseng/quality_check.py", 1),
+            (".codex/rseng/session_start.py", 1),
+            (".codex/rseng/phases.json", 1),
+            (".codex/rseng/signals.json", 1),
         ],
         "cursor": unified
         + [
             (".cursor/rules/*.mdc", 1),
             (".cursor/rseng-check/rseng_check.py", 1),
+            (".cursor/rseng-check/phases.json", 1),
+            (".cursor/rseng-check/signals.json", 1),
         ],
         "copilot": unified
         + [
             (".github/copilot-instructions.md", 1),
             (".github/rseng-check/rseng_check.py", 1),
+            (".github/rseng-check/phases.json", 1),
+            (".github/rseng-check/signals.json", 1),
         ],
         "gemini": unified
         + [
             ("GEMINI.md", 1),
             ("rseng-check/rseng_check.py", 1),
+            ("rseng-check/phases.json", 1),
+            ("rseng-check/signals.json", 1),
+            (".gemini/settings.json", 1),
+            (".gemini/rseng/gate.py", 1),
+            (".gemini/rseng/quality_check.py", 1),
+            (".gemini/rseng/session_start.py", 1),
+            (".gemini/rseng/phases.json", 1),
+            (".gemini/rseng/signals.json", 1),
         ],
         "antigravity": unified
         + [
