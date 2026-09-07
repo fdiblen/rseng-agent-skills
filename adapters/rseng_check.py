@@ -71,57 +71,35 @@ def _is_project_file(path: pathlib.Path, root: pathlib.Path) -> bool:
     )
 
 
-def main() -> int:
-    # Audit the directory named on the command line, or the current one.
-    # This used to be hardcoded to ".", so passing a path was accepted in
-    # silence and the wrong project was audited with a confident verdict.
-    args = [a for a in sys.argv[1:] if not a.startswith("-")]
-    if len(args) > 1:
-        print(f"rseng-check: expected at most one path, got {len(args)}")
-        return 2
-    # resolve(): a relative path like ../project keeps ".." in every
-    # rglob result, and the hidden-file filter below drops any part starting
-    # with "." - so the audit found zero files and reported "nothing to
-    # audit" for a project full of code.
-    root = pathlib.Path(args[0] if args else ".").resolve()
-    if not root.is_dir():
-        print(f"rseng-check: not a directory: {args[0] if args else '.'}")
-        return 2
-    here = pathlib.Path(__file__).resolve().parent
-    # A checker that cannot find its own data must not report success. Both
-    # files are skipped-if-absent-shaped work: without phases.json the whole
-    # skill inventory and every cluster check iterate over nothing, and
-    # without signals.json all the relevance rules are skipped - and the
-    # script still printed "complete". That is a pass this tool did not earn.
-    phases_file = here / "phases.json"
-    signals_file = here / "signals.json"
-    no_data = [f.name for f in (phases_file, signals_file) if not f.is_file()]
-    if no_data:
-        print(
-            f"rseng-check: cannot run - {', '.join(no_data)} missing from "
-            f"{here}. This copy of the check is incomplete; reinstall the "
-            "pack rather than trusting its result."
-        )
-        return 2
-    phases = json.loads(phases_file.read_text(encoding="utf-8"))
+CODE_GLOBS = ("*.py", "*.R", "*.jl", "*.js", "*.ts", "*.c", "*.cpp", "*.f90")
+SOURCE_SUFFIXES = (
+    ".py",
+    ".R",
+    ".jl",
+    ".sh",
+    ".ipynb",
+    ".c",
+    ".h",
+    ".cpp",
+    ".cu",
+    ".cuh",
+    ".f",
+    ".f90",
+    ".F90",
+)
+CFF_FIELDS = ("title", "authors", "version", "date-released", "license")
+AGENT_DIRS = (".claude", ".agents", ".cursor", ".codex", ".gemini")
 
-    code = [
-        p
-        for ext in ("*.py", "*.R", "*.jl", "*.js", "*.ts", "*.c", "*.cpp", "*.f90")
-        for p in root.rglob(ext)
-        if _is_project_file(p, root)
-    ]
-    if not code:
-        print("rseng-check: no code files found; nothing to audit")
-        return 0
 
+def artifact_floor(root, code, waived):
+    """The artifacts a research project needs regardless of what it does."""
     missing = []
-    waived = _waivers(root)
-    agent_dirs = (".claude", ".agents", ".cursor", ".codex", ".gemini")
-    present = [d for d in agent_dirs if (root / d).is_dir()]
+    present = [d for d in AGENT_DIRS if (root / d).is_dir()]
     if present:
         gi = root / ".gitignore"
-        gi_text = gi.read_text(encoding="utf-8") if gi.is_file() else ""
+        gi_text = (
+            gi.read_text(encoding="utf-8", errors="replace") if gi.is_file() else ""
+        )
         uncovered = [d for d in present if d not in gi_text]
         if uncovered:
             missing.append(
@@ -130,21 +108,20 @@ def main() -> int:
                 ".rseng-agent-skills-* session records and .rseng-backup-* directories"
             )
 
-    def require(key: str, ok: bool, message: str) -> None:
+    def require(key, ok, message):
         if ok or key in waived:
             return
         missing.append(message)
 
     require(
-        "README",
-        bool(list(root.glob("README*"))),
-        "README with purpose and how-to-run",
+        "README", bool(list(root.glob("README*"))), "README with purpose and how-to-run"
     )
     require(
         "LICENSE",
         bool(list(root.glob("LICENSE*"))),
         "LICENSE (unlicensed code legally blocks all reuse)",
     )
+
     citation = root / "CITATION.cff"
     if not citation.is_file():
         missing.append("CITATION.cff citation metadata")
@@ -155,11 +132,12 @@ def main() -> int:
         text = citation.read_text(encoding="utf-8", errors="ignore")
         absent = [
             field
-            for field in ("title", "authors", "version", "date-released", "license")
+            for field in CFF_FIELDS
             if not any(line.startswith(field + ":") for line in text.splitlines())
         ]
         if absent:
             missing.append(f"CITATION.cff fields: {', '.join(absent)}")
+
     # Filtered like the code scan: a dependency's own test files under
     # .venv/ used to satisfy this, so a project with no tests of its own
     # was told its practice artifacts were complete.
@@ -168,6 +146,7 @@ def main() -> int:
     ]
     if not tests:
         missing.append("tests (at least a smoke/reference-case check)")
+
     if not (
         list(root.glob("pyproject.toml"))
         or list(root.glob("uv.lock"))
@@ -180,37 +159,16 @@ def main() -> int:
         )
     ):
         missing.append("environment/dependency declaration (uv + pyproject or PEP 723)")
+    return missing
 
-    coverage = root / ".rseng-agent-skills-coverage.md"
-    text = coverage.read_text(encoding="utf-8").lower() if coverage.is_file() else ""
 
-    # Relevance signals: project contents that imply a skill require
-    # that skill dispositioned (applied or reasoned n/a) in the worklog.
-    # signals_file was proven present at startup.
-    rules = json.loads(signals_file.read_text(encoding="utf-8"))
+def signal_gaps(root, rules, text):
+    """Project contents that imply a skill require that skill dispositioned."""
+    missing = []
     all_files = [
         p for p in root.rglob("*") if p.is_file() and _is_project_file(p, root)
     ][:4000]
-    sources = [
-        p
-        for p in all_files
-        if p.suffix
-        in (
-            ".py",
-            ".R",
-            ".jl",
-            ".sh",
-            ".ipynb",
-            ".c",
-            ".h",
-            ".cpp",
-            ".cu",
-            ".cuh",
-            ".f",
-            ".f90",
-            ".F90",
-        )
-    ]
+    sources = [p for p in all_files if p.suffix in SOURCE_SUFFIXES]
     for rule in rules:
         evidence = next(
             (
@@ -246,8 +204,12 @@ def main() -> int:
                     "no coverage entry - apply it or record "
                     f"'n/a: {skill} - <reason>'"
                 )
+    return missing
 
-    # Full inventory: every skill in the pack gets a disposition.
+
+def phase_coverage(phases, text):
+    """Every skill dispositioned, and every phase section present."""
+    missing = []
     inventory = sorted(
         {s for cl in phases.values() for skills in cl.values() for s in skills}
     )
@@ -281,6 +243,61 @@ def main() -> int:
                 missing.append(
                     f"{phase} / {cluster}: add 'applied: ...' or 'n/a: <reason>'"
                 )
+    return missing
+
+
+def main() -> int:
+    # Audit the directory named on the command line, or the current one.
+    # This used to be hardcoded to ".", so passing a path was accepted in
+    # silence and the wrong project was audited with a confident verdict.
+    args = [a for a in sys.argv[1:] if not a.startswith("-")]
+    if len(args) > 1:
+        print(f"rseng-check: expected at most one path, got {len(args)}")
+        return 2
+    # resolve(): a relative path like ../project keeps ".." in every
+    # rglob result, and the hidden-file filter below drops any part starting
+    # with "." - so the audit found zero files and reported "nothing to
+    # audit" for a project full of code.
+    root = pathlib.Path(args[0] if args else ".").resolve()
+    if not root.is_dir():
+        print(f"rseng-check: not a directory: {args[0] if args else '.'}")
+        return 2
+
+    here = pathlib.Path(__file__).resolve().parent
+    # A checker that cannot find its own data must not report success:
+    # without phases.json the whole skill inventory and every cluster check
+    # iterate over nothing, and without signals.json all the relevance rules
+    # are skipped - and the script still printed "complete".
+    phases_file = here / "phases.json"
+    signals_file = here / "signals.json"
+    no_data = [f.name for f in (phases_file, signals_file) if not f.is_file()]
+    if no_data:
+        print(
+            f"rseng-check: cannot run - {', '.join(no_data)} missing from "
+            f"{here}. This copy of the check is incomplete; reinstall the "
+            "pack rather than trusting its result."
+        )
+        return 2
+    phases = json.loads(phases_file.read_text(encoding="utf-8"))
+    rules = json.loads(signals_file.read_text(encoding="utf-8"))
+
+    code = [
+        p for ext in CODE_GLOBS for p in root.rglob(ext) if _is_project_file(p, root)
+    ]
+    if not code:
+        print("rseng-check: no code files found; nothing to audit")
+        return 0
+
+    coverage = root / ".rseng-agent-skills-coverage.md"
+    text = (
+        coverage.read_text(encoding="utf-8", errors="replace").lower()
+        if coverage.is_file()
+        else ""
+    )
+
+    missing = artifact_floor(root, code, _waivers(root))
+    missing += signal_gaps(root, rules, text)
+    missing += phase_coverage(phases, text)
 
     if missing:
         print(
