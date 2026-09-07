@@ -1,0 +1,75 @@
+schema_version: "1.0.0"
+
+project:
+  name: rseng-agent-skills
+  version: "0.1.0"
+  repository: https://github.com/fdiblen/rseng-agent-skills
+  license: MIT AND CC-BY-4.0
+  content_type: software
+
+ai_usage:
+  used: true
+  level: moderate
+  summary: >-
+    The maintainer set the scope, made every design decision, chose the
+    content sources, and reviewed the output. Skill guidance was written
+    against named external sources rather than from the model's own
+    recollection, and every "Learn more" URL is checked by a link checker
+    that runs in CI.
+
+  tools:
+    - name: Claude Code
+      vendor: Anthropic
+      type: agent
+      model: claude-opus-5
+      hosting: cloud_vendor
+      trains_on_data: false
+      purpose: [code_generation, documentation]
+
+  activities: [code_generation, documentation]
+
+  scope:
+    code_generation: true
+    documentation: true
+    data_analysis: false
+
+  code_proportion:
+    ai_generated_percent: 15
+    human_only_percent: 85
+    method: self_reported
+
+  components:
+    - name: skill content (skills/)
+      description: 67 SKILL.md practice guides plus their generated references
+      ai_involvement: >-
+        Maintainer authored from named external sources, then the agent edited for length, trigger wording and token budget.
+      tools_used: [Claude Code]
+    - name: build pipeline (pipeline/)
+      description: >-
+        Derives references, the related-skills graph, the clustered skill
+        directory, token budgets and the per-agent adapter bundles.
+      ai_involvement: >-
+        Developer designed, made the prototype, agent helped polishing;
+        output is deterministic and checked in CI.
+      tools_used: [Claude Code]
+    - name: installer CLI (installer/)
+      description: TypeScript CLI that installs the pack into each agent
+      ai_involvement: Developer designed, made the prototype, agent helped polishing; output is deterministic and checked in CI.
+      tools_used: [Claude Code]
+    - name: session hooks (hooks/)
+      description: hooks that keep the skills actively consulted
+      ai_involvement: >-
+        Agent drafted the skeleton, maintainer reworked and reviewed it;
+        the agent wrote the tests.
+      tools_used: [Claude Code]
+
+  human_oversight: >-
+    Every change was reviewed by the maintainer before it landed. The pack is
+    exercised against live agent sessions in sandboxes.
+
+declaration:
+  date: "2026-09-06"
+  declared_by: Faruk Diblen
+  contact: fdiblen@users.noreply.github.com
+  reviewed_by: Faruk Diblen
+

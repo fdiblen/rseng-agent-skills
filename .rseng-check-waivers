@@ -3,4 +3,3 @@
 # recorded exception instead of a missing artifact, so a considered decision
 # does not read as neglect.
 
-aidecl.yaml: kept alongside the checkout while the pack is unreleased; it will be committed at the first release
