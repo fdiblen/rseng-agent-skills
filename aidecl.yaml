@@ -68,7 +68,7 @@ ai_usage:
     exercised against live agent sessions in sandboxes.
 
 declaration:
-  date: "2026-09-06"
+  date: "2026-09-07"
   declared_by: Faruk Diblen
   contact: fdiblen@users.noreply.github.com
   reviewed_by: Faruk Diblen
