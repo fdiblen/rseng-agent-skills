@@ -402,7 +402,7 @@ def gitignore_gap(root):
 # installed. A config on disk is not evidence that the agent executed
 # it - codex in particular installs the hooks without them ever being
 # seen to fire. Each hook records itself here.
-HOOKS_FIRED = pathlib.Path(".rseng-hooks-fired.log")
+HOOKS_FIRED = pathlib.Path(".rseng-agent-skills-hooks-fired.log")
 
 # Opt-in. The log answers one question - did the agent execute the
 # hooks, or were they only installed - and nothing in a normal project

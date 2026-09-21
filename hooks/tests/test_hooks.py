@@ -552,3 +552,23 @@ def test_the_ledger_is_still_protected_from_a_real_edit(project):
     result = run_hook("gate", payload, project)
     assert result.returncode == 2
     assert "records what the session did" in result.stderr
+
+
+def test_every_session_record_matches_the_documented_prefix():
+    """session-context.md tells the agent to keep the
+    `.rseng-agent-skills-*` records out of version control, and the
+    repo's own .gitignore uses that same glob. The hooks-fired log was
+    called .rseng-hooks-fired.log, so it matched neither and turning
+    telemetry on left a file that could be committed by accident. Any
+    new record has to join the family or it inherits the same hole."""
+    sys.path.insert(0, str(HOOKS))
+    import phase_lib
+
+    records = [
+        phase_lib.COVERAGE,
+        phase_lib.LEDGER,
+        phase_lib.WRITES,
+        phase_lib.HOOKS_FIRED,
+    ]
+    for record in records:
+        assert str(record).startswith(".rseng-agent-skills-"), record

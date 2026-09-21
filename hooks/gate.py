@@ -43,7 +43,7 @@ paths = [pathlib.Path(t) for t in (tool_event.targets(data) or [""])]
 RECORDS = (
     ".rseng-agent-skills-usage.log",
     ".rseng-agent-skills-writes",
-    ".rseng-hooks-fired.log",
+    ".rseng-agent-skills-hooks-fired.log",
 )
 
 
