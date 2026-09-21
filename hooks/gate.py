@@ -140,10 +140,12 @@ if problems:
     # a first run does not read as a fault.
     print(
         "rseng-agent-skills: holding this write until the start-of-work steps "
-        "are recorded. Expected on a first run - the agent resolves it and "
-        "nothing is needed from you. (.rseng-agent-skills-coverage.md is "
-        f"always writable; if you want the gate off, `touch {RELAXED}` "
-        "yourself - the agent is not allowed to.)\n- " + "\n- ".join(problems),
+        "are recorded. Expected on a first run: the agent's next move is to "
+        "work through the list below, and writes resume once it has. "
+        ".rseng-agent-skills-coverage.md stays writable throughout, so the "
+        "agent is never stuck.\n"
+        f"To switch the gate off for this project, `touch {RELAXED}` "
+        "yourself; the agent is not allowed to.\n- " + "\n- ".join(problems),
         file=sys.stderr,
     )
     sys.exit(2)

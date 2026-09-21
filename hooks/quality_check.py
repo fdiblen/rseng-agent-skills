@@ -138,11 +138,14 @@ if not missing:
         print("rseng-agent-skills: " + suggestions[0], file=sys.stderr)
     sys.exit(0)
 print(
-    "rseng-agent-skills: a last pass before finishing. These practice "
-    "artifacts are not there yet - the agent adds each one, or says briefly "
-    "why it does not apply to this tier of work, and then finishes. Normal, "
-    "and nothing is needed from you. (To skip this check, create an empty "
-    ".rseng-agent-skills-relaxed file yourself - the agent cannot.)\n- "
+    "rseng-agent-skills: one last pass before this session finishes. The "
+    "agent's next move is to work through the list below - adding each item, "
+    "or recording in .rseng-agent-skills-coverage.md why it does not apply to "
+    "this tier of work - and then finish.\n"
+    "This pass runs ONCE. The following attempt to finish is not held back, "
+    "whatever the list still says.\n"
+    "To switch the check off for this project, create an empty "
+    ".rseng-agent-skills-relaxed file yourself; the agent is not allowed to.\n- "
     + "\n- ".join(missing),
     file=sys.stderr,
 )
