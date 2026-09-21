@@ -499,3 +499,56 @@ def test_gate_still_holds_a_call_that_touches_the_project_too(project):
     result = run_hook("gate", payload, project)
     assert result.returncode == 2
     assert "holding this write" in result.stderr
+
+
+def test_a_heredoc_body_is_content_not_a_target():
+    """Reported from a real session: writing an ignore file that LISTS
+    the pack's own record filenames was refused as tampering with the
+    ledger. SHELL_PATH wants a dot-extension, so the real target
+    (.git/info/exclude, no extension) was skipped while a filename
+    inside the heredoc matched and stood in for it."""
+    sys.path.insert(0, str(HOOKS))
+    import tool_event
+
+    event = {
+        "tool_name": "Bash",
+        "tool_input": {
+            "command": (
+                "cat > .git/info/exclude <<'EOF'\n"
+                ".rseng-agent-skills-usage.log\n"
+                ".rseng-agent-skills-writes\n"
+                "EOF"
+            )
+        },
+    }
+    assert tool_event.targets(event) == []
+    # The write counter must not change: it is the target list that was
+    # wrong, not the detection that something is being written.
+    assert tool_event.is_write_event(event) is True
+
+
+def test_a_heredoc_still_reports_the_file_it_writes():
+    """Stripping the payload must not lose the redirection target on the
+    opening line, or every heredoc write would stop being attributed."""
+    sys.path.insert(0, str(HOOKS))
+    import tool_event
+
+    event = {
+        "tool_name": "Bash",
+        "tool_input": {"command": "cat > app.py <<'EOF'\nimport os\nEOF"},
+    }
+    assert tool_event.targets(event) == ["app.py"]
+
+
+def test_the_ledger_is_still_protected_from_a_real_edit(project):
+    """The tamper guard must keep firing when the session genuinely aims
+    at a record file - the narrowing is about mentions, not targets."""
+    payload = json.dumps(
+        {
+            "tool_name": "Write",
+            "tool_input": {"file_path": ".rseng-agent-skills-usage.log"},
+        }
+    )
+    result = run_hook("gate", payload, project)
+    assert result.returncode == 2
+    assert "records what the session did" in result.stderr

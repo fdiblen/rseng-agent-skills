@@ -132,6 +132,34 @@ PATCH_TARGET = re.compile(
 # since a false path produces a nudge about a file nobody touched.
 SHELL_PATH = re.compile(r"(?:^|\s|['\"><])([\w./-]+\.[A-Za-z0-9]{1,8})(?=$|\s|['\"])")
 
+# `<<EOF`, `<<-'EOF'`, `<< "EOF"` - the opener, not the payload.
+HEREDOC_OPEN = re.compile(r"<<-?\s*(?P<q>['\"]?)(?P<delim>[A-Za-z_][\w-]*)(?P=q)")
+
+
+def _without_heredoc_bodies(text: str) -> str:
+    """The command, minus anything a heredoc is feeding to it.
+
+    A heredoc body is content, not a target - the file being written is
+    named by the redirection on the opening line. Tokenising the payload
+    too meant a filename that merely APPEARED in the text was returned
+    as a path the command touches. Writing an ignore file that lists the
+    pack's own session records was refused as tampering with the ledger,
+    because SHELL_PATH wants a dot-extension: `.git/info/exclude` has
+    none and was skipped, while `.rseng-agent-skills-usage.log` inside
+    the body matched and stood in for it.
+    """
+    kept, delim = [], None
+    for line in text.split("\n"):
+        if delim is not None:
+            if line.strip() == delim:
+                delim = None
+            continue
+        kept.append(line)
+        found = HEREDOC_OPEN.findall(line)
+        if found:
+            delim = found[-1][1]
+    return "\n".join(kept)
+
 PATCH_BODY = "*** Begin Patch"
 
 
@@ -253,6 +281,7 @@ def targets(event: dict) -> list[str]:
 
     tool = (event.get("tool_name") or "").lower()
     if tool in SHELL_TOOLS:
+        blob = _without_heredoc_bodies(blob)
         try:
             words = shlex.split(blob)
         except ValueError:
