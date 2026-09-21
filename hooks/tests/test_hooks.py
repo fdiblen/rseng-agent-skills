@@ -476,3 +476,26 @@ def test_a_project_under_a_dot_directory_is_still_scanned(tmp_path):
     (root / "LICENSE").write_text("MIT\n")
 
     assert len(phase_lib._project_files(root)) == 2
+
+
+def test_gate_ignores_a_write_outside_the_project(project):
+    """enforcement.md has always promised "the first PROJECT-FILE write",
+    but the gate never asked. A scratch file in /tmp was held back with a
+    message about recording start-of-work steps, which is friction with
+    nothing behind it: a session that stages a file in /tmp and moves it
+    in is caught by the mv, the write that actually lands."""
+    payload = json.dumps(
+        {"tool_name": "Bash", "tool_input": {"command": "echo hi > /tmp/scratch.txt"}}
+    )
+    assert run_hook("gate", payload, project).returncode == 0
+
+
+def test_gate_still_holds_a_call_that_touches_the_project_too(project):
+    """One out-of-project path must not shield the rest of the command,
+    the same rule the target list already follows for allowed paths."""
+    payload = json.dumps(
+        {"tool_name": "Bash", "tool_input": {"command": "cp /tmp/x.py app.py"}}
+    )
+    result = run_hook("gate", payload, project)
+    assert result.returncode == 2
+    assert "holding this write" in result.stderr

@@ -95,6 +95,21 @@ if pathlib.Path(RELAXED).exists():
 if paths and all(p.name == ".rseng-agent-skills-coverage.md" for p in paths):
     sys.exit(0)
 
+# The phase protocol is about the project, so a write that lands nowhere
+# near it is none of this gate's business: a scratch file in /tmp, a
+# throwaway script under the system temp dir. enforcement.md has always
+# said "the first PROJECT-FILE write", but the check was never made, so
+# `cat > /tmp/scratch.mjs` was held back with a message about recording
+# start-of-work steps. Gating it bought nothing either - a session that
+# staged a file in /tmp and moved it in is caught by the mv, which is
+# the write that actually lands.
+#
+# Any project file among the targets still gates the whole call: one
+# out-of-project path must not shield the rest, the same way one allowed
+# path must not (see targets() above).
+if paths and not any(phase_lib.is_project_file(p, pathlib.Path.cwd()) for p in paths):
+    sys.exit(0)
+
 phases = phase_lib.load_phases(pathlib.Path(__file__).parent)
 text = phase_lib.coverage_text()
 ledger = phase_lib.consulted_skills()
