@@ -438,3 +438,41 @@ def test_a_settings_file_outside_an_agent_directory_is_the_users_own(project):
     stderr = run_hook("gate", payload, project).stderr
     assert "records what the session did" not in stderr
     assert "holding this write" in stderr
+
+
+def test_signal_scan_does_not_walk_into_a_virtualenv(tmp_path):
+    """Reported from a real session against the published pack: a
+    certifi CA bundle under venv3/lib/python3.10/site-packages was
+    reported as the project's own secret-bearing file. _project_files
+    kept its own copy of the exclusion rules and that copy had never
+    learned about site-packages, which is_project_file has excluded all
+    along."""
+    sys.path.insert(0, str(HOOKS))
+    import phase_lib
+
+    (tmp_path / "src").mkdir()
+    (tmp_path / "src" / "app.py").write_text("print(1)\n")
+    vendored = tmp_path / "venv3" / "lib" / "python3.10" / "site-packages" / "certifi"
+    vendored.mkdir(parents=True)
+    (vendored / "cacert.pem").write_text("-----BEGIN CERTIFICATE-----\n")
+
+    found = {p.name for p in phase_lib._project_files(tmp_path)}
+    assert "app.py" in found
+    assert "cacert.pem" not in found
+
+
+def test_a_project_under_a_dot_directory_is_still_scanned(tmp_path):
+    """The old copy tested the ABSOLUTE path, so a checkout living
+    anywhere under a dot-directory - ~/.local/share/proj, a worktree in
+    .git-worktrees - matched nothing and every signal went quiet. A
+    signal layer that finds nothing looks identical to a clean project,
+    so the failure was silent."""
+    sys.path.insert(0, str(HOOKS))
+    import phase_lib
+
+    root = tmp_path / ".local" / "share" / "proj"
+    (root / "src").mkdir(parents=True)
+    (root / "src" / "app.py").write_text("print(1)\n")
+    (root / "LICENSE").write_text("MIT\n")
+
+    assert len(phase_lib._project_files(root)) == 2

@@ -261,13 +261,21 @@ def is_project_file(path, root):
 
 
 def _project_files(root, limit=4000):
+    """Every file the signals should look at, project-relative.
+
+    Delegates to is_project_file rather than repeating its rules. The
+    copy that used to live here had drifted twice: it never excluded
+    site-packages, so a signal scan walked into a virtualenv and
+    reported a dependency's CA bundle as the project's own
+    secret-bearing file; and it tested the ABSOLUTE path, so a project
+    under any dot-directory matched nothing at all and the whole signal
+    layer went quiet without saying so.
+    """
     files = []
     for p in root.rglob("*"):
         if len(files) >= limit:
             break
-        if p.is_file() and not any(
-            part.startswith(".") or part == "node_modules" for part in p.parts
-        ):
+        if p.is_file() and is_project_file(p, root):
             files.append(p)
     return files
 
