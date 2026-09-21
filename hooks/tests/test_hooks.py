@@ -462,11 +462,12 @@ def test_signal_scan_does_not_walk_into_a_virtualenv(tmp_path):
 
 
 def test_a_project_under_a_dot_directory_is_still_scanned(tmp_path):
-    """The old copy tested the ABSOLUTE path, so a checkout living
-    anywhere under a dot-directory - ~/.local/share/proj, a worktree in
-    .git-worktrees - matched nothing and every signal went quiet. A
-    signal layer that finds nothing looks identical to a clean project,
-    so the failure was silent."""
+    """The old copy tested the ABSOLUTE path, so any root under a
+    dot-directory matched nothing. It never fired in production - both
+    callers leave root defaulting to "." and a relative walk yields
+    relative parts - but it made passing an absolute root a trap, and a
+    signal layer that finds nothing looks identical to a clean
+    project."""
     sys.path.insert(0, str(HOOKS))
     import phase_lib
 

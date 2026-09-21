@@ -275,12 +275,19 @@ def _project_files(root, limit=4000):
     """Every file the signals should look at, project-relative.
 
     Delegates to is_project_file rather than repeating its rules. The
-    copy that used to live here had drifted twice: it never excluded
-    site-packages, so a signal scan walked into a virtualenv and
-    reported a dependency's CA bundle as the project's own
-    secret-bearing file; and it tested the ABSOLUTE path, so a project
-    under any dot-directory matched nothing at all and the whole signal
-    layer went quiet without saying so.
+    copy that used to live here had drifted in two ways.
+
+    It never excluded site-packages, so a signal scan walked into a
+    virtualenv and reported a dependency's CA bundle as the project's
+    own secret-bearing file. That one was live and was reported from a
+    real session.
+
+    It also tested the ABSOLUTE path, so a root under any dot-directory
+    matched nothing. That one never fired: both callers leave `root`
+    defaulting to ".", and a relative walk yields relative parts. It was
+    a trap rather than a fault - is_project_file has always judged on
+    the relative path precisely because an absolute one can run through
+    a dot-directory that has nothing to do with the project.
     """
     files = []
     for p in root.rglob("*"):
