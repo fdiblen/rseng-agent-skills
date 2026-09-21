@@ -240,6 +240,17 @@ def undispositioned(phases, text, ledger):
     )
 
 
+# Directories whose contents are never the project's own work. Kept
+# deliberately short: "vendor" is not here, because plenty of projects
+# keep their own source there, and excluding it reported a confident
+# clean pass on an unaudited tree. build/, dist/ and site/ are absent
+# for the same reason - generated in most projects, hand-maintained in
+# some, and guessing wrong hides real code. Everything listed is
+# unambiguous: other people's packages, or a tool's own output written
+# under a name nobody authors by hand.
+NOT_PROJECT_DIRS = frozenset({"node_modules", "site-packages", "__pycache__", "htmlcov"})
+
+
 def is_project_file(path, root):
     """Does this path belong to the project rather than its tooling?
 
@@ -256,7 +267,7 @@ def is_project_file(path, root):
     except ValueError:
         return False
     return not any(part.startswith(".") for part in parts) and not (
-        {"node_modules", "site-packages"} & set(parts)
+        NOT_PROJECT_DIRS & set(parts)
     )
 
 

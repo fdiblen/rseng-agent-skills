@@ -572,3 +572,36 @@ def test_every_session_record_matches_the_documented_prefix():
     ]
     for record in records:
         assert str(record).startswith(".rseng-agent-skills-"), record
+
+
+def test_the_hooks_and_the_self_check_agree_on_what_a_project_file_is(tmp_path):
+    """Two copies of this predicate ship: phase_lib for the hooked
+    agents, adapters/rseng_check.py for the ones without hooks. They
+    have drifted twice - once letting a dependency's tests under .venv
+    satisfy the tests requirement, once letting a signal scan walk into
+    a virtualenv. Both docstrings promise they stay in step; nothing
+    checked it until now."""
+    sys.path.insert(0, str(HOOKS))
+    sys.path.insert(0, str(HOOKS.parent / "adapters"))
+    import phase_lib
+    import rseng_check
+
+    candidates = [
+        "src/app.py",
+        "tests/test_x.py",
+        "node_modules/pkg/index.js",
+        "venv3/lib/python3.10/site-packages/certifi/cacert.pem",
+        "__pycache__/mod.cpython-311.pyc",
+        "htmlcov/index.html",
+        "build/lib/app.py",
+        "dist/pkg.tar.gz",
+        "vendor/ours.py",
+        ".venv/lib/x.py",
+    ]
+    for rel in candidates:
+        path = tmp_path / rel
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text("x")
+        assert phase_lib.is_project_file(path, tmp_path) == rseng_check._is_project_file(
+            path, tmp_path
+        ), rel

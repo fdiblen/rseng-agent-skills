@@ -63,11 +63,16 @@ def _is_project_file(path: pathlib.Path, root: pathlib.Path) -> bool:
     checkout under ~/.local, say) and that must not hide the whole tree.
     """
     parts = path.relative_to(root).parts
-    # node_modules and site-packages are unambiguously other people's code.
-    # "vendor" is not - plenty of projects keep their own source there, and
-    # excluding it reported a confident clean pass on an unaudited tree.
+    # node_modules and site-packages are unambiguously other people's code;
+    # __pycache__ and htmlcov are unambiguously a tool's own output. "vendor"
+    # is not - plenty of projects keep their own source there, and excluding
+    # it reported a confident clean pass on an unaudited tree. build, dist
+    # and site are left out for the same reason: generated in most projects,
+    # hand-maintained in some. Keep this set identical to NOT_PROJECT_DIRS in
+    # hooks/phase_lib.py - the two have drifted before, and the drift let a
+    # dependency's tests satisfy the tests requirement.
     return not any(part.startswith(".") for part in parts) and not (
-        {"node_modules", "site-packages"} & set(parts)
+        {"node_modules", "site-packages", "__pycache__", "htmlcov"} & set(parts)
     )
 
 
