@@ -392,6 +392,11 @@ def test_an_invented_skill_name_does_not_count_as_consulted(project):
         "rseng-testing\nrseng-not-a-real-skill\nrseng-zzz-fake\n"
         "rseng-data-management-plan\n"  # the singular typo; real one is -plans
     )
+    assert consulted_in(project) == {"rseng-testing"}
+
+
+def consulted_in(project):
+    """phase_lib.consulted_skills() as it sees the given project."""
     sys.path.insert(0, str(HOOKS))
     import importlib
 
@@ -400,10 +405,50 @@ def test_an_invented_skill_name_does_not_count_as_consulted(project):
     importlib.reload(phase_lib)
     os.chdir(project)
     try:
-        consulted = phase_lib.consulted_skills()
+        return phase_lib.consulted_skills()
     finally:
         os.chdir(HOOKS)
-    assert consulted == {"rseng-testing"}
+
+
+def test_a_namespaced_skill_name_counts_as_consulted(project):
+    """A plugin host reports the Skill tool's name as "<plugin>:<skill>".
+    Those entries were matched whole against the bare inventory and threw
+    away every one, so on a Claude plugin install the ledger stayed empty
+    however many skills the session opened - and the gate, which requires
+    a non-empty ledger, held every write until the user switched it off."""
+    (project / ".rseng-agent-skills-usage.log").write_text(
+        "rseng-agent-skills:rseng-testing\nrseng-agent-skills:rseng-honesty\n"
+    )
+    assert consulted_in(project) == {"rseng-testing", "rseng-honesty"}
+
+
+def test_both_spellings_count_and_do_not_double_count(project):
+    """One ledger can hold both: signal_nudge writes a bare name from the
+    path of a SKILL.md that was read, the Skill-tool hook writes whatever
+    the host called it."""
+    (project / ".rseng-agent-skills-usage.log").write_text(
+        "rseng-testing\nrseng-agent-skills:rseng-testing\nrseng-honesty\n"
+    )
+    assert consulted_in(project) == {"rseng-testing", "rseng-honesty"}
+
+
+def test_a_namespace_does_not_smuggle_in_an_invented_name(project):
+    """Splitting on the colon must not weaken the inventory check - a made
+    up skill is still made up with a plugin name stuck on the front."""
+    (project / ".rseng-agent-skills-usage.log").write_text(
+        "rseng-agent-skills:rseng-not-a-real-skill\nanything:rseng-zzz-fake\n"
+        "rseng-agent-skills:rseng-testing\n"
+    )
+    assert consulted_in(project) == {"rseng-testing"}
+
+
+def test_a_plugin_not_named_rseng_is_still_understood(project):
+    """The old filter tested the whole line for an rseng- prefix, so it
+    would have dropped these before any splitting happened."""
+    (project / ".rseng-agent-skills-usage.log").write_text(
+        "someone-elses-pack:rseng-testing\n"
+    )
+    assert consulted_in(project) == {"rseng-testing"}
 
 
 @pytest.mark.parametrize(

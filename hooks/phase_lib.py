@@ -60,6 +60,21 @@ def known_skills(script_dir=None):
         return set()
 
 
+def ledger_name(line):
+    """The bare skill name in one ledger line.
+
+    A plugin host reports a skill as "<plugin>:<skill>", so the ledger
+    can hold either spelling while the rest of the pack speaks bare
+    names. Every Skill-tool consultation on a Claude plugin install
+    arrived namespaced, was matched against the bare inventory, and
+    counted for nothing - the ledger stayed empty however many skills
+    the session opened, so the gate held every write for the whole
+    session. Split before filtering: a plugin need not be named
+    rseng-anything.
+    """
+    return line.strip().rsplit(":", 1)[-1].strip()
+
+
 def consulted_skills():
     """Skills the session has actually opened.
 
@@ -71,9 +86,14 @@ def consulted_skills():
     if not LEDGER.is_file():
         return set()
     claimed = {
-        line.strip()
-        for line in LEDGER.read_text(encoding="utf-8", errors="replace").splitlines()
-        if line.strip().startswith("rseng-")
+        name
+        for name in (
+            ledger_name(line)
+            for line in LEDGER.read_text(
+                encoding="utf-8", errors="replace"
+            ).splitlines()
+        )
+        if name.startswith("rseng-")
     }
     known = known_skills()
     return claimed & known if known else claimed
