@@ -52,9 +52,20 @@ function makeRepo(): void {
       fs.writeFileSync(path.join(target, "inner", "file.md"), `${entry}\n`);
     }
   }
+  // A real checkout, because prepack ships only what git tracks and refuses
+  // to run where it cannot ask. Adding to the index is enough - ls-files
+  // reads the index, so no commit and no identity are needed.
+  execFileSync("git", ["init", "-q"], { cwd: root });
+  execFileSync("git", ["add", "-A"], { cwd: root });
   // dist/ must look newer than skills/ or the freshness guard fires.
   const later = Date.now() / 1000 + 60;
   fs.utimesSync(path.join(root, "dist", "inner", "file.md"), later, later);
+}
+
+function stagedFiles(): string {
+  return execFileSync("find", [path.join(installer, "content"), "-type", "f"], {
+    encoding: "utf8",
+  });
 }
 
 function runPrepack(): { status: number; output: string } {
@@ -122,6 +133,44 @@ describe("prepack", () => {
       fs.utimesSync(path.join(root, "dist", "inner", f), stale, stale);
     }
     expect(runPrepack().status).toBe(1);
+  });
+
+  it("does not ship working files that git does not track", () => {
+    // .git/info/exclude hides local notes and tool state from the
+    // repository, and cpSync did not care: they were staged for a public
+    // registry without ever appearing in `git status`. A dot-directory is
+    // covered too, and must not survive as an empty shell.
+    fs.writeFileSync(path.join(root, "hooks", "NOTES.local.md"), "scratch\n");
+    fs.mkdirSync(path.join(root, "hooks", ".scratch", "state"), {
+      recursive: true,
+    });
+    fs.writeFileSync(
+      path.join(root, "hooks", ".scratch", "state", "session.json"),
+      "{}",
+    );
+
+    expect(runPrepack().status).toBe(0);
+    const staged = stagedFiles();
+    expect(staged).not.toMatch(/NOTES\.local|\.scratch/);
+    expect(
+      fs.existsSync(path.join(installer, "content", "hooks", ".scratch")),
+    ).toBe(false);
+    // and the tracked content beside them still ships
+    expect(staged).toMatch(/hooks\/inner\/file\.md/);
+  });
+
+  it("still ships the generated dist, which git does not track", () => {
+    execFileSync("git", ["rm", "-r", "--cached", "-q", "dist"], { cwd: root });
+    expect(runPrepack().status).toBe(0);
+    expect(stagedFiles()).toMatch(/content\/dist\/inner\/file\.md/);
+  });
+
+  it("refuses to pack where it cannot ask git what is tracked", () => {
+    fs.rmSync(path.join(root, ".git"), { recursive: true, force: true });
+    const result = runPrepack();
+    expect(result.status).toBe(1);
+    expect(result.output).toContain("git");
+    expect(fs.existsSync(path.join(installer, "content"))).toBe(false);
   });
 
   it("leaves no staging directory behind when it refuses", () => {

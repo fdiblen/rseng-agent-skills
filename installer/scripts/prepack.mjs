@@ -2,6 +2,7 @@
 // Copies an explicit whitelist (never a raw directory sweep) from the
 // repository into installer/content/, which resolvePackRoot() finds at
 // runtime in the published package.
+import { execFileSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -42,6 +43,44 @@ if (newestMtime(path.join(repoRoot, "dist")) < newestMtime(path.join(repoRoot, "
   process.exit(1);
 }
 
+// Ship only what git tracks. Local working files are kept out of the
+// repository through .git/info/exclude, but cpSync never consulted git, so
+// four of them sitting under hooks/ were staged for npm while staying
+// invisible in `git status` - the one place a release review looks. Refuses
+// rather than falling back: a filter that quietly stops filtering is worse
+// than no filter, because nobody checks it again.
+const GENERATED = new Set(["dist"]);
+let tracked;
+try {
+  tracked = new Set(
+    execFileSync("git", ["ls-files", "-z"], { cwd: repoRoot, encoding: "utf8" })
+      .split("\0")
+      .filter(Boolean),
+  );
+} catch {
+  tracked = null;
+}
+if (!tracked || tracked.size === 0) {
+  console.error(
+    "prepack: cannot list git-tracked files, so untracked working files " +
+      "cannot be kept out of the tarball; refusing to pack",
+  );
+  process.exit(1);
+}
+// A directory is kept when it leads to a tracked file; otherwise an excluded
+// one is recreated empty beside the files it was meant to leave out.
+const trackedDirs = new Set();
+for (const file of tracked) {
+  const parts = file.split("/");
+  for (let i = 1; i < parts.length; i += 1) {
+    trackedDirs.add(parts.slice(0, i).join("/"));
+  }
+}
+const isTracked = (src) => {
+  const rel = path.relative(repoRoot, src).split(path.sep).join("/");
+  return tracked.has(rel) || trackedDirs.has(rel);
+};
+
 fs.rmSync(contentDir, { recursive: true, force: true });
 fs.mkdirSync(contentDir);
 // Never sweep build junk into the tarball. hooks/__pycache__ is gitignored,
@@ -53,9 +92,12 @@ const wanted = (src) => {
 };
 
 for (const entry of WHITELIST) {
+  // dist/ is exempt: it is generated, deliberately untracked, and is
+  // precisely what the package exists to ship.
+  const generated = GENERATED.has(entry);
   fs.cpSync(path.join(repoRoot, entry), path.join(contentDir, entry), {
     recursive: true,
-    filter: wanted,
+    filter: (src) => wanted(src) && (generated || isTracked(src)),
   });
 }
 // The bundled package.json version is what doctor compares against.
