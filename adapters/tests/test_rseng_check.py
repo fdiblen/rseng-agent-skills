@@ -126,3 +126,50 @@ def test_a_missing_directory_is_refused(complete, tmp_path):
     result = run(complete, tmp_path / "does-not-exist")
     assert result.returncode == 2
     assert "not a directory" in result.stdout
+
+
+ENV_DECLARATIONS = [
+    ("pyproject.toml", "[project]\nname = 'demo'\n"),
+    ("package.json", '{"name": "demo"}\n'),
+    ("DESCRIPTION", "Package: demo\n"),
+    ("renv.lock", "{}\n"),
+    ("Project.toml", 'name = "Demo"\n'),
+    ("CMakeLists.txt", "project(demo)\n"),
+    ("meson.build", "project('demo')\n"),
+    ("conanfile.txt", "[requires]\n"),
+    ("vcpkg.json", '{"name": "demo"}\n'),
+]
+
+
+@pytest.mark.parametrize("name,body", ENV_DECLARATIONS)
+def test_every_ecosystems_environment_declaration_is_accepted(
+    complete, project, name, body
+):
+    """The check accepted only Python's four, so a JS, R, Julia or C
+    project was told it had no dependency declaration and had no way to
+    satisfy the demand."""
+    (project / name).write_text(body)
+    assert "environment/dependency declaration" not in run(complete, project).stdout
+
+
+def test_a_project_declaring_nothing_is_still_asked_for_a_declaration(
+    complete, project
+):
+    assert "environment/dependency declaration" in run(complete, project).stdout
+
+
+def test_the_check_and_the_hooks_accept_the_same_declarations():
+    """Two copies of this list exist because the self-check ships alone
+    and cannot import the hooks. They have drifted before."""
+    import importlib.util
+
+    sys.path.insert(0, str(REPO / "hooks"))
+    import phase_lib
+
+    spec = importlib.util.spec_from_file_location(
+        "shipped_check", SHIPPED / "rseng_check.py"
+    )
+    shipped = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(shipped)
+
+    assert shipped.ENV_DECLARATIONS == phase_lib.ENV_DECLARATIONS

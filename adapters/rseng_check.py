@@ -77,6 +77,23 @@ def _is_project_file(path: pathlib.Path, root: pathlib.Path) -> bool:
 
 
 CODE_GLOBS = ("*.py", "*.R", "*.jl", "*.js", "*.ts", "*.c", "*.cpp", "*.f90")
+# One per ecosystem CODE_GLOBS accepts. Only Python's were listed, so a repo
+# with package.json and no Python at all was told it had no dependency
+# declaration. Kept in step with hooks/phase_lib.py; a test compares them.
+ENV_DECLARATIONS = (
+    "pyproject.toml",  # Python
+    "uv.lock",
+    "requirements*.txt",
+    "environment*.y*ml",  # conda, and Python-adjacent
+    "package.json",  # JavaScript, TypeScript
+    "DESCRIPTION",  # R
+    "renv.lock",
+    "Project.toml",  # Julia
+    "CMakeLists.txt",  # C, C++, Fortran
+    "meson.build",
+    "conanfile.txt",
+    "vcpkg.json",
+)
 SOURCE_SUFFIXES = (
     ".py",
     ".R",
@@ -153,17 +170,18 @@ def artifact_floor(root, code, waived):
         missing.append("tests (at least a smoke/reference-case check)")
 
     if not (
-        list(root.glob("pyproject.toml"))
-        or list(root.glob("uv.lock"))
-        or list(root.glob("requirements*.txt"))
-        or list(root.glob("environment*.y*ml"))
+        any(list(root.glob(pattern)) for pattern in ENV_DECLARATIONS)
         or any(
             "# /// script" in p.read_text(encoding="utf-8", errors="ignore")
             for p in code[:10]
             if p.suffix == ".py"
         )
     ):
-        missing.append("environment/dependency declaration (uv + pyproject or PEP 723)")
+        missing.append(
+            "environment/dependency declaration (uv + pyproject or PEP 723 for "
+            "Python; package.json, DESCRIPTION, Project.toml or CMakeLists.txt "
+            "for the other languages)"
+        )
     return missing
 
 
