@@ -288,7 +288,9 @@ def undispositioned(phases, text, ledger):
 # some, and guessing wrong hides real code. Everything listed is
 # unambiguous: other people's packages, or a tool's own output written
 # under a name nobody authors by hand.
-NOT_PROJECT_DIRS = frozenset({"node_modules", "site-packages", "__pycache__", "htmlcov"})
+NOT_PROJECT_DIRS = frozenset(
+    {"node_modules", "site-packages", "__pycache__", "htmlcov"}
+)
 
 
 def is_project_file(path, root):

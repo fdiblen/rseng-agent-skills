@@ -685,6 +685,6 @@ def test_the_hooks_and_the_self_check_agree_on_what_a_project_file_is(tmp_path):
         path = tmp_path / rel
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text("x")
-        assert phase_lib.is_project_file(path, tmp_path) == rseng_check._is_project_file(
+        assert phase_lib.is_project_file(
             path, tmp_path
-        ), rel
+        ) == rseng_check._is_project_file(path, tmp_path), rel

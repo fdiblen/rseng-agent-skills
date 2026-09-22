@@ -160,6 +160,7 @@ def _without_heredoc_bodies(text: str) -> str:
             delim = found[-1][1]
     return "\n".join(kept)
 
+
 PATCH_BODY = "*** Begin Patch"
 
 
