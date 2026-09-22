@@ -1,7 +1,7 @@
 {
   "name": "rseng-agent-skills",
   "description": "Research software engineering skills for coding agents: testing, CI/CD, documentation, licensing, citation, FAIR, publishing, reproducibility, code review, maintenance, planning and workflows, plus repo-audit commands and practice enforcement.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": {
     "name": "Faruk Diblen"
   },

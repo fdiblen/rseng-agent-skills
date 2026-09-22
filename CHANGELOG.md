@@ -7,6 +7,35 @@ changes or new skills, major = restructuring).
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-09-23
+
+### Fixed
+
+- The consultation ledger now understands the namespaced skill names a
+  plugin host reports (`<plugin>:<skill>`). They were matched whole against
+  the bare inventory and discarded, so on a plugin install the ledger stayed
+  empty however many skills a session opened and the write gate held every
+  write until the checks were switched off by hand.
+- Environment declarations are recognised for every language the code scan
+  accepts, not only Python: `package.json`, `DESCRIPTION`, `renv.lock`,
+  `Project.toml`, `CMakeLists.txt`, `meson.build`, `conanfile.txt` and
+  `vcpkg.json`. A JavaScript project was told it had no dependency
+  declaration and had no way to satisfy the demand.
+- Coverage output and bytecode are no longer read as the project's own work,
+  so a vendored `cacert.pem` under a virtualenv and files under `htmlcov/`
+  stop raising security and interface findings.
+- The gate no longer holds writes outside the project, and a filename quoted
+  inside a heredoc is no longer treated as a file being written.
+- The stop-time message says the pass runs once, instead of implying the
+  session is stuck.
+
+### Changed
+
+- The published package now contains only files git tracks, plus the
+  generated adapters. Packing refuses to run where it cannot ask git.
+- The self-check shipped to the hookless agents accepts the same environment
+  declarations as the hooks, and a test keeps the two lists in step.
+
 ## [0.1.0] - 2026-09-06
 
 First public release.

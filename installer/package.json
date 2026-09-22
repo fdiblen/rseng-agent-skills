@@ -1,6 +1,6 @@
 {
   "name": "rseng-agent-skills",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Install research software engineering practice skills into AI coding agents",
   "keywords": [
     "research-software",
