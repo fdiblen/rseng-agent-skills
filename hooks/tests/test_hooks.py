@@ -285,6 +285,43 @@ def test_a_dependencys_tests_do_not_satisfy_the_tests_requirement(project):
     assert "tests (at least" in result.stderr
 
 
+# One per ecosystem the code scan accepts, with the file that declares its
+# dependencies.
+ENV_DECLARATIONS = [
+    ("pyproject.toml", "[project]\nname = 'demo'\n"),
+    ("uv.lock", "version = 1\n"),
+    ("requirements.txt", "requests\n"),
+    ("environment.yml", "name: demo\n"),
+    ("package.json", '{"name": "demo"}\n'),
+    ("DESCRIPTION", "Package: demo\n"),
+    ("renv.lock", "{}\n"),
+    ("Project.toml", 'name = "Demo"\n'),
+    ("CMakeLists.txt", "project(demo)\n"),
+    ("meson.build", "project('demo')\n"),
+    ("conanfile.txt", "[requires]\n"),
+    ("vcpkg.json", '{"name": "demo"}\n'),
+]
+
+
+@pytest.mark.parametrize("name,body", ENV_DECLARATIONS)
+def test_every_ecosystems_environment_declaration_is_accepted(project, name, body):
+    """Only Python's four were listed, so a JS project carrying
+    package.json and package-lock.json was told at every Stop that it had
+    no dependency declaration - and could not satisfy it without adding a
+    Python file it had no use for."""
+    (project / name).write_text(body)
+    (project / ".rseng-agent-skills-writes").write_text("w\n")
+    result = run_hook("quality_check", "{}", project)
+    assert "environment/dependency declaration" not in result.stderr
+
+
+def test_a_project_declaring_nothing_is_still_asked_for_a_declaration(project):
+    """Widening the list must not empty it."""
+    (project / ".rseng-agent-skills-writes").write_text("w\n")
+    result = run_hook("quality_check", "{}", project)
+    assert "environment/dependency declaration" in result.stderr
+
+
 def test_hooks_do_not_fail_on_a_read_only_project(project):
     """A hook must not raise because its own bookkeeping could not be
     written - that lands on the success path, after the agent complied."""

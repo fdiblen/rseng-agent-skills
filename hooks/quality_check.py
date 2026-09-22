@@ -53,17 +53,18 @@ if not [
 ] and not [p for p in cwd.rglob("tests") if phase_lib.is_project_file(p, cwd)]:
     missing.append("tests (at least a smoke/reference-case check)")
 if not (
-    list(cwd.glob("pyproject.toml"))
-    or list(cwd.glob("uv.lock"))
-    or list(cwd.glob("requirements*.txt"))
-    or list(cwd.glob("environment*.y*ml"))
+    any(list(cwd.glob(pattern)) for pattern in phase_lib.ENV_DECLARATIONS)
     or any(
         "# /// script" in p.read_text(encoding="utf-8", errors="ignore")
         for p in code[:10]
         if p.suffix == ".py"
     )
 ):
-    missing.append("environment/dependency declaration (uv + pyproject or PEP 723)")
+    missing.append(
+        "environment/dependency declaration (uv + pyproject or PEP 723 for "
+        "Python; package.json, DESCRIPTION, Project.toml or CMakeLists.txt "
+        "for the other languages)"
+    )
 
 phases = phase_lib.load_phases(pathlib.Path(__file__).parent)
 text = phase_lib.coverage_text()

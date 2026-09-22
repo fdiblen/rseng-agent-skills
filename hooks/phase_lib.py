@@ -18,6 +18,26 @@ COVERAGE = pathlib.Path(".rseng-agent-skills-coverage.md")
 LEDGER = pathlib.Path(".rseng-agent-skills-usage.log")
 WRITES = pathlib.Path(".rseng-agent-skills-writes")
 
+# One per ecosystem the code scan accepts. Only Python's were listed, so a
+# repo with package.json and no Python at all was told it had no dependency
+# declaration - a demand it could not meet except by adding an irrelevant
+# Python file or switching the checks off. Kept in step with the same tuple
+# in adapters/rseng_check.py; the two are compared by a test.
+ENV_DECLARATIONS = (
+    "pyproject.toml",  # Python
+    "uv.lock",
+    "requirements*.txt",
+    "environment*.y*ml",  # conda, and Python-adjacent
+    "package.json",  # JavaScript, TypeScript
+    "DESCRIPTION",  # R
+    "renv.lock",
+    "Project.toml",  # Julia
+    "CMakeLists.txt",  # C, C++, Fortran
+    "meson.build",
+    "conanfile.txt",
+    "vcpkg.json",
+)
+
 
 def load_phases(script_dir):
     f = pathlib.Path(script_dir) / "phases.json"
